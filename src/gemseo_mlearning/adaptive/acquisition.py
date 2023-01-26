@@ -114,6 +114,10 @@ class MLDataAcquisition:
 
         return problem
 
+    def update_problem(self) -> None:
+        # TODO: docstring
+        self.__problem = self.__build_optimization_problem()
+
     def set_acquisition_algorithm(self, algo_name: str, **options: Any) -> None:
         """Set sampling or optimization algorithm.
 
