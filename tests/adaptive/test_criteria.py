@@ -21,6 +21,7 @@ from __future__ import annotations
 import pytest
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
+from gemseo.utils.pytest_conftest import concretize_classes
 from gemseo_mlearning.adaptive.criteria.distances.criterion_min import (
     MinimumDistance,
 )
@@ -62,7 +63,9 @@ def algo_distribution() -> MLRegressorDistribution:
         group=dataset.OUTPUT_GROUP,
         cache_as_input=False,
     )
-    distribution = MLRegressorDistribution(LinearRegressor(dataset))
+    with concretize_classes(MLRegressorDistribution):
+        distribution = MLRegressorDistribution(LinearRegressor(dataset))
+
     distribution.learn()
     distribution.compute_variance = lambda input_data: 2 * input_data
     distribution.compute_mean = lambda input_data: 3 * input_data

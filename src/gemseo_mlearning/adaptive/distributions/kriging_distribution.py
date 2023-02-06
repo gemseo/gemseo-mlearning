@@ -67,28 +67,32 @@ class KrigingDistribution(MLRegressorDistribution):
             upper = mean + quantile * std
         return lower, upper
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_mean(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict(input_data)
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_variance(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.compute_standard_deviation(input_data) ** 2
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_standard_deviation(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict_std(input_data)
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_expected_improvement(  # noqa: D102
         self,
         input_data: DataType,
