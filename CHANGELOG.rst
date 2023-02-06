@@ -26,6 +26,14 @@ and this project adheres to
 `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 
+Develop
+*******
+
+Fixed
+-----
+
+- :class:`.MLRegressorDistribution` can now use a regression algorithm instantiated with transformers.
+
 Version 1.0.0 (July 2022)
 *************************
 

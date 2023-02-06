@@ -21,14 +21,22 @@ from __future__ import annotations
 import pytest
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
+from gemseo.mlearning.regression.rbf import RBFRegressor
+from gemseo.utils.pytest_conftest import concretize_classes
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
+    RegressorDistribution,
+)
 from numpy import array
+from numpy import linspace
+from numpy import newaxis
 
 
 @pytest.fixture(scope="module")
 def distribution(dataset) -> MLRegressorDistribution:
     """The distribution of a linear regression model built from the learning dataset."""
-    return MLRegressorDistribution(LinearRegressor(dataset))
+    with concretize_classes(MLRegressorDistribution):
+        return MLRegressorDistribution(LinearRegressor(dataset))
 
 
 @pytest.fixture(scope="module")
@@ -37,8 +45,25 @@ def distribution_with_variance(dataset) -> MLRegressorDistribution:
 
     This distribution has a mock implementation of the method compute_variance.
     """
-    distribution = MLRegressorDistribution(LinearRegressor(dataset))
+    with concretize_classes(MLRegressorDistribution):
+        distribution = MLRegressorDistribution(LinearRegressor(dataset))
+
     distribution.compute_variance = lambda input_data: input_data
+    return distribution
+
+
+@pytest.fixture(scope="module")
+def distribution_with_transformers() -> RegressorDistribution:
+    """The distribution of an algorithm using variable transformation."""
+    dataset = Dataset()
+    x = linspace(-1, 1, 10)[:, None]
+    dataset.add_variable("x", x, group=dataset.INPUT_GROUP)
+    dataset.add_variable("y", x**2, group=dataset.OUTPUT_GROUP)
+
+    algo = RBFRegressor(dataset, transformer=RBFRegressor.DEFAULT_TRANSFORMER)
+
+    distribution = RegressorDistribution(algo)
+    distribution.learn()
     return distribution
 
 
@@ -134,24 +159,11 @@ def test_standard_deviation(distribution_with_variance, input_data, output_data)
     )
 
 
-def test_notimplementederror(distribution):
-    """Check that calling non implemented methods raises errors."""
-    with pytest.raises(NotImplementedError):
-        distribution.compute_confidence_interval(array([0.0]))
-
-    with pytest.raises(NotImplementedError):
-        distribution.compute_mean(array([0.0]))
-
-    with pytest.raises(NotImplementedError):
-        distribution.compute_variance(array([0.0]))
-
-    with pytest.raises(NotImplementedError):
-        distribution.compute_expected_improvement(array([0.0]), 0.0)
-
-
 def test_change_learning_set(dataset):
     """Check that changing the learning set updates the algorithm."""
-    distribution = MLRegressorDistribution(LinearRegressor(dataset))
+    with concretize_classes(MLRegressorDistribution):
+        distribution = MLRegressorDistribution(LinearRegressor(dataset))
+
     new_dataset = Dataset()
     new_dataset.add_variable(
         "x", array([0.0, 1.0])[:, None], group=new_dataset.INPUT_GROUP
@@ -165,3 +177,35 @@ def test_change_learning_set(dataset):
     distribution.change_learning_set(new_dataset)
     assert len(distribution.learning_set) == 2
     assert distribution.predict(array([0.5])) == array([1.0])
+
+
+@pytest.mark.parametrize("as_dict", [False, True])
+@pytest.mark.parametrize("is_2d", [False, True])
+@pytest.mark.parametrize(
+    "statistic",
+    ["variance", "mean", "expected_improvement", "standard_deviation"],
+)
+def test_decorator_for_statistics(
+    distribution_with_transformers, as_dict, is_2d, statistic
+):
+    """Check the use of decorator for the methods compute_{statistic}."""
+    input_data = array([0.0])
+    if is_2d:
+        input_data = input_data[newaxis, :]
+
+    if as_dict:
+        input_data = {"x": input_data}
+
+    args = ()
+    if statistic == "expected_improvement":
+        args = (0.0,)
+
+    compute_statistic = getattr(distribution_with_transformers, f"compute_{statistic}")
+    output_data = compute_statistic(input_data, *args)
+
+    assert isinstance(output_data, dict) == as_dict
+
+    if as_dict:
+        output_data = output_data["y"]
+
+    assert output_data.ndim == 1 + is_2d

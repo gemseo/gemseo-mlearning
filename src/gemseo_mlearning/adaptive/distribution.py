@@ -59,18 +59,19 @@ The abstract :class:`.MLRegressorDistribution` class is derived into two classes
 from __future__ import annotations
 
 import logging
+from abc import abstractmethod
 
-from docstring_inheritance import GoogleDocstringInheritanceMeta
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
 from numpy import ndarray
 
 LOGGER = logging.getLogger(__name__)
 
 
-class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
+class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     """Distribution related to a regression model."""
 
     algo: MLRegressionAlgo
@@ -154,6 +155,7 @@ class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
         """
         return self.algo.predict(input_data)
 
+    @abstractmethod
     def compute_confidence_interval(
         self,
         input_data: DataType,
@@ -175,9 +177,8 @@ class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
         Returns:
             The lower and upper bound values.
         """
-        raise NotImplementedError
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @abstractmethod
     def compute_mean(
         self,
         input_data: DataType,
@@ -197,9 +198,8 @@ class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
         Returns:
             The mean value.
         """
-        raise NotImplementedError
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @abstractmethod
     def compute_variance(
         self,
         input_data: DataType,
@@ -219,9 +219,9 @@ class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
         Returns:
             The variance value.
         """
-        raise NotImplementedError
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_standard_deviation(
         self,
         input_data: DataType,
@@ -243,7 +243,7 @@ class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
         """
         return self.compute_variance(input_data) ** 0.5
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @abstractmethod
     def compute_expected_improvement(
         self, input_data: DataType, fopt: float, maximize: bool = False
     ) -> DataType:
@@ -264,7 +264,6 @@ class MLRegressorDistribution(metaclass=GoogleDocstringInheritanceMeta):
         Returns:
             The expected improvement value.
         """
-        raise NotImplementedError
 
     def change_learning_set(self, learning_set: Dataset) -> None:
         """Re-train the machine learning algorithm relying on the initial learning set.
