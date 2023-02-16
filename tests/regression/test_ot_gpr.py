@@ -119,23 +119,21 @@ def test_kriging_use_hmat(dataset, use_hmat):
     assert kriging.use_hmat is not use_hmat
 
 
-@pytest.mark.parametrize("use_hmat", [True, False])
-def test_kriging_predict_on_learning_set(dataset, use_hmat):
-    """Check that the Kriging interpolates the learning set whatever the library."""
-    kriging = OTGaussianProcessRegressor(dataset, use_hmat=use_hmat)
+def test_kriging_predict_on_learning_set(dataset):
+    """Check that the Kriging interpolates the learning set."""
+    kriging = OTGaussianProcessRegressor(dataset)
     kriging.learn()
     for x in kriging.learning_set.get_data_by_group(Dataset.INPUT_GROUP):
         prediction = kriging.predict({"x": x})
         assert_allclose(prediction["sum"], sum(x), atol=1e-3)
-        assert_allclose(prediction["rosen"], rosen(x), atol=1e-3)
+        assert_allclose(prediction["rosen"], rosen(x))
 
 
-@pytest.mark.parametrize("use_hmat", [True, False])
 @pytest.mark.parametrize("x1", [-1, 1])
 @pytest.mark.parametrize("x2", [-1, 1])
-def test_kriging_predict(dataset, use_hmat, x1, x2):
+def test_kriging_predict(dataset, x1, x2):
     """Check that the Kriging is not yet good enough to extrapolate."""
-    kriging = OTGaussianProcessRegressor(dataset, use_hmat=use_hmat)
+    kriging = OTGaussianProcessRegressor(dataset)
     kriging.learn()
     x = array([x1, x2])
     prediction = kriging.predict({"x": x})
@@ -143,16 +141,13 @@ def test_kriging_predict(dataset, use_hmat, x1, x2):
     assert prediction["rosen"] != pytest.approx(rosen(x))
 
 
-@pytest.mark.parametrize("use_hmat", [True, False])
 @pytest.mark.parametrize("transformer", [None, {"inputs": "MinMaxScaler"}])
-def test_kriging_predict_std_on_learning_set(transformer, dataset, use_hmat):
-    """Check that the Kriging interpolates the learning set whatever the library.
+def test_kriging_predict_std_on_learning_set(transformer, dataset):
+    """Check that the Kriging interpolates the learning set.
 
     The standard deviation should be equal to zero.
     """
-    kriging = OTGaussianProcessRegressor(
-        dataset, transformer=transformer, use_hmat=use_hmat
-    )
+    kriging = OTGaussianProcessRegressor(dataset, transformer=transformer)
     kriging.learn()
     for x in kriging.learning_set.get_data_by_group(Dataset.INPUT_GROUP):
         predicted_std = kriging.predict_std(x)
@@ -160,18 +155,15 @@ def test_kriging_predict_std_on_learning_set(transformer, dataset, use_hmat):
         assert predicted_std[1] == pytest.approx(0.0, abs=1e-1)
 
 
-@pytest.mark.parametrize("use_hmat", [True, False])
 @pytest.mark.parametrize("x1", [-1, 1])
 @pytest.mark.parametrize("x2", [-1, 1])
 @pytest.mark.parametrize("transformer", [None, {"inputs": "MinMaxScaler"}])
-def test_kriging_predict_std(transformer, dataset, use_hmat, x1, x2):
+def test_kriging_predict_std(transformer, dataset, x1, x2):
     """Check that the Kriging is not yet good enough to extrapolate.
 
     The standard deviation should be different from zero.
     """
-    kriging = OTGaussianProcessRegressor(
-        dataset, transformer=transformer, use_hmat=use_hmat
-    )
+    kriging = OTGaussianProcessRegressor(dataset, transformer=transformer)
     kriging.learn()
     assert kriging.predict_std(array([x1, x2]))[0] != pytest.approx(0.0)
     assert kriging.predict_std(array([x1, x2]))[1] != pytest.approx(0.0)

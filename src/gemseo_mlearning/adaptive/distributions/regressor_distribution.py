@@ -258,13 +258,15 @@ class RegressorDistribution(MLRegressorDistribution):
         weights = array([func(input_data) for func in self.weights])
         return weights / npsum(weights, 0)
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_mean(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
         weights = self._evaluate_weights(input_data)
         return self.__average(weights, predictions)
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_variance(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
         weights = self._evaluate_weights(input_data)
@@ -272,7 +274,8 @@ class RegressorDistribution(MLRegressorDistribution):
         term2 = self.__average(weights, predictions) ** 2
         return term1 - term2
 
-    @regression.MLRegressionAlgo.DataFormatters.format_input_output
+    @regression.MLRegressionAlgo.DataFormatters.format_dict
+    @regression.MLRegressionAlgo.DataFormatters.format_samples
     def compute_expected_improvement(  # noqa: D102
         self,
         input_data: DataType,
