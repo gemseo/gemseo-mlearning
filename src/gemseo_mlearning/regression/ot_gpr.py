@@ -35,6 +35,7 @@ from openturns import KrigingAlgorithm
 from openturns import Point
 from openturns import ResourceMap
 from openturns import SquaredExponential
+from openturns import TensorizedCovarianceModel
 
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
@@ -83,10 +84,6 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             output_names=output_names,
             use_hmat=use_hmat,
         )
-        dimension = data.dimension[data.INPUT_GROUP]
-        self.__covariance_model = SquaredExponential([0.1] * dimension, [1.0])
-        self.__covariance_model.setActiveParameter([])
-        self.__basis = ConstantBasisFactory(dimension).build()
         self.__use_hmat = None
         if use_hmat is None:
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
@@ -114,8 +111,22 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         ResourceMap.SetAsString("KrigingAlgorithm-LinearAlgebra", linear_algebra_method)
 
     def _fit(self, input_data: ndarray, output_data: ndarray) -> None:
+        input_dimension = input_data.shape[1]
+        output_dimension = output_data.shape[1]
+        covariance_models = [
+            SquaredExponential([0.1] * input_dimension, [1.0])
+            for _ in range(output_dimension)
+        ]
+        if output_dimension == 1:
+            covariance_model = covariance_models[0]
+        else:
+            covariance_model = TensorizedCovarianceModel(covariance_models)
+
         algo = KrigingAlgorithm(
-            input_data, output_data, self.__covariance_model, self.__basis
+            input_data,
+            output_data,
+            covariance_model,
+            ConstantBasisFactory(input_dimension).build(),
         )
         algo.run()
         self.algo = algo.getResult()
