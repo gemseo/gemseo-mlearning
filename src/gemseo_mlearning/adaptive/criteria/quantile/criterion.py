@@ -32,7 +32,6 @@ Bootstrap estimator:
 .. math::
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|
-
 """
 from __future__ import annotations
 
