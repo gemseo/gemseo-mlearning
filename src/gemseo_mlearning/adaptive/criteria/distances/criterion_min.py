@@ -20,8 +20,10 @@
 """Minimum distance between a point and the learning dataset."""
 from __future__ import annotations
 
-from numpy import ndarray
+from typing import Callable
+
 from numpy import nonzero
+from numpy.typing import NDArray
 from scipy.spatial.distance import cdist
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
@@ -30,13 +32,12 @@ from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
 class MinimumDistance(MLDataAcquisitionCriterion):
     """Minimum distance to the learning dataset.
 
-    This infill criterion computes the minimum distance between a new point and the
-    point of the learning dataset, scaled by the maximum distance between two learning
-    points.
+    This infill criterion computes the minimum distance between a new point and the point
+    of the learning dataset, scaled by the maximum distance between two learning points.
     """
 
-    def _get_func(self):
-        def func(input_data: ndarray) -> float:
+    def _get_func(self) -> Callable[[NDArray[float]], float]:
+        def func(input_data: NDArray[float]) -> float:
             """Evaluation function.
 
             Args:

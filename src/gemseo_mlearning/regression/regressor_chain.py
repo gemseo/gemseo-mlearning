@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import logging
 from collections import namedtuple
+from typing import Any
 from typing import ClassVar
 from typing import Iterable
 from typing import Mapping
@@ -58,7 +59,7 @@ class RegressorChain(MLRegressionAlgo):
         transformer: Mapping[str, TransformerType] | None = None,
         input_names: Iterable[str] = None,
         output_names: Iterable[str] = None,
-        **parameters,
+        **parameters: Any,
     ) -> None:
         super().__init__(
             data,
@@ -73,7 +74,7 @@ class RegressorChain(MLRegressionAlgo):
         self,
         name: str,
         transformer: Mapping[str, TransformerType] | None = None,
-        **parameters,
+        **parameters: Any,
     ) -> None:
         """Add a new regression algorithm in the chain.
 

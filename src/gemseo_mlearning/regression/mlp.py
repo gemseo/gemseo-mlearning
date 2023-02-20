@@ -21,6 +21,7 @@
 from __future__ import annotations
 
 import logging
+from typing import Any
 from typing import ClassVar
 from typing import Iterable
 from typing import Mapping
@@ -48,7 +49,7 @@ class MLPRegressor(MLRegressionAlgo):
         input_names: Iterable[str] = None,
         output_names: Iterable[str] = None,
         hidden_layer_sizes: tuple[int] = (100,),
-        **parameters,
+        **parameters: Any,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
