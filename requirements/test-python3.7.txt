@@ -172,5 +172,5 @@ xdsmjs==1.0.1
     # via gemseo
 xxhash==3.1.0
     # via gemseo
-zipp==3.13.0
+zipp==3.14.0
     # via importlib-metadata
