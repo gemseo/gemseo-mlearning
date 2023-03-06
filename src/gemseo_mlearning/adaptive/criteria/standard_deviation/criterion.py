@@ -59,6 +59,6 @@ class StandardDeviation(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             std = self.algo_distribution.compute_standard_deviation(input_data)
-            return std / self.output_range
+            return std / self._scaling_factor
 
         return func

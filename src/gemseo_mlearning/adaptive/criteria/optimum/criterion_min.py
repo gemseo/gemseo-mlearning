@@ -62,6 +62,6 @@ class MinExpectedImprovement(MLDataAcquisitionCriterion):
             expected_improvement = self.algo_distribution.compute_expected_improvement(
                 input_data, minimum_output
             )
-            return expected_improvement / self.output_range
+            return expected_improvement / self._scaling_factor
 
         return func

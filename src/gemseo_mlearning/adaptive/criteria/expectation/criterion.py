@@ -55,6 +55,8 @@ class Expectation(MLDataAcquisitionCriterion):
             Returns:
                 The acquisition criterion value.
             """
-            return self.algo_distribution.compute_mean(input_data) / self.output_range
+            return (
+                self.algo_distribution.compute_mean(input_data) / self._scaling_factor
+            )
 
         return func

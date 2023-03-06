@@ -69,6 +69,14 @@ class MLDataAcquisitionCriterion(MDOFunction):
         func = self._get_func()
         super().__init__(func, func.__name__, jac=self._get_jac())
 
+    @property
+    def _scaling_factor(self) -> float:
+        """The factor to scale values in the output space."""
+        if self.output_range == 0:
+            return 1.0
+
+        return self.output_range
+
     @abstractmethod
     def _get_func(self) -> Callable:
         """Build the evaluation function.

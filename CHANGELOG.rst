@@ -25,6 +25,13 @@ The format is based on
 and this project adheres to
 `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
+Develop
+*******
+
+Fixed
+-----
+
+- The output of an :class:`.MLDataAcquisitionCriterion` based on a regressor built from constant output values is no longer ``nan``.
 
 Version 1.0.1 (February 2022)
 *****************************

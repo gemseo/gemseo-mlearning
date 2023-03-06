@@ -73,6 +73,6 @@ class MeanSigma(MLDataAcquisitionCriterion):
             """
             mean = self.algo_distribution.compute_mean(input_data)
             sigma = self.algo_distribution.compute_standard_deviation(input_data)
-            return (mean + self.kappa * sigma) / self.output_range
+            return (mean + self.kappa * sigma) / self._scaling_factor
 
         return func
