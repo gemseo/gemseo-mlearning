@@ -34,6 +34,7 @@ from gemseo.mlearning.core.ml_algo import DataType
 from numpy import array
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionFactory
+from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionOptionType
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 LOGGER = logging.getLogger(__name__)
@@ -61,7 +62,7 @@ class MLDataAcquisition:
         criterion: str,
         input_space: DesignSpace,
         distribution: MLRegressorDistribution,
-        **options: Any,
+        **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
@@ -188,8 +189,12 @@ class MLDataAcquisition:
                 None,
             )
             self.__distribution.change_learning_set(learning_cache.export_to_dataset())
-            self.__problem = self.__build_optimization_problem()
+            self.update_problem()
             LOGGER.setLevel(saved_level)
             LOGGER.info("Add sample %s out of %s", index + 1, n_samples)
 
         return self.__database, self.__problem
+
+    def update_problem(self) -> None:
+        """Update the optimization problem."""
+        self.__problem = self.__build_optimization_problem()

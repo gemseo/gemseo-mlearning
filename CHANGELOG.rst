@@ -28,6 +28,11 @@ and this project adheres to
 Develop
 *******
 
+Added
+-----
+
+- A new optimization library :class:`SurrogateBasedOptimization` to perform EGO-like surrogate-based optimization on unconstrained problems.
+
 Fixed
 -----
 
