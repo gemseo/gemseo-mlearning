@@ -59,6 +59,6 @@ class Variance(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             variance = self.algo_distribution.compute_variance(input_data)
-            return variance / self.output_range**2
+            return variance / self._scaling_factor**2
 
         return func

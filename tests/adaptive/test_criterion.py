@@ -104,3 +104,13 @@ def test_linear_combination(algo_distribution):
     assert isinstance(criterion_3, MDOFunction)
     x_new = array([0.5])
     assert criterion_3(x_new) == criterion_1(x_new) * 0.2 + criterion_2(x_new) * 0.8
+
+
+def test_scaling_factor(dataset, algo_distribution):
+    """Check that the scaling factor is updated with the output range."""
+    criterion = ExpectedImprovement(algo_distribution)
+    assert criterion._scaling_factor == 1.0
+    criterion.output_range = 2.0
+    assert criterion._scaling_factor == 2.0
+    criterion.output_range = 0.0
+    assert criterion._scaling_factor == 1.0
