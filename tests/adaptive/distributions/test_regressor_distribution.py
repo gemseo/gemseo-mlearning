@@ -28,14 +28,6 @@ from numpy import exp
 from numpy import quantile
 
 
-@pytest.fixture(scope="module")
-def algo(dataset) -> LinearRegressor:
-    """A linear regression model used in different tests."""
-    model = LinearRegressor(dataset)
-    model.learn()
-    return model
-
-
 def __weight_func(value, indices):
     terms = [
         1 - exp(-((value - 0.0) ** 2) / 0.5**2),
@@ -49,9 +41,9 @@ def __weight_func(value, indices):
 
 
 @pytest.fixture(scope="module")
-def distribution(algo) -> RegressorDistribution:
+def distribution(linear_algo) -> RegressorDistribution:
     """The distribution of the linear regression model."""
-    distribution = RegressorDistribution(algo, bootstrap=False, loo=True)
+    distribution = RegressorDistribution(linear_algo, bootstrap=False, loo=True)
     distribution.learn()
     return distribution
 
@@ -66,9 +58,9 @@ def distribution(algo) -> RegressorDistribution:
         (False, True, None),
     ],
 )
-def test_init(algo, bootstrap, loo, size):
+def test_init(linear_algo, bootstrap, loo, size):
     """Check the initialization of the distribution."""
-    distribution = RegressorDistribution(algo, bootstrap, loo, size)
+    distribution = RegressorDistribution(linear_algo, bootstrap, loo, size)
     if bootstrap:
         assert distribution.method == distribution.BOOTSTRAP
         assert distribution.size == size or distribution.N_BOOTSTRAP

@@ -27,22 +27,16 @@ from numpy import array
 
 
 @pytest.fixture(scope="module")
-def algo(dataset) -> GaussianProcessRegressor:
-    """A Kriging regression model used in different tests."""
-    return GaussianProcessRegressor(dataset)
-
-
-@pytest.fixture(scope="module")
-def distribution(algo: GaussianProcessRegressor) -> KrigingDistribution:
+def distribution(kriging_algo: GaussianProcessRegressor) -> KrigingDistribution:
     """The distribution of the Kriging regression model."""
-    distribution = KrigingDistribution(algo)
+    distribution = KrigingDistribution(kriging_algo)
     distribution.learn()
     return distribution
 
 
-def test_init(algo):
+def test_init(kriging_algo):
     """Check the initialization of the distribution."""
-    assert KrigingDistribution(algo).algo == algo
+    assert KrigingDistribution(kriging_algo).algo == kriging_algo
 
 
 @pytest.mark.parametrize(

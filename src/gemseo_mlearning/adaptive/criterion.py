@@ -40,6 +40,8 @@ from numpy import ndarray
 
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
+MLDataAcquisitionCriterionOptionType = float
+
 
 class MLDataAcquisitionCriterion(MDOFunction):
     """Acquisition criterion."""
@@ -55,7 +57,7 @@ class MLDataAcquisitionCriterion(MDOFunction):
     def __init__(
         self,
         algo_distribution: MLRegressorDistribution,
-        **options: Any,
+        **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
