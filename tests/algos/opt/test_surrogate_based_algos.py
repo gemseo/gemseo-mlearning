@@ -15,6 +15,9 @@
 """Tests for the surrogate-based optimization algorithms."""
 from __future__ import annotations
 
+import re
+
+import pytest
 from gemseo.algos.opt.opt_factory import OptimizersFactory
 from gemseo.problems.analytical.rastrigin import Rastrigin
 
@@ -22,3 +25,16 @@ from gemseo.problems.analytical.rastrigin import Rastrigin
 def test_default_options():
     """Check the default options of the surrogate-based optimizer."""
     assert OptimizersFactory().execute(Rastrigin(), "SBO").f_opt < 0.5
+
+
+@pytest.mark.parametrize("max_iter", [8, 10])
+def test_inconsistent_max_iter(max_iter):
+    """Check that max_iter must be strictly greater than doe_size."""
+    with pytest.raises(
+        ValueError,
+        match=re.escape(
+            f"max_iter ({max_iter}) must be "
+            f"strictly greater than the initial DOE size (10)."
+        ),
+    ):
+        OptimizersFactory().execute(Rastrigin(), "SBO", max_iter=max_iter)

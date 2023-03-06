@@ -23,6 +23,7 @@ from typing import Any
 from typing import Mapping
 from typing import Union
 
+from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.doe.doe_lib import DOELibraryOptionType
 from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.algos.opt.opt_lib import OptimizationAlgorithmDescription
@@ -146,9 +147,14 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         )
 
     def _run(self, **options: SBOOptionType) -> OptimizationResult:
+        """
+        Raises:
+            ValueError: When the maximum number of iterations
+                is less than or equal to the initial DOE size.
+        """  # noqa: D205 D212 D415
         # Pop the options specific to GEMSEO
+        max_iter = options.pop(self.MAX_ITER)
         for option in [
-            self.MAX_ITER,
             self.MAX_TIME,
             self.F_TOL_REL,
             self.F_TOL_ABS,
@@ -158,15 +164,28 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         ]:
             del options[option]
 
+        doe_options = options.pop("doe_options")
+        doe_size = options.pop("doe_size")
+        doe_algorithm = options.pop("doe_algorithm")
+        doe_algo = DOEFactory().create(doe_algorithm)
+        initial_doe_size = len(
+            doe_algo.compute_doe(self.problem.design_space, doe_size, **doe_options)
+        )
+        if max_iter <= initial_doe_size:
+            raise ValueError(
+                f"max_iter ({max_iter}) must be "
+                f"strictly greater than the initial DOE size ({initial_doe_size})."
+            )
+
         # Set a large bound on the number of acquisitions as GEMSEO handles stopping
         options["number_of_acquisitions"] = sys.maxsize
         return self.get_optimum_from_database(
             SurrogateBasedOptimizer(
                 self.problem,
                 options.pop("acquisition_algorithm"),
-                options.pop("doe_size"),
-                options.pop("doe_algorithm"),
-                options.pop("doe_options"),
+                doe_size,
+                doe_algorithm,
+                doe_options,
                 options.pop("regression_algorithm"),
                 options.pop("regression_options"),
                 options.pop("acquisition_options"),
