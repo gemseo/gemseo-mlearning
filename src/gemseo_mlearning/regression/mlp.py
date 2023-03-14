@@ -23,6 +23,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 from typing import ClassVar
+from typing import Final
 from typing import Iterable
 from typing import Mapping
 
@@ -30,7 +31,6 @@ import sklearn.neural_network
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.compatibility.python import Final
 from numpy import ndarray
 
 LOGGER = logging.getLogger(__name__)

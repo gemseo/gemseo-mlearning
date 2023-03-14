@@ -37,12 +37,12 @@ from __future__ import annotations
 import logging
 from typing import Callable
 from typing import ClassVar
+from typing import Final
 
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.compatibility.python import Final
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import array_split

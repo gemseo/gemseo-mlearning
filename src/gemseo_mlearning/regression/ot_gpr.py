@@ -16,13 +16,13 @@
 from __future__ import annotations
 
 from typing import ClassVar
+from typing import Final
 from typing import Iterable
 
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.compatibility.python import Final
 from gemseo.utils.data_conversion import (
     concatenate_dict_of_arrays_to_array,
 )
