@@ -24,10 +24,10 @@ from typing import Mapping
 from typing import Union
 
 from gemseo.algos.doe.doe_factory import DOEFactory
-from gemseo.algos.doe.doe_lib import DOELibraryOptionType
+from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.algos.doe.lib_openturns import OpenTURNS
-from gemseo.algos.opt.opt_lib import OptimizationAlgorithmDescription
-from gemseo.algos.opt.opt_lib import OptimizationLibrary
+from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescription
+from gemseo.algos.opt.optimization_library import OptimizationLibrary
 from gemseo.algos.opt_result import OptimizationResult
 from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor

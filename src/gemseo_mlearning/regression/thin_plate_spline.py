@@ -55,7 +55,7 @@ class TPSRegressor(RBFRegressor):
             transformer=transformer,
             input_names=input_names,
             output_names=output_names,
-            function=RBFRegressor.THIN_PLATE,
+            function=RBFRegressor.Function.THIN_PLATE,
             smooth=smooth,
             norm=norm,
             **parameters,

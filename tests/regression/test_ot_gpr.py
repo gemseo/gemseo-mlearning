@@ -16,7 +16,7 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.api import execute_algo
+from gemseo import execute_algo
 from gemseo.core.dataset import Dataset
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.problems.analytical.rosenbrock import Rosenbrock
@@ -60,14 +60,14 @@ def problem() -> Rosenbrock:
 def dataset(problem) -> Dataset:
     """A 9-length full-factorial sampling of the Rosenbrock problem."""
     execute_algo(problem, "fullfact", n_samples=9, algo_type="doe")
-    return problem.export_to_dataset(opt_naming=False)
+    return problem.to_dataset(opt_naming=False)
 
 
 @pytest.fixture(scope="module")
 def dataset_2(problem) -> Dataset:
     """A 9-length full-factorial sampling of the Rosenbrock problem."""
     execute_algo(problem, "fullfact", n_samples=9, algo_type="doe")
-    data = problem.export_to_dataset(opt_naming=False)
+    data = problem.to_dataset(opt_naming=False)
     data.add_variable(
         "rosen2", hstack((data["rosen"], -data["rosen"])), group=data.OUTPUT_GROUP
     )

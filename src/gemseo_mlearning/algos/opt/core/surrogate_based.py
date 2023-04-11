@@ -20,8 +20,8 @@ from types import MappingProxyType
 from typing import Mapping
 
 from gemseo.algos.doe.doe_factory import DOEFactory
-from gemseo.algos.doe.doe_lib import DOELibrary
-from gemseo.algos.doe.doe_lib import DOELibraryOptionType
+from gemseo.algos.doe.doe_library import DOELibrary
+from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
@@ -88,7 +88,7 @@ class SurrogateBasedOptimizer:
         self.__problem.max_iter = max_iter
         self.__model = RegressionModelFactory().create(
             regression_algorithm,
-            data=self.__problem.export_to_dataset(opt_naming=False),
+            data=self.__problem.to_dataset(opt_naming=False),
             transformer=MLRegressionAlgo.DEFAULT_TRANSFORMER,
             **regression_options,
         )
@@ -121,7 +121,7 @@ class SurrogateBasedOptimizer:
 
             self.__problem.evaluate_functions(input_data, normalize=False)
             self.__distribution.change_learning_set(
-                self.__problem.export_to_dataset(opt_naming=False)
+                self.__problem.to_dataset(opt_naming=False)
             )
             self.__acquisition.update_problem()
 

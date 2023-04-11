@@ -15,7 +15,7 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.mlearning.qual_measure.mse_measure import MSEMeasure
+from gemseo.mlearning.quality_measures.mse_measure import MSEMeasure
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo.mlearning.regression.polyreg import PolynomialRegressor
 from gemseo_mlearning.regression.regressor_chain import RegressorChain
