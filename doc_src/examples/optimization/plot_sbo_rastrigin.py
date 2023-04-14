@@ -16,9 +16,9 @@
 """Surrogate-based optimization of Rastrigin's function."""
 from __future__ import annotations
 
-from gemseo.api import configure_logger
-from gemseo.api import execute_algo
-from gemseo.api import execute_post
+from gemseo import configure_logger
+from gemseo import execute_algo
+from gemseo import execute_post
 from gemseo.problems.analytical.rastrigin import Rastrigin
 
 configure_logger()

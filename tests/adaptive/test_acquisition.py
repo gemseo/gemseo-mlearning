@@ -81,7 +81,7 @@ def test_init(algo_distribution, input_space):
     assert (
         acquisition._MLDataAcquisition__algo_options == acquisition.default_opt_options
     )
-    assert acquisition._MLDataAcquisition__problem.design_space.variables_names == ["x"]
+    assert acquisition._MLDataAcquisition__problem.design_space.variable_names == ["x"]
     assert acquisition._MLDataAcquisition__criterion == "ExpectedImprovement"
     assert acquisition._MLDataAcquisition__input_space == input_space
     assert acquisition._MLDataAcquisition__distribution == algo_distribution
@@ -194,7 +194,7 @@ def test_build_opt_problem_jacobian(
     assert (
         eq(
             acquisition._MLDataAcquisition__problem.differentiation_method,
-            OptimizationProblem.FINITE_DIFFERENCES,
+            OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES,
         )
         == use_finite_differences
     )

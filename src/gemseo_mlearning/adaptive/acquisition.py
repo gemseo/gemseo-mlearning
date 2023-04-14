@@ -103,12 +103,16 @@ class MLDataAcquisition:
         """
         problem = OptimizationProblem(self.__input_space)
         problem.objective = _CRITERION_FACTORY.create(
-            self.__criterion, self.__distribution, **self.__criterion_options
+            self.__criterion,
+            algo_distribution=self.__distribution,
+            **self.__criterion_options,
         )
         problem.objective.name = self.__criterion
 
-        if not problem.objective.has_jac():
-            problem.differentiation_method = OptimizationProblem.FINITE_DIFFERENCES
+        if not problem.objective.has_jac:
+            problem.differentiation_method = (
+                OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES
+            )
 
         if problem.objective.MAXIMIZE:
             problem.change_objective_sign()
@@ -188,7 +192,7 @@ class MLDataAcquisition:
                 {k: discipline.local_data[k] for k in self.__distribution.output_names},
                 None,
             )
-            self.__distribution.change_learning_set(learning_cache.export_to_dataset())
+            self.__distribution.change_learning_set(learning_cache.to_dataset())
             self.update_problem()
             LOGGER.setLevel(saved_level)
             LOGGER.info("Add sample %s out of %s", index + 1, n_samples)

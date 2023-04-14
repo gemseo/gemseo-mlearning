@@ -52,7 +52,9 @@ def algo_distribution(dataset) -> RegressorDistribution:
 def test_factory(algo_distribution):
     """Check the MLDataAcquisitionCriterionFactory."""
     factory = MLDataAcquisitionCriterionFactory()
-    criterion = factory.create("ExpectedImprovement", algo_distribution)
+    criterion = factory.create(
+        "ExpectedImprovement", algo_distribution=algo_distribution
+    )
     assert isinstance(criterion, ExpectedImprovement)
     assert "ExpectedImprovement" in factory.available_criteria
     assert factory.is_available("ExpectedImprovement")
