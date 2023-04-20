@@ -50,10 +50,8 @@ class MLDataAcquisition:
 
     Typically a DoE or an optimizer.
     """
-
     default_opt_options: ClassVar[dict[str, Any]] = {"max_iter": 100}
     """The names and values of the default optimization options."""
-
     default_doe_options: ClassVar[dict[str, Any]] = {"n_samples": 100}
     """The names and values of the default DoE options."""
 

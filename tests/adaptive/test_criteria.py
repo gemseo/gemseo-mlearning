@@ -21,7 +21,7 @@ from __future__ import annotations
 import pytest
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
-from gemseo.utils.pytest_conftest import concretize_classes
+from gemseo.utils.testing.helpers import concretize_classes
 from gemseo_mlearning.adaptive.criteria.distances.criterion_min import (
     MinimumDistance,
 )

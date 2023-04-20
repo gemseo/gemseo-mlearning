@@ -19,14 +19,12 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """A model chaining regression models.
 
-During the training stage,
-the first regression model learns the learning dataset,
-the second regression model learns the learning error of the first regression model,
-and the $i$-th regression model learns the learning error of its predecessor.
+During the training stage, the first regression model learns the learning dataset, the
+second regression model learns the learning error of the first regression model, and the
+$i$-th regression model learns the learning error of its predecessor.
 
-During the prediction stage,
-the different regression models are evaluated from a new input data
-and the sum of their output data is returned.
+During the prediction stage, the different regression models are evaluated from a new
+input data and the sum of their output data is returned.
 """
 from __future__ import annotations
 
