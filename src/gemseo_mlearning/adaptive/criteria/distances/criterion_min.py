@@ -32,8 +32,9 @@ from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
 class MinimumDistance(MLDataAcquisitionCriterion):
     """Minimum distance to the learning dataset.
 
-    This infill criterion computes the minimum distance between a new point and the point
-    of the learning dataset, scaled by the maximum distance between two learning points.
+    This infill criterion computes the minimum distance between a new point and the
+    point of the learning dataset, scaled by the maximum distance between two learning
+    points.
     """
 
     def _get_func(self) -> Callable[[NDArray[float]], float]:

@@ -22,7 +22,7 @@ import pytest
 from gemseo.core.dataset import Dataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo.mlearning.regression.rbf import RBFRegressor
-from gemseo.utils.pytest_conftest import concretize_classes
+from gemseo.utils.testing.helpers import concretize_classes
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
