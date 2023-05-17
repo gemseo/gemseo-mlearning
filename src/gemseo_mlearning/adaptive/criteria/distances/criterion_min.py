@@ -48,7 +48,7 @@ class MinimumDistance(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             train = self.algo_distribution.learning_set
-            train = train.get_data_by_group(train.INPUT_GROUP)
+            train = train.get_view(group_names=train.INPUT_GROUP).to_numpy()
             distance = cdist(input_data.reshape((1, -1)), train).min()
             dist_train = cdist(train, train)
             d_max = dist_train[nonzero(dist_train)].min() / 2.0

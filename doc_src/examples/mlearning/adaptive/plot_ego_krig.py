@@ -122,7 +122,9 @@ disc_data = discipline.cache.export_to_dataset()
 # Plotting
 # --------
 fig, ax = plt.subplots(2, 1)
-ax[0].plot(x_train, dataset["y"], "ro", label="training")
+ax[0].plot(
+    x_train, dataset.get_view(variable_names="y").to_numpy(), "ro", label="training"
+)
 ax[0].plot(x_test, disc_data["y"], "r", label="original")
 ax[0].plot(x_test, surr_data, "b", label="surrogate")
 ax[0].fill_between(

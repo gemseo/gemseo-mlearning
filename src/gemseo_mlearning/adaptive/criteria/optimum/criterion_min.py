@@ -58,7 +58,9 @@ class MinExpectedImprovement(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             dataset = self.algo_distribution.learning_set
-            minimum_output = min(dataset.get_data_by_group(dataset.OUTPUT_GROUP))
+            minimum_output = min(
+                dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()
+            )
             expected_improvement = self.algo_distribution.compute_expected_improvement(
                 input_data, minimum_output
             )

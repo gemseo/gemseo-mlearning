@@ -24,9 +24,9 @@ from gemseo import create_scenario
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
-from gemseo.core.dataset import Dataset
 from gemseo.core.discipline import MDODiscipline
 from gemseo.core.scenario import Scenario
+from gemseo.datasets.dataset import Dataset
 
 
 def sample_discipline(

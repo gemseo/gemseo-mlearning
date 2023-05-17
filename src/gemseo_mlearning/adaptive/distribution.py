@@ -61,7 +61,8 @@ from __future__ import annotations
 import logging
 from abc import abstractmethod
 
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.dataset import Dataset
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
@@ -105,7 +106,7 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         self._output_variables_to_transform = self.algo._output_variables_to_transform
 
     @property
-    def learning_set(self) -> Dataset:
+    def learning_set(self) -> IODataset:
         """The learning dataset used by the original machine learning algorithm."""
         return self.algo.learning_set
 
