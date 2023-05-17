@@ -35,7 +35,7 @@ from typing import ClassVar
 from typing import Iterable
 from typing import Mapping
 
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.dataset import Dataset
 from gemseo.mlearning import create_regression_model
 from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo

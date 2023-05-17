@@ -115,7 +115,7 @@ class SurrogateBasedOptimizer:
         message = self.__STOP_BECAUSE_MAX_ACQUISITIONS
         for _ in range(number_of_acquisitions):
             input_data = self.__acquisition.compute_next_input_data()
-            if self.__problem.database.contains_x(input_data):
+            if input_data in self.__problem.database:
                 message = self.__STOP_BECAUSE_ALREADY_KNOWN
                 break
 

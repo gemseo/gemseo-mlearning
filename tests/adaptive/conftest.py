@@ -19,19 +19,20 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.io_dataset import IODataset
 from numpy import array
 
 
 @pytest.fixture(scope="module")
-def dataset() -> Dataset:
+def dataset() -> IODataset:
     """A learning dataset."""
-    dataset = Dataset()
-    dataset.add_variable("x", array([0.0, 1.0])[:, None], group=dataset.INPUT_GROUP)
+    dataset = IODataset()
+    dataset.add_variable(
+        "x", array([0.0, 1.0])[:, None], group_name=dataset.INPUT_GROUP
+    )
     dataset.add_variable(
         "y",
         array([1.0, 2.0])[:, None],
-        group=dataset.OUTPUT_GROUP,
-        cache_as_input=False,
+        group_name=dataset.OUTPUT_GROUP,
     )
     return dataset

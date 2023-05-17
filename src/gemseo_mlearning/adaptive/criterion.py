@@ -65,7 +65,7 @@ class MLDataAcquisitionCriterion(MDOFunction):
         """
         self.algo_distribution = algo_distribution
         dataset = self.algo_distribution.learning_set
-        data = dataset.get_data_by_group(dataset.OUTPUT_GROUP)
+        data = dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()
         self.output_range = data.max() - data.min()
         func = self._get_func()
         super().__init__(func, func.__name__, jac=self._get_jac())

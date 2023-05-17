@@ -58,7 +58,9 @@ class MaxExpectedImprovement(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             data = self.algo_distribution.learning_set
-            maximum_output = max(data.get_data_by_group(data.OUTPUT_GROUP))
+            maximum_output = max(
+                data.get_view(group_names=data.OUTPUT_GROUP).to_numpy()
+            )
             expected_improvement = self.algo_distribution.compute_expected_improvement(
                 input_data, maximum_output, True
             )

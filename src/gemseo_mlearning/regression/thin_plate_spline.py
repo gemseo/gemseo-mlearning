@@ -27,7 +27,7 @@ from typing import ClassVar
 from typing import Iterable
 from typing import Mapping
 
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.rbf import RBFRegressor
 from numpy import ndarray

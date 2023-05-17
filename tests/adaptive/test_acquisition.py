@@ -23,7 +23,7 @@ from operator import eq
 import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.opt_problem import OptimizationProblem
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
@@ -35,15 +35,16 @@ from numpy import ndarray
 
 
 @pytest.fixture(scope="module")
-def dataset() -> Dataset:
+def dataset() -> IODataset:
     """A learning dataset."""
-    dataset = Dataset()
-    dataset.add_variable("x", array([0.0, 1.0])[:, None], group=dataset.INPUT_GROUP)
+    dataset = IODataset()
+    dataset.add_variable(
+        "x", array([0.0, 1.0])[:, None], group_name=dataset.INPUT_GROUP
+    )
     dataset.add_variable(
         "y",
         array([1.0, 2.0])[:, None],
-        group=dataset.OUTPUT_GROUP,
-        cache_as_input=False,
+        group_name=dataset.OUTPUT_GROUP,
     )
     return dataset
 
@@ -94,13 +95,12 @@ def test_init_with_bad_output_dimension(input_space):
     The initialization should raise a NotImplementedError when the output dimension of
     the algorithm is greater than 1.
     """
-    dataset = Dataset()
-    dataset.add_variable("x", array([[0.0], [1.0]]), group=dataset.INPUT_GROUP)
+    dataset = IODataset()
+    dataset.add_variable("x", array([[0.0], [1.0]]), group_name=dataset.INPUT_GROUP)
     dataset.add_variable(
         "y",
         array([[1.0, 1.0], [2.0, 2.0]]),
-        group=dataset.OUTPUT_GROUP,
-        cache_as_input=False,
+        group_name=dataset.OUTPUT_GROUP,
     )
     algo = LinearRegressor(dataset)
     algo.learn()
