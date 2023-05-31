@@ -213,3 +213,18 @@ def test_kriging_std_output_dimension(dataset_2, output_name, input_data):
         shape = (1, ndim)
 
     assert model.predict_std(input_data).shape == shape
+
+
+@pytest.mark.parametrize(
+    "trend_type,shape",
+    [
+        (OTGaussianProcessRegressor.TrendType.CONSTANT, (2, 1)),
+        (OTGaussianProcessRegressor.TrendType.LINEAR, (2, 3)),
+        (OTGaussianProcessRegressor.TrendType.QUADRATIC, (2, 6)),
+    ],
+)
+def test_trend_type(dataset, trend_type, shape):
+    """Check the trend type of the Gaussian process regressor."""
+    model = OTGaussianProcessRegressor(dataset, trend_type=trend_type)
+    model.learn()
+    assert array(model.algo.getTrendCoefficients()).shape == shape

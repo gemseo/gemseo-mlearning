@@ -31,6 +31,7 @@ Develop
 Added
 -----
 
+- An argument ``trend_type`` of type :attr:`~.OTGaussianProcessRegressor.TREND_TYPE`` to :class:`.OTGaussianProcessRegressor; the trend type of the Gaussian process regressor can be either constant, linear or quadratic.
 - A new optimization library :class:`SurrogateBasedOptimization` to perform EGO-like surrogate-based optimization on unconstrained problems.
 
 Fixed
