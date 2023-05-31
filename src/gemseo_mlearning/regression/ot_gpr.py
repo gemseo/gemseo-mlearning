@@ -32,10 +32,13 @@ from numpy import diag
 from numpy import ndarray
 from openturns import ConstantBasisFactory
 from openturns import KrigingAlgorithm
+from openturns import LinearBasisFactory
 from openturns import Point
+from openturns import QuadraticBasisFactory
 from openturns import ResourceMap
 from openturns import SquaredExponential
 from openturns import TensorizedCovarianceModel
+from strenum import StrEnum
 
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
@@ -62,6 +65,25 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     Used when ``use_hmat`` is ``True``.
     """
 
+    class TrendType(StrEnum):
+        """The trend type of the Gaussian process regressor."""
+
+        CONSTANT = "constant"
+        LINEAR = "linear"
+        QUADRATIC = "quadratic"
+
+    __TREND_TYPES_TO_FACTORIES: Final[dict[str, type]] = {
+        TrendType.CONSTANT: ConstantBasisFactory,
+        TrendType.LINEAR: LinearBasisFactory,
+        TrendType.QUADRATIC: QuadraticBasisFactory,
+    }
+
+    __use_hmat: bool
+    """Whether to use the HMAT or LAPACK as linear algebra method."""
+
+    __trend_type: TrendType
+    """The type of the trend."""
+
     def __init__(
         self,
         data: Dataset,
@@ -69,6 +91,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         input_names: Iterable[str] = None,
         output_names: Iterable[str] = None,
         use_hmat: bool = None,
+        trend_type: TrendType = TrendType.CONSTANT,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
@@ -76,6 +99,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 If ``None``,
                 use HMAT when the learning size is greater
                 than :attr:`MAX_SIZE_FOR_LAPACK`.
+            trend_type: The type of the trend.
         """
         super().__init__(
             data,
@@ -84,7 +108,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             output_names=output_names,
             use_hmat=use_hmat,
         )
-        self.__use_hmat = None
+        self.__trend_type = trend_type
         if use_hmat is None:
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
         else:
@@ -126,7 +150,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             input_data,
             output_data,
             covariance_model,
-            ConstantBasisFactory(input_dimension).build(),
+            self.__TREND_TYPES_TO_FACTORIES[self.__trend_type](input_dimension).build(),
         )
         algo.run()
         self.algo = algo.getResult()
