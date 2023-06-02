@@ -16,9 +16,9 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.api import execute_algo
-from gemseo.core.dataset import Dataset
+from gemseo import execute_algo
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.problems.analytical.rosenbrock import Rosenbrock
 from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 from numpy import array
@@ -57,19 +57,26 @@ def problem() -> Rosenbrock:
 
 
 @pytest.fixture(scope="module")
-def dataset(problem) -> Dataset:
+def dataset(problem) -> IODataset:
     """A 9-length full-factorial sampling of the Rosenbrock problem."""
     execute_algo(problem, "fullfact", n_samples=9, algo_type="doe")
-    return problem.export_to_dataset(opt_naming=False)
+    return problem.to_dataset(opt_naming=False)
 
 
 @pytest.fixture(scope="module")
-def dataset_2(problem) -> Dataset:
+def dataset_2(problem) -> IODataset:
     """A 9-length full-factorial sampling of the Rosenbrock problem."""
     execute_algo(problem, "fullfact", n_samples=9, algo_type="doe")
-    data = problem.export_to_dataset(opt_naming=False)
+    data = problem.to_dataset(opt_naming=False)
     data.add_variable(
-        "rosen2", hstack((data["rosen"], -data["rosen"])), group=data.OUTPUT_GROUP
+        "rosen2",
+        hstack(
+            (
+                data.get_view(variable_names="rosen").to_numpy(),
+                -data.get_view(variable_names="rosen").to_numpy(),
+            )
+        ),
+        group_name=data.OUTPUT_GROUP,
     )
     return data
 
@@ -98,11 +105,13 @@ def test_class_constants(kriging):
 )
 def test_kriging_use_hmat_default(n_samples, use_hmat):
     """Check the default library (LAPACK or HMAT) according to the sample size."""
-    dataset = Dataset()
-    dataset.set_from_array(
+    dataset = IODataset.from_array(
         zeros((n_samples, 2)),
-        variables=["in", "out"],
-        groups={"in": Dataset.INPUT_GROUP, "out": Dataset.OUTPUT_GROUP},
+        variable_names=["in", "out"],
+        variable_names_to_group_names={
+            "in": IODataset.INPUT_GROUP,
+            "out": IODataset.OUTPUT_GROUP,
+        },
     )
     assert OTGaussianProcessRegressor(dataset).use_hmat is use_hmat
 
@@ -123,7 +132,9 @@ def test_kriging_predict_on_learning_set(dataset):
     """Check that the Kriging interpolates the learning set."""
     kriging = OTGaussianProcessRegressor(dataset)
     kriging.learn()
-    for x in kriging.learning_set.get_data_by_group(Dataset.INPUT_GROUP):
+    for x in kriging.learning_set.get_view(
+        group_names=IODataset.INPUT_GROUP
+    ).to_numpy():
         prediction = kriging.predict({"x": x})
         assert_allclose(prediction["sum"], sum(x), atol=1e-3)
         assert_allclose(prediction["rosen"], rosen(x))
@@ -149,7 +160,9 @@ def test_kriging_predict_std_on_learning_set(transformer, dataset):
     """
     kriging = OTGaussianProcessRegressor(dataset, transformer=transformer)
     kriging.learn()
-    for x in kriging.learning_set.get_data_by_group(Dataset.INPUT_GROUP):
+    for x in kriging.learning_set.get_view(
+        group_names=IODataset.INPUT_GROUP
+    ).to_numpy():
         predicted_std = kriging.predict_std(x)
         assert predicted_std[0] == pytest.approx(0.0, abs=1e-1)
         assert predicted_std[1] == pytest.approx(0.0, abs=1e-1)
@@ -200,3 +213,18 @@ def test_kriging_std_output_dimension(dataset_2, output_name, input_data):
         shape = (1, ndim)
 
     assert model.predict_std(input_data).shape == shape
+
+
+@pytest.mark.parametrize(
+    "trend_type,shape",
+    [
+        (OTGaussianProcessRegressor.TrendType.CONSTANT, (2, 1)),
+        (OTGaussianProcessRegressor.TrendType.LINEAR, (2, 3)),
+        (OTGaussianProcessRegressor.TrendType.QUADRATIC, (2, 6)),
+    ],
+)
+def test_trend_type(dataset, trend_type, shape):
+    """Check the trend type of the Gaussian process regressor."""
+    model = OTGaussianProcessRegressor(dataset, trend_type=trend_type)
+    model.learn()
+    assert array(model.algo.getTrendCoefficients()).shape == shape

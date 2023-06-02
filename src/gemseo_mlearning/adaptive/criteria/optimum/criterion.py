@@ -33,7 +33,6 @@ Bootstrap estimator:
 .. math::
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(f_{min}-Y_b(x),0)
-
 """
 from __future__ import annotations
 

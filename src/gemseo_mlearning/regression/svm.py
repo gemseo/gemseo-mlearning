@@ -19,20 +19,20 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Support vector machine for regression.
 
-The support vector machine model relies on the ``SVR`` class of the `scikit-learn
-library <https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html>`_.
+The support vector machine model relies on the :class:`SVR` class of ``sklearn``.
 """
 from __future__ import annotations
 
 import logging
+from typing import Any
 from typing import ClassVar
+from typing import Final
 from typing import Iterable
 from typing import Mapping
 
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.python_compatibility import Final
 from numpy import array
 from numpy import ndarray
 from sklearn.svm import SVR
@@ -50,15 +50,15 @@ class SVMRegressor(MLRegressionAlgo):
         self,
         data: Dataset,
         transformer: Mapping[str, TransformerType] | None = None,
-        input_names: Iterable[str] = None,
-        output_names: Iterable[str] = None,
+        input_names: Iterable[str] | None = None,
+        output_names: Iterable[str] | None = None,
         kernel: str = "rbf",
-        **parameters,
+        **parameters: Any,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             kernel: The kernel type to be used.
-        """
+        """  # noqa: D205 D212 D415
         super().__init__(
             data,
             transformer=transformer,

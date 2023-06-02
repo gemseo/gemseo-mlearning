@@ -20,37 +20,52 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.core.dataset import Dataset
-from gemseo.problems.dataset.rosenbrock import RosenbrockDataset
+from gemseo.datasets.io_dataset import IODataset
+from gemseo.problems.dataset.rosenbrock import create_rosenbrock_dataset
 from numpy import hstack
 from numpy import ndarray
 
 
 @pytest.fixture(scope="module")
-def dataset() -> RosenbrockDataset:
+def dataset() -> IODataset:
     """The Rosenbrock dataset."""
-    return RosenbrockDataset(opt_naming=False)
+    return create_rosenbrock_dataset(opt_naming=False)
 
 
 @pytest.fixture(scope="module")
-def dataset_2(dataset) -> RosenbrockDataset:
+def dataset_2(dataset) -> IODataset:
     """The Rosenbrock dataset with 2d-output."""
-    data = Dataset()
-    data.add_variable("x", dataset["x"], group=data.INPUT_GROUP)
-    data.add_variable("rosen", dataset["rosen"], group=data.OUTPUT_GROUP)
+    data = IODataset()
     data.add_variable(
-        "rosen2", hstack((dataset["rosen"], dataset["rosen"])), group=data.OUTPUT_GROUP
+        "x",
+        dataset.get_view(variable_names="x").to_numpy(),
+        group_name=data.INPUT_GROUP,
+    )
+    data.add_variable(
+        "rosen",
+        dataset.get_view(variable_names="rosen").to_numpy(),
+        group_name=data.OUTPUT_GROUP,
+    )
+    data.add_variable(
+        "rosen2",
+        hstack(
+            (
+                dataset.get_view(variable_names="rosen").to_numpy(),
+                dataset.get_view(variable_names="rosen").to_numpy(),
+            )
+        ),
+        group_name=data.OUTPUT_GROUP,
     )
     return data
 
 
 @pytest.fixture(scope="module")
-def input_data(dataset) -> ndarray:
+def input_data(dataset: IODataset) -> ndarray:
     """The learning input data."""
-    return dataset.get_data_by_group(dataset.INPUT_GROUP)
+    return dataset.get_view(group_names=dataset.INPUT_GROUP).to_numpy()
 
 
 @pytest.fixture(scope="module")
-def output_data(dataset) -> ndarray:
+def output_data(dataset: IODataset) -> ndarray:
     """The learning output data."""
-    return dataset.get_data_by_group(dataset.OUTPUT_GROUP)
+    return dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()

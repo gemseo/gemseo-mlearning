@@ -81,7 +81,6 @@ ax[1][1] = plt.subplot(224, sharey=ax[1][0])
 # in search of a new point to learn
 # in order to estimate the minimum of the discipline
 for index, bootstrap in enumerate([False, True]):
-
     # Train a RBF regression model
     algo = RBFRegressor(dataset)
     algo.learn()
@@ -128,7 +127,9 @@ for index, bootstrap in enumerate([False, True]):
         algo_data = [algo.predict(array([x_i])) for x_i in x_test]
         ax[0][index].plot(x_test, algo_data, "gray", alpha=0.2)
 
-    ax[0][index].plot(x_train, dataset["y"], "ro", label="training")
+    ax[0][index].plot(
+        x_train, dataset.get_view(variable_names="y").to_numpy(), "ro", label="training"
+    )
     ax[0][index].plot(x_test, disc_data["y"], "r", label="original")
     ax[0][index].plot(x_test, surr_data, "b", label="surrogate")
     ax[0][index].fill_between(

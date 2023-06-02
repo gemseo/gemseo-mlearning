@@ -32,13 +32,13 @@ Bootstrap estimator:
 .. math::
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|
-
 """
 from __future__ import annotations
 
+from typing import Callable
 from typing import ClassVar
 
-from numpy import ndarray
+from numpy.typing import NDArray
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
@@ -62,8 +62,8 @@ class LimitState(MLDataAcquisitionCriterion):
         self.value = value
         super().__init__(algo_distribution)
 
-    def _get_func(self):
-        def func(input_data: ndarray) -> float:
+    def _get_func(self) -> Callable[[NDArray[float]], float]:
+        def func(input_data: NDArray[float]) -> float:
             """Evaluation function.
 
             Args:

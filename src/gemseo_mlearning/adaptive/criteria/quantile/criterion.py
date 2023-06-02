@@ -32,7 +32,6 @@ Bootstrap estimator:
 .. math::
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|
-
 """
 from __future__ import annotations
 
@@ -53,5 +52,7 @@ class Quantile(LimitState):
             level: A quantile level.
         """
         dataset = algo_distribution.learning_set
-        limit_state = quantile(dataset.get_data_by_group(dataset.OUTPUT_GROUP), level)
+        limit_state = quantile(
+            dataset.get_view(group_names=dataset.OUTPUT_GROUP), level
+        )
         super().__init__(algo_distribution, limit_state)

@@ -20,8 +20,10 @@
 """Minimum distance between a point and the learning dataset."""
 from __future__ import annotations
 
-from numpy import ndarray
+from typing import Callable
+
 from numpy import nonzero
+from numpy.typing import NDArray
 from scipy.spatial.distance import cdist
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
@@ -35,8 +37,8 @@ class MinimumDistance(MLDataAcquisitionCriterion):
     points.
     """
 
-    def _get_func(self):
-        def func(input_data: ndarray) -> float:
+    def _get_func(self) -> Callable[[NDArray[float]], float]:
+        def func(input_data: NDArray[float]) -> float:
             """Evaluation function.
 
             Args:
@@ -46,7 +48,7 @@ class MinimumDistance(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             train = self.algo_distribution.learning_set
-            train = train.get_data_by_group(train.INPUT_GROUP)
+            train = train.get_view(group_names=train.INPUT_GROUP).to_numpy()
             distance = cdist(input_data.reshape((1, -1)), train).min()
             dist_train = cdist(train, train)
             d_max = dist_train[nonzero(dist_train)].min() / 2.0

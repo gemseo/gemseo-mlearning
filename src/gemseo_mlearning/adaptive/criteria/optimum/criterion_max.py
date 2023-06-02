@@ -31,11 +31,12 @@ Bootstrap estimator:
 .. math::
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(Y_b(x)-f_{max},0)
-
 """
 from __future__ import annotations
 
-from numpy import ndarray
+from typing import Callable
+
+from numpy.typing import NDArray
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
 
@@ -46,8 +47,8 @@ class MaxExpectedImprovement(MLDataAcquisitionCriterion):
     This criterion is scaled by the output range.
     """
 
-    def _get_func(self):
-        def func(input_data: ndarray) -> float:
+    def _get_func(self) -> Callable[[NDArray[float]], float]:
+        def func(input_data: NDArray[float]) -> float:
             """Evaluation function.
 
             Args:
@@ -57,10 +58,12 @@ class MaxExpectedImprovement(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             data = self.algo_distribution.learning_set
-            maximum_output = max(data.get_data_by_group(data.OUTPUT_GROUP))
+            maximum_output = max(
+                data.get_view(group_names=data.OUTPUT_GROUP).to_numpy()
+            )
             expected_improvement = self.algo_distribution.compute_expected_improvement(
                 input_data, maximum_output, True
             )
-            return expected_improvement / self.output_range
+            return expected_improvement / self._scaling_factor
 
         return func

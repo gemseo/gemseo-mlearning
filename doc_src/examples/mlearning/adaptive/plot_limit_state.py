@@ -117,7 +117,7 @@ for i in range(n_test):
 ##############################################################################
 # Plotting
 # --------
-train = learning_dataset[["x", "y"]]
+train = learning_dataset.get_view(variable_names=["x", "y"]).to_numpy()
 x_train = train["x"]
 y_train = train["y"]
 fig = plt.figure(constrained_layout=True)

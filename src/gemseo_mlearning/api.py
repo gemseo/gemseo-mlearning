@@ -20,13 +20,13 @@ from typing import Iterable
 from typing import Mapping
 from typing import Sequence
 
+from gemseo import create_scenario
 from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.doe.doe_lib import DOELibrary
-from gemseo.algos.doe.doe_lib import DOELibraryOptionType
-from gemseo.api import create_scenario
-from gemseo.core.dataset import Dataset
+from gemseo.algos.doe.doe_library import DOELibrary
+from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.core.discipline import MDODiscipline
 from gemseo.core.scenario import Scenario
+from gemseo.datasets.dataset import Dataset
 
 
 def sample_discipline(
@@ -117,6 +117,4 @@ def sample_disciplines(
         }
     )
 
-    return scenario.formulation.opt_problem.export_to_dataset(
-        name=name, opt_naming=False
-    )
+    return scenario.formulation.opt_problem.to_dataset(name=name, opt_naming=False)

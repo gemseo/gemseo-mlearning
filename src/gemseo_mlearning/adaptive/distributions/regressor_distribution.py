@@ -37,13 +37,13 @@ from __future__ import annotations
 import logging
 from typing import Callable
 from typing import ClassVar
+from typing import Final
 
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
-from gemseo.utils.python_compatibility import Final
 from numpy import array
 from numpy import array_split
 from numpy import atleast_2d
@@ -161,7 +161,9 @@ class RegressorDistribution(MLRegressorDistribution):
         Returns:
             The weight function returning a weight from a 1D input array.
         """
-        dat = self.learning_set.get_data_by_group(self.learning_set.INPUT_GROUP)
+        dat = self.learning_set.get_view(
+            group_names=self.learning_set.INPUT_GROUP
+        ).to_numpy()
         all_indices = set(self._samples)
         rho = max(
             min(euclidean(dat[id1], dat[id2]) for id2 in all_indices - {id1})
@@ -188,7 +190,9 @@ class RegressorDistribution(MLRegressorDistribution):
             input_data = atleast_2d(input_data)
             distance = ones(input_data.shape[0])
             for index in indices:
-                index_data = self.learning_set.get_data_by_group(in_grp)[index]
+                index_data = self.learning_set.get_view(group_names=in_grp).to_numpy()[
+                    index
+                ]
                 for index, value in enumerate(input_data):
                     term = 1 - exp(-euclidean(index_data, value) ** 2 / rho**2)
                     distance[index] *= term

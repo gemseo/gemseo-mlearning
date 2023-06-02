@@ -23,7 +23,7 @@ def test_init(dataset):
     algo = TPSRegressor(dataset)
     algo.learn()
     assert isinstance(algo, RBFRegressor)
-    assert algo.algo.function == RBFRegressor.THIN_PLATE
+    assert algo.algo.function == algo.Function.THIN_PLATE
     assert algo.algo.smooth == 0.0
     assert algo.algo.norm == "euclidean"
 

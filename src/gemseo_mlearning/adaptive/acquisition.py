@@ -30,10 +30,13 @@ from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.opt.opt_factory import OptimizersFactory
 from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.core.discipline import MDODiscipline
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.core.ml_algo import DataType
 from numpy import array
+from pandas import concat
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionFactory
+from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionOptionType
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 LOGGER = logging.getLogger(__name__)
@@ -49,10 +52,8 @@ class MLDataAcquisition:
 
     Typically a DoE or an optimizer.
     """
-
     default_opt_options: ClassVar[dict[str, Any]] = {"max_iter": 100}
     """The names and values of the default optimization options."""
-
     default_doe_options: ClassVar[dict[str, Any]] = {"n_samples": 100}
     """The names and values of the default DoE options."""
 
@@ -61,7 +62,7 @@ class MLDataAcquisition:
         criterion: str,
         input_space: DesignSpace,
         distribution: MLRegressorDistribution,
-        **options: Any,
+        **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
@@ -102,12 +103,16 @@ class MLDataAcquisition:
         """
         problem = OptimizationProblem(self.__input_space)
         problem.objective = _CRITERION_FACTORY.create(
-            self.__criterion, self.__distribution, **self.__criterion_options
+            self.__criterion,
+            algo_distribution=self.__distribution,
+            **self.__criterion_options,
         )
         problem.objective.name = self.__criterion
 
-        if not problem.objective.has_jac():
-            problem.differentiation_method = OptimizationProblem.FINITE_DIFFERENCES
+        if not problem.objective.has_jac:
+            problem.differentiation_method = (
+                OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES
+            )
 
         if problem.objective.MAXIMIZE:
             problem.change_objective_sign()
@@ -179,17 +184,37 @@ class MLDataAcquisition:
             LOGGER.setLevel(logging.WARNING)
             input_data = self.compute_next_input_data(as_dict=True)
             for inputs, outputs in self.__problem.database.items():
-                self.__database[array([index + 1] + inputs.unwrap().tolist())] = outputs
+                self.__database.store(
+                    array([index + 1] + inputs.unwrap().tolist()), outputs
+                )
 
             discipline.execute(input_data)
-            learning_cache = self.__distribution.algo.learning_set.export_to_cache()
-            learning_cache[input_data] = (
-                {k: discipline.local_data[k] for k in self.__distribution.output_names},
-                None,
+
+            # TODO: This is a dirty fix. Please refactor this function.
+            # WARNING: Using concat like this could lead to performance issues.
+            dataset_to_add = IODataset()
+            for input_name, input_value in input_data.items():
+                dataset_to_add.add_variable(
+                    input_name, input_value, group_name=dataset_to_add.INPUT_GROUP
+                )
+            for output_name in self.__distribution.output_names:
+                dataset_to_add.add_variable(
+                    output_name,
+                    discipline.local_data[output_name],
+                    group_name=dataset_to_add.OUTPUT_GROUP,
+                )
+            dataset = concat(
+                [self.__distribution.algo.learning_set, dataset_to_add],
+                ignore_index=True,
             )
-            self.__distribution.change_learning_set(learning_cache.export_to_dataset())
-            self.__problem = self.__build_optimization_problem()
+
+            self.__distribution.change_learning_set(dataset)
+            self.update_problem()
             LOGGER.setLevel(saved_level)
             LOGGER.info("Add sample %s out of %s", index + 1, n_samples)
 
         return self.__database, self.__problem
+
+    def update_problem(self) -> None:
+        """Update the optimization problem."""
+        self.__problem = self.__build_optimization_problem()

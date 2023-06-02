@@ -35,7 +35,9 @@ where :math:`\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)`.
 """
 from __future__ import annotations
 
-from numpy import ndarray
+from typing import Callable
+
+from numpy.typing import NDArray
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
 
@@ -46,8 +48,8 @@ class StandardDeviation(MLDataAcquisitionCriterion):
     This criterion is scaled by the output range.
     """
 
-    def _get_func(self):
-        def func(input_data: ndarray) -> float:
+    def _get_func(self) -> Callable[[NDArray[float]], float]:
+        def func(input_data: NDArray[float]) -> float:
             """Evaluation function.
 
             Args:
@@ -57,6 +59,6 @@ class StandardDeviation(MLDataAcquisitionCriterion):
                 The acquisition criterion value.
             """
             std = self.algo_distribution.compute_standard_deviation(input_data)
-            return std / self.output_range
+            return std / self._scaling_factor
 
         return func

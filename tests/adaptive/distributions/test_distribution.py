@@ -19,10 +19,10 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo.mlearning.regression.rbf import RBFRegressor
-from gemseo.utils.pytest_conftest import concretize_classes
+from gemseo.utils.testing.helpers import concretize_classes
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
@@ -55,10 +55,10 @@ def distribution_with_variance(dataset) -> MLRegressorDistribution:
 @pytest.fixture(scope="module")
 def distribution_with_transformers() -> RegressorDistribution:
     """The distribution of an algorithm using variable transformation."""
-    dataset = Dataset()
+    dataset = IODataset()
     x = linspace(-1, 1, 10)[:, None]
-    dataset.add_variable("x", x, group=dataset.INPUT_GROUP)
-    dataset.add_variable("y", x**2, group=dataset.OUTPUT_GROUP)
+    dataset.add_variable("x", x, group_name=dataset.INPUT_GROUP)
+    dataset.add_variable("y", x**2, group_name=dataset.OUTPUT_GROUP)
 
     algo = RBFRegressor(dataset, transformer=RBFRegressor.DEFAULT_TRANSFORMER)
 
@@ -79,7 +79,7 @@ def test_init(distribution):
 
 def test_learning_set(distribution):
     """Check the property ``learning_set``."""
-    assert isinstance(distribution.learning_set, Dataset)
+    assert isinstance(distribution.learning_set, IODataset)
 
 
 def test_inputs_names(distribution):
@@ -164,15 +164,14 @@ def test_change_learning_set(dataset):
     with concretize_classes(MLRegressorDistribution):
         distribution = MLRegressorDistribution(LinearRegressor(dataset))
 
-    new_dataset = Dataset()
+    new_dataset = IODataset()
     new_dataset.add_variable(
-        "x", array([0.0, 1.0])[:, None], group=new_dataset.INPUT_GROUP
+        "x", array([0.0, 1.0])[:, None], group_name=new_dataset.INPUT_GROUP
     )
     new_dataset.add_variable(
         "y",
         array([1.0, 1.0])[:, None],
-        group=new_dataset.OUTPUT_GROUP,
-        cache_as_input=False,
+        group_name=new_dataset.OUTPUT_GROUP,
     )
     distribution.change_learning_set(new_dataset)
     assert len(distribution.learning_set) == 2

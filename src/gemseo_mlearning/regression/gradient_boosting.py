@@ -26,14 +26,15 @@ generated/sklearn.ensemble.GradientBoostingRegressor.html>`_.
 from __future__ import annotations
 
 import logging
+from typing import Any
 from typing import ClassVar
+from typing import Final
 from typing import Iterable
 from typing import Mapping
 
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.dataset import Dataset
 from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.python_compatibility import Final
 from numpy import array
 from numpy import ndarray
 from sklearn.ensemble import GradientBoostingRegressor as SKLGradientBoosting
@@ -54,7 +55,7 @@ class GradientBoostingRegressor(MLRegressionAlgo):
         input_names: Iterable[str] = None,
         output_names: Iterable[str] = None,
         n_estimators: int = 100,
-        **parameters,
+        **parameters: Any,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:

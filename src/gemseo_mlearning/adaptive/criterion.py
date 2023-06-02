@@ -30,15 +30,16 @@ This notion of acquisition criterion is implemented through the
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Any
 from typing import Callable
 from typing import ClassVar
 
-from gemseo.core.factory import Factory
+from gemseo.core.base_factory import BaseFactory
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from numpy import ndarray
 
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+MLDataAcquisitionCriterionOptionType = float
 
 
 class MLDataAcquisitionCriterion(MDOFunction):
@@ -55,7 +56,7 @@ class MLDataAcquisitionCriterion(MDOFunction):
     def __init__(
         self,
         algo_distribution: MLRegressorDistribution,
-        **options: Any,
+        **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
@@ -64,10 +65,18 @@ class MLDataAcquisitionCriterion(MDOFunction):
         """
         self.algo_distribution = algo_distribution
         dataset = self.algo_distribution.learning_set
-        data = dataset.get_data_by_group(dataset.OUTPUT_GROUP)
+        data = dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()
         self.output_range = data.max() - data.min()
         func = self._get_func()
         super().__init__(func, func.__name__, jac=self._get_jac())
+
+    @property
+    def _scaling_factor(self) -> float:
+        """The factor to scale values in the output space."""
+        if self.output_range == 0:
+            return 1.0
+
+        return self.output_range
 
     @abstractmethod
     def _get_func(self) -> Callable:
@@ -115,42 +124,13 @@ class MLDataAcquisitionCriterion(MDOFunction):
         return new_criterion
 
 
-class MLDataAcquisitionCriterionFactory:
+class MLDataAcquisitionCriterionFactory(BaseFactory):
     """A factory of :class:`.MLDataAcquisitionCriterion`."""
 
-    def __init__(self) -> None:  # noqa: D205 D415 D107
-        self.__factory = Factory(
-            MLDataAcquisitionCriterion, ("gemseo_mlearning.adaptive.criteria",)
-        )
-
-    def create(
-        self, criterion: str, algo_distribution: MLRegressorDistribution, **options: Any
-    ) -> MLDataAcquisitionCriterion:
-        """Create a :class:`.MLDataAcquisitionCriterion`.
-
-        Args:
-            criterion: A name of data acquisition criterion.
-                (its class name).
-            algo_distribution: The distribution
-                of a machine learning algorithm.
-            **options: The acquisition criterion options.
-
-        Returns:
-            An acquisition criterion.
-        """
-        return self.__factory.create(
-            criterion, algo_distribution=algo_distribution, **options
-        )
-
-    def is_available(self, name: str) -> bool:
-        """Check if a name is an available acquisition criterion.
-
-        Args:
-            name: The name to check.
-        """
-        return self.__factory.is_available(name)
+    _CLASS = MLDataAcquisitionCriterion
+    _MODULE_NAMES = ("gemseo_mlearning.adaptive.criteria",)
 
     @property
     def available_criteria(self) -> list[str]:
         """The names of the available criteria."""
-        return self.__factory.classes
+        return self.class_names

@@ -19,9 +19,9 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.core.dataset import Dataset
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
-from gemseo.utils.pytest_conftest import concretize_classes
+from gemseo.utils.testing.helpers import concretize_classes
 from gemseo_mlearning.adaptive.criteria.distances.criterion_min import (
     MinimumDistance,
 )
@@ -53,15 +53,14 @@ def algo_distribution() -> MLRegressorDistribution:
 
     This distribution uses mocks for the methods compute_variance and compute_mean.
     """
-    dataset = Dataset()
+    dataset = IODataset()
     dataset.add_variable(
-        "x", array([0.0, 0.5, 1.0])[:, None], group=dataset.INPUT_GROUP
+        "x", array([0.0, 0.5, 1.0])[:, None], group_name=dataset.INPUT_GROUP
     )
     dataset.add_variable(
         "y",
         array([1.0, 0.0, 1.0])[:, None],
-        group=dataset.OUTPUT_GROUP,
-        cache_as_input=False,
+        group_name=dataset.OUTPUT_GROUP,
     )
     with concretize_classes(MLRegressorDistribution):
         distribution = MLRegressorDistribution(LinearRegressor(dataset))
@@ -97,7 +96,7 @@ def test_standard_deviation(algo_distribution):
 def test_expected_improvement(algo_distribution):
     """Check the criterion ExpectedImprovement."""
     value = array([0.0])
-    minimum = algo_distribution.learning_set["y"].min()
+    minimum = algo_distribution.learning_set.get_view(variable_names="y").min()
     criterion = ExpectedImprovement(algo_distribution)
     expected = algo_distribution.compute_expected_improvement(value, minimum)
     assert criterion(value) * criterion.output_range == expected
@@ -106,7 +105,7 @@ def test_expected_improvement(algo_distribution):
 def test_expected_improvement_for_minimum(algo_distribution):
     """Check the criterion MinExpectedImprovement."""
     value = array([0.0])
-    minimum = algo_distribution.learning_set["y"].min()
+    minimum = algo_distribution.learning_set.get_view(variable_names="y").min()
     criterion = MinExpectedImprovement(algo_distribution)
     expected = algo_distribution.compute_expected_improvement(value, minimum)
     assert criterion(value) * criterion.output_range == expected
@@ -116,7 +115,7 @@ def test_expected_improvement_for_maximum(algo_distribution):
     """Check the criterion MinExpectedImprovement."""
     value = array([0.0])
     criterion = MaxExpectedImprovement(algo_distribution)
-    maximum = algo_distribution.learning_set["y"].max()
+    maximum = algo_distribution.learning_set.get_view(variable_names="y").max()
     expected = algo_distribution.compute_expected_improvement(value, maximum, True)
     assert criterion(value) * criterion.output_range == expected
 
@@ -161,7 +160,9 @@ def test_limitstate(algo_distribution):
 def test_quantile(algo_distribution):
     """Check the criterion Quantile."""
     level = 0.8
-    quantile_ = quantile(algo_distribution.learning_set["y"], level)
+    quantile_ = quantile(
+        algo_distribution.learning_set.get_view(variable_names="y"), level
+    )
     value = array([0.25])
     mean = algo_distribution.compute_mean(value)
     std = algo_distribution.compute_standard_deviation(value)

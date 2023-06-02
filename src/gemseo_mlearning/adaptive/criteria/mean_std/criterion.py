@@ -30,11 +30,12 @@ Estimator:
 .. math::
 
    \widehat{E_sigma}[x] = \widehat{E}[x] + \kappa \times \widehat{sigma}[x]
-
 """
 from __future__ import annotations
 
-from numpy import ndarray
+from typing import Callable
+
+from numpy.typing import NDArray
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
@@ -60,8 +61,8 @@ class MeanSigma(MLDataAcquisitionCriterion):
         self.kappa = kappa
         super().__init__(algo_distribution)
 
-    def _get_func(self):
-        def func(input_data: ndarray) -> float:
+    def _get_func(self) -> Callable[[NDArray[float]], float]:
+        def func(input_data: NDArray[float]) -> float:
             """Evaluation function.
 
             Args:
@@ -72,6 +73,6 @@ class MeanSigma(MLDataAcquisitionCriterion):
             """
             mean = self.algo_distribution.compute_mean(input_data)
             sigma = self.algo_distribution.compute_standard_deviation(input_data)
-            return (mean + self.kappa * sigma) / self.output_range
+            return (mean + self.kappa * sigma) / self._scaling_factor
 
         return func

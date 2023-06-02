@@ -62,17 +62,22 @@ def test_sample_disciplines(disciplines, input_space, outputs, formulation, name
         name = "DOEScenario"
     assert dataset.name == name
 
-    data = dataset.get_all_data(by_group=False, as_dict=True)
-    assert_equal(data["inpt"], array([[1.0], [2.0]]))
+    assert_equal(
+        dataset.get_view(variable_names="inpt").to_numpy(), array([[1.0], [2.0]])
+    )
 
     if isinstance(outputs, str):
         outputs = [outputs]
 
     if "out1" in outputs:
-        assert_equal(data["out1"], array([[2.0], [4.0]]))
+        assert_equal(
+            dataset.get_view(variable_names="out1").to_numpy(), array([[2.0], [4.0]])
+        )
 
     if "out2" in outputs:
-        assert_equal(data["out2"], array([[3.0], [6.0]]))
+        assert_equal(
+            dataset.get_view(variable_names="out2").to_numpy(), array([[3.0], [6.0]])
+        )
 
 
 @pytest.mark.parametrize(
@@ -87,14 +92,19 @@ def test_sample_discipline(discipline, input_space, outputs, name):
     )
     assert dataset.name == name or discipline.name
 
-    data = dataset.get_all_data(by_group=False, as_dict=True)
-    assert_equal(data["inpt"], array([[1.0], [2.0]]))
+    assert_equal(
+        dataset.get_view(variable_names="inpt").to_numpy(), array([[1.0], [2.0]])
+    )
 
     if isinstance(outputs, str):
         outputs = [outputs]
 
     if "out1" in outputs:
-        assert_equal(data["out1"], array([[2.0], [4.0]]))
+        assert_equal(
+            dataset.get_view(variable_names="out1").to_numpy(), array([[2.0], [4.0]])
+        )
 
     if "out2" in outputs:
-        assert_equal(data["out2"], array([[3.0], [6.0]]))
+        assert_equal(
+            dataset.get_view(variable_names="out2").to_numpy(), array([[3.0], [6.0]])
+        )
