@@ -23,7 +23,7 @@ repos:
     - id: rst-inline-touching-normal
 
 - repo: https://github.com/PyCQA/autoflake
-  rev: v2.1.1
+  rev: v2.2.0
   hooks:
     - id: autoflake
       args: [
@@ -32,7 +32,7 @@ repos:
       ]
 
 - repo: https://github.com/asottile/reorder_python_imports
-  rev: v3.9.0
+  rev: v3.10.0
   hooks:
     - id: reorder-python-imports
       name: reorder python imports in src
@@ -54,7 +54,7 @@ repos:
       ]
 
 - repo: https://github.com/myint/docformatter
-  rev: v1.7.2
+  rev: v1.7.3
   hooks:
     - id: docformatter
       args: [
@@ -66,7 +66,7 @@ repos:
       ]
 
 - repo: https://github.com/asottile/pyupgrade
-  rev: v3.4.0
+  rev: v3.7.0
   hooks:
     - id: pyupgrade
       args: [--py38-plus]
@@ -89,7 +89,7 @@ repos:
         - pep8-naming==0.13.3
 
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: 3.2.2
+  rev: 3.5.2
   hooks:
     - id: commitizen
       stages: [commit-msg]
