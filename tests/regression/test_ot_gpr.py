@@ -15,6 +15,7 @@
 """Test the interface to the OpenTURNS' Kriging."""
 from __future__ import annotations
 
+import openturns
 import pytest
 from gemseo import execute_algo
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
@@ -26,6 +27,7 @@ from numpy import hstack
 from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
+from packaging import version
 from scipy.optimize import rosen
 
 OTGaussianProcessRegressor.HMATRIX_ASSEMBLY_EPSILON = 1e-10
@@ -227,4 +229,7 @@ def test_trend_type(dataset, trend_type, shape):
     """Check the trend type of the Gaussian process regressor."""
     model = OTGaussianProcessRegressor(dataset, trend_type=trend_type)
     model.learn()
-    assert array(model.algo.getTrendCoefficients()).shape == shape
+    if version.parse(openturns.__version__) < version.parse("1.21"):
+        assert array(model.algo.getTrendCoefficients()).shape == shape
+    else:
+        assert array(model.algo.getTrendCoefficients()).shape == (shape[0] * shape[1],)
