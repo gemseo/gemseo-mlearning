@@ -25,6 +25,14 @@ The format is based on
 and this project adheres to
 `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
+Develop
+*******
+
+Fixed
+-----
+
+- ``OTGaussianProcessRegressor.predict_std`` no longer returns the variance of the output but its standard deviation.
+
 Version 1.1.0 (June 2023)
 *************************
 
