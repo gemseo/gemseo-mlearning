@@ -184,11 +184,14 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         if inputs in self.transformer:
             input_data = self.transformer[inputs].transform(input_data)
 
-        output_data = array(
-            [
-                diag(self.algo.getConditionalCovariance(input_datum)).tolist()
-                for input_datum in input_data
-            ]
+        output_data = (
+            array(
+                [
+                    (diag(self.algo.getConditionalCovariance(input_datum))).tolist()
+                    for input_datum in input_data
+                ]
+            ).clip(min=0)
+            ** 0.5
         )
 
         if one_dim:
