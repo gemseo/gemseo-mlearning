@@ -34,6 +34,9 @@ test = [
     "pytest-cov",
     "pytest-xdist",
 ]
+dev = [
+    "gemseo[all]@git+https://gitlab.com/gemseo/dev/gemseo.git@develop",
+]
 
 [project.urls]
 Homepage = "https://gitlab.com/gemseo"
