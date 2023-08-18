@@ -21,4 +21,5 @@
 /coverage.xml
 /.coverage*
 !/.coveragerc
+
 /.pytest_cache
