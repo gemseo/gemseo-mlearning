@@ -1,0 +1,7 @@
+[run]
+plugins = covdefaults
+source = gemseo_mlearning
+
+[report]
+# Override covdefaults.
+fail_under = 1

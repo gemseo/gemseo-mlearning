@@ -40,6 +40,8 @@ from openturns import SquaredExponential
 from openturns import TensorizedCovarianceModel
 from strenum import StrEnum
 
+from gemseo_mlearning.utils.compatibility.openturns import create_trend_basis
+
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
     """Gaussian process regression model from OpenTURNS."""
@@ -150,7 +152,11 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             input_data,
             output_data,
             covariance_model,
-            self.__TREND_TYPES_TO_FACTORIES[self.__trend_type](input_dimension).build(),
+            create_trend_basis(
+                self.__TREND_TYPES_TO_FACTORIES[self.__trend_type],
+                input_dimension,
+                output_dimension,
+            ),
         )
         algo.run()
         self.algo = algo.getResult()
@@ -178,11 +184,14 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         if inputs in self.transformer:
             input_data = self.transformer[inputs].transform(input_data)
 
-        output_data = array(
-            [
-                diag(self.algo.getConditionalCovariance(input_datum)).tolist()
-                for input_datum in input_data
-            ]
+        output_data = (
+            array(
+                [
+                    (diag(self.algo.getConditionalCovariance(input_datum))).tolist()
+                    for input_datum in input_data
+                ]
+            ).clip(min=0)
+            ** 0.5
         )
 
         if one_dim:

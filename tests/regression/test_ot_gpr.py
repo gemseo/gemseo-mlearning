@@ -15,6 +15,9 @@
 """Test the interface to the OpenTURNS' Kriging."""
 from __future__ import annotations
 
+from unittest.mock import Mock
+
+import openturns
 import pytest
 from gemseo import execute_algo
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
@@ -26,6 +29,9 @@ from numpy import hstack
 from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
+from openturns import CovarianceMatrix
+from openturns import KrigingResult
+from packaging import version
 from scipy.optimize import rosen
 
 OTGaussianProcessRegressor.HMATRIX_ASSEMBLY_EPSILON = 1e-10
@@ -154,7 +160,7 @@ def test_kriging_predict(dataset, x1, x2):
 
 @pytest.mark.parametrize("transformer", [None, {"inputs": "MinMaxScaler"}])
 def test_kriging_predict_std_on_learning_set(transformer, dataset):
-    """Check that the Kriging interpolates the learning set.
+    """Check that the standard deviation is correctly predicted for a learning point.
 
     The standard deviation should be equal to zero.
     """
@@ -163,23 +169,28 @@ def test_kriging_predict_std_on_learning_set(transformer, dataset):
     for x in kriging.learning_set.get_view(
         group_names=IODataset.INPUT_GROUP
     ).to_numpy():
-        predicted_std = kriging.predict_std(x)
-        assert predicted_std[0] == pytest.approx(0.0, abs=1e-1)
-        assert predicted_std[1] == pytest.approx(0.0, abs=1e-1)
+        assert_allclose(kriging.predict_std(x), 0, atol=1e-1)
 
 
 @pytest.mark.parametrize("x1", [-1, 1])
 @pytest.mark.parametrize("x2", [-1, 1])
 @pytest.mark.parametrize("transformer", [None, {"inputs": "MinMaxScaler"}])
 def test_kriging_predict_std(transformer, dataset, x1, x2):
-    """Check that the Kriging is not yet good enough to extrapolate.
+    """Check that the standard deviation is correctly predicted for a validation point.
 
-    The standard deviation should be different from zero.
+    The standard deviation should be the square root of the variance computed by the
+    method KrigingResult.getConditionalCovariance of OpenTURNS.
     """
     kriging = OTGaussianProcessRegressor(dataset, transformer=transformer)
+    original_method = KrigingResult.getConditionalCovariance
+    v1 = 4.0 + x1 + x2
+    v2 = 9.0 + x1 + x2
+    KrigingResult.getConditionalCovariance = Mock(
+        return_value=CovarianceMatrix(2, [v1, 0.5, 0.5, v2])
+    )
     kriging.learn()
-    assert kriging.predict_std(array([x1, x2]))[0] != pytest.approx(0.0)
-    assert kriging.predict_std(array([x1, x2]))[1] != pytest.approx(0.0)
+    assert_allclose(kriging.predict_std(array([x1, x2])), array([v1, v2]) ** 0.5)
+    KrigingResult.getConditionalCovariance = original_method
 
 
 def test_kriging_predict_jacobian(kriging):
@@ -227,4 +238,7 @@ def test_trend_type(dataset, trend_type, shape):
     """Check the trend type of the Gaussian process regressor."""
     model = OTGaussianProcessRegressor(dataset, trend_type=trend_type)
     model.learn()
-    assert array(model.algo.getTrendCoefficients()).shape == shape
+    if version.parse(openturns.__version__) < version.parse("1.21"):
+        assert array(model.algo.getTrendCoefficients()).shape == shape
+    else:
+        assert array(model.algo.getTrendCoefficients()).shape == (shape[0] * shape[1],)
