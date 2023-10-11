@@ -1,0 +1,4 @@
+[tool.pip-tools]
+generate_hashes = true
+upgrade = true
+extra-index-url = "https://gitlab.com/api/v4/projects/25527353/packages/pypi/simple"
