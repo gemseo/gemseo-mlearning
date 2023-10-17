@@ -33,11 +33,13 @@ from numpy import ndarray
 from openturns import ConstantBasisFactory
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
+from openturns import OptimizationAlgorithmImplementation
 from openturns import Point
 from openturns import QuadraticBasisFactory
 from openturns import ResourceMap
 from openturns import SquaredExponential
 from openturns import TensorizedCovarianceModel
+from openturns import TNC
 from strenum import StrEnum
 
 from gemseo_mlearning.utils.compatibility.openturns import create_trend_basis
@@ -86,6 +88,12 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     __trend_type: TrendType
     """The type of the trend."""
 
+    __optimizer: OptimizationAlgorithmImplementation
+    """The solver used to optimize the covariance model parameters."""
+
+    TNC: Final[TNC] = TNC()
+    """The TNC algorithm."""
+
     def __init__(
         self,
         data: Dataset,
@@ -94,6 +102,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         output_names: Iterable[str] = None,
         use_hmat: bool = None,
         trend_type: TrendType = TrendType.CONSTANT,
+        optimizer: OptimizationAlgorithmImplementation = TNC,
     ) -> None:
         """# noqa: D205 D212 D415
         Args:
@@ -102,6 +111,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 use HMAT when the learning size is greater
                 than :attr:`MAX_SIZE_FOR_LAPACK`.
             trend_type: The type of the trend.
+            optimizer: The solver used to optimize the covariance model parameters.
         """
         super().__init__(
             data,
@@ -115,6 +125,8 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
         else:
             self.use_hmat = use_hmat
+
+        self.__optimizer = optimizer
 
     @property
     def use_hmat(self) -> bool:
@@ -158,6 +170,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 output_dimension,
             ),
         )
+        algo.setOptimizationAlgorithm(self.__optimizer)
         algo.run()
         self.algo = algo.getResult()
 

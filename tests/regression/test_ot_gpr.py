@@ -15,6 +15,7 @@
 """Test the interface to the OpenTURNS' Kriging."""
 from __future__ import annotations
 
+from unittest import mock
 from unittest.mock import Mock
 
 import openturns
@@ -30,7 +31,10 @@ from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
 from openturns import CovarianceMatrix
+from openturns import KrigingAlgorithm
 from openturns import KrigingResult
+from openturns import NLopt
+from openturns import TNC
 from packaging import version
 from scipy.optimize import rosen
 
@@ -242,3 +246,22 @@ def test_trend_type(dataset, trend_type, shape):
         assert array(model.algo.getTrendCoefficients()).shape == shape
     else:
         assert array(model.algo.getTrendCoefficients()).shape == (shape[0] * shape[1],)
+
+
+def test_default_optimizer(dataset):
+    """Check that the default optimizer is TNC."""
+    model = OTGaussianProcessRegressor(dataset)
+    with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
+        model.learn()
+
+    assert method.call_args.args[0] == TNC()
+
+
+def test_custom_optimizer(dataset):
+    """Check that the optimizer can be changed."""
+    optimizer = NLopt("LN_NELDERMEAD")
+    model = OTGaussianProcessRegressor(dataset, optimizer=optimizer)
+    with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
+        model.learn()
+
+    assert method.call_args.args[0] == optimizer
