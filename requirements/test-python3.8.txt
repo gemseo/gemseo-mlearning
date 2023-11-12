@@ -111,7 +111,7 @@ pytest==7.4.3
     #   pytest-xdist
 pytest-cov==4.1.0
     # via gemseo-mlearning (pyproject.toml)
-pytest-xdist==3.3.1
+pytest-xdist==3.4.0
     # via gemseo-mlearning (pyproject.toml)
 python-dateutil==2.8.2
     # via
