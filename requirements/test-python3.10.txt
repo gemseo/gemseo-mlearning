@@ -32,7 +32,7 @@ execnet==2.0.2
     # via pytest-xdist
 fastjsonschema==2.18.1
     # via gemseo
-fonttools==4.44.1
+fonttools==4.44.3
     # via matplotlib
 gemseo[all]==5.1.2.dev147+ga3ccd9cd
     # via
