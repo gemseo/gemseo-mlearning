@@ -18,10 +18,11 @@ from __future__ import annotations
 import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
-from gemseo_mlearning.api import sample_discipline
-from gemseo_mlearning.api import sample_disciplines
 from numpy import array
 from numpy.testing import assert_equal
+
+from gemseo_mlearning.api import sample_discipline
+from gemseo_mlearning.api import sample_disciplines
 
 
 @pytest.fixture(scope="module")

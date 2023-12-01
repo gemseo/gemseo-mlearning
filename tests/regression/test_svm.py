@@ -15,9 +15,10 @@
 from __future__ import annotations
 
 import pytest
-from gemseo_mlearning.regression.svm import SVMRegressor
 from numpy import array
 from sklearn.svm import SVR
+
+from gemseo_mlearning.regression.svm import SVMRegressor
 
 
 def test_init(dataset):

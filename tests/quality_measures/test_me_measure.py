@@ -20,9 +20,10 @@
 from __future__ import annotations
 
 import pytest
-from gemseo_mlearning.quality_measures.me_measure import MEMeasure
 from numpy import array
 from numpy.testing import assert_equal
+
+from gemseo_mlearning.quality_measures.me_measure import MEMeasure
 
 
 @pytest.fixture(scope="module")
@@ -47,7 +48,7 @@ def test_compute_measure(me):
 
 
 @pytest.mark.parametrize(
-    "multioutput,expected", [(False, 2.0), (True, array([0.0, 1.0, 2.0]))]
+    ("multioutput", "expected"), [(False, 2.0), (True, array([0.0, 1.0, 2.0]))]
 )
 def test_compute_measure_with_multioutput(me, multioutput, expected):
     """Check _compute with multioutput."""

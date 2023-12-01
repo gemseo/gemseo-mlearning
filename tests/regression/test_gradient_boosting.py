@@ -15,9 +15,10 @@
 from __future__ import annotations
 
 import pytest
-from gemseo_mlearning.regression.gradient_boosting import GradientBoostingRegressor
 from numpy import array
 from sklearn.ensemble import GradientBoostingRegressor as SKLGradientBoosting
+
+from gemseo_mlearning.regression.gradient_boosting import GradientBoostingRegressor
 
 
 def test_init(dataset):

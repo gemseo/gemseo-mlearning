@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 from gemseo.mlearning.regression.rbf import RBFRegressor
+
 from gemseo_mlearning.regression.thin_plate_spline import TPSRegressor
 
 

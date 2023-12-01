@@ -40,6 +40,7 @@ from __future__ import annotations
 
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
+
 from gemseo_mlearning.api import sample_discipline
 
 discipline = AnalyticDiscipline({"y": "2*x", "z": "3*x"})

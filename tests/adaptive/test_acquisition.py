@@ -26,12 +26,13 @@ from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.linreg import LinearRegressor
+from numpy import array
+from numpy import ndarray
+
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
-from numpy import array
-from numpy import ndarray
 
 
 @pytest.fixture(scope="module")
@@ -112,7 +113,7 @@ def test_init_with_bad_output_dimension(input_space):
 
 
 @pytest.mark.parametrize(
-    "algo_name,option_name,option_value",
+    ("algo_name", "option_name", "option_value"),
     [
         ("fullfact", "n_samples", 3),
         ("SLSQP", "max_iter", 3),
@@ -167,7 +168,7 @@ def test_update_algo(algo_distribution_for_update, input_space):
 
 
 @pytest.mark.parametrize(
-    "criterion,minimize,options",
+    ("criterion", "minimize", "options"),
     [("Quantile", True, {"level": 0.1}), ("ExpectedImprovement", False, {})],
 )
 def test_build_opt_problem_maximize(
@@ -182,7 +183,7 @@ def test_build_opt_problem_maximize(
 
 
 @pytest.mark.parametrize(
-    "criterion,use_finite_differences",
+    ("criterion", "use_finite_differences"),
     [("MinimumDistance", True), ("ExpectedImprovement", True)],
 )
 def test_build_opt_problem_jacobian(

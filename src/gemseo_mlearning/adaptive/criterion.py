@@ -30,14 +30,17 @@ This notion of acquisition criterion is implemented through the
 from __future__ import annotations
 
 from abc import abstractmethod
+from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
 
 from gemseo.core.base_factory import BaseFactory
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
-from numpy import ndarray
 
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+if TYPE_CHECKING:
+    from numpy import ndarray
+
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 MLDataAcquisitionCriterionOptionType = float
 

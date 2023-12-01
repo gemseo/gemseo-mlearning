@@ -26,15 +26,19 @@ standard regression model predicts only the output value.
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 
-from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
-from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
-from numpy import ndarray
 from scipy.stats import norm
 
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
-from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
+
+if TYPE_CHECKING:
+    from gemseo.mlearning.core.ml_algo import DataType
+    from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
+    from numpy import ndarray
+
+    from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 
 LOGGER = logging.getLogger(__name__)
 
@@ -100,10 +104,7 @@ class KrigingDistribution(MLRegressorDistribution):
         maximize: bool = False,
     ) -> DataType:
         mean = self.compute_mean(input_data)
-        if maximize:
-            improvement = mean - f_opt
-        else:
-            improvement = f_opt - mean
+        improvement = mean - f_opt if maximize else f_opt - mean
 
         std = self.compute_standard_deviation(input_data)
         value = improvement / std
