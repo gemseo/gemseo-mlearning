@@ -20,12 +20,13 @@ from __future__ import annotations
 
 import pytest
 from gemseo.mlearning.regression.linreg import LinearRegressor
-from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
-    RegressorDistribution,
-)
 from numpy import array
 from numpy import exp
 from numpy import quantile
+
+from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
+    RegressorDistribution,
+)
 
 
 def __weight_func(value, indices):
@@ -49,7 +50,7 @@ def distribution(linear_algo) -> RegressorDistribution:
 
 
 @pytest.mark.parametrize(
-    "bootstrap,loo,size",
+    ("bootstrap", "loo", "size"),
     [
         (True, False, None),
         (True, False, 3),
@@ -83,11 +84,11 @@ def test_learn(distribution):
     Sub-models: f0(x) = -1 + 2x, f1(x) = 1, f2(x) = 1 - 2x
     """
     assert 2.0 / 3 == pytest.approx(distribution.algo.intercept[0], 0.1)
-    assert 0.0 == pytest.approx(distribution.algo.coefficients[0], 0.1)
+    assert pytest.approx(distribution.algo.coefficients[0], 0.1) == 0.0
 
 
 @pytest.mark.parametrize(
-    "model,intercept,coefficient", [(0, -1, 2.0), (1, 1.0, 0.0), (2, 1.0, -2.0)]
+    ("model", "intercept", "coefficient"), [(0, -1, 2.0), (1, 1.0, 0.0), (2, 1.0, -2.0)]
 )
 def test_learn_submodels(distribution, model, intercept, coefficient):
     """Check the results of the learning stage for the sub-models.
@@ -132,7 +133,7 @@ def test_evaluate_weights_with_several_points(distribution):
 
 
 @pytest.mark.parametrize(
-    "point,outputs",
+    ("point", "outputs"),
     [
         (array([0.0]), [-1, 1, 1]),
         ({"x": array([0.0])}, [-1, 1, 1]),
@@ -226,7 +227,7 @@ def test_compute_expected_improvement(distribution, point, maximize):
 
 
 @pytest.mark.parametrize(
-    "point,outputs",
+    ("point", "outputs"),
     [
         (array([0.0]), [array([-1, 1, 1])]),
         (array([1.0]), [array([-1, 1, 1])]),

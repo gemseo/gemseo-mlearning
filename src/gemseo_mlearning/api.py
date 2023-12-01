@@ -15,18 +15,21 @@
 """Some useful functions for machine learning."""
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Iterable
 from typing import Mapping
 from typing import Sequence
 
 from gemseo import create_scenario
-from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
-from gemseo.core.discipline import MDODiscipline
 from gemseo.core.scenario import Scenario
-from gemseo.datasets.dataset import Dataset
+
+if TYPE_CHECKING:
+    from gemseo.algos.design_space import DesignSpace
+    from gemseo.core.discipline import MDODiscipline
+    from gemseo.datasets.dataset import Dataset
 
 
 def sample_discipline(
@@ -35,7 +38,7 @@ def sample_discipline(
     output_names: str | Iterable[str],
     algo_name: str,
     n_samples: int,
-    name: str = None,
+    name: str | None = None,
     **algo_options: Any,
 ) -> Dataset:
     """Sample a discipline.
@@ -72,8 +75,8 @@ def sample_disciplines(
     output_names: str | Iterable[str],
     algo_name: str,
     n_samples: int,
-    name: str = None,
-    formulation_options: Mapping[str, Any] = None,
+    name: str | None = None,
+    formulation_options: Mapping[str, Any] | None = None,
     **algo_options: DOELibraryOptionType,
 ) -> Dataset:
     """Sample several disciplines based on an MDO formulation.

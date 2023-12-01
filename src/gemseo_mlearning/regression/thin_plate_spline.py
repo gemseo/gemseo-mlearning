@@ -21,16 +21,19 @@
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import Callable
 from typing import ClassVar
 from typing import Iterable
 from typing import Mapping
 
-from gemseo.datasets.dataset import Dataset
-from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.rbf import RBFRegressor
-from numpy import ndarray
+
+if TYPE_CHECKING:
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.mlearning.core.ml_algo import TransformerType
+    from numpy import ndarray
 
 LOGGER = logging.getLogger(__name__)
 
@@ -44,8 +47,8 @@ class TPSRegressor(RBFRegressor):
         self,
         data: Dataset,
         transformer: Mapping[str, TransformerType] | None = None,
-        input_names: Iterable[str] = None,
-        output_names: Iterable[str] = None,
+        input_names: Iterable[str] | None = None,
+        output_names: Iterable[str] | None = None,
         smooth: float = 0.0,
         norm: str | Callable[[ndarray, ndarray], float] = "euclidean",
         **parameters: Any,

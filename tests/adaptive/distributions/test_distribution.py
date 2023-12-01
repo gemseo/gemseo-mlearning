@@ -23,13 +23,14 @@ from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo.mlearning.regression.rbf import RBFRegressor
 from gemseo.utils.testing.helpers import concretize_classes
+from numpy import array
+from numpy import linspace
+from numpy import newaxis
+
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
-from numpy import array
-from numpy import linspace
-from numpy import newaxis
 
 
 @pytest.fixture(scope="module")
@@ -107,8 +108,8 @@ def test_output_dimension(distribution):
 
 
 @pytest.mark.parametrize(
-    "samples,expected_samples,prediction",
-    [(None, range(0, 3), 2.0 / 3), ([0, 2], [0, 2], 1.0)],
+    ("samples", "expected_samples", "prediction"),
+    [(None, range(3), 2.0 / 3), ([0, 2], [0, 2], 1.0)],
 )
 def test_learn(distribution, samples, expected_samples, prediction):
     """Check the learning stage.
@@ -124,7 +125,7 @@ def test_learn(distribution, samples, expected_samples, prediction):
 
 
 @pytest.mark.parametrize(
-    "input_data,output_data",
+    ("input_data", "output_data"),
     [
         (array([0.0]), array([1.0])),
         (array([[0.0]]), array([[1.0]])),
@@ -139,7 +140,7 @@ def test_predict(distribution, input_data, output_data):
 
 
 @pytest.mark.parametrize(
-    "input_data,output_data",
+    ("input_data", "output_data"),
     [
         (array([4.0]), array([2.0])),
         ({"x": array([4.0])}, {"y": array([2.0])}),

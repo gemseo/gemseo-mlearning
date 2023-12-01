@@ -35,10 +35,14 @@ Bootstrap estimator:
 """
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from numpy import quantile
 
 from gemseo_mlearning.adaptive.criteria.value.criterion import LimitState
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+if TYPE_CHECKING:
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 
 class Quantile(LimitState):

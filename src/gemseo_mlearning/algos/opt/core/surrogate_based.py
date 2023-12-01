@@ -17,14 +17,13 @@ from __future__ import annotations
 
 import logging
 from types import MappingProxyType
+from typing import TYPE_CHECKING
 from typing import Mapping
 
 from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.algos.doe.lib_openturns import OpenTURNS
-from gemseo.algos.opt_problem import OptimizationProblem
-from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.factory import RegressionModelFactory
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
@@ -32,7 +31,12 @@ from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
 from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
 from gemseo_mlearning.adaptive.distributions import get_regressor_distribution
-from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
+
+if TYPE_CHECKING:
+    from gemseo.algos.opt_problem import OptimizationProblem
+    from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
+
+    from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
 
 LOGGER = logging.getLogger(__name__)
 
@@ -64,7 +68,8 @@ class SurrogateBasedOptimizer:
                 variables are integers.
             problem: The optimization problem.
             doe_size: The size of the initial DOE.
-                Should be ``0`` if the DOE algorithm does not have a ``n_samples`` option.
+                Should be ``0`` if the DOE algorithm does not have a
+                ``n_samples`` option.
             doe_algorithm: The name of the algorithm for the initial sampling.
             doe_options: The options of the algorithm for the initial sampling.
             regression_algorithm: The name of the regression algorithm for the

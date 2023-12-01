@@ -44,14 +44,15 @@ from gemseo.algos.design_space import DesignSpace
 from gemseo.core.doe_scenario import DOEScenario
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.rbf import RBFRegressor
+from numpy import array
+from numpy import linspace
+from numpy import zeros
+
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
 from gemseo_mlearning.adaptive.criteria.quantile.criterion import Quantile
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
-from numpy import array
-from numpy import linspace
-from numpy import zeros
 
 l_b = -2
 u_b = 2

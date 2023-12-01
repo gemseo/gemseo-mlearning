@@ -16,13 +16,14 @@
 from __future__ import annotations
 
 import pytest
-from gemseo_mlearning.adaptive.distributions import get_regressor_distribution
+
 from gemseo_mlearning.adaptive.distributions import KrigingDistribution
 from gemseo_mlearning.adaptive.distributions import RegressorDistribution
+from gemseo_mlearning.adaptive.distributions import get_regressor_distribution
 
 
 @pytest.mark.parametrize(
-    ["algorithm", "class_"],
+    ("algorithm", "class_"),
     [("linear_algo", RegressorDistribution), ("kriging_algo", KrigingDistribution)],
 )
 def test_get_regressor_distribution(request, algorithm, class_):

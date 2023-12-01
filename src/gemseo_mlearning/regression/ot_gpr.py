@@ -15,21 +15,18 @@
 """Gaussian process regression model from OpenTURNS."""
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
 from typing import Iterable
 
-from gemseo.datasets.dataset import Dataset
-from gemseo.mlearning.core.ml_algo import DataType
-from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.data_conversion import (
-    concatenate_dict_of_arrays_to_array,
-)
+from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import atleast_2d
 from numpy import diag
 from numpy import ndarray
+from openturns import TNC
 from openturns import ConstantBasisFactory
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
@@ -39,10 +36,14 @@ from openturns import QuadraticBasisFactory
 from openturns import ResourceMap
 from openturns import SquaredExponential
 from openturns import TensorizedCovarianceModel
-from openturns import TNC
 from strenum import StrEnum
 
 from gemseo_mlearning.utils.compatibility.openturns import create_trend_basis
+
+if TYPE_CHECKING:
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.mlearning.core.ml_algo import DataType
+    from gemseo.mlearning.core.ml_algo import TransformerType
 
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
@@ -98,9 +99,9 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         self,
         data: Dataset,
         transformer: TransformerType | None = None,
-        input_names: Iterable[str] = None,
-        output_names: Iterable[str] = None,
-        use_hmat: bool = None,
+        input_names: Iterable[str] | None = None,
+        output_names: Iterable[str] | None = None,
+        use_hmat: bool | None = None,
         trend_type: TrendType = TrendType.CONSTANT,
         optimizer: OptimizationAlgorithmImplementation = TNC,
     ) -> None:

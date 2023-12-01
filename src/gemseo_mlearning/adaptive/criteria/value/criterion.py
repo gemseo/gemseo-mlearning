@@ -35,13 +35,16 @@ Bootstrap estimator:
 """
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
 
-from numpy.typing import NDArray
-
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+if TYPE_CHECKING:
+    from numpy.typing import NDArray
+
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 
 class LimitState(MLDataAcquisitionCriterion):

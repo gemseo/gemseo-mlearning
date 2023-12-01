@@ -22,14 +22,13 @@ import pytest
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo.utils.testing.helpers import concretize_classes
-from gemseo_mlearning.adaptive.criteria.distances.criterion_min import (
-    MinimumDistance,
-)
+from numpy import array
+from numpy import quantile
+
+from gemseo_mlearning.adaptive.criteria.distances.criterion_min import MinimumDistance
 from gemseo_mlearning.adaptive.criteria.expectation.criterion import Expectation
 from gemseo_mlearning.adaptive.criteria.mean_std.criterion import MeanSigma
-from gemseo_mlearning.adaptive.criteria.optimum.criterion import (
-    ExpectedImprovement,
-)
+from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
 from gemseo_mlearning.adaptive.criteria.optimum.criterion_max import (
     MaxExpectedImprovement,
 )
@@ -43,8 +42,6 @@ from gemseo_mlearning.adaptive.criteria.standard_deviation.criterion import (
 from gemseo_mlearning.adaptive.criteria.value.criterion import LimitState
 from gemseo_mlearning.adaptive.criteria.variance.criterion import Variance
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
-from numpy import array
-from numpy import quantile
 
 
 @pytest.fixture(scope="module")
@@ -138,7 +135,7 @@ def test_mean_sigma(algo_distribution):
     assert criterion(value) * criterion.output_range == expected
 
 
-@pytest.mark.parametrize("value,expected", [(0.5, 0.0), (0.25, 1.0), (0.125, 0.5)])
+@pytest.mark.parametrize(("value", "expected"), [(0.5, 0.0), (0.25, 1.0), (0.125, 0.5)])
 def test_minimum_distance(algo_distribution, value, expected):
     """Check the criterion MinimumDistance."""
     criterion = MinimumDistance(algo_distribution)

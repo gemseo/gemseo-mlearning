@@ -20,19 +20,20 @@ from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.problems.analytical.rastrigin import Rastrigin
+
 from gemseo_mlearning.algos.opt.core.surrogate_based import SurrogateBasedOptimizer
 
 
 @pytest.mark.parametrize(
-    ["regression_algorithm", "regression_options"],
-    [["GaussianProcessRegressor", {}], ["RBFRegressor", {"epsilon": 1.0}]],
+    ("regression_algorithm", "regression_options"),
+    [("GaussianProcessRegressor", {}), ("RBFRegressor", {"epsilon": 1.0})],
 )
 def test_all_acquisitions_made(regression_algorithm, regression_options):
     """Check the execution of the surrogate-based optimizer with all acquisitions."""
     assert (
         SurrogateBasedOptimizer(
             Rastrigin(),
-            "DIFFERENTIAL_EVOLUTION",
+            "fullfact",
             5,
             regression_algorithm=regression_algorithm,
             regression_options=regression_options,

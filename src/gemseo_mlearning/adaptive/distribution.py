@@ -60,14 +60,17 @@ from __future__ import annotations
 
 import logging
 from abc import abstractmethod
+from typing import TYPE_CHECKING
 
-from gemseo.datasets.dataset import Dataset
-from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
-from numpy import ndarray
+
+if TYPE_CHECKING:
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
+    from gemseo.mlearning.core.ml_algo import DataType
+    from gemseo.mlearning.regression.regression import MLRegressionAlgo
+    from numpy import ndarray
 
 LOGGER = logging.getLogger(__name__)
 

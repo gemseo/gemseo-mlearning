@@ -61,6 +61,3 @@ license-files = [
     "LICENSE.txt",
     "CREDITS.md",
 ]
-
-[tool.black]
-target-version = ['py38']
