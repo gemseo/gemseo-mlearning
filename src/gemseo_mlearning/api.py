@@ -13,6 +13,7 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Some useful functions for machine learning."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -112,12 +113,10 @@ def sample_disciplines(
     )
     for output_name in output_names_iterator:
         scenario.add_observable(output_name)
-    scenario.execute(
-        {
-            Scenario.ALGO: algo_name,
-            DOELibrary.N_SAMPLES: n_samples,
-            Scenario.ALGO_OPTIONS: algo_options,
-        }
-    )
+    scenario.execute({
+        Scenario.ALGO: algo_name,
+        DOELibrary.N_SAMPLES: n_samples,
+        Scenario.ALGO_OPTIONS: algo_options,
+    })
 
     return scenario.formulation.opt_problem.to_dataset(name=name, opt_naming=False)

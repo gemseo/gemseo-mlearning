@@ -13,6 +13,7 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Tests for the surrogate-based optimizer."""
+
 from __future__ import annotations
 
 import pytest
@@ -66,7 +67,7 @@ def test_convergence_on_rastrigin():
         problem,
         "DIFFERENTIAL_EVOLUTION",
         doe_size=20,
-        acquisition_options={"max_iter": 1000, "popsize": 50},
+        acquisition_options={"max_iter": 1000, "popsize": 50, "seed": 1},
     ).execute(5)
     assert problem.get_optimum()[0] < 0.1
 

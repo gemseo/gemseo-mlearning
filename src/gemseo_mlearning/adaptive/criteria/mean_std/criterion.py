@@ -31,6 +31,7 @@ Estimator:
 
    \widehat{E_sigma}[x] = \widehat{E}[x] + \kappa \times \widehat{sigma}[x]
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING

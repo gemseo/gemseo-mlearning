@@ -37,6 +37,7 @@
 Expected improvement based on bootstrap
 =======================================
 """
+
 from __future__ import annotations
 
 import matplotlib.pyplot as plt

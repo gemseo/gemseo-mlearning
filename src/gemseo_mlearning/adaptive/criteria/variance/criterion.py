@@ -33,6 +33,7 @@ Bootstrap estimator:
 
 where :math:`\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)`.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING

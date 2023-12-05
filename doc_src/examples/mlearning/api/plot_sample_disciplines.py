@@ -36,6 +36,7 @@
 Sample several disciplines
 ==========================
 """
+
 from __future__ import annotations
 
 from gemseo.algos.design_space import DesignSpace

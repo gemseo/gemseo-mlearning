@@ -13,6 +13,7 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Compatibility between different versions of openturns."""
+
 from __future__ import annotations
 
 import openturns
@@ -34,9 +35,7 @@ else:
         basis_factory: type(BasisFactory), input_dimension: int, output_dimension: int
     ) -> Basis:
         basis = basis_factory(input_dimension).build()
-        return Basis(
-            [
-                AggregatedFunction([basis.build(k)] * output_dimension)
-                for k in range(basis.getSize())
-            ]
-        )
+        return Basis([
+            AggregatedFunction([basis.build(k)] * output_dimension)
+            for k in range(basis.getSize())
+        ])

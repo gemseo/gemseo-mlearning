@@ -21,6 +21,7 @@
 
 The support vector machine model relies on the :class:`SVR` class of ``sklearn``.
 """
+
 from __future__ import annotations
 
 import logging

@@ -26,6 +26,7 @@ $i$-th regression model learns the learning error of its predecessor.
 During the prediction stage, the different regression models are evaluated from a new
 input data and the sum of their output data is returned.
 """
+
 from __future__ import annotations
 
 import logging
