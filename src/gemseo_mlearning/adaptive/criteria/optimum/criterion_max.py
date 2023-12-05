@@ -32,6 +32,7 @@ Bootstrap estimator:
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(Y_b(x)-f_{max},0)
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING

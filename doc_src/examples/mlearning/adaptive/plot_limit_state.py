@@ -36,6 +36,7 @@
 Limit state based on resampling
 ===============================
 """
+
 from __future__ import annotations
 
 import matplotlib.gridspec as gridspec

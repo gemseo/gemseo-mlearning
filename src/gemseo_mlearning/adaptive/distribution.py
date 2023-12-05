@@ -56,6 +56,7 @@ The abstract :class:`.MLRegressorDistribution` class is derived into two classes
     MLDataAcquisitionCriterion
     MLDataAcquisitionCriterionFactory
 """
+
 from __future__ import annotations
 
 import logging

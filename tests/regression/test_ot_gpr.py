@@ -13,6 +13,7 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Test the interface to the OpenTURNS' Kriging."""
+
 from __future__ import annotations
 
 from unittest import mock
@@ -81,12 +82,10 @@ def dataset_2(problem) -> IODataset:
     data = problem.to_dataset(opt_naming=False)
     data.add_variable(
         "rosen2",
-        hstack(
-            (
-                data.get_view(variable_names="rosen").to_numpy(),
-                -data.get_view(variable_names="rosen").to_numpy(),
-            )
-        ),
+        hstack((
+            data.get_view(variable_names="rosen").to_numpy(),
+            -data.get_view(variable_names="rosen").to_numpy(),
+        )),
         group_name=data.OUTPUT_GROUP,
     )
     return data

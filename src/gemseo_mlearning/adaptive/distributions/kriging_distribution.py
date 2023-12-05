@@ -23,6 +23,7 @@
 A Kriging-like regression model predicts both output mean and standard deviation while a
 standard regression model predicts only the output value.
 """
+
 from __future__ import annotations
 
 import logging

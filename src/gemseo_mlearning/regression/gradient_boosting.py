@@ -23,6 +23,7 @@ The gradient boosting model relies on the ``GradientBoostingRegressor`` class
 of the `scikit-learn library <https://scikit-learn.org/stable/modules/
 generated/sklearn.ensemble.GradientBoostingRegressor.html>`_.
 """
+
 from __future__ import annotations
 
 import logging

@@ -18,6 +18,7 @@
 #        :author: Matthias
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Thin plate spline regression."""
+
 from __future__ import annotations
 
 import logging

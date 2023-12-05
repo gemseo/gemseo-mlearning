@@ -32,6 +32,7 @@ Sampling a :class:`.MLAlgo` can be particularly useful to:
 - estimate infill criteria for adaptive learning purposes,
 - etc.
 """
+
 from __future__ import annotations
 
 import logging
@@ -312,12 +313,9 @@ class RegressorDistribution(MLRegressorDistribution):
         Returns:
             The averaged value.
         """
-        return array(
-            [
-                dot(weights[:, index], data[:, index, :])
-                for index in range(data.shape[1])
-            ]
-        )
+        return array([
+            dot(weights[:, index], data[:, index, :]) for index in range(data.shape[1])
+        ])
 
     def change_learning_set(self, learning_set: Dataset) -> None:  # noqa: D102
         for algo in self.algos:

@@ -36,6 +36,7 @@
 Expected improvement based on cross-validation
 ==============================================
 """
+
 from __future__ import annotations
 
 import matplotlib.pyplot as plt

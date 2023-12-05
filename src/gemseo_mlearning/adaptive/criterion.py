@@ -27,6 +27,7 @@ This notion of acquisition criterion is implemented through the
 :class:`.MLDataAcquisitionCriterion` class which is built from a
 :class:`.MLSupervisedAlgo` and inherits from :class:`.MDOFunction`.
 """
+
 from __future__ import annotations
 
 from abc import abstractmethod

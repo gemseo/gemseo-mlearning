@@ -13,6 +13,7 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Gaussian process regression model from OpenTURNS."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -199,12 +200,10 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             input_data = self.transformer[inputs].transform(input_data)
 
         output_data = (
-            array(
-                [
-                    (diag(self.algo.getConditionalCovariance(input_datum))).tolist()
-                    for input_datum in input_data
-                ]
-            ).clip(min=0)
+            array([
+                (diag(self.algo.getConditionalCovariance(input_datum))).tolist()
+                for input_datum in input_data
+            ]).clip(min=0)
             ** 0.5
         )
 

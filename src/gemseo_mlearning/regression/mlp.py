@@ -18,6 +18,7 @@
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Interface to the OpenTURNS' multilayer perceptron (MLP)."""
+
 from __future__ import annotations
 
 import logging

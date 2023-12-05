@@ -18,6 +18,7 @@
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Acquisition of learning data from a machine learning algorithm and a criterion."""
+
 from __future__ import annotations
 
 import logging
