@@ -59,10 +59,10 @@ class LimitState(MLDataAcquisitionCriterion):
     def __init__(
         self, algo_distribution: MLRegressorDistribution, value: float
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             value: A value of interest.
-        """
+        """  # noqa: D205 D212 D415
         self.value = value
         super().__init__(algo_distribution)
 

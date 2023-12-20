@@ -18,9 +18,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 from typing import Any
-from typing import Iterable
-from typing import Mapping
-from typing import Sequence
 
 from gemseo import create_scenario
 from gemseo.algos.doe.doe_library import DOELibrary
@@ -28,6 +25,10 @@ from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.core.scenario import Scenario
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+    from collections.abc import Sequence
+
     from gemseo.algos.design_space import DesignSpace
     from gemseo.core.discipline import MDODiscipline
     from gemseo.datasets.dataset import Dataset

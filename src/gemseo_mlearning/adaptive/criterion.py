@@ -62,11 +62,11 @@ class MLDataAcquisitionCriterion(MDOFunction):
         algo_distribution: MLRegressorDistribution,
         **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             algo_distribution: The distribution of a machine learning algorithm.
             **options: The acquisition criterion options.
-        """
+        """  # noqa: D205 D212 D415
         self.algo_distribution = algo_distribution
         dataset = self.algo_distribution.learning_set
         data = dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()

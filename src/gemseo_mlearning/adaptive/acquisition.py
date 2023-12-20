@@ -69,7 +69,7 @@ class MLDataAcquisition:
         distribution: MLRegressorDistribution,
         **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             criterion: The name of a data acquisition criterion
                 selecting new point(s) to reach a particular goal
@@ -80,7 +80,7 @@ class MLDataAcquisition:
 
         Raises:
             NotImplementedError: When the output dimension is greater than 1.
-        """
+        """  # noqa: D205 D212 D415
         if distribution.output_dimension > 1:
             raise NotImplementedError(
                 "MLDataAcquisition works only with scalar output."

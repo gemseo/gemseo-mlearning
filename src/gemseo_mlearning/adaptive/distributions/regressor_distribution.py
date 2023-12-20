@@ -97,7 +97,7 @@ class RegressorDistribution(MLRegressorDistribution):
         loo: bool = False,
         size: int | None = None,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             bootstrap: The resampling method.
                 If True, use bootstrap resampling.
@@ -110,7 +110,7 @@ class RegressorDistribution(MLRegressorDistribution):
                 If ``None``, use the default size
                 for bootstrap (:attr:`.MLAlgoSampler.N_BOOTSTRAP`)
                 and cross-validation (:attr:`.MLAlgoSampler.N_FOLDS`).
-        """
+        """  # noqa: D205 D212 D415
         if bootstrap:
             self.method = self.BOOTSTRAP
             self.size = size or self.N_BOOTSTRAP

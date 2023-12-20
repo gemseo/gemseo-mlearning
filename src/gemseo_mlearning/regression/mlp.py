@@ -26,13 +26,14 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 from typing import Final
-from typing import Iterable
-from typing import Mapping
 
 import sklearn.neural_network
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.ml_algo import TransformerType
     from numpy import ndarray
@@ -55,10 +56,10 @@ class MLPRegressor(MLRegressionAlgo):
         hidden_layer_sizes: tuple[int] = (100,),
         **parameters: Any,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             hidden_layer_sizes: The number of neurons per hidden layer.
-        """
+        """  # noqa: D205 D212 D415
         super().__init__(
             data,
             transformer=transformer,

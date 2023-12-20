@@ -30,9 +30,14 @@ and this project adheres to
 
 ## Added
 
+- Support for Python 3.11.
 - [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
   has a new optional argument ``optimizer``
   to select the OpenTURNS optimizer for the covariance model parameters.
+
+## Removed
+
+- Support for Python 3.8.
 
 # Version 1.1.1 (September 2023)
 
