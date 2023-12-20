@@ -29,8 +29,6 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 from typing import Final
-from typing import Iterable
-from typing import Mapping
 
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from numpy import array
@@ -38,6 +36,9 @@ from numpy import ndarray
 from sklearn.svm import SVR
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.ml_algo import TransformerType
 

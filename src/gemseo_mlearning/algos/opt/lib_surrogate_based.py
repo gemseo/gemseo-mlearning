@@ -18,11 +18,11 @@ from __future__ import annotations
 
 import logging
 import sys
+from collections.abc import Mapping
 from dataclasses import dataclass
 from types import MappingProxyType
 from typing import TYPE_CHECKING
 from typing import Any
-from typing import Mapping
 from typing import Union
 
 from gemseo.algos.doe.doe_factory import DOEFactory

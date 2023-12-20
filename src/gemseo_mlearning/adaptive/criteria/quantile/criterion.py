@@ -52,10 +52,10 @@ class Quantile(LimitState):
     def __init__(
         self, algo_distribution: MLRegressorDistribution, level: float
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             level: A quantile level.
-        """
+        """  # noqa: D205 D212 D415
         dataset = algo_distribution.learning_set
         limit_state = quantile(
             dataset.get_view(group_names=dataset.OUTPUT_GROUP), level

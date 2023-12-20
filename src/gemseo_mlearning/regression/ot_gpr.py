@@ -19,7 +19,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
-from typing import Iterable
 
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
@@ -42,6 +41,8 @@ from strenum import StrEnum
 from gemseo_mlearning.utils.compatibility.openturns import create_trend_basis
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.core.ml_algo import TransformerType
@@ -106,7 +107,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         trend_type: TrendType = TrendType.CONSTANT,
         optimizer: OptimizationAlgorithmImplementation = TNC,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             use_hmat: Whether to use the HMAT or LAPACK as linear algebra method.
                 If ``None``,
@@ -114,7 +115,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 than :attr:`MAX_SIZE_FOR_LAPACK`.
             trend_type: The type of the trend.
             optimizer: The solver used to optimize the covariance model parameters.
-        """
+        """  # noqa: D205 D212 D415
         super().__init__(
             data,
             transformer=transformer,

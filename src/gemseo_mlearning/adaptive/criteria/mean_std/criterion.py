@@ -57,11 +57,11 @@ class MeanSigma(MLDataAcquisitionCriterion):
     def __init__(
         self, algo_distribution: MLRegressorDistribution, kappa: float
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             kappa: A factor associated with the standard deviation
                 to increase or decrease the mean value.
-        """
+        """  # noqa: D205 D212 D415
         self.kappa = kappa
         super().__init__(algo_distribution)
 

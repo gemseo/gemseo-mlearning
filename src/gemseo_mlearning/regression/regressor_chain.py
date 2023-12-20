@@ -34,13 +34,14 @@ from collections import namedtuple
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
-from typing import Iterable
-from typing import Mapping
 
 from gemseo.mlearning import create_regression_model
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.ml_algo import TransformerType
     from numpy import ndarray

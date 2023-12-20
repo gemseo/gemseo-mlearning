@@ -98,10 +98,10 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     """The names of the output variables to be transformed."""
 
     def __init__(self, algo: MLRegressionAlgo) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             algo: A regression model.
-        """
+        """  # noqa: D205 D212 D415
         self.algo = algo
         self._samples = []
         self._transform_input_group = self.algo._transform_input_group

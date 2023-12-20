@@ -19,7 +19,6 @@ from __future__ import annotations
 import logging
 from types import MappingProxyType
 from typing import TYPE_CHECKING
-from typing import Mapping
 
 from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.doe.doe_library import DOELibrary
@@ -34,6 +33,8 @@ from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprove
 from gemseo_mlearning.adaptive.distributions import get_regressor_distribution
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
+
     from gemseo.algos.opt_problem import OptimizationProblem
     from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 
