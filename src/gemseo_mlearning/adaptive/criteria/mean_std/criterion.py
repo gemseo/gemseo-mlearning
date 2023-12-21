@@ -31,14 +31,18 @@ Estimator:
 
    \widehat{E_sigma}[x] = \widehat{E}[x] + \kappa \times \widehat{sigma}[x]
 """
+
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Callable
 
-from numpy.typing import NDArray
-
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+if TYPE_CHECKING:
+    from numpy.typing import NDArray
+
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 
 class MeanSigma(MLDataAcquisitionCriterion):
@@ -53,11 +57,11 @@ class MeanSigma(MLDataAcquisitionCriterion):
     def __init__(
         self, algo_distribution: MLRegressorDistribution, kappa: float
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             kappa: A factor associated with the standard deviation
                 to increase or decrease the mean value.
-        """
+        """  # noqa: D205 D212 D415
         self.kappa = kappa
         super().__init__(algo_distribution)
 

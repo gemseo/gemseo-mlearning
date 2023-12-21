@@ -13,15 +13,17 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Check the module api.py."""
+
 from __future__ import annotations
 
 import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
-from gemseo_mlearning.api import sample_discipline
-from gemseo_mlearning.api import sample_disciplines
 from numpy import array
 from numpy.testing import assert_equal
+
+from gemseo_mlearning.api import sample_discipline
+from gemseo_mlearning.api import sample_disciplines
 
 
 @pytest.fixture(scope="module")

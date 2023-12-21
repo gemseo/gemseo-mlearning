@@ -18,26 +18,31 @@
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Acquisition of learning data from a machine learning algorithm and a criterion."""
+
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
 from gemseo.algos.database import Database
-from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.opt.opt_factory import OptimizersFactory
 from gemseo.algos.opt_problem import OptimizationProblem
-from gemseo.core.discipline import MDODiscipline
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.core.ml_algo import DataType
 from numpy import array
 from pandas import concat
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionFactory
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionOptionType
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+if TYPE_CHECKING:
+    from gemseo.algos.design_space import DesignSpace
+    from gemseo.core.discipline import MDODiscipline
+    from gemseo.mlearning.core.ml_algo import DataType
+
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 LOGGER = logging.getLogger(__name__)
 
@@ -64,7 +69,7 @@ class MLDataAcquisition:
         distribution: MLRegressorDistribution,
         **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             criterion: The name of a data acquisition criterion
                 selecting new point(s) to reach a particular goal
@@ -75,7 +80,7 @@ class MLDataAcquisition:
 
         Raises:
             NotImplementedError: When the output dimension is greater than 1.
-        """
+        """  # noqa: D205 D212 D415
         if distribution.output_dimension > 1:
             raise NotImplementedError(
                 "MLDataAcquisition works only with scalar output."
@@ -185,7 +190,7 @@ class MLDataAcquisition:
             input_data = self.compute_next_input_data(as_dict=True)
             for inputs, outputs in self.__problem.database.items():
                 self.__database.store(
-                    array([index + 1] + inputs.unwrap().tolist()), outputs
+                    array([index + 1, *inputs.unwrap().tolist()]), outputs
                 )
 
             discipline.execute(input_data)

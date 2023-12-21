@@ -13,20 +13,25 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Some useful functions for machine learning."""
+
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Any
-from typing import Iterable
-from typing import Mapping
-from typing import Sequence
 
 from gemseo import create_scenario
-from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
-from gemseo.core.discipline import MDODiscipline
 from gemseo.core.scenario import Scenario
-from gemseo.datasets.dataset import Dataset
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+    from collections.abc import Sequence
+
+    from gemseo.algos.design_space import DesignSpace
+    from gemseo.core.discipline import MDODiscipline
+    from gemseo.datasets.dataset import Dataset
 
 
 def sample_discipline(
@@ -35,7 +40,7 @@ def sample_discipline(
     output_names: str | Iterable[str],
     algo_name: str,
     n_samples: int,
-    name: str = None,
+    name: str | None = None,
     **algo_options: Any,
 ) -> Dataset:
     """Sample a discipline.
@@ -72,8 +77,8 @@ def sample_disciplines(
     output_names: str | Iterable[str],
     algo_name: str,
     n_samples: int,
-    name: str = None,
-    formulation_options: Mapping[str, Any] = None,
+    name: str | None = None,
+    formulation_options: Mapping[str, Any] | None = None,
     **algo_options: DOELibraryOptionType,
 ) -> Dataset:
     """Sample several disciplines based on an MDO formulation.
@@ -109,12 +114,10 @@ def sample_disciplines(
     )
     for output_name in output_names_iterator:
         scenario.add_observable(output_name)
-    scenario.execute(
-        {
-            Scenario.ALGO: algo_name,
-            DOELibrary.N_SAMPLES: n_samples,
-            Scenario.ALGO_OPTIONS: algo_options,
-        }
-    )
+    scenario.execute({
+        Scenario.ALGO: algo_name,
+        DOELibrary.N_SAMPLES: n_samples,
+        Scenario.ALGO_OPTIONS: algo_options,
+    })
 
     return scenario.formulation.opt_problem.to_dataset(name=name, opt_naming=False)

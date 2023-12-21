@@ -18,15 +18,19 @@
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Minimum distance between a point and the learning dataset."""
+
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Callable
 
 from numpy import nonzero
-from numpy.typing import NDArray
 from scipy.spatial.distance import cdist
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
+
+if TYPE_CHECKING:
+    from numpy.typing import NDArray
 
 
 class MinimumDistance(MLDataAcquisitionCriterion):

@@ -13,16 +13,18 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Tests for the getter of regression distributions."""
+
 from __future__ import annotations
 
 import pytest
-from gemseo_mlearning.adaptive.distributions import get_regressor_distribution
+
 from gemseo_mlearning.adaptive.distributions import KrigingDistribution
 from gemseo_mlearning.adaptive.distributions import RegressorDistribution
+from gemseo_mlearning.adaptive.distributions import get_regressor_distribution
 
 
 @pytest.mark.parametrize(
-    ["algorithm", "class_"],
+    ("algorithm", "class_"),
     [("linear_algo", RegressorDistribution), ("kriging_algo", KrigingDistribution)],
 )
 def test_get_regressor_distribution(request, algorithm, class_):

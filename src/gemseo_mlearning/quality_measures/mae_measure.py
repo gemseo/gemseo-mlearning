@@ -27,12 +27,17 @@ The mean absolute error (MAE) is defined by
 
 where :math:`\hat{y}` are the predictions and :math:`y` are the data points.
 """
+
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from gemseo.mlearning.quality_measures.error_measure import MLErrorMeasure
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from numpy import ndarray
 from sklearn.metrics import mean_absolute_error
+
+if TYPE_CHECKING:
+    from gemseo.mlearning.regression.regression import MLRegressionAlgo
+    from numpy import ndarray
 
 
 class MAEMeasure(MLErrorMeasure):

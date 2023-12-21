@@ -16,8 +16,9 @@ from __future__ import annotations
 
 import pytest
 import sklearn.neural_network
-from gemseo_mlearning.regression.mlp import MLPRegressor
 from numpy import array
+
+from gemseo_mlearning.regression.mlp import MLPRegressor
 
 
 def test_init(dataset):

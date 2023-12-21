@@ -18,12 +18,17 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import pytest
-from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
+from numpy import array
+
 from gemseo_mlearning.adaptive.distributions.kriging_distribution import (
     KrigingDistribution,
 )
-from numpy import array
+
+if TYPE_CHECKING:
+    from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
 
 
 @pytest.fixture(scope="module")

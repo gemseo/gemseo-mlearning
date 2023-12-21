@@ -27,17 +27,21 @@ This notion of acquisition criterion is implemented through the
 :class:`.MLDataAcquisitionCriterion` class which is built from a
 :class:`.MLSupervisedAlgo` and inherits from :class:`.MDOFunction`.
 """
+
 from __future__ import annotations
 
 from abc import abstractmethod
+from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
 
 from gemseo.core.base_factory import BaseFactory
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
-from numpy import ndarray
 
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+if TYPE_CHECKING:
+    from numpy import ndarray
+
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 MLDataAcquisitionCriterionOptionType = float
 
@@ -58,11 +62,11 @@ class MLDataAcquisitionCriterion(MDOFunction):
         algo_distribution: MLRegressorDistribution,
         **options: MLDataAcquisitionCriterionOptionType,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             algo_distribution: The distribution of a machine learning algorithm.
             **options: The acquisition criterion options.
-        """
+        """  # noqa: D205 D212 D415
         self.algo_distribution = algo_distribution
         dataset = self.algo_distribution.learning_set
         data = dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()

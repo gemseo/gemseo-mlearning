@@ -36,6 +36,7 @@
 EGO based on resampling
 =======================
 """
+
 from __future__ import annotations
 
 import matplotlib.gridspec as gridspec
@@ -44,16 +45,15 @@ from gemseo.algos.design_space import DesignSpace
 from gemseo.core.doe_scenario import DOEScenario
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.rbf import RBFRegressor
-from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
-from gemseo_mlearning.adaptive.criteria.optimum.criterion import (
-    ExpectedImprovement,
-)
-from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
-    RegressorDistribution,
-)
 from numpy import array
 from numpy import linspace
 from numpy import zeros
+
+from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
+from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
+from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
+    RegressorDistribution,
+)
 
 n_test = 20
 

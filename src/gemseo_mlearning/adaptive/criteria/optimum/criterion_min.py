@@ -32,13 +32,16 @@ Bootstrap estimator:
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(f_{min}-Y_b(x),0)
 """
+
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Callable
 
-from numpy.typing import NDArray
-
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterion
+
+if TYPE_CHECKING:
+    from numpy.typing import NDArray
 
 
 class MinExpectedImprovement(MLDataAcquisitionCriterion):

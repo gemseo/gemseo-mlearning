@@ -36,22 +36,22 @@
 Expected improvement based on cross-validation
 ==============================================
 """
+
 from __future__ import annotations
 
 import matplotlib.pyplot as plt
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.rbf import RBFRegressor
+from numpy import array
+from numpy import linspace
+
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
 from gemseo_mlearning.adaptive.criteria.mean_std.criterion import MeanSigma
-from gemseo_mlearning.adaptive.criteria.optimum.criterion import (
-    ExpectedImprovement,
-)
+from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
-from numpy import array
-from numpy import linspace
 
 n_test = 200
 x_l = -3.0

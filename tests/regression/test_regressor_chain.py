@@ -18,9 +18,10 @@ import pytest
 from gemseo.mlearning.quality_measures.mse_measure import MSEMeasure
 from gemseo.mlearning.regression.linreg import LinearRegressor
 from gemseo.mlearning.regression.polyreg import PolynomialRegressor
-from gemseo_mlearning.regression.regressor_chain import RegressorChain
 from numpy import array
 from numpy.testing import assert_equal
+
+from gemseo_mlearning.regression.regressor_chain import RegressorChain
 
 
 @pytest.fixture(scope="module")

@@ -48,12 +48,10 @@ def dataset_2(dataset) -> IODataset:
     )
     data.add_variable(
         "rosen2",
-        hstack(
-            (
-                dataset.get_view(variable_names="rosen").to_numpy(),
-                dataset.get_view(variable_names="rosen").to_numpy(),
-            )
-        ),
+        hstack((
+            dataset.get_view(variable_names="rosen").to_numpy(),
+            dataset.get_view(variable_names="rosen").to_numpy(),
+        )),
         group_name=data.OUTPUT_GROUP,
     )
     return data

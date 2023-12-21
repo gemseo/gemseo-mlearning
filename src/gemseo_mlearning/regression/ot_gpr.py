@@ -13,26 +13,24 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Gaussian process regression model from OpenTURNS."""
+
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
-from typing import Iterable
 
-from gemseo.datasets.dataset import Dataset
-from gemseo.mlearning.core.ml_algo import DataType
-from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from gemseo.utils.data_conversion import (
-    concatenate_dict_of_arrays_to_array,
-)
+from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import atleast_2d
 from numpy import diag
 from numpy import ndarray
+from openturns import TNC
 from openturns import ConstantBasisFactory
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
+from openturns import OptimizationAlgorithmImplementation
 from openturns import Point
 from openturns import QuadraticBasisFactory
 from openturns import ResourceMap
@@ -41,6 +39,13 @@ from openturns import TensorizedCovarianceModel
 from strenum import StrEnum
 
 from gemseo_mlearning.utils.compatibility.openturns import create_trend_basis
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.mlearning.core.ml_algo import DataType
+    from gemseo.mlearning.core.ml_algo import TransformerType
 
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
@@ -86,23 +91,31 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     __trend_type: TrendType
     """The type of the trend."""
 
+    __optimizer: OptimizationAlgorithmImplementation
+    """The solver used to optimize the covariance model parameters."""
+
+    TNC: Final[TNC] = TNC()
+    """The TNC algorithm."""
+
     def __init__(
         self,
         data: Dataset,
         transformer: TransformerType | None = None,
-        input_names: Iterable[str] = None,
-        output_names: Iterable[str] = None,
-        use_hmat: bool = None,
+        input_names: Iterable[str] | None = None,
+        output_names: Iterable[str] | None = None,
+        use_hmat: bool | None = None,
         trend_type: TrendType = TrendType.CONSTANT,
+        optimizer: OptimizationAlgorithmImplementation = TNC,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             use_hmat: Whether to use the HMAT or LAPACK as linear algebra method.
                 If ``None``,
                 use HMAT when the learning size is greater
                 than :attr:`MAX_SIZE_FOR_LAPACK`.
             trend_type: The type of the trend.
-        """
+            optimizer: The solver used to optimize the covariance model parameters.
+        """  # noqa: D205 D212 D415
         super().__init__(
             data,
             transformer=transformer,
@@ -115,6 +128,8 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
         else:
             self.use_hmat = use_hmat
+
+        self.__optimizer = optimizer
 
     @property
     def use_hmat(self) -> bool:
@@ -158,6 +173,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 output_dimension,
             ),
         )
+        algo.setOptimizationAlgorithm(self.__optimizer)
         algo.run()
         self.algo = algo.getResult()
 
@@ -185,12 +201,10 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             input_data = self.transformer[inputs].transform(input_data)
 
         output_data = (
-            array(
-                [
-                    (diag(self.algo.getConditionalCovariance(input_datum))).tolist()
-                    for input_datum in input_data
-                ]
-            ).clip(min=0)
+            array([
+                (diag(self.algo.getConditionalCovariance(input_datum))).tolist()
+                for input_datum in input_data
+            ]).clip(min=0)
             ** 0.5
         )
 

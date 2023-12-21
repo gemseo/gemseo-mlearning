@@ -26,19 +26,14 @@ from operator import truediv
 import pytest
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.mlearning.regression.linreg import LinearRegressor
-from gemseo_mlearning.adaptive.criteria.distances.criterion_min import (
-    MinimumDistance,
-)
-from gemseo_mlearning.adaptive.criteria.optimum.criterion import (
-    ExpectedImprovement,
-)
-from gemseo_mlearning.adaptive.criterion import (
-    MLDataAcquisitionCriterionFactory,
-)
+from numpy import array
+
+from gemseo_mlearning.adaptive.criteria.distances.criterion_min import MinimumDistance
+from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
+from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionFactory
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
-from numpy import array
 
 
 @pytest.fixture(scope="module")

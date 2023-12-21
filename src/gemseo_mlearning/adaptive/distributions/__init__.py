@@ -13,17 +13,22 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """The distributions of machine learning algorithms."""
+
 from __future__ import annotations
 
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from typing import TYPE_CHECKING
 
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 from gemseo_mlearning.adaptive.distributions.kriging_distribution import (
     KrigingDistribution,
 )
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
+
+if TYPE_CHECKING:
+    from gemseo.mlearning.regression.regression import MLRegressionAlgo
+
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 
 def get_regressor_distribution(
@@ -38,7 +43,8 @@ def get_regressor_distribution(
         regression_algorithm: The regression algorithm.
         bootstrap: Whether to use bootstrap for resampling.
             If ``False``, use cross-validation.
-        use_loo: Whether to use leave-one-out resampling when ``use_bootstrap`` is ``False``.
+        use_loo: Whether to use leave-one-out resampling when
+            ``use_bootstrap`` is ``False``.
             If ``False``, use parameterized cross-validation.
         size: The size of the resampling set,
             i.e. the number of times the regression algorithm is rebuilt.

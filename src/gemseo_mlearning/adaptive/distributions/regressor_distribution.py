@@ -32,17 +32,16 @@ Sampling a :class:`.MLAlgo` can be particularly useful to:
 - estimate infill criteria for adaptive learning purposes,
 - etc.
 """
+
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
 from typing import Final
 
-from gemseo.datasets.dataset import Dataset
-from gemseo.mlearning.core.ml_algo import DataType
 from gemseo.mlearning.regression import regression
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import array_split
@@ -57,10 +56,15 @@ from numpy import quantile
 from numpy import stack
 from numpy import sum as npsum
 from numpy import unique
-from numpy.random import choice
+from numpy.random import default_rng
 from scipy.spatial.distance import euclidean
 
 from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+if TYPE_CHECKING:
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.mlearning.core.ml_algo import DataType
+    from gemseo.mlearning.regression.regression import MLRegressionAlgo
 
 LOGGER = logging.getLogger(__name__)
 
@@ -93,7 +97,7 @@ class RegressorDistribution(MLRegressorDistribution):
         loo: bool = False,
         size: int | None = None,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             bootstrap: The resampling method.
                 If True, use bootstrap resampling.
@@ -106,7 +110,7 @@ class RegressorDistribution(MLRegressorDistribution):
                 If ``None``, use the default size
                 for bootstrap (:attr:`.MLAlgoSampler.N_BOOTSTRAP`)
                 and cross-validation (:attr:`.MLAlgoSampler.N_FOLDS`).
-        """
+        """  # noqa: D205 D212 D415
         if bootstrap:
             self.method = self.BOOTSTRAP
             self.size = size or self.N_BOOTSTRAP
@@ -137,7 +141,9 @@ class RegressorDistribution(MLRegressorDistribution):
             folds = array_split(self._samples, n_folds)
         for index, algo in enumerate(self.algos):
             if self.method == self.BOOTSTRAP:
-                new_samples = unique(choice(self._samples, len(self._samples)))
+                new_samples = unique(
+                    default_rng(1).choice(self._samples, len(self._samples))
+                )
                 other_samples = list(set(self._samples) - set(new_samples))
                 self.weights.append(self.__weight_function(other_samples))
             else:
@@ -194,7 +200,7 @@ class RegressorDistribution(MLRegressorDistribution):
                     index
                 ]
                 for index, value in enumerate(input_data):
-                    term = 1 - exp(-euclidean(index_data, value) ** 2 / rho**2)
+                    term = 1 - exp(-(euclidean(index_data, value) ** 2) / rho**2)
                     distance[index] *= term
             if only_one_element:
                 distance = distance[0]
@@ -224,10 +230,9 @@ class RegressorDistribution(MLRegressorDistribution):
         if isinstance(input_data, dict):
             return {
                 name: stack([prediction[name] for prediction in predictions])
-                for name in predictions[0].keys()
+                for name in predictions[0]
             }
-        else:
-            return stack(predictions)
+        return stack(predictions)
 
     def compute_confidence_interval(  # noqa: D102
         self,
@@ -308,12 +313,9 @@ class RegressorDistribution(MLRegressorDistribution):
         Returns:
             The averaged value.
         """
-        return array(
-            [
-                dot(weights[:, index], data[:, index, :])
-                for index in range(data.shape[1])
-            ]
-        )
+        return array([
+            dot(weights[:, index], data[:, index, :]) for index in range(data.shape[1])
+        ])
 
     def change_learning_set(self, learning_set: Dataset) -> None:  # noqa: D102
         for algo in self.algos:

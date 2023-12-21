@@ -13,14 +13,16 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """A library for surrogate-based optimization."""
+
 from __future__ import annotations
 
 import logging
 import sys
+from collections.abc import Mapping
 from dataclasses import dataclass
 from types import MappingProxyType
+from typing import TYPE_CHECKING
 from typing import Any
-from typing import Mapping
 from typing import Union
 
 from gemseo.algos.doe.doe_factory import DOEFactory
@@ -28,13 +30,15 @@ from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescription
 from gemseo.algos.opt.optimization_library import OptimizationLibrary
-from gemseo.algos.opt_result import OptimizationResult
 from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionOptionType
 from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
 from gemseo_mlearning.algos.opt.core.surrogate_based import SurrogateBasedOptimizer
+
+if TYPE_CHECKING:
+    from gemseo.algos.opt_result import OptimizationResult
 
 LOGGER = logging.getLogger(__name__)
 

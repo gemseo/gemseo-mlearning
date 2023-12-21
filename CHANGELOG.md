@@ -26,35 +26,50 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+# Version 1.1.2 (December 2023)
+
+## Added
+
+- Support for Python 3.11.
+- [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
+  has a new optional argument ``optimizer``
+  to select the OpenTURNS optimizer for the covariance model parameters.
+
+## Removed
+
+- Support for Python 3.8.
+
 # Version 1.1.1 (September 2023)
 
 ## Fixed
 
-- `OTGaussianProcessRegressor.predict_std` no longer returns the variance of
-  the output but its standard deviation.
+- [OTGaussianProcessRegressor.predict_std][gemseo_mlearning.regression.ot_gpr.predict_std]
+  no longer returns the variance of the output but its standard deviation.
 
 # Version 1.1.0 (June 2023)
 
 ## Added
 
-- An argument `trend_type` of type `OTGaussianProcessRegressor.TREND_TYPE` to
-  `OTGaussianProcessRegressor`;
+- An argument ``trend_type`` of type
+  [OTGaussianProcessRegressor.TREND_TYPE][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TREND_TYPE]
+  to [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor];
   the trend type of the Gaussian process regressor can be either constant,
   linear or quadratic.
-- A new optimization library `SurrogateBasedOptimization` to perform EGO-like
-  surrogate-based optimization on unconstrained problems.
+- A new optimization library
+  [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization]
+  to perform EGO-like surrogate-based optimization on unconstrained problems.
 
 ## Fixed
 
-- The output of an `MLDataAcquisitionCriterion` based on a regressor built from
-  constant output values is no longer `nan`.
+- The output of an [MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
+  based on a regressor built from constant output values is no longer ``nan``.
 
 # Version 1.0.1 (February 2022)
 
 ## Fixed
 
-- `MLRegressorDistribution` can now use a regression algorithm instantiated with
-  transformers.
+- [MLRegressorDistribution][gemseo_mlearning.adaptive.distribution.MLRegressorDistribution]
+  can now use a regression algorithm instantiated with transformers.
 
 # Version 1.0.0 (July 2022)
 

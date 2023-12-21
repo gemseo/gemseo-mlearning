@@ -23,21 +23,26 @@ The gradient boosting model relies on the ``GradientBoostingRegressor`` class
 of the `scikit-learn library <https://scikit-learn.org/stable/modules/
 generated/sklearn.ensemble.GradientBoostingRegressor.html>`_.
 """
+
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 from typing import Final
-from typing import Iterable
-from typing import Mapping
 
-from gemseo.datasets.dataset import Dataset
-from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from numpy import array
 from numpy import ndarray
 from sklearn.ensemble import GradientBoostingRegressor as SKLGradientBoosting
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.mlearning.core.ml_algo import TransformerType
 
 LOGGER = logging.getLogger(__name__)
 
@@ -52,15 +57,15 @@ class GradientBoostingRegressor(MLRegressionAlgo):
         self,
         data: Dataset,
         transformer: Mapping[str, TransformerType] | None = None,
-        input_names: Iterable[str] = None,
-        output_names: Iterable[str] = None,
+        input_names: Iterable[str] | None = None,
+        output_names: Iterable[str] | None = None,
         n_estimators: int = 100,
         **parameters: Any,
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             n_estimators: The number of boosting stages to perform.
-        """
+        """  # noqa: D205 D212 D415
         super().__init__(
             data,
             transformer=transformer,

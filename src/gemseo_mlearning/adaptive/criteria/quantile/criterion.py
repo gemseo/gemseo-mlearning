@@ -33,12 +33,17 @@ Bootstrap estimator:
 
    \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|
 """
+
 from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from numpy import quantile
 
 from gemseo_mlearning.adaptive.criteria.value.criterion import LimitState
-from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
+
+if TYPE_CHECKING:
+    from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
 
 
 class Quantile(LimitState):
@@ -47,10 +52,10 @@ class Quantile(LimitState):
     def __init__(
         self, algo_distribution: MLRegressorDistribution, level: float
     ) -> None:
-        """# noqa: D205 D212 D415
+        """
         Args:
             level: A quantile level.
-        """
+        """  # noqa: D205 D212 D415
         dataset = algo_distribution.learning_set
         limit_state = quantile(
             dataset.get_view(group_names=dataset.OUTPUT_GROUP), level

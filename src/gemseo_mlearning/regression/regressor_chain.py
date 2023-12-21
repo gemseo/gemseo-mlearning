@@ -26,20 +26,25 @@ $i$-th regression model learns the learning error of its predecessor.
 During the prediction stage, the different regression models are evaluated from a new
 input data and the sum of their output data is returned.
 """
+
 from __future__ import annotations
 
 import logging
 from collections import namedtuple
+from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
-from typing import Iterable
-from typing import Mapping
 
-from gemseo.datasets.dataset import Dataset
 from gemseo.mlearning import create_regression_model
-from gemseo.mlearning.core.ml_algo import TransformerType
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
-from numpy import ndarray
+
+if TYPE_CHECKING:
+    from collections.abc import Iterable
+    from collections.abc import Mapping
+
+    from gemseo.datasets.dataset import Dataset
+    from gemseo.mlearning.core.ml_algo import TransformerType
+    from numpy import ndarray
 
 LOGGER = logging.getLogger(__name__)
 
@@ -55,8 +60,8 @@ class RegressorChain(MLRegressionAlgo):
         self,
         data: Dataset,
         transformer: Mapping[str, TransformerType] | None = None,
-        input_names: Iterable[str] = None,
-        output_names: Iterable[str] = None,
+        input_names: Iterable[str] | None = None,
+        output_names: Iterable[str] | None = None,
         **parameters: Any,
     ) -> None:
         super().__init__(

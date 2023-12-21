@@ -13,6 +13,7 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Tests for the surrogate-based optimizer."""
+
 from __future__ import annotations
 
 import pytest
@@ -20,19 +21,20 @@ from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.problems.analytical.rastrigin import Rastrigin
+
 from gemseo_mlearning.algos.opt.core.surrogate_based import SurrogateBasedOptimizer
 
 
 @pytest.mark.parametrize(
-    ["regression_algorithm", "regression_options"],
-    [["GaussianProcessRegressor", {}], ["RBFRegressor", {"epsilon": 1.0}]],
+    ("regression_algorithm", "regression_options"),
+    [("GaussianProcessRegressor", {}), ("RBFRegressor", {"epsilon": 1.0})],
 )
 def test_all_acquisitions_made(regression_algorithm, regression_options):
     """Check the execution of the surrogate-based optimizer with all acquisitions."""
     assert (
         SurrogateBasedOptimizer(
             Rastrigin(),
-            "DIFFERENTIAL_EVOLUTION",
+            "fullfact",
             5,
             regression_algorithm=regression_algorithm,
             regression_options=regression_options,
@@ -65,7 +67,7 @@ def test_convergence_on_rastrigin():
         problem,
         "DIFFERENTIAL_EVOLUTION",
         doe_size=20,
-        acquisition_options={"max_iter": 1000, "popsize": 50},
+        acquisition_options={"max_iter": 1000, "popsize": 50, "seed": 1},
     ).execute(5)
     assert problem.get_optimum()[0] < 0.1
 

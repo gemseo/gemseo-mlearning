@@ -13,8 +13,10 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Test the interface to the OpenTURNS' Kriging."""
+
 from __future__ import annotations
 
+from unittest import mock
 from unittest.mock import Mock
 
 import openturns
@@ -23,16 +25,20 @@ from gemseo import execute_algo
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.problems.analytical.rosenbrock import Rosenbrock
-from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 from numpy import array
 from numpy import hstack
 from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
+from openturns import TNC
 from openturns import CovarianceMatrix
+from openturns import KrigingAlgorithm
 from openturns import KrigingResult
+from openturns import NLopt
 from packaging import version
 from scipy.optimize import rosen
+
+from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 
 OTGaussianProcessRegressor.HMATRIX_ASSEMBLY_EPSILON = 1e-10
 OTGaussianProcessRegressor.HMATRIX_RECOMPRESSION_EPSILON = 1e-10
@@ -76,12 +82,10 @@ def dataset_2(problem) -> IODataset:
     data = problem.to_dataset(opt_naming=False)
     data.add_variable(
         "rosen2",
-        hstack(
-            (
-                data.get_view(variable_names="rosen").to_numpy(),
-                -data.get_view(variable_names="rosen").to_numpy(),
-            )
-        ),
+        hstack((
+            data.get_view(variable_names="rosen").to_numpy(),
+            -data.get_view(variable_names="rosen").to_numpy(),
+        )),
         group_name=data.OUTPUT_GROUP,
     )
     return data
@@ -102,7 +106,7 @@ def test_class_constants(kriging):
 
 
 @pytest.mark.parametrize(
-    "n_samples,use_hmat",
+    ("n_samples", "use_hmat"),
     [
         (1, False),
         (OTGaussianProcessRegressor.MAX_SIZE_FOR_LAPACK, False),
@@ -218,16 +222,13 @@ def test_kriging_std_output_dimension(dataset_2, output_name, input_data):
         one_sample = input_data["x"].ndim == 1
     else:
         one_sample = input_data.ndim == 1
-    if one_sample:
-        shape = (ndim,)
-    else:
-        shape = (1, ndim)
+    shape = (ndim,) if one_sample else (1, ndim)
 
     assert model.predict_std(input_data).shape == shape
 
 
 @pytest.mark.parametrize(
-    "trend_type,shape",
+    ("trend_type", "shape"),
     [
         (OTGaussianProcessRegressor.TrendType.CONSTANT, (2, 1)),
         (OTGaussianProcessRegressor.TrendType.LINEAR, (2, 3)),
@@ -242,3 +243,22 @@ def test_trend_type(dataset, trend_type, shape):
         assert array(model.algo.getTrendCoefficients()).shape == shape
     else:
         assert array(model.algo.getTrendCoefficients()).shape == (shape[0] * shape[1],)
+
+
+def test_default_optimizer(dataset):
+    """Check that the default optimizer is TNC."""
+    model = OTGaussianProcessRegressor(dataset)
+    with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
+        model.learn()
+
+    assert method.call_args.args[0] == TNC()
+
+
+def test_custom_optimizer(dataset):
+    """Check that the optimizer can be changed."""
+    optimizer = NLopt("LN_NELDERMEAD")
+    model = OTGaussianProcessRegressor(dataset, optimizer=optimizer)
+    with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
+        model.learn()
+
+    assert method.call_args.args[0] == optimizer
