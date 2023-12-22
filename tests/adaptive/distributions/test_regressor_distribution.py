@@ -83,7 +83,7 @@ def test_learn(distribution):
     Original model: f(x) = 2/3
     Sub-models: f0(x) = -1 + 2x, f1(x) = 1, f2(x) = 1 - 2x
     """
-    assert 2.0 / 3 == pytest.approx(distribution.algo.intercept[0], 0.1)
+    assert pytest.approx(distribution.algo.intercept[0], 0.1) == 2.0 / 3
     assert pytest.approx(distribution.algo.coefficients[0], 0.1) == 0.0
 
 
