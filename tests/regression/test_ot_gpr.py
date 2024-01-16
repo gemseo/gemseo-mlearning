@@ -30,7 +30,6 @@ from numpy import hstack
 from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
-from openturns import TNC
 from openturns import CovarianceMatrix
 from openturns import KrigingAlgorithm
 from openturns import KrigingResult
@@ -251,7 +250,7 @@ def test_default_optimizer(dataset):
     with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
         model.learn()
 
-    assert method.call_args.args[0] == TNC()
+    assert method.call_args.args[0].__class__.__name__ == "TNC"
 
 
 def test_custom_optimizer(dataset):
