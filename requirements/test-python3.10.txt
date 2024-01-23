@@ -36,7 +36,7 @@ fastjsonschema==2.19.0
     # via gemseo
 fonttools==4.47.2
     # via matplotlib
-gemseo[all]==5.2.1.dev59+g9675448a
+gemseo[all]==5.2.1.dev61+gecb41d1b
     # via
     #   gemseo
     #   gemseo-mlearning (pyproject.toml)
