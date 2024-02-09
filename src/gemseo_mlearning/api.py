@@ -31,7 +31,7 @@ if TYPE_CHECKING:
 
     from gemseo.algos.design_space import DesignSpace
     from gemseo.core.discipline import MDODiscipline
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
 
 
 def sample_discipline(
@@ -42,7 +42,7 @@ def sample_discipline(
     n_samples: int,
     name: str | None = None,
     **algo_options: Any,
-) -> Dataset:
+) -> IODataset:
     """Sample a discipline.
 
     Args:
@@ -80,7 +80,7 @@ def sample_disciplines(
     name: str | None = None,
     formulation_options: Mapping[str, Any] | None = None,
     **algo_options: DOELibraryOptionType,
-) -> Dataset:
+) -> IODataset:
     """Sample several disciplines based on an MDO formulation.
 
     Args:

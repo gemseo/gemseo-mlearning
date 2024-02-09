@@ -32,8 +32,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""
-EGO based on resampling
+"""EGO based on resampling.
 =======================
 """
 
@@ -41,8 +40,8 @@ from __future__ import annotations
 
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
+from gemseo import configure_logger
 from gemseo.algos.design_space import DesignSpace
-from gemseo.core.doe_scenario import DOEScenario
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.rbf import RBFRegressor
 from numpy import array
@@ -54,6 +53,9 @@ from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprove
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
+from gemseo_mlearning.api import sample_discipline
+
+configure_logger()
 
 n_test = 20
 
@@ -73,11 +75,7 @@ input_space.add_variable("y", l_b=-2, u_b=2, value=1.0)
 ##############################################################################
 # Initial surrogate model
 # -----------------------
-scenario = DOEScenario([discipline], "DisciplinaryOpt", "z", input_space)
-scenario.execute({"algo": "OT_OPT_LHS", "n_samples": 30})
-opt_problem = scenario.formulation.opt_problem
-learning_dataset = opt_problem.export_to_dataset("learning", opt_naming=False)
-
+learning_dataset = sample_discipline(discipline, input_space, "z", "OT_OPT_LHS", 30)
 algo = RBFRegressor(learning_dataset)
 
 ##############################################################################
