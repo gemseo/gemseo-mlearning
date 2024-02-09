@@ -12,7 +12,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""Check the module api.py."""
+"""Check the module gemseo_mlearning.__init__.py."""
 
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ from gemseo.disciplines.analytic import AnalyticDiscipline
 from numpy import array
 from numpy.testing import assert_equal
 
-from gemseo_mlearning.api import sample_discipline
-from gemseo_mlearning.api import sample_disciplines
+from gemseo_mlearning import sample_discipline
+from gemseo_mlearning import sample_disciplines
 
 
 @pytest.fixture(scope="module")
