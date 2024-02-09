@@ -32,8 +32,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""
-Sample a discipline
+"""Sample a discipline.
 ===================
 """
 
@@ -42,7 +41,7 @@ from __future__ import annotations
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
 
-from gemseo_mlearning.api import sample_discipline
+from gemseo_mlearning import sample_discipline
 
 discipline = AnalyticDiscipline({"y": "2*x", "z": "3*x"})
 
@@ -50,5 +49,4 @@ input_space = DesignSpace()
 input_space.add_variable("x", l_b=0.0, u_b=1.0)
 
 dataset = sample_discipline(discipline, input_space, ["y", "z"], "fullfact", 10)
-
-print(dataset.export_to_dataframe())
+dataset

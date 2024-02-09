@@ -33,6 +33,15 @@ and this project adheres to
 - The `covariance_model` argument of `OTGaussianProcessRegressor` allows
   to use any covariance model proposed by OpenTURNS.
 
+## Changed
+
+- BREAKING CHANGE:
+  The module `gemseo_mlearning.api` no longer exists;
+  the functions
+  [sample_discipline][gemseo_mlearning.sample_discipline]
+  and [sample_disciplines][gemseo_mlearning.sample_disciplines]
+  must be imported from [gemseo_mlearning][gemseo_mlearning].
+
 # Version 1.1.2 (December 2023)
 
 ## Added
