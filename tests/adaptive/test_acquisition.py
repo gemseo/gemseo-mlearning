@@ -79,15 +79,24 @@ def test_init(algo_distribution, input_space):
     acquisition = MLDataAcquisition(
         "ExpectedImprovement", input_space, algo_distribution
     )
-    assert acquisition._MLDataAcquisition__algo_name == acquisition.default_algo_name
     assert (
-        acquisition._MLDataAcquisition__algo_options == acquisition.default_opt_options
+        acquisition._MLDataAcquisition__acquisition_algo.algo_name
+        == acquisition.default_algo_name
     )
-    assert acquisition._MLDataAcquisition__problem.design_space.variable_names == ["x"]
-    assert acquisition._MLDataAcquisition__criterion == "ExpectedImprovement"
+    assert (
+        acquisition._MLDataAcquisition__acquisition_algo_options
+        == acquisition.default_opt_options
+    )
+    assert (
+        acquisition._MLDataAcquisition__acquisition_problem.design_space.variable_names
+        == ["x"]
+    )
+    assert (
+        acquisition._MLDataAcquisition__acquisition_criterion == "ExpectedImprovement"
+    )
     assert acquisition._MLDataAcquisition__input_space == input_space
     assert acquisition._MLDataAcquisition__distribution == algo_distribution
-    assert acquisition._MLDataAcquisition__algo.algo_name == "NLOPT_COBYLA"
+    assert acquisition._MLDataAcquisition__acquisition_algo.algo_name == "NLOPT_COBYLA"
 
 
 def test_init_with_bad_output_dimension(input_space):
@@ -141,8 +150,8 @@ def test_set_acquisition_algorithm(
         algo_options = MLDataAcquisition.default_opt_options.copy()
 
     algo_options.update(options)
-    assert acquisition._MLDataAcquisition__algo_name == algo_name
-    assert acquisition._MLDataAcquisition__algo_options == algo_options
+    assert acquisition._MLDataAcquisition__acquisition_algo.algo_name == algo_name
+    assert acquisition._MLDataAcquisition__acquisition_algo_options == algo_options
 
 
 @pytest.mark.parametrize("as_dict", [False, True])
@@ -178,8 +187,11 @@ def test_build_opt_problem_maximize(
     acquisition = MLDataAcquisition(
         criterion, input_space, algo_distribution, **options
     )
-    acquisition._MLDataAcquisition__build_optimization_problem()
-    assert acquisition._MLDataAcquisition__problem.minimize_objective == minimize
+    acquisition._MLDataAcquisition__create_acquisition_problem()
+    assert (
+        acquisition._MLDataAcquisition__acquisition_problem.minimize_objective
+        == minimize
+    )
 
 
 @pytest.mark.parametrize(
@@ -191,10 +203,10 @@ def test_build_opt_problem_jacobian(
 ):
     """Check that the optimization problem can use approximated or analytic Jacobian."""
     acquisition = MLDataAcquisition(criterion, input_space, algo_distribution)
-    acquisition._MLDataAcquisition__build_optimization_problem()
+    acquisition._MLDataAcquisition__create_acquisition_problem()
     assert (
         eq(
-            acquisition._MLDataAcquisition__problem.differentiation_method,
+            acquisition._MLDataAcquisition__acquisition_problem.differentiation_method,
             OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES,
         )
         == use_finite_differences

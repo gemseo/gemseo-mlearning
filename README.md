@@ -37,4 +37,7 @@ The list of dependencies with their licenses is given in the CREDITS.md file.
 
 # Contributors
 
+- Antoine Dechaume
+- Benoît Pauwels
+- Clément Laboulfie
 - Matthias De Lozzo

@@ -39,7 +39,7 @@ and this project adheres to
 
 - Support for Python 3.11.
 - [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  has a new optional argument ``optimizer``
+  has a new optional argument `optimizer`
   to select the OpenTURNS optimizer for the covariance model parameters.
 
 ## Removed
@@ -57,7 +57,7 @@ and this project adheres to
 
 ## Added
 
-- An argument ``trend_type`` of type
+- An argument `trend_type` of type
   [OTGaussianProcessRegressor.TREND_TYPE][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TREND_TYPE]
   to [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor];
   the trend type of the Gaussian process regressor can be either constant,
@@ -69,7 +69,7 @@ and this project adheres to
 ## Fixed
 
 - The output of an [MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
-  based on a regressor built from constant output values is no longer ``nan``.
+  based on a regressor built from constant output values is no longer `nan`.
 
 # Version 1.0.1 (February 2022)
 

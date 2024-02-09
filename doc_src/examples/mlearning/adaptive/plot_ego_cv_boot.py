@@ -33,8 +33,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""
-Cross-validation vs bootstrap
+"""Cross-validation vs bootstrap.
 =============================
 """
 
@@ -42,9 +41,10 @@ from __future__ import annotations
 
 import matplotlib.pyplot as plt
 from gemseo.algos.design_space import DesignSpace
-from gemseo.disciplines.analytic import AnalyticDiscipline
+from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.rbf import RBFRegressor
 from numpy import array
+from numpy import cos
 from numpy import linspace
 
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
@@ -58,15 +58,20 @@ n_test = 200
 x_l = -3.0
 x_u = 3.0
 
+
 # %%
 # Initial learning dataset
 # ------------------------
-discipline = AnalyticDiscipline({"y": "(10*cos(2*x)+15-5*x+x**2)/50"})
-discipline.set_cache_policy(discipline.MEMORY_FULL_CACHE)
-x_train = [-2.4, -1.2, 0.0, 1.2, 2.4]
-for x_i in x_train:
-    discipline.execute({"x": array([x_i])})
-dataset = discipline.cache.export_to_dataset()
+def f(x):
+    return (10 * cos(2 * x) + 15 - 5 * x + x**2) / 50
+
+
+x_train = array([-2.4, -1.2, 0.0, 1.2, 2.4])
+y_train = f(x_train)
+
+dataset = IODataset()
+dataset.add_input_variable("x", x_train)
+dataset.add_output_variable("y", y_train)
 
 ax = [[None, None], [None, None]]
 ax[0][0] = plt.subplot(221)
@@ -108,20 +113,21 @@ for index, bootstrap in enumerate([False, True]):
     opt = acquisition.compute_next_input_data()
 
     # Plot the results
-    discipline.cache.clear()
     x_test = linspace(x_l, x_u, n_test)
     ego_data = []
     surr_data = []
     lower_data = []
     upper_data = []
+    y_test = f(x_test)
     for x_i in x_test:
-        discipline.execute({"x": array([x_i])})
         surr_data.append(algo.predict(array([x_i]))[0])
         ego_data.append(ego(array([x_i]))[0])
         lower_data.append(lower(array([x_i]))[0] * lower.output_range)
         upper_data.append(upper(array([x_i]))[0] * upper.output_range)
 
-    disc_data = discipline.cache.export_to_dataset()
+    disc_data = IODataset()
+    disc_data.add_input_variable("x", x_test)
+    disc_data.add_output_variable("y", y_test)
 
     for algo in distribution.algos:
         algo_data = [algo.predict(array([x_i])) for x_i in x_test]
@@ -130,7 +136,9 @@ for index, bootstrap in enumerate([False, True]):
     ax[0][index].plot(
         x_train, dataset.get_view(variable_names="y").to_numpy(), "ro", label="training"
     )
-    ax[0][index].plot(x_test, disc_data["y"], "r", label="original")
+    ax[0][index].plot(
+        x_test, disc_data.get_view(variable_names="y").to_numpy(), "r", label="original"
+    )
     ax[0][index].plot(x_test, surr_data, "b", label="surrogate")
     ax[0][index].fill_between(
         x_test,
