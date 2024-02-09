@@ -26,6 +26,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+# Develop
+
+## Added
+
+- The `covariance_model` argument of `OTGaussianProcessRegressor` allows
+  to use any covariance model proposed by OpenTURNS.
+
 # Version 1.1.2 (December 2023)
 
 ## Added

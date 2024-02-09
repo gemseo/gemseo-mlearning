@@ -31,8 +31,10 @@ from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
 from openturns import CovarianceMatrix
+from openturns import GeneralizedExponential
 from openturns import KrigingAlgorithm
 from openturns import KrigingResult
+from openturns import MaternModel
 from openturns import NLopt
 from packaging import version
 from scipy.optimize import rosen
@@ -261,3 +263,29 @@ def test_custom_optimizer(dataset):
         model.learn()
 
     assert method.call_args.args[0] == optimizer
+
+
+def test_default_covariance_model(dataset):
+    """Check default covariance model is SquaredExponential."""
+    model = OTGaussianProcessRegressor(dataset)
+    model.learn()
+    assert "SquaredExponential" in str(model.algo.getCovarianceModel())
+
+
+@pytest.mark.parametrize(
+    ("covariance_model", "use_generalized"),
+    [
+        (MaternModel, False),
+        (MaternModel(2), False),
+        ([MaternModel, GeneralizedExponential], True),
+        ([MaternModel(2), GeneralizedExponential(2)], True),
+    ],
+)
+def test_custom_covariance_model(dataset, covariance_model, use_generalized):
+    """Check that the covariance model can be changed."""
+    model = OTGaussianProcessRegressor(dataset, covariance_model=covariance_model)
+    model.learn()
+    covariance_model_str = str(model.algo.getCovarianceModel())
+    assert "MaternModel" in covariance_model_str
+    if use_generalized:
+        assert "GeneralizedExponential" in covariance_model_str

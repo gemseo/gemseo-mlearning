@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+from inspect import isclass
 from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
@@ -28,6 +29,7 @@ from numpy import diag
 from numpy import ndarray
 from openturns import TNC
 from openturns import ConstantBasisFactory
+from openturns import CovarianceModelImplementation
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
 from openturns import OptimizationAlgorithmImplementation
@@ -94,6 +96,9 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     __optimizer: OptimizationAlgorithmImplementation
     """The solver used to optimize the covariance model parameters."""
 
+    __covariance_model: CovarianceModelImplementation
+    """The covariance model of the Gaussian process."""
+
     TNC: Final[TNC] = TNC()
     """The TNC algorithm."""
 
@@ -106,6 +111,11 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         use_hmat: bool | None = None,
         trend_type: TrendType = TrendType.CONSTANT,
         optimizer: OptimizationAlgorithmImplementation = TNC,
+        covariance_model: Iterable[
+            CovarianceModelImplementation | type[CovarianceModelImplementation]
+        ]
+        | CovarianceModelImplementation
+        | type[CovarianceModelImplementation] = SquaredExponential,
     ) -> None:
         """
         Args:
@@ -115,6 +125,11 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 than :attr:`MAX_SIZE_FOR_LAPACK`.
             trend_type: The type of the trend.
             optimizer: The solver used to optimize the covariance model parameters.
+            covariance_model: The covariance model of the Gaussian process.
+                Either an OpenTURNS covariance model class,
+                an OpenTURNS covariance model class instance,
+                or a list of OpenTURNS covariance model classes and class instances.
+
         """  # noqa: D205 D212 D415
         super().__init__(
             data,
@@ -123,6 +138,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             output_names=output_names,
             use_hmat=use_hmat,
         )
+
         self.__trend_type = trend_type
         if use_hmat is None:
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
@@ -130,6 +146,22 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             self.use_hmat = use_hmat
 
         self.__optimizer = optimizer
+        if isinstance(covariance_model, CovarianceModelImplementation):
+            covariance_models = [covariance_model] * self.output_dimension
+        elif isclass(covariance_model):
+            covariance_models = [
+                covariance_model(self.input_dimension)
+            ] * self.output_dimension
+        else:
+            covariance_models = list(covariance_model)
+            for i, model in enumerate(covariance_model):
+                if isclass(model):
+                    covariance_models[i] = model(self.input_dimension)
+
+        if self.output_dimension == 1:
+            self.__covariance_model = covariance_models[0]
+        else:
+            self.__covariance_model = TensorizedCovarianceModel(covariance_models)
 
     @property
     def use_hmat(self) -> bool:
@@ -152,25 +184,14 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         ResourceMap.SetAsString("KrigingAlgorithm-LinearAlgebra", linear_algebra_method)
 
     def _fit(self, input_data: ndarray, output_data: ndarray) -> None:
-        input_dimension = input_data.shape[1]
-        output_dimension = output_data.shape[1]
-        covariance_models = [
-            SquaredExponential([0.1] * input_dimension, [1.0])
-            for _ in range(output_dimension)
-        ]
-        if output_dimension == 1:
-            covariance_model = covariance_models[0]
-        else:
-            covariance_model = TensorizedCovarianceModel(covariance_models)
-
         algo = KrigingAlgorithm(
             input_data,
             output_data,
-            covariance_model,
+            self.__covariance_model,
             create_trend_basis(
                 self.__TREND_TYPES_TO_FACTORIES[self.__trend_type],
-                input_dimension,
-                output_dimension,
+                input_data.shape[1],
+                output_data.shape[1],
             ),
         )
         algo.setOptimizationAlgorithm(self.__optimizer)
