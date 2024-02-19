@@ -34,12 +34,10 @@ execnet==2.0.2
     # via pytest-xdist
 fastjsonschema==2.19.1
     # via gemseo
-fonttools==4.48.1
+fonttools==4.49.0
     # via matplotlib
-gemseo[all]==5.2.1.dev115+g1230b9aa
-    # via
-    #   gemseo
-    #   gemseo-mlearning (pyproject.toml)
+gemseo[all]==5.2.1.dev135+g62e36392
+    # via gemseo-mlearning (pyproject.toml)
 genson==1.2.2
     # via gemseo
 graphviz==0.20.1
@@ -148,7 +146,7 @@ sympy==1.12
     # via gemseo
 tenacity==8.2.3
     # via plotly
-threadpoolctl==3.2.0
+threadpoolctl==3.3.0
     # via scikit-learn
 tomli==2.0.1
     # via
@@ -156,14 +154,14 @@ tomli==2.0.1
     #   pytest
 tqdm==4.66.1
     # via gemseo
-typing-extensions==4.9.0
+typing-extensions==4.10.0rc1
     # via
     #   gemseo
     #   pydantic
     #   pydantic-core
-tzdata==2023.4
+tzdata==2024.1
     # via pandas
-urllib3==2.2.0
+urllib3==2.2.1
     # via requests
 xdsmjs==2.0.0
     # via gemseo
