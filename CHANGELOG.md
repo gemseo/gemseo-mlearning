@@ -30,8 +30,16 @@ and this project adheres to
 
 ## Added
 
-- The `covariance_model` argument of `OTGaussianProcessRegressor` allows
-  to use any covariance model proposed by OpenTURNS.
+- The `multi_start_n_samples`, `multi_start_algo_name` and `multi_start_algo_options` arguments of
+  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
+  allow to use multi-start optimization for the covariance model parameters.
+- The `optimization_space` argument of
+  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
+  allows to set the lower and upper bounds of the covariance model parameters
+  by means of a [DesignSpace][gemseo.algos.design_space.DesignSpace].
+- The `covariance_model` argument of
+  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
+  allows to use any covariance model proposed by OpenTURNS.
 
 ## Changed
 
@@ -59,7 +67,7 @@ and this project adheres to
 
 ## Fixed
 
-- [OTGaussianProcessRegressor.predict_std][gemseo_mlearning.regression.ot_gpr.predict_std]
+- [OTGaussianProcessRegressor.predict_std][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.predict_std]
   no longer returns the variance of the output but its standard deviation.
 
 # Version 1.1.0 (June 2023)
