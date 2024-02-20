@@ -41,7 +41,7 @@ def get_regressor_distribution(
 
     Args:
         regression_algorithm: The regression algorithm.
-        bootstrap: Whether to use bootstrap for resampling.
+        use_bootstrap: Whether to use bootstrap for resampling.
             If ``False``, use cross-validation.
         use_loo: Whether to use leave-one-out resampling when
             ``use_bootstrap`` is ``False``.

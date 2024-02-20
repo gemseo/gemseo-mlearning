@@ -21,13 +21,17 @@ from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.problems.analytical.rastrigin import Rastrigin
+from pandas._testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.core.surrogate_based import SurrogateBasedOptimizer
 
 
 @pytest.mark.parametrize(
     ("regression_algorithm", "regression_options"),
-    [("GaussianProcessRegressor", {}), ("RBFRegressor", {"epsilon": 1.0})],
+    [
+        ("GaussianProcessRegressor", {}),
+        ("OTGaussianProcessRegressor", {"use_hmat": True}),
+    ],
 )
 def test_all_acquisitions_made(regression_algorithm, regression_options):
     """Check the execution of the surrogate-based optimizer with all acquisitions."""
@@ -83,3 +87,22 @@ def test_stratified_algorithm():
         ).execute(1)
         == "All the data acquisitions have been made."
     )
+
+
+def test_ml_regression_algo_instance(regression_algorithm):
+    """Check the execution of the surrogate-based optimizer with an MLRegressionAlgo."""
+    optimizer = SurrogateBasedOptimizer(
+        Rastrigin(), "fullfact", regression_algorithm=regression_algorithm
+    )
+    optimizer.execute(1)
+    dataset = optimizer._SurrogateBasedOptimizer__dataset
+
+    optimizer = SurrogateBasedOptimizer(
+        Rastrigin(),
+        "fullfact",
+        doe_size=5,
+        doe_algorithm="OT_SOBOL",
+        regression_algorithm="OTGaussianProcessRegressor",
+    )
+    optimizer.execute(1)
+    assert_frame_equal(optimizer._SurrogateBasedOptimizer__dataset, dataset)

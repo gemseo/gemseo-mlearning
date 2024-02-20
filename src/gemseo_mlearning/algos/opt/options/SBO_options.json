@@ -42,11 +42,12 @@
     "doe_options": {
       "type": "object"
     },
-    "regression_algorithm": {
-      "type": "string"
-    },
+    "regression_algorithm": {},
     "regression_options": {
       "type": "object"
+    },
+    "regression_file_path": {
+      "type": "string"
     },
     "acquisition_algorithm": {
       "type": "string"

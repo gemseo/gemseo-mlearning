@@ -199,7 +199,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         self.__optimizer = optimizer
         self.__multi_start_n_samples = multi_start_n_samples
         self.__multi_start_algo_name = multi_start_algo_name
-        self.__multi_start_algo_options = multi_start_algo_options
+        self.__multi_start_algo_options = dict(multi_start_algo_options)
         self.__trend_type = trend_type
         if use_hmat is None:
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK

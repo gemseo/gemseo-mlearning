@@ -19,6 +19,7 @@
 from __future__ import annotations
 
 from operator import eq
+from unittest import mock
 
 import pytest
 from gemseo.algos.design_space import DesignSpace
@@ -30,6 +31,7 @@ from numpy import array
 from numpy import ndarray
 
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
+from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
 from gemseo_mlearning.adaptive.distributions.regressor_distribution import (
     RegressorDistribution,
 )
@@ -210,4 +212,26 @@ def test_build_opt_problem_jacobian(
             OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES,
         )
         == use_finite_differences
+    )
+
+
+@pytest.mark.parametrize(
+    ("has_jac", "differentiation_method"),
+    [
+        (False, OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES),
+        (True, OptimizationProblem.DifferentiationMethod.USER_GRAD),
+    ],
+)
+def test_analytical_jacobian(
+    algo_distribution, input_space, has_jac, differentiation_method
+):
+    """Check that the OptimizationProblem uses the analytic Jacobian when available."""
+    with mock.patch.object(ExpectedImprovement, "has_jac", has_jac):
+        acquisition = MLDataAcquisition(
+            "ExpectedImprovement", input_space, algo_distribution
+        )
+
+    assert (
+        acquisition._MLDataAcquisition__acquisition_problem.differentiation_method
+        == differentiation_method
     )

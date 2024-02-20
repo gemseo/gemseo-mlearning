@@ -31,6 +31,7 @@ from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescripti
 from gemseo.algos.opt.optimization_library import OptimizationLibrary
 from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
+from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionOptionType
@@ -38,6 +39,8 @@ from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
 from gemseo_mlearning.algos.opt.core.surrogate_based import SurrogateBasedOptimizer
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
     from gemseo.algos.opt_result import OptimizationResult
 
 LOGGER = logging.getLogger(__name__)
@@ -91,8 +94,11 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         doe_size: int = 10,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
         doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
-        regression_algorithm: str = GaussianProcessRegressor.__name__,
+        regression_algorithm: (
+            str | MLRegressionAlgo
+        ) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
+        regression_file_path: str | Path = "",
         acquisition_algorithm: str = "DIFFERENTIAL_EVOLUTION",
         acquisition_options: Mapping[
             str, OptimizationLibraryOptionType
@@ -113,16 +119,24 @@ class SurrogateBasedOptimization(OptimizationLibrary):
                 stopping criteria.
             normalize_design_space: Whether to normalize the design variables between 0
                 and 1.
-            doe_size: The size of the initial sample.
-                Should be ``None`` if the DOE algorithm does not have a size option.
+            doe_size: Either the size of the initial DOE
+                or ``0`` if the size is inferred from ``doe_options``.
+                This argument is ignored
+                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
             doe_algorithm: The name of the algorithm for the initial sampling.
+                This argument is ignored
+                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
             doe_options: The options of the algorithm for the initial sampling.
-            regression_algorithm: The name of the regression algorithm for the
-                objective function.
-                N.B. this algorithm must handle integers if some of the optimization
-                variables are integers.
-            regression_options: The options of the regression algorithm for the
-                objective function.
+                This argument is ignored
+                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+            regression_algorithm: Either the name of the regression algorithm
+                approximating the objective function over the design space
+                or the regression algorithm itself.
+            regression_file_path: The path to the file to save the regression model.
+                If empty, do not save the regression model.
+            regression_options: The options of the regression algorithm.
+                This argument is ignored
+                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
             acquisition_algorithm: The name of the algorithm to optimize the data
                 acquisition criterion.
             acquisition_options: The options of the algorithm to optimize
@@ -145,6 +159,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             doe_options=doe_options,
             regression_algorithm=regression_algorithm,
             regression_options=regression_options,
+            regression_file_path=regression_file_path,
             acquisition_algorithm=acquisition_algorithm,
             acquisition_options=acquisition_options,
             **kwargs,
@@ -156,42 +171,34 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             ValueError: When the maximum number of iterations
                 is less than or equal to the initial DOE size.
         """  # noqa: D205 D212 D415
-        # Pop the options specific to GEMSEO
-        max_iter = options.pop(self.MAX_ITER)
-        for option in [
-            self.MAX_TIME,
-            self.F_TOL_REL,
-            self.F_TOL_ABS,
-            self.X_TOL_REL,
-            self.X_TOL_ABS,
-            self.STOP_CRIT_NX,
-        ]:
-            del options[option]
-
-        doe_options = options.pop("doe_options")
-        doe_size = options.pop("doe_size")
-        doe_algorithm = options.pop("doe_algorithm")
-        doe_algo = DOEFactory().create(doe_algorithm)
-        initial_doe_size = len(
-            doe_algo.compute_doe(self.problem.design_space, doe_size, **doe_options)
-        )
-        if max_iter <= initial_doe_size:
-            raise ValueError(
-                f"max_iter ({max_iter}) must be "
-                f"strictly greater than the initial DOE size ({initial_doe_size})."
+        doe_options = options["doe_options"]
+        doe_size = options["doe_size"]
+        doe_algorithm = options["doe_algorithm"]
+        regression_algorithm = options["regression_algorithm"]
+        if not isinstance(regression_algorithm, MLRegressionAlgo):
+            doe_algo = DOEFactory().create(doe_algorithm)
+            initial_doe_size = len(
+                doe_algo.compute_doe(self.problem.design_space, doe_size, **doe_options)
             )
+            max_iter = options[self.MAX_ITER]
+            if max_iter <= initial_doe_size:
+                msg = (
+                    f"max_iter ({max_iter}) must be "
+                    f"strictly greater than the initial DOE size ({initial_doe_size})."
+                )
+                raise ValueError(msg)
 
         # Set a large bound on the number of acquisitions as GEMSEO handles stopping
-        options["number_of_acquisitions"] = sys.maxsize
         return self.get_optimum_from_database(
             SurrogateBasedOptimizer(
                 self.problem,
-                options.pop("acquisition_algorithm"),
-                doe_size,
-                doe_algorithm,
-                doe_options,
-                options.pop("regression_algorithm"),
-                options.pop("regression_options"),
-                options.pop("acquisition_options"),
-            ).execute(**options)
+                options["acquisition_algorithm"],
+                doe_size=doe_size,
+                doe_algorithm=doe_algorithm,
+                doe_options=doe_options,
+                regression_algorithm=regression_algorithm,
+                regression_options=options["regression_options"],
+                regression_file_path=options["regression_file_path"],
+                acquisition_options=options["acquisition_options"],
+            ).execute(sys.maxsize)
         )

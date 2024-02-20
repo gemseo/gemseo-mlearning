@@ -16,11 +16,14 @@
 
 from __future__ import annotations
 
+import pickle
 import re
+from pathlib import Path
 
 import pytest
 from gemseo.algos.opt.opt_factory import OptimizersFactory
 from gemseo.problems.analytical.rastrigin import Rastrigin
+from pandas.testing import assert_frame_equal
 
 
 def test_default_options():
@@ -29,7 +32,7 @@ def test_default_options():
 
 
 @pytest.mark.parametrize("max_iter", [8, 10])
-def test_inconsistent_max_iter(max_iter):
+def test_inconsistent_max_iter(max_iter, regression_algorithm):
     """Check that max_iter must be strictly greater than doe_size."""
     with pytest.raises(
         ValueError,
@@ -39,3 +42,26 @@ def test_inconsistent_max_iter(max_iter):
         ),
     ):
         OptimizersFactory().execute(Rastrigin(), "SBO", max_iter=max_iter)
+
+    # Except if the regression algorithm is already built.
+    OptimizersFactory().execute(
+        Rastrigin(), "SBO", max_iter=max_iter, regression_algorithm=regression_algorithm
+    )
+
+
+def test_save(regression_algorithm, tmp_wd):
+    """Check that the  regression algorithm can be pickled."""
+    file_path = Path("model.pkl")
+    OptimizersFactory().execute(
+        Rastrigin(),
+        "SBO",
+        max_iter=3,
+        acquisition_algorithm="OT_MONTE_CARLO",
+        acquisition_options={"n_samples": 10},
+        regression_algorithm=regression_algorithm,
+        regression_file_path=file_path,
+    )
+    with file_path.open("rb") as file:
+        model = pickle.load(file)
+
+    assert_frame_equal(model.learning_set, regression_algorithm.learning_set)

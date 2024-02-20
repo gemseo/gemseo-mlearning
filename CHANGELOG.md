@@ -30,6 +30,10 @@ and this project adheres to
 
 ## Added
 
+- [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization]
+  can use an existing [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo]
+  and save the [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo] that it enriches
+  using the `regression_file_path` argument.
 - The `multi_start_n_samples`, `multi_start_algo_name` and `multi_start_algo_options` arguments of
   [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
   allow to use multi-start optimization for the covariance model parameters.
