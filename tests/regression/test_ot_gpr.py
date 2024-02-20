@@ -22,6 +22,8 @@ from unittest.mock import Mock
 import openturns
 import pytest
 from gemseo import execute_algo
+from gemseo.algos.design_space import DesignSpace
+from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.problems.analytical.rosenbrock import Rosenbrock
@@ -30,12 +32,14 @@ from numpy import hstack
 from numpy import ndarray
 from numpy import zeros
 from numpy.testing import assert_allclose
+from numpy.testing import assert_equal
 from openturns import CovarianceMatrix
 from openturns import GeneralizedExponential
 from openturns import KrigingAlgorithm
 from openturns import KrigingResult
 from openturns import MaternModel
 from openturns import NLopt
+from openturns import ResourceMap
 from packaging import version
 from scipy.optimize import rosen
 
@@ -263,6 +267,81 @@ def test_custom_optimizer(dataset):
         model.learn()
 
     assert method.call_args.args[0] == optimizer
+
+
+@pytest.mark.parametrize(
+    "optimization_space_type",
+    [None, "empty", "full"],
+)
+def test_custom_optimization_space(dataset, optimization_space_type):
+    """Check that the optimization bounds can be changed."""
+    template = "GeneralLinearModelAlgorithm-DefaultOptimization{}Bound"
+    ResourceMap.GetAsScalar(template.format("Upper"))
+    lower_bound = [ResourceMap.GetAsScalar(template.format("Lower"))] * 4
+    upper_bound = [ResourceMap.GetAsScalar(template.format("Upper"))] * 4
+
+    optimization_space = DesignSpace()
+    if optimization_space_type is None:
+        optimization_space = None
+    elif optimization_space_type == "full":
+        lower_bound = [1e-2, 1e-3, 1e-2, 1e-3]
+        upper_bound = [1e1, 1e2, 1e1, 1e2]
+        optimization_space.add_variable(
+            "x",
+            size=4,
+            l_b=array(lower_bound),
+            u_b=array(upper_bound),
+        )
+
+    model = OTGaussianProcessRegressor(dataset, optimization_space=optimization_space)
+    with mock.patch.object(KrigingAlgorithm, "setOptimizationBounds") as method:
+        model.learn()
+
+    interval = method.call_args.args[0]
+    assert interval.getLowerBound() == lower_bound
+    assert interval.getUpperBound() == upper_bound
+
+
+def test_multi_start_optimization(dataset):
+    """Check that the multi-start optimization works."""
+    model = OTGaussianProcessRegressor(dataset)
+    model.learn()
+    reference_length_scales = model.algo.getCovarianceModel().getFullParameter()
+    model.algo.getTrendCoefficients()
+
+    # Here we check that the optimization process is deterministic.
+    model = OTGaussianProcessRegressor(dataset)
+    model.learn()
+    assert model.algo.getCovarianceModel().getFullParameter() == reference_length_scales
+
+    # Here we check that multi-start optimization leads to a different solution.
+    model = OTGaussianProcessRegressor(dataset, multi_start_n_samples=2)
+    model.learn()
+    assert model.algo.getCovarianceModel().getFullParameter() != reference_length_scales
+
+    # Here we check that the multi_start_xxx arguments are passed to OpenTURNS.
+    model = OTGaussianProcessRegressor(
+        dataset,
+        multi_start_algo_name="LHS",
+        multi_start_n_samples=9,
+        multi_start_algo_options={"strength": 2},
+    )
+    with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
+        model.learn()
+
+    optimizer = method.call_args.args[0]
+    assert optimizer.__class__.__name__ == "MultiStart"
+    doe = array(optimizer.getStartingSample())
+    ot_interval = model._OTGaussianProcessRegressor__optimization_space
+    design_space = DesignSpace()
+    design_space.add_variable(
+        "x",
+        ot_interval.getDimension(),
+        l_b=ot_interval.getLowerBound(),
+        u_b=ot_interval.getUpperBound(),
+    )
+    doe_algo = DOEFactory().create("LHS")
+    assert_equal(doe, doe_algo.compute_doe(design_space, 9, strength=2))
 
 
 def test_default_covariance_model(dataset):

@@ -16,12 +16,17 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from inspect import isclass
 from typing import TYPE_CHECKING
+from typing import Any
 from typing import ClassVar
 from typing import Final
 
+from gemseo.algos.design_space import DesignSpace
+from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import atleast_2d
@@ -30,8 +35,10 @@ from numpy import ndarray
 from openturns import TNC
 from openturns import ConstantBasisFactory
 from openturns import CovarianceModelImplementation
+from openturns import Interval
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
+from openturns import MultiStart
 from openturns import OptimizationAlgorithmImplementation
 from openturns import Point
 from openturns import QuadraticBasisFactory
@@ -48,6 +55,10 @@ if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.core.ml_algo import TransformerType
+
+
+DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOEFactory().algorithms)
+"""The name of a DOE algorithm."""
 
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
@@ -87,17 +98,29 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         TrendType.QUADRATIC: QuadraticBasisFactory,
     }
 
-    __use_hmat: bool
-    """Whether to use the HMAT or LAPACK as linear algebra method."""
+    __covariance_model: CovarianceModelImplementation
+    """The covariance model of the Gaussian process."""
 
-    __trend_type: TrendType
-    """The type of the trend."""
+    __multi_start_algo_name: str
+    """The names of the DOE algorithm for multi-start optimization."""
+
+    __multi_start_algo_options: Mapping[str, Any]
+    """The options of the DOE algorithm for multi-start optimization."""
+
+    __multi_start_n_samples: int
+    """The number of starting points for multi-start optimization."""
+
+    __optimization_space: Interval
+    """The covariance model parameter space."""
 
     __optimizer: OptimizationAlgorithmImplementation
     """The solver used to optimize the covariance model parameters."""
 
-    __covariance_model: CovarianceModelImplementation
-    """The covariance model of the Gaussian process."""
+    __trend_type: TrendType
+    """The type of the trend."""
+
+    __use_hmat: bool
+    """Whether to use HMAT or LAPACK for linear algebra."""
 
     TNC: Final[TNC] = TNC()
     """The TNC algorithm."""
@@ -111,11 +134,15 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         use_hmat: bool | None = None,
         trend_type: TrendType = TrendType.CONSTANT,
         optimizer: OptimizationAlgorithmImplementation = TNC,
+        optimization_space: DesignSpace | None = None,
         covariance_model: Iterable[
             CovarianceModelImplementation | type[CovarianceModelImplementation]
         ]
         | CovarianceModelImplementation
         | type[CovarianceModelImplementation] = SquaredExponential,
+        multi_start_n_samples: int = 0,
+        multi_start_algo_name: DOEAlgorithmName = DOEAlgorithmName.OT_OPT_LHS,
+        multi_start_algo_options: Mapping[str, Any] = READ_ONLY_EMPTY_DICT,
     ) -> None:
         """
         Args:
@@ -125,11 +152,21 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 than :attr:`MAX_SIZE_FOR_LAPACK`.
             trend_type: The type of the trend.
             optimizer: The solver used to optimize the covariance model parameters.
+            optimization_space: The covariance model parameter space;
+                the size of a variable must take
+                into account the size of the output space.
             covariance_model: The covariance model of the Gaussian process.
                 Either an OpenTURNS covariance model class,
                 an OpenTURNS covariance model class instance,
-                or a list of OpenTURNS covariance model classes and class instances.
-
+                or a list of OpenTURNS covariance model classes and class instances
+                whose size is equal to the output dimension.
+            multi_start_n_samples: The number of starting points
+                for multi-start optimization of the covariance model parameters;
+                if ``0``, do not use multi-start optimization.
+            multi_start_algo_name: The name of the DOE algorithm
+                for multi-start optimization of the covariance model parameters.
+            multi_start_algo_options: The options of the DOE algorithm
+                for multi-start optimization of the covariance model parameters.
         """  # noqa: D205 D212 D415
         super().__init__(
             data,
@@ -138,14 +175,37 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             output_names=output_names,
             use_hmat=use_hmat,
         )
+        lower_bounds = []
+        upper_bounds = []
+        template = "GeneralLinearModelAlgorithm-DefaultOptimization{}Bound"
+        default_lower_bound = ResourceMap.GetAsScalar(template.format("Lower"))
+        default_upper_bound = ResourceMap.GetAsScalar(template.format("Upper"))
+        if optimization_space is None:
+            optimization_space = DesignSpace()
 
+        for input_name in self.input_names:
+            if input_name in optimization_space:
+                lower_bound = optimization_space.get_lower_bound(input_name)
+                upper_bound = optimization_space.get_upper_bound(input_name)
+            else:
+                n = self.sizes[input_name] * self.output_dimension
+                lower_bound = [default_lower_bound] * n
+                upper_bound = [default_upper_bound] * n
+
+            lower_bounds.extend(lower_bound)
+            upper_bounds.extend(upper_bound)
+
+        self.__optimization_space = Interval(lower_bounds, upper_bounds)
+        self.__optimizer = optimizer
+        self.__multi_start_n_samples = multi_start_n_samples
+        self.__multi_start_algo_name = multi_start_algo_name
+        self.__multi_start_algo_options = multi_start_algo_options
         self.__trend_type = trend_type
         if use_hmat is None:
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
         else:
             self.use_hmat = use_hmat
 
-        self.__optimizer = optimizer
         if isinstance(covariance_model, CovarianceModelImplementation):
             covariance_models = [covariance_model] * self.output_dimension
         elif isclass(covariance_model):
@@ -194,7 +254,27 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 output_data.shape[1],
             ),
         )
-        algo.setOptimizationAlgorithm(self.__optimizer)
+        if self.__multi_start_n_samples:
+            doe_algo = DOEFactory().create(self.__multi_start_algo_name)
+            design_space = DesignSpace()
+            design_space.add_variable(
+                "x",
+                size=self.__optimization_space.getDimension(),
+                l_b=self.__optimization_space.getLowerBound(),
+                u_b=self.__optimization_space.getUpperBound(),
+            )
+            optimizer = MultiStart(
+                self.__optimizer,
+                doe_algo.compute_doe(
+                    design_space,
+                    self.__multi_start_n_samples,
+                    **self.__multi_start_algo_options,
+                ),
+            )
+        else:
+            optimizer = self.__optimizer
+        algo.setOptimizationAlgorithm(optimizer)
+        algo.setOptimizationBounds(self.__optimization_space)
         algo.run()
         self.algo = algo.getResult()
 
@@ -210,7 +290,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         Returns:
             output_data: The output data with shape (n_samples, n_outputs).
         """
-        if isinstance(input_data, dict):
+        if isinstance(input_data, Mapping):
             input_data = concatenate_dict_of_arrays_to_array(
                 input_data, self.input_names
             )

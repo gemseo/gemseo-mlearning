@@ -36,6 +36,7 @@ Sampling a :class:`.MLAlgo` can be particularly useful to:
 from __future__ import annotations
 
 import logging
+from collections.abc import Mapping
 from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
@@ -188,7 +189,7 @@ class RegressorDistribution(MLRegressorDistribution):
             Returns:
                 A weight related to the input array.
             """
-            if isinstance(input_data, dict):
+            if isinstance(input_data, Mapping):
                 input_data = concatenate_dict_of_arrays_to_array(
                     input_data, self.input_names
                 )
@@ -227,7 +228,7 @@ class RegressorDistribution(MLRegressorDistribution):
                 If input_data.shape == (M,d), then output_data;shape == (N,M,p).
         """
         predictions = [algo.predict(input_data) for algo in self.algos]
-        if isinstance(input_data, dict):
+        if isinstance(input_data, Mapping):
             return {
                 name: stack([prediction[name] for prediction in predictions])
                 for name in predictions[0]
@@ -241,7 +242,7 @@ class RegressorDistribution(MLRegressorDistribution):
     ) -> tuple[dict[str, ndarray], dict[str, ndarray], tuple[ndarray, ndarray]] | None:
         level = (1.0 - level) / 2.0
         predictions = self.predict_members(input_data)
-        if isinstance(predictions, dict):
+        if isinstance(predictions, Mapping):
             lower = {
                 name: quantile(value, level, axis=0)
                 for name, value in predictions.items()

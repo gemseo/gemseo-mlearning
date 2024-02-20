@@ -27,6 +27,7 @@ standard regression model predicts only the output value.
 from __future__ import annotations
 
 import logging
+from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
 from gemseo.mlearning.regression import regression
@@ -64,7 +65,7 @@ class KrigingDistribution(MLRegressorDistribution):
         mean = self.compute_mean(input_data)
         std = self.compute_standard_deviation(input_data)
         quantile = norm.ppf(level)
-        if isinstance(mean, dict):
+        if isinstance(mean, Mapping):
             lower = {name: mean[name] - quantile * std[name] for name in mean}
             upper = {name: mean[name] + quantile * std[name] for name in mean}
         else:

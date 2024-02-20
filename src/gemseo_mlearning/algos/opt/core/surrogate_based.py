@@ -17,7 +17,6 @@
 from __future__ import annotations
 
 import logging
-from types import MappingProxyType
 from typing import TYPE_CHECKING
 
 from gemseo.algos.doe.doe_factory import DOEFactory
@@ -27,6 +26,7 @@ from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.mlearning.regression.factory import RegressionModelFactory
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 from gemseo_mlearning.adaptive.acquisition import MLDataAcquisition
 from gemseo_mlearning.adaptive.criteria.optimum.criterion import ExpectedImprovement
@@ -55,12 +55,12 @@ class SurrogateBasedOptimizer:
         acquisition_algorithm: str,
         doe_size: int = 0,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
-        doe_options: Mapping[str, DOELibraryOptionType] = MappingProxyType({}),
+        doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: str = GaussianProcessRegressor.__name__,
-        regression_options: Mapping[str, MLAlgoParameterType] = MappingProxyType({}),
+        regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         acquisition_options: Mapping[
             str, OptimizationLibraryOptionType
-        ] = MappingProxyType({}),
+        ] = READ_ONLY_EMPTY_DICT,
     ) -> None:
         """
         Args:

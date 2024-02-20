@@ -20,7 +20,6 @@ import logging
 import sys
 from collections.abc import Mapping
 from dataclasses import dataclass
-from types import MappingProxyType
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import Union
@@ -32,6 +31,7 @@ from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescripti
 from gemseo.algos.opt.optimization_library import OptimizationLibrary
 from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
+from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 from gemseo_mlearning.adaptive.criterion import MLDataAcquisitionCriterionOptionType
 from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
@@ -90,13 +90,13 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         stop_crit_n_x: int = 3,
         doe_size: int = 10,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
-        doe_options: Mapping[str, DOELibraryOptionType] = MappingProxyType({}),
+        doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: str = GaussianProcessRegressor.__name__,
-        regression_options: Mapping[str, MLAlgoParameterType] = MappingProxyType({}),
+        regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         acquisition_algorithm: str = "DIFFERENTIAL_EVOLUTION",
         acquisition_options: Mapping[
             str, OptimizationLibraryOptionType
-        ] = MappingProxyType({}),
+        ] = READ_ONLY_EMPTY_DICT,
         **kwargs: Any,
     ) -> dict:
         """Set the default options values.
