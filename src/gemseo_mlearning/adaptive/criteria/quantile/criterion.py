@@ -21,17 +21,13 @@ r"""Quantile of the regression model.
 
 Statistics:
 
-.. math::
+$$EI[x] = \mathbb{E}[|q(\alpha)-Y(x)|]$$
 
-   EI[x] = E[|q(\alpha)-Y(x)|]
-
-where :math:`q` is a quantile with level :math:`\alpha`.
+where $q$ is a quantile with level $\alpha$.
 
 Bootstrap estimator:
 
-.. math::
-
-   \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|
+$$\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|$$
 """
 
 from __future__ import annotations

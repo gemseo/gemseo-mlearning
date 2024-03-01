@@ -17,18 +17,13 @@
 #                         documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""Support vector machine for regression.
-
-The support vector machine model relies on the :class:`SVR` class of ``sklearn``.
-"""
+"""Support vector machine for regression."""
 
 from __future__ import annotations
 
-import logging
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
-from typing import Final
 
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from numpy import array
@@ -37,24 +32,21 @@ from sklearn.svm import SVR
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
-    from collections.abc import Mapping
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
-
-LOGGER = logging.getLogger(__name__)
 
 
 class SVMRegressor(MLRegressionAlgo):
-    """Support vector machine regressor."""
+    """Support vector machine for regression."""
 
-    LIBRARY: Final[str] = "scikit-learn"
+    LIBRARY: ClassVar[str] = "scikit-learn"
     SHORT_ALGO_NAME: ClassVar[str] = "SVMRegression"
 
     def __init__(
         self,
-        data: Dataset,
-        transformer: Mapping[str, TransformerType] | None = None,
+        data: IODataset,
+        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] | None = None,
         output_names: Iterable[str] | None = None,
         kernel: str = "rbf",

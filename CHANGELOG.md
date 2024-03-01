@@ -48,7 +48,7 @@ and this project adheres to
 ## Changed
 
 - BREAKING CHANGE:
-  The module `gemseo_mlearning.api` no longer exists;
+  The module [gemseo_mlearning.api][gemseo_mlearning.api] no longer exists;
   the functions
   [sample_discipline][gemseo_mlearning.sample_discipline]
   and [sample_disciplines][gemseo_mlearning.sample_disciplines]
@@ -79,7 +79,7 @@ and this project adheres to
 ## Added
 
 - An argument `trend_type` of type
-  [OTGaussianProcessRegressor.TREND_TYPE][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TREND_TYPE]
+  [OTGaussianProcessRegressor.TrendType][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType]
   to [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor];
   the trend type of the Gaussian process regressor can be either constant,
   linear or quadratic.

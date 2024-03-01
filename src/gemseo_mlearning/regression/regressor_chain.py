@@ -29,7 +29,6 @@ input data and the sum of their output data is returned.
 
 from __future__ import annotations
 
-import logging
 from collections import namedtuple
 from typing import TYPE_CHECKING
 from typing import Any
@@ -42,11 +41,10 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from collections.abc import Mapping
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
     from numpy import ndarray
 
-LOGGER = logging.getLogger(__name__)
 
 _AlgoDefinition = namedtuple("AlgoDefinition", "name,transformer,parameters")
 
@@ -58,8 +56,8 @@ class RegressorChain(MLRegressionAlgo):
 
     def __init__(  # noqa: D107
         self,
-        data: Dataset,
-        transformer: Mapping[str, TransformerType] | None = None,
+        data: IODataset,
+        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] | None = None,
         output_names: Iterable[str] | None = None,
         **parameters: Any,
@@ -84,15 +82,18 @@ class RegressorChain(MLRegressionAlgo):
         Args:
             name: The name of the regression algorithm.
             transformer: The strategies to transform the variables.
-                The values are instances of :class:`.Transformer`
+                The values are instances of
+                [Transformer][gemseo.mlearning.transformers.transformer.Transformer]
                 while the keys are the names of
                 either the variables
                 or the groups of variables,
                 e.g. "inputs" or "outputs" in the case of the regression algorithms.
                 If a group is specified,
-                the :class:`.Transformer` will be applied
+                the
+                [Transformer][gemseo.mlearning.transformers.transformer.Transformer]
+                will be applied
                 to all the variables of this group.
-                If ``None``, do not transform the variables.
+                If `None`, do not transform the variables.
             **parameters: The parameters of the regression algorithm
         """
         self.__algos.append(

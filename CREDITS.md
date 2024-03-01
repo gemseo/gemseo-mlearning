@@ -7,12 +7,14 @@ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 
+# Credits
+
 The developers thank all the open source libraries making
-**gemseo-mlearning** possible.
+`gemseo-mlearning` possible.
 
-# External Dependencies
+### External Dependencies
 
-**gemseo-mlearning** depends on software with compatible
+`gemseo-mlearning` depends on software with compatible
 licenses that are listed below.
 
 [GEMSEO](http://gemseo.org/)
@@ -21,14 +23,14 @@ licenses that are listed below.
 [Python](http://python.org/)
 : Python Software License
 
-# Internal Dependencies
+### Internal Dependencies
 
-**gemseo-mlearning** source code includes software with
+`gemseo-mlearning` source code includes software with
 compatible licenses that are listed below.
 
-# External application
+### External application
 
-Some external applications are used by **gemseo-mlearning**,
+Some external applications are used by `gemseo-mlearning`,
 but not linked with the application,
 for documentation generation,
 training or example purposes.
@@ -60,6 +62,6 @@ training or example purposes.
 [setuptools_scm](https://github.com/pypa/setuptools_scm/)
 : MIT
 
-# Resources
+### Resources
 
-Some icons and fonts are used by **gemseo-mlearning** or its documentation.
+Some icons and fonts are used by `gemseo-mlearning` or its documentation.

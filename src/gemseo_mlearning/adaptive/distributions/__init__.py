@@ -42,16 +42,19 @@ def get_regressor_distribution(
     Args:
         regression_algorithm: The regression algorithm.
         use_bootstrap: Whether to use bootstrap for resampling.
-            If ``False``, use cross-validation.
+            If `False`, use cross-validation.
         use_loo: Whether to use leave-one-out resampling when
-            ``use_bootstrap`` is ``False``.
-            If ``False``, use parameterized cross-validation.
+            `use_bootstrap` is `False`.
+            If `False`, use parameterized cross-validation.
         size: The size of the resampling set,
             i.e. the number of times the regression algorithm is rebuilt.
-            If ``None``, use the default size
-            for bootstrap (:attr:`.MLAlgoSampler.N_BOOTSTRAP`)
-            and cross-validation (:attr:`.MLAlgoSampler.N_FOLDS`).
-            This argument does not apply to leave-one-out.
+            If `None`,
+            [N_BOOTSTRAP][gemseo_mlearning.adaptive.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP]
+            in the case of bootstrap
+            and
+            [N_FOLDS][gemseo_mlearning.adaptive.distributions.regressor_distribution.RegressorDistribution.N_FOLDS]
+            in the case of cross-validation.
+            This argument is ignored in the case of leave-one-out.
 
     Returns:
         The distribution of the regression algorithm.

@@ -34,6 +34,19 @@ test = [
     "pytest-cov",
     "pytest-xdist",
 ]
+doc = [
+    "black",
+    "griffe-inherited-docstrings",
+    "mike",
+    "mkdocs-gallery",
+    "mkdocs-section-index",
+    "mkdocs-literate-nav",
+    "mkdocs-gen-files",
+    "mkdocstrings[python]",
+    "mkdocs-material",
+    "mkdocs-include-markdown-plugin",
+    "mkdocs-bibtex",
+]
 
 [project.urls]
 Homepage = "https://gitlab.com/gemseo"

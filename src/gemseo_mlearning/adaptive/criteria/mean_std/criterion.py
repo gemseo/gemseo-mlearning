@@ -21,15 +21,11 @@ r"""Combination of the expectation and standard deviation of the regression mode
 
 Statistics:
 
-.. math::
-
-   E_sigma[x] = E[x] + \kappa \times sigma[x]
+$$M[x;\kappa] = \mathbb{E}[x] + \kappa \times \mathbb{S}[x]$$
 
 Estimator:
 
-.. math::
-
-   \widehat{E_sigma}[x] = \widehat{E}[x] + \kappa \times \widehat{sigma}[x]
+$$\widehat{M}[x;\kappa] = \widehat{E}[x] + \kappa \times \widehat{sigma}[x]$$
 """
 
 from __future__ import annotations

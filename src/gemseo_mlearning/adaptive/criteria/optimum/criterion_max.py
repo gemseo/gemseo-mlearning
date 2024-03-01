@@ -20,17 +20,13 @@ r"""Expected improvement for the maximum.
 
 Statistics:
 
-.. math::
+$$EI[x] = \mathbb{E}[\max(Y(x)-y_{\text{max}},0)]$$
 
-   EI[x] = E[\max(Y(x)-y_{max},0)]
-
-where :math:`y_{max}=\max_{1\leq i \leq n}~y^{(i)}`.
+where $y_{\text{max}}=\max_{1\leq i \leq n}~y^{(i)}$.
 
 Bootstrap estimator:
 
-.. math::
-
-   \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(Y_b(x)-f_{max},0)
+$$\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(Y_b(x)-f_{\text{max}},0)$$
 """
 
 from __future__ import annotations
@@ -45,7 +41,7 @@ if TYPE_CHECKING:
 
 
 class MaxExpectedImprovement(MLDataAcquisitionCriterion):
-    """Expected Improvement of the regression model for the maximum.
+    """Expected improvement of the regression model for the maximum.
 
     This criterion is scaled by the output range.
     """

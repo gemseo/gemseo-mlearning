@@ -16,7 +16,6 @@
 
 from __future__ import annotations
 
-import logging
 import sys
 from collections.abc import Mapping
 from dataclasses import dataclass
@@ -43,7 +42,6 @@ if TYPE_CHECKING:
 
     from gemseo.algos.opt_result import OptimizationResult
 
-LOGGER = logging.getLogger(__name__)
 
 SBOOptionType = Union[
     int,
@@ -120,15 +118,18 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             normalize_design_space: Whether to normalize the design variables between 0
                 and 1.
             doe_size: Either the size of the initial DOE
-                or ``0`` if the size is inferred from ``doe_options``.
+                or `0` if the size is inferred from `doe_options`.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
             doe_algorithm: The name of the algorithm for the initial sampling.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
             doe_options: The options of the algorithm for the initial sampling.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
             regression_algorithm: Either the name of the regression algorithm
                 approximating the objective function over the design space
                 or the regression algorithm itself.
@@ -136,7 +137,8 @@ class SurrogateBasedOptimization(OptimizationLibrary):
                 If empty, do not save the regression model.
             regression_options: The options of the regression algorithm.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
             acquisition_algorithm: The name of the algorithm to optimize the data
                 acquisition criterion.
             acquisition_options: The options of the algorithm to optimize

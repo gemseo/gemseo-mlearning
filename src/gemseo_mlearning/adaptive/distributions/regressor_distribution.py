@@ -20,22 +20,27 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 """Universal distribution for regression models.
 
-A :class:`.RegressorDistribution` samples a :class:`.MLSupervisedAlgo`,
+A
+[RegressorDistribution][gemseo_mlearning.adaptive.distributions.regressor_distribution.RegressorDistribution]
+samples an
+[MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo],
 by learning new versions of the latter from subsets of the original learning dataset.
 
-These new :class:`.MLAlgo` instances are based on sampling methods,
+These new
+[MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+instances are based on sampling methods,
 such as bootstrap, cross-validation or leave-one-out.
 
-Sampling a :class:`.MLAlgo` can be particularly useful to:
+Sampling a [MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo] can be particularly useful to:
 
-- study the robustness of a :class:`.MLAlgo` w.r.t. learning dataset elements,
+- study the robustness of a [MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+  w.r.t. learning dataset elements,
 - estimate infill criteria for adaptive learning purposes,
 - etc.
 """
 
 from __future__ import annotations
 
-import logging
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 from typing import Callable
@@ -67,8 +72,6 @@ if TYPE_CHECKING:
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.regression.regression import MLRegressionAlgo
 
-LOGGER = logging.getLogger(__name__)
-
 
 class RegressorDistribution(MLRegressorDistribution):
     """Distribution related to a regression algorithm."""
@@ -86,7 +89,11 @@ class RegressorDistribution(MLRegressorDistribution):
     """
 
     N_BOOTSTRAP: ClassVar[int] = 100
+    """The default number of replicates for the bootstrap method."""
+
     N_FOLDS: ClassVar[int] = 5
+    """The default number of folds for the cross-validation method."""
+
     CROSS_VALIDATION: Final[str] = "cv"
     BOOTSTRAP: Final[str] = "b"
     LOO: Final[str] = "loo"
@@ -101,16 +108,20 @@ class RegressorDistribution(MLRegressorDistribution):
         """
         Args:
             bootstrap: The resampling method.
-                If True, use bootstrap resampling.
+                If `True`, use bootstrap resampling.
                 Otherwise, use cross-validation resampling.
-            loo: The leave-One-Out sub-method, when bootstrap is False.
-                If False, use parameterized cross-validation,
+            loo: The leave-One-Out sub-method, when bootstrap is `False`.
+                If `False`, use parameterized cross-validation,
                 Otherwise use leave-one-out.
             size: The size of the resampling set,
-                i.e. the number of times the machine learning algorithm is rebuilt.
-                If ``None``, use the default size
-                for bootstrap (:attr:`.MLAlgoSampler.N_BOOTSTRAP`)
-                and cross-validation (:attr:`.MLAlgoSampler.N_FOLDS`).
+                i.e. the number of times the regression algorithm is rebuilt.
+                If `None`,
+                [N_BOOTSTRAP][gemseo_mlearning.adaptive.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP]
+                in the case of bootstrap
+                and
+                [N_FOLDS][gemseo_mlearning.adaptive.distributions.regressor_distribution.RegressorDistribution.N_FOLDS]
+                in the case of cross-validation.
+                This argument is ignored in the case of leave-one-out.
         """  # noqa: D205 D212 D415
         if bootstrap:
             self.method = self.BOOTSTRAP

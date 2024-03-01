@@ -6,36 +6,49 @@ International License. To view a copy of this license, visit
 http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
+# gemseo-mlearning
 
-A GEMSEO extension for machine learning.
+[![PyPI - License](https://img.shields.io/pypi/l/gemseo)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gemseo-mlearning)](https://pypi.org/project/gemseo-mlearning/)
+[![PyPI](https://img.shields.io/pypi/v/gemseo-mlearning)](https://pypi.org/project/gemseo-mlearning/)
+[![Codecov branch](https://img.shields.io/codecov/c/gitlab/gemseo:dev/gemseo-mlearning/develop
+)](https://app.codecov.io/gl/gemseo:dev/gemseo-mlearning)
 
-# Documentation
+`gemseo-mlearning` is a plugin of the library [GEMSEO](https://www.gemseo.org), dedicated to machine learning.
+This package is open-source,
+under the [LGPL v3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html).
 
-How to get the docs?
+## Overview
 
-# Bugs/Questions
+This package adds new [regression models][gemseo_mlearning.regression]
+and [quality measures][gemseo_mlearning.quality_measures].
 
-Please use the gitlab issue tracker at
-<https://gitlab.com/gemseo/dev/gemseo-mlearning/-/issues>
+A [package for active learning][gemseo_mlearning.adaptive] is also available,
+deeply based on the core GEMSEO objects for optimization,
+as well as a
+[SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization]
+library built on its top.
+An effort is being made to improve both content and performance in future versions.
+
+## Installation
+
+Install the latest stable version with `pip install gemseo-umdo`.
+
+Install the development version with
+`pip install gemseo-mlearning@git+https://gitlab.com/gemseo/dev/gemseo-mlearning.git@develop`.
+
+See [pip](https://pip.pypa.io/en/stable/getting-started/) for more information.
+
+## Bugs and questions
+
+Please use the [gitlab issue tracker](https://gitlab.com/gemseo/dev/gemseo-mlearning/-/issues)
 to submit bugs or questions.
 
-# License
+## Contributing
 
-The **gemseo-mlearning** source code is distributed under the GNU LGPL v3.0 license.
-A copy of it can be found in the LICENSE.txt file.
-The GNU LGPL v3.0 license is an exception to the GNU GPL v3.0 license.
-A copy of the GNU GPL v3.0 license can be found in the LICENSES folder.
+See the [contributing section of GEMSEO](https://gemseo.readthedocs.io/en/stable/software/developing.html#dev).
 
-The **gemseo-mlearning** examples are distributed under the BSD 0-Clause, a permissive
-license that allows to copy paste the code of examples without preserving the
-copyright mentions.
-
-The **gemseo-mlearning** documentation is distributed under the CC BY-SA 4.0 license.
-
-The **gemseo-mlearning** product depends on other software which have various licenses.
-The list of dependencies with their licenses is given in the CREDITS.md file.
-
-# Contributors
+## Contributors
 
 - Antoine Dechaume
 - Benoît Pauwels

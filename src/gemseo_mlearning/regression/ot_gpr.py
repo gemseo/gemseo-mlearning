@@ -12,7 +12,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""Gaussian process regression model from OpenTURNS."""
+"""Gaussian process regression."""
 
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ from gemseo_mlearning.utils.compatibility.openturns import create_trend_basis
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.core.ml_algo import TransformerType
 
@@ -62,9 +62,9 @@ DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOEFactory().algorithms)
 
 
 class OTGaussianProcessRegressor(MLRegressionAlgo):
-    """Gaussian process regression model from OpenTURNS."""
+    """Gaussian process regression."""
 
-    LIBRARY: Final[str] = "OpenTURNS"
+    LIBRARY: ClassVar[str] = "OpenTURNS"
     SHORT_ALGO_NAME: ClassVar[str] = "GPR"
 
     MAX_SIZE_FOR_LAPACK: ClassVar[int] = 100
@@ -74,15 +74,15 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     """
 
     HMATRIX_ASSEMBLY_EPSILON: ClassVar[float] = 1e-5
-    """The epsilon used for the assembly of the H-matrix.
+    """The epsilon for the assembly of the H-matrix.
 
-    Used when ``use_hmat`` is ``True``.
+    Used when `use_hmat` is `True`.
     """
 
     HMATRIX_RECOMPRESSION_EPSILON: ClassVar[float] = 1e-4
-    """The epsilon used for the recompression of the H-matrix.
+    """The epsilon for the recompression of the H-matrix.
 
-    Used when ``use_hmat`` is ``True``.
+    Used when `use_hmat` is `True`.
     """
 
     class TrendType(StrEnum):
@@ -101,7 +101,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     __covariance_model: CovarianceModelImplementation
     """The covariance model of the Gaussian process."""
 
-    __multi_start_algo_name: str
+    __multi_start_algo_name: DOEAlgorithmName
     """The names of the DOE algorithm for multi-start optimization."""
 
     __multi_start_algo_options: Mapping[str, Any]
@@ -127,8 +127,8 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
 
     def __init__(
         self,
-        data: Dataset,
-        transformer: TransformerType | None = None,
+        data: IODataset,
+        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] | None = None,
         output_names: Iterable[str] | None = None,
         use_hmat: bool | None = None,
@@ -147,9 +147,10 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         """
         Args:
             use_hmat: Whether to use the HMAT or LAPACK as linear algebra method.
-                If ``None``,
+                If `None`,
                 use HMAT when the learning size is greater
-                than :attr:`MAX_SIZE_FOR_LAPACK`.
+                than
+                [MAX_SIZE_FOR_LAPACK][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.MAX_SIZE_FOR_LAPACK].
             trend_type: The type of the trend.
             optimizer: The solver used to optimize the covariance model parameters.
             optimization_space: The covariance model parameter space;
@@ -162,7 +163,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 whose size is equal to the output dimension.
             multi_start_n_samples: The number of starting points
                 for multi-start optimization of the covariance model parameters;
-                if ``0``, do not use multi-start optimization.
+                if `0`, do not use multi-start optimization.
             multi_start_algo_name: The name of the DOE algorithm
                 for multi-start optimization of the covariance model parameters.
             multi_start_algo_options: The options of the DOE algorithm
