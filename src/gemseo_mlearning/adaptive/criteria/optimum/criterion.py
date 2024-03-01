@@ -22,17 +22,13 @@ This is the same as the expected improvement of the regression model for the min
 
 Statistics:
 
-.. math::
+$$EI[x] = \mathbb{E}[\max(y_{\text{min}}-Y(x),0)]$$
 
-   EI[x] = E[\max(y_{min}-Y(x),0)]
-
-where :math:`y_{min}=\min_{1\leq i \leq n}~y^{(i)}`.
+where $y_{\text{min}}=\min_{1\leq i \leq n}~y^{(i)}$.
 
 Bootstrap estimator:
 
-.. math::
-
-   \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(f_{min}-Y_b(x),0)
+$$\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(y_{\text{min}}-Y_b(x),0)$$
 """
 
 from __future__ import annotations

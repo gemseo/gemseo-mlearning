@@ -20,15 +20,11 @@ r"""Expectation of the regression model.
 
 Statistics:
 
-.. math::
-
-   E[x] = E[Y(x)]
+$$E[x] = \mathbb{E}[Y(x)]$$
 
 Bootstrap estimator:
 
-.. math::
-
-   \widehat{E}[x] = \frac{1}{B}\sum_{b=1}^B Y_b(x)
+$$\widehat{E}[x] = \frac{1}{B}\sum_{b=1}^B Y_b(x)$$
 """
 
 from __future__ import annotations
@@ -43,7 +39,7 @@ if TYPE_CHECKING:
 
 
 class Expectation(MLDataAcquisitionCriterion):
-    """Expectation of the regression model.".
+    """Expectation of the regression model.
 
     This criterion is scaled by the output range.
     """

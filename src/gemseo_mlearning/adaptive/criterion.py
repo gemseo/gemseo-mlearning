@@ -24,8 +24,11 @@ used by a machine learning algorithm in its training stage.
 This is the purpose of adaptive learning.
 
 This notion of acquisition criterion is implemented through the
-:class:`.MLDataAcquisitionCriterion` class which is built from a
-:class:`.MLSupervisedAlgo` and inherits from :class:`.MDOFunction`.
+[MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
+class which is built from a
+[MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo]
+and inherits from
+[MDOFunction][gemseo.core.mdofunctions.mdo_function.MDOFunction].
 """
 
 from __future__ import annotations
@@ -56,6 +59,7 @@ class MLDataAcquisitionCriterion(MDOFunction):
     """The output range."""
 
     MAXIMIZE: ClassVar[bool] = True
+    """Whether this criterion must be maximized."""
 
     def __init__(
         self,
@@ -128,8 +132,9 @@ class MLDataAcquisitionCriterion(MDOFunction):
         return new_criterion
 
 
+# TODO: API: move to a specific subpackage.
 class MLDataAcquisitionCriterionFactory(BaseFactory):
-    """A factory of :class:`.MLDataAcquisitionCriterion`."""
+    """A factory of `MLDataAcquisitionCriterion`."""
 
     _CLASS = MLDataAcquisitionCriterion
     _MODULE_NAMES = ("gemseo_mlearning.adaptive.criteria",)

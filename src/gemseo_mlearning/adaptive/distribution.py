@@ -14,52 +14,63 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """This module defines the notion of distribution of a machine learning algorithm.
 
-Once a :class:`.MLAlgo` has been trained,
+Once a
+[MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+has been trained,
 assessing its quality is important before using it.
 
-One can not only measure its global quality (e.g. from a :class:`.MLQualityMeasure`)
+One can not only measure its global quality
+(e.g. from a
+[MLQualityMeasure][gemseo.mlearning.quality_measures.quality_measure.MLQualityMeasure]
+)
 but also its local one.
 
-The :class:`.MLRegressorDistribution` class addresses the latter case,
+The
+[MLRegressorDistribution][gemseo_mlearning.adaptive.distribution.MLRegressorDistribution]
+class addresses the latter case,
 by quantifying the robustness of a machine learning algorithm to a learning point.
 The more robust it is,
 the less variability it has around this point.
 
-.. note::
+???+ note
 
-    For now, one does not consider any :class:`.MLAlgo`
-    but instances of :class:`.MLRegressionAlgo`.
+    For now, one does not consider any [MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+    but instances of
+    class which is built from a
+    [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
 
-The :class:`.MLRegressorDistribution` can be particularly useful to:
 
-- study the robustness of a :class:`.MLAlgo` w.r.t. learning dataset elements,
+The
+[MLRegressorDistribution][gemseo_mlearning.adaptive.distribution.MLRegressorDistribution]
+can be particularly useful to:
+
+- study the robustness of an [MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+  w.r.t. learning dataset elements,
 - evaluate acquisition criteria for adaptive learning purposes
-  (see :class:`.MLDataAcquisition` and :class:`.MLDataAcquisitionCriterion`),
+  (see
+  [MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
+  ),
 - etc.
 
-The abstract :class:`.MLRegressorDistribution` class is derived into two classes:
+The abstract
+[MLRegressorDistribution][gemseo_mlearning.adaptive.distribution.MLRegressorDistribution]
+class is derived into two classes:
 
-- :class:`.KrigingDistribution`:
-    the :class:`.MLRegressionAlgo` is a Kriging model
-    and this assessor takes advantage of the underlying Gaussian stochastic process,
-- :class:`.RegressorDistribution`:
-    this class is based on sampling methods,
-    such as bootstrap,
-    cross-validation
-    or leave-one-out.
-
-.. seealso::
-
-    KrigingDistribution
-    RegressorDistribution
-    MLDataAcquisition
-    MLDataAcquisitionCriterion
-    MLDataAcquisitionCriterionFactory
-"""
+- [KrigingDistribution][gemseo_mlearning.adaptive.distributions.kriging_distribution.KrigingDistribution]
+  :
+  the
+  [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo]
+  is a Kriging model
+  and this assessor takes advantage of the underlying Gaussian stochastic process,
+- [RegressorDistribution][gemseo_mlearning.adaptive.distributions.regressor_distribution.RegressorDistribution]:
+  this class is based on sampling methods,
+  such as bootstrap,
+  cross-validation
+  or leave-one-out.
+"""  # noqa: E501
 
 from __future__ import annotations
 
-import logging
 from abc import abstractmethod
 from typing import TYPE_CHECKING
 
@@ -72,8 +83,6 @@ if TYPE_CHECKING:
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.regression.regression import MLRegressionAlgo
     from numpy import ndarray
-
-LOGGER = logging.getLogger(__name__)
 
 
 class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
@@ -134,7 +143,7 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
 
         Args:
             samples: The indices of the learning samples.
-                If ``None``, use the whole learning dataset
+                If `None`, use the whole learning dataset
         """
         self._samples = samples or range(len(self.learning_set))
         self.algo.learn(self._samples)
@@ -146,9 +155,9 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """Predict the output of the original machine learning algorithm.
 
         The user can specify the input data either as a NumPy array,
-        e.g. :code:`array([1., 2., 3.])`
+        e.g. `array([1., 2., 3.])`
         or as a dictionary,
-        e.g.  :code:`{'a': array([1.]), 'b': array([2., 3.])}`.
+        e.g. `{"a": array([1.]), "b": array([2., 3.])}`.
 
         The output data type will be consistent with the input data type.
 
@@ -169,9 +178,9 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """Predict the lower bounds and upper bounds from input data.
 
         The user can specify the input data either as a NumPy array,
-        e.g. :code:`array([1., 2., 3.])`
+        e.g. `array([1., 2., 3.])`
         or as a dictionary,
-        e.g.  :code:`{'a': array([1.]), 'b': array([2., 3.])}`.
+        e.g.  `{"a": array([1.]), "b": array([2., 3.])}`.
 
         The output data type will be consistent with the input data type.
 
@@ -191,9 +200,9 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """Compute the mean from input data.
 
         The user can specify the input data either as a NumPy array,
-        e.g. :code:`array([1., 2., 3.])`
+        e.g. `array([1., 2., 3.])`
         or as a dictionary,
-        e.g.  :code:`{'a': array([1.]), 'b': array([2., 3.])}`.
+        e.g.  `{"a": array([1.]), "b": array([2., 3.])}`.
 
         The output data type will be consistent with the input data type.
 
@@ -212,9 +221,9 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """Compute the variance from input data.
 
         The user can specify the input data either as a NumPy array,
-        e.g. :code:`array([1., 2., 3.])`
+        e.g. `array([1., 2., 3.])`
         or as a dictionary,
-        e.g.  :code:`{'a': array([1.]), 'b': array([2., 3.])}`.
+        e.g.  `{"a": array([1.]), "b": array([2., 3.])}`.
 
         The output data type will be consistent with the input data type.
 
@@ -234,9 +243,9 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """Compute the standard deviation from input data.
 
         The user can specify the input data either as a NumPy array,
-        e.g. :code:`array([1., 2., 3.])`
+        e.g. `array([1., 2., 3.])`
         or as a dictionary,
-        e.g.  :code:`{'a': array([1.]), 'b': array([2., 3.])}`.
+        e.g.  `{"a": array([1.]), "b": array([2., 3.])}`.
 
         The output data type will be consistent with the input data type.
 
@@ -255,9 +264,9 @@ class MLRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """Compute the expected improvement from input data.
 
         The user can specify the input data either as a NumPy array,
-        e.g. :code:`array([1., 2., 3.])`
+        e.g. `array([1., 2., 3.])`
         or as a dictionary,
-        e.g.  :code:`{'a': array([1.]), 'b': array([2., 3.])}`.
+        e.g.  `{"a": array([1.]), "b": array([2., 3.])}`.
 
         The output data type will be consistent with the input data type.
 

@@ -21,11 +21,9 @@ r"""The maximum error measure to measure the quality of a regression algorithm.
 
 The maximum error (ME) is defined by
 
-.. math::
+$$\operatorname{ME}(\hat{y})=\max_{1\leq i \leq n}\|\hat{y}_i-y_i\|,$$
 
-    \operatorname{ME}(\hat{y})=\max_{1\leq i \leq n}\|\hat{y}_i-y_i\|,
-
-where :math:`\hat{y}` are the predictions and :math:`y` are the data points.
+where $\hat{y}$ are the predictions and $y$ are the data points.
 """
 
 from __future__ import annotations

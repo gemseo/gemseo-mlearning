@@ -21,11 +21,9 @@ r"""The mean absolute error to measure the quality of a regression algorithm.
 
 The mean absolute error (MAE) is defined by
 
-.. math::
+$$\operatorname{MAE}(\hat{y})=\frac{1}{n}\sum_{i=1}^n\|\hat{y}_i-y_i\|,$$
 
-    \operatorname{MAE}(\hat{y})=\frac{1}{n}\sum_{i=1}^n\|\hat{y}_i-y_i\|,
-
-where :math:`\hat{y}` are the predictions and :math:`y` are the data points.
+where $\hat{y}$ are the predictions and $y$ are the data points.
 """
 
 from __future__ import annotations

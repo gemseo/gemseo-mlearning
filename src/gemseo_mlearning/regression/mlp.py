@@ -17,40 +17,35 @@
 #                         documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""Interface to the OpenTURNS' multilayer perceptron (MLP)."""
+"""Multilayer perceptron (MLP)."""
 
 from __future__ import annotations
 
-import logging
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
-from typing import Final
 
 import sklearn.neural_network
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
-    from collections.abc import Mapping
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
     from numpy import ndarray
-
-LOGGER = logging.getLogger(__name__)
 
 
 class MLPRegressor(MLRegressionAlgo):
     """MultiLayer perceptron (MLP)."""
 
-    LIBRARY: Final[str] = "scikit-learn"
+    LIBRARY: ClassVar[str] = "scikit-learn"
     SHORT_ALGO_NAME: ClassVar[str] = "MLP"
 
     def __init__(
         self,
-        data: Dataset,
-        transformer: Mapping[str, TransformerType] | None = None,
+        data: IODataset,
+        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] | None = None,
         output_names: Iterable[str] | None = None,
         hidden_layer_sizes: tuple[int] = (100,),

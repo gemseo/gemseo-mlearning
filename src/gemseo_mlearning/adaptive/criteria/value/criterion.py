@@ -21,17 +21,13 @@ r"""Expected improvement of the regression model for a particular value.
 
 Statistics:
 
-.. math::
+$$EI[x] = \mathbb{E}[|q-Y(x)|]$$
 
-   EI[x] = E[|q-Y(x)|]
-
-where :math:`q` is a value provided by the user.
+where $q$ is a value provided by the user.
 
 Bootstrap estimator:
 
-.. math::
-
-   \widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|
+$$\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|$$
 """
 
 from __future__ import annotations

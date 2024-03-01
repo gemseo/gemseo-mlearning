@@ -16,7 +16,6 @@
 
 from __future__ import annotations
 
-import logging
 import pickle
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -46,8 +45,6 @@ if TYPE_CHECKING:
 
     from gemseo_mlearning.adaptive.distribution import MLRegressorDistribution
     from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
-
-LOGGER = logging.getLogger(__name__)
 
 
 class SurrogateBasedOptimizer:
@@ -98,21 +95,25 @@ class SurrogateBasedOptimizer:
                 variables are integers.
             problem: The optimization problem.
             doe_size: Either the size of the initial DOE
-                or ``0`` if the size is inferred from ``doe_options``.
+                or 0 if the size is inferred from doe_options.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
             doe_algorithm: The name of the algorithm for the initial sampling.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
             doe_options: The options of the algorithm for the initial sampling.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
             regression_algorithm: Either the name of the regression algorithm
                 approximating the objective function over the design space
                 or the regression algorithm itself.
             regression_options: The options of the regression algorithm.
                 This argument is ignored
-                when ``regression_algorithm`` is an :class:`.MLRegressionAlgo`.
+                when regression_algorithm is an
+                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
             regression_file_path: The path to the file to save the regression model.
                 If empty, do not save the regression model.
             acquisition_options: The options of the algorithm to optimize

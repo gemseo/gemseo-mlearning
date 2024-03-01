@@ -104,7 +104,9 @@ class MLDataAcquisition:
         Args:
             criterion: The name of a data acquisition criterion
                 selecting new point(s) to reach a particular goal
-                (name of a class inheriting from :class:`.MLDataAcquisitionCriterion`).
+                (name of a class inheriting from
+                [MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
+                ).
             input_space: The input space on which to look for the new learning point.
             distribution: The distribution of the machine learning algorithm.
             **criterion_options: The options of the data acquisition criterion.

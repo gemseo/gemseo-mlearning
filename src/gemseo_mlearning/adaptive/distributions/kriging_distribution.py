@@ -26,7 +26,6 @@ standard regression model predicts only the output value.
 
 from __future__ import annotations
 
-import logging
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
@@ -41,8 +40,6 @@ if TYPE_CHECKING:
     from numpy import ndarray
 
     from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
-
-LOGGER = logging.getLogger(__name__)
 
 
 class KrigingDistribution(MLRegressorDistribution):

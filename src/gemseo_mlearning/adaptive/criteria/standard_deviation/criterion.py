@@ -21,17 +21,13 @@ r"""Standard deviation of the regression model.
 
 Statistics:
 
-.. math::
-
-   \sigma[x] = \sqrt{E[(Y(x)-E[Y(x)])^2]}
+$$\sigma[x] = \sqrt{\mathbb{E}[(Y(x)-\mathbb{E}[Y(x)])^2]}$$
 
 Bootstrap estimator:
 
-.. math::
+$$\hat{\sigma}[x] = \sqrt{\frac{1}{B-1}\sum_{b=1}^B (Y_b(x)-\widehat{E}[x])^2}$$
 
-   \hat{\sigma}[x] = \sqrt{\frac{1}{B-1}\sum_{b=1}^B (Y_b(x)-\widehat{E}[x])^2}
-
-where :math:`\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)`.
+where $\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)$.
 """
 
 from __future__ import annotations

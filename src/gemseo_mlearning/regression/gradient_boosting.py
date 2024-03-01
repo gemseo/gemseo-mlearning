@@ -17,20 +17,13 @@
 #                         documentation
 #        :author: Matthias
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""The gradient boosting for regression.
-
-The gradient boosting model relies on the ``GradientBoostingRegressor`` class
-of the `scikit-learn library <https://scikit-learn.org/stable/modules/
-generated/sklearn.ensemble.GradientBoostingRegressor.html>`_.
-"""
+"""Gradient boosting for regression."""
 
 from __future__ import annotations
 
-import logging
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
-from typing import Final
 
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from numpy import array
@@ -39,24 +32,21 @@ from sklearn.ensemble import GradientBoostingRegressor as SKLGradientBoosting
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
-    from collections.abc import Mapping
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
-
-LOGGER = logging.getLogger(__name__)
 
 
 class GradientBoostingRegressor(MLRegressionAlgo):
-    """Gradient boosting regression."""
+    """Gradient boosting for regression."""
 
-    LIBRARY: Final[str] = "scikit-learn"
+    LIBRARY: ClassVar[str] = "scikit-learn"
     SHORT_ALGO_NAME: ClassVar[str] = "GradientBoostingRegressor"
 
     def __init__(
         self,
-        data: Dataset,
-        transformer: Mapping[str, TransformerType] | None = None,
+        data: IODataset,
+        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] | None = None,
         output_names: Iterable[str] | None = None,
         n_estimators: int = 100,

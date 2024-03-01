@@ -23,6 +23,8 @@ from gemseo import create_scenario
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.core.scenario import Scenario
+from gemseo.formulations.disciplinary_opt import DisciplinaryOpt
+from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -40,8 +42,8 @@ def sample_discipline(
     output_names: str | Iterable[str],
     algo_name: str,
     n_samples: int,
-    name: str | None = None,
-    **algo_options: Any,
+    name: str = "",
+    **algo_options: DOELibraryOptionType,
 ) -> IODataset:
     """Sample a discipline.
 
@@ -52,7 +54,7 @@ def sample_discipline(
         algo_name: The name of the DOE algorithm.
         n_samples: The number of samples.
         name: The name of the returned dataset.
-            If ``None``, use the name of the discipline.
+            If empty, use the name of the discipline.
         **algo_options: The options of the DOE algorithm.
 
     Returns:
@@ -60,7 +62,7 @@ def sample_discipline(
     """
     return sample_disciplines(
         [discipline],
-        "DisciplinaryOpt",
+        DisciplinaryOpt.__name__,
         input_space,
         output_names,
         algo_name,
@@ -77,8 +79,8 @@ def sample_disciplines(
     output_names: str | Iterable[str],
     algo_name: str,
     n_samples: int,
-    name: str | None = None,
-    formulation_options: Mapping[str, Any] | None = None,
+    name: str = "",
+    formulation_options: Mapping[str, Any] = READ_ONLY_EMPTY_DICT,
     **algo_options: DOELibraryOptionType,
 ) -> IODataset:
     """Sample several disciplines based on an MDO formulation.
@@ -91,9 +93,9 @@ def sample_disciplines(
         algo_name: The name of the DOE algorithm.
         n_samples: The number of samples.
         name: The name of the returned dataset.
-            If ``None``, use the name of the discipline.
+            If empty, use the name of the discipline.
         formulation_options: The options of the MDO formulation.
-            If ``None``, use the default ones.
+            If empty, use the default ones.
         **algo_options: The options of the DOE algorithm.
 
     Returns:
@@ -102,7 +104,6 @@ def sample_disciplines(
     if isinstance(output_names, str):
         output_names = [output_names]
 
-    formulation_options = formulation_options or {}
     output_names_iterator = iter(output_names)
     scenario = create_scenario(
         disciplines,

@@ -17,11 +17,10 @@
 #                         documentation
 #        :author: Matthias
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""Thin plate spline regression."""
+"""Thin plate spline (TPS) regression."""
 
 from __future__ import annotations
 
-import logging
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import Callable
@@ -31,13 +30,10 @@ from gemseo.mlearning.regression.rbf import RBFRegressor
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
-    from collections.abc import Mapping
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
     from numpy import ndarray
-
-LOGGER = logging.getLogger(__name__)
 
 
 class TPSRegressor(RBFRegressor):
@@ -47,12 +43,12 @@ class TPSRegressor(RBFRegressor):
 
     def __init__(  # noqa: D107
         self,
-        data: Dataset,
-        transformer: Mapping[str, TransformerType] | None = None,
+        data: IODataset,
+        transformer: TransformerType = RBFRegressor.IDENTITY,
         input_names: Iterable[str] | None = None,
         output_names: Iterable[str] | None = None,
         smooth: float = 0.0,
-        norm: str | Callable[[ndarray, ndarray], float] = "euclidean",
+        norm: str | Callable[[ndarray, ndarray], float] = RBFRegressor.EUCLIDEAN,
         **parameters: Any,
     ) -> None:
         super().__init__(

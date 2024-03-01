@@ -21,17 +21,13 @@ r"""Variance of the regression model.
 
 Statistics:
 
-.. math::
-
-   V[x] = E[(Y(x)-E[Y(x)])^2]
+$$V[x] = \mathbb{E}[(Y(x)-\mathbb{E}[Y(x)])^2]$$
 
 Bootstrap estimator:
 
-.. math::
+$$\widehat{V}[x] = \frac{1}{B-1}\sum_{b=1}^B (Y_b(x)-\widehat{E}[x])^2$$
 
-   \widehat{V}[x] = \frac{1}{B-1}\sum_{b=1}^B (Y_b(x)-\widehat{E}[x])^2
-
-where :math:`\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)`.
+where $\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)$.
 """
 
 from __future__ import annotations
