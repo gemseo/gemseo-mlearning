@@ -30,12 +30,10 @@ pages:
   script:
     - $TOX_EXE -e doc --notest
     - . .tox/doc/bin/activate
-    # By default gitlab does not fetch all branches.
-    - git fetch origin $MIKE_BRANCH --depth=1
     - config_git_push
     - mike deploy --branch $MIKE_BRANCH --push $MIKE_ARGS
     - if [[ -n $CI_COMMIT_TAG ]]; then mike set-default --branch $MIKE_BRANCH --push latest; fi
-    - git checkout $MIKE_BRANCH -- public
+    - git checkout -B $MIKE_BRANCH -- public
   artifacts:
     paths:
       - public
