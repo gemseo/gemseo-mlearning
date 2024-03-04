@@ -82,7 +82,10 @@ nav:
   - Credits: credits.md
   - Licenses: licenses.md
 - User guide: user_guide/
-- Examples: generated/examples/
+- Examples:
+  - Active learning: generated/examples/active_learning
+  - Optimization:  generated/examples/optimization
+  - Sampling: generated/examples/sampling
 - API documentation: reference/gemseo_mlearning/
 
 markdown_extensions:
