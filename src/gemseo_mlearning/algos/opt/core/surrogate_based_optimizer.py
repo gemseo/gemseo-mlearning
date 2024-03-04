@@ -45,7 +45,7 @@ if TYPE_CHECKING:
     from gemseo.algos.opt_problem import OptimizationProblem
     from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 
-    from gemseo_mlearning.active_learning.base_regressor_distribution import (
+    from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
     )
     from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
