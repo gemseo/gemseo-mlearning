@@ -119,7 +119,7 @@ and this project adheres to
 
 ## Fixed
 
-- [BaseRegressorDistribution][gemseo_mlearning.adaptive.distribution.BaseRegressorDistribution]
+- [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
   can now use a regression algorithm instantiated with transformers.
 
 # Version 1.0.0 (July 2022)

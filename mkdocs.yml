@@ -41,10 +41,11 @@ plugins:
         - https://numpy.org/doc/stable/objects.inv
         - https://docs.scipy.org/doc/scipy/objects.inv
         - https://openturns.github.io/openturns/latest/objects.inv
+        - https://scikit-learn.org/stable/objects.inv
         options:
           extensions:
           - griffe_inherited_docstrings
-          - docs/docstring_inheritance.py:DocstringInheritance
+          - docstring_inheritance.griffe
           filters:
           - "!^_"
           docstring_options:
