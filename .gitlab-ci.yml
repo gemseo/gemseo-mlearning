@@ -33,7 +33,7 @@ pages:
     - config_git_push
     - mike deploy --branch $MIKE_BRANCH --push $MIKE_ARGS
     - if [[ -n $CI_COMMIT_TAG ]]; then mike set-default --branch $MIKE_BRANCH --push latest; fi
-    - git checkout -B $MIKE_BRANCH -- public
+    - git checkout -B $MIKE_BRANCH
   artifacts:
     paths:
       - public
