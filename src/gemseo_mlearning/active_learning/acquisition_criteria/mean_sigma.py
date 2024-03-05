@@ -19,7 +19,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 r"""Combination of the expectation and standard deviation of the regression model.
 
-Statistics:
+Statistic:
 
 $$M[x;\kappa] = \mathbb{E}[x] + \kappa \times \mathbb{S}[x]$$
 
@@ -31,14 +31,13 @@ $$\widehat{M}[x;\kappa] = \widehat{E}[x] + \kappa \times \widehat{sigma}[x]$$
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Callable
 
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
     BaseAcquisitionCriterion,
 )
 
 if TYPE_CHECKING:
-    from numpy.typing import NDArray
+    from gemseo.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -65,18 +64,15 @@ class MeanSigma(BaseAcquisitionCriterion):
         self.kappa = kappa
         super().__init__(algo_distribution)
 
-    def _get_func(self) -> Callable[[NDArray[float]], float]:
-        def func(input_data: NDArray[float]) -> float:
-            """Evaluation function.
+    def _compute_output(self, input_data: NumberArray) -> NumberArray:
+        """Evaluation function.
 
-            Args:
-                input_data: The model input data.
+        Args:
+            input_data: The model input data.
 
-            Returns:
-                The acquisition criterion value.
-            """
-            mean = self.algo_distribution.compute_mean(input_data)
-            sigma = self.algo_distribution.compute_standard_deviation(input_data)
-            return (mean + self.kappa * sigma) / self._scaling_factor
-
-        return func
+        Returns:
+            The acquisition criterion value.
+        """
+        mean = self.algo_distribution.compute_mean(input_data)
+        sigma = self.algo_distribution.compute_standard_deviation(input_data)
+        return (mean + self.kappa * sigma) / self._scaling_factor

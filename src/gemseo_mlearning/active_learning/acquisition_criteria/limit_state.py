@@ -33,7 +33,6 @@ $$\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B |q-Y_b(x)|$$
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Callable
 from typing import ClassVar
 
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
@@ -41,7 +40,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 )
 
 if TYPE_CHECKING:
-    from numpy.typing import NDArray
+    from gemseo.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -49,7 +48,7 @@ if TYPE_CHECKING:
 
 
 class LimitState(BaseAcquisitionCriterion):
-    """Expected Improvement of the regression model for a particular value."""
+    """Expected improvement of the regression model for a particular value."""
 
     value: float
     """The value of interest."""
@@ -66,18 +65,7 @@ class LimitState(BaseAcquisitionCriterion):
         self.value = value
         super().__init__(algo_distribution)
 
-    def _get_func(self) -> Callable[[NDArray[float]], float]:
-        def func(input_data: NDArray[float]) -> float:
-            """Evaluation function.
-
-            Args:
-                input_data: The model input data.
-
-            Returns:
-                The acquisition criterion value.
-            """
-            mean = self.algo_distribution.compute_mean(input_data)
-            std = self.algo_distribution.compute_standard_deviation(input_data)
-            return abs(self.value - mean) / std
-
-        return func
+    def _compute_output(self, input_data: NumberArray) -> NumberArray:
+        mean = self.algo_distribution.compute_mean(input_data)
+        std = self.algo_distribution.compute_standard_deviation(input_data)
+        return abs(self.value - mean) / std

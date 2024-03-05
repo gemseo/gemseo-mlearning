@@ -19,7 +19,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 r"""Standard deviation of the regression model.
 
-Statistics:
+Statistic:
 
 $$\sigma[x] = \sqrt{\mathbb{E}[(Y(x)-\mathbb{E}[Y(x)])^2]}$$
 
@@ -33,14 +33,13 @@ where $\widehat{E}[x]= \frac{1}{B}\sum_{b=1}^B Y_b(x)$.
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Callable
 
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
     BaseAcquisitionCriterion,
 )
 
 if TYPE_CHECKING:
-    from numpy.typing import NDArray
+    from gemseo.typing import NumberArray
 
 
 class StandardDeviation(BaseAcquisitionCriterion):
@@ -49,17 +48,6 @@ class StandardDeviation(BaseAcquisitionCriterion):
     This criterion is scaled by the output range.
     """
 
-    def _get_func(self) -> Callable[[NDArray[float]], float]:
-        def func(input_data: NDArray[float]) -> float:
-            """Evaluation function.
-
-            Args:
-                input_data: The model input data.
-
-            Returns:
-                The acquisition criterion value.
-            """
-            std = self.algo_distribution.compute_standard_deviation(input_data)
-            return std / self._scaling_factor
-
-        return func
+    def _compute_output(self, input_data: NumberArray) -> NumberArray:
+        std = self.algo_distribution.compute_standard_deviation(input_data)
+        return std / self._scaling_factor

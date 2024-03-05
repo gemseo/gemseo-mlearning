@@ -22,7 +22,6 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Callable
 
 from numpy import nonzero
 from scipy.spatial.distance import cdist
@@ -32,7 +31,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 )
 
 if TYPE_CHECKING:
-    from numpy.typing import NDArray
+    from gemseo.typing import NumberArray
 
 
 class MinimumDistance(BaseAcquisitionCriterion):
@@ -43,22 +42,11 @@ class MinimumDistance(BaseAcquisitionCriterion):
     points.
     """
 
-    def _get_func(self) -> Callable[[NDArray[float]], float]:
-        def func(input_data: NDArray[float]) -> float:
-            """Evaluation function.
-
-            Args:
-                input_data: The model input data.
-
-            Returns:
-                The acquisition criterion value.
-            """
-            train = self.algo_distribution.learning_set
-            train = train.get_view(group_names=train.INPUT_GROUP).to_numpy()
-            distance = cdist(input_data.reshape((1, -1)), train).min()
-            dist_train = cdist(train, train)
-            d_max = dist_train[nonzero(dist_train)].min() / 2.0
-            distance /= d_max
-            return distance
-
-        return func
+    def _compute_output(self, input_data: NumberArray) -> NumberArray:
+        train = self.algo_distribution.learning_set
+        train = train.get_view(group_names=train.INPUT_GROUP).to_numpy()
+        distance = cdist(input_data.reshape((1, -1)), train).min()
+        dist_train = cdist(train, train)
+        d_max = dist_train[nonzero(dist_train)].min() / 2.0
+        distance /= d_max
+        return distance

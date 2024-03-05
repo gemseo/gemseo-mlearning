@@ -19,7 +19,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 r"""Quantile of the regression model.
 
-Statistics:
+Statistic:
 
 $$EI[x] = \mathbb{E}[|q(\alpha)-Y(x)|]$$
 
