@@ -2337,6 +2337,13 @@ and this project adheres to
   and <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/#gemseo_mlearning.sample_disciplines">sample_disciplines</a>
   must be imported from <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/#gemseo_mlearning">gemseo_mlearning</a>.</li>
 </ul>
+<h2 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile">Quantile</a>
+  estimates the quantile by Monte Carlo sampling
+  by means of the probability distributions of the input variables;
+  this distributions are defined with its new argument <code>uncertain_space</code>.</li>
+</ul>
 <h1 id="version-112-december-2023">Version 1.1.2 (December 2023)<a class="headerlink" href="#version-112-december-2023" title="Permanent link">&para;</a></h1>
 <h2 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2350,7 +2357,7 @@ and this project adheres to
 <li>Support for Python 3.8.</li>
 </ul>
 <h1 id="version-111-september-2023">Version 1.1.1 (September 2023)<a class="headerlink" href="#version-111-september-2023" title="Permanent link">&para;</a></h1>
-<h2 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h2>
+<h2 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.predict_std">OTGaussianProcessRegressor.predict_std</a>
   no longer returns the variance of the output but its standard deviation.</li>
@@ -2367,13 +2374,13 @@ and this project adheres to
   <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo_mlearning.algos.opt.lib_surrogate_based.html#gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
   to perform EGO-like surrogate-based optimization on unconstrained problems.</li>
 </ul>
-<h2 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h2>
+<h2 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The output of an <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo_mlearning.adaptive.criterion.html#gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion">MLDataAcquisitionCriterion</a>
   based on a regressor built from constant output values is no longer <code>nan</code>.</li>
 </ul>
 <h1 id="version-101-february-2022">Version 1.0.1 (February 2022)<a class="headerlink" href="#version-101-february-2022" title="Permanent link">&para;</a></h1>
-<h2 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h2>
+<h2 id="fixed_3">Fixed<a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a>
   can now use a regression algorithm instantiated with transformers.</li>

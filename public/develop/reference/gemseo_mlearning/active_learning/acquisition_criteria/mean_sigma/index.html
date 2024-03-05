@@ -2494,7 +2494,7 @@
 
   <div class="doc doc-contents first">
   
-      <p>Combination of the expectation and standard deviation of the regression model.</p>
+      <p>Criterion to be maximized for estimating a maximum, without exploration.</p>
 <p>Statistic:</p>
 <div class="arithmatex">\[M[x;\kappa] = \mathbb{E}[x] + \kappa \times \mathbb{S}[x]\]</div>
 <p>Estimator:</p>
@@ -2531,7 +2531,7 @@
             Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion" href="../base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a></code></p>
 
   
-      <p>Combination of the expectation and standard deviation of the regression model.</p>
+      <p>Criterion to be maximized for estimating a maximum, without exploration.</p>
 <p>This criterion is scaled by the output range.</p>
   
       <p>Initialize self.  See help(type(self)) for accurate signature.</p>
@@ -2561,16 +2561,16 @@ to increase or decrease the mean value.</p>
 
                 <details class="quote">
                   <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/mean_sigma.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">algo_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span> <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2659,7 +2659,8 @@ to increase or decrease the mean value.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The factor associated with the standard deviation to increase the mean value.</p>
+      <p>The factor associated with the standard deviation.</p>
+<p>It is used to increase or decrease the mean value.</p>
   </div>
 
 </div>

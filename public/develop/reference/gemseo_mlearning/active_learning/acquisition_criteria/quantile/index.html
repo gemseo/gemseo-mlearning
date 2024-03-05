@@ -2494,7 +2494,7 @@
 
   <div class="doc doc-contents first">
   
-      <p>Quantile of the regression model.</p>
+      <p>Criterion to be minimized for estimating a quantile, with exploration.</p>
 <p>Statistic:</p>
 <div class="arithmatex">\[EI[x] = \mathbb{E}[|q(\alpha)-Y(x)|]\]</div>
 <p>where <span class="arithmatex">\(q\)</span> is a quantile with level <span class="arithmatex">\(\alpha\)</span>.</p>
@@ -2524,6 +2524,8 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">Quantile</span><span class="p">(</span>
     <span class="n">algo_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">,</span>
+    <span class="n">uncertain_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.parameter_space.ParameterSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.parameter_space.html#gemseo.algos.parameter_space.ParameterSpace">ParameterSpace</a></span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -2532,7 +2534,7 @@
             Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet" href="../level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet">LevelSet</a></code></p>
 
   
-      <p>Expected Improvement of the regression model for a given quantile.</p>
+      <p>Criterion to be minimized for estimating a quantile, with exploration.</p>
   
       <p>Initialize self.  See help(type(self)) for accurate signature.</p>
 
@@ -2553,17 +2555,33 @@
             (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
         –
         <div class="doc-md-description">
-          <p>A quantile level.</p>
+          <p>The quantile level.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>uncertain_space</code></b>
+            (<code><a class="autorefs autorefs-external" title="gemseo.algos.parameter_space.ParameterSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.parameter_space.html#gemseo.algos.parameter_space.ParameterSpace">ParameterSpace</a></code>)
+        –
+        <div class="doc-md-description">
+          <p>The uncertain variable space.</p>
+        </div>
+      </li>
+      <li class="field-body">
+        <b><code>n_samples</code></b>
+            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                <code>10000</code>
+)
+        –
+        <div class="doc-md-description">
+          <p>The number of samples
+to estimate the quantile of the regression model by Monte Carlo.</p>
         </div>
       </li>
   </ul>
 
                 <details class="quote">
                   <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/quantile.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
@@ -2571,18 +2589,57 @@
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">algo_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">float</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">algo_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
+    <span class="n">level</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">uncertain_space</span><span class="p">:</span> <span class="n">ParameterSpace</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">        level: A quantile level.</span>
+<span class="sd">        level: The quantile level.</span>
+<span class="sd">        uncertain_space: The uncertain variable space.</span>
+<span class="sd">        n_samples: The number of samples</span>
+<span class="sd">            to estimate the quantile of the regression model by Monte Carlo.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">algo_distribution</span><span class="o">.</span><span class="n">learning_set</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="n">algo_distribution</span><span class="p">,</span>
-        <span class="n">quantile</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">group_names</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">OUTPUT_GROUP</span><span class="p">),</span> <span class="n">level</span><span class="p">),</span>
-    <span class="p">)</span>
+    <span class="n">input_names</span> <span class="o">=</span> <span class="n">algo_distribution</span><span class="o">.</span><span class="n">input_names</span>
+    <span class="n">missing_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">input_names</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">uncertain_space</span><span class="o">.</span><span class="n">variable_names</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">missing_names</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;The probability distributions of the input variables &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pretty_str</span><span class="p">(</span><span class="n">missing_names</span><span class="p">,</span><span class="w"> </span><span class="n">use_and</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span><span class="s2"> are missing.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># Create a new uncertain space sorted by model inputs.</span>
+    <span class="n">new_uncertain_space</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">:</span>
+        <span class="n">new_uncertain_space</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">algo_distribution</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_uncertain_space</span><span class="o">.</span><span class="n">compute_samples</span><span class="p">(</span><span class="n">n_samples</span><span class="p">))</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">algo_distribution</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">level</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
                 </details>
 
