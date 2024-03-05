@@ -20,7 +20,7 @@ r"""Common expected improvement of the regression model.
 
 This is the same as the expected improvement of the regression model for the minimum.
 
-Statistics:
+Statistic:
 
 $$EI[x] = \mathbb{E}[\max(y_{\text{min}}-Y(x),0)]$$
 

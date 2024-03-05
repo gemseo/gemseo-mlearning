@@ -35,13 +35,13 @@ from __future__ import annotations
 
 from abc import abstractmethod
 from typing import TYPE_CHECKING
-from typing import Callable
 from typing import ClassVar
 
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
+from numpy import ones
 
 if TYPE_CHECKING:
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -76,8 +76,15 @@ class BaseAcquisitionCriterion(MDOFunction):
         dataset = self.algo_distribution.learning_set
         data = dataset.get_view(group_names=dataset.OUTPUT_GROUP).to_numpy()
         self.output_range = data.max() - data.min()
-        func = self._get_func()
-        super().__init__(func, func.__name__, jac=self._get_jac())
+        try:
+            jac = self._compute_jacobian(ones(algo_distribution.algo.input_dimension))
+        except NotImplementedError:
+            jac = None
+        super().__init__(
+            self._compute_output,
+            self._compute_output.__name__,
+            jac=jac,
+        )
 
     @property
     def _scaling_factor(self) -> float:
@@ -88,19 +95,29 @@ class BaseAcquisitionCriterion(MDOFunction):
         return self.output_range
 
     @abstractmethod
-    def _get_func(self) -> Callable:
-        """Build the evaluation function.
+    def _compute_output(self, input_value: NumberArray) -> NumberArray:
+        """Compute the acquisition criterion value.
+
+        Args:
+            input_value: The model input value.
 
         Returns:
-            The evaluation function.
+            The acquisition criterion value.
         """
 
-    def _get_jac(self) -> Callable[[ndarray], ndarray] | None:
-        """Return the Jacobian function if any.
+    def _compute_jacobian(self, input_value: NumberArray) -> NumberArray:
+        """Compute the Jacobian of the acquisition criterion.
+
+        Args:
+            input_value: The model input value.
 
         Returns:
-            The Jacobian function if any.
+            The Jacobian of the acquisition criterion.
+
+        Raises:
+            NotImplementedError: When the function is not implemented.
         """
+        raise NotImplementedError
 
     def __truediv__(self, other: MDOFunction | float) -> MDOFunction:
         new_criterion = super().__truediv__(other)

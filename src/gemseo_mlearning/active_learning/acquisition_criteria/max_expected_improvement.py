@@ -18,7 +18,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 r"""Expected improvement for the maximum.
 
-Statistics:
+Statistic:
 
 $$EI[x] = \mathbb{E}[\max(Y(x)-y_{\text{max}},0)]$$
 
@@ -32,14 +32,13 @@ $$\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(Y_b(x)-f_{\text{max}},0)$$
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Callable
 
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
     BaseAcquisitionCriterion,
 )
 
 if TYPE_CHECKING:
-    from numpy.typing import NDArray
+    from gemseo.typing import NumberArray
 
 
 class MaxExpectedImprovement(BaseAcquisitionCriterion):
@@ -48,23 +47,10 @@ class MaxExpectedImprovement(BaseAcquisitionCriterion):
     This criterion is scaled by the output range.
     """
 
-    def _get_func(self) -> Callable[[NDArray[float]], float]:
-        def func(input_data: NDArray[float]) -> float:
-            """Evaluation function.
-
-            Args:
-                input_data: The model input data.
-
-            Returns:
-                The acquisition criterion value.
-            """
-            data = self.algo_distribution.learning_set
-            maximum_output = max(
-                data.get_view(group_names=data.OUTPUT_GROUP).to_numpy()
-            )
-            expected_improvement = self.algo_distribution.compute_expected_improvement(
-                input_data, maximum_output, True
-            )
-            return expected_improvement / self._scaling_factor
-
-        return func
+    def _compute_output(self, input_data: NumberArray) -> NumberArray:
+        data = self.algo_distribution.learning_set
+        maximum_output = max(data.get_view(group_names=data.OUTPUT_GROUP).to_numpy())
+        expected_improvement = self.algo_distribution.compute_expected_improvement(
+            input_data, maximum_output, True
+        )
+        return expected_improvement / self._scaling_factor
