@@ -32,6 +32,10 @@ pages:
   script:
     - $TOX_EXE -e doc --notest
     - . .tox/doc/bin/activate
+    # By default gitlab does not fetch all branches,
+    # this could fail when $MIKE_BRANCH is not yet existing
+    # but mike will create it.
+    - git fetch origin $MIKE_BRANCH --depth=1 || true
     - config_git_push
     - mike deploy --branch $MIKE_BRANCH --push $MIKE_ARGS
     - if [[ -n $CI_COMMIT_TAG ]]; then mike set-default --branch $MIKE_BRANCH --push latest; fi
