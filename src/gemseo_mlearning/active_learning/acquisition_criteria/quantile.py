@@ -36,7 +36,7 @@ from typing import TYPE_CHECKING
 
 from numpy import quantile
 
-from gemseo_mlearning.active_learning.acquisition_criteria.limit_state import LimitState
+from gemseo_mlearning.active_learning.acquisition_criteria.level_set import LevelSet
 
 if TYPE_CHECKING:
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
@@ -44,7 +44,7 @@ if TYPE_CHECKING:
     )
 
 
-class Quantile(LimitState):
+class Quantile(LevelSet):
     """Expected Improvement of the regression model for a given quantile."""
 
     def __init__(
@@ -55,7 +55,7 @@ class Quantile(LimitState):
             level: A quantile level.
         """  # noqa: D205 D212 D415
         dataset = algo_distribution.learning_set
-        limit_state = quantile(
-            dataset.get_view(group_names=dataset.OUTPUT_GROUP), level
+        super().__init__(
+            algo_distribution,
+            quantile(dataset.get_view(group_names=dataset.OUTPUT_GROUP), level),
         )
-        super().__init__(algo_distribution, limit_state)
