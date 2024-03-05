@@ -17,7 +17,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Combination of the expectation and standard deviation of the regression model.
+r"""Criterion to be maximized for estimating a maximum, without exploration.
 
 Statistic:
 
@@ -45,13 +45,16 @@ if TYPE_CHECKING:
 
 
 class MeanSigma(BaseAcquisitionCriterion):
-    """Combination of the expectation and standard deviation of the regression model.
+    """Criterion to be maximized for estimating a maximum, without exploration.
 
     This criterion is scaled by the output range.
     """
 
     kappa: float
-    """The factor associated with the standard deviation to increase the mean value."""
+    """The factor associated with the standard deviation.
+
+    It is used to increase or decrease the mean value.
+    """
 
     def __init__(
         self, algo_distribution: BaseRegressorDistribution, kappa: float

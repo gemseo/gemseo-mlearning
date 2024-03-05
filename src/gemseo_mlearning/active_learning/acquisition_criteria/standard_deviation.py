@@ -17,7 +17,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Standard deviation of the regression model.
+r"""Criterion to be maximized for improving the quality of the regression model.
 
 Statistic:
 
@@ -43,7 +43,7 @@ if TYPE_CHECKING:
 
 
 class StandardDeviation(BaseAcquisitionCriterion):
-    """Standard Deviation of the regression model.
+    """Criterion to be maximized for improving the quality of the regression model.
 
     This criterion is scaled by the output range.
     """

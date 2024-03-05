@@ -16,7 +16,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Common expected improvement of the regression model.
+r"""Criterion to be maximized for estimating a minimum, with exploration.
 
 This is the same as the expected improvement of the regression model for the minimum.
 
@@ -39,7 +39,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.min_expected_improvem
 
 
 class ExpectedImprovement(MinExpectedImprovement):
-    """The expected improvement.
+    """Criterion to be maximized for estimating a minimum, with exploration.
 
     This criterion is scaled by the output range.
     """

@@ -17,7 +17,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Expected improvement of the regression model for a particular value.
+r"""Criterion to be minimized for estimating a level set, with exploration.
 
 Statistics:
 
@@ -48,7 +48,7 @@ if TYPE_CHECKING:
 
 
 class LevelSet(BaseAcquisitionCriterion):
-    """Expected improvement of the regression model for a particular value."""
+    """Criterion to be minimized for estimating a level set, with exploration."""
 
     value: float
     """The value of interest."""

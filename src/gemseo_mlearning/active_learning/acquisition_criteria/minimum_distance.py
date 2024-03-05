@@ -17,7 +17,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""Minimum distance between a point and the learning dataset."""
+"""Criterion to be maximized for adding points away from the learning dataset."""
 
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ if TYPE_CHECKING:
 
 
 class MinimumDistance(BaseAcquisitionCriterion):
-    """Minimum distance to the learning dataset.
+    """Criterion to be maximized for adding points away from the learning dataset.
 
     This infill criterion computes the minimum distance between a new point and the
     point of the learning dataset, scaled by the maximum distance between two learning

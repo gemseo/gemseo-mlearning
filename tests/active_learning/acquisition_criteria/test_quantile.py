@@ -18,21 +18,32 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import re
+
+import pytest
+from gemseo.algos.parameter_space import ParameterSpace
 from numpy import array
-from numpy import quantile
+from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile import Quantile
 
 
 def test_quantile(algo_distribution):
     """Check the criterion Quantile."""
-    level = 0.8
-    quantile_ = quantile(
-        algo_distribution.learning_set.get_view(variable_names="y"), level
-    )
-    value = array([0.25])
-    mean = algo_distribution.compute_mean(value)
-    std = algo_distribution.compute_standard_deviation(value)
-    expected = abs(quantile_ - mean) / std
-    criterion = Quantile(algo_distribution, level)
-    assert criterion(value) == expected
+    uncertain_space = ParameterSpace()
+    uncertain_space.add_random_variable("a", "OTNormalDistribution")
+    uncertain_space.add_random_variable("x", "OTNormalDistribution")
+    criterion = Quantile(algo_distribution, 0.8, uncertain_space)
+    assert_almost_equal(criterion(array([0.25])), array([0.11785113]))
+
+
+def test_quantile_error(algo_distribution):
+    """Check the exception raised by the criterion Quantile."""
+    uncertain_space = ParameterSpace()
+    with pytest.raises(
+        ValueError,
+        match=re.escape(
+            "The probability distributions of the input variables x are missing."
+        ),
+    ):
+        Quantile(algo_distribution, 0.8, uncertain_space)
