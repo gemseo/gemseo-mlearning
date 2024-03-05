@@ -16,7 +16,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Expected improvement for the minimum.
+r"""Criterion to be maximized for estimating a minimum, with exploration.
 
 Statistic:
 
@@ -42,7 +42,7 @@ if TYPE_CHECKING:
 
 
 class MinExpectedImprovement(BaseAcquisitionCriterion):
-    """Expected improvement of the regression model for the minimum.
+    """Criterion to be maximized for estimating a minimum, with exploration.
 
     This criterion is scaled by the output range.
     """

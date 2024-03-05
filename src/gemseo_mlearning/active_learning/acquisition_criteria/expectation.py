@@ -16,7 +16,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Expectation of the regression model.
+r"""Criterion to be maximized for estimating a maximum, without exploration.
 
 Statistic:
 
@@ -40,7 +40,7 @@ if TYPE_CHECKING:
 
 
 class Expectation(BaseAcquisitionCriterion):
-    """Expectation of the regression model.
+    """Criterion to be maximized for estimating a maximum, without exploration.
 
     This criterion is scaled by the output range.
     """

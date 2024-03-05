@@ -17,7 +17,7 @@
 #    INITIAL AUTHORS - API and implementation and/or documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-r"""Quantile of the regression model.
+r"""Criterion to be minimized for estimating a quantile, with exploration.
 
 Statistic:
 
@@ -34,28 +34,49 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from gemseo.utils.string_tools import pretty_str
 from numpy import quantile
 
 from gemseo_mlearning.active_learning.acquisition_criteria.level_set import LevelSet
 
 if TYPE_CHECKING:
+    from gemseo.algos.parameter_space import ParameterSpace
+
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
     )
 
 
 class Quantile(LevelSet):
-    """Expected Improvement of the regression model for a given quantile."""
+    """Criterion to be minimized for estimating a quantile, with exploration."""
 
     def __init__(
-        self, algo_distribution: BaseRegressorDistribution, level: float
+        self,
+        algo_distribution: BaseRegressorDistribution,
+        level: float,
+        uncertain_space: ParameterSpace,
+        n_samples: int = 10000,
     ) -> None:
         """
         Args:
-            level: A quantile level.
+            level: The quantile level.
+            uncertain_space: The uncertain variable space.
+            n_samples: The number of samples
+                to estimate the quantile of the regression model by Monte Carlo.
         """  # noqa: D205 D212 D415
-        dataset = algo_distribution.learning_set
-        super().__init__(
-            algo_distribution,
-            quantile(dataset.get_view(group_names=dataset.OUTPUT_GROUP), level),
-        )
+        input_names = algo_distribution.input_names
+        missing_names = set(input_names) - set(uncertain_space.variable_names)
+        if missing_names:
+            msg = (
+                "The probability distributions of the input variables "
+                f"{pretty_str(missing_names, use_and=True)} are missing."
+            )
+            raise ValueError(msg)
+
+        # Create a new uncertain space sorted by model inputs.
+        new_uncertain_space = uncertain_space.__class__()
+        for name in input_names:
+            new_uncertain_space[name] = uncertain_space[name]
+
+        data = algo_distribution.predict(new_uncertain_space.compute_samples(n_samples))
+        super().__init__(algo_distribution, quantile(data, level))

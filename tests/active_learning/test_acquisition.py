@@ -24,6 +24,7 @@ from unittest import mock
 import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.opt_problem import OptimizationProblem
+from gemseo.algos.parameter_space import ParameterSpace
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.linreg import LinearRegressor
@@ -171,13 +172,20 @@ def test_update_algo(algo_distribution_for_update, input_space):
 
 
 @pytest.mark.parametrize(
-    ("criterion", "minimize", "options"),
-    [("Quantile", True, {"level": 0.1}), ("ExpectedImprovement", False, {})],
+    ("criterion", "minimize"),
+    [("Quantile", True), ("ExpectedImprovement", False)],
 )
 def test_build_opt_problem_maximize(
-    algo_distribution, input_space, criterion, minimize, options
+    algo_distribution, input_space, criterion, minimize
 ):
     """Check that the optimization problem handles both cost & performance criteria."""
+    options = {}
+    if criterion == "Quantile":
+        options["level"] = 0.1
+        uncertain_space = ParameterSpace()
+        uncertain_space.add_random_variable("x", "OTNormalDistribution")
+        options["uncertain_space"] = uncertain_space
+
     algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **options)
     algo._ActiveLearningAlgo__create_acquisition_problem()
     assert algo._ActiveLearningAlgo__acquisition_problem.minimize_objective == minimize

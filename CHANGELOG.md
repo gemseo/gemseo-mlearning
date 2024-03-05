@@ -79,6 +79,13 @@ and this project adheres to
   and [sample_disciplines][gemseo_mlearning.sample_disciplines]
   must be imported from [gemseo_mlearning][gemseo_mlearning].
 
+## Fixed
+
+- The [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile]
+  estimates the quantile by Monte Carlo sampling
+  by means of the probability distributions of the input variables;
+  this distributions are defined with its new argument `uncertain_space`.
+
 # Version 1.1.2 (December 2023)
 
 ## Added
