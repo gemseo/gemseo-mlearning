@@ -47,6 +47,8 @@ and this project adheres to
 
 ## Changed
 
+- BREAKING CHANGE: the acquisition criterion `LimitState` renamed to
+  [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
 - BREAKING CHANGE: each acquisition criterion class has a specific module
   in [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria]
   whose name is the snake-case version of it class name, i.e. `nice_criterion.py` contains `NiceCriterion`.

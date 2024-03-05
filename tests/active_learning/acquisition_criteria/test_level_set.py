@@ -20,15 +20,15 @@ from __future__ import annotations
 
 from numpy import array
 
-from gemseo_mlearning.active_learning.acquisition_criteria.limit_state import LimitState
+from gemseo_mlearning.active_learning.acquisition_criteria.level_set import LevelSet
 
 
-def test_limit_state(algo_distribution):
-    """Check the criterion LimitState."""
-    limit_state = 0.5
-    value = array([0.25])
-    mean = algo_distribution.compute_mean(value)
-    std = algo_distribution.compute_standard_deviation(value)
-    expected = abs(limit_state - mean) / std
-    criterion = LimitState(algo_distribution, limit_state)
-    assert criterion(value) == expected
+def test_level_set(algo_distribution):
+    """Check the criterion LevelSet."""
+    output_target = 0.5
+    input_value = array([0.25])
+    mean = algo_distribution.compute_mean(input_value)
+    std = algo_distribution.compute_standard_deviation(input_value)
+    expected = abs(output_target - mean) / std
+    criterion = LevelSet(algo_distribution, output_target)
+    assert criterion(input_value) == expected

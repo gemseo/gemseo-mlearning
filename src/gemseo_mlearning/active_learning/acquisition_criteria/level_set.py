@@ -47,7 +47,7 @@ if TYPE_CHECKING:
     )
 
 
-class LimitState(BaseAcquisitionCriterion):
+class LevelSet(BaseAcquisitionCriterion):
     """Expected improvement of the regression model for a particular value."""
 
     value: float
