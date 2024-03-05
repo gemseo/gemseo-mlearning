@@ -38,7 +38,16 @@ pages:
     - git fetch origin $MIKE_BRANCH --depth=1 || true
     - config_git_push
     - mike deploy --branch $MIKE_BRANCH --push $MIKE_ARGS
-    - if [[ -n $CI_COMMIT_TAG ]]; then mike set-default --branch $MIKE_BRANCH --push latest; fi
+    - |
+      # When there is no doc yet, redirect to the docs of the develop branch.
+      if [[ $(mike list --remote origin --branch $MIKE_BRANCH) == $CI_DEFAULT_BRANCH ]]; then
+        mike set-default --branch $MIKE_BRANCH --push $CI_DEFAULT_BRANCH;
+      fi
+    - |
+      # For release versions, redirect to them.
+      if [[ -n $CI_COMMIT_TAG ]]; then
+        mike set-default --branch $MIKE_BRANCH --push latest;
+      fi
     - git checkout $MIKE_BRANCH
   artifacts:
     paths:
