@@ -31,7 +31,6 @@ from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import atleast_2d
 from numpy import diag
-from numpy import ndarray
 from openturns import TNC
 from openturns import ConstantBasisFactory
 from openturns import CovarianceModelImplementation
@@ -55,6 +54,7 @@ if TYPE_CHECKING:
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.typing import NumberArray
 
 
 DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOEFactory().algorithms)
@@ -129,8 +129,8 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         self,
         data: IODataset,
         transformer: TransformerType = MLRegressionAlgo.IDENTITY,
-        input_names: Iterable[str] | None = None,
-        output_names: Iterable[str] | None = None,
+        input_names: Iterable[str] = (),
+        output_names: Iterable[str] = (),
         use_hmat: bool | None = None,
         trend_type: TrendType = TrendType.CONSTANT,
         optimizer: OptimizationAlgorithmImplementation = TNC,
@@ -244,7 +244,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             linear_algebra_method = "LAPACK"
         ResourceMap.SetAsString("KrigingAlgorithm-LinearAlgebra", linear_algebra_method)
 
-    def _fit(self, input_data: ndarray, output_data: ndarray) -> None:
+    def _fit(self, input_data: NumberArray, output_data: NumberArray) -> None:
         algo = KrigingAlgorithm(
             input_data,
             output_data,
@@ -279,10 +279,10 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         algo.run()
         self.algo = algo.getResult()
 
-    def _predict(self, input_data: ndarray) -> ndarray:
+    def _predict(self, input_data: NumberArray) -> NumberArray:
         return atleast_2d(self.algo.getConditionalMean(input_data))
 
-    def predict_std(self, input_data: DataType) -> ndarray:
+    def predict_std(self, input_data: DataType) -> NumberArray:
         """Predict the standard deviation from input data.
 
         Args:
@@ -315,6 +315,6 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
 
         return output_data
 
-    def _predict_jacobian(self, input_data: ndarray) -> ndarray:
+    def _predict_jacobian(self, input_data: NumberArray) -> NumberArray:
         gradient = self.algo.getMetaModel().gradient
         return array([array(gradient(Point(data))).T for data in input_data])

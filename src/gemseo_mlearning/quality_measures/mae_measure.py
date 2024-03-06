@@ -35,7 +35,7 @@ from sklearn.metrics import mean_absolute_error
 
 if TYPE_CHECKING:
     from gemseo.mlearning.regression.regression import MLRegressionAlgo
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
 
 class MAEMeasure(MLErrorMeasure):
@@ -50,9 +50,9 @@ class MAEMeasure(MLErrorMeasure):
 
     def _compute_measure(
         self,
-        outputs: ndarray,
-        predictions: ndarray,
+        outputs: NumberArray,
+        predictions: NumberArray,
         multioutput: bool = True,
-    ) -> float | ndarray:
+    ) -> float | NumberArray:
         multioutput = "raw_values" if multioutput else "uniform_average"
         return mean_absolute_error(outputs, predictions, multioutput=multioutput)

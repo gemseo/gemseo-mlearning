@@ -82,7 +82,7 @@ if TYPE_CHECKING:
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.regression.regression import MLRegressionAlgo
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
 
 class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
@@ -174,7 +174,14 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         self,
         input_data: DataType,
         level: float = 0.95,
-    ) -> tuple[dict[str, ndarray], dict[str, ndarray], tuple[ndarray, ndarray]] | None:
+    ) -> (
+        tuple[
+            dict[str, NumberArray],
+            dict[str, NumberArray],
+            tuple[NumberArray, NumberArray],
+        ]
+        | None
+    ):
         """Predict the lower bounds and upper bounds from input data.
 
         The user can specify the input data either as a NumPy array,

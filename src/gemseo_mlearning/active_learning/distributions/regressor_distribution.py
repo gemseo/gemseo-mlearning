@@ -56,7 +56,6 @@ from numpy import delete as npdelete
 from numpy import dot
 from numpy import exp
 from numpy import maximum
-from numpy import ndarray
 from numpy import ones
 from numpy import quantile
 from numpy import stack
@@ -73,6 +72,7 @@ if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.regression.regression import MLRegressionAlgo
+    from gemseo.typing import NumberArray
 
 
 class RegressorDistribution(BaseRegressorDistribution):
@@ -84,7 +84,7 @@ class RegressorDistribution(BaseRegressorDistribution):
     size: int
     """The size of the resampling set."""
 
-    weights: list[Callable[[ndarray], float]]
+    weights: list[Callable[[NumberArray], float]]
     """The weight functions related to the sub-algorithms.
 
     A weight function computes a weight from an input data array.
@@ -168,7 +168,7 @@ class RegressorDistribution(BaseRegressorDistribution):
 
             algo.learn(new_samples)
 
-    def __weight_function(self, indices: list[int]) -> Callable[[ndarray], float]:
+    def __weight_function(self, indices: list[int]) -> Callable[[NumberArray], float]:
         """Return a function evaluating the weights at an input vector.
 
         The weights are w.r.t. the input vectors of the samples
@@ -192,7 +192,7 @@ class RegressorDistribution(BaseRegressorDistribution):
         in_grp = self.learning_set.INPUT_GROUP
 
         def weight(
-            input_data: ndarray,
+            input_data: NumberArray,
         ) -> float:
             """Weight function returning a weight when a 1D input array is passed.
 
@@ -252,7 +252,14 @@ class RegressorDistribution(BaseRegressorDistribution):
         self,
         input_data: DataType,
         level: float = 0.95,
-    ) -> tuple[dict[str, ndarray], dict[str, ndarray], tuple[ndarray, ndarray]] | None:
+    ) -> (
+        tuple[
+            dict[str, NumberArray],
+            dict[str, NumberArray],
+            tuple[NumberArray, NumberArray],
+        ]
+        | None
+    ):
         level = (1.0 - level) / 2.0
         predictions = self.predict_members(input_data)
         if isinstance(predictions, Mapping):
@@ -269,7 +276,7 @@ class RegressorDistribution(BaseRegressorDistribution):
             upper = quantile(predictions, 1 - level, axis=0)
         return lower, upper
 
-    def _evaluate_weights(self, input_data: ndarray) -> ndarray:
+    def _evaluate_weights(self, input_data: NumberArray) -> NumberArray:
         """Evaluate weights.
 
         Args:
@@ -315,9 +322,9 @@ class RegressorDistribution(BaseRegressorDistribution):
 
     def __average(
         self,
-        weights: ndarray,
-        data: ndarray,
-    ) -> ndarray:
+        weights: NumberArray,
+        data: NumberArray,
+    ) -> NumberArray:
         """Return averaged data.
 
         Args:

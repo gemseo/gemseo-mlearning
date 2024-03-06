@@ -34,7 +34,7 @@ from gemseo.mlearning.quality_measures.error_measure import MLErrorMeasure
 
 if TYPE_CHECKING:
     from gemseo.mlearning.regression.regression import MLRegressionAlgo
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
 
 class MEMeasure(MLErrorMeasure):
@@ -49,10 +49,10 @@ class MEMeasure(MLErrorMeasure):
 
     def _compute_measure(
         self,
-        outputs: ndarray,
-        predictions: ndarray,
+        outputs: NumberArray,
+        predictions: NumberArray,
         multioutput: bool = True,
-    ) -> float | ndarray:
+    ) -> float | NumberArray:
         if multioutput:
             return abs(outputs - predictions).max(0)
         return abs(outputs - predictions).max()

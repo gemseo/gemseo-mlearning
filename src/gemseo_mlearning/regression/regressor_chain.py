@@ -36,6 +36,7 @@ from typing import ClassVar
 
 from gemseo.mlearning import create_regression_model
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -43,7 +44,7 @@ if TYPE_CHECKING:
 
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
 
 _AlgoDefinition = namedtuple("AlgoDefinition", "name,transformer,parameters")
@@ -58,8 +59,8 @@ class RegressorChain(MLRegressionAlgo):
         self,
         data: IODataset,
         transformer: TransformerType = MLRegressionAlgo.IDENTITY,
-        input_names: Iterable[str] | None = None,
-        output_names: Iterable[str] | None = None,
+        input_names: Iterable[str] = (),
+        output_names: Iterable[str] = (),
         **parameters: Any,
     ) -> None:
         super().__init__(
@@ -74,7 +75,7 @@ class RegressorChain(MLRegressionAlgo):
     def add_algo(
         self,
         name: str,
-        transformer: Mapping[str, TransformerType] | None = None,
+        transformer: Mapping[str, TransformerType] = READ_ONLY_EMPTY_DICT,
         **parameters: Any,
     ) -> None:
         """Add a new regression algorithm in the chain.
@@ -93,7 +94,7 @@ class RegressorChain(MLRegressionAlgo):
                 [Transformer][gemseo.mlearning.transformers.transformer.Transformer]
                 will be applied
                 to all the variables of this group.
-                If `None`, do not transform the variables.
+                If empty, do not transform the variables.
             **parameters: The parameters of the regression algorithm
         """
         self.__algos.append(
@@ -107,8 +108,8 @@ class RegressorChain(MLRegressionAlgo):
 
     def _fit(
         self,
-        input_data: ndarray,
-        output_data: ndarray,
+        input_data: NumberArray,
+        output_data: NumberArray,
     ) -> None:
         for index, algo in enumerate(self.__algos):
             algo._fit(input_data, output_data)
@@ -117,8 +118,8 @@ class RegressorChain(MLRegressionAlgo):
 
     def _predict(
         self,
-        input_data: ndarray,
-    ) -> ndarray:
+        input_data: NumberArray,
+    ) -> NumberArray:
         output_data = 0
         for algo in self.__algos:
             output_data += algo._predict(input_data)
@@ -127,8 +128,8 @@ class RegressorChain(MLRegressionAlgo):
 
     def _predict_jacobian(
         self,
-        input_data: ndarray,
-    ) -> ndarray:
+        input_data: NumberArray,
+    ) -> NumberArray:
         jacobian_data = 0
         for algo in self.__algos:
             jacobian_data += algo._predict_jacobian(input_data)

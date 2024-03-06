@@ -27,7 +27,6 @@ from typing import ClassVar
 
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from numpy import array
-from numpy import ndarray
 from sklearn.svm import SVR
 
 if TYPE_CHECKING:
@@ -35,6 +34,7 @@ if TYPE_CHECKING:
 
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.typing import NumberArray
 
 
 class SVMRegressor(MLRegressionAlgo):
@@ -47,8 +47,8 @@ class SVMRegressor(MLRegressionAlgo):
         self,
         data: IODataset,
         transformer: TransformerType = MLRegressionAlgo.IDENTITY,
-        input_names: Iterable[str] | None = None,
-        output_names: Iterable[str] | None = None,
+        input_names: Iterable[str] = (),
+        output_names: Iterable[str] = (),
         kernel: str = "rbf",
         **parameters: Any,
     ) -> None:
@@ -69,8 +69,8 @@ class SVMRegressor(MLRegressionAlgo):
 
     def _fit(
         self,
-        input_data: ndarray,
-        output_data: ndarray,
+        input_data: NumberArray,
+        output_data: NumberArray,
     ) -> None:
         for _output_data in output_data.T:
             self.algo.append(
@@ -83,6 +83,6 @@ class SVMRegressor(MLRegressionAlgo):
 
     def _predict(
         self,
-        input_data: ndarray,
-    ) -> ndarray:
+        input_data: NumberArray,
+    ) -> NumberArray:
         return array([algo.predict(input_data) for algo in self.algo]).T

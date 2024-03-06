@@ -27,13 +27,14 @@ from typing import ClassVar
 
 import sklearn.neural_network
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from numpy import newaxis
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
 
 class MLPRegressor(MLRegressionAlgo):
@@ -46,8 +47,8 @@ class MLPRegressor(MLRegressionAlgo):
         self,
         data: IODataset,
         transformer: TransformerType = MLRegressionAlgo.IDENTITY,
-        input_names: Iterable[str] | None = None,
-        output_names: Iterable[str] | None = None,
+        input_names: Iterable[str] = (),
+        output_names: Iterable[str] = (),
         hidden_layer_sizes: tuple[int] = (100,),
         **parameters: Any,
     ) -> None:
@@ -69,17 +70,17 @@ class MLPRegressor(MLRegressionAlgo):
 
     def _fit(
         self,
-        input_data: ndarray,
-        output_data: ndarray,
+        input_data: NumberArray,
+        output_data: NumberArray,
     ) -> None:
         self.algo.fit(input_data, output_data)
 
     def _predict(
         self,
-        input_data: ndarray,
-    ) -> ndarray:
+        input_data: NumberArray,
+    ) -> NumberArray:
         output_data = self.algo.predict(input_data)
         if output_data.ndim == 1:
-            return output_data[:, None]
+            return output_data[:, newaxis]
 
         return output_data

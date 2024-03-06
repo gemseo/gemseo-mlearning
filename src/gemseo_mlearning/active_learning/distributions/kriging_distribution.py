@@ -39,7 +39,7 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 if TYPE_CHECKING:
     from gemseo.mlearning.core.ml_algo import DataType
     from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
     from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 
@@ -60,7 +60,14 @@ class KrigingDistribution(BaseRegressorDistribution):
         self,
         input_data: DataType,
         level: float = 0.95,
-    ) -> tuple[dict[str, ndarray], dict[str, ndarray], tuple[ndarray, ndarray]] | None:
+    ) -> (
+        tuple[
+            dict[str, NumberArray],
+            dict[str, NumberArray],
+            tuple[NumberArray, NumberArray],
+        ]
+        | None
+    ):
         mean = self.compute_mean(input_data)
         std = self.compute_standard_deviation(input_data)
         quantile = norm.ppf(level)
