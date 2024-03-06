@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import TransformerType
-    from numpy import ndarray
+    from gemseo.typing import NumberArray
 
 
 class TPSRegressor(RBFRegressor):
@@ -45,10 +45,11 @@ class TPSRegressor(RBFRegressor):
         self,
         data: IODataset,
         transformer: TransformerType = RBFRegressor.IDENTITY,
-        input_names: Iterable[str] | None = None,
-        output_names: Iterable[str] | None = None,
+        input_names: Iterable[str] = (),
+        output_names: Iterable[str] = (),
         smooth: float = 0.0,
-        norm: str | Callable[[ndarray, ndarray], float] = RBFRegressor.EUCLIDEAN,
+        norm: str
+        | Callable[[NumberArray, NumberArray], float] = RBFRegressor.EUCLIDEAN,
         **parameters: Any,
     ) -> None:
         super().__init__(
