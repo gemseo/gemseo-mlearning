@@ -2468,8 +2468,8 @@ input data and the sum of their output data is returned.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">RegressorChain</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></span><span class="p">,</span>
     <span class="n">transformer</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></span> <span class="o">=</span> <span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
-    <span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+    <span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="o">**</span><span class="n">parameters</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
 <span class="p">)</span>
 </code></pre></div>
@@ -2516,8 +2516,8 @@ If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
       </li>
       <li class="field-body">
         <b><code>input_names</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] | None</code>, default:
-                <code>None</code>
+            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
+                <code>()</code>
 )
         –
         <div class="doc-md-description">
@@ -2527,8 +2527,8 @@ If <code>None</code>, consider all the input variables of the learning dataset.<
       </li>
       <li class="field-body">
         <b><code>output_names</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] | None</code>, default:
-                <code>None</code>
+            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
+                <code>()</code>
 )
         –
         <div class="doc-md-description">
@@ -2564,8 +2564,7 @@ have a transformer.</p>
 
                 <details class="quote">
                   <summary>Source code in <code>src/gemseo_mlearning/regression/regressor_chain.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
-<span class="normal">58</span>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
@@ -2579,12 +2578,13 @@ have a transformer.</p>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: D107</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: D107</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">IODataset</span><span class="p">,</span>
     <span class="n">transformer</span><span class="p">:</span> <span class="n">TransformerType</span> <span class="o">=</span> <span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
-    <span class="n">input_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">output_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+    <span class="n">output_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="o">**</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2622,9 +2622,9 @@ have a transformer.</p>
 <a href="#gemseo_mlearning.regression.regressor_chain.RegressorChain.add_algo" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">add_algo</span><span class="p">(</span>
     <span class="n">name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
-    <span class="n">transformer</span><span class="p">:</span> <span class="p">(</span>
-        <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">transformer</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span>
+        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
     <span class="o">**</span><span class="n">parameters</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
@@ -2647,8 +2647,8 @@ have a transformer.</p>
       </li>
       <li class="field-body">
         <b><code>transformer</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span>] | None</code>, default:
-                <code>None</code>
+            (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span>]</code>, default:
+                <code><span title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</span></code>
 )
         –
         <div class="doc-md-description">
@@ -2664,7 +2664,7 @@ the
 <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.transformers.transformer.html#gemseo.mlearning.transformers.transformer.Transformer">Transformer</a>
 will be applied
 to all the variables of this group.
-If <code>None</code>, do not transform the variables.</p>
+If empty, do not transform the variables.</p>
         </div>
       </li>
       <li class="field-body">
@@ -2681,8 +2681,7 @@ If <code>None</code>, do not transform the variables.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/regression/regressor_chain.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 74</span>
-<span class="normal"> 75</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 75</span>
 <span class="normal"> 76</span>
 <span class="normal"> 77</span>
 <span class="normal"> 78</span>
@@ -2713,10 +2712,11 @@ If <code>None</code>, do not transform the variables.</p>
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
-<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_algo</span><span class="p">(</span>
+<span class="normal">106</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_algo</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">transformer</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TransformerType</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">transformer</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TransformerType</span><span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
     <span class="o">**</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a new regression algorithm in the chain.</span>
@@ -2735,7 +2735,7 @@ If <code>None</code>, do not transform the variables.</p>
 <span class="sd">            [Transformer][gemseo.mlearning.transformers.transformer.Transformer]</span>
 <span class="sd">            will be applied</span>
 <span class="sd">            to all the variables of this group.</span>
-<span class="sd">            If `None`, do not transform the variables.</span>
+<span class="sd">            If empty, do not transform the variables.</span>
 <span class="sd">        **parameters: The parameters of the regression algorithm</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__algos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>

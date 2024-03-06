@@ -2702,8 +2702,8 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></span><span class="p">,</span>
     <span class="n">transformer</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></span> <span class="o">=</span> <span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
-    <span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+    <span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">use_hmat</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">trend_type</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType" href="#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType">TrendType</a></span> <span class="o">=</span> <span class="n">TrendType</span><span class="o">.</span><span class="n">CONSTANT</span><span class="p">,</span>
     <span class="n">optimizer</span><span class="p">:</span> <span class="n"><span title="openturns.OptimizationAlgorithmImplementation">OptimizationAlgorithmImplementation</span></span> <span class="o">=</span> <span class="n">TNC</span><span class="p">,</span>
@@ -2766,8 +2766,8 @@ If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
       </li>
       <li class="field-body">
         <b><code>input_names</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] | None</code>, default:
-                <code>None</code>
+            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
+                <code>()</code>
 )
         –
         <div class="doc-md-description">
@@ -2777,8 +2777,8 @@ If <code>None</code>, consider all the input variables of the learning dataset.<
       </li>
       <li class="field-body">
         <b><code>output_names</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] | None</code>, default:
-                <code>None</code>
+            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
+                <code>()</code>
 )
         –
         <div class="doc-md-description">
@@ -2999,8 +2999,8 @@ have a transformer.</p>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">IODataset</span><span class="p">,</span>
     <span class="n">transformer</span><span class="p">:</span> <span class="n">TransformerType</span> <span class="o">=</span> <span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
-    <span class="n">input_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">output_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
+    <span class="n">output_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">use_hmat</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">trend_type</span><span class="p">:</span> <span class="n">TrendType</span> <span class="o">=</span> <span class="n">TrendType</span><span class="o">.</span><span class="n">CONSTANT</span><span class="p">,</span>
     <span class="n">optimizer</span><span class="p">:</span> <span class="n">OptimizationAlgorithmImplementation</span> <span class="o">=</span> <span class="n">TNC</span><span class="p">,</span>
@@ -3278,7 +3278,7 @@ have a transformer.</p>
 
 
 <a href="#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.predict_std" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">predict_std</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">predict_std</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.typing.NumberArray">NumberArray</span></span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -3304,7 +3304,7 @@ have a transformer.</p>
   <p>Returns:</p>
   <ul>
       <li class="field-body">
-<b><code>output_data</code></b> (            <code><a class="autorefs autorefs-external" title="numpy.ndarray" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray">ndarray</a></code>
+<b><code>output_data</code></b> (            <code><span title="gemseo.typing.NumberArray">NumberArray</span></code>
 )        –
         <div class="doc-md-description">
           <p>The output data with shape (n_samples, n_outputs).</p>
@@ -3345,7 +3345,7 @@ have a transformer.</p>
 <span class="normal">313</span>
 <span class="normal">314</span>
 <span class="normal">315</span>
-<span class="normal">316</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">predict_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ndarray</span><span class="p">:</span>
+<span class="normal">316</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">predict_std</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NumberArray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Predict the standard deviation from input data.</span>
 
 <span class="sd">    Args:</span>
