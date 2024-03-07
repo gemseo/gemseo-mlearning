@@ -32,7 +32,7 @@ An effort is being made to improve both content and performance in future versio
 
 ## Installation
 
-Install the latest stable version with `pip install gemseo-umdo`.
+Install the latest stable version with `pip install gemseo-mlearning`.
 
 Install the development version with
 `pip install gemseo-mlearning@git+https://gitlab.com/gemseo/dev/gemseo-mlearning.git@develop`.
