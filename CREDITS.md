@@ -12,7 +12,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 The developers thank all the open source libraries making
 `gemseo-mlearning` possible.
 
-### External Dependencies
+## External Dependencies
 
 `gemseo-mlearning` depends on software with compatible
 licenses that are listed below.
@@ -23,12 +23,12 @@ licenses that are listed below.
 [Python](http://python.org/)
 : Python Software License
 
-### Internal Dependencies
+## Internal Dependencies
 
 `gemseo-mlearning` source code includes software with
 compatible licenses that are listed below.
 
-### External application
+## External application
 
 Some external applications are used by `gemseo-mlearning`,
 but not linked with the application,
@@ -62,6 +62,6 @@ training or example purposes.
 [setuptools_scm](https://github.com/pypa/setuptools_scm/)
 : MIT
 
-### Resources
+## Resources
 
 Some icons and fonts are used by `gemseo-mlearning` or its documentation.
