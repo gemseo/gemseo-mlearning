@@ -399,3 +399,24 @@ def test_covariance_kernel_type(dataset, kernel_type):
         assert f"nu={name[6]}.{name[7]})"
     else:
         assert name in covariance_model_str
+
+
+def test_compute_samples(dataset):
+    """Check the method compute_samples."""
+    model = OTGaussianProcessRegressor(dataset)
+    model.learn()
+    output_data = model.compute_samples(array([[0.23, 0.59], [-0.45, 1.2]]), 3)
+    assert_allclose(
+        output_data[0],
+        array([
+            [1327.999028, 1343.55591],
+            [1404.76494, 1310.716423],
+            [1403.099801, 1353.588844],
+        ]),
+        rtol=1e-3,
+    )
+    assert_allclose(
+        output_data[1],
+        array([[-3.293869, 2.651571], [-1.594788, -4.757636], [-3.283659, -3.792748]]),
+        rtol=1e-3,
+    )
