@@ -159,7 +159,7 @@ def test_kriging_predict_on_learning_set(dataset):
 @pytest.mark.parametrize("x2", [-1, 1])
 def test_kriging_predict(dataset, x1, x2):
     """Check that the Kriging is not yet good enough to extrapolate."""
-    kriging = OTGaussianProcessRegressor(dataset)
+    kriging = OTGaussianProcessRegressor(dataset, multi_start_n_samples=0)
     kriging.learn()
     x = array([x1, x2])
     prediction = kriging.predict({"x": x})
@@ -233,16 +233,16 @@ def test_kriging_std_output_dimension(dataset_2, output_name, input_data):
 
 
 @pytest.mark.parametrize(
-    ("trend_type", "shape"),
+    ("trend", "shape"),
     [
-        (OTGaussianProcessRegressor.TrendType.CONSTANT, (2, 1)),
-        (OTGaussianProcessRegressor.TrendType.LINEAR, (2, 3)),
-        (OTGaussianProcessRegressor.TrendType.QUADRATIC, (2, 6)),
+        (OTGaussianProcessRegressor.Trend.CONSTANT, (2, 1)),
+        (OTGaussianProcessRegressor.Trend.LINEAR, (2, 3)),
+        (OTGaussianProcessRegressor.Trend.QUADRATIC, (2, 6)),
     ],
 )
-def test_trend_type(dataset, trend_type, shape):
+def test_trend_type(dataset, trend, shape):
     """Check the trend type of the Gaussian process regressor."""
-    model = OTGaussianProcessRegressor(dataset, trend_type=trend_type)
+    model = OTGaussianProcessRegressor(dataset, trend=trend)
     model.learn()
     if version.parse(openturns.__version__) < version.parse("1.21"):
         assert array(model.algo.getTrendCoefficients()).shape == shape
@@ -252,7 +252,7 @@ def test_trend_type(dataset, trend_type, shape):
 
 def test_default_optimizer(dataset):
     """Check that the default optimizer is TNC."""
-    model = OTGaussianProcessRegressor(dataset)
+    model = OTGaussianProcessRegressor(dataset, multi_start_n_samples=0)
     with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
         model.learn()
 
@@ -262,7 +262,9 @@ def test_default_optimizer(dataset):
 def test_custom_optimizer(dataset):
     """Check that the optimizer can be changed."""
     optimizer = NLopt("LN_NELDERMEAD")
-    model = OTGaussianProcessRegressor(dataset, optimizer=optimizer)
+    model = OTGaussianProcessRegressor(
+        dataset, optimizer=optimizer, multi_start_n_samples=0
+    )
     with mock.patch.object(KrigingAlgorithm, "setOptimizationAlgorithm") as method:
         model.learn()
 
@@ -293,7 +295,9 @@ def test_custom_optimization_space(dataset, optimization_space_type):
             u_b=array(upper_bound),
         )
 
-    model = OTGaussianProcessRegressor(dataset, optimization_space=optimization_space)
+    model = OTGaussianProcessRegressor(
+        dataset, optimization_space=optimization_space, multi_start_n_samples=0
+    )
     with mock.patch.object(KrigingAlgorithm, "setOptimizationBounds") as method:
         model.learn()
 
@@ -348,23 +352,50 @@ def test_default_covariance_model(dataset):
     """Check default covariance model is SquaredExponential."""
     model = OTGaussianProcessRegressor(dataset)
     model.learn()
-    assert "SquaredExponential" in str(model.algo.getCovarianceModel())
+    assert "Matern" in str(model.algo.getCovarianceModel())
+    assert "nu=2.5" in str(model.algo.getCovarianceModel())
 
 
 @pytest.mark.parametrize(
-    ("covariance_model", "use_generalized"),
+    ("covariance_model", "nu"),
     [
-        (MaternModel, False),
-        (MaternModel(2), False),
-        ([MaternModel, GeneralizedExponential], True),
-        ([MaternModel(2), GeneralizedExponential(2)], True),
+        (MaternModel, 1.5),
+        (MaternModel(2), 1.5),
+        ([MaternModel, GeneralizedExponential], 1.5),
+        ([MaternModel(2), GeneralizedExponential], 1.5),
+        ([MaternModel, GeneralizedExponential(2)], 1.5),
+        ([MaternModel(2), GeneralizedExponential(2)], 1.5),
+        (OTGaussianProcessRegressor.CovarianceModel.MATERN12, 0.5),
+        (
+            [
+                OTGaussianProcessRegressor.CovarianceModel.MATERN12,
+                GeneralizedExponential(2),
+            ],
+            0.5,
+        ),
     ],
 )
-def test_custom_covariance_model(dataset, covariance_model, use_generalized):
+def test_custom_covariance_model(dataset, covariance_model, nu):
     """Check that the covariance model can be changed."""
+    use_other_covariance_model = isinstance(covariance_model, list)
     model = OTGaussianProcessRegressor(dataset, covariance_model=covariance_model)
     model.learn()
     covariance_model_str = str(model.algo.getCovarianceModel())
     assert "MaternModel" in covariance_model_str
-    if use_generalized:
+    assert f"nu={nu}" in covariance_model_str
+    if use_other_covariance_model:
         assert "GeneralizedExponential" in covariance_model_str
+
+
+@pytest.mark.parametrize("kernel_type", OTGaussianProcessRegressor.CovarianceModel)
+def test_covariance_kernel_type(dataset, kernel_type):
+    """Check the attribute CovarianceModel."""
+    model = OTGaussianProcessRegressor(dataset, covariance_model=kernel_type)
+    model.learn()
+    name = kernel_type.value
+    covariance_model_str = str(model.algo.getCovarianceModel())
+    if name.startswith("Matern"):
+        assert "Matern" in covariance_model_str
+        assert f"nu={name[6]}.{name[7]})"
+    else:
+        assert name in covariance_model_str

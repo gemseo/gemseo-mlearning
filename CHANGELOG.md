@@ -36,17 +36,24 @@ and this project adheres to
   using the `regression_file_path` argument.
 - The `multi_start_n_samples`, `multi_start_algo_name` and `multi_start_algo_options` arguments of
   [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allow to use multi-start optimization for the covariance model parameters.
+  allow to use multi-start optimization for the covariance model parameters;
+  by default, the number of starting points `multi_start_n_samples` is set to 10.
 - The `optimization_space` argument of
   [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
   allows to set the lower and upper bounds of the covariance model parameters
   by means of a [DesignSpace][gemseo.algos.design_space.DesignSpace].
 - The `covariance_model` argument of
   [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to use any covariance model proposed by OpenTURNS.
+  allows to use any covariance model proposed by OpenTURNS
+  and facilitates the use of some of them through the enumeration
+  [CovarianceModel][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModel];
+  its default value is Matérn 5/2.
 
 ## Changed
 
+- BREAKING CHANGE: The argument `trend_type` and the attribute `TrendType` of
+  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
+  renamed to `trend` and `Trend` respectively.
 - BREAKING CHANGE: the acquisition criterion `LimitState` renamed to
   [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
 - BREAKING CHANGE: each acquisition criterion class has a specific module
