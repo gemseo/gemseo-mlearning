@@ -1897,6 +1897,8 @@
       
         
       
+        
+      
     
     
       
@@ -2011,6 +2013,27 @@
   
   <span class="md-ellipsis">
     Regressor chain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/gemseo_mlearning/regression/smt_regression_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Smt regression model
   </span>
   
 
@@ -2288,23 +2311,32 @@ and this project adheres to
 <h1 id="develop">Develop<a class="headerlink" href="#develop" title="Permanent link">&para;</a></h1>
 <h2 id="added">Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/smt_regression_model/#gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel">SMTRegressionModel</a>
+  can be any surrogate model available in the Python package <a href="https://smt.readthedocs.io/">SMT</a>.</li>
 <li><a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo_mlearning.algos.opt.lib_surrogate_based.html#gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
   can use an existing <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a>
   and save the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a> that it enriches
   using the <code>regression_file_path</code> argument.</li>
 <li>The <code>multi_start_n_samples</code>, <code>multi_start_algo_name</code> and <code>multi_start_algo_options</code> arguments of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
-  allow to use multi-start optimization for the covariance model parameters.</li>
+  allow to use multi-start optimization for the covariance model parameters;
+  by default, the number of starting points <code>multi_start_n_samples</code> is set to 10.</li>
 <li>The <code>optimization_space</code> argument of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
   allows to set the lower and upper bounds of the covariance model parameters
   by means of a <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a>.</li>
 <li>The <code>covariance_model</code> argument of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
-  allows to use any covariance model proposed by OpenTURNS.</li>
+  allows to use any covariance model proposed by OpenTURNS
+  and facilitates the use of some of them through the enumeration
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModel">CovarianceModel</a>;
+  its default value is Matérn 5/2.</li>
 </ul>
 <h2 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h2>
 <ul>
+<li>BREAKING CHANGE: The argument <code>trend_type</code> and the attribute <code>TrendType</code> of
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
+  renamed to <code>trend</code> and <code>Trend</code> respectively.</li>
 <li>BREAKING CHANGE: the acquisition criterion <code>LimitState</code> renamed to
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet">LevelSet</a></li>
 <li>BREAKING CHANGE: each acquisition criterion class has a specific module
@@ -2366,7 +2398,7 @@ and this project adheres to
 <h2 id="added_2">Added<a class="headerlink" href="#added_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>An argument <code>trend_type</code> of type
-  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType">OTGaussianProcessRegressor.TrendType</a>
+  <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo_mlearning.regression.ot_gpr.html#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType">OTGaussianProcessRegressor.TrendType</a>
   to <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>;
   the trend type of the Gaussian process regressor can be either constant,
   linear or quadratic.</li>
