@@ -28,6 +28,9 @@ licenses that are listed below.
 `gemseo-mlearning` source code includes software with
 compatible licenses that are listed below.
 
+[SMT](https://github.com/SMTorg/smt)
+: BSD-3-Clause
+
 ## External application
 
 Some external applications are used by `gemseo-mlearning`,
