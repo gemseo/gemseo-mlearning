@@ -22,6 +22,7 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 from typing import Final
+from typing import Union
 
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_factory import DOEFactory
@@ -32,11 +33,14 @@ from numpy import array
 from numpy import atleast_2d
 from numpy import diag
 from openturns import TNC
+from openturns import AbsoluteExponential
 from openturns import ConstantBasisFactory
 from openturns import CovarianceModelImplementation
+from openturns import ExponentialModel
 from openturns import Interval
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
+from openturns import MaternModel
 from openturns import MultiStart
 from openturns import OptimizationAlgorithmImplementation
 from openturns import Point
@@ -85,17 +89,55 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     Used when `use_hmat` is `True`.
     """
 
-    class TrendType(StrEnum):
-        """The trend type of the Gaussian process regressor."""
+    class CovarianceModel(StrEnum):
+        """The name of a covariance model."""
+
+        ABSOLUTE_EXPONENTIAL = "AbsoluteExponential"
+        """The absolute exponential kernel."""
+
+        EXPONENTIAL = "Exponential"
+        """The exponential kernel."""
+
+        MATERN12 = "Matern12"
+        """The Matérn 1/2 kernel."""
+
+        MATERN32 = "Matern32"
+        """The Matérn 3/2 kernel."""
+
+        MATERN52 = "Matern52"
+        """The Matérn 5/2 kernel."""
+
+        SQUARED_EXPONENTIAL = "SquaredExponential"
+        """The squared exponential kernel."""
+
+    __COVARIANCE_MODELS_TO_CLASSES: Final[
+        dict[CovarianceModel, tuple[CovarianceModelImplementation, dict[str, float]]]
+    ] = {
+        CovarianceModel.MATERN12: (MaternModel, {"setNu": 0.5}),
+        CovarianceModel.MATERN32: (MaternModel, {"setNu": 1.5}),
+        CovarianceModel.MATERN52: (MaternModel, {"setNu": 2.5}),
+        CovarianceModel.ABSOLUTE_EXPONENTIAL: (AbsoluteExponential, {}),
+        CovarianceModel.EXPONENTIAL: (ExponentialModel, {}),
+        CovarianceModel.SQUARED_EXPONENTIAL: (SquaredExponential, {}),
+    }
+
+    CovarianceModelType = Union[
+        CovarianceModelImplementation,
+        type[CovarianceModelImplementation],
+        CovarianceModel,
+    ]
+
+    class Trend(StrEnum):
+        """The name of a trend."""
 
         CONSTANT = "constant"
         LINEAR = "linear"
         QUADRATIC = "quadratic"
 
-    __TREND_TYPES_TO_FACTORIES: Final[dict[str, type]] = {
-        TrendType.CONSTANT: ConstantBasisFactory,
-        TrendType.LINEAR: LinearBasisFactory,
-        TrendType.QUADRATIC: QuadraticBasisFactory,
+    __TRENDS_TO_FACTORIES: Final[dict[Trend, type]] = {
+        Trend.CONSTANT: ConstantBasisFactory,
+        Trend.LINEAR: LinearBasisFactory,
+        Trend.QUADRATIC: QuadraticBasisFactory,
     }
 
     __covariance_model: CovarianceModelImplementation
@@ -116,8 +158,8 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     __optimizer: OptimizationAlgorithmImplementation
     """The solver used to optimize the covariance model parameters."""
 
-    __trend_type: TrendType
-    """The type of the trend."""
+    __trend: Trend
+    """The name of the trend."""
 
     __use_hmat: bool
     """Whether to use HMAT or LAPACK for linear algebra."""
@@ -132,15 +174,12 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         use_hmat: bool | None = None,
-        trend_type: TrendType = TrendType.CONSTANT,
+        trend: Trend = Trend.CONSTANT,
         optimizer: OptimizationAlgorithmImplementation = TNC,
         optimization_space: DesignSpace | None = None,
-        covariance_model: Iterable[
-            CovarianceModelImplementation | type[CovarianceModelImplementation]
-        ]
-        | CovarianceModelImplementation
-        | type[CovarianceModelImplementation] = SquaredExponential,
-        multi_start_n_samples: int = 0,
+        covariance_model: Iterable[CovarianceModelType]
+        | CovarianceModelType = CovarianceModel.MATERN52,
+        multi_start_n_samples: int = 10,
         multi_start_algo_name: DOEAlgorithmName = DOEAlgorithmName.OT_OPT_LHS,
         multi_start_algo_options: Mapping[str, Any] = READ_ONLY_EMPTY_DICT,
     ) -> None:
@@ -151,7 +190,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 use HMAT when the learning size is greater
                 than
                 [MAX_SIZE_FOR_LAPACK][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.MAX_SIZE_FOR_LAPACK].
-            trend_type: The type of the trend.
+            trend: The name of the trend.
             optimizer: The solver used to optimize the covariance model parameters.
             optimization_space: The covariance model parameter space;
                 the size of a variable must take
@@ -159,7 +198,9 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             covariance_model: The covariance model of the Gaussian process.
                 Either an OpenTURNS covariance model class,
                 an OpenTURNS covariance model class instance,
-                or a list of OpenTURNS covariance model classes and class instances
+                a name of covariance model,
+                or a list of OpenTURNS covariance model classes,
+                OpenTURNS class instances and covariance model names,
                 whose size is equal to the output dimension.
             multi_start_n_samples: The number of starting points
                 for multi-start optimization of the covariance model parameters;
@@ -201,7 +242,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         self.__multi_start_n_samples = multi_start_n_samples
         self.__multi_start_algo_name = multi_start_algo_name
         self.__multi_start_algo_options = dict(multi_start_algo_options)
-        self.__trend_type = trend_type
+        self.__trend = trend
         if use_hmat is None:
             self.use_hmat = len(data) > self.MAX_SIZE_FOR_LAPACK
         else:
@@ -209,20 +250,45 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
 
         if isinstance(covariance_model, CovarianceModelImplementation):
             covariance_models = [covariance_model] * self.output_dimension
-        elif isclass(covariance_model):
+        elif isclass(covariance_model) or isinstance(
+            covariance_model, self.CovarianceModel
+        ):
             covariance_models = [
-                covariance_model(self.input_dimension)
+                self.__get_covariance_model(covariance_model)
             ] * self.output_dimension
         else:
             covariance_models = list(covariance_model)
             for i, model in enumerate(covariance_model):
-                if isclass(model):
-                    covariance_models[i] = model(self.input_dimension)
+                covariance_models[i] = self.__get_covariance_model(model)
 
         if self.output_dimension == 1:
             self.__covariance_model = covariance_models[0]
         else:
             self.__covariance_model = TensorizedCovarianceModel(covariance_models)
+
+    def __get_covariance_model(
+        self, covariance_model: CovarianceModelType
+    ) -> CovarianceModelImplementation:
+        """Return the covariance model.
+
+        Args:
+            covariance_model: The initial covariance model.
+
+        Returns:
+            The covariance model.
+        """
+        if isclass(covariance_model):
+            return covariance_model(self.input_dimension)
+
+        if isinstance(covariance_model, self.CovarianceModel):
+            cls, options = self.__COVARIANCE_MODELS_TO_CLASSES[covariance_model]
+            covariance_model = cls(self.input_dimension)
+            for k, v in options.items():
+                getattr(covariance_model, k)(v)
+
+            return covariance_model
+
+        return covariance_model
 
     @property
     def use_hmat(self) -> bool:
@@ -250,7 +316,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
             output_data,
             self.__covariance_model,
             create_trend_basis(
-                self.__TREND_TYPES_TO_FACTORIES[self.__trend_type],
+                self.__TRENDS_TO_FACTORIES[self.__trend],
                 input_data.shape[1],
                 output_data.shape[1],
             ),
