@@ -38,15 +38,16 @@ test = [
 doc = [
     "black",
     "griffe-inherited-docstrings",
+    "markdown-exec[ansi]",
     "mike",
-    "mkdocs-gallery",
-    "mkdocs-section-index",
-    "mkdocs-literate-nav",
-    "mkdocs-gen-files",
-    "mkdocstrings[python]",
-    "mkdocs-material",
-    "mkdocs-include-markdown-plugin",
     "mkdocs-bibtex",
+    "mkdocs-gallery",
+    "mkdocs-gen-files",
+    "mkdocs-include-markdown-plugin",
+    "mkdocs-literate-nav",
+    "mkdocs-material",
+    "mkdocs-section-index",
+    "mkdocstrings[python]",
 ]
 
 [project.urls]

@@ -24,6 +24,7 @@ theme:
 
 plugins:
 - search
+- markdown-exec
 - gen-files:
     scripts:
     - docs/gen_ref_pages.py
