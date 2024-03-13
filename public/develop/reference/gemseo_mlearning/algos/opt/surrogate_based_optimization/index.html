@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -47,6 +47,10 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_ansi.css">
     
       <link rel="stylesheet" href="../../../../../assets/_mkdocstrings.css">
     
@@ -2447,7 +2451,10 @@
   </span>
 
 <a href="#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedAlgorithmDescription" class="headerlink" title="Permanent link">&para;</a></h4>
-
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SurrogateBasedAlgorithmDescription</span><span class="p">(</span>
+    <span class="n">library_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;gemseo-mlearning&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
@@ -2506,7 +2513,10 @@ with the method :meth:<code>.DesignSpace.initialize_missing_current_values</code
 </details>
                 <details class="quote">
                   <summary>Source code in <code>src/gemseo_mlearning/algos/opt/surrogate_based_optimization.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
@@ -2514,10 +2524,7 @@ with the method :meth:<code>.DesignSpace.initialize_missing_current_values</code
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D107</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D107</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">descriptions</span> <span class="o">=</span> <span class="p">{</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__SBO</span><span class="p">:</span> <span class="n">SurrogateBasedAlgorithmDescription</span><span class="p">(</span>
@@ -2611,6 +2618,8 @@ with the method :meth:<code>.DesignSpace.initialize_missing_current_values</code
     
     
       <script src="../../../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+        <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
       
         <script src="../../../../../javascripts/mathjax.js"></script>
       

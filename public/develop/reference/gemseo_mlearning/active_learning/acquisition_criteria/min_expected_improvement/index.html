@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -47,6 +47,10 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_ansi.css">
     
       <link rel="stylesheet" href="../../../../../assets/_mkdocstrings.css">
     
@@ -2528,7 +2532,6 @@
 <a href="#gemseo_mlearning.active_learning.acquisition_criteria.min_expected_improvement.MinExpectedImprovement" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">MinExpectedImprovement</span><span class="p">(</span>
     <span class="n">algo_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
-    <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><span title="gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.AcquisitionCriterionOptionType">AcquisitionCriterionOptionType</span></span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -2554,21 +2557,13 @@
           <p>The distribution of a machine learning algorithm.</p>
         </div>
       </li>
-      <li class="field-body">
-        <b><code>**options</code></b>
-            (<code><span title="gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.AcquisitionCriterionOptionType">AcquisitionCriterionOptionType</span></code>, default:
-                <code>{}</code>
-)
-        –
-        <div class="doc-md-description">
-          <p>The acquisition criterion options.</p>
-        </div>
-      </li>
   </ul>
 
                 <details class="quote">
                   <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
@@ -2583,22 +2578,10 @@
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
-    <span class="n">algo_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n">AcquisitionCriterionOptionType</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        algo_distribution: The distribution of a machine learning algorithm.</span>
-<span class="sd">        **options: The acquisition criterion options.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">algo_distribution</span> <span class="o">=</span> <span class="n">algo_distribution</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo_distribution</span><span class="o">.</span><span class="n">learning_set</span>
@@ -2766,6 +2749,8 @@
     
     
       <script src="../../../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+        <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
       
         <script src="../../../../../javascripts/mathjax.js"></script>
       
