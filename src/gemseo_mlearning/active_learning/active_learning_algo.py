@@ -48,9 +48,6 @@ if TYPE_CHECKING:
     from gemseo.core.discipline import MDODiscipline
     from gemseo.mlearning.core.ml_algo import DataType
 
-    from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
-        AcquisitionCriterionOptionType,
-    )
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
     )
@@ -72,7 +69,7 @@ class ActiveLearningAlgo:
     __acquisition_criterion: str
     """The name of a data acquisition criterion to find the new training point(s)."""
 
-    __acquisition_criterion_options: dict[str, AcquisitionCriterionOptionType]
+    __acquisition_criterion_options: dict[str, Any]
     """The option of the data acquisition criterion."""
 
     __acquisition_problem: OptimizationProblem
@@ -104,7 +101,7 @@ class ActiveLearningAlgo:
         criterion: str,
         input_space: DesignSpace,
         distribution: BaseRegressorDistribution,
-        **criterion_options: AcquisitionCriterionOptionType,
+        **criterion_options: Any,
     ) -> None:
         """
         Args:

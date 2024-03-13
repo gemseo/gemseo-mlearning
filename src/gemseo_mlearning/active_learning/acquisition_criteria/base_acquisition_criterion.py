@@ -47,8 +47,6 @@ if TYPE_CHECKING:
         BaseRegressorDistribution,
     )
 
-AcquisitionCriterionOptionType = float
-
 
 class BaseAcquisitionCriterion(MDOFunction):
     """A base acquisition criterion."""
@@ -62,15 +60,10 @@ class BaseAcquisitionCriterion(MDOFunction):
     MAXIMIZE: ClassVar[bool] = True
     """Whether this criterion must be maximized."""
 
-    def __init__(
-        self,
-        algo_distribution: BaseRegressorDistribution,
-        **options: AcquisitionCriterionOptionType,
-    ) -> None:
+    def __init__(self, algo_distribution: BaseRegressorDistribution) -> None:
         """
         Args:
             algo_distribution: The distribution of a machine learning algorithm.
-            **options: The acquisition criterion options.
         """  # noqa: D205 D212 D415
         self.algo_distribution = algo_distribution
         dataset = self.algo_distribution.learning_set
