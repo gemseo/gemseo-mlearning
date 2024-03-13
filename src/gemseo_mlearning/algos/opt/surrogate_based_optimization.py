@@ -33,9 +33,6 @@ from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
-from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
-    AcquisitionCriterionOptionType,
-)
 from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
@@ -53,7 +50,7 @@ SBOOptionType = Union[
     str,
     Mapping[str, DOELibraryOptionType],
     Mapping[str, MLAlgoParameterType],
-    Mapping[str, AcquisitionCriterionOptionType],
+    Mapping[str, Any],
     Mapping[str, OptimizationLibraryOptionType],
 ]
 
