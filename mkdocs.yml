@@ -6,16 +6,17 @@ repo_name: gemseo-mlearning
 theme:
   name: material
   favicon: images/favicon.ico
-  logo: images/monogram.png
   features:
     - navigation.tabs
     - navigation.instant
   palette:
     - scheme: default
+      primary: teal
       toggle:
         icon: material/lightbulb-outline
         name: Switch to dark mode
     - scheme: slate
+      primary: teal
       toggle:
         icon: material/lightbulb
         name: Switch to light mode
