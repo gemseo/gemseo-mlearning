@@ -29,10 +29,10 @@ fastjsonschema==2.19.1
     # via gemseo
 fonttools==4.50.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@098a6bf281e245766dd422339e5e64761570eb35
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@abcbf58d8d3497a6623a780ff6bb28790dfcb804
 genson==1.2.2
     # via gemseo
-graphviz==0.20.1
+graphviz==0.20.3
     # via gemseo
 h5py==3.10.0
     # via gemseo
@@ -87,7 +87,7 @@ pillow==10.2.0
     # via
     #   gemseo
     #   matplotlib
-plotly==5.19.0
+plotly==5.20.0
     # via gemseo
 pluggy==1.4.0
     # via pytest
