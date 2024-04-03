@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.16">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
@@ -2627,7 +2627,7 @@
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">ActiveLearningAlgo</span><span class="p">(</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">ActiveLearningAlgo</span><span class="p">(</span>
     <span class="n">criterion</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
     <span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span><span class="p">,</span>
     <span class="n">distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
@@ -2858,7 +2858,7 @@ selecting new point(s) to reach a particular goal
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.compute_next_input_data" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">compute_next_input_data</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.DataType">DataType</span></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_next_input_data</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -2952,7 +2952,7 @@ Otherwise, return a unique array.</p>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.set_acquisition_algorithm" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">set_acquisition_algorithm</span><span class="p">(</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">set_acquisition_algorithm</span><span class="p">(</span>
     <span class="n">algo_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
@@ -3040,7 +3040,7 @@ use the default values for the other ones.</p>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.update_algo" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">update_algo</span><span class="p">(</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_algo</span><span class="p">(</span>
     <span class="n">discipline</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.core.discipline.MDODiscipline" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.core.discipline.html#gemseo.core.discipline.MDODiscipline">MDODiscipline</a></span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/data_persistence/database.html#gemseo.algos.database.Database">Database</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.opt_problem.OptimizationProblem" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.opt_problem.html#gemseo.algos.opt_problem.OptimizationProblem">OptimizationProblem</a></span><span class="p">]</span>
 </code></pre></div>
@@ -3227,7 +3227,7 @@ and the last acquisition problem.</p>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.update_problem" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">update_problem</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_problem</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -3313,7 +3313,7 @@ and the last acquisition problem.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.1e8ae164.min.js"></script>
       
         <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
       
