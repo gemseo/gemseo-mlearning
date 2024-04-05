@@ -32,7 +32,7 @@ and this project adheres to
 
 - [SMTRegressionModel][gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel]
   can be any surrogate model available in the Python package [SMT](https://smt.readthedocs.io/).
-- [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization]
+- [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   can use an existing [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo]
   and save the [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo] that it enriches
   using the `regression_file_path` argument.
@@ -82,7 +82,7 @@ and this project adheres to
 - BREAKING CHANGE: `gemseo.adaptive.criteria` renamed to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].
 - BREAKING CHANGE:
-  The module [gemseo_mlearning.api][gemseo_mlearning.api] no longer exists;
+  The module `gemseo_mlearning.api` no longer exists;
   the functions
   [sample_discipline][gemseo_mlearning.sample_discipline]
   and [sample_disciplines][gemseo_mlearning.sample_disciplines]
