@@ -40,6 +40,7 @@ from openturns import ExponentialModel
 from openturns import Interval
 from openturns import KrigingAlgorithm
 from openturns import LinearBasisFactory
+from openturns import Log
 from openturns import MaternModel
 from openturns import MultiStart
 from openturns import OptimizationAlgorithmImplementation
@@ -311,6 +312,8 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
         ResourceMap.SetAsString("KrigingAlgorithm-LinearAlgebra", linear_algebra_method)
 
     def _fit(self, input_data: NumberArray, output_data: NumberArray) -> None:
+        log_flags = Log.Flags()
+        Log.Show(Log.NONE)
         algo = KrigingAlgorithm(
             input_data,
             output_data,
@@ -321,6 +324,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
                 output_data.shape[1],
             ),
         )
+        Log.Show(log_flags)
         if self.__multi_start_n_samples:
             doe_algo = DOEFactory().create(self.__multi_start_algo_name)
             design_space = DesignSpace()

@@ -191,9 +191,11 @@ class ActiveLearningAlgo:
         Returns:
             The next learning point.
         """
-        input_data = self.__acquisition_algo.execute(
-            self.__acquisition_problem, **self.__acquisition_algo_options
-        ).x_opt
+        with LoggingContext(logging.getLogger("gemseo")):
+            input_data = self.__acquisition_algo.execute(
+                self.__acquisition_problem, **self.__acquisition_algo_options
+            ).x_opt
+
         if as_dict:
             return self.__acquisition_problem.design_space.array_to_dict(input_data)
 
@@ -220,42 +222,39 @@ class ActiveLearningAlgo:
         """
         LOGGER.info("Update machine learning algorithm with %s points", n_samples)
         for sample_id in CustomTqdmProgressBar(range(1, n_samples + 1)):
-            logger = logging.getLogger()
-            with LoggingContext(logger):
-                input_data = self.compute_next_input_data(as_dict=True)
-                for inputs, outputs in self.__acquisition_problem.database.items():
-                    self.__database.store(
-                        array([sample_id, *inputs.unwrap().tolist()]), outputs
-                    )
-
-                discipline.execute(input_data)
-
-                extra_learning_set = IODataset()
-                distribution = self.__distribution
-                variable_names_to_n_components = distribution.algo.sizes
-                extra_learning_set.add_group(
-                    group_name=IODataset.INPUT_GROUP,
-                    data=hstack(list(input_data.values()))[newaxis],
-                    variable_names=distribution.input_names,
-                    variable_names_to_n_components=variable_names_to_n_components,
-                )
-                output_names = distribution.output_names
-                extra_learning_set.add_group(
-                    group_name=IODataset.OUTPUT_GROUP,
-                    data=hstack([
-                        discipline.local_data[output_name]
-                        for output_name in output_names
-                    ])[newaxis],
-                    variable_names=output_names,
-                    variable_names_to_n_components=variable_names_to_n_components,
-                )
-                augmented_learning_set = concat(
-                    [distribution.algo.learning_set, extra_learning_set],
-                    ignore_index=True,
+            input_data = self.compute_next_input_data(as_dict=True)
+            for inputs, outputs in self.__acquisition_problem.database.items():
+                self.__database.store(
+                    array([sample_id, *inputs.unwrap().tolist()]), outputs
                 )
 
-                self.__distribution.change_learning_set(augmented_learning_set)
-                self.update_problem()
+            discipline.execute(input_data)
+
+            extra_learning_set = IODataset()
+            distribution = self.__distribution
+            variable_names_to_n_components = distribution.algo.sizes
+            extra_learning_set.add_group(
+                group_name=IODataset.INPUT_GROUP,
+                data=hstack(list(input_data.values()))[newaxis],
+                variable_names=distribution.input_names,
+                variable_names_to_n_components=variable_names_to_n_components,
+            )
+            output_names = distribution.output_names
+            extra_learning_set.add_group(
+                group_name=IODataset.OUTPUT_GROUP,
+                data=hstack([
+                    discipline.local_data[output_name] for output_name in output_names
+                ])[newaxis],
+                variable_names=output_names,
+                variable_names_to_n_components=variable_names_to_n_components,
+            )
+            augmented_learning_set = concat(
+                [distribution.algo.learning_set, extra_learning_set],
+                ignore_index=True,
+            )
+
+            self.__distribution.change_learning_set(augmented_learning_set)
+            self.update_problem()
 
         return self.__database, self.__acquisition_problem
 
