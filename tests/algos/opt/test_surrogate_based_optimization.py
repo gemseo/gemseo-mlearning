@@ -23,6 +23,7 @@ from pathlib import Path
 import pytest
 from gemseo.algos.opt.opt_factory import OptimizersFactory
 from gemseo.problems.analytical.rastrigin import Rastrigin
+from gemseo.problems.analytical.rosenbrock import Rosenbrock
 from pandas.testing import assert_frame_equal
 
 
@@ -65,3 +66,20 @@ def test_save(regression_algorithm, tmp_wd):
         model = pickle.load(file)
 
     assert_frame_equal(model.learning_set, regression_algorithm.learning_set)
+
+
+def test_problem_counters():
+    """Check the counters attached to the optimization problem."""
+    problem = Rosenbrock()
+    OptimizersFactory().execute(
+        problem,
+        "SBO",
+        max_iter=13,
+        doe_size=10,
+        acquisition_algorithm="OT_MONTE_CARLO",
+        acquisition_options={"n_samples": 100},
+    )
+    assert problem.max_iter == 13
+    assert problem.current_iter == 13
+    assert problem.nonproc_objective.n_calls == 13
+    assert problem.objective.n_calls == 14

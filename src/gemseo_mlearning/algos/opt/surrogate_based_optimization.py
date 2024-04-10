@@ -21,6 +21,7 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 from typing import Any
+from typing import ClassVar
 from typing import Union
 
 from gemseo.algos.doe.doe_factory import DOEFactory
@@ -67,6 +68,8 @@ class SurrogateBasedOptimization(OptimizationLibrary):
 
     LIBRARY_NAME = SurrogateBasedAlgorithmDescription.library_name
     __SBO = "SBO"
+
+    _NORMALIZE_DS: ClassVar[bool] = False
 
     def __init__(self) -> None:  # noqa: D107
         super().__init__()
@@ -179,29 +182,33 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         doe_algorithm = options["doe_algorithm"]
         regression_algorithm = options["regression_algorithm"]
         if not isinstance(regression_algorithm, MLRegressionAlgo):
+            # The number of evaluations is equal to
+            #     1 for the initial evaluation in OptimizationLibrary._pre_run
+            #   + N for the N-length DOE
+            #   + n_iter - 1 - N
+            # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
             doe_algo = DOEFactory().create(doe_algorithm)
             initial_doe_size = len(
                 doe_algo.compute_doe(self.problem.design_space, doe_size, **doe_options)
             )
             max_iter = options[self.MAX_ITER]
-            if max_iter <= initial_doe_size:
+            if max_iter < 1 + initial_doe_size:
                 msg = (
                     f"max_iter ({max_iter}) must be "
                     f"strictly greater than the initial DOE size ({initial_doe_size})."
                 )
                 raise ValueError(msg)
 
-        # Set a large bound on the number of acquisitions as GEMSEO handles stopping
-        return self.get_optimum_from_database(
-            SurrogateBasedOptimizer(
-                self.problem,
-                options["acquisition_algorithm"],
-                doe_size=doe_size,
-                doe_algorithm=doe_algorithm,
-                doe_options=doe_options,
-                regression_algorithm=regression_algorithm,
-                regression_options=options["regression_options"],
-                regression_file_path=options["regression_file_path"],
-                acquisition_options=options["acquisition_options"],
-            ).execute(sys.maxsize)
+        optimizer = SurrogateBasedOptimizer(
+            self.problem,
+            options["acquisition_algorithm"],
+            doe_size=doe_size,
+            doe_algorithm=doe_algorithm,
+            doe_options=doe_options,
+            regression_algorithm=regression_algorithm,
+            regression_options=options["regression_options"],
+            regression_file_path=options["regression_file_path"],
+            acquisition_options=options["acquisition_options"],
         )
+        # Set a large bound on the number of acquisitions as GEMSEO handles stopping
+        return self.get_optimum_from_database(optimizer.execute(sys.maxsize))

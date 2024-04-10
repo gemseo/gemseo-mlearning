@@ -16,17 +16,17 @@
 from __future__ import annotations
 
 import pytest
-from gemseo import execute_algo
+from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.problems.analytical.rastrigin import Rastrigin
 
 from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def regression_algorithm() -> OTGaussianProcessRegressor:
     """A regression algorithm for the Rastrigin problem."""
     problem = Rastrigin()
-    execute_algo(problem, "OT_SOBOL", algo_type="doe", n_samples=5)
+    DOEFactory().execute(problem, "OT_SOBOL", n_samples=5)
     dataset = problem.to_dataset(opt_naming=False)
     dataset = dataset.map(lambda x: x.real)
     algo = OTGaussianProcessRegressor(

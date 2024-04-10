@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import logging
 import pickle
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -29,6 +30,7 @@ from gemseo.mlearning.regression.factory import RegressionModelFactory
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
 from gemseo.mlearning.regression.regression import MLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
+from gemseo.utils.logging_tools import LoggingContext
 from numpy import hstack
 from numpy import newaxis
 from pandas import concat
@@ -115,6 +117,8 @@ class SurrogateBasedOptimizer:
                 approximating the objective function over the design space
                 or the regression algorithm itself.
             regression_options: The options of the regression algorithm.
+                If transformer is missing,
+                use :attr:`.MLRegressionAlgo.DEFAULT_TRANSFORMER`.
                 This argument is ignored
                 when regression_algorithm is an
                 [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
@@ -128,26 +132,39 @@ class SurrogateBasedOptimizer:
             self.__dataset = regression_algorithm.learning_set
         else:
             # Store max_iter as it will be overwritten by DOELibrary
-            max_iter = self.__problem.max_iter
+            max_iter = problem.max_iter
             options = dict(doe_options)
             if doe_size > 0 and DOELibrary.N_SAMPLES not in options:
                 options[DOELibrary.N_SAMPLES] = doe_size
 
-            DOEFactory().execute(self.__problem, doe_algorithm, **options)
-            self.__dataset = self.__problem.to_dataset(opt_naming=False)
+            # Store the listeners as they will be cleared by DOELibrary.
+            new_iter_listeners, store_listeners = problem.database.clear_listeners()
+            with LoggingContext(logging.getLogger("gemseo")):
+                DOEFactory().execute(problem, doe_algorithm, **options)
+
+            database = self.__problem.database
+            for listener in new_iter_listeners:
+                database.add_new_iter_listener(listener)
+
+            for listener in store_listeners:
+                database.add_store_listener(listener)
+
+            self.__dataset = problem.to_dataset(opt_naming=False)
+            _regression_options = {"transformer": MLRegressionAlgo.DEFAULT_TRANSFORMER}
+            _regression_options.update(dict(regression_options))
             regression_algorithm = RegressionModelFactory().create(
                 regression_algorithm,
                 data=self.__dataset,
-                transformer=MLRegressionAlgo.DEFAULT_TRANSFORMER,
-                **regression_options,
+                **_regression_options,
             )
-            self.__problem.max_iter = max_iter
+            # Add the first iteration to the current_iter reset by DOELibrary.
+            problem.current_iter += 1
+            # And restore max_iter.
+            problem.max_iter = max_iter
 
         self.__distribution = get_regressor_distribution(regression_algorithm)
         self.__active_learning_algo = ActiveLearningAlgo(
-            ExpectedImprovement.__name__,
-            self.__problem.design_space,
-            self.__distribution,
+            ExpectedImprovement.__name__, problem.design_space, self.__distribution
         )
         self.__active_learning_algo.set_acquisition_algorithm(
             acquisition_algorithm, **acquisition_options
@@ -172,7 +189,7 @@ class SurrogateBasedOptimizer:
                 break
 
             output_data = self.__problem.evaluate_functions(
-                input_data, normalize=False
+                x_vect=input_data, normalize=False
             )[0]
             extra_learning_set = IODataset()
             distribution = self.__distribution

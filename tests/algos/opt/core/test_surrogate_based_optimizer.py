@@ -16,6 +16,8 @@
 
 from __future__ import annotations
 
+from unittest.mock import MagicMock
+
 import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.opt_problem import OptimizationProblem
@@ -68,7 +70,13 @@ def test_known_acquired_input_data():
 
 def test_convergence_on_rastrigin():
     """Check the surrogate-based optimizer on Rastrigin's function."""
+
+    def listener(x):
+        return
+
     problem = Rastrigin()
+    problem.database.add_store_listener(listener)
+    problem.database.add_store_listener = MagicMock()
     SurrogateBasedOptimizer(
         problem,
         "DIFFERENTIAL_EVOLUTION",
@@ -76,6 +84,9 @@ def test_convergence_on_rastrigin():
         acquisition_options={"max_iter": 1000, "popsize": 50, "seed": 1},
     ).execute(5)
     assert problem.get_optimum()[0] < 0.1
+
+    # Check that the optimizer resets the listener after the sub-algo has removed it.
+    problem.database.add_store_listener.assert_called()
 
 
 def test_stratified_algorithm():
