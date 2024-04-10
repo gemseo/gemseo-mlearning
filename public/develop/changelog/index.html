@@ -2322,7 +2322,7 @@ and this project adheres to
 <li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
   can use an existing <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a>
   and save the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a> that it enriches
-  using the <code>regression_file_path</code> argument.</li>
+  using the <code>regression_file_path</code> option.</li>
 <li>The <code>multi_start_n_samples</code>, <code>multi_start_algo_name</code> and <code>multi_start_algo_options</code> arguments of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
   allow to use multi-start optimization for the covariance model parameters;
@@ -2377,6 +2377,8 @@ and this project adheres to
 </ul>
 <h2 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h2>
 <ul>
+<li>The data transformer can be set with the <code>"transformer"</code> key of the <code>regression_options</code> dictionary
+  passed to [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization].</li>
 <li>The <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile">Quantile</a>
   estimates the quantile by Monte Carlo sampling
   by means of the probability distributions of the input variables;
