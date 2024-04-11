@@ -2827,15 +2827,16 @@
 <p>A
 <a class="autorefs autorefs-internal" href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution">RegressorDistribution</a>
 samples an
-<a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a>,
+[BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo],
 by learning new versions of the latter from subsets of the original learning dataset.</p>
 <p>These new
-<a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.core.ml_algo.html#gemseo.mlearning.core.ml_algo.MLAlgo">MLAlgo</a>
+[BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
 instances are based on sampling methods,
 such as bootstrap, cross-validation or leave-one-out.</p>
-<p>Sampling a <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.core.ml_algo.html#gemseo.mlearning.core.ml_algo.MLAlgo">MLAlgo</a> can be particularly useful to:</p>
+<p>Sampling a [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+can be particularly useful to:</p>
 <ul>
-<li>study the robustness of a <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.core.ml_algo.html#gemseo.mlearning.core.ml_algo.MLAlgo">MLAlgo</a>
+<li>study the robustness of a [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
   w.r.t. learning dataset elements,</li>
 <li>estimate infill criteria for active learning purposes,</li>
 <li>etc.</li>
@@ -2862,7 +2863,7 @@ such as bootstrap, cross-validation or leave-one-out.</p>
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">RegressorDistribution</span><span class="p">(</span>
-    <span class="n">algo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></span><span class="p">,</span>
+    <span class="n">algo</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></span><span class="p">,</span>
     <span class="n">bootstrap</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">loo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2883,7 +2884,7 @@ such as bootstrap, cross-validation or leave-one-out.</p>
   <ul>
       <li class="field-body">
         <b><code>algo</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></code>)
+            (<code><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></code>)
         –
         <div class="doc-md-description">
           <p>A regression model.</p>
@@ -2935,8 +2936,7 @@ This argument is ignored in the case of leave-one-out.</p>
 
                 <details class="quote">
                   <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
-<span class="normal">104</span>
+                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
@@ -2977,9 +2977,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
-<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">145</span>
+<span class="normal">146</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">algo</span><span class="p">:</span> <span class="n">MLRegressionAlgo</span><span class="p">,</span>
+    <span class="n">algo</span><span class="p">:</span> <span class="n">BaseMLRegressionAlgo</span><span class="p">,</span>
     <span class="n">bootstrap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">loo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3092,7 +3093,7 @@ This argument is ignored in the case of leave-one-out.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.algo" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">algo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo">algo</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">algo</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo">algo</a></span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -3299,10 +3300,10 @@ This argument is ignored in the case of leave-one-out.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">341</span>
-<span class="normal">342</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">342</span>
 <span class="normal">343</span>
-<span class="normal">344</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_set</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
+<span class="normal">344</span>
+<span class="normal">345</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_set</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
     <span class="k">for</span> <span class="n">algo</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">algos</span><span class="p">:</span>
         <span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span> <span class="o">=</span> <span class="n">learning_set</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">change_learning_set</span><span class="p">(</span><span class="n">learning_set</span><span class="p">)</span>
@@ -3382,8 +3383,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">251</span>
-<span class="normal">252</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">252</span>
 <span class="normal">253</span>
 <span class="normal">254</span>
 <span class="normal">255</span>
@@ -3408,7 +3408,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">274</span>
 <span class="normal">275</span>
 <span class="normal">276</span>
-<span class="normal">277</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_confidence_interval</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="normal">277</span>
+<span class="normal">278</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_confidence_interval</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
@@ -3514,8 +3515,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">307</span>
-<span class="normal">308</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">308</span>
 <span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
@@ -3528,8 +3528,9 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">318</span>
 <span class="normal">319</span>
 <span class="normal">320</span>
-<span class="normal">321</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">321</span>
+<span class="normal">322</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_expected_improvement</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -3600,13 +3601,13 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">291</span>
-<span class="normal">292</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">292</span>
 <span class="normal">293</span>
 <span class="normal">294</span>
 <span class="normal">295</span>
-<span class="normal">296</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">296</span>
+<span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_members</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_weights</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
@@ -3691,8 +3692,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span>
-<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_standard_deviation</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -3770,15 +3771,15 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">298</span>
-<span class="normal">299</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">299</span>
 <span class="normal">300</span>
 <span class="normal">301</span>
 <span class="normal">302</span>
 <span class="normal">303</span>
 <span class="normal">304</span>
-<span class="normal">305</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">305</span>
+<span class="normal">306</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_variance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_members</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_weights</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
@@ -3827,8 +3828,7 @@ If <code>None</code>, use the whole learning dataset</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
-<span class="normal">148</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">148</span>
 <span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span>
@@ -3849,7 +3849,8 @@ If <code>None</code>, use the whole learning dataset</p>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
-<span class="normal">169</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">learn</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="normal">169</span>
+<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">learn</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">samples</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -4028,8 +4029,7 @@ or a (M, d) array representing M samples in dimension d.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">225</span>
-<span class="normal">226</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span>
@@ -4052,7 +4052,8 @@ or a (M, d) array representing M samples in dimension d.</p>
 <span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span>
-<span class="normal">249</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">predict_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">predict_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Predict the output value with the different machine learning algorithms.</span>
 
 <span class="sd">    After prediction, the method stacks the results.</span>

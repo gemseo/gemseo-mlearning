@@ -2368,7 +2368,7 @@
 
 <a href="#gemseo_mlearning.active_learning.distributions.get_regressor_distribution" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_regressor_distribution</span><span class="p">(</span>
-    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></span><span class="p">,</span>
+    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></span><span class="p">,</span>
     <span class="n">use_bootstrap</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">use_loo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2385,7 +2385,7 @@
   <ul>
       <li class="field-body">
         <b><code>regression_algorithm</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></code>)
+            (<code><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></code>)
         –
         <div class="doc-md-description">
           <p>The regression algorithm.</p>
@@ -2481,7 +2481,7 @@ This argument is ignored in the case of leave-one-out.</p>
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_regressor_distribution</span><span class="p">(</span>
-    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="n">MLRegressionAlgo</span><span class="p">,</span>
+    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="n">BaseMLRegressionAlgo</span><span class="p">,</span>
     <span class="n">use_bootstrap</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">use_loo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

@@ -2431,7 +2431,7 @@
 <a href="#gemseo_mlearning.regression.gradient_boosting.GradientBoostingRegressor" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">GradientBoostingRegressor</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></span><span class="p">,</span>
-    <span class="n">transformer</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></span> <span class="o">=</span> <span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
+    <span class="n">transformer</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></span> <span class="o">=</span> <span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
     <span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">n_estimators</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
@@ -2441,7 +2441,7 @@
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></code></p>
+            Bases: <code><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></code></p>
 
   
       <p>Gradient boosting for regression.</p>
@@ -2462,19 +2462,19 @@
       <li class="field-body">
         <b><code>transformer</code></b>
             (<code><span title="gemseo.mlearning.core.ml_algo.TransformerType">TransformerType</span></code>, default:
-                <code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo.IDENTITY" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo.IDENTITY">IDENTITY</a></code>
+                <code><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo.IDENTITY">IDENTITY</span></code>
 )
         –
         <div class="doc-md-description">
           <p>The strategies to transform the variables.
-The values are instances of :class:<code>.Transformer</code>
+The values are instances of :class:<code>.BaseTransformer</code>
 while the keys are the names of
 either the variables
 or the groups of variables,
 e.g. <code>"inputs"</code> or <code>"outputs"</code>
 in the case of the regression algorithms.
 If a group is specified,
-the :class:<code>.Transformer</code> will be applied
+the :class:<code>.BaseTransformer</code> will be applied
 to all the variables of this group.
 If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
         </div>
@@ -2564,7 +2564,7 @@ have a transformer.</p>
 <span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">IODataset</span><span class="p">,</span>
-    <span class="n">transformer</span><span class="p">:</span> <span class="n">TransformerType</span> <span class="o">=</span> <span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
+    <span class="n">transformer</span><span class="p">:</span> <span class="n">TransformerType</span> <span class="o">=</span> <span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
     <span class="n">input_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">output_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">n_estimators</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>

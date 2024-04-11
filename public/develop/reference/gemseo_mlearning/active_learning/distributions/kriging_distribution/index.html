@@ -2806,7 +2806,7 @@ standard deviation.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.algo" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">algo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.regression.MLRegressionAlgo" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.mlearning.regression.regression.html#gemseo.mlearning.regression.regression.MLRegressionAlgo">MLRegressionAlgo</a></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo">algo</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">algo</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.regression.BaseMLRegressionAlgo">BaseMLRegressionAlgo</span></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo">algo</a></span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
@@ -3169,8 +3169,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
-<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">119</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_expected_improvement</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -3246,8 +3246,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
-<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_mean</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -3318,8 +3318,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
-<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_standard_deviation</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -3388,8 +3388,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@regression</span><span class="o">.</span><span class="n">MLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
+<span class="nd">@regression</span><span class="o">.</span><span class="n">BaseMLRegressionAlgo</span><span class="o">.</span><span class="n">DataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
 <span class="k">def</span> <span class="nf">compute_variance</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
