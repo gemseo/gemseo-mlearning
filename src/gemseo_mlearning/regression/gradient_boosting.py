@@ -25,7 +25,7 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from numpy import array
 from sklearn.ensemble import GradientBoostingRegressor as SKLGradientBoosting
 
@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     from gemseo.typing import NumberArray
 
 
-class GradientBoostingRegressor(MLRegressionAlgo):
+class GradientBoostingRegressor(BaseMLRegressionAlgo):
     """Gradient boosting for regression."""
 
     LIBRARY: ClassVar[str] = "scikit-learn"
@@ -46,7 +46,7 @@ class GradientBoostingRegressor(MLRegressionAlgo):
     def __init__(
         self,
         data: IODataset,
-        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         n_estimators: int = 100,

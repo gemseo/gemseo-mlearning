@@ -33,8 +33,8 @@ and this project adheres to
 - [SMTRegressionModel][gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel]
   can be any surrogate model available in the Python package [SMT](https://smt.readthedocs.io/).
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
-  can use an existing [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo]
-  and save the [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo] that it enriches
+  can use an existing [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
+  and save the [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo] that it enriches
   using the `regression_file_path` option.
 - The `multi_start_n_samples`, `multi_start_algo_name` and `multi_start_algo_options` arguments of
   [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]

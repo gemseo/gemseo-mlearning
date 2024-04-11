@@ -26,7 +26,7 @@ from typing import Union
 
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_factory import DOEFactory
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
@@ -66,7 +66,7 @@ DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOEFactory().algorithms)
 """The name of a DOE algorithm."""
 
 
-class OTGaussianProcessRegressor(MLRegressionAlgo):
+class OTGaussianProcessRegressor(BaseMLRegressionAlgo):
     """Gaussian process regression."""
 
     LIBRARY: ClassVar[str] = "OpenTURNS"
@@ -171,7 +171,7 @@ class OTGaussianProcessRegressor(MLRegressionAlgo):
     def __init__(
         self,
         data: IODataset,
-        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         use_hmat: bool | None = None,

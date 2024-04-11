@@ -25,7 +25,7 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from numpy import array
 from sklearn.svm import SVR
 
@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     from gemseo.typing import NumberArray
 
 
-class SVMRegressor(MLRegressionAlgo):
+class SVMRegressor(BaseMLRegressionAlgo):
     """Support vector machine for regression."""
 
     LIBRARY: ClassVar[str] = "scikit-learn"
@@ -46,7 +46,7 @@ class SVMRegressor(MLRegressionAlgo):
     def __init__(
         self,
         data: IODataset,
-        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         kernel: str = "rbf",
