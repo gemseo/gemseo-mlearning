@@ -22,7 +22,7 @@ from typing import Final
 from typing import NoReturn
 
 from gemseo.mlearning.regression.rbf import RBFRegressor
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from numpy import double
 from smt.surrogate_models.surrogate_model import SurrogateModel
 from strenum import StrEnum
@@ -42,7 +42,7 @@ SMTSurrogateModel = StrEnum("SurrogateModel", list(_NAMES_TO_CLASSES.keys()))
 """The class name of an SMT surrogate model."""
 
 
-class SMTRegressionModel(MLRegressionAlgo):
+class SMTRegressionModel(BaseMLRegressionAlgo):
     """A regression model from SMT.
 
     !!! note
@@ -61,7 +61,7 @@ class SMTRegressionModel(MLRegressionAlgo):
         self,
         data: IODataset,
         model_class_name: SMTSurrogateModel,
-        transformer: TransformerType = MLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         **model_options: Any,

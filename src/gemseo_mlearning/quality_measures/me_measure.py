@@ -30,19 +30,19 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.quality_measures.error_measure import MLErrorMeasure
+from gemseo.mlearning.quality_measures.error_measure import BaseMLErrorMeasure
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.regression.regression import MLRegressionAlgo
+    from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
     from gemseo.typing import NumberArray
 
 
-class MEMeasure(MLErrorMeasure):
+class MEMeasure(BaseMLErrorMeasure):
     """The maximum error measure for machine learning."""
 
     def __init__(  # noqa: D107
         self,
-        algo: MLRegressionAlgo,
+        algo: BaseMLRegressionAlgo,
         fit_transformers: bool = False,
     ) -> None:
         super().__init__(algo, fit_transformers=fit_transformers)

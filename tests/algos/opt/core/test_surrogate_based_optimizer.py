@@ -103,7 +103,8 @@ def test_stratified_algorithm():
 
 
 def test_ml_regression_algo_instance(regression_algorithm):
-    """Check the execution of the surrogate-based optimizer with an MLRegressionAlgo."""
+    """Check the execution of the surrogate-based optimizer with an
+    BaseMLRegressionAlgo."""
     optimizer = SurrogateBasedOptimizer(
         Rastrigin(), "fullfact", regression_algorithm=regression_algorithm
     )

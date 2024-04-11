@@ -15,7 +15,7 @@
 """This module defines the notion of distribution of a machine learning algorithm.
 
 Once a
-[MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+[BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
 has been trained,
 assessing its quality is important before using it.
 
@@ -34,7 +34,7 @@ the less variability it has around this point.
 
 ???+ note
 
-    For now, one does not consider any [MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+    For now, one does not consider any [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
     but instances of
     class which is built from a
     [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
@@ -44,7 +44,7 @@ The
 [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
 can be particularly useful to:
 
-- study the robustness of an [MLAlgo][gemseo.mlearning.core.ml_algo.MLAlgo]
+- study the robustness of an [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
   w.r.t. learning dataset elements,
 - evaluate acquisition criteria for active learning purposes
   (see
@@ -59,7 +59,7 @@ class is derived into two classes:
 - [KrigingDistribution][gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution]
   :
   the
-  [MLRegressionAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo]
+  [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
   is a Kriging model
   and this assessor takes advantage of the underlying Gaussian stochastic process,
 - [RegressorDistribution][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution]:
@@ -81,14 +81,14 @@ if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.ml_algo import DataType
-    from gemseo.mlearning.regression.regression import MLRegressionAlgo
+    from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
     from gemseo.typing import NumberArray
 
 
 class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     """Distribution related to a regression model."""
 
-    algo: MLRegressionAlgo
+    algo: BaseMLRegressionAlgo
     """The regression model."""
 
     _samples: list[int]
@@ -106,7 +106,7 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     _output_variables_to_transform: list[str]
     """The names of the output variables to be transformed."""
 
-    def __init__(self, algo: MLRegressionAlgo) -> None:
+    def __init__(self, algo: BaseMLRegressionAlgo) -> None:
         """
         Args:
             algo: A regression model.
@@ -241,8 +241,8 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
             The variance value.
         """
 
-    @regression.MLRegressionAlgo.DataFormatters.format_dict
-    @regression.MLRegressionAlgo.DataFormatters.format_samples
+    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
+    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
     def compute_standard_deviation(
         self,
         input_data: DataType,

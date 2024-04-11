@@ -28,7 +28,7 @@ from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.factory import RegressionModelFactory
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.logging_tools import LoggingContext
 from numpy import hstack
@@ -85,7 +85,7 @@ class SurrogateBasedOptimizer:
         doe_algorithm: str = OpenTURNS.OT_LHSO,
         doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (
-            str | MLRegressionAlgo
+            str | BaseMLRegressionAlgo
         ) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
@@ -118,7 +118,7 @@ class SurrogateBasedOptimizer:
                 or the regression algorithm itself.
             regression_options: The options of the regression algorithm.
                 If transformer is missing,
-                use :attr:`.MLRegressionAlgo.DEFAULT_TRANSFORMER`.
+                use :attr:`.BaseMLRegressionAlgo.DEFAULT_TRANSFORMER`.
                 This argument is ignored
                 when regression_algorithm is an
                 [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
@@ -128,7 +128,7 @@ class SurrogateBasedOptimizer:
                 the data acquisition criterion.
         """  # noqa: D205, D212, D415
         self.__problem = problem
-        if isinstance(regression_algorithm, MLRegressionAlgo):
+        if isinstance(regression_algorithm, BaseMLRegressionAlgo):
             self.__dataset = regression_algorithm.learning_set
         else:
             # Store max_iter as it will be overwritten by DOELibrary
@@ -150,7 +150,9 @@ class SurrogateBasedOptimizer:
                 database.add_store_listener(listener)
 
             self.__dataset = problem.to_dataset(opt_naming=False)
-            _regression_options = {"transformer": MLRegressionAlgo.DEFAULT_TRANSFORMER}
+            _regression_options = {
+                "transformer": BaseMLRegressionAlgo.DEFAULT_TRANSFORMER
+            }
             _regression_options.update(dict(regression_options))
             regression_algorithm = RegressionModelFactory().create(
                 regression_algorithm,

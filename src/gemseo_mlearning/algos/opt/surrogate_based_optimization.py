@@ -31,7 +31,7 @@ from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescripti
 from gemseo.algos.opt.optimization_library import OptimizationLibrary
 from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.regression import MLRegressionAlgo
+from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
@@ -97,7 +97,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         doe_algorithm: str = OpenTURNS.OT_LHSO,
         doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (
-            str | MLRegressionAlgo
+            str | BaseMLRegressionAlgo
         ) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
@@ -125,15 +125,15 @@ class SurrogateBasedOptimization(OptimizationLibrary):
                 or `0` if the size is inferred from `doe_options`.
                 This argument is ignored
                 when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
             doe_algorithm: The name of the algorithm for the initial sampling.
                 This argument is ignored
                 when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
             doe_options: The options of the algorithm for the initial sampling.
                 This argument is ignored
                 when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
             regression_algorithm: Either the name of the regression algorithm
                 approximating the objective function over the design space
                 or the regression algorithm itself.
@@ -142,7 +142,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             regression_options: The options of the regression algorithm.
                 This argument is ignored
                 when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.MLRegressionAlgo].
+                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
             acquisition_algorithm: The name of the algorithm to optimize the data
                 acquisition criterion.
             acquisition_options: The options of the algorithm to optimize
@@ -181,7 +181,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         doe_size = options["doe_size"]
         doe_algorithm = options["doe_algorithm"]
         regression_algorithm = options["regression_algorithm"]
-        if not isinstance(regression_algorithm, MLRegressionAlgo):
+        if not isinstance(regression_algorithm, BaseMLRegressionAlgo):
             # The number of evaluations is equal to
             #     1 for the initial evaluation in OptimizationLibrary._pre_run
             #   + N for the N-length DOE
