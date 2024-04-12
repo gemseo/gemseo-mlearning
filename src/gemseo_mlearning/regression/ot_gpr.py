@@ -26,6 +26,9 @@ from typing import Union
 
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.doe_factory import DOEFactory
+from gemseo.mlearning.regression.base_random_process_regressor import (
+    BaseRandomProcessRegressor,
+)
 from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
@@ -39,6 +42,7 @@ from openturns import CovarianceModelImplementation
 from openturns import ExponentialModel
 from openturns import Interval
 from openturns import KrigingAlgorithm
+from openturns import KrigingRandomVector
 from openturns import LinearBasisFactory
 from openturns import Log
 from openturns import MaternModel
@@ -66,7 +70,7 @@ DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOEFactory().algorithms)
 """The name of a DOE algorithm."""
 
 
-class OTGaussianProcessRegressor(BaseMLRegressionAlgo):
+class OTGaussianProcessRegressor(BaseRandomProcessRegressor):
     """Gaussian process regression."""
 
     LIBRARY: ClassVar[str] = "OpenTURNS"
@@ -231,7 +235,9 @@ class OTGaussianProcessRegressor(BaseMLRegressionAlgo):
                 lower_bound = optimization_space.get_lower_bound(input_name)
                 upper_bound = optimization_space.get_upper_bound(input_name)
             else:
-                n = self.sizes[input_name] * self.output_dimension
+                n = self.sizes[input_name]
+                if self.output_dimension > 1:
+                    n += self.output_dimension
                 lower_bound = [default_lower_bound] * n
                 upper_bound = [default_upper_bound] * n
 
@@ -388,3 +394,10 @@ class OTGaussianProcessRegressor(BaseMLRegressionAlgo):
     def _predict_jacobian(self, input_data: NumberArray) -> NumberArray:
         gradient = self.algo.getMetaModel().gradient
         return array([array(gradient(Point(data))).T for data in input_data])
+
+    def compute_samples(  # noqa: D102
+        self, input_data: NumberArray, n_samples: int
+    ) -> list[NumberArray]:
+        data = array(KrigingRandomVector(self.algo, input_data).getSample(n_samples))
+        output_dimension = self.output_dimension
+        return [data[:, i::output_dimension] for i in range(output_dimension)]
