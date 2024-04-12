@@ -2323,9 +2323,13 @@ and this project adheres to
   can use an existing [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
   and save the [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo] that it enriches
   using the <code>regression_file_path</code> option.</li>
+<li>Given a sequence of input points,
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
+  can generate samples of the conditioned Gaussian process
+  with its method <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.compute_samples">compute_samples</a>.</li>
 <li>The <code>multi_start_n_samples</code>, <code>multi_start_algo_name</code> and <code>multi_start_algo_options</code> arguments of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
-  allow to use multi-start optimization for the covariance model parameters;
+  allows to use multi-start optimization for the covariance model parameters;
   by default, the number of starting points <code>multi_start_n_samples</code> is set to 10.</li>
 <li>The <code>optimization_space</code> argument of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/regression/ot_gpr/#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
