@@ -15,9 +15,9 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.mlearning.quality_measures.mse_measure import MSEMeasure
-from gemseo.mlearning.regression.linreg import LinearRegressor
-from gemseo.mlearning.regression.polyreg import PolynomialRegressor
+from gemseo.mlearning.regression.algos.linreg import LinearRegressor
+from gemseo.mlearning.regression.algos.polyreg import PolynomialRegressor
+from gemseo.mlearning.regression.quality.mse_measure import MSEMeasure
 from numpy import array
 from numpy.testing import assert_equal
 

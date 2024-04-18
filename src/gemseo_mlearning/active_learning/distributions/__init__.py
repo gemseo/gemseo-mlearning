@@ -26,15 +26,15 @@ from gemseo_mlearning.active_learning.distributions.regressor_distribution impor
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 
-    from gemseo_mlearning.active_learning.base_regressor_distribution import (
+    from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
     )
 
 
 def get_regressor_distribution(
-    regression_algorithm: BaseMLRegressionAlgo,
+    regression_algorithm: BaseRegressor,
     use_bootstrap: bool = True,
     use_loo: bool = False,
     size: int | None = None,

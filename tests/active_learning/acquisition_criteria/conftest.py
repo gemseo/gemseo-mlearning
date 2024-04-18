@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import pytest
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.linreg import LinearRegressor
+from gemseo.mlearning.regression.algos.linreg import LinearRegressor
 from gemseo.utils.testing.helpers import concretize_classes
 from numpy import array
 

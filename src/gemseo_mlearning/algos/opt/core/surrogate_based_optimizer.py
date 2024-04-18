@@ -21,14 +21,14 @@ import pickle
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
+from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.factory import RegressionModelFactory
-from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+from gemseo.mlearning.regression.algos.factory import RegressorFactory
+from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.logging_tools import LoggingContext
 from numpy import hstack
@@ -45,7 +45,7 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
     from gemseo.algos.opt_problem import OptimizationProblem
-    from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
+    from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -84,9 +84,7 @@ class SurrogateBasedOptimizer:
         doe_size: int = 0,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
         doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
-        regression_algorithm: (
-            str | BaseMLRegressionAlgo
-        ) = GaussianProcessRegressor.__name__,
+        regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
         acquisition_options: Mapping[
@@ -103,16 +101,16 @@ class SurrogateBasedOptimizer:
             doe_size: Either the size of the initial DOE
                 or 0 if the size is inferred from doe_options.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             doe_algorithm: The name of the algorithm for the initial sampling.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             doe_options: The options of the algorithm for the initial sampling.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             regression_algorithm: Either the name of the regression algorithm
                 approximating the objective function over the design space
                 or the regression algorithm itself.
@@ -120,15 +118,15 @@ class SurrogateBasedOptimizer:
                 If transformer is missing,
                 use :attr:`.BaseMLRegressionAlgo.DEFAULT_TRANSFORMER`.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             regression_file_path: The path to the file to save the regression model.
                 If empty, do not save the regression model.
             acquisition_options: The options of the algorithm to optimize
                 the data acquisition criterion.
         """  # noqa: D205, D212, D415
         self.__problem = problem
-        if isinstance(regression_algorithm, BaseMLRegressionAlgo):
+        if isinstance(regression_algorithm, BaseRegressor):
             self.__dataset = regression_algorithm.learning_set
         else:
             # Store max_iter as it will be overwritten by DOELibrary
@@ -140,7 +138,7 @@ class SurrogateBasedOptimizer:
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = problem.database.clear_listeners()
             with LoggingContext(logging.getLogger("gemseo")):
-                DOEFactory().execute(problem, doe_algorithm, **options)
+                DOELibraryFactory().execute(problem, doe_algorithm, **options)
 
             database = self.__problem.database
             for listener in new_iter_listeners:
@@ -150,11 +148,9 @@ class SurrogateBasedOptimizer:
                 database.add_store_listener(listener)
 
             self.__dataset = problem.to_dataset(opt_naming=False)
-            _regression_options = {
-                "transformer": BaseMLRegressionAlgo.DEFAULT_TRANSFORMER
-            }
+            _regression_options = {"transformer": BaseRegressor.DEFAULT_TRANSFORMER}
             _regression_options.update(dict(regression_options))
-            regression_algorithm = RegressionModelFactory().create(
+            regression_algorithm = RegressorFactory().create(
                 regression_algorithm,
                 data=self.__dataset,
                 **_regression_options,

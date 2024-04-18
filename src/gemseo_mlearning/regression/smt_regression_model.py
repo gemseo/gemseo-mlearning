@@ -21,8 +21,8 @@ from typing import Any
 from typing import Final
 from typing import NoReturn
 
-from gemseo.mlearning.regression.rbf import RBFRegressor
-from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+from gemseo.mlearning.regression.algos.rbf import RBFRegressor
 from numpy import double
 from smt.surrogate_models.surrogate_model import SurrogateModel
 from strenum import StrEnum
@@ -31,7 +31,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
 
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.mlearning.core.algos.ml_algo import TransformerType
     from gemseo.typing import NumberArray
 
 _NAMES_TO_CLASSES: Final[dict[str, type[SurrogateModel]]] = {
@@ -42,7 +42,7 @@ SMTSurrogateModel = StrEnum("SurrogateModel", list(_NAMES_TO_CLASSES.keys()))
 """The class name of an SMT surrogate model."""
 
 
-class SMTRegressionModel(BaseMLRegressionAlgo):
+class SMTRegressionModel(BaseRegressor):
     """A regression model from SMT.
 
     !!! note
@@ -61,7 +61,7 @@ class SMTRegressionModel(BaseMLRegressionAlgo):
         self,
         data: IODataset,
         model_class_name: SMTSurrogateModel,
-        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseRegressor.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         **model_options: Any,

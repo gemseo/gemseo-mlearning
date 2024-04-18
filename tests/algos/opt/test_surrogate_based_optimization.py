@@ -21,15 +21,15 @@ import re
 from pathlib import Path
 
 import pytest
-from gemseo.algos.opt.opt_factory import OptimizersFactory
-from gemseo.problems.analytical.rastrigin import Rastrigin
-from gemseo.problems.analytical.rosenbrock import Rosenbrock
+from gemseo.algos.opt.factory import OptimizationLibraryFactory
+from gemseo.problems.optimization.rastrigin import Rastrigin
+from gemseo.problems.optimization.rosenbrock import Rosenbrock
 from pandas.testing import assert_frame_equal
 
 
 def test_default_options():
     """Check the default options of the surrogate-based optimizer."""
-    assert OptimizersFactory().execute(Rastrigin(), "SBO").f_opt < 0.5
+    assert OptimizationLibraryFactory().execute(Rastrigin(), "SBO").f_opt < 0.5
 
 
 @pytest.mark.parametrize("max_iter", [8, 10])
@@ -42,10 +42,10 @@ def test_inconsistent_max_iter(max_iter, regression_algorithm):
             f"strictly greater than the initial DOE size (10)."
         ),
     ):
-        OptimizersFactory().execute(Rastrigin(), "SBO", max_iter=max_iter)
+        OptimizationLibraryFactory().execute(Rastrigin(), "SBO", max_iter=max_iter)
 
     # Except if the regression algorithm is already built.
-    OptimizersFactory().execute(
+    OptimizationLibraryFactory().execute(
         Rastrigin(), "SBO", max_iter=max_iter, regression_algorithm=regression_algorithm
     )
 
@@ -53,7 +53,7 @@ def test_inconsistent_max_iter(max_iter, regression_algorithm):
 def test_save(regression_algorithm, tmp_wd):
     """Check that the  regression algorithm can be pickled."""
     file_path = Path("model.pkl")
-    OptimizersFactory().execute(
+    OptimizationLibraryFactory().execute(
         Rastrigin(),
         "SBO",
         max_iter=3,
@@ -71,7 +71,7 @@ def test_save(regression_algorithm, tmp_wd):
 def test_problem_counters():
     """Check the counters attached to the optimization problem."""
     problem = Rosenbrock()
-    OptimizersFactory().execute(
+    OptimizationLibraryFactory().execute(
         problem,
         "SBO",
         max_iter=13,

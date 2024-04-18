@@ -24,14 +24,14 @@ from typing import Any
 from typing import ClassVar
 from typing import Union
 
-from gemseo.algos.doe.doe_factory import DOEFactory
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
+from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescription
 from gemseo.algos.opt.optimization_library import OptimizationLibrary
-from gemseo.mlearning.core.ml_algo import MLAlgoParameterType
-from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
+from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
@@ -96,9 +96,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         doe_size: int = 10,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
         doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
-        regression_algorithm: (
-            str | BaseMLRegressionAlgo
-        ) = GaussianProcessRegressor.__name__,
+        regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
         acquisition_algorithm: str = "DIFFERENTIAL_EVOLUTION",
@@ -124,16 +122,16 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             doe_size: Either the size of the initial DOE
                 or `0` if the size is inferred from `doe_options`.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             doe_algorithm: The name of the algorithm for the initial sampling.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             doe_options: The options of the algorithm for the initial sampling.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             regression_algorithm: Either the name of the regression algorithm
                 approximating the objective function over the design space
                 or the regression algorithm itself.
@@ -141,8 +139,8 @@ class SurrogateBasedOptimization(OptimizationLibrary):
                 If empty, do not save the regression model.
             regression_options: The options of the regression algorithm.
                 This argument is ignored
-                when regression_algorithm is an
-                [MLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo].
+                when regression_algorithm is a
+                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             acquisition_algorithm: The name of the algorithm to optimize the data
                 acquisition criterion.
             acquisition_options: The options of the algorithm to optimize
@@ -181,13 +179,13 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         doe_size = options["doe_size"]
         doe_algorithm = options["doe_algorithm"]
         regression_algorithm = options["regression_algorithm"]
-        if not isinstance(regression_algorithm, BaseMLRegressionAlgo):
+        if not isinstance(regression_algorithm, BaseRegressor):
             # The number of evaluations is equal to
             #     1 for the initial evaluation in OptimizationLibrary._pre_run
             #   + N for the N-length DOE
             #   + n_iter - 1 - N
             # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
-            doe_algo = DOEFactory().create(doe_algorithm)
+            doe_algo = DOELibraryFactory().create(doe_algorithm)
             initial_doe_size = len(
                 doe_algo.compute_doe(self.problem.design_space, doe_size, **doe_options)
             )

@@ -5,6 +5,7 @@ Adapted from https://github.com/mkdocstrings/griffe/blob/main/scripts/gen_credit
 
 from __future__ import annotations
 
+import operator
 import os
 import re
 import sys
@@ -118,10 +119,10 @@ def _render_credits() -> str:
     template_data = {
         "project_name": project_name,
         "external_dependencies": sorted(
-            external_dependencies.values(), key=lambda dep: dep["name"]
+            external_dependencies.values(), key=operator.itemgetter("name")
         ),
         "external_applications": sorted(
-            external_applications.values(), key=lambda dep: dep["name"]
+            external_applications.values(), key=operator.itemgetter("name")
         ),
     }
 

@@ -19,7 +19,7 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.mlearning.regression.linreg import LinearRegressor
+from gemseo.mlearning.regression.algos.linreg import LinearRegressor
 from numpy import array
 from numpy import exp
 from numpy import quantile

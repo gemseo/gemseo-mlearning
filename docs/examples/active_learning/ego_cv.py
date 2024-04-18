@@ -20,7 +20,7 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 from gemseo.algos.design_space import DesignSpace
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.rbf import RBFRegressor
+from gemseo.mlearning.regression.algos.rbf import RBFRegressor
 from numpy import array
 from numpy import cos
 from numpy import linspace
