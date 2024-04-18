@@ -21,7 +21,7 @@ import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
-from gemseo.mlearning.regression.rbf import RBFRegressor
+from gemseo.mlearning.regression.algos.rbf import RBFRegressor
 from numpy import array
 from numpy import linspace
 from numpy import zeros

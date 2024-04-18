@@ -26,18 +26,18 @@ from typing import Any
 from typing import ClassVar
 
 import sklearn.neural_network
-from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from numpy import newaxis
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.mlearning.core.algos.ml_algo import TransformerType
     from gemseo.typing import NumberArray
 
 
-class MLPRegressor(BaseMLRegressionAlgo):
+class MLPRegressor(BaseRegressor):
     """MultiLayer perceptron (MLP)."""
 
     LIBRARY: ClassVar[str] = "scikit-learn"
@@ -46,7 +46,7 @@ class MLPRegressor(BaseMLRegressionAlgo):
     def __init__(
         self,
         data: IODataset,
-        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseRegressor.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         hidden_layer_sizes: tuple[int] = (100,),

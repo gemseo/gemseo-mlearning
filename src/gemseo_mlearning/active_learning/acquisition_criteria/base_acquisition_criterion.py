@@ -26,7 +26,7 @@ This is the purpose of active learning.
 This notion of acquisition criterion is implemented through the
 [AcquisitionCriterion][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion]
 class which is built from a
-[BaseMLSupervisedAlgo][gemseo.mlearning.regression.regression.BaseMLSupervisedAlgo]
+[BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
 and inherits from
 [MDOFunction][gemseo.core.mdofunctions.mdo_function.MDOFunction].
 """

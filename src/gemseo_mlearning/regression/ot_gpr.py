@@ -25,11 +25,11 @@ from typing import Final
 from typing import Union
 
 from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.doe.doe_factory import DOEFactory
-from gemseo.mlearning.regression.base_random_process_regressor import (
+from gemseo.algos.doe.factory import DOELibraryFactory
+from gemseo.mlearning.regression.algos.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
-from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
@@ -61,12 +61,12 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
 
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.ml_algo import DataType
-    from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.mlearning.core.algos.ml_algo import TransformerType
     from gemseo.typing import NumberArray
 
 
-DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOEFactory().algorithms)
+DOEAlgorithmName = StrEnum("DOEAlgorithmName", DOELibraryFactory().algorithms)
 """The name of a DOE algorithm."""
 
 
@@ -175,7 +175,7 @@ class OTGaussianProcessRegressor(BaseRandomProcessRegressor):
     def __init__(
         self,
         data: IODataset,
-        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseRegressor.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         use_hmat: bool | None = None,
@@ -332,7 +332,7 @@ class OTGaussianProcessRegressor(BaseRandomProcessRegressor):
         )
         Log.Show(log_flags)
         if self.__multi_start_n_samples:
-            doe_algo = DOEFactory().create(self.__multi_start_algo_name)
+            doe_algo = DOELibraryFactory().create(self.__multi_start_algo_name)
             design_space = DesignSpace()
             design_space.add_variable(
                 "x",

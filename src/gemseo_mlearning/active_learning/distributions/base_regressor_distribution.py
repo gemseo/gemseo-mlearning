@@ -15,13 +15,13 @@
 """This module defines the notion of distribution of a machine learning algorithm.
 
 Once a
-[BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+[BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
 has been trained,
 assessing its quality is important before using it.
 
 One can not only measure its global quality
 (e.g. from a
-[MLQualityMeasure][gemseo.mlearning.quality_measures.quality_measure.MLQualityMeasure]
+[BaseMLAlgoQuality][gemseo.mlearning.core.quality.base_ml_algo_quality.BaseMLAlgoQuality]
 )
 but also its local one.
 
@@ -34,17 +34,17 @@ the less variability it has around this point.
 
 ???+ note
 
-    For now, one does not consider any [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+    For now, one does not consider any [BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
     but instances of
     class which is built from a
-    [MLSupervisedAlgo][gemseo.mlearning.core.supervised.MLSupervisedAlgo].
+    [MLSupervisedAlgo][gemseo.mlearning.core.algos.supervised.MLSupervisedAlgo].
 
 
 The
 [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
 can be particularly useful to:
 
-- study the robustness of an [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+- study the robustness of an [BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
   w.r.t. learning dataset elements,
 - evaluate acquisition criteria for active learning purposes
   (see
@@ -59,7 +59,7 @@ class is derived into two classes:
 - [KrigingDistribution][gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution]
   :
   the
-  [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
+  [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
   is a Kriging model
   and this assessor takes advantage of the underlying Gaussian stochastic process,
 - [RegressorDistribution][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution]:
@@ -74,21 +74,23 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.regression import regression
+from gemseo.mlearning.data_formatters.regression_data_formatters import (
+    RegressionDataFormatters,
+)
 from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
 
 if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.ml_algo import DataType
-    from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
     from gemseo.typing import NumberArray
 
 
 class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     """Distribution related to a regression model."""
 
-    algo: BaseMLRegressionAlgo
+    algo: BaseRegressor
     """The regression model."""
 
     _samples: list[int]
@@ -106,7 +108,7 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     _output_variables_to_transform: list[str]
     """The names of the output variables to be transformed."""
 
-    def __init__(self, algo: BaseMLRegressionAlgo) -> None:
+    def __init__(self, algo: BaseRegressor) -> None:
         """
         Args:
             algo: A regression model.
@@ -241,8 +243,8 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
             The variance value.
         """
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_standard_deviation(
         self,
         input_data: DataType,

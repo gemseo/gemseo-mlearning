@@ -29,7 +29,9 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.regression import regression
+from gemseo.mlearning.data_formatters.regression_data_formatters import (
+    RegressionDataFormatters,
+)
 from scipy.stats import norm
 
 from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (
@@ -37,8 +39,8 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.core.ml_algo import DataType
-    from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
+    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
     from gemseo.typing import NumberArray
 
     from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
@@ -79,32 +81,32 @@ class KrigingDistribution(BaseRegressorDistribution):
             upper = mean + quantile * std
         return lower, upper
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_mean(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict(input_data)
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_variance(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.compute_standard_deviation(input_data) ** 2
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_standard_deviation(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict_std(input_data)
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_expected_improvement(  # noqa: D102
         self,
         input_data: DataType,

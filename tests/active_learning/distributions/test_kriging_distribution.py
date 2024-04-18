@@ -28,7 +28,7 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.regression.gpr import GaussianProcessRegressor
+    from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 
 
 @pytest.fixture(scope="module")

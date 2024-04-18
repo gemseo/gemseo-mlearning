@@ -23,10 +23,10 @@ import openturns
 import pytest
 from gemseo import execute_algo
 from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.doe.doe_factory import DOEFactory
+from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.problems.analytical.rosenbrock import Rosenbrock
+from gemseo.problems.optimization.rosenbrock import Rosenbrock
 from numpy import array
 from numpy import hstack
 from numpy import ndarray
@@ -344,7 +344,7 @@ def test_multi_start_optimization(dataset):
         l_b=ot_interval.getLowerBound(),
         u_b=ot_interval.getUpperBound(),
     )
-    doe_algo = DOEFactory().create("LHS")
+    doe_algo = DOELibraryFactory().create("LHS")
     assert_equal(doe, doe_algo.compute_doe(design_space, 9, strength=2))
 
 

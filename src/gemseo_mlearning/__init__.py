@@ -22,8 +22,8 @@ from typing import Any
 from gemseo import create_scenario
 from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.doe_library import DOELibraryOptionType
-from gemseo.core.scenario import Scenario
 from gemseo.formulations.disciplinary_opt import DisciplinaryOpt
+from gemseo.scenarios.scenario import Scenario
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 if TYPE_CHECKING:

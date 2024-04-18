@@ -26,13 +26,13 @@ from typing import Any
 from typing import Callable
 from typing import ClassVar
 
-from gemseo.mlearning.regression.rbf import RBFRegressor
+from gemseo.mlearning.regression.algos.rbf import RBFRegressor
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.mlearning.core.algos.ml_algo import TransformerType
     from gemseo.typing import NumberArray
 
 

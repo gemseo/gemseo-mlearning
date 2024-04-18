@@ -35,7 +35,7 @@ from typing import Any
 from typing import ClassVar
 
 from gemseo.mlearning import create_regression_model
-from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 
 if TYPE_CHECKING:
@@ -43,14 +43,14 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.ml_algo import TransformerType
+    from gemseo.mlearning.core.algos.ml_algo import TransformerType
     from gemseo.typing import NumberArray
 
 
 _AlgoDefinition = namedtuple("AlgoDefinition", "name,transformer,parameters")
 
 
-class RegressorChain(BaseMLRegressionAlgo):
+class RegressorChain(BaseRegressor):
     """Chain regression."""
 
     SHORT_ALGO_NAME: ClassVar[str] = "RegressorChain"
@@ -58,7 +58,7 @@ class RegressorChain(BaseMLRegressionAlgo):
     def __init__(  # noqa: D107
         self,
         data: IODataset,
-        transformer: TransformerType = BaseMLRegressionAlgo.IDENTITY,
+        transformer: TransformerType = BaseRegressor.IDENTITY,
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
         **parameters: Any,

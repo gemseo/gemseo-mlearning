@@ -28,8 +28,8 @@ from typing import ClassVar
 
 from gemseo.algos._progress_bars.custom_tqdm_progress_bar import CustomTqdmProgressBar
 from gemseo.algos.database import Database
-from gemseo.algos.doe.doe_factory import DOEFactory
-from gemseo.algos.opt.opt_factory import OptimizersFactory
+from gemseo.algos.doe.factory import DOELibraryFactory
+from gemseo.algos.opt.factory import OptimizationLibraryFactory
 from gemseo.algos.opt_problem import OptimizationProblem
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.utils.logging_tools import LoggingContext
@@ -46,7 +46,7 @@ if TYPE_CHECKING:
     from gemseo.algos.design_space import DesignSpace
     from gemseo.algos.opt.optimization_library import OptimizationLibrary
     from gemseo.core.discipline import MDODiscipline
-    from gemseo.mlearning.core.ml_algo import DataType
+    from gemseo.mlearning.core.algos.ml_algo import DataType
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -125,7 +125,9 @@ class ActiveLearningAlgo:
         self.__distribution = distribution
         self.__input_space = input_space
         self.__acquisition_problem = self.__create_acquisition_problem()
-        self.__acquisition_algo = OptimizersFactory().create(self.default_algo_name)
+        self.__acquisition_algo = OptimizationLibraryFactory().create(
+            self.default_algo_name
+        )
         self.__acquisition_algo_options = self.default_opt_options
         self.__database = Database()
 
@@ -168,11 +170,11 @@ class ActiveLearningAlgo:
             **options: The values of some algorithm options;
                 use the default values for the other ones.
         """
-        factory = DOEFactory()
+        factory = DOELibraryFactory()
         if factory.is_available(algo_name):
             self.__acquisition_algo_options = self.default_doe_options.copy()
         else:
-            factory = OptimizersFactory()
+            factory = OptimizationLibraryFactory()
             self.__acquisition_algo_options = self.default_opt_options.copy()
 
         self.__acquisition_algo_options.update(options)

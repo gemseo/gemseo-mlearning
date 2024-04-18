@@ -23,18 +23,18 @@
 A
 [RegressorDistribution][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution]
 samples an
-[BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo],
+[BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor],
 by learning new versions of the latter from subsets of the original learning dataset.
 
 These new
-[BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+[BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
 instances are based on sampling methods,
 such as bootstrap, cross-validation or leave-one-out.
 
-Sampling a [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+Sampling a [BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
 can be particularly useful to:
 
-- study the robustness of a [BaseMLAlgo][gemseo.mlearning.core.ml_algo.BaseMLAlgo]
+- study the robustness of a [BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
   w.r.t. learning dataset elements,
 - estimate infill criteria for active learning purposes,
 - etc.
@@ -48,7 +48,9 @@ from typing import Callable
 from typing import ClassVar
 from typing import Final
 
-from gemseo.mlearning.regression import regression
+from gemseo.mlearning.data_formatters.regression_data_formatters import (
+    RegressionDataFormatters,
+)
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import array_split
@@ -71,8 +73,8 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 
 if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
-    from gemseo.mlearning.core.ml_algo import DataType
-    from gemseo.mlearning.regression.regression import BaseMLRegressionAlgo
+    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
     from gemseo.typing import NumberArray
 
 
@@ -103,7 +105,7 @@ class RegressorDistribution(BaseRegressorDistribution):
 
     def __init__(
         self,
-        algo: BaseMLRegressionAlgo,
+        algo: BaseRegressor,
         bootstrap: bool = True,
         loo: bool = False,
         size: int | None = None,
@@ -289,15 +291,15 @@ class RegressorDistribution(BaseRegressorDistribution):
         weights = array([func(input_data) for func in self.weights])
         return weights / npsum(weights, 0)
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_mean(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
         weights = self._evaluate_weights(input_data)
         return self.__average(weights, predictions)
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_variance(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
         weights = self._evaluate_weights(input_data)
@@ -305,8 +307,8 @@ class RegressorDistribution(BaseRegressorDistribution):
         term2 = self.__average(weights, predictions) ** 2
         return term1 - term2
 
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_dict
-    @regression.BaseMLRegressionAlgo.DataFormatters.format_samples
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
     def compute_expected_improvement(  # noqa: D102
         self,
         input_data: DataType,
