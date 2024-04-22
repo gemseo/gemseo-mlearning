@@ -2452,9 +2452,9 @@
 
 
 
-  <p>Parameters:</p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>data</code></b>
             (<code><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></code>)
         –
@@ -2462,7 +2462,7 @@
           <p>The learning dataset.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>transformer</code></b>
             (<code><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></code>, default:
                 <code><span title="gemseo.mlearning.regression.algos.rbf.RBFRegressor.IDENTITY">IDENTITY</span></code>
@@ -2482,7 +2482,7 @@ to all the variables of this group.
 If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>input_names</code></b>
             (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
                 <code>()</code>
@@ -2493,7 +2493,7 @@ If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
 If <code>None</code>, consider all the input variables of the learning dataset.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>output_names</code></b>
             (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
                 <code>()</code>
@@ -2504,7 +2504,7 @@ If <code>None</code>, consider all the input variables of the learning dataset.<
 If <code>None</code>, consider all the output variables of the learning dataset.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>smooth</code></b>
             (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
                 <code>0.0</code>
@@ -2515,7 +2515,7 @@ If <code>None</code>, consider all the output variables of the learning dataset.
 <code>0</code> involving an interpolation of the learning points.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>norm</code></b>
             (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="typing.Callable" href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a>[[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a>]</code>, default:
                 <code><span title="gemseo.mlearning.regression.algos.rbf.RBFRegressor.EUCLIDEAN">EUCLIDEAN</span></code>
@@ -2529,7 +2529,7 @@ scipy.spatial.distance.cdist.html&gt;</code>_
 or a function that computes the distance between two points.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>**parameters</code></b>
             (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
                 <code>{}</code>
@@ -2543,9 +2543,9 @@ or a function that computes the distance between two points.</p>
 
 
 
-  <p>Raises:</p>
+  <p><span class="doc-section-title">Raises:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
           –
         <div class="doc-md-description">

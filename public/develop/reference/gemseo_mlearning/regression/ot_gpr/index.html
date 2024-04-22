@@ -2794,9 +2794,9 @@
 
 
 
-  <p>Parameters:</p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>data</code></b>
             (<code><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></code>)
         –
@@ -2804,7 +2804,7 @@
           <p>The learning dataset.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>transformer</code></b>
             (<code><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></code>, default:
                 <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor.IDENTITY">IDENTITY</span></code>
@@ -2824,7 +2824,7 @@ to all the variables of this group.
 If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>input_names</code></b>
             (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
                 <code>()</code>
@@ -2835,7 +2835,7 @@ If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
 If <code>None</code>, consider all the input variables of the learning dataset.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>output_names</code></b>
             (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
                 <code>()</code>
@@ -2846,7 +2846,7 @@ If <code>None</code>, consider all the input variables of the learning dataset.<
 If <code>None</code>, consider all the output variables of the learning dataset.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>use_hmat</code></b>
             (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>, default:
                 <code>None</code>
@@ -2860,7 +2860,7 @@ than
 <a class="autorefs autorefs-internal" href="#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.MAX_SIZE_FOR_LAPACK">MAX_SIZE_FOR_LAPACK</a>.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>trend</code></b>
             (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.Trend" href="#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.Trend">Trend</a></code>, default:
                 <code><span title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.Trend.CONSTANT">CONSTANT</span></code>
@@ -2870,7 +2870,7 @@ than
           <p>The name of the trend.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>optimizer</code></b>
             (<code><span title="openturns.OptimizationAlgorithmImplementation">OptimizationAlgorithmImplementation</span></code>, default:
                 <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TNC" href="#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TNC">TNC</a></code>
@@ -2880,7 +2880,7 @@ than
           <p>The solver used to optimize the covariance model parameters.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>optimization_space</code></b>
             (<code><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a> | None</code>, default:
                 <code>None</code>
@@ -2892,7 +2892,7 @@ the size of a variable must take
 into account the size of the output space.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>covariance_model</code></b>
             (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<span title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModelType">CovarianceModelType</span>] | <span title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModelType">CovarianceModelType</span></code>, default:
                 <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModel.MATERN52" href="#gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModel.MATERN52">MATERN52</a></code>
@@ -2908,7 +2908,7 @@ OpenTURNS class instances and covariance model names,
 whose size is equal to the output dimension.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>multi_start_n_samples</code></b>
             (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                 <code>10</code>
@@ -2920,7 +2920,7 @@ for multi-start optimization of the covariance model parameters;
 if <code>0</code>, do not use multi-start optimization.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>multi_start_algo_name</code></b>
             (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.ot_gpr.DOEAlgorithmName" href="#gemseo_mlearning.regression.ot_gpr.DOEAlgorithmName">DOEAlgorithmName</a></code>, default:
                 <code><span title="gemseo_mlearning.regression.ot_gpr.DOEAlgorithmName.OT_OPT_LHS">OT_OPT_LHS</span></code>
@@ -2931,7 +2931,7 @@ if <code>0</code>, do not use multi-start optimization.</p>
 for multi-start optimization of the covariance model parameters.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>multi_start_algo_options</code></b>
             (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a>]</code>, default:
                 <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
@@ -2946,9 +2946,9 @@ for multi-start optimization of the covariance model parameters.</p>
 
 
 
-  <p>Raises:</p>
+  <p><span class="doc-section-title">Raises:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
           –
         <div class="doc-md-description">
@@ -3539,9 +3539,9 @@ have a transformer.</p>
 
 
 
-  <p>Parameters:</p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>input_data</code></b>
             (<code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>)
         –
@@ -3551,7 +3551,7 @@ at which to observe the conditioned Gaussian process;
 shaped as <code>(N, d)</code>.</p>
         </div>
       </li>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>n_samples</code></b>
             (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
         –
@@ -3563,9 +3563,9 @@ shaped as <code>(N, d)</code>.</p>
 
 
 
-  <p>Returns:</p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
             <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]</code>
         –
         <div class="doc-md-description">
@@ -3612,9 +3612,9 @@ shaped as <code>(N, d)</code>.</p>
 
 
 
-  <p>Parameters:</p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
         <b><code>input_data</code></b>
             (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
         –
@@ -3626,9 +3626,9 @@ shaped as <code>(N, d)</code>.</p>
 
 
 
-  <p>Returns:</p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <ul>
-      <li class="field-body">
+      <li class="doc-section-item field-body">
 <b><code>output_data</code></b> (            <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
 )        –
         <div class="doc-md-description">
