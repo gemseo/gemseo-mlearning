@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
+from gemseo import sample_disciplines
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.algos.rbf import RBFRegressor
@@ -26,7 +27,6 @@ from numpy import array
 from numpy import linspace
 from numpy import zeros
 
-from gemseo_mlearning import sample_discipline
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile import Quantile
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
@@ -54,7 +54,7 @@ input_space.add_variable("y", l_b=-2, u_b=2, value=1.0)
 ##############################################################################
 # Initial surrogate model
 # -----------------------
-learning_dataset = sample_discipline(discipline, input_space, "z", "OT_OPT_LHS", 30)
+learning_dataset = sample_disciplines([discipline], input_space, "z", 30, "OT_OPT_LHS")
 algo = RBFRegressor(learning_dataset)
 
 ##############################################################################

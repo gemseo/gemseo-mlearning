@@ -66,26 +66,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/sampling/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/sampling/mg_execution_times/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/sampling/plot_sample_discipline/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/sampling/plot_sample_disciplines/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/SUMMARY/</loc>
          <lastmod>2024-04-26</lastmod>
          <changefreq>daily</changefreq>
@@ -216,72 +196,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/quality_measures/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/quality_measures/mae_measure/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/quality_measures/me_measure/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/</loc>
          <lastmod>2024-04-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/gradient_boosting/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/mlp/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/ot_gpr/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/regressor_chain/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regression_model/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/svm/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/thin_plate_spline/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/utils/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/utils/compatibility/</loc>
-         <lastmod>2024-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/utils/compatibility/openturns/</loc>
          <lastmod>2024-04-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
