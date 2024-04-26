@@ -40,10 +40,10 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 
 if TYPE_CHECKING:
     from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
+    from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+        BaseRandomProcessRegressor,
+    )
     from gemseo.typing import NumberArray
-
-    from gemseo_mlearning.regression.ot_gpr import OTGaussianProcessRegressor
 
 
 class KrigingDistribution(BaseRegressorDistribution):
@@ -54,7 +54,7 @@ class KrigingDistribution(BaseRegressorDistribution):
     """
 
     def __init__(  # noqa: D107
-        self, algo: GaussianProcessRegressor | OTGaussianProcessRegressor
+        self, algo: BaseRandomProcessRegressor
     ) -> None:
         super().__init__(algo)
 

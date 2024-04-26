@@ -101,6 +101,19 @@ and this project adheres to
   by means of the probability distributions of the input variables;
   this distributions are defined with its new argument `uncertain_space`.
 
+## Removed
+
+- `sample_discipline`; use [sample_disciplines][gemseo.sample_disciplines] from `gemseo` instead.
+- `sample_disciplines`; move to `gemseo`: [sample_disciplines][gemseo.sample_disciplines].
+- `MAEMeasure`; moved to `gemseo`: [MAEMeasure][gemseo.mlearning.regression.quality.mae_measure.MAEMeasure].
+- `MEMeasure`; moved to `gemseo`: [MEMeasure][gemseo.mlearning.regression.quality.me_measure.MEMeasure].
+- `GradientBoostingRegressor`; moved to `gemseo`: [GradientBoostingRegressor][gemseo.mlearning.regression.algos.gradient_boosting.GradientBoostingRegressor].
+- `MLPRegressor`; moved to `gemseo`: [MLPRegressor][gemseo.mlearning.regression.algos.mlp.MLPRegressor].
+- `OTGaussianProcessRegressor`; moved to `gemseo`: [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor].
+- `RegressorChain`; moved to `gemseo`: [RegressorChain][gemseo.mlearning.regression.algos.regressor_chain.RegressorChain].
+- `SVMRegressor`; moved to `gemseo`: [SVMRegressor][gemseo.mlearning.regression.algos.svm.SVMRegressor].
+- `TPSRegressor`; moved to `gemseo`: [TPSRegressor][gemseo.mlearning.regression.algos.thin_plate_spline.TPSRegressor].
+
 # Version 1.1.2 (December 2023)
 
 ## Added
