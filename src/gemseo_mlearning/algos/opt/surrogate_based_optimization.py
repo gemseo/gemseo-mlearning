@@ -24,9 +24,9 @@ from typing import Any
 from typing import ClassVar
 from typing import Union
 
-from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.doe.lib_openturns import OpenTURNS
+from gemseo.algos.driver_library import DriverLibraryOptionType
 from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescription
 from gemseo.algos.opt.optimization_library import OptimizationLibrary
 from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
@@ -49,7 +49,7 @@ SBOOptionType = Union[
     int,
     float,
     str,
-    Mapping[str, DOELibraryOptionType],
+    Mapping[str, DriverLibraryOptionType],
     Mapping[str, MLAlgoParameterType],
     Mapping[str, Any],
     Mapping[str, OptimizationLibraryOptionType],
@@ -95,7 +95,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         stop_crit_n_x: int = 3,
         doe_size: int = 10,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
-        doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
+        doe_options: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",

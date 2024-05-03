@@ -30,7 +30,7 @@ from gemseo.algos._progress_bars.custom_tqdm_progress_bar import CustomTqdmProgr
 from gemseo.algos.database import Database
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.factory import OptimizationLibraryFactory
-from gemseo.algos.opt_problem import OptimizationProblem
+from gemseo.algos.optimization_problem import OptimizationProblem
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.utils.logging_tools import LoggingContext
 from numpy import array
@@ -157,7 +157,7 @@ class ActiveLearningAlgo:
             )
 
         if acquisition_problem.objective.MAXIMIZE:
-            acquisition_problem.change_objective_sign()
+            acquisition_problem.minimize_objective = False
 
         return acquisition_problem
 

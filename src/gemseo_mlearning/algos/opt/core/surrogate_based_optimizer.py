@@ -22,7 +22,6 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from gemseo.algos.doe.doe_library import DOELibrary
-from gemseo.algos.doe.doe_library import DOELibraryOptionType
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.datasets.io_dataset import IODataset
@@ -44,7 +43,8 @@ from gemseo_mlearning.active_learning.distributions import get_regressor_distrib
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from gemseo.algos.opt_problem import OptimizationProblem
+    from gemseo.algos.driver_library import DriverLibraryOptionType
+    from gemseo.algos.optimization_problem import OptimizationProblem
     from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
@@ -83,7 +83,7 @@ class SurrogateBasedOptimizer:
         acquisition_algorithm: str,
         doe_size: int = 0,
         doe_algorithm: str = OpenTURNS.OT_LHSO,
-        doe_options: Mapping[str, DOELibraryOptionType] = READ_ONLY_EMPTY_DICT,
+        doe_options: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
