@@ -135,7 +135,7 @@ strenum==0.4.15
     # via gemseo
 sympy==1.12
     # via gemseo
-tenacity==8.2.3
+tenacity==8.3.0
     # via plotly
 threadpoolctl==3.5.0
     # via scikit-learn
