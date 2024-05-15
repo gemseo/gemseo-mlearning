@@ -9,6 +9,7 @@ charset-normalizer==3.3.2
 contourpy==1.2.1
     # via matplotlib
 covdefaults==2.3.0
+    # via gemseo-mlearning (pyproject.toml)
 coverage==7.5.1
     # via
     #   covdefaults
@@ -27,7 +28,10 @@ fastjsonschema==2.19.1
     # via gemseo
 fonttools==4.51.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@388f8f5a69cb83a2a0fcbc90df71f61a8ebbf5f5
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@5b918bb55f461a8d3543c5ae0e231a828686e262
+    # via
+    #   -c requirements/test-constraints.in
+    #   gemseo-mlearning (pyproject.toml)
 genson==1.2.2
     # via gemseo
 graphviz==0.20.3
@@ -56,6 +60,7 @@ nlopt==2.7.1
     # via gemseo
 numpy==1.26.4
     # via
+    #   gemseo-mlearning (pyproject.toml)
     #   contourpy
     #   gemseo
     #   h5py
@@ -69,7 +74,9 @@ numpy==1.26.4
 openpyxl==3.1.2
     # via gemseo
 openturns==1.22
-    # via gemseo
+    # via
+    #   gemseo-mlearning (pyproject.toml)
+    #   gemseo
 packaging==24.0
     # via
     #   gemseo
@@ -100,10 +107,13 @@ pyparsing==3.1.2
     # via matplotlib
 pytest==7.4.4
     # via
+    #   gemseo-mlearning (pyproject.toml)
     #   pytest-cov
     #   pytest-xdist
 pytest-cov==5.0.0
+    # via gemseo-mlearning (pyproject.toml)
 pytest-xdist==3.6.1
+    # via gemseo-mlearning (pyproject.toml)
 python-dateutil==2.9.0.post0
     # via
     #   matplotlib
@@ -116,10 +126,12 @@ requests==2.31.0
     # via gemseo
 scikit-learn==1.4.1.post1
     # via
+    #   gemseo-mlearning (pyproject.toml)
     #   gemseo
     #   smt
 scipy==1.12.0
     # via
+    #   gemseo-mlearning (pyproject.toml)
     #   gemseo
     #   pydoe3
     #   scikit-learn
@@ -127,6 +139,7 @@ scipy==1.12.0
 six==1.16.0
     # via python-dateutil
 smt==2.4.0
+    # via gemseo-mlearning (pyproject.toml)
 strenum==0.4.15
     # via gemseo
 sympy==1.12
