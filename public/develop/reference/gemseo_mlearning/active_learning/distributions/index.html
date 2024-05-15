@@ -1862,16 +1862,16 @@
 
 
 <h2 id="gemseo_mlearning.active_learning.distributions" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">distributions</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">distributions</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>The distributions of machine learning algorithms.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1883,13 +1883,11 @@
 <h3 id="gemseo_mlearning.active_learning.distributions-classes">Classes<a href="#gemseo_mlearning.active_learning.distributions-classes" class="headerlink" title="Permanent link">&para;</a></h3>
 <h3 id="gemseo_mlearning.active_learning.distributions-functions">Functions<a href="#gemseo_mlearning.active_learning.distributions-functions" class="headerlink" title="Permanent link">&para;</a></h3>
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="gemseo_mlearning.active_learning.distributions.get_regressor_distribution" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>          <span class="doc doc-object-name doc-function-name">get_regressor_distribution</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <span class="doc doc-object-name doc-function-name">get_regressor_distribution</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.get_regressor_distribution" class="headerlink" title="Permanent link">&para;</a></h4>
@@ -1901,53 +1899,52 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Return the distribution of a regression algorithm.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>regression_algorithm</code></b>
-            (<code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The regression algorithm.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>use_bootstrap</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>True</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>regression_algorithm</code></b>
+              (<code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The regression algorithm.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>use_bootstrap</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>True</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>Whether to use bootstrap for resampling.
+          –
+          <div class="doc-md-description">
+            <p>Whether to use bootstrap for resampling.
 If <code>False</code>, use cross-validation.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>use_loo</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>False</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>use_loo</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>False</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>Whether to use leave-one-out resampling when
+          –
+          <div class="doc-md-description">
+            <p>Whether to use leave-one-out resampling when
 <code>use_bootstrap</code> is <code>False</code>.
 If <code>False</code>, use parameterized cross-validation.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>size</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>, default:
-                <code>None</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>size</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>, default:
+                  <code>None</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The size of the resampling set,
+          –
+          <div class="doc-md-description">
+            <p>The size of the resampling set,
 i.e. the number of times the regression algorithm is rebuilt.
 If <code>None</code>,
 <a class="autorefs autorefs-internal" href="regressor_distribution/#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP">N_BOOTSTRAP</a>
@@ -1956,26 +1953,25 @@ and
 <a class="autorefs autorefs-internal" href="regressor_distribution/#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_FOLDS">N_FOLDS</a>
 in the case of cross-validation.
 This argument is ignored in the case of leave-one-out.</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
 
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
+          –
+          <div class="doc-md-description">
+            <p>The distribution of the regression algorithm.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
-        –
-        <div class="doc-md-description">
-          <p>The distribution of the regression algorithm.</p>
-      </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/__init__.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/__init__.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
@@ -2039,8 +2035,8 @@ This argument is ignored in the case of leave-one-out.</p>
 
     <span class="k">return</span> <span class="n">RegressorDistribution</span><span class="p">(</span><span class="n">regression_algorithm</span><span class="p">,</span> <span class="n">use_bootstrap</span><span class="p">,</span> <span class="n">use_loo</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2048,7 +2044,7 @@ This argument is ignored in the case of leave-one-out.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

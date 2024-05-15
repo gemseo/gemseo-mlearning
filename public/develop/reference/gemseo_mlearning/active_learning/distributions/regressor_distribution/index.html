@@ -2342,13 +2342,13 @@
 
 
 <h2 id="gemseo_mlearning.active_learning.distributions.regressor_distribution" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">regressor_distribution</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">regressor_distribution</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Universal distribution for regression models.</p>
 <p>A
 <a class="autorefs autorefs-internal" href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution">RegressorDistribution</a>
@@ -2368,7 +2368,7 @@ can be particularly useful to:</p>
 <li>etc.</li>
 </ul>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2384,7 +2384,7 @@ can be particularly useful to:</p>
 
 
 <h4 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">RegressorDistribution</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">RegressorDistribution</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution" class="headerlink" title="Permanent link">&para;</a></h4>
@@ -2396,58 +2396,57 @@ can be particularly useful to:</p>
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code></p>
 
-  
+
       <p>Distribution related to a regression algorithm.</p>
-  
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>algo</code></b>
-            (<code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>A regression model.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>bootstrap</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>True</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>algo</code></b>
+              (<code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A regression model.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>bootstrap</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>True</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The resampling method.
+          –
+          <div class="doc-md-description">
+            <p>The resampling method.
 If <code>True</code>, use bootstrap resampling.
 Otherwise, use cross-validation resampling.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>loo</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>False</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>loo</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>False</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The leave-One-Out sub-method, when bootstrap is <code>False</code>.
+          –
+          <div class="doc-md-description">
+            <p>The leave-One-Out sub-method, when bootstrap is <code>False</code>.
 If <code>False</code>, use parameterized cross-validation,
 Otherwise use leave-one-out.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>size</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>, default:
-                <code>None</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>size</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>, default:
+                  <code>None</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The size of the resampling set,
+          –
+          <div class="doc-md-description">
+            <p>The size of the resampling set,
 i.e. the number of times the regression algorithm is rebuilt.
 If <code>None</code>,
 <a class="autorefs autorefs-internal" href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP">N_BOOTSTRAP</a>
@@ -2456,13 +2455,13 @@ and
 <a class="autorefs autorefs-internal" href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_FOLDS">N_FOLDS</a>
 in the case of cross-validation.
 This argument is ignored in the case of leave-one-out.</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-                <details class="quote">
-                  <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
+                  <details class="quote">
+                    <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
@@ -2548,9 +2547,9 @@ This argument is ignored in the case of leave-one-out.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2565,9 +2564,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">N_BOOTSTRAP</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">N_BOOTSTRAP</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
@@ -2576,10 +2575,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">N_BOOTSTRAP</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">100</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The default number of replicates for the bootstrap method.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2588,9 +2587,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_FOLDS" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">N_FOLDS</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">N_FOLDS</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
@@ -2599,10 +2598,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">N_FOLDS</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">5</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The default number of folds for the cross-validation method.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2611,9 +2610,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.algo" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">algo</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">algo</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -2622,10 +2621,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">algo</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo">algo</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The regression model.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2634,9 +2633,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.input_names" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">input_names</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">input_names</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2645,10 +2644,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The names of the original machine learning algorithm inputs.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2657,9 +2656,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.learning_set" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">learning_set</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">learning_set</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2668,10 +2667,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">learning_set</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The learning dataset used by the original machine learning algorithm.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2680,9 +2679,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.method" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">method</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">method</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -2691,10 +2690,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">method</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The resampling method.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2703,9 +2702,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.output_dimension" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">output_dimension</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">output_dimension</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2714,10 +2713,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">output_dimension</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The dimension of the machine learning output space.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2726,9 +2725,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.output_names" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">output_names</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">output_names</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2737,10 +2736,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The names of the original machine learning algorithm outputs.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2749,9 +2748,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.size" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">size</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">size</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -2760,10 +2759,10 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The size of the resampling set.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2772,9 +2771,9 @@ This argument is ignored in the case of leave-one-out.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.weights" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">weights</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">weights</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -2783,50 +2782,47 @@ This argument is ignored in the case of leave-one-out.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">weights</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="typing.Callable" href="https://docs.python.org/3/library/typing.html#typing.Callable">Callable</a></span><span class="p">[[</span><span class="n"><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></span><span class="p">],</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The weight functions related to the sub-algorithms.</p>
 <p>A weight function computes a weight from an input data array.</p>
-  </div>
+    </div>
 
 </div>
 
 <h5 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution-functions">Functions<a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.change_learning_set" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">change_learning_set</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">change_learning_set</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.change_learning_set" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">change_learning_set</span><span class="p">(</span><span class="n">learning_set</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Re-train the machine learning algorithm relying on the initial learning set.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>learning_set</code></b>
+              (<code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The new learning set.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>learning_set</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The new learning set.</p>
-        </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">344</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">344</span>
 <span class="normal">345</span>
 <span class="normal">346</span>
 <span class="normal">347</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_set</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
@@ -2834,18 +2830,16 @@ This argument is ignored in the case of leave-one-out.</p>
         <span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span> <span class="o">=</span> <span class="n">learning_set</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">change_learning_set</span><span class="p">(</span><span class="n">learning_set</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_confidence_interval" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_confidence_interval</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_confidence_interval</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_confidence_interval" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2861,8 +2855,8 @@ This argument is ignored in the case of leave-one-out.</p>
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Predict the lower bounds and upper bounds from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2871,45 +2865,43 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>level</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
-                <code>0.95</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>level</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
+                  <code>0.95</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>A quantile level.</p>
-        </div>
-      </li>
-  </ul>
+          –
+          <div class="doc-md-description">
+            <p>A quantile level.</p>
+          </div>
+        </li>
+    </ul>
 
 
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]] | None</code>
+          –
+          <div class="doc-md-description">
+            <p>The lower and upper bound values.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]] | None</code>
-        –
-        <div class="doc-md-description">
-          <p>The lower and upper bound values.</p>
-      </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">254</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">254</span>
 <span class="normal">255</span>
 <span class="normal">256</span>
 <span class="normal">257</span>
@@ -2963,18 +2955,16 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         <span class="n">upper</span> <span class="o">=</span> <span class="n">quantile</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">level</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_expected_improvement" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_expected_improvement</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_expected_improvement</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_expected_improvement" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2985,8 +2975,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the expected improvement from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2995,53 +2985,51 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>fopt</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The current optimum value.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>maximize</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>False</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>fopt</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The current optimum value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>maximize</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>False</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The type of optimum to seek.</p>
-        </div>
-      </li>
-  </ul>
+          –
+          <div class="doc-md-description">
+            <p>The type of optimum to seek.</p>
+          </div>
+        </li>
+    </ul>
 
 
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The expected improvement value.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The expected improvement value.</p>
-      </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">310</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">310</span>
 <span class="normal">311</span>
 <span class="normal">312</span>
 <span class="normal">313</span>
@@ -3071,26 +3059,24 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         <span class="n">expected_improvement</span> <span class="o">=</span> <span class="n">maximum</span><span class="p">(</span><span class="n">fopt</span> <span class="o">-</span> <span class="n">predictions</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__average</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">expected_improvement</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_mean" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_mean</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_mean</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_mean" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_mean</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the mean from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -3099,35 +3085,33 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The mean value.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The mean value.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">294</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">294</span>
 <span class="normal">295</span>
 <span class="normal">296</span>
 <span class="normal">297</span>
@@ -3139,18 +3123,16 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
     <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate_weights</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__average</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_standard_deviation" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_standard_deviation</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_standard_deviation</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_standard_deviation" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -3159,8 +3141,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the standard deviation from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -3169,35 +3151,33 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The standard deviation value.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The standard deviation value.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">246</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span>
 <span class="normal">249</span>
@@ -3241,26 +3221,24 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_variance</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_variance" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_variance</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_variance</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.compute_variance" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_variance</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the variance from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -3269,35 +3247,33 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The variance value.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The variance value.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">301</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">301</span>
 <span class="normal">302</span>
 <span class="normal">303</span>
 <span class="normal">304</span>
@@ -3313,48 +3289,45 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
     <span class="n">term2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__average</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">term1</span> <span class="o">-</span> <span class="n">term2</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.learn" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">learn</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">learn</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.learn" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">learn</span><span class="p">(</span><span class="n">samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Train the machine learning algorithm from the learning dataset.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>samples</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>, default:
-                <code>None</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>samples</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>, default:
+                  <code>None</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The indices of the learning samples.
+          –
+          <div class="doc-md-description">
+            <p>The indices of the learning samples.
 If <code>None</code>, use the whole learning dataset</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
@@ -3400,26 +3373,24 @@ If <code>None</code>, use the whole learning dataset</p>
 
         <span class="n">algo</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="n">new_samples</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.predict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">predict</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">predict</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.predict" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Predict the output of the original machine learning algorithm.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -3428,35 +3399,33 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The predicted output data.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The predicted output data.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
 <span class="normal">154</span>
 <span class="normal">155</span>
 <span class="normal">156</span>
@@ -3496,66 +3465,62 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.predict_members" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">predict_members</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">predict_members</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.predict_members" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">predict_members</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Predict the output value with the different machine learning algorithms.</p>
 <p>After prediction, the method stacks the results.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data,
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data,
 specified as either as a numpy.array or as dictionary of numpy.array
 indexed by inputs names.
 The numpy.array can be either a (d,) array
 representing a sample in dimension d,
 or a (M, d) array representing M samples in dimension d.</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The output data (dimension p) of N machine learning algorithms.
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The output data (dimension p) of N machine learning algorithms.
     If input_data.shape == (d,), then output_data.shape == (N, p).
     If input_data.shape == (M,d), then output_data;shape == (N,M,p).</p>
-      </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">228</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">228</span>
 <span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
@@ -3605,8 +3570,8 @@ or a (M, d) array representing M samples in dimension d.</p>
         <span class="p">}</span>
     <span class="k">return</span> <span class="n">stack</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3614,8 +3579,7 @@ or a (M, d) array representing M samples in dimension d.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3624,7 +3588,7 @@ or a (M, d) array representing M samples in dimension d.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

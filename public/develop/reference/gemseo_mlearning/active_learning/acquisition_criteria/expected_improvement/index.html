@@ -1928,13 +1928,13 @@
 
 
 <h2 id="gemseo_mlearning.active_learning.acquisition_criteria.expected_improvement" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">expected_improvement</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">expected_improvement</span>
 
 
 <a href="#gemseo_mlearning.active_learning.acquisition_criteria.expected_improvement" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Criterion to be maximized for estimating a minimum, with exploration.</p>
 <p>This is the same as the expected improvement of the regression model for the minimum.</p>
 <p>Statistic:</p>
@@ -1943,7 +1943,7 @@
 <p>Bootstrap estimator:</p>
 <div class="arithmatex">\[\widehat{EI}[x] = \frac{1}{B}\sum_{b=1}^B \max(y_{\text{min}}-Y_b(x),0)\]</div>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1959,7 +1959,7 @@
 
 
 <h4 id="gemseo_mlearning.active_learning.acquisition_criteria.expected_improvement.ExpectedImprovement" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">ExpectedImprovement</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">ExpectedImprovement</span>
 
 
 <a href="#gemseo_mlearning.active_learning.acquisition_criteria.expected_improvement.ExpectedImprovement" class="headerlink" title="Permanent link">&para;</a></h4>
@@ -1968,33 +1968,32 @@
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.min_expected_improvement.MinExpectedImprovement" href="../min_expected_improvement/#gemseo_mlearning.active_learning.acquisition_criteria.min_expected_improvement.MinExpectedImprovement">MinExpectedImprovement</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.min_expected_improvement.MinExpectedImprovement" href="../min_expected_improvement/#gemseo_mlearning.active_learning.acquisition_criteria.min_expected_improvement.MinExpectedImprovement">MinExpectedImprovement</a></code></p>
 
-  
+
       <p>Criterion to be maximized for estimating a minimum, with exploration.</p>
 <p>This criterion is scaled by the output range.</p>
-  
+
       <p>Initialize self.  See help(type(self)) for accurate signature.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>algo_distribution</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The distribution of a machine learning algorithm.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>algo_distribution</code></b>
-            (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The distribution of a machine learning algorithm.</p>
-        </div>
-      </li>
-  </ul>
-
-                <details class="quote">
-                  <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+                  <details class="quote">
+                    <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
@@ -2030,10 +2029,9 @@
         <span class="n">jac</span><span class="o">=</span><span class="n">jac</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2042,7 +2040,7 @@
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

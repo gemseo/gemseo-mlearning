@@ -1972,16 +1972,16 @@
 
 
 <h2 id="gemseo_mlearning.regression.smt_regression_model" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">smt_regression_model</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">smt_regression_model</span>
 
 
 <a href="#gemseo_mlearning.regression.smt_regression_model" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>A regression model from SMT.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1996,9 +1996,9 @@
 
 
 <h4 id="gemseo_mlearning.regression.smt_regression_model.SMTSurrogateModel" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">SMTSurrogateModel</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">SMTSurrogateModel</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -2007,10 +2007,10 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">SMTSurrogateModel</span> <span class="o">=</span> <span class="n"><span title="strenum.StrEnum">StrEnum</span></span><span class="p">(</span><span class="s1">&#39;SurrogateModel&#39;</span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">(</span><span class="n"><span title="gemseo_mlearning.regression.smt_regression_model._NAMES_TO_CLASSES.keys">keys</span></span><span class="p">()))</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The class name of an SMT surrogate model.</p>
-  </div>
+    </div>
 
 </div>
 <h3 id="gemseo_mlearning.regression.smt_regression_model-classes">Classes<a href="#gemseo_mlearning.regression.smt_regression_model-classes" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -2020,7 +2020,7 @@
 
 
 <h4 id="gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">SMTRegressionModel</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">SMTRegressionModel</span>
 
 
 <a href="#gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel" class="headerlink" title="Permanent link">&para;</a></h4>
@@ -2034,11 +2034,11 @@
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code></p>
 
-  
+
       <p>A regression model from SMT.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -2048,38 +2048,37 @@ sampling methods, and benchmarking problems.
 <a href="https://smt.readthedocs.io/en/latest/_src_docs/surrogate_models.html">Read this page</a>
 for the list of surrogate models and options.</p>
 </div>
-  
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>data</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The learning dataset.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>model_class_name</code></b>
-            (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.smt_regression_model.SMTSurrogateModel" href="#gemseo_mlearning.regression.smt_regression_model.SMTSurrogateModel">SMTSurrogateModel</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The class name of a surrogate model available in SMT,
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>data</code></b>
+              (<code><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The learning dataset.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>model_class_name</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.smt_regression_model.SMTSurrogateModel" href="#gemseo_mlearning.regression.smt_regression_model.SMTSurrogateModel">SMTSurrogateModel</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The class name of a surrogate model available in SMT,
 i.e. a subclass of
 <code>smt.surrogate_models.surrogate_model.SurrogateModel</code>.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>transformer</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></code>, default:
-                <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor.IDENTITY">IDENTITY</span></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>transformer</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></code>, default:
+                  <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor.IDENTITY">IDENTITY</span></code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The strategies to transform the variables.
+          –
+          <div class="doc-md-description">
+            <p>The strategies to transform the variables.
 The values are instances of :class:<code>.BaseTransformer</code>
 while the keys are the names of
 either the variables
@@ -2090,59 +2089,58 @@ If a group is specified,
 the :class:<code>.BaseTransformer</code> will be applied
 to all the variables of this group.
 If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>input_names</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
-                <code>()</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>input_names</code></b>
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
+                  <code>()</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The names of the input variables.
-If <code>None</code>, consider all the input variables of the learning dataset.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>output_names</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
-                <code>()</code>
-)
-        –
-        <div class="doc-md-description">
-          <p>The names of the output variables.
-If <code>None</code>, consider all the output variables of the learning dataset.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>**model_options</code></b>
-            (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
-                <code>{}</code>
-)
-        –
-        <div class="doc-md-description">
-          <p>The options of the surrogate model.</p>
-        </div>
-      </li>
-  </ul>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
           –
-        <div class="doc-md-description">
-          <p>When both the variable and the group it belongs to
-have a transformer.</p>
-        </div>
-      </li>
-  </ul>
+          <div class="doc-md-description">
+            <p>The names of the input variables.
+If <code>None</code>, consider all the input variables of the learning dataset.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>output_names</code></b>
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
+                  <code>()</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The names of the output variables.
+If <code>None</code>, consider all the output variables of the learning dataset.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>**model_options</code></b>
+              (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
+                  <code>{}</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The options of the surrogate model.</p>
+          </div>
+        </li>
+    </ul>
 
-                <details class="quote">
-                  <summary>Source code in <code>src/gemseo_mlearning/regression/smt_regression_model.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
+            –
+          <div class="doc-md-description">
+            <p>When both the variable and the group it belongs to
+have a transformer.</p>
+          </div>
+        </li>
+    </ul>
+
+                  <details class="quote">
+                    <summary>Source code in <code>src/gemseo_mlearning/regression/smt_regression_model.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
@@ -2196,9 +2194,9 @@ have a transformer.</p>
     <span class="n">_model_options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_options</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__smt_model</span> <span class="o">=</span> <span class="n">_NAMES_TO_CLASSES</span><span class="p">[</span><span class="n">model_class_name</span><span class="p">](</span><span class="o">**</span><span class="n">_model_options</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2214,8 +2212,7 @@ have a transformer.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2224,7 +2221,7 @@ have a transformer.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

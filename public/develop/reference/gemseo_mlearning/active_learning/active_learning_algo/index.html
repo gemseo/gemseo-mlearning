@@ -2124,16 +2124,16 @@
 
 
 <h2 id="gemseo_mlearning.active_learning.active_learning_algo" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">active_learning_algo</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">active_learning_algo</span>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Active learning algorithm using regression algorithms and acquisition criteria.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2149,7 +2149,7 @@
 
 
 <h4 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">ActiveLearningAlgo</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">ActiveLearningAlgo</span>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" class="headerlink" title="Permanent link">&para;</a></h4>
@@ -2161,72 +2161,70 @@
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>An active learning algorithm.</p>
-  
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>criterion</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The name of a data acquisition criterion
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>criterion</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The name of a data acquisition criterion
 selecting new point(s) to reach a particular goal
 (name of a class inheriting from
 <a class="autorefs autorefs-internal" href="../acquisition_criteria/base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a>
 ).</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>input_space</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input space on which to look for the new learning point.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>distribution</code></b>
-            (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The distribution of the machine learning algorithm.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>**criterion_options</code></b>
-            (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
-                <code>{}</code>
-)
-        –
-        <div class="doc-md-description">
-          <p>The options of the data acquisition criterion.</p>
-        </div>
-      </li>
-  </ul>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>input_space</code></b>
+              (<code><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></code>)
           –
-        <div class="doc-md-description">
-          <p>When the output dimension is greater than 1.</p>
-        </div>
-      </li>
-  </ul>
+          <div class="doc-md-description">
+            <p>The input space on which to look for the new learning point.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>distribution</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The distribution of the machine learning algorithm.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>**criterion_options</code></b>
+              (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
+                  <code>{}</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The options of the data acquisition criterion.</p>
+          </div>
+        </li>
+    </ul>
 
-                <details class="quote">
-                  <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+            –
+          <div class="doc-md-description">
+            <p>When the output dimension is greater than 1.</p>
+          </div>
+        </li>
+    </ul>
+
+                  <details class="quote">
+                    <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
@@ -2294,9 +2292,9 @@ selecting new point(s) to reach a particular goal
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_algo_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_opt_options</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__database</span> <span class="o">=</span> <span class="n">Database</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2311,9 +2309,9 @@ selecting new point(s) to reach a particular goal
 
 
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.default_algo_name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">default_algo_name</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">default_algo_name</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
@@ -2322,11 +2320,11 @@ selecting new point(s) to reach a particular goal
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">default_algo_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s1">&#39;NLOPT_COBYLA&#39;</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The name of the default algorithm to find the new training point(s).</p>
 <p>Typically a DoE or an optimizer.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2335,9 +2333,9 @@ selecting new point(s) to reach a particular goal
 
 
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.default_doe_options" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">default_doe_options</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">default_doe_options</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
@@ -2346,10 +2344,10 @@ selecting new point(s) to reach a particular goal
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">default_doe_options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_samples&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The names and values of the default DoE options.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2358,9 +2356,9 @@ selecting new point(s) to reach a particular goal
 
 
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.default_opt_options" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">default_opt_options</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">default_opt_options</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
@@ -2369,65 +2367,61 @@ selecting new point(s) to reach a particular goal
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">default_opt_options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The names and values of the default optimization options.</p>
-  </div>
+    </div>
 
 </div>
 
 <h5 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo-functions">Functions<a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.compute_next_input_data" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_next_input_data</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_next_input_data</span>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.compute_next_input_data" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_next_input_data</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Find the next learning point.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>as_dict</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>False</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>as_dict</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>False</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>Whether to return the input data split by input names.
+          –
+          <div class="doc-md-description">
+            <p>Whether to return the input data split by input names.
 Otherwise, return a unique array.</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
 
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The next learning point.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The next learning point.</p>
-      </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
 <span class="normal">184</span>
 <span class="normal">185</span>
 <span class="normal">186</span>
@@ -2471,18 +2465,16 @@ Otherwise, return a unique array.</p>
 
     <span class="k">return</span> <span class="n">input_data</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.set_acquisition_algorithm" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">set_acquisition_algorithm</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">set_acquisition_algorithm</span>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.set_acquisition_algorithm" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2491,39 +2483,38 @@ Otherwise, return a unique array.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Set sampling or optimization algorithm.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>algo_name</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The name of the algorithm to find the learning point(s).
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>algo_name</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The name of the algorithm to find the learning point(s).
 Typically a DoE or an optimizer.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>**options</code></b>
-            (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
-                <code>{}</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>**options</code></b>
+              (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
+                  <code>{}</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The values of some algorithm options;
+          –
+          <div class="doc-md-description">
+            <p>The values of some algorithm options;
 use the default values for the other ones.</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">164</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">164</span>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
@@ -2559,18 +2550,16 @@ use the default values for the other ones.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_algo_options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_algo</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">algo_name</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.update_algo" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">update_algo</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">update_algo</span>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.update_algo" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2579,56 +2568,54 @@ use the default values for the other ones.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/data_persistence/database.html#gemseo.algos.database.Database">Database</a></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></span><span class="p">]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Update the machine learning algorithm by learning new samples.</p>
 <p>This method acquires new learning input-output samples
 and trains the machine learning algorithm
 with the resulting enriched learning set.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>discipline</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.core.discipline.MDODiscipline" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.core.discipline.html#gemseo.core.discipline.MDODiscipline">MDODiscipline</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The discipline computing the reference output data
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>discipline</code></b>
+              (<code><a class="autorefs autorefs-external" title="gemseo.core.discipline.MDODiscipline" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.core.discipline.html#gemseo.core.discipline.MDODiscipline">MDODiscipline</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The discipline computing the reference output data
 from the input data provided by the acquisition process.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>n_samples</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                <code>1</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>n_samples</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>1</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The number of samples to update the machine learning algorithm.</p>
-        </div>
-      </li>
-  </ul>
+          –
+          <div class="doc-md-description">
+            <p>The number of samples to update the machine learning algorithm.</p>
+          </div>
+        </li>
+    </ul>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/data_persistence/database.html#gemseo.algos.database.Database">Database</a>, <span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span>]</code>
-        –
-        <div class="doc-md-description">
-          <p>The concatenation of the optimization histories
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/data_persistence/database.html#gemseo.algos.database.Database">Database</a>, <span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span>]</code>
+          –
+          <div class="doc-md-description">
+            <p>The concatenation of the optimization histories
 related to the different points
 and the last acquisition problem.</p>
-      </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
 <span class="normal">207</span>
 <span class="normal">208</span>
 <span class="normal">209</span>
@@ -2740,38 +2727,36 @@ and the last acquisition problem.</p>
 
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__database</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.update_problem" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">update_problem</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">update_problem</span>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.update_problem" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">update_problem</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Update the acquisition problem.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">263</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">263</span>
 <span class="normal">264</span>
 <span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the acquisition problem.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__create_acquisition_problem</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2779,8 +2764,7 @@ and the last acquisition problem.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2789,7 +2773,7 @@ and the last acquisition problem.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

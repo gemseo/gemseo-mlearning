@@ -2008,16 +2008,16 @@
 
 
 <h2 id="gemseo_mlearning.algos.opt.core.surrogate_based_optimizer" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">surrogate_based_optimizer</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">surrogate_based_optimizer</span>
 
 
 <a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>A class for surrogate-based optimization.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2033,7 +2033,7 @@
 
 
 <h4 id="gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">SurrogateBasedOptimizer</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">SurrogateBasedOptimizer</span>
 
 
 <a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer" class="headerlink" title="Permanent link">&para;</a></h4>
@@ -2058,129 +2058,128 @@
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>An optimizer based on surrogate models.</p>
-  
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>acquisition_algorithm</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The name of the algorithm to optimize the data
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>acquisition_algorithm</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The name of the algorithm to optimize the data
 acquisition criterion.
 N.B. this algorithm must handle integers if some of the optimization
 variables are integers.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>problem</code></b>
-            (<code><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The optimization problem.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>doe_size</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                <code>0</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>problem</code></b>
+              (<code><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The optimization problem.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>doe_size</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>0</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>Either the size of the initial DOE
+          –
+          <div class="doc-md-description">
+            <p>Either the size of the initial DOE
 or 0 if the size is inferred from doe_options.
 This argument is ignored
 when regression_algorithm is a
 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>doe_algorithm</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
-                <code><a class="autorefs autorefs-external" title="gemseo.algos.doe.lib_openturns.OpenTURNS.OT_LHSO" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.doe.lib_openturns.html#gemseo.algos.doe.lib_openturns.OpenTURNS.OT_LHSO">OT_LHSO</a></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>doe_algorithm</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
+                  <code><a class="autorefs autorefs-external" title="gemseo.algos.doe.lib_openturns.OpenTURNS.OT_LHSO" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.doe.lib_openturns.html#gemseo.algos.doe.lib_openturns.OpenTURNS.OT_LHSO">OT_LHSO</a></code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The name of the algorithm for the initial sampling.
+          –
+          <div class="doc-md-description">
+            <p>The name of the algorithm for the initial sampling.
 This argument is ignored
 when regression_algorithm is a
 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>doe_options</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.algos.driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span>]</code>, default:
-                <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>doe_options</code></b>
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.algos.driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span>]</code>, default:
+                  <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The options of the algorithm for the initial sampling.
+          –
+          <div class="doc-md-description">
+            <p>The options of the algorithm for the initial sampling.
 This argument is ignored
 when regression_algorithm is a
 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>regression_algorithm</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>, default:
-                <code><span title="gemseo.mlearning.regression.algos.gpr.GaussianProcessRegressor.__name__">__name__</span></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>regression_algorithm</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>, default:
+                  <code><span title="gemseo.mlearning.regression.algos.gpr.GaussianProcessRegressor.__name__">__name__</span></code>
 )
-        –
-        <div class="doc-md-description">
-          <p>Either the name of the regression algorithm
+          –
+          <div class="doc-md-description">
+            <p>Either the name of the regression algorithm
 approximating the objective function over the design space
 or the regression algorithm itself.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>regression_options</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.mlearning.core.algos.ml_algo.MLAlgoParameterType">MLAlgoParameterType</span>]</code>, default:
-                <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>regression_options</code></b>
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.mlearning.core.algos.ml_algo.MLAlgoParameterType">MLAlgoParameterType</span>]</code>, default:
+                  <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The options of the regression algorithm.
+          –
+          <div class="doc-md-description">
+            <p>The options of the regression algorithm.
 If transformer is missing,
 use :attr:<code>.BaseMLRegressionAlgo.DEFAULT_TRANSFORMER</code>.
 This argument is ignored
 when regression_algorithm is a
 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>regression_file_path</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>, default:
-                <code>&#39;&#39;</code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>regression_file_path</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>, default:
+                  <code>&#39;&#39;</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The path to the file to save the regression model.
+          –
+          <div class="doc-md-description">
+            <p>The path to the file to save the regression model.
 If empty, do not save the regression model.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>acquisition_options</code></b>
-            (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo_mlearning.algos.opt.OptimizationLibraryOptionType">OptimizationLibraryOptionType</span>]</code>, default:
-                <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>acquisition_options</code></b>
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo_mlearning.algos.opt.OptimizationLibraryOptionType">OptimizationLibraryOptionType</span>]</code>, default:
+                  <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The options of the algorithm to optimize
+          –
+          <div class="doc-md-description">
+            <p>The options of the algorithm to optimize
 the data acquisition criterion.</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-                <details class="quote">
-                  <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 80</span>
+                  <details class="quote">
+                    <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 80</span>
 <span class="normal"> 81</span>
 <span class="normal"> 82</span>
 <span class="normal"> 83</span>
@@ -2362,9 +2361,9 @@ the data acquisition criterion.</p>
     <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__regression_file_path</span> <span class="o">=</span> <span class="n">regression_file_path</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2376,53 +2375,49 @@ the data acquisition criterion.</p>
 
 <h5 id="gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer-functions">Functions<a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer.execute" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">execute</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">execute</span>
 
 
 <a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer.execute" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">execute</span><span class="p">(</span><span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Execute the surrogate-based optimization.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>number_of_acquisitions</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The number of learning points to be acquired.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>number_of_acquisitions</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The number of learning points to be acquired.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
-        –
-        <div class="doc-md-description">
-          <p>The termination message.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          –
+          <div class="doc-md-description">
+            <p>The termination message.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span>
@@ -2524,8 +2519,8 @@ the data acquisition criterion.</p>
 
     <span class="k">return</span> <span class="n">message</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2533,8 +2528,7 @@ the data acquisition criterion.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 <h3 id="gemseo_mlearning.algos.opt.core.surrogate_based_optimizer-functions">Functions<a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer-functions" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -2543,7 +2537,7 @@ the data acquisition criterion.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

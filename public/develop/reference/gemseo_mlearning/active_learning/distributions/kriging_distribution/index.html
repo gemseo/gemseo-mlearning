@@ -2234,18 +2234,18 @@
 
 
 <h2 id="gemseo_mlearning.active_learning.distributions.kriging_distribution" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>          <span class="doc doc-object-name doc-module-name">kriging_distribution</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">kriging_distribution</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution" class="headerlink" title="Permanent link">&para;</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Distribution related to a Kriging-like regression model.</p>
 <p>A Kriging-like regression model predicts both output mean and standard deviation while a
 standard regression model predicts only the output value.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2261,40 +2261,39 @@ standard regression model predicts only the output value.</p>
 
 
 <h4 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>          <span class="doc doc-object-name doc-class-name">KrigingDistribution</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">KrigingDistribution</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">KrigingDistribution</span><span class="p">(</span><span class="n">algo</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor">BaseRandomProcessRegressor</span></span><span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code></p>
 
-  
+
       <p>Distribution related to a Kriging-like regression model.</p>
 <p>The regression model must be a Kriging-like regression model computing both mean and
 standard deviation.</p>
-  
 
 
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>algo</code></b>
-            (<code><span title="gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor">BaseRandomProcessRegressor</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>A regression model.</p>
-        </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>algo</code></b>
+              (<code><span title="gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor">BaseRandomProcessRegressor</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>A regression model.</p>
+          </div>
+        </li>
+    </ul>
 
-                <details class="quote">
-                  <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
-                  <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
+                  <details class="quote">
+                    <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: D107</span>
@@ -2302,9 +2301,9 @@ standard deviation.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-                </details>
+                  </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2319,9 +2318,9 @@ standard deviation.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.algo" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">algo</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">algo</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -2330,10 +2329,10 @@ standard deviation.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">algo</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.algo">algo</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The regression model.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2342,9 +2341,9 @@ standard deviation.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.input_names" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">input_names</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">input_names</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2353,10 +2352,10 @@ standard deviation.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The names of the original machine learning algorithm inputs.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2365,9 +2364,9 @@ standard deviation.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.learning_set" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">learning_set</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">learning_set</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2376,10 +2375,10 @@ standard deviation.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">learning_set</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The learning dataset used by the original machine learning algorithm.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2388,9 +2387,9 @@ standard deviation.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.output_dimension" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">output_dimension</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">output_dimension</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2399,10 +2398,10 @@ standard deviation.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">output_dimension</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The dimension of the machine learning output space.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2411,9 +2410,9 @@ standard deviation.</p>
 
 
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.output_names" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>          <span class="doc doc-object-name doc-attribute-name">output_names</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">output_names</span>
 
-  
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2422,49 +2421,46 @@ standard deviation.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The names of the original machine learning algorithm outputs.</p>
-  </div>
+    </div>
 
 </div>
 
 <h5 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution-functions">Functions<a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.change_learning_set" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">change_learning_set</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">change_learning_set</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.change_learning_set" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">change_learning_set</span><span class="p">(</span><span class="n">learning_set</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Re-train the machine learning algorithm relying on the initial learning set.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>learning_set</code></b>
+              (<code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The new learning set.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>learning_set</code></b>
-            (<code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The new learning set.</p>
-        </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">291</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">291</span>
 <span class="normal">292</span>
 <span class="normal">293</span>
 <span class="normal">294</span>
@@ -2480,18 +2476,16 @@ standard deviation.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span> <span class="o">=</span> <span class="n">learning_set</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_confidence_interval" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_confidence_interval</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_confidence_interval</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_confidence_interval" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2507,8 +2501,8 @@ standard deviation.</p>
 <span class="p">)</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Predict the lower bounds and upper bounds from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2517,45 +2511,43 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>level</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
-                <code>0.95</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>level</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
+                  <code>0.95</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>A quantile level.</p>
-        </div>
-      </li>
-  </ul>
+          –
+          <div class="doc-md-description">
+            <p>A quantile level.</p>
+          </div>
+        </li>
+    </ul>
 
 
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]] | None</code>
+          –
+          <div class="doc-md-description">
+            <p>The lower and upper bound values.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]] | None</code>
-        –
-        <div class="doc-md-description">
-          <p>The lower and upper bound values.</p>
-      </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
@@ -2599,18 +2591,16 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         <span class="n">upper</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">quantile</span> <span class="o">*</span> <span class="n">std</span>
     <span class="k">return</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_expected_improvement" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_expected_improvement</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_expected_improvement</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_expected_improvement" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2621,8 +2611,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the expected improvement from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2631,53 +2621,51 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>fopt</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
-        –
-        <div class="doc-md-description">
-          <p>The current optimum value.</p>
-        </div>
-      </li>
-      <li class="doc-section-item field-body">
-        <b><code>maximize</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                <code>False</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>fopt</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The current optimum value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>maximize</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>False</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The type of optimum to seek.</p>
-        </div>
-      </li>
-  </ul>
+          –
+          <div class="doc-md-description">
+            <p>The type of optimum to seek.</p>
+          </div>
+        </li>
+    </ul>
 
 
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The expected improvement value.</p>
+          </div>
+        </li>
+    </ul>
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The expected improvement value.</p>
-      </div>
-      </li>
-  </ul>
-
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
 <span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span>
@@ -2705,26 +2693,24 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
     <span class="n">value</span> <span class="o">=</span> <span class="n">improvement</span> <span class="o">/</span> <span class="n">std</span>
     <span class="k">return</span> <span class="n">improvement</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="n">std</span> <span class="o">*</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_mean" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_mean</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_mean</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_mean" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_mean</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the mean from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2733,35 +2719,33 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The mean value.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The mean value.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
@@ -2775,18 +2759,16 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_standard_deviation" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_standard_deviation</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_standard_deviation</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_standard_deviation" class="headerlink" title="Permanent link">&para;</a></h6>
@@ -2795,8 +2777,8 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the standard deviation from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2805,35 +2787,33 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The standard deviation value.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The standard deviation value.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
@@ -2847,26 +2827,24 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">predict_std</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_variance" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">compute_variance</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_variance</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_variance" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_variance</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Compute the variance from input data.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -2875,35 +2853,33 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The variance value.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The variance value.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">92</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span>
@@ -2917,48 +2893,45 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_standard_deviation</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.learn" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">learn</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">learn</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.learn" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">learn</span><span class="p">(</span><span class="n">samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Train the machine learning algorithm from the learning dataset.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>samples</code></b>
-            (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>, default:
-                <code>None</code>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>samples</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>, default:
+                  <code>None</code>
 )
-        –
-        <div class="doc-md-description">
-          <p>The indices of the learning samples.
+          –
+          <div class="doc-md-description">
+            <p>The indices of the learning samples.
 If <code>None</code>, use the whole learning dataset</p>
-        </div>
-      </li>
-  </ul>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -2976,26 +2949,24 @@ If <code>None</code>, use the whole learning dataset</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">_samples</span> <span class="o">=</span> <span class="n">samples</span> <span class="ow">or</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">learning_set</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_samples</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.predict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>          <span class="doc doc-object-name doc-function-name">predict</span>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">predict</span>
 
 
 <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.predict" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Predict the output of the original machine learning algorithm.</p>
 <p>The user can specify the input data either as a NumPy array,
 e.g. <code>array([1., 2., 3.])</code>
@@ -3004,35 +2975,33 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-        <b><code>input_data</code></b>
-            (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-        –
-        <div class="doc-md-description">
-          <p>The input data.</p>
-        </div>
-      </li>
-  </ul>
-
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The input data.</p>
+          </div>
+        </li>
+    </ul>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <ul>
-      <li class="doc-section-item field-body">
-            <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-        –
-        <div class="doc-md-description">
-          <p>The predicted output data.</p>
-      </div>
-      </li>
-  </ul>
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+          –
+          <div class="doc-md-description">
+            <p>The predicted output data.</p>
+          </div>
+        </li>
+    </ul>
 
-          <details class="quote">
-            <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
 <span class="normal">154</span>
 <span class="normal">155</span>
 <span class="normal">156</span>
@@ -3072,8 +3041,8 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3081,8 +3050,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3091,7 +3059,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
