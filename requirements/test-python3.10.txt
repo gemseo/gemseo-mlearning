@@ -28,9 +28,9 @@ execnet==2.1.1
     # via pytest-xdist
 fastjsonschema==2.19.1
     # via gemseo
-fonttools==4.51.0
+fonttools==4.52.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@c2dcc190e0df6b09d3cefe38f7a5b977ea41a6d0
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@fad9da061f91fe3e1a1d01a6da86e9bb4e743feb
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
