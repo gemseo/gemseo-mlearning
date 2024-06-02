@@ -8,7 +8,7 @@ black==24.4.2
     # via gemseo-mlearning (pyproject.toml)
 bracex==2.4
     # via wcmatch
-certifi==2024.2.2
+certifi==2024.6.2
     # via requests
 charset-normalizer==3.3.2
     # via requests
@@ -35,7 +35,7 @@ fastjsonschema==2.19.1
     # via gemseo
 fonttools==4.53.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@96077834f86c9b306eacf9ceffa7c6a1631deae0
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@41676063749209431b802dc0d2da54067e4627e9
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -116,7 +116,7 @@ mkdocs==1.6.0
     #   mkdocstrings
 mkdocs-autorefs==1.0.1
     # via mkdocstrings
-mkdocs-bibtex==2.15.0
+mkdocs-bibtex==2.16.0
     # via gemseo-mlearning (pyproject.toml)
 mkdocs-gallery==0.10.1
     # via gemseo-mlearning (pyproject.toml)
@@ -124,7 +124,7 @@ mkdocs-gen-files==0.5.0
     # via gemseo-mlearning (pyproject.toml)
 mkdocs-get-deps==0.2.0
     # via mkdocs
-mkdocs-include-markdown-plugin==6.0.7
+mkdocs-include-markdown-plugin==6.1.1
     # via gemseo-mlearning (pyproject.toml)
 mkdocs-literate-nav==0.6.1
     # via gemseo-mlearning (pyproject.toml)
@@ -287,7 +287,7 @@ tqdm==4.66.2
     # via
     #   gemseo
     #   mkdocs-gallery
-typing-extensions==4.12.0
+typing-extensions==4.12.1
     # via
     #   black
     #   gemseo
