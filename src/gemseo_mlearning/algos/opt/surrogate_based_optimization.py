@@ -24,11 +24,10 @@ from typing import Any
 from typing import ClassVar
 from typing import Union
 
+from gemseo.algos.base_driver_library import DriverLibraryOptionType
 from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.algos.doe.lib_openturns import OpenTURNS
-from gemseo.algos.driver_library import DriverLibraryOptionType
-from gemseo.algos.opt.optimization_library import OptimizationAlgorithmDescription
-from gemseo.algos.opt.optimization_library import OptimizationLibrary
+from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
+from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
 from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
@@ -42,6 +41,7 @@ from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
 if TYPE_CHECKING:
     from pathlib import Path
 
+    from gemseo.algos.base_problem import BaseProblem
     from gemseo.algos.opt_result import OptimizationResult
 
 
@@ -63,26 +63,22 @@ class SurrogateBasedAlgorithmDescription(OptimizationAlgorithmDescription):
     library_name: str = "gemseo-mlearning"
 
 
-class SurrogateBasedOptimization(OptimizationLibrary):
+class SurrogateBasedOptimization(BaseOptimizationLibrary):
     """A wrapper for surrogate-based optimization."""
 
     LIBRARY_NAME = SurrogateBasedAlgorithmDescription.library_name
-    __SBO = "SBO"
 
     _NORMALIZE_DS: ClassVar[bool] = False
-
-    def __init__(self) -> None:  # noqa: D107
-        super().__init__()
-        self.descriptions = {
-            self.__SBO: SurrogateBasedAlgorithmDescription(
-                algorithm_name=self.__SBO,
-                description="GEMSEO in-house surrogate-based optimizer.",
-                handle_equality_constraints=False,
-                handle_inequality_constraints=False,
-                handle_integer_variables=True,  # provided acquisition handles integers
-                internal_algorithm_name=self.__SBO,
-            )
-        }
+    ALGORITHM_INFOS: ClassVar[dict[str, Any]] = {
+        "SBO": SurrogateBasedAlgorithmDescription(
+            algorithm_name="SBO",
+            description="GEMSEO in-house surrogate-based optimizer.",
+            handle_equality_constraints=False,
+            handle_inequality_constraints=False,
+            handle_integer_variables=True,  # provided acquisition handles integers
+            internal_algorithm_name="SBO",
+        )
+    }
 
     def _get_options(
         self,
@@ -94,7 +90,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
         xtol_abs: float = 1e-14,
         stop_crit_n_x: int = 3,
         doe_size: int = 10,
-        doe_algorithm: str = OpenTURNS.OT_LHSO,
+        doe_algorithm: str = "OT_OPT_LHS",
         doe_options: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
@@ -169,7 +165,9 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             **kwargs,
         )
 
-    def _run(self, **options: SBOOptionType) -> OptimizationResult:
+    def _run(
+        self, problem: BaseProblem, **options: SBOOptionType
+    ) -> OptimizationResult:
         """
         Raises:
             ValueError: When the maximum number of iterations
@@ -189,7 +187,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             initial_doe_size = len(
                 doe_algo.compute_doe(self.problem.design_space, doe_size, **doe_options)
             )
-            max_iter = options[self.MAX_ITER]
+            max_iter = options["max_iter"]
             if max_iter < 1 + initial_doe_size:
                 msg = (
                     f"max_iter ({max_iter}) must be "
@@ -198,7 +196,7 @@ class SurrogateBasedOptimization(OptimizationLibrary):
                 raise ValueError(msg)
 
         optimizer = SurrogateBasedOptimizer(
-            self.problem,
+            problem,
             options["acquisition_algorithm"],
             doe_size=doe_size,
             doe_algorithm=doe_algorithm,
@@ -209,4 +207,4 @@ class SurrogateBasedOptimization(OptimizationLibrary):
             acquisition_options=options["acquisition_options"],
         )
         # Set a large bound on the number of acquisitions as GEMSEO handles stopping
-        return self.get_optimum_from_database(optimizer.execute(sys.maxsize))
+        return self._get_optimum_from_database(problem, optimizer.execute(sys.maxsize))
