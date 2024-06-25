@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
@@ -2041,9 +2041,9 @@
     <span class="n">problem</span><span class="p">:</span> <span class="n"><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></span><span class="p">,</span>
     <span class="n">acquisition_algorithm</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
     <span class="n">doe_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">doe_algorithm</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="n">OpenTURNS</span><span class="o">.</span><span class="n">OT_LHSO</span><span class="p">,</span>
+    <span class="n">doe_algorithm</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span>
     <span class="n">doe_options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span>
-        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span></span>
+        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.base_driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span></span>
     <span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
     <span class="n">regression_algorithm</span><span class="p">:</span> <span class="p">(</span>
         <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span>
@@ -2103,7 +2103,7 @@ when regression_algorithm is a
         <li class="doc-section-item field-body">
           <b><code>doe_algorithm</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
-                  <code><a class="autorefs autorefs-external" title="gemseo.algos.doe.lib_openturns.OpenTURNS.OT_LHSO" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.doe.lib_openturns.html#gemseo.algos.doe.lib_openturns.OpenTURNS.OT_LHSO">OT_LHSO</a></code>
+                  <code>&#39;OT_OPT_LHS&#39;</code>
 )
           –
           <div class="doc-md-description">
@@ -2115,7 +2115,7 @@ when regression_algorithm is a
         </li>
         <li class="doc-section-item field-body">
           <b><code>doe_options</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.algos.driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span>]</code>, default:
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.algos.base_driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span>]</code>, default:
                   <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
 )
           –
@@ -2179,7 +2179,9 @@ the data acquisition criterion.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 80</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
 <span class="normal"> 81</span>
 <span class="normal"> 82</span>
 <span class="normal"> 83</span>
@@ -2267,14 +2269,12 @@ the data acquisition criterion.</p>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">problem</span><span class="p">:</span> <span class="n">OptimizationProblem</span><span class="p">,</span>
     <span class="n">acquisition_algorithm</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">doe_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">doe_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">OpenTURNS</span><span class="o">.</span><span class="n">OT_LHSO</span><span class="p">,</span>
+    <span class="n">doe_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span>
     <span class="n">doe_options</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DriverLibraryOptionType</span><span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
     <span class="n">regression_algorithm</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="n">BaseRegressor</span><span class="p">)</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
     <span class="n">regression_options</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MLAlgoParameterType</span><span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
@@ -2324,8 +2324,8 @@ the data acquisition criterion.</p>
         <span class="c1"># Store max_iter as it will be overwritten by DOELibrary</span>
         <span class="n">max_iter</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">max_iter</span>
         <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">doe_options</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">doe_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">DOELibrary</span><span class="o">.</span><span class="n">N_SAMPLES</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
-            <span class="n">options</span><span class="p">[</span><span class="n">DOELibrary</span><span class="o">.</span><span class="n">N_SAMPLES</span><span class="p">]</span> <span class="o">=</span> <span class="n">doe_size</span>
+        <span class="k">if</span> <span class="n">doe_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s2">&quot;n_samples&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
+            <span class="n">options</span><span class="p">[</span><span class="s2">&quot;n_samples&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doe_size</span>
 
         <span class="c1"># Store the listeners as they will be cleared by DOELibrary.</span>
         <span class="n">new_iter_listeners</span><span class="p">,</span> <span class="n">store_listeners</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">clear_listeners</span><span class="p">()</span>
@@ -2417,7 +2417,9 @@ the data acquisition criterion.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span>
@@ -2465,9 +2467,7 @@ the data acquisition criterion.</p>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
-<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the surrogate-based optimization.</span>
 
 <span class="sd">    Args:</span>

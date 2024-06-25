@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.26">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
     
     
       
@@ -1986,7 +1986,7 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-external" title="gemseo.algos.opt.optimization_library.OptimizationAlgorithmDescription" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.opt.optimization_library.html#gemseo.algos.opt.optimization_library.OptimizationAlgorithmDescription">OptimizationAlgorithmDescription</a></code></p>
+              Bases: <code><span title="gemseo.algos.opt.base_optimization_library.OptimizationAlgorithmDescription">OptimizationAlgorithmDescription</span></code></p>
 
 
       <p>The description of a surrogate-based optimization algorithm.</p>
@@ -2021,12 +2021,11 @@
 
 
 <a href="#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">SurrogateBasedOptimization</span><span class="p">()</span>
-</code></pre></div>
+
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-external" title="gemseo.algos.opt.optimization_library.OptimizationLibrary" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.opt.optimization_library.html#gemseo.algos.opt.optimization_library.OptimizationLibrary">OptimizationLibrary</a></code></p>
+              Bases: <code><span title="gemseo.algos.opt.base_optimization_library.BaseOptimizationLibrary">BaseOptimizationLibrary</span></code></p>
 
 
       <p>A wrapper for surrogate-based optimization.</p>
@@ -2039,33 +2038,6 @@ of the :class:<code>.DesignSpace</code> attached to the :class:<code>.Optimizati
 are automatically initialized
 with the method :meth:<code>.DesignSpace.initialize_missing_current_values</code>.</p>
 </details>
-                  <details class="quote">
-                    <summary>Source code in <code>src/gemseo_mlearning/algos/opt/surrogate_based_optimization.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D107</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">descriptions</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__SBO</span><span class="p">:</span> <span class="n">SurrogateBasedAlgorithmDescription</span><span class="p">(</span>
-            <span class="n">algorithm_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__SBO</span><span class="p">,</span>
-            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;GEMSEO in-house surrogate-based optimizer.&quot;</span><span class="p">,</span>
-            <span class="n">handle_equality_constraints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">handle_inequality_constraints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">handle_integer_variables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># provided acquisition handles integers</span>
-            <span class="n">internal_algorithm_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__SBO</span><span class="p">,</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
-</code></pre></div></td></tr></table></div>
-                  </details>
 
 
 
