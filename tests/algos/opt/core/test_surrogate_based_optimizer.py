@@ -34,7 +34,7 @@ from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     ("regression_algorithm", "regression_options"),
     [
         ("GaussianProcessRegressor", {}),
-        ("OTGaussianProcessRegressor", {"use_hmat": True}),
+        ("OTGaussianProcessRegressor", {"use_hmat": False}),
     ],
 )
 def test_all_acquisitions_made(regression_algorithm, regression_options):

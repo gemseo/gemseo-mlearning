@@ -44,7 +44,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.acquisition_criterion
 
 if TYPE_CHECKING:
     from gemseo.algos.design_space import DesignSpace
-    from gemseo.algos.opt.optimization_library import OptimizationLibrary
+    from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
     from gemseo.core.discipline import MDODiscipline
     from gemseo.mlearning.core.algos.ml_algo import DataType
 
@@ -60,7 +60,7 @@ _CRITERION_FACTORY = AcquisitionCriterionFactory()
 class ActiveLearningAlgo:
     """An active learning algorithm."""
 
-    __acquisition_algo: OptimizationLibrary
+    __acquisition_algo: BaseOptimizationLibrary
     """The algorithm to find the new training point(s)."""
 
     __acquisition_algo_options: dict[str, Any]

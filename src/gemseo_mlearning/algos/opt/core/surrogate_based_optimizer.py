@@ -21,9 +21,7 @@ import pickle
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from gemseo.algos.doe.doe_library import DOELibrary
 from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.algos.doe.lib_openturns import OpenTURNS
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo.mlearning.regression.algos.factory import RegressorFactory
@@ -43,7 +41,7 @@ from gemseo_mlearning.active_learning.distributions import get_regressor_distrib
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from gemseo.algos.driver_library import DriverLibraryOptionType
+    from gemseo.algos.base_driver_library import DriverLibraryOptionType
     from gemseo.algos.optimization_problem import OptimizationProblem
     from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
 
@@ -82,7 +80,7 @@ class SurrogateBasedOptimizer:
         problem: OptimizationProblem,
         acquisition_algorithm: str,
         doe_size: int = 0,
-        doe_algorithm: str = OpenTURNS.OT_LHSO,
+        doe_algorithm: str = "OT_OPT_LHS",
         doe_options: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
@@ -132,8 +130,8 @@ class SurrogateBasedOptimizer:
             # Store max_iter as it will be overwritten by DOELibrary
             max_iter = problem.max_iter
             options = dict(doe_options)
-            if doe_size > 0 and DOELibrary.N_SAMPLES not in options:
-                options[DOELibrary.N_SAMPLES] = doe_size
+            if doe_size > 0 and "n_samples" not in options:
+                options["n_samples"] = doe_size
 
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = problem.database.clear_listeners()
