@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
@@ -2322,7 +2322,7 @@ the data acquisition criterion.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="n">regression_algorithm</span><span class="o">.</span><span class="n">learning_set</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="c1"># Store max_iter as it will be overwritten by DOELibrary</span>
-        <span class="n">max_iter</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">max_iter</span>
+        <span class="n">max_iter</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">evaluation_counter</span><span class="o">.</span><span class="n">maximum</span>
         <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">doe_options</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">doe_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="s2">&quot;n_samples&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">options</span><span class="p">:</span>
             <span class="n">options</span><span class="p">[</span><span class="s2">&quot;n_samples&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doe_size</span>
@@ -2348,9 +2348,9 @@ the data acquisition criterion.</p>
             <span class="o">**</span><span class="n">_regression_options</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="c1"># Add the first iteration to the current_iter reset by DOELibrary.</span>
-        <span class="n">problem</span><span class="o">.</span><span class="n">current_iter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">evaluation_counter</span><span class="o">.</span><span class="n">current</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="c1"># And restore max_iter.</span>
-        <span class="n">problem</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span>
+        <span class="n">problem</span><span class="o">.</span><span class="n">evaluation_counter</span><span class="o">.</span><span class="n">maximum</span> <span class="o">=</span> <span class="n">max_iter</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span> <span class="o">=</span> <span class="n">get_regressor_distribution</span><span class="p">(</span><span class="n">regression_algorithm</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -2485,7 +2485,7 @@ the data acquisition criterion.</p>
             <span class="k">break</span>
 
         <span class="n">output_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__problem</span><span class="o">.</span><span class="n">evaluate_functions</span><span class="p">(</span>
-            <span class="n">x_vect</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span>
+            <span class="n">design_vector</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">extra_learning_set</span> <span class="o">=</span> <span class="n">IODataset</span><span class="p">()</span>
         <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span>
@@ -2589,7 +2589,7 @@ the data acquisition criterion.</p>
     <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="../../../../../../assets/_markdown_exec_pyodide.js"></script>
       
