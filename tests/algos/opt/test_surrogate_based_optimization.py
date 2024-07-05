@@ -79,7 +79,7 @@ def test_problem_counters():
         acquisition_algorithm="OT_MONTE_CARLO",
         acquisition_options={"n_samples": 100},
     )
-    assert problem.max_iter == 13
-    assert problem.current_iter == 13
-    assert problem.nonproc_objective.n_calls == 13
+    assert problem.evaluation_counter.maximum == 13
+    assert problem.evaluation_counter.current == 13
+    assert problem.objective.original.n_calls == 13
     assert problem.objective.n_calls == 14

@@ -128,7 +128,7 @@ class SurrogateBasedOptimizer:
             self.__dataset = regression_algorithm.learning_set
         else:
             # Store max_iter as it will be overwritten by DOELibrary
-            max_iter = problem.max_iter
+            max_iter = problem.evaluation_counter.maximum
             options = dict(doe_options)
             if doe_size > 0 and "n_samples" not in options:
                 options["n_samples"] = doe_size
@@ -154,9 +154,9 @@ class SurrogateBasedOptimizer:
                 **_regression_options,
             )
             # Add the first iteration to the current_iter reset by DOELibrary.
-            problem.current_iter += 1
+            problem.evaluation_counter.current += 1
             # And restore max_iter.
-            problem.max_iter = max_iter
+            problem.evaluation_counter.maximum = max_iter
 
         self.__distribution = get_regressor_distribution(regression_algorithm)
         self.__active_learning_algo = ActiveLearningAlgo(
@@ -185,7 +185,7 @@ class SurrogateBasedOptimizer:
                 break
 
             output_data = self.__problem.evaluate_functions(
-                x_vect=input_data, normalize=False
+                design_vector=input_data, normalize=False
             )[0]
             extra_learning_set = IODataset()
             distribution = self.__distribution
