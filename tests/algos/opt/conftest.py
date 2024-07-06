@@ -21,7 +21,7 @@ from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
 from gemseo.problems.optimization.rastrigin import Rastrigin
 
 
-@pytest.fixture()
+@pytest.fixture
 def regression_algorithm() -> OTGaussianProcessRegressor:
     """A regression algorithm for the Rastrigin problem."""
     problem = Rastrigin()
