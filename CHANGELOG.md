@@ -30,6 +30,13 @@ and this project adheres to
 
 ## Added
 
+- [AcquisitionView][gemseo_mlearning.active_learning.visualization.acquisition_view.AcquisitionView]
+  can be used to plot
+  both the output of the original model,
+  the prediction of the surrogate model,
+  the standard deviation of the surrogate model
+  and the acquisition criterion,
+  when the input dimension is 1 or 2.
 - [SMTRegressionModel][gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel]
   can be any surrogate model available in the Python package [SMT](https://smt.readthedocs.io/).
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
@@ -57,9 +64,26 @@ and this project adheres to
 
 ## Changed
 
+- BREAKING CHANGE: The argument `distribution` of
+  [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
+  renamed to `regressor`; it can be either a regressor
+  [gemseo.mlearning.regression.algos.base_regressor.BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+  or a
+  [gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution].
+- BREAKING CHANGE: The method `compute_next_input_data` of
+  [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
+  renamed to
+  [find_next_point][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.find_next_point].
+- BREAKING CHANGE: The method `update_algo` of
+  [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
+  renamed to
+  [acquire_new_points][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points].
 - BREAKING CHANGE: The argument `trend_type` and the attribute `TrendType` of
   [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
   renamed to `trend` and `Trend` respectively.
+- BREAKING CHANGE: `MaxExpectedImprovement` renamed to ``Maximum`.
+- BREAKING CHANGE: `MinExpectedImprovement` renamed to ``Minimum`.
+- BREAKING CHANGE: `ExpectedImprovement` removed.
 - BREAKING CHANGE: the acquisition criterion `LimitState` renamed to
   [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
 - BREAKING CHANGE: each acquisition criterion class has a specific module

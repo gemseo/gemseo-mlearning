@@ -18,11 +18,7 @@
 #                         documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""Distribution related to a Kriging-like regression model.
-
-A Kriging-like regression model predicts both output mean and standard deviation while a
-standard regression model predicts only the output value.
-"""
+"""Kriging-like regressor distribution."""
 
 from __future__ import annotations
 
@@ -47,11 +43,7 @@ if TYPE_CHECKING:
 
 
 class KrigingDistribution(BaseRegressorDistribution):
-    """Distribution related to a Kriging-like regression model.
-
-    The regression model must be a Kriging-like regression model computing both mean and
-    standard deviation.
-    """
+    """Kriging-like regressor distribution."""
 
     def __init__(  # noqa: D107
         self, algo: BaseRandomProcessRegressor
@@ -63,12 +55,8 @@ class KrigingDistribution(BaseRegressorDistribution):
         input_data: DataType,
         level: float = 0.95,
     ) -> (
-        tuple[
-            dict[str, NumberArray],
-            dict[str, NumberArray],
-            tuple[NumberArray, NumberArray],
-        ]
-        | None
+        tuple[dict[str, NumberArray], dict[str, NumberArray]]
+        | tuple[NumberArray, NumberArray]
     ):
         mean = self.compute_mean(input_data)
         std = self.compute_standard_deviation(input_data)
@@ -104,18 +92,3 @@ class KrigingDistribution(BaseRegressorDistribution):
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict_std(input_data)
-
-    @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
-    def compute_expected_improvement(  # noqa: D102
-        self,
-        input_data: DataType,
-        f_opt: float,
-        maximize: bool = False,
-    ) -> DataType:
-        mean = self.compute_mean(input_data)
-        improvement = mean - f_opt if maximize else f_opt - mean
-
-        std = self.compute_standard_deviation(input_data)
-        value = improvement / std
-        return improvement * norm.cdf(value) + std * norm.pdf(value)

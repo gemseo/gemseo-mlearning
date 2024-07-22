@@ -185,7 +185,7 @@ def test_change_learning_set(dataset):
 @pytest.mark.parametrize("is_2d", [False, True])
 @pytest.mark.parametrize(
     "statistic",
-    ["variance", "mean", "expected_improvement", "standard_deviation"],
+    ["variance", "mean", "standard_deviation"],
 )
 def test_decorator_for_statistics(
     distribution_with_transformers, as_dict, is_2d, statistic
@@ -198,12 +198,8 @@ def test_decorator_for_statistics(
     if as_dict:
         input_data = {"x": input_data}
 
-    args = ()
-    if statistic == "expected_improvement":
-        args = (0.0,)
-
     compute_statistic = getattr(distribution_with_transformers, f"compute_{statistic}")
-    output_data = compute_statistic(input_data, *args)
+    output_data = compute_statistic(input_data)
 
     assert isinstance(output_data, dict) == as_dict
 

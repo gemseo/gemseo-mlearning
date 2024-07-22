@@ -18,27 +18,7 @@
 #                         documentation
 #        :author: Matthias De Lozzo
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
-"""Universal distribution for regression models.
-
-A
-[RegressorDistribution][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution]
-samples an
-[BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor],
-by learning new versions of the latter from subsets of the original learning dataset.
-
-These new
-[BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
-instances are based on sampling methods,
-such as bootstrap, cross-validation or leave-one-out.
-
-Sampling a [BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
-can be particularly useful to:
-
-- study the robustness of a [BaseMLAlgo][gemseo.mlearning.core.algos.ml_algo.BaseMLAlgo]
-  w.r.t. learning dataset elements,
-- estimate infill criteria for active learning purposes,
-- etc.
-"""
+"""Universal regressor distribution."""
 
 from __future__ import annotations
 
@@ -58,7 +38,6 @@ from numpy import atleast_2d
 from numpy import delete as npdelete
 from numpy import dot
 from numpy import exp
-from numpy import maximum
 from numpy import ones
 from numpy import quantile
 from numpy import stack
@@ -79,7 +58,7 @@ if TYPE_CHECKING:
 
 
 class RegressorDistribution(BaseRegressorDistribution):
-    """Distribution related to a regression algorithm."""
+    """Universal regressor distribution."""
 
     method: str
     """The resampling method."""
@@ -212,13 +191,13 @@ class RegressorDistribution(BaseRegressorDistribution):
             only_one_element = input_data.ndim == 1
             input_data = atleast_2d(input_data)
             distance = ones(input_data.shape[0])
-            for index in indices:
-                index_data = self.learning_set.get_view(group_names=in_grp).to_numpy()[
-                    index
-                ]
-                for index, value in enumerate(input_data):
-                    term = 1 - exp(-(euclidean(index_data, value) ** 2) / rho**2)
-                    distance[index] *= term
+            learning_data = self.learning_set.get_view(group_names=in_grp).to_numpy()
+            learning_data = learning_data[indices]
+            for learning_datum in learning_data:
+                for index, input_datum in enumerate(input_data):
+                    distance[index] *= 1 - exp(
+                        -(euclidean(learning_datum, input_datum) ** 2) / rho**2
+                    )
             if only_one_element:
                 distance = distance[0]
             return distance
@@ -232,16 +211,16 @@ class RegressorDistribution(BaseRegressorDistribution):
 
         Args:
             input_data: The input data,
-                specified as either as a numpy.array or as dictionary of numpy.array
+                specified as either as a NumPy array or as dictionary of NumPy arrays
                 indexed by inputs names.
-                The numpy.array can be either a (d,) array
-                representing a sample in dimension d,
-                or a (M, d) array representing M samples in dimension d.
+                The NumPy array can be either a `(d,)` array
+                representing a sample in dimension `d`,
+                or a `(M, d)` array representing `M` samples in dimension `d`.
 
         Returns:
-            The output data (dimension p) of N machine learning algorithms.
-                If input_data.shape == (d,), then output_data.shape == (N, p).
-                If input_data.shape == (M,d), then output_data;shape == (N,M,p).
+            The output data (dimension `p`) of `N` machine learning algorithms.
+                If `input_data.shape == (d,)`, then `output_data.shape == (N, p)`.
+                If `input_data.shape == (M,d)`, then `output_data.shape == (N,M,p)`.
         """
         predictions = [algo.predict(input_data) for algo in self.algos]
         if isinstance(input_data, Mapping):
@@ -256,12 +235,8 @@ class RegressorDistribution(BaseRegressorDistribution):
         input_data: DataType,
         level: float = 0.95,
     ) -> (
-        tuple[
-            dict[str, NumberArray],
-            dict[str, NumberArray],
-            tuple[NumberArray, NumberArray],
-        ]
-        | None
+        tuple[dict[str, NumberArray], dict[str, NumberArray]]
+        | tuple[NumberArray, NumberArray]
     ):
         level = (1.0 - level) / 2.0
         predictions = self.predict_members(input_data)
@@ -279,7 +254,7 @@ class RegressorDistribution(BaseRegressorDistribution):
             upper = quantile(predictions, 1 - level, axis=0)
         return lower, upper
 
-    def _evaluate_weights(self, input_data: NumberArray) -> NumberArray:
+    def evaluate_weights(self, input_data: NumberArray) -> NumberArray:
         """Evaluate weights.
 
         Args:
@@ -295,36 +270,20 @@ class RegressorDistribution(BaseRegressorDistribution):
     @RegressionDataFormatters.format_samples
     def compute_mean(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
-        weights = self._evaluate_weights(input_data)
+        weights = self.evaluate_weights(input_data)
         return self.__average(weights, predictions)
 
     @RegressionDataFormatters.format_dict
     @RegressionDataFormatters.format_samples
     def compute_variance(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
-        weights = self._evaluate_weights(input_data)
+        weights = self.evaluate_weights(input_data)
         term1 = self.__average(weights, predictions**2)
         term2 = self.__average(weights, predictions) ** 2
         return term1 - term2
 
-    @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
-    def compute_expected_improvement(  # noqa: D102
-        self,
-        input_data: DataType,
-        fopt: float,
-        maximize: bool = False,
-    ) -> DataType:
-        predictions = self.predict_members(input_data)
-        weights = self._evaluate_weights(input_data)
-        if maximize:
-            expected_improvement = maximum(predictions - fopt, 0.0)
-        else:
-            expected_improvement = maximum(fopt - predictions, 0.0)
-        return self.__average(weights, expected_improvement)
-
+    @staticmethod
     def __average(
-        self,
         weights: NumberArray,
         data: NumberArray,
     ) -> NumberArray:

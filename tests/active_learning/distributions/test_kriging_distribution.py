@@ -90,28 +90,6 @@ def test_compute_variance(distribution, point):
     assert result[0] == pytest.approx(0, abs=1e-3)
 
 
-@pytest.mark.parametrize("maximize", [True, False])
-@pytest.mark.parametrize(
-    "point",
-    [
-        (array([0.0])),
-        (array([1.0])),
-        (array([[0.0], [1.0]])),
-        ({"x": array([0.0])}),
-        ({"x": array([[0.0], [0.5]])}),
-    ],
-)
-def test_compute_expected_improvement(distribution, point, maximize):
-    """Check the computation of the expected improvement."""
-    result = distribution.compute_expected_improvement(point, 0.0, maximize)
-    if isinstance(point, dict):
-        point = point["x"]
-        result = result["y"]
-
-    assert result.shape == point.shape
-    assert result[0] == pytest.approx(1 if maximize else 0, 0.1)
-
-
 @pytest.mark.parametrize(
     "point",
     [
