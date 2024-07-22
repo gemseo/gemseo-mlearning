@@ -25,20 +25,36 @@ from gemseo.algos.parameter_space import ParameterSpace
 from numpy import array
 from numpy.testing import assert_almost_equal
 
-from gemseo_mlearning.active_learning.acquisition_criteria.quantile import Quantile
+from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ef import EF
+from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei import EI
+from gemseo_mlearning.active_learning.acquisition_criteria.quantile.u import U
 
 
-def test_quantile(algo_distribution):
-    """Check the criterion Quantile."""
-    uncertain_space = ParameterSpace()
-    uncertain_space.add_random_variable("a", "OTNormalDistribution")
-    uncertain_space.add_random_variable("x", "OTNormalDistribution")
-    criterion = Quantile(algo_distribution, 0.8, uncertain_space)
-    assert_almost_equal(criterion(array([0.25])), array([0.11785113]))
+@pytest.fixture(scope="module")
+def uncertain_space() -> ParameterSpace:
+    """An uncertain space."""
+    parameter_space = ParameterSpace()
+    parameter_space.add_random_variable("a", "OTNormalDistribution")
+    parameter_space.add_random_variable("x", "OTNormalDistribution")
+    return parameter_space
+
+
+@pytest.mark.parametrize(
+    ("cls", "expected"),
+    [
+        (U, 0.1178511),
+        (EF, 0.259206),
+        (EI, 0.2405944),
+    ],
+)
+def test_quantile_variants(algo_distribution, uncertain_space, cls, expected):
+    """Check the criteria deriving from BaseQuantile with a Kriging distribution."""
+    criterion = cls(algo_distribution, 0.8, uncertain_space)
+    assert_almost_equal(criterion(array([0.25])), array([expected]))
 
 
 def test_quantile_error(algo_distribution):
-    """Check the exception raised by the criterion Quantile."""
+    """Check the exception raised by a BaseQuantile criterion."""
     uncertain_space = ParameterSpace()
     with pytest.raises(
         ValueError,
@@ -46,4 +62,4 @@ def test_quantile_error(algo_distribution):
             "The probability distributions of the input variables x are missing."
         ),
     ):
-        Quantile(algo_distribution, 0.8, uncertain_space)
+        EF(algo_distribution, 0.8, uncertain_space)

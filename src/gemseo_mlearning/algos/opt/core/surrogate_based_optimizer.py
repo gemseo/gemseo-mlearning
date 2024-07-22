@@ -32,8 +32,8 @@ from numpy import hstack
 from numpy import newaxis
 from pandas import concat
 
-from gemseo_mlearning.active_learning.acquisition_criteria.expected_improvement import (
-    ExpectedImprovement,
+from gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum import (
+    Minimum,
 )
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 from gemseo_mlearning.active_learning.distributions import get_regressor_distribution
@@ -160,7 +160,9 @@ class SurrogateBasedOptimizer:
 
         self.__distribution = get_regressor_distribution(regression_algorithm)
         self.__active_learning_algo = ActiveLearningAlgo(
-            ExpectedImprovement.__name__, problem.design_space, self.__distribution
+            Minimum.__name__,
+            problem.design_space,
+            self.__distribution,
         )
         self.__active_learning_algo.set_acquisition_algorithm(
             acquisition_algorithm, **acquisition_options
@@ -179,7 +181,7 @@ class SurrogateBasedOptimizer:
         self.__distribution.learn()
         message = self.__STOP_BECAUSE_MAX_ACQUISITIONS
         for _ in range(number_of_acquisitions):
-            input_data = self.__active_learning_algo.compute_next_input_data()
+            input_data = self.__active_learning_algo.find_next_point()
             if input_data in self.__problem.database:
                 message = self.__STOP_BECAUSE_ALREADY_KNOWN
                 break

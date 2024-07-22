@@ -18,17 +18,40 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import pytest
 from numpy import array
+from numpy import inf
+from numpy import nan_to_num
+from numpy.testing import assert_almost_equal
 
-from gemseo_mlearning.active_learning.acquisition_criteria.level_set import LevelSet
+from gemseo_mlearning.active_learning.acquisition_criteria.level_set.ef import EF
+from gemseo_mlearning.active_learning.acquisition_criteria.level_set.ei import EI
+from gemseo_mlearning.active_learning.acquisition_criteria.level_set.u import U
 
 
-def test_level_set(algo_distribution):
-    """Check the criterion LevelSet."""
-    output_target = 0.5
-    input_value = array([0.25])
-    mean = algo_distribution.compute_mean(input_value)
-    std = algo_distribution.compute_standard_deviation(input_value)
-    expected = abs(output_target - mean) / std
-    criterion = LevelSet(algo_distribution, output_target)
-    assert criterion(input_value) == expected
+@pytest.mark.parametrize(
+    ("cls", "expected"),
+    [
+        (U, 0.35355339),
+        (EF, 0.2472296),
+        (EI, 0.2298589),
+    ],
+)
+def test_level_set(algo_distribution, cls, expected):
+    """Check the criteria deriving from BaseLevelSet."""
+    criterion = cls(algo_distribution, 0.5)
+    assert_almost_equal(criterion(array([0.25])), array([expected]))
+
+
+def test_u_at_training_point(algo_distribution):
+    """Check that the U criterion at a training point is infinity."""
+    u = U(algo_distribution, 1)
+    u._compute_standard_deviation = lambda x: array([0])
+    infinity = nan_to_num(inf)
+
+    # Case where mean=mu(x) and std=0 => U = abs(1-mu(x))/0
+    assert_almost_equal(u.evaluate(array([0.0])), array([infinity]))
+
+    # Case where mean=1 and std=0 => U = abs(1-1)/0 = 0/0
+    u._compute_mean = lambda x: array([1])
+    assert_almost_equal(u.evaluate(array([0.0])), array([infinity]))

@@ -12,11 +12,15 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""The distributions of machine learning algorithms."""
+"""Regressor distributions."""
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
+
+from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+    BaseRandomProcessRegressor,
+)
 
 from gemseo_mlearning.active_learning.distributions.kriging_distribution import (
     KrigingDistribution,
@@ -34,15 +38,15 @@ if TYPE_CHECKING:
 
 
 def get_regressor_distribution(
-    regression_algorithm: BaseRegressor,
+    regressor: BaseRegressor,
     use_bootstrap: bool = True,
     use_loo: bool = False,
     size: int | None = None,
 ) -> BaseRegressorDistribution:
-    """Return the distribution of a regression algorithm.
+    """Return the distribution of a regressor.
 
     Args:
-        regression_algorithm: The regression algorithm.
+        regressor: The regression algorithm.
         use_bootstrap: Whether to use bootstrap for resampling.
             If `False`, use cross-validation.
         use_loo: Whether to use leave-one-out resampling when
@@ -61,7 +65,7 @@ def get_regressor_distribution(
     Returns:
         The distribution of the regression algorithm.
     """
-    if hasattr(regression_algorithm, "predict_std"):
-        return KrigingDistribution(regression_algorithm)
+    if isinstance(regressor, BaseRandomProcessRegressor):
+        return KrigingDistribution(regressor)
 
-    return RegressorDistribution(regression_algorithm, use_bootstrap, use_loo, size)
+    return RegressorDistribution(regressor, use_bootstrap, use_loo, size)

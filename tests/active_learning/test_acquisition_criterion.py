@@ -28,15 +28,10 @@ from gemseo.core.mdofunctions.mdo_function import MDOFunction
 from gemseo.mlearning.regression.algos.linreg import LinearRegressor
 from numpy import array
 
-from gemseo_mlearning.active_learning.acquisition_criteria.acquisition_criterion_factory import (  # noqa: E501
-    AcquisitionCriterionFactory,
+from gemseo_mlearning.active_learning.acquisition_criteria.exploration.distance import (
+    Distance,
 )
-from gemseo_mlearning.active_learning.acquisition_criteria.expected_improvement import (
-    ExpectedImprovement,
-)
-from gemseo_mlearning.active_learning.acquisition_criteria.minimum_distance import (  # noqa: E501
-    MinimumDistance,
-)
+from gemseo_mlearning.active_learning.acquisition_criteria.minimum.ei import EI
 from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
     RegressorDistribution,
 )
@@ -50,26 +45,16 @@ def algo_distribution(dataset) -> RegressorDistribution:
     return distribution
 
 
-def test_factory(algo_distribution):
-    """Check the MLDataAcquisitionCriterionFactory."""
-    factory = AcquisitionCriterionFactory()
-    criterion = factory.create(
-        "ExpectedImprovement", algo_distribution=algo_distribution
-    )
-    assert isinstance(criterion, ExpectedImprovement)
-    assert factory.is_available("ExpectedImprovement")
-
-
 @pytest.fixture(scope="module")
 def criterion_1(algo_distribution):
     """First data acquisition criterion to check operations."""
-    return ExpectedImprovement(algo_distribution)
+    return EI(algo_distribution)
 
 
 @pytest.fixture(scope="module")
 def criterion_2(algo_distribution):
     """Second data acquisition criterion to check operations."""
-    return MinimumDistance(algo_distribution)
+    return Distance(algo_distribution)
 
 
 @pytest.mark.parametrize("operator", [add, mul, sub, truediv])
@@ -86,8 +71,6 @@ def test_operations(criterion_1, criterion_2, operator, second_operand):
         criterion_2 = second_operand
 
     criterion_3 = operator(criterion_1, criterion_2)
-    assert id(criterion_3.algo_distribution) == id(criterion_1.algo_distribution)
-    assert id(criterion_3.output_range) == id(criterion_1.output_range)
     assert criterion_3(x) == operator(c_1, c_2)
 
 
@@ -100,19 +83,9 @@ def test_neg(criterion_1):
 
 def test_linear_combination(algo_distribution):
     """Check that a combination of MLDataAcquisitionCriterion is an MDOFunction."""
-    criterion_1 = ExpectedImprovement(algo_distribution)
-    criterion_2 = MinimumDistance(algo_distribution)
+    criterion_1 = EI(algo_distribution)
+    criterion_2 = Distance(algo_distribution)
     criterion_3 = criterion_1 * 0.2 + criterion_2 * 0.8
     assert isinstance(criterion_3, MDOFunction)
     x_new = array([0.5])
     assert criterion_3(x_new) == criterion_1(x_new) * 0.2 + criterion_2(x_new) * 0.8
-
-
-def test_scaling_factor(dataset, algo_distribution):
-    """Check that the scaling factor is updated with the output range."""
-    criterion = ExpectedImprovement(algo_distribution)
-    assert criterion._scaling_factor == 1.0
-    criterion.output_range = 2.0
-    assert criterion._scaling_factor == 2.0
-    criterion.output_range = 0.0
-    assert criterion._scaling_factor == 1.0
