@@ -21,7 +21,7 @@ under the [LGPL v3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html).
 ## Overview
 
 This package adds new [regression models][gemseo_mlearning.regression]
-and [quality measures][gemseo_mlearning.quality_measures].
+based on [SMT](https://smt.readthedocs.io/).
 
 A [package for active learning][gemseo_mlearning.active_learning] is also available,
 deeply based on the core GEMSEO objects for optimization,

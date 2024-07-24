@@ -84,15 +84,20 @@ nav:
   - Changelog: changelog.md
   - Credits: credits.md
   - Licenses: licenses.md
-- User guide: user_guide/
+- User guide:
+  - Introduction: user_guide/index.md
+  - Active learning: user_guide/active_learning.md
 - Examples:
   - Active learning: generated/examples/active_learning
   - Optimization:  generated/examples/optimization
   - Sampling: generated/examples/sampling
 - API documentation: reference/gemseo_mlearning/
+- Developer guide:
+  - Active learning: developer_guide/active_learning.md
 
 markdown_extensions:
 - admonition
+- def_list
 - pymdownx.details
 - pymdownx.arithmatex:
     generic: true
@@ -104,6 +109,8 @@ markdown_extensions:
 - toc:
     permalink: true
 - pymdownx.snippets
+- pymdownx.highlight
+- pymdownx.inlinehilite
 
 extra_javascript:
 - javascripts/mathjax.js
