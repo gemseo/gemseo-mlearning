@@ -3018,7 +3018,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 <span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>level_set/<span class="w"> </span><span class="c1"># ACs to approximate a level set</span>
 <span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>maximum/<span class="w"> </span><span class="c1"># ACs to approximate the global maximum</span>
 <span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>minimum/<span class="w"> </span><span class="c1"># ACs to approximate the global minimum</span>
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>quantile<span class="w"> </span><span class="c1"># ACs to approximate a quantile</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>quantile/<span class="w"> </span><span class="c1"># ACs to approximate a quantile</span>
 <span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>base_acquisition_criterion.py<span class="w"> </span><span class="c1"># Base class for ACs</span>
 <span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>base_acquisition_criterion_family.py<span class="w"> </span><span class="c1"># Base class for AC families</span>
 <span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>📄<span class="w"> </span>base_factory.py<span class="w"> </span><span class="c1"># Base class for AC</span>
@@ -3090,16 +3090,16 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 <li>Derive an abstract class <code>BaseNewAcquisitionCriterion</code> from
    <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a>.</li>
 <li>Derive <code>FirstAcquisitionCriterion</code>, <code>SecondAcquisitionCriterion</code>, ... from <code>BaseNewAcquisitionCriterion</code>
-   in modules located in <code>module_name</code>, <em>e.g.</em> <code>root_package_name.subpackage_name.package_name</code>.</li>
+   in modules located in <code>root_package_name.subpackage_name.package_name</code>.</li>
 <li>Derive <code>NewAcquisitionCriterionFactory</code> from
-   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/#gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory">BaseAcquisitionCriterionFactory</a>.
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/#gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory">BaseAcquisitionCriterionFactory</a>
    and set the class attributes:
    <div class="highlight"><pre><span></span><code><span class="n">_CLASS</span> <span class="o">=</span> <span class="n">BaseNewAcquisitionCriterion</span>
 <span class="n">_DEFAULT_CLASS_NAME</span> <span class="o">=</span> <span class="s2">&quot;FirstAcquisitionCriterion&quot;</span>
 <span class="n">_MODULE_NAMES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;root_package.subpackage_name.package_name&quot;</span><span class="p">,)</span>
 </code></pre></div></li>
 <li>Derive <code>NewAcquisitionCriterionFamily</code> from
-   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily">BaseAcquisitionCriterionFamily</a>.
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily">BaseAcquisitionCriterionFamily</a>
    and set the class attribute <code>ACQUISITION_CRITERION_FACTORY = NewAcquisitionCriterionFactory</code>.</li>
 </ol>
 <p>Now,
