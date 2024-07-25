@@ -31,7 +31,7 @@ gemseo_mlearning
       level_set/ # ACs to approximate a level set
       maximum/ # ACs to approximate the global maximum
       minimum/ # ACs to approximate the global minimum
-      quantile # ACs to approximate a quantile
+      quantile/ # ACs to approximate a quantile
       base_acquisition_criterion.py # Base class for ACs
       base_acquisition_criterion_family.py # Base class for AC families
       base_factory.py # Base class for AC
@@ -107,9 +107,9 @@ classDiagram
 :   1. Derive an abstract class `BaseNewAcquisitionCriterion` from
        [BaseAcquisitionCriterion][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion].
     1. Derive `FirstAcquisitionCriterion`, `SecondAcquisitionCriterion`, ... from `BaseNewAcquisitionCriterion`
-       in modules located in `module_name`, *e.g.* `root_package_name.subpackage_name.package_name`.
+       in modules located in `root_package_name.subpackage_name.package_name`.
     1. Derive `NewAcquisitionCriterionFactory` from
-       [BaseAcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory].
+       [BaseAcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory]
        and set the class attributes:
        ```python
        _CLASS = BaseNewAcquisitionCriterion
@@ -117,7 +117,7 @@ classDiagram
        _MODULE_NAMES = ("root_package.subpackage_name.package_name",)
        ```
     1. Derive `NewAcquisitionCriterionFamily` from
-       [BaseAcquisitionCriterionFamily][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily].
+       [BaseAcquisitionCriterionFamily][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily]
        and set the class attribute `ACQUISITION_CRITERION_FACTORY = NewAcquisitionCriterionFactory`.
 
     Now,
