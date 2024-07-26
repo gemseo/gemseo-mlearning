@@ -213,7 +213,6 @@ class ActiveLearningAlgo:
             self.__distribution,
             **self.__acquisition_criterion_arguments,
         )
-        acquisition_problem.objective.name = self.__acquisition_criterion_family_name
         if not acquisition_problem.objective.has_jac:
             acquisition_problem.differentiation_method = (
                 OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES
