@@ -1761,6 +1761,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.update" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;update
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3060,6 +3084,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.update" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;update
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3252,7 +3300,63 @@ and <span class="arithmatex">\(y\)</span> is the model output value characterizi
 
 </div>
 
+<h5 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U-functions">Functions<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
+<div class="doc doc-object doc-function">
+
+
+<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.update" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">update</span>
+
+
+<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.update" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update</span><span class="p">(</span><span class="n">output_value</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>Update the acquisition criterion.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>output_value</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a> | None</code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The model output value characterizing the level set.
+If <code>None</code>, do not update the acquisition criterion.</p>
+          </div>
+        </li>
+    </ul>
+
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        output_value: The model output value characterizing the level set.</span>
+<span class="sd">            If ``None``, do not update the acquisition criterion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205, D212</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">output_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_value</span> <span class="o">=</span> <span class="n">output_value</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 
 

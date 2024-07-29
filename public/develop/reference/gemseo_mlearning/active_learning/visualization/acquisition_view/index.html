@@ -3412,7 +3412,11 @@ If empty, do not save it.</p>
 <span class="normal">181</span>
 <span class="normal">182</span>
 <span class="normal">183</span>
-<span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">new_point</span><span class="p">:</span> <span class="n">RealArray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">criterion_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Criterion&quot;</span><span class="p">,</span>
@@ -3464,7 +3468,11 @@ If empty, do not save it.</p>
     <span class="n">points_y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
 
     <span class="n">acquisition_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">acquisition_criterion</span>
-    <span class="n">test_x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n_test</span><span class="p">)</span>
+    <span class="n">input_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">input_space</span>
+    <span class="n">lower_bounds</span> <span class="o">=</span> <span class="n">input_space</span><span class="o">.</span><span class="n">get_lower_bounds</span><span class="p">()</span>
+    <span class="n">upper_bounds</span> <span class="o">=</span> <span class="n">input_space</span><span class="o">.</span><span class="n">get_upper_bounds</span><span class="p">()</span>
+    <span class="n">test_x1</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">lower_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">upper_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_test</span><span class="p">)</span>
+    <span class="n">test_x2</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">lower_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">upper_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_test</span><span class="p">)</span>
     <span class="n">test_y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
     <span class="n">criterion_values</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
@@ -3473,7 +3481,7 @@ If empty, do not save it.</p>
     <span class="n">output_name</span> <span class="o">=</span> <span class="n">final_dataset</span><span class="o">.</span><span class="n">output_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
-            <span class="n">xij</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">test_x</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">test_x</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">xij</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">test_x1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">test_x2</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
             <span class="n">input_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">x_name</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="n">xij</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">y_name</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="n">xij</span><span class="p">[</span><span class="mi">1</span><span class="p">]])}</span>
             <span class="k">if</span> <span class="n">discipline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">test_y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">discipline</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">input_data</span><span class="p">)[</span><span class="n">output_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -3495,7 +3503,7 @@ If empty, do not save it.</p>
                 <span class="k">continue</span>
 
             <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-            <span class="n">cf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">contour_method</span><span class="p">)(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">test_x</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]))</span>
+            <span class="n">cf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">contour_method</span><span class="p">)(</span><span class="n">test_x1</span><span class="p">,</span> <span class="n">test_x2</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]))</span>
             <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
                 <span class="n">points_x</span><span class="p">[:</span><span class="n">n_initial_samples</span><span class="p">],</span>
                 <span class="n">points_y</span><span class="p">[:</span><span class="n">n_initial_samples</span><span class="p">],</span>

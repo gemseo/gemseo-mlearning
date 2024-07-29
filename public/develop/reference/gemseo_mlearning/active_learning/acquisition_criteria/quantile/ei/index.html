@@ -2280,6 +2280,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.update" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;update
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3060,6 +3084,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.update" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;update
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3205,14 +3253,7 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
@@ -3239,7 +3280,12 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
-<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -3263,16 +3309,14 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="c1"># Create a new uncertain space sorted by model inputs.</span>
-    <span class="n">new_uncertain_space</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__uncertain_space</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">input_name</span> <span class="ow">in</span> <span class="n">input_names</span><span class="p">:</span>
-        <span class="n">new_uncertain_space</span><span class="p">[</span><span class="n">input_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="p">[</span><span class="n">input_name</span><span class="p">]</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="n">regressor_distribution</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
-        <span class="n">new_uncertain_space</span><span class="o">.</span><span class="n">compute_samples</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
-    <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_LEVEL_SET_CLASS</span><span class="p">(</span>
-        <span class="n">regressor_distribution</span><span class="p">,</span> <span class="n">quantile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
-    <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__uncertain_space</span><span class="p">[</span><span class="n">input_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="p">[</span><span class="n">input_name</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__uncertain_space</span><span class="o">.</span><span class="n">compute_samples</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__level</span> <span class="o">=</span> <span class="n">level</span>
+    <span class="c1"># The value 0. will be replaced by the quantile estimation at each update,</span>
+    <span class="c1"># including the first one due to super().__init__.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_LEVEL_SET_CLASS</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
@@ -3333,7 +3377,35 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 
 </div>
 
+<h5 id="gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI-functions">Functions<a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
+<div class="doc doc-object doc-function">
+
+
+<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.update" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">update</span>
+
+
+<a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.update" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+      <p>Update the acquisition criterion.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__compute_quantile</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
 
 
 
