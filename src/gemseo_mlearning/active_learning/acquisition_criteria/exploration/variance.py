@@ -42,7 +42,7 @@ class Variance(BaseExploration):
     modelling the uncertainty of the surrogate model $\hat{f}$.
     """
 
-    def evaluate(self, input_data: NumberArray) -> NumberArray:  # noqa: D102
+    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
         return (
-            self._compute_standard_deviation(input_data) ** 2 / self._scaling_factor**2
+            self._compute_standard_deviation(input_value) ** 2 / self._scaling_factor**2
         )

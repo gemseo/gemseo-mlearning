@@ -80,32 +80,20 @@ class ActiveLearningAlgo:
     __acquisition_algo_options: dict[str, Any]
     """The options of the algorithm to find the new training points()."""
 
-    __acquisition_criterion_family_name: str
-    """The name of the family of acquisition criteria."""
-
-    __acquisition_criterion_class: type[BaseAcquisitionCriterion]
-    """The class of the acquisition criterion."""
-
-    __acquisition_criterion_arguments: dict[str, Any]
-    """The parameters of the acquisition criterion."""
+    __acquisition_criterion: BaseAcquisitionCriterion
+    """The acquisition criterion."""
 
     __acquisition_problem: OptimizationProblem
     """The acquisition problem."""
 
+    __acquisition_view: AcquisitionView | None
+    """View of points acquired during active learning if the input dimension is 2."""
+
     __database: Database
     """The concatenation of the optimization histories related to the new points."""
 
-    __distribution: BaseRegressorDistribution
-    """The distribution of the machine learning algorithm."""
-
     __input_space: DesignSpace
     """The input space on which to look for the new learning point."""
-
-    __n_initial_samples: int
-    """The number of initial samples."""
-
-    __acquisition_view: AcquisitionView | None
-    """View of points acquired during active learning if the input dimension is 2."""
 
     default_algo_name: ClassVar[str] = "NLOPT_COBYLA"
     """The name of the default algorithm to find the new training point(s).
@@ -118,6 +106,12 @@ class ActiveLearningAlgo:
 
     default_opt_options: ClassVar[dict[str, Any]] = {"max_iter": 100}
     """The names and values of the default optimization options."""
+
+    __distribution: BaseRegressorDistribution
+    """The distribution of the machine learning algorithm."""
+
+    __n_initial_samples: int
+    """The number of initial samples."""
 
     def __init__(
         self,
@@ -142,6 +136,7 @@ class ActiveLearningAlgo:
         Raises:
             NotImplementedError: When the output dimension is greater than 1.
         """  # noqa: D205 D212 D415
+        # Create the regressor distribution.
         if isinstance(regressor, BaseRandomProcessRegressor):
             distribution = KrigingDistribution(regressor)
             distribution.learn()
@@ -155,23 +150,35 @@ class ActiveLearningAlgo:
             msg = "ActiveLearningAlgo works only with scalar output."
             raise NotImplementedError(msg)
 
-        self.__n_initial_samples = len(distribution.algo.learning_set)
+        # Create the acquisition problem.
         family_factory = AcquisitionCriterionFamilyFactory()
         criterion_family = family_factory.get_class(criterion_family_name)
         criterion_factory = criterion_family.ACQUISITION_CRITERION_FACTORY()
-        self.__acquisition_criterion_family_name = criterion_family_name
-        self.__acquisition_criterion_class = criterion_factory.get_class(criterion_name)
-        self.__acquisition_criterion_arguments = criterion_arguments.copy()
+        self.__acquisition_criterion = criterion_factory.create(
+            criterion_name, distribution, **criterion_arguments
+        )
+        problem = self.__acquisition_problem = OptimizationProblem(input_space)
+        problem.objective = self.__acquisition_criterion
+        if not problem.objective.has_jac:
+            problem.differentiation_method = (
+                OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES
+            )
+        if problem.objective.MAXIMIZE:
+            problem.minimize_objective = False
+
+        # Initialize acquisition algorithm.
+        optimization_factory = OptimizationLibraryFactory()
+        self.__acquisition_algo = optimization_factory.create(self.default_algo_name)
+        self.__acquisition_algo_options = self.default_opt_options
+
+        # Miscellaneous.
+        self.__database = Database()
+        self.__n_initial_samples = len(distribution.algo.learning_set)
         self.__distribution = distribution
         self.__input_space = input_space
-        self.__acquisition_problem = self.__create_acquisition_problem()
-        self.__acquisition_algo = OptimizationLibraryFactory().create(
-            self.default_algo_name
-        )
-        self.__acquisition_algo_options = self.default_opt_options
-        self.__database = Database()
-        input_dimension = distribution.algo.input_dimension
-        if input_dimension == 2:
+
+        # Create the acquisition view.
+        if distribution.algo.input_dimension == 2:
             self.__acquisition_view = AcquisitionView(self)
         else:
             self.__acquisition_view = None
@@ -196,32 +203,10 @@ class ActiveLearningAlgo:
         """The number of initial samples."""
         return self.__n_initial_samples
 
-    def __create_acquisition_problem(self) -> OptimizationProblem:
-        """Create the acquisition problem.
-
-        An acquisition problem is an optimization problem
-        whose objective is an acquisition criterion (to minimize or maximize)
-        and whose design space is the input space of the surrogate model.
-
-        Approximate the Jacobian with finite differences if missing.
-
-        Returns:
-            The acquisition problem.
-        """
-        acquisition_problem = OptimizationProblem(self.__input_space)
-        acquisition_problem.objective = self.__acquisition_criterion_class(
-            self.__distribution,
-            **self.__acquisition_criterion_arguments,
-        )
-        if not acquisition_problem.objective.has_jac:
-            acquisition_problem.differentiation_method = (
-                OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES
-            )
-
-        if acquisition_problem.objective.MAXIMIZE:
-            acquisition_problem.minimize_objective = False
-
-        return acquisition_problem
+    @property
+    def input_space(self) -> DesignSpace:
+        """The input space."""
+        return self.__input_space
 
     def set_acquisition_algorithm(self, algo_name: str, **options: Any) -> None:
         """Set sampling or optimization algorithm.
@@ -343,4 +328,5 @@ class ActiveLearningAlgo:
 
     def update_problem(self) -> None:
         """Update the acquisition problem."""
-        self.__acquisition_problem = self.__create_acquisition_problem()
+        self.__acquisition_problem.reset(preprocessing=False)
+        self.__acquisition_criterion.update()

@@ -54,11 +54,9 @@ class EF(BaseEIEF):
 
     def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
         # See Proposition 4, Bect et al, 2012
-        standard_deviation, t, t_minus, t_plus = self._get_material(input_value)
-        cdf_t_plus = norm.cdf(t_plus)
-        cdf_t_minus = norm.cdf(t_minus)
+        standard_deviation, t, t_m, t_p = self._get_material(input_value)
         return standard_deviation * (
-            self._kappa * (cdf_t_plus - cdf_t_minus)
-            - t * (2 * norm.cdf(t) - cdf_t_plus - cdf_t_minus)
-            - (2 * norm.pdf(t) - norm.pdf(t_plus) - norm.pdf(t_minus))
+            self._kappa * ((cdf_t_p := norm.cdf(t_p)) - (cdf_t_m := norm.cdf(t_m)))
+            - t * (2 * norm.cdf(t) - cdf_t_p - cdf_t_m)
+            - (2 * norm.pdf(t) - norm.pdf(t_p) - norm.pdf(t_m))
         )

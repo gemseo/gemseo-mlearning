@@ -54,12 +54,10 @@ class EI(BaseEIEF):
 
     def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
         # See Proposition 4, Bect et al, 2012
-        standard_deviation, t, t_minus, t_plus = self._get_material(input_value)
-        pdf_t_plus = norm.pdf(t_plus)
-        pdf_t_minus = norm.pdf(t_minus)
+        standard_deviation, t, t_m, t_p = self._get_material(input_value)
         return standard_deviation**2 * (
-            (self._kappa**2 - 1 - t**2) * (norm.cdf(t_plus) - norm.cdf(t_minus))
-            - 2 * t * (pdf_t_plus - pdf_t_minus)
-            + t_plus * pdf_t_plus
-            - t_minus * pdf_t_minus
+            (self._kappa**2 - 1 - t**2) * (norm.cdf(t_p) - norm.cdf(t_m))
+            - 2 * t * ((pdf_t_p := norm.pdf(t_p)) - (pdf_t_m := norm.pdf(t_m)))
+            + t_p * pdf_t_p
+            - t_m * pdf_t_m
         )

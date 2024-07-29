@@ -50,3 +50,13 @@ class BaseLevelSet(BaseAcquisitionCriterion):
         """  # noqa: D205 D212 D415
         super().__init__(regressor_distribution)
         self._output_value = output_value
+
+    def update(self, output_value: float | None = None) -> None:
+        """
+        Args:
+            output_value: The model output value characterizing the level set.
+                If ``None``, do not update the acquisition criterion.
+        """  # noqa: D205, D212
+        super().update()
+        if output_value is not None:
+            self._output_value = output_value

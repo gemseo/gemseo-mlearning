@@ -42,11 +42,10 @@ class Distance(BaseExploration):
     points.
     """
 
-    def evaluate(self, input_data: NumberArray) -> NumberArray:  # noqa: D102
-        train = self._regressor_distribution.learning_set
-        train = train.get_view(group_names=train.INPUT_GROUP).to_numpy()
-        distance = cdist(input_data.reshape((1, -1)), train).min()
-        dist_train = cdist(train, train)
-        d_max = dist_train[nonzero(dist_train)].min() / 2.0
-        distance /= d_max
-        return distance
+    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
+        train = self._regressor_distribution.learning_set.input_dataset.to_numpy()
+        return (
+            cdist(input_value.reshape((1, -1)), train).min()
+            / (dist_train := cdist(train, train))[nonzero(dist_train)].min()
+            * 2.0
+        )

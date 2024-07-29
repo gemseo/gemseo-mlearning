@@ -34,6 +34,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 if TYPE_CHECKING:
     from gemseo.algos.parameter_space import ParameterSpace
     from gemseo.typing import NumberArray
+    from gemseo.typing import RealArray
 
     from gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set import (  # noqa: E501
         BaseLevelSet,
@@ -50,6 +51,12 @@ class BaseQuantile(BaseAcquisitionCriterion):
     @abstractmethod
     def _LEVEL_SET_CLASS(self) -> type[BaseLevelSet]:  # noqa: N802
         """The acquisition criterion to estimate a level set."""
+
+    __level: float
+    """The quantile level."""
+
+    __input_data: RealArray
+    """The input samples to estimate the quantile."""
 
     def __init__(
         self,
@@ -75,17 +82,28 @@ class BaseQuantile(BaseAcquisitionCriterion):
             raise ValueError(msg)
 
         # Create a new uncertain space sorted by model inputs.
-        new_uncertain_space = uncertain_space.__class__()
+        self.__uncertain_space = uncertain_space.__class__()
         for input_name in input_names:
-            new_uncertain_space[input_name] = uncertain_space[input_name]
-
-        data = regressor_distribution.predict(
-            new_uncertain_space.compute_samples(n_samples)
-        )
-        self.__level_set_criterion = self._LEVEL_SET_CLASS(
-            regressor_distribution, quantile(data, level)
-        )
+            self.__uncertain_space[input_name] = uncertain_space[input_name]
+        self.__input_data = self.__uncertain_space.compute_samples(n_samples)
+        self.__level = level
+        # The value 0. will be replaced by the quantile estimation at each update,
+        # including the first one due to super().__init__.
+        self.__level_set_criterion = self._LEVEL_SET_CLASS(regressor_distribution, 0.0)
         super().__init__(regressor_distribution)
+
+    def update(self) -> None:  # noqa: D102
+        super().update()
+        self.__level_set_criterion.update(output_value=self.__compute_quantile())
+
+    def __compute_quantile(self) -> float:
+        """Return the quantile estimation.
+
+        Returns:
+            The quantile estimation.
+        """
+        output_data = self._regressor_distribution.predict(self.__input_data)
+        return quantile(output_data, self.__level)
 
     def _compute_output(self, input_value: NumberArray) -> NumberArray:
         return self.__level_set_criterion.func(input_value)

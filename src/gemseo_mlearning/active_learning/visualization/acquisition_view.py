@@ -108,7 +108,11 @@ class AcquisitionView:
         points_y = points[:, 1]
 
         acquisition_criterion = self.__algo.acquisition_criterion
-        test_x = linspace(-2, 2, n_test)
+        input_space = self.__algo.input_space
+        lower_bounds = input_space.get_lower_bounds()
+        upper_bounds = input_space.get_upper_bounds()
+        test_x1 = linspace(lower_bounds[0], upper_bounds[0], n_test)
+        test_x2 = linspace(lower_bounds[1], upper_bounds[1], n_test)
         test_y = zeros((n_test, n_test))
         criterion_values = zeros((n_test, n_test))
         predictions = zeros((n_test, n_test))
@@ -117,7 +121,7 @@ class AcquisitionView:
         output_name = final_dataset.output_names[0]
         for i in range(n_test):
             for j in range(n_test):
-                xij = array([test_x[j], test_x[i]])
+                xij = array([test_x1[j], test_x2[i]])
                 input_data = {x_name: array([xij[0]]), y_name: array([xij[1]])}
                 if discipline is not None:
                     test_y[i, j] = discipline.execute(input_data)[output_name][0]
@@ -139,7 +143,7 @@ class AcquisitionView:
                     continue
 
                 ax = axes[i, j]
-                cf.append(getattr(ax, contour_method)(test_x, test_x, data[i][j]))
+                cf.append(getattr(ax, contour_method)(test_x1, test_x2, data[i][j]))
                 for x, y in zip(
                     points_x[:n_initial_samples],
                     points_y[:n_initial_samples],
