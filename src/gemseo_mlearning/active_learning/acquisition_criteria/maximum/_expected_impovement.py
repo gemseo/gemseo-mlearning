@@ -56,6 +56,9 @@ class ExpectedImprovement:
     __compute_ei: Callable[[DataType, float], DataType]
     """The function computing the expected improvement."""
 
+    __optimum: NumberArray
+    """The current optimum estimation."""
+
     def __init__(  # noqa: D107
         self,
         regressor_distribution: BaseRegressorDistribution,
@@ -66,36 +69,36 @@ class ExpectedImprovement:
         else:
             self.__compute_ei = self.__compute_empirical_expected_improvement
 
+    def update(self) -> None:
+        data = self._regressor_distribution.learning_set.output_dataset.to_numpy()
+        self.__optimum = self._OPTIMIZE(data)
+
     def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
-        data = self._regressor_distribution.learning_set
-        opt = self._OPTIMIZE(data.get_view(group_names=data.OUTPUT_GROUP).to_numpy())
-        return self.__compute_ei(input_value, opt) / self._scaling_factor
+        return self.__compute_ei(input_value) / self._scaling_factor
 
     def __compute_gaussian_expected_improvement(  # noqa: D102
-        self, input_data: DataType, opt: float
+        self, input_data: DataType
     ) -> DataType:
         """Compute the expected improvement from a Gaussian process regressor.
 
         Args:
             input_data: The input point at which to compute the expected improvement.
-            opt: The current value of the optimum.
 
         Returns:
             The expected improvement.
         """
-        improvement = (self._compute_mean(input_data) - opt) * self._SIGN
+        improvement = (self._compute_mean(input_data) - self.__optimum) * self._SIGN
         std = self._compute_standard_deviation(input_data)
         value = nan_to_num(improvement / std)
         return improvement * norm.cdf(value) + std * norm.pdf(value)
 
     def __compute_empirical_expected_improvement(  # noqa: D102
-        self, input_data: DataType, opt: float
+        self, input_data: DataType
     ) -> DataType:
         """Compute the expected improvement from a regressor.
 
         Args:
             input_data: The input point at which to compute the expected improvement.
-            opt: The current value of the optimum.
 
         Returns:
             The expected improvement.
@@ -104,7 +107,7 @@ class ExpectedImprovement:
         input_data = atleast_2d(input_data)
         predictions = self._regressor_distribution.predict_members(input_data)
         weights = self._regressor_distribution.evaluate_weights(input_data)
-        expected_improvement = maximum((predictions - opt) * self._SIGN, 0.0)
+        expected_improvement = maximum((predictions - self.__optimum) * self._SIGN, 0.0)
         return array([
             dot(weights[:, index], expected_improvement[:, index, :])
             for index in range(expected_improvement.shape[1])

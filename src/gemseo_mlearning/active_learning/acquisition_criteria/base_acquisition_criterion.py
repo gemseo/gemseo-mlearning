@@ -48,9 +48,6 @@ class BaseAcquisitionCriterion(MDOFunction):
     _compute_variance: Callable[[DataType], DataType]
     """The function to compute the output variance at a given input point."""
 
-    _maximize: bool
-    """Whether this acquisition criterion must be maximized."""
-
     _regressor_distribution: BaseRegressorDistribution
     """The distribution of the regressor."""
 
@@ -65,7 +62,6 @@ class BaseAcquisitionCriterion(MDOFunction):
         Args:
             regressor_distribution: The distribution of the regressor.
         """  # noqa: D205 D212 D415
-        self._maximize = True
         self._compute_mean = regressor_distribution.compute_mean
         self._compute_standard_deviation = (
             regressor_distribution.compute_standard_deviation
@@ -85,6 +81,7 @@ class BaseAcquisitionCriterion(MDOFunction):
             self.__class__.__name__,
             jac=jac,
         )
+        self.update()
 
     @abstractmethod
     def _compute_output(self, input_value: NumberArray) -> NumberArray:
@@ -118,6 +115,11 @@ class BaseAcquisitionCriterion(MDOFunction):
             return 1.0
 
         return self.output_range
+
+    def update(self) -> None:
+        """Update the acquisition criterion."""
+        data = self._regressor_distribution.learning_set.output_dataset.to_numpy()
+        self.output_range = data.max() - data.min()
 
     def __truediv__(self, other: MDOFunction | float) -> MDOFunction:
         new_criterion = super().__truediv__(other)

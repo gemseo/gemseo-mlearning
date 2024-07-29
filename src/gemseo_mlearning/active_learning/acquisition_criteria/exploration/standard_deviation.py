@@ -42,5 +42,5 @@ class StandardDeviation(BaseExploration):
     modelling the uncertainty of the surrogate model $\hat{f}$.
     """
 
-    def evaluate(self, input_data: NumberArray) -> NumberArray:  # noqa: D102
-        return self._compute_standard_deviation(input_data) / self._scaling_factor
+    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
+        return self._compute_standard_deviation(input_value) / self._scaling_factor

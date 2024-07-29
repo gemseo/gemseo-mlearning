@@ -99,8 +99,7 @@ def test_init(algo_distribution, input_space):
         algo._ActiveLearningAlgo__acquisition_problem.design_space.variable_names
         == ["x"]
     )
-    assert algo._ActiveLearningAlgo__acquisition_criterion_family_name == "Minimum"
-    assert algo._ActiveLearningAlgo__input_space == input_space
+    assert algo._ActiveLearningAlgo__acquisition_problem.design_space == input_space
     assert algo._ActiveLearningAlgo__distribution == algo_distribution
     assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == "NLOPT_COBYLA"
 
@@ -220,7 +219,6 @@ def test_build_opt_problem_maximize(
         options["uncertain_space"] = uncertain_space
 
     algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **options)
-    algo._ActiveLearningAlgo__create_acquisition_problem()
     assert algo._ActiveLearningAlgo__acquisition_problem.minimize_objective == minimize
 
 
@@ -233,7 +231,6 @@ def test_build_opt_problem_jacobian(
 ):
     """Check that the optimization problem can use approximated or analytic Jacobian."""
     algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **kwargs)
-    algo._ActiveLearningAlgo__create_acquisition_problem()
     assert (
         eq(
             algo._ActiveLearningAlgo__acquisition_problem.differentiation_method,
