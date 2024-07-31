@@ -89,7 +89,7 @@ active_learning.acquire_new_points(discipline, 20, show=True)
 # and the U-function
 # after the last acquisition:
 acquisition_view = AcquisitionView(active_learning)
-acquisition_view.draw(criterion_title="U-function", discipline=discipline)
+acquisition_view.draw(discipline=discipline)
 
 dataset = sample_disciplines([discipline], uncertain_space, "z", 10000, "OT_OPT_LHS")
 reference_quantile = EmpiricalStatistics(dataset, ["z"]).compute_quantile(0.8)

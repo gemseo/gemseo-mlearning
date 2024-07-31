@@ -71,4 +71,4 @@ active_learning.acquire_new_points(discipline, 20)
 # and the expected improvement
 # after the last acquisition:
 acquisition_view = AcquisitionView(active_learning)
-acquisition_view.draw(criterion_title="Expected improvement", discipline=discipline)
+acquisition_view.draw(discipline=discipline)

@@ -3013,7 +3013,7 @@ after the last acquisition:</p>
 <!-- GENERATED FROM PYTHON SOURCE LINES 91-101 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">acquisition_view</span> <span class="o">=</span> <span class="n">AcquisitionView</span><span class="p">(</span><span class="n">active_learning</span><span class="p">)</span>
-<span class="n">acquisition_view</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">criterion_title</span><span class="o">=</span><span class="s2">&quot;U-function&quot;</span><span class="p">,</span> <span class="n">discipline</span><span class="o">=</span><span class="n">discipline</span><span class="p">)</span>
+<span class="n">acquisition_view</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">discipline</span><span class="o">=</span><span class="n">discipline</span><span class="p">)</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">([</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">)</span>
 <span class="n">reference_quantile</span> <span class="o">=</span> <span class="n">EmpiricalStatistics</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">compute_quantile</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>

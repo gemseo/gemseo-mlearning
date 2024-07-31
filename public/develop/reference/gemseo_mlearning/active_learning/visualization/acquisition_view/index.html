@@ -3176,7 +3176,6 @@
 <a href="#gemseo_mlearning.active_learning.visualization.acquisition_view.AcquisitionView.draw" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">draw</span><span class="p">(</span>
     <span class="n">new_point</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.typing.RealArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.RealArray">RealArray</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">criterion_title</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;Criterion&quot;</span><span class="p">,</span>
     <span class="n">discipline</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.core.discipline.MDODiscipline" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.core.discipline.html#gemseo.core.discipline.MDODiscipline">MDODiscipline</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">filled</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">n_test</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
@@ -3213,17 +3212,6 @@ by plus signs and labeled by their position in the learning dataset.</p>
           –
           <div class="doc-md-description">
             <p>The new point to be acquired.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-          <b><code>criterion_title</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
-                  <code>&#39;Criterion&#39;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The title for
-the subplot associated with the acquisition criterion.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
@@ -3413,13 +3401,9 @@ If empty, do not save it.</p>
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
+<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">new_point</span><span class="p">:</span> <span class="n">RealArray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">criterion_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Criterion&quot;</span><span class="p">,</span>
     <span class="n">discipline</span><span class="p">:</span> <span class="n">MDODiscipline</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">filled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">n_test</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
@@ -3444,8 +3428,6 @@ If empty, do not save it.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        new_point: The new point to be acquired.</span>
-<span class="sd">        criterion_title: The title for</span>
-<span class="sd">            the subplot associated with the acquisition criterion.</span>
 <span class="sd">        discipline: The discipline for which `n_test**2` evaluations will be done.</span>
 <span class="sd">            If `None`,</span>
 <span class="sd">            do not plot the discipline, i.e. the first subplot.</span>
@@ -3491,7 +3473,7 @@ If empty, do not save it.</p>
 
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s2">&quot;Discipline&quot;</span><span class="p">,</span> <span class="n">criterion_title</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;Discipline&quot;</span><span class="p">,</span> <span class="n">acquisition_criterion</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">],</span>
         <span class="p">[</span><span class="s2">&quot;Surrogate&quot;</span><span class="p">,</span> <span class="s2">&quot;Standard deviation&quot;</span><span class="p">],</span>
     <span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">test_y</span><span class="p">,</span> <span class="n">criterion_values</span><span class="p">],</span> <span class="p">[</span><span class="n">predictions</span><span class="p">,</span> <span class="n">std</span><span class="p">]]</span>
