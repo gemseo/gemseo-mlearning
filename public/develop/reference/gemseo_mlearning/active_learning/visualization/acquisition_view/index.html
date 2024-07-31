@@ -3369,15 +3369,15 @@
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/active_learning/visualization/acquisition_view.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
-<span class="normal">50</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active_learning_algo</span><span class="p">:</span> <span class="n">ActiveLearningAlgo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active_learning_algo</span><span class="p">:</span> <span class="n">ActiveLearningAlgo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        active_learning_algo: The active learning algorithm.</span>
@@ -3510,8 +3510,7 @@ If empty, do not save it.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/visualization/acquisition_view.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 59</span>
-<span class="normal"> 60</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 60</span>
 <span class="normal"> 61</span>
 <span class="normal"> 62</span>
 <span class="normal"> 63</span>
@@ -3636,7 +3635,13 @@ If empty, do not save it.</p>
 <span class="normal">182</span>
 <span class="normal">183</span>
 <span class="normal">184</span>
-<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">new_point</span><span class="p">:</span> <span class="n">RealArray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">discipline</span><span class="p">:</span> <span class="n">MDODiscipline</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3676,44 +3681,49 @@ If empty, do not save it.</p>
 <span class="sd">        file_path: The file path to save the view.</span>
 <span class="sd">            If empty, do not save it.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">n_initial_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">n_initial_samples</span>
-    <span class="n">contour_method</span> <span class="o">=</span> <span class="s2">&quot;contourf&quot;</span> <span class="k">if</span> <span class="n">filled</span> <span class="k">else</span> <span class="s2">&quot;contour&quot;</span>
-    <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">regressor_distribution</span>
-    <span class="n">final_dataset</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span>
-    <span class="n">points</span> <span class="o">=</span> <span class="n">final_dataset</span><span class="o">.</span><span class="n">input_dataset</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-    <span class="n">points_x</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-    <span class="n">points_y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-
-    <span class="n">acquisition_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">acquisition_criterion</span>
+    <span class="c1"># Create grid.</span>
     <span class="n">input_space</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">input_space</span>
     <span class="n">lower_bounds</span> <span class="o">=</span> <span class="n">input_space</span><span class="o">.</span><span class="n">get_lower_bounds</span><span class="p">()</span>
     <span class="n">upper_bounds</span> <span class="o">=</span> <span class="n">input_space</span><span class="o">.</span><span class="n">get_upper_bounds</span><span class="p">()</span>
     <span class="n">test_x1</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">lower_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">upper_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">n_test</span><span class="p">)</span>
     <span class="n">test_x2</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="n">lower_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">upper_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_test</span><span class="p">)</span>
-    <span class="n">test_y</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
-    <span class="n">criterion_values</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
-    <span class="n">std</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">test_x1</span><span class="p">,</span> <span class="n">test_x2</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Generate data.</span>
+    <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">regressor_distribution</span>
+    <span class="n">final_dataset</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span>
+    <span class="c1">#    The learning input samples.</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">final_dataset</span><span class="o">.</span><span class="n">input_dataset</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="n">points_x</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">points_y</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#    The predictions, the standard deviations and the criterion values.</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">std</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">compute_standard_deviation</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">acquisition_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">acquisition_criterion</span><span class="o">.</span><span class="n">original</span><span class="o">.</span><span class="n">func</span>
+    <span class="n">criterion_values</span> <span class="o">=</span> <span class="n">acquisition_criterion</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
     <span class="n">x_name</span><span class="p">,</span> <span class="n">y_name</span> <span class="o">=</span> <span class="n">final_dataset</span><span class="o">.</span><span class="n">input_names</span>
     <span class="n">output_name</span> <span class="o">=</span> <span class="n">final_dataset</span><span class="o">.</span><span class="n">output_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
-            <span class="n">xij</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">test_x1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">test_x2</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
-            <span class="n">input_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">x_name</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="n">xij</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">y_name</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="n">xij</span><span class="p">[</span><span class="mi">1</span><span class="p">]])}</span>
-            <span class="k">if</span> <span class="n">discipline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">test_y</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">discipline</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">input_data</span><span class="p">)[</span><span class="n">output_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">criterion_values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">acquisition_criterion</span><span class="o">.</span><span class="n">original</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">xij</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xij</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">std</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">compute_standard_deviation</span><span class="p">(</span><span class="n">xij</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#    The observations if the discipline is available.</span>
+    <span class="n">observations</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">discipline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">observations</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n_test</span><span class="p">,</span> <span class="n">n_test</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
+                <span class="n">xij</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="n">test_x1</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">test_x2</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+                <span class="n">input_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">x_name</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="n">xij</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="n">y_name</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span><span class="n">xij</span><span class="p">[</span><span class="mi">1</span><span class="p">]])}</span>
+                <span class="n">observations</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">discipline</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">input_data</span><span class="p">)[</span><span class="n">output_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
+    <span class="c1"># Create figure and sub-figures.</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">titles</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s2">&quot;Discipline&quot;</span><span class="p">,</span> <span class="n">acquisition_criterion</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;Discipline&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">acquisition_criterion</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">],</span>
         <span class="p">[</span><span class="s2">&quot;Surrogate&quot;</span><span class="p">,</span> <span class="s2">&quot;Standard deviation&quot;</span><span class="p">],</span>
     <span class="p">]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">test_y</span><span class="p">,</span> <span class="n">criterion_values</span><span class="p">],</span> <span class="p">[</span><span class="n">predictions</span><span class="p">,</span> <span class="n">std</span><span class="p">]]</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="n">observations</span><span class="p">,</span> <span class="n">criterion_values</span><span class="p">],</span> <span class="p">[</span><span class="n">predictions</span><span class="p">,</span> <span class="n">std</span><span class="p">]]</span>
     <span class="n">cf</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;white&quot;</span> <span class="k">if</span> <span class="n">filled</span> <span class="k">else</span> <span class="s2">&quot;black&quot;</span>
+    <span class="n">n_initial_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">n_initial_samples</span>
+    <span class="n">contour_method</span> <span class="o">=</span> <span class="s2">&quot;contourf&quot;</span> <span class="k">if</span> <span class="n">filled</span> <span class="k">else</span> <span class="s2">&quot;contour&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">discipline</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
