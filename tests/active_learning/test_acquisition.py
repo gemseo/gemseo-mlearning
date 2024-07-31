@@ -88,7 +88,9 @@ def test_init(algo_distribution, input_space):
     assert algo.n_initial_samples == 2
     assert algo.regressor_distribution == algo_distribution
     assert algo.regressor == algo_distribution.algo
-    assert algo.acquisition_criterion.name == "-EI"
+    assert algo.input_space == input_space
+    assert algo.acquisition_criterion.name == "EI"
+    assert algo._ActiveLearningAlgo__acquisition_problem.objective.name == "-EI"
     assert (
         algo._ActiveLearningAlgo__acquisition_algo.algo_name == algo.default_algo_name
     )

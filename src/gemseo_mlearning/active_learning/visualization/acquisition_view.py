@@ -59,7 +59,6 @@ class AcquisitionView:
     def draw(
         self,
         new_point: RealArray | None = None,
-        criterion_title: str = "Criterion",
         discipline: MDODiscipline | None = None,
         filled: bool = True,
         n_test: int = 30,
@@ -84,8 +83,6 @@ class AcquisitionView:
 
         Args:
             new_point: The new point to be acquired.
-            criterion_title: The title for
-                the subplot associated with the acquisition criterion.
             discipline: The discipline for which `n_test**2` evaluations will be done.
                 If `None`,
                 do not plot the discipline, i.e. the first subplot.
@@ -131,7 +128,7 @@ class AcquisitionView:
 
         fig, axes = plt.subplots(2, 2)
         titles = [
-            ["Discipline", criterion_title],
+            ["Discipline", acquisition_criterion.__class__.__name__],
             ["Surrogate", "Standard deviation"],
         ]
         data = [[test_y, criterion_values], [predictions, std]]
