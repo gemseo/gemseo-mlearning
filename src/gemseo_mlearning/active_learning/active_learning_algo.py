@@ -186,7 +186,7 @@ class ActiveLearningAlgo:
     @property
     def acquisition_criterion(self) -> BaseAcquisitionCriterion:
         """The acquisition criterion."""
-        return self.__acquisition_problem.objective
+        return self.__acquisition_criterion
 
     @property
     def regressor(self) -> BaseRegressor:
