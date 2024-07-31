@@ -104,11 +104,16 @@ class ExpectedImprovement:
             The expected improvement.
         """
         self._regressor_distribution: RegressorDistribution
+        ndim_is_two = input_data.ndim == 2
         input_data = atleast_2d(input_data)
         predictions = self._regressor_distribution.predict_members(input_data)
         weights = self._regressor_distribution.evaluate_weights(input_data)
         expected_improvement = maximum((predictions - self.__optimum) * self._SIGN, 0.0)
-        return array([
+        expected_improvement = array([
             dot(weights[:, index], expected_improvement[:, index, :])
             for index in range(expected_improvement.shape[1])
         ])
+        if ndim_is_two:
+            return expected_improvement
+
+        return expected_improvement[0]

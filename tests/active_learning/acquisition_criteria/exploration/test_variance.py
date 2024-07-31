@@ -18,6 +18,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import pytest
 from numpy import array
 from numpy.testing import assert_equal
 
@@ -26,10 +27,13 @@ from gemseo_mlearning.active_learning.acquisition_criteria.exploration.variance 
 )
 
 
-def test_variance(algo_distribution):
+@pytest.mark.parametrize(
+    ("input_value", "shape"), [(array([0.0]), (1,)), (array([[0.0], [0.0]]), (2, 1))]
+)
+def test_variance(algo_distribution, input_value, shape):
     """Check the Variance criterion."""
-    value = array([0.0])
-    var = algo_distribution.compute_variance(value)
+    variance = algo_distribution.compute_variance(input_value)
     criterion = Variance(algo_distribution)
     output_range = criterion.output_range
-    assert_equal(criterion.evaluate(value), var / output_range**2)
+    assert variance.shape == shape
+    assert_equal(criterion.evaluate(input_value), variance / output_range**2)

@@ -26,11 +26,14 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.lcb import LC
 
 
 @pytest.mark.parametrize(("kwargs", "kappa"), [({}, 2.0), ({"kappa": 3.0}, 3.0)])
-def test_cb(algo_distribution, kwargs, kappa):
+@pytest.mark.parametrize(
+    ("input_value", "shape"), [(array([0.5]), (1,)), (array([[0.5], [0.5]]), (2, 1))]
+)
+def test_lcb(algo_distribution, kwargs, kappa, input_value, shape):
     """Check the LCB criterion."""
-    value = array([0.5])
     criterion = LCB(algo_distribution, **kwargs)
-    mean = algo_distribution.compute_mean(value)
-    std = algo_distribution.compute_standard_deviation(value)
+    mean = algo_distribution.compute_mean(input_value)
+    std = algo_distribution.compute_standard_deviation(input_value)
     output_range = criterion.output_range
-    assert_equal(criterion.evaluate(value), (mean - kappa * std) / output_range)
+    assert mean.shape == std.shape == shape
+    assert_equal(criterion.evaluate(input_value), (mean - kappa * std) / output_range)

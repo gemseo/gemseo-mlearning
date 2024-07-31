@@ -30,17 +30,20 @@ from gemseo_mlearning.active_learning.acquisition_criteria.level_set.u import U
 
 
 @pytest.mark.parametrize(
-    ("cls", "expected"),
+    ("cls", "input_value", "expected"),
     [
-        (U, 0.35355339),
-        (EF, 0.2472296),
-        (EI, 0.2298589),
+        (U, array([0.25]), array([0.35355339])),
+        (EF, array([0.25]), array([0.2472296])),
+        (EI, array([0.25]), array([0.2298589])),
+        (U, array([[0.25]] * 2), array([[0.35355339]] * 2)),
+        (EF, array([[0.25]] * 2), array([[0.2472296]] * 2)),
+        (EI, array([[0.25]] * 2), array([[0.2298589]] * 2)),
     ],
 )
-def test_level_set(algo_distribution, cls, expected):
+def test_level_set(algo_distribution, cls, input_value, expected):
     """Check the criteria deriving from BaseLevelSet."""
     criterion = cls(algo_distribution, 0.5)
-    assert_almost_equal(criterion(array([0.25])), array([expected]))
+    assert_almost_equal(criterion(input_value), expected)
 
 
 def test_u_at_training_point(algo_distribution):

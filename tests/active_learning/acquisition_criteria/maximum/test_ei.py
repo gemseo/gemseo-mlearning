@@ -18,14 +18,18 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import pytest
 from numpy import array
 from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ei import EI
 
 
-def test_ei(algo_distribution):
+@pytest.mark.parametrize(
+    ("input_value", "expected"),
+    [(array([0.5]), array([0.0])), (array([[0.5], [0.5]]), array([[0.0], [0.0]]))],
+)
+def test_ei(algo_distribution, input_value, expected):
     """Check the EI criterion."""
-    value = array([0.5])
     criterion = EI(algo_distribution)
-    assert_almost_equal(criterion.evaluate(value), array([[0.0]]))
+    assert_almost_equal(criterion.evaluate(input_value), expected)
