@@ -23,6 +23,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from numpy import atleast_2d
 from numpy import nonzero
 from scipy.spatial.distance import cdist
 
@@ -38,14 +39,14 @@ class Distance(BaseExploration):
     """Distance to the learning set.
 
     This acquisition criterion computes the minimum distance between a new point and the
-    point of the learning dataset, scaled by the maximum distance between two learning
-    points.
+    point of the learning dataset, scaled by the minimum distance between two distinct
+    learning points.
     """
 
     def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
         train = self._regressor_distribution.learning_set.input_dataset.to_numpy()
         return (
-            cdist(input_value.reshape((1, -1)), train).min()
+            cdist(atleast_2d(input_value), train).min(axis=-1)
             / (dist_train := cdist(train, train))[nonzero(dist_train)].min()
             * 2.0
         )

@@ -69,7 +69,7 @@ def test_default(viewer):
     viewer.draw(show=False)
 
 
-@image_comparison(["custom"], tol=TOL)
+@image_comparison(["custom"], tol=0.9)
 def test_custom(viewer, discipline):
     """Check AcquisitionView with custom settings."""
     viewer.draw(

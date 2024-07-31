@@ -27,8 +27,16 @@ from gemseo_mlearning.active_learning.acquisition_criteria.exploration.distance 
 )
 
 
-@pytest.mark.parametrize(("value", "expected"), [(0.5, 0.0), (0.25, 1.0), (0.125, 0.5)])
-def test_distance(algo_distribution, value, expected):
+@pytest.mark.parametrize(
+    ("input_value", "expected"),
+    [
+        (array([0.5]), array([0.0])),
+        (array([0.25]), array([1.0])),
+        (array([0.125]), array([0.5])),
+        (array([[0.125], [0.25]]), array([0.5, 1.0])),
+    ],
+)
+def test_distance(algo_distribution, input_value, expected):
     """Check the Distance criterion."""
     criterion = Distance(algo_distribution)
-    assert_equal(criterion.evaluate(array([value])), array([expected]))
+    assert_equal(criterion.evaluate(input_value), expected)

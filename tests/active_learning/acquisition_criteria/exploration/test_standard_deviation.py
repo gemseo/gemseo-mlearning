@@ -18,6 +18,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import pytest
 from numpy import array
 from numpy.testing import assert_equal
 
@@ -26,10 +27,13 @@ from gemseo_mlearning.active_learning.acquisition_criteria.exploration.standard_
 )
 
 
-def test_standard_deviation(algo_distribution):
+@pytest.mark.parametrize(
+    ("input_value", "shape"), [(array([0.0]), (1,)), (array([[0.0], [0.0]]), (2, 1))]
+)
+def test_standard_deviation(algo_distribution, input_value, shape):
     """Check the StandardDeviation criterion."""
-    value = array([0.0])
-    std = algo_distribution.compute_standard_deviation(value)
+    standard_deviation = algo_distribution.compute_standard_deviation(input_value)
     criterion = StandardDeviation(algo_distribution)
     output_range = criterion.output_range
-    assert_equal(criterion.evaluate(value), std / output_range)
+    assert standard_deviation.shape == shape
+    assert_equal(criterion.evaluate(input_value), standard_deviation / output_range)

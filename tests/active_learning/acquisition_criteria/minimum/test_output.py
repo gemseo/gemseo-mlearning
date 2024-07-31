@@ -18,6 +18,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import pytest
 from numpy import array
 from numpy.testing import assert_equal
 
@@ -26,10 +27,13 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.output import
 )
 
 
-def test_output(algo_distribution):
+@pytest.mark.parametrize(
+    ("input_value", "shape"), [(array([0.5]), (1,)), (array([[0.5], [0.5]]), (2, 1))]
+)
+def test_output(algo_distribution, input_value, shape):
     """Check the Output criterion."""
-    value = array([0.5])
     criterion = Output(algo_distribution)
-    mean = algo_distribution.compute_mean(value)
+    mean = algo_distribution.compute_mean(input_value)
     output_range = criterion.output_range
-    assert_equal(criterion.evaluate(value), mean / output_range)
+    assert mean.shape == shape
+    assert_equal(criterion.evaluate(input_value), mean / output_range)

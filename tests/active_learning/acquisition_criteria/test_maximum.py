@@ -28,30 +28,40 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb import UC
 
 
 @pytest.mark.parametrize(
-    ("cls", "options", "expected"),
+    ("cls", "options", "input_value", "expected"),
     [
-        (EI, {}, 0.0),
-        (UCB, {}, 1.0),
-        (UCB, {"kappa": 3.0}, 1.0),
-        (Output, {}, 1.0),
+        (EI, {}, array([0.0]), array([0.0])),
+        (UCB, {}, array([0.0]), array([1.0])),
+        (UCB, {"kappa": 3.0}, array([0.0]), array([1.0])),
+        (Output, {}, array([0.0]), array([1.0])),
+        (EI, {}, array([[0.0]] * 2), array([[0.0]] * 2)),
+        (UCB, {}, array([[0.0]] * 2), array([[1.0]] * 2)),
+        (UCB, {"kappa": 3.0}, array([[0.0]] * 2), array([[1.0]] * 2)),
+        (Output, {}, array([[0.0]] * 2), array([[1.0]] * 2)),
     ],
 )
-def test_maximum_kriging_regressor(kriging_distribution, cls, options, expected):
+def test_maximum_kriging_regressor(
+    kriging_distribution, cls, options, input_value, expected
+):
     """Check the criteria deriving from BaseMaximum with a Kriging distribution."""
     criterion = cls(kriging_distribution, **options)
-    assert_almost_equal(criterion.func(array([0.0])), array([expected]))
+    assert_almost_equal(criterion.func(input_value), expected)
 
 
 @pytest.mark.parametrize(
-    ("cls", "options", "expected"),
+    ("cls", "options", "input_value", "expected"),
     [
-        (EI, {}, [0.0]),
-        (UCB, {}, 1.3609677),
-        (UCB, {"kappa": 3.0}, 1.8569516),
-        (Output, {}, 0.369),
+        (EI, {}, array([0.123]), array([0.0])),
+        (UCB, {}, array([0.123]), array([1.3609677])),
+        (UCB, {"kappa": 3.0}, array([0.123]), array([1.8569516])),
+        (Output, {}, array([0.123]), array([0.369])),
+        (EI, {}, array([[0.123]] * 2), array([[0.0]] * 2)),
+        (UCB, {}, array([[0.123]] * 2), array([[1.3609677]] * 2)),
+        (UCB, {"kappa": 3.0}, array([[0.123]] * 2), array([[1.8569516]] * 2)),
+        (Output, {}, array([[0.123]] * 2), array([[0.369]] * 2)),
     ],
 )
-def test_maximum_regressor(algo_distribution, options, cls, expected):
+def test_maximum_regressor(algo_distribution, options, cls, input_value, expected):
     """Check the criteria deriving from BaseMaximum with a RegressorDistribution."""
     criterion = cls(algo_distribution, **options)
-    assert_almost_equal(criterion.func(array([0.123])), array([expected]))
+    assert_almost_equal(criterion.func(input_value), expected)

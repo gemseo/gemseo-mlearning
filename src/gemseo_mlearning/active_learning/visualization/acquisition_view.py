@@ -22,6 +22,7 @@ from gemseo.utils.matplotlib_figure import save_show_figure
 from matplotlib import pyplot as plt
 from numpy import array
 from numpy import linspace
+from numpy import meshgrid
 from numpy import zeros
 
 if TYPE_CHECKING:
@@ -96,44 +97,49 @@ class AcquisitionView:
             file_path: The file path to save the view.
                 If empty, do not save it.
         """
-        n_initial_samples = self.__algo.n_initial_samples
-        contour_method = "contourf" if filled else "contour"
-        distribution = self.__algo.regressor_distribution
-        final_dataset = distribution.algo.learning_set
-        points = final_dataset.input_dataset.to_numpy()
-        points_x = points[:, 0]
-        points_y = points[:, 1]
-
-        acquisition_criterion = self.__algo.acquisition_criterion
+        # Create grid.
         input_space = self.__algo.input_space
         lower_bounds = input_space.get_lower_bounds()
         upper_bounds = input_space.get_upper_bounds()
         test_x1 = linspace(lower_bounds[0], upper_bounds[0], n_test)
         test_x2 = linspace(lower_bounds[1], upper_bounds[1], n_test)
-        test_y = zeros((n_test, n_test))
-        criterion_values = zeros((n_test, n_test))
-        predictions = zeros((n_test, n_test))
-        std = zeros((n_test, n_test))
+        grid = array(meshgrid(test_x1, test_x2)).T.reshape(-1, 2)
+
+        # Generate data.
+        distribution = self.__algo.regressor_distribution
+        final_dataset = distribution.algo.learning_set
+        #    The learning input samples.
+        points = final_dataset.input_dataset.to_numpy()
+        points_x = points[:, 0]
+        points_y = points[:, 1]
+        #    The predictions, the standard deviations and the criterion values.
+        predictions = distribution.predict(grid).reshape((n_test, n_test)).T
+        std = distribution.compute_standard_deviation(grid).reshape((n_test, n_test)).T
+        acquisition_criterion = self.__algo.acquisition_criterion.original.func
+        criterion_values = acquisition_criterion(grid).reshape((n_test, n_test)).T
         x_name, y_name = final_dataset.input_names
         output_name = final_dataset.output_names[0]
-        for i in range(n_test):
-            for j in range(n_test):
-                xij = array([test_x1[j], test_x2[i]])
-                input_data = {x_name: array([xij[0]]), y_name: array([xij[1]])}
-                if discipline is not None:
-                    test_y[i, j] = discipline.execute(input_data)[output_name][0]
-                criterion_values[i, j] = acquisition_criterion.original.func(xij)[0]
-                predictions[i, j] = distribution.predict(xij)[0]
-                std[i, j] = distribution.compute_standard_deviation(xij)[0]
+        #    The observations if the discipline is available.
+        observations = None
+        if discipline is not None:
+            observations = zeros((n_test, n_test))
+            for i in range(n_test):
+                for j in range(n_test):
+                    xij = array([test_x1[j], test_x2[i]])
+                    input_data = {x_name: array([xij[0]]), y_name: array([xij[1]])}
+                    observations[i, j] = discipline.execute(input_data)[output_name][0]
 
+        # Create figure and sub-figures.
         fig, axes = plt.subplots(2, 2)
         titles = [
-            ["Discipline", acquisition_criterion.__class__.__name__],
+            ["Discipline", self.__algo.acquisition_criterion.__class__.__name__],
             ["Surrogate", "Standard deviation"],
         ]
-        data = [[test_y, criterion_values], [predictions, std]]
+        data = [[observations, criterion_values], [predictions, std]]
         cf = []
         color = "white" if filled else "black"
+        n_initial_samples = self.__algo.n_initial_samples
+        contour_method = "contourf" if filled else "contour"
         for i in range(2):
             for j in range(2):
                 if (i, j) == (0, 0) and discipline is None:

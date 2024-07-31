@@ -40,17 +40,22 @@ def uncertain_space() -> ParameterSpace:
 
 
 @pytest.mark.parametrize(
-    ("cls", "expected"),
+    ("cls", "input_value", "expected"),
     [
-        (U, 0.1178511),
-        (EF, 0.259206),
-        (EI, 0.2405944),
+        (U, array([0.25]), array([0.1178511])),
+        (EF, array([0.25]), array([0.259206])),
+        (EI, array([0.25]), array([0.2405944])),
+        (U, array([[0.25]] * 2), array([[0.1178511]] * 2)),
+        (EF, array([[0.25]] * 2), array([[0.259206]] * 2)),
+        (EI, array([[0.25]] * 2), array([[0.2405944]] * 2)),
     ],
 )
-def test_quantile_variants(algo_distribution, uncertain_space, cls, expected):
+def test_quantile_variants(
+    algo_distribution, uncertain_space, cls, input_value, expected
+):
     """Check the criteria deriving from BaseQuantile with a Kriging distribution."""
     criterion = cls(algo_distribution, 0.8, uncertain_space)
-    assert_almost_equal(criterion(array([0.25])), array([expected]))
+    assert_almost_equal(criterion(input_value), expected)
 
 
 def test_quantile_error(algo_distribution):
