@@ -30,6 +30,11 @@ and this project adheres to
 
 ## Added
 
+- [BraninProblem][gemseo_mlearning.problems.branin]
+  can be used to benchmark
+  the efficiency of the active learning algorithms
+  and estimate several quantities of interest,
+  optimas or quantiles for instance.
 - [AcquisitionView][gemseo_mlearning.active_learning.visualization.acquisition_view.AcquisitionView]
   can be used to plot
   both the output of the original model,
