@@ -96,9 +96,9 @@ y_test = f(x_test)
 for x_i in x_test:
     x_i = array([x_i])
     predictions.append(gpr.predict(x_i)[0])
-    ei_values.append(expected_improvement(x_i)[0])
-    mm2s_values.append(mean_minus_2sigma(x_i)[0] * mean_minus_2sigma.output_range)
-    mp2s_values.append(mean_plus_2sigma(x_i)[0] * mean_plus_2sigma.output_range)
+    ei_values.append(expected_improvement.func(x_i)[0])
+    mm2s_values.append(mean_minus_2sigma.func(x_i)[0] * mean_minus_2sigma.output_range)
+    mp2s_values.append(mean_plus_2sigma.func(x_i)[0] * mean_plus_2sigma.output_range)
 
 # %%
 # Lastly,

@@ -55,7 +55,7 @@ def test_quantile_variants(
 ):
     """Check the criteria deriving from BaseQuantile with a Kriging distribution."""
     criterion = cls(algo_distribution, 0.8, uncertain_space)
-    assert_almost_equal(criterion(input_value), expected)
+    assert_almost_equal(criterion.func(input_value), expected)
 
 
 def test_quantile_error(algo_distribution):

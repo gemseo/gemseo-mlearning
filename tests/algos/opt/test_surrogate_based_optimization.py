@@ -81,5 +81,4 @@ def test_problem_counters():
     )
     assert problem.evaluation_counter.maximum == 13
     assert problem.evaluation_counter.current == 13
-    assert problem.objective.original.n_calls == 13
     assert problem.objective.n_calls == 14

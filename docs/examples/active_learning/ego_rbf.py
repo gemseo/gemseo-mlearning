@@ -84,7 +84,7 @@ for i in range(n_test):
         xij = array([x_test[j], x_test[i]])
         input_data = {"x": array([xij[0]]), "y": array([xij[1]])}
         disc_data[i, j] = discipline.execute(input_data)["z"][0]
-        crit_data[i, j] = crit(xij)
+        crit_data[i, j] = crit.func(xij)
         surr_data[i, j] = algo.predict(xij)[0]
 
 # %%

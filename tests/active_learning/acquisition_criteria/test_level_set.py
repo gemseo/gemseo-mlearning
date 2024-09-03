@@ -43,7 +43,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.level_set.u import U
 def test_level_set(algo_distribution, cls, input_value, expected):
     """Check the criteria deriving from BaseLevelSet."""
     criterion = cls(algo_distribution, 0.5)
-    assert_almost_equal(criterion(input_value), expected)
+    assert_almost_equal(criterion.func(input_value), expected)
 
 
 def test_u_at_training_point(algo_distribution):

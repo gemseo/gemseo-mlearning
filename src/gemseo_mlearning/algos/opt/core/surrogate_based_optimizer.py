@@ -187,7 +187,7 @@ class SurrogateBasedOptimizer:
                 break
 
             output_data = self.__problem.evaluate_functions(
-                design_vector=input_data, normalize=False
+                design_vector=input_data, design_vector_is_normalized=False
             )[0]
             extra_learning_set = IODataset()
             distribution = self.__distribution
