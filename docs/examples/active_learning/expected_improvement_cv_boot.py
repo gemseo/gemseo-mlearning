@@ -98,9 +98,9 @@ for index, bootstrap in enumerate([False, True]):
     y_test = f(x_test)
     for x_i in x_test:
         surr_data.append(algo.predict(array([x_i]))[0])
-        ego_data.append(ego(array([x_i]))[0])
-        lower_data.append(lower(array([x_i]))[0] * lower.output_range)
-        upper_data.append(upper(array([x_i]))[0] * upper.output_range)
+        ego_data.append(ego.func(array([x_i]))[0])
+        lower_data.append(lower.func(array([x_i]))[0] * lower.output_range)
+        upper_data.append(upper.func(array([x_i]))[0] * upper.output_range)
 
     disc_data = IODataset()
     disc_data.add_input_variable("x", x_test)

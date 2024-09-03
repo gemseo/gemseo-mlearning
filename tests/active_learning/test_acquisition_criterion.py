@@ -62,23 +62,23 @@ def criterion_2(algo_distribution):
 def test_operations(criterion_1, criterion_2, operator, second_operand):
     """Check elementary operations with two MLDataAcquisitionCriterion."""
     x = array([0.5])
-    c_1 = criterion_1(x)
+    c_1 = criterion_1.func(x)
     if second_operand is None:
-        c_2 = criterion_2(x)
+        c_2 = criterion_2.func(x)
         criterion_2 = criterion_2
     else:
         c_2 = second_operand
         criterion_2 = second_operand
 
     criterion_3 = operator(criterion_1, criterion_2)
-    assert criterion_3(x) == operator(c_1, c_2)
+    assert criterion_3.func(x) == operator(c_1, c_2)
 
 
 def test_neg(criterion_1):
     """Check the neg operator."""
     x = array([0.5])
     neg_criterion_1 = -criterion_1
-    assert neg_criterion_1(x) == -criterion_1(x)
+    assert neg_criterion_1.func(x) == -criterion_1.func(x)
 
 
 def test_linear_combination(algo_distribution):
@@ -88,4 +88,7 @@ def test_linear_combination(algo_distribution):
     criterion_3 = criterion_1 * 0.2 + criterion_2 * 0.8
     assert isinstance(criterion_3, MDOFunction)
     x_new = array([0.5])
-    assert criterion_3(x_new) == criterion_1(x_new) * 0.2 + criterion_2(x_new) * 0.8
+    assert (
+        criterion_3.func(x_new)
+        == criterion_1.func(x_new) * 0.2 + criterion_2.func(x_new) * 0.8
+    )
