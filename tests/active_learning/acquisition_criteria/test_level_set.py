@@ -33,11 +33,11 @@ from gemseo_mlearning.active_learning.acquisition_criteria.level_set.u import U
     ("cls", "input_value", "expected"),
     [
         (U, array([0.25]), array([0.35355339])),
-        (EF, array([0.25]), array([0.2472296])),
-        (EI, array([0.25]), array([0.2298589])),
+        (EF, array([0.25]), array([0.83205283])),
+        (EI, array([0.25]), array([1.49413308])),
         (U, array([[0.25]] * 2), array([[0.35355339]] * 2)),
-        (EF, array([[0.25]] * 2), array([[0.2472296]] * 2)),
-        (EI, array([[0.25]] * 2), array([[0.2298589]] * 2)),
+        (EF, array([[0.25]] * 2), array([[0.83205283]] * 2)),
+        (EI, array([[0.25]] * 2), array([[1.49413308]] * 2)),
     ],
 )
 def test_level_set(algo_distribution, cls, input_value, expected):

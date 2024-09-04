@@ -39,7 +39,7 @@ class EF(BaseQuantile):
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$,
-    $t=\frac{y_{\alpha} - \mathbb{E}[Y(x)]}{\mathbb{E}[Y(x)]}$,
+    $t=\frac{y_{\alpha} - \mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}$,
     $t^+=t+\kappa$,
     $t^-=t-\kappa$,
     $y_{\alpha}$ is the $\alpha$-quantile of the model output

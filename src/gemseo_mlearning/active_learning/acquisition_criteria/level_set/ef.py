@@ -46,11 +46,11 @@ class EF(BaseEIEF):
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$,
-    $t=\frac{y - \mathbb{E}[Y(x)]}{\mathbb{E}[Y(x)]}$,
+    $t=\frac{y - \mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}$,
     $t^+=t+\kappa$,
     $t^-=t-\kappa$,
     $y$ is the model output value characterizing the level set
-    and $\kappa\in[0,1]$ (default: 1).
+    and $\kappa\in[0,1]$ (default: 2).
     """
 
     def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102

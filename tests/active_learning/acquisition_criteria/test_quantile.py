@@ -43,11 +43,11 @@ def uncertain_space() -> ParameterSpace:
     ("cls", "input_value", "expected"),
     [
         (U, array([0.25]), array([0.1178511])),
-        (EF, array([0.25]), array([0.259206])),
-        (EI, array([0.25]), array([0.2405944])),
+        (EF, array([0.25]), array([0.85865027])),
+        (EI, array([0.25]), array([1.53460976])),
         (U, array([[0.25]] * 2), array([[0.1178511]] * 2)),
-        (EF, array([[0.25]] * 2), array([[0.259206]] * 2)),
-        (EI, array([[0.25]] * 2), array([[0.2405944]] * 2)),
+        (EF, array([[0.25]] * 2), array([[0.85865027]] * 2)),
+        (EI, array([[0.25]] * 2), array([[1.53460976]] * 2)),
     ],
 )
 def test_quantile_variants(
