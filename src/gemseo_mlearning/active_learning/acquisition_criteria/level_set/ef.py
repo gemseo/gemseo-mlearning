@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from numpy import nan_to_num
 from scipy.stats import norm
 
 from gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_ei_ef import (  # noqa: E501
@@ -55,8 +56,11 @@ class EF(BaseEIEF):
     def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
         # See Proposition 4, Bect et al, 2012
         standard_deviation, t, t_m, t_p = self._get_material(input_value)
-        return standard_deviation * (
-            self._kappa * ((cdf_t_p := norm.cdf(t_p)) - (cdf_t_m := norm.cdf(t_m)))
-            - t * (2 * norm.cdf(t) - cdf_t_p - cdf_t_m)
-            - (2 * norm.pdf(t) - norm.pdf(t_p) - norm.pdf(t_m))
+        return nan_to_num(
+            standard_deviation
+            * (
+                self._kappa * ((cdf_t_p := norm.cdf(t_p)) - (cdf_t_m := norm.cdf(t_m)))
+                - t * (2 * norm.cdf(t) - cdf_t_p - cdf_t_m)
+                - (2 * norm.pdf(t) - norm.pdf(t_p) - norm.pdf(t_m))
+            ),
         )
