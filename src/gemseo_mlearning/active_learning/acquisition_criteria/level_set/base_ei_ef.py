@@ -47,7 +47,7 @@ class BaseEIEF(BaseLevelSet):
         self,
         regressor_distribution: BaseRegressorDistribution,
         output_value: float,
-        kappa: float = 1.0,
+        kappa: float = 2.0,
     ) -> None:
         """
         Args:
