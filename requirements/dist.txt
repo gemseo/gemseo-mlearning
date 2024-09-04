@@ -4,6 +4,8 @@ annotated-types==0.7.0
     # via pydantic
 attrs==24.2.0
     # via check-wheel-contents
+backports-tarfile==1.2.0
+    # via jaraco-context
 build==1.2.1
     # via -r requirements/dist.in
 certifi==2024.8.30
@@ -16,14 +18,16 @@ check-wheel-contents==0.6.0
     # via -r requirements/dist.in
 click==8.1.7
     # via check-wheel-contents
-cryptography==43.0.0
+cryptography==43.0.1
     # via secretstorage
 docutils==0.21.2
     # via readme-renderer
 idna==3.8
     # via requests
 importlib-metadata==8.4.0
-    # via twine
+    # via
+    #   keyring
+    #   twine
 jaraco-classes==3.4.0
     # via keyring
 jaraco-context==6.0.1
@@ -78,6 +82,10 @@ rich==13.8.0
     # via twine
 secretstorage==3.3.3
     # via keyring
+tomli==2.0.1
+    # via
+    #   build
+    #   check-wheel-contents
 twine==5.1.1
     # via -r requirements/dist.in
 typing-extensions==4.12.2
