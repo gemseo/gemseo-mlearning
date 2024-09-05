@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
 
-from gemseo.core.mdofunctions.mdo_function import MDOFunction
+from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from numpy import ones
 
 if TYPE_CHECKING:

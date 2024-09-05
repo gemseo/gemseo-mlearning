@@ -16,7 +16,7 @@
 
 from __future__ import annotations
 
-from gemseo.core.mdofunctions.mdo_function import MDOFunction
+from gemseo.core.mdo_functions.mdo_function import MDOFunction
 
 from gemseo_mlearning.problems.branin.functions import compute_gradient
 from gemseo_mlearning.problems.branin.functions import compute_output
