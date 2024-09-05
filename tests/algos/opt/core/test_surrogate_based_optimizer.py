@@ -21,7 +21,7 @@ from unittest.mock import MagicMock
 import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.optimization_problem import OptimizationProblem
-from gemseo.core.mdofunctions.mdo_function import MDOFunction
+from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from gemseo.problems.optimization.rastrigin import Rastrigin
 from pandas._testing import assert_frame_equal
 
