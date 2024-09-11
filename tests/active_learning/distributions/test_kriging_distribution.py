@@ -63,10 +63,7 @@ def test_compute_mean(distribution, point):
         point = point["x"]
 
     assert result.shape == point.shape
-    assert result[0] == pytest.approx(
-        1 if point[0] in [0.0, 1.0] else 0.0,
-        0.1,
-    )
+    assert result[0] == pytest.approx(1 if point[0] in [0.0, 1.0] else 0.0, abs=1e-10)
 
 
 @pytest.mark.parametrize(

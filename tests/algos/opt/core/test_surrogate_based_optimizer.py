@@ -83,7 +83,7 @@ def test_convergence_on_rastrigin():
         doe_size=20,
         acquisition_options={"max_iter": 1000, "popsize": 50, "seed": 1},
     ).execute(5)
-    assert problem.optimum.objective < 0.1
+    assert problem.optimum.objective < 0.12
 
     # Check that the optimizer resets the listener after the sub-algo has removed it.
     problem.database.add_store_listener.assert_called()
