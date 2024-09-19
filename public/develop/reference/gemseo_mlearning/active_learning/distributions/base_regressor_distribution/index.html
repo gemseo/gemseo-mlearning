@@ -2501,6 +2501,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.compute_samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.compute_standard_deviation" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_standard_deviation
@@ -3463,6 +3472,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.compute_samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_samples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.compute_standard_deviation" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_standard_deviation
@@ -4020,6 +4038,103 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        The output mean of the regressor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.compute_samples" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_samples</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+<a href="#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution.compute_samples" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_samples</span><span class="p">(</span>
+    <span class="n">input_data</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></span><span class="p">,</span> <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Generate samples from the random process.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code>input_data</code></b>
+              (<code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The <span class="arithmatex">\(N\)</span> input points of dimension <span class="arithmatex">\(d\)</span>
+at which to observe the random process;
+shaped as <code>(N, d)</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>n_samples</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The number of samples <code>M</code>.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
+          –
+          <div class="doc-md-description">
+            <p>The output samples per output dimension shaped as <code>(N, M)</code>.</p>
+          </div>
+        </li>
+    </ul>
+
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">compute_samples</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">input_data</span><span class="p">:</span> <span class="n">NumberArray</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NumberArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate samples from the random process.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        input_data: The $N$ input points of dimension $d$</span>
+<span class="sd">            at which to observe the random process;</span>
+<span class="sd">            shaped as `(N, d)`.</span>
+<span class="sd">        n_samples: The number of samples `M`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The output samples per output dimension shaped as `(N, M)`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>

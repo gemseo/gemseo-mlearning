@@ -3415,6 +3415,8 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">UCB</span><span class="p">(</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.BaseRegressorDistribution" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">kappa</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -3424,16 +3426,23 @@
 
 
         <p>The upper confidence bound (UCB).</p>
-<p>This acquisition criterion is expressed as:</p>
+<p>This acquisition criterion is expressed as</p>
 <div class="arithmatex">\[M[x;\kappa] = \mathbb{E}[Y(x)] + \kappa \times \mathbb{S}[Y(x)]\]</div>
-<p>where <span class="arithmatex">\(Y\)</span> is the random process
-modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>
-and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
+<p>where <span class="arithmatex">\(Y\)</span> is the random process modelling the uncertainty of the surrogate model
+<span class="arithmatex">\(\hat{f}\)</span> and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
 
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
+        <li class="doc-section-item field-body">
+          <b><code>regressor_distribution</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.BaseRegressorDistribution" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>The distribution of the regressor.</p>
+          </div>
+        </li>
         <li class="doc-section-item field-body">
           <b><code>kappa</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
@@ -3443,6 +3452,27 @@ and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
           <div class="doc-md-description">
             <p>A factor associated with the standard deviation
 to increase the mean value.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>batch_size</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>1</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of points to be acquired in parallel;
+if <code>1</code>, acquire points sequentially.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>mc_size</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>10000</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The sample size to estimate the acquisition criterion in parallel.</p>
           </div>
         </li>
     </ul>
@@ -3458,16 +3488,32 @@ to increase the mean value.</p>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span> <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
+    <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
+<span class="sd">        regressor_distribution: The distribution of the regressor.</span>
 <span class="sd">        kappa: A factor associated with the standard deviation</span>
 <span class="sd">            to increase the mean value.</span>
+<span class="sd">        batch_size: The number of points to be acquired in parallel;</span>
+<span class="sd">            if `1`, acquire points sequentially.</span>
+<span class="sd">        mc_size: The sample size to estimate the acquisition criterion in parallel.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__kappa</span> <span class="o">=</span> <span class="n">kappa</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">)</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">mc_size</span><span class="o">=</span><span class="n">mc_size</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3546,10 +3592,10 @@ to increase the mean value.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the acquisition criterion.&quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regressor_distribution</span><span class="o">.</span><span class="n">learning_set</span><span class="o">.</span><span class="n">output_dataset</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">output_range</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>

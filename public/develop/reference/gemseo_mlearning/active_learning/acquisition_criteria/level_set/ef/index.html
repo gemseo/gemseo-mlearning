@@ -3416,6 +3416,8 @@
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">output_value</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">,</span>
     <span class="n">kappa</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -3425,9 +3427,18 @@
 
 
         <p>The expected feasibility.</p>
-<p>This acquisition criterion is expressed as:</p>
+<p>This acquisition criterion is expressed as</p>
+<p>$$
+EF[x] =  \mathbb{E}\left[\max(\kappa\mathbb{S}[Y(x)] - |y - Y(x)|,0)\right]
+$$
+where <span class="arithmatex">\(y\)</span> is the model output value characterizing the level set
+and <span class="arithmatex">\(Y\)</span> is the random process
+modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>.</p>
+<p>In the case of a Gaussian regressor,
+it has an analytic expression:</p>
 <div class="arithmatex">\[
-EF[x] = \mathbb{S}[Y(x)]\times
+EF[x] =
+\mathbb{S}[Y(x)]\times
 (
 \kappa
 (\Phi(t^+)-\Phi(t^-))
@@ -3435,13 +3446,23 @@ EF[x] = \mathbb{S}[Y(x)]\times
 -(2\phi(t)-\phi(t^+)-\phi(t^-))
 )
 \]</div>
-<p>where <span class="arithmatex">\(Y\)</span> is the random process
-modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>,
+<p>where
 <span class="arithmatex">\(t=\frac{y - \mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}\)</span>,
 <span class="arithmatex">\(t^+=t+\kappa\)</span>,
 <span class="arithmatex">\(t^-=t-\kappa\)</span>,
 <span class="arithmatex">\(y\)</span> is the model output value characterizing the level set
-and <span class="arithmatex">\(\kappa\in[0,1]\)</span> (default: 2).</p>
+and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
+<p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
+the acquisition criterion changes to
+<span class="arithmatex">\(<span class="arithmatex">\(EF[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
+\max(\kappa\mathbb{S}[Y(x_1)] - |y - Y(x_1)|,0),\dots,
+\max(\kappa\mathbb{S}[Y(x_q)]
+ -|y - Y(x_q)|,0)
+\right)\right]\)</span>\)</span></p>
+<p>where the expectation is taken with respect to the distribution of
+the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
+There is no analytic expression
+and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
 
 
 
@@ -3474,18 +3495,32 @@ describing the area around <code>output_value</code> where to add points.</p>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        kappa: A percentage of the standard deviation</span>
 <span class="sd">            describing the area around `output_value` where to add points.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="n">output_value</span><span class="p">)</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="n">regressor_distribution</span><span class="p">,</span>
+        <span class="n">output_value</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+        <span class="n">mc_size</span><span class="o">=</span><span class="n">mc_size</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_kappa</span> <span class="o">=</span> <span class="n">kappa</span>
 </code></pre></div></td></tr></table></div>
                   </details>
@@ -3580,15 +3615,15 @@ If <code>None</code>, do not update the acquisition criterion.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        output_value: The model output value characterizing the level set.</span>

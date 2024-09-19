@@ -3417,6 +3417,8 @@
     <span class="n">level</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">,</span>
     <span class="n">uncertain_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.parameter_space.ParameterSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.parameter_space.html#gemseo.algos.parameter_space.ParameterSpace">ParameterSpace</a></span><span class="p">,</span>
     <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -3426,11 +3428,23 @@
 
 
         <p>The U-function.</p>
-<p>This acquisition criterion is expressed as:</p>
+<p>This acquisition criterion is expressed as</p>
 <div class="arithmatex">\[U[x] = \frac{|y_{\alpha}-\mathbb{E}[Y(x)]|}{\mathbb{S}[Y(x)])}\]</div>
 <p>where <span class="arithmatex">\(Y\)</span> is the random process
 modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>
-and <span class="arithmatex">\(y_{\alpha}\)</span> is the <span class="arithmatex">\(\alpha\)</span>-quantile of the model output.</p>
+and <span class="arithmatex">\(y_{\alpha}\)</span> is the <span class="arithmatex">\(\alpha\)</span>-quantile of the model output.
+For numerical purposes,
+the expression effectively minimized corresponds to its square root.</p>
+<p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
+the acquisition criterion changes to</p>
+<div class="arithmatex">\[U[x_1,\dots,x_q] = \mathbb{E}\left[\min\left(
+\left(\frac{y_{\alpha}-Y(x_1)}{\mathbb{S}[Y(x_1)]}\right)^2,\dots,
+\left(\frac{y_{\alpha}-Y(x_q)}{\mathbb{S}[Y(x_q)]}
+\right)^2\right)\right]\]</div>
+<p>where the expectation is taken with respect to the distribution of
+the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
+There is no analytic expression
+and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
 
 
 
@@ -3499,12 +3513,19 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 <span class="normal">90</span>
 <span class="normal">91</span>
 <span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">uncertain_space</span><span class="p">:</span> <span class="n">ParameterSpace</span><span class="p">,</span>
     <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
@@ -3530,8 +3551,11 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">__level</span> <span class="o">=</span> <span class="n">level</span>
     <span class="c1"># The value 0. will be replaced by the quantile estimation at each update,</span>
     <span class="c1"># including the first one due to super().__init__.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_LEVEL_SET_CLASS</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_LEVEL_SET_CLASS</span><span class="p">(</span>
+        <span class="n">regressor_distribution</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">mc_size</span><span class="o">=</span><span class="n">mc_size</span>
+    <span class="p">)</span>
+
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">mc_size</span><span class="o">=</span><span class="n">mc_size</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3610,9 +3634,9 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__compute_quantile</span><span class="p">())</span>
 </code></pre></div></td></tr></table></div>

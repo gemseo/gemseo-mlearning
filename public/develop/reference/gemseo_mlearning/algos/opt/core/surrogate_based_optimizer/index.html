@@ -3810,7 +3810,7 @@ the data acquisition criterion.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
     <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__STOP_BECAUSE_MAX_ACQUISITIONS</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_acquisitions</span><span class="p">):</span>
-        <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">find_next_point</span><span class="p">()</span>
+        <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">find_next_point</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">input_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__problem</span><span class="o">.</span><span class="n">database</span><span class="p">:</span>
             <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__STOP_BECAUSE_ALREADY_KNOWN</span>
             <span class="k">break</span>

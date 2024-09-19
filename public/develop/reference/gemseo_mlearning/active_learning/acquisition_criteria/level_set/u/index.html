@@ -3415,6 +3415,8 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">U</span><span class="p">(</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">output_value</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -3424,11 +3426,29 @@
 
 
         <p>The U-function.</p>
-<p>This acquisition criterion is expressed as:</p>
-<div class="arithmatex">\[U[x] = \frac{|y-\mathbb{E}[Y(x)]|}{\mathbb{S}[Y(x)])}\]</div>
+<p>This acquisition criterion is expressed as</p>
+<div class="arithmatex">\[U[x] = \mathbb{E}\left[\left(\frac{y-Y(x)}{\mathbb{S}[Y(x)]}
+\right)^2\right]\]</div>
+<p>where <span class="arithmatex">\(y\)</span> is the model output value characterizing the level set
+and <span class="arithmatex">\(Y\)</span> is the random process
+modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>.
+It has an analytic expression:</p>
+<div class="arithmatex">\[U[x] = \left(\frac{y-\mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}\right)^2\]</div>
 <p>where <span class="arithmatex">\(Y\)</span> is the random process
 modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>
-and <span class="arithmatex">\(y\)</span> is the model output value characterizing the level set.</p>
+and <span class="arithmatex">\(y\)</span> is the model output value characterizing the level set.
+For numerical purposes,
+the expression effectively minimized corresponds to its square root.</p>
+<p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
+the acquisition criterion changes to</p>
+<div class="arithmatex">\[U[x_1,\dots,x_q] = \mathbb{E}\left[\min\left(
+\left(\frac{y-Y(x_1)}{\mathbb{S}[Y(x_1)]}\right)^2,\dots,
+\left(\frac{y-Y(x_q)}{\mathbb{S}[Y(x_q)]}
+\right)^2\right)\right]\]</div>
+<p>where the expectation is taken with respect to the distribution of
+the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
+There is no analytic expression
+and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
 
 
 
@@ -3456,16 +3476,20 @@ and <span class="arithmatex">\(y\)</span> is the model output value characterizi
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
-<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        output_value: The model output value characterizing the level set.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">)</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">mc_size</span><span class="o">=</span><span class="n">mc_size</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_output_value</span> <span class="o">=</span> <span class="n">output_value</span>
 </code></pre></div></td></tr></table></div>
                   </details>
@@ -3560,15 +3584,15 @@ If <code>None</code>, do not update the acquisition criterion.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        output_value: The model output value characterizing the level set.</span>
