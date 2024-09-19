@@ -42,19 +42,63 @@ def uncertain_space() -> ParameterSpace:
 @pytest.mark.parametrize(
     ("cls", "input_value", "expected"),
     [
-        (U, array([0.25]), array([0.1178511])),
-        (EF, array([0.25]), array([0.85865027])),
-        (EI, array([0.25]), array([1.53460976])),
-        (U, array([[0.25]] * 2), array([[0.1178511]] * 2)),
-        (EF, array([[0.25]] * 2), array([[0.85865027]] * 2)),
-        (EI, array([[0.25]] * 2), array([[1.53460976]] * 2)),
+        (U, array([0.25]), array([8.5598195e-14])),
+        (EF, array([0.25]), array([0.5746878])),
+        (EI, array([0.25]), array([0.6843251])),
+        (U, array([[0.25]] * 2), array([[8.5598195e-14]] * 2)),
+        (EF, array([[0.25]] * 2), array([[0.5746878]] * 2)),
+        (EI, array([[0.25]] * 2), array([[0.6843251]] * 2)),
     ],
 )
-def test_quantile_variants(
-    algo_distribution, uncertain_space, cls, input_value, expected
+def test_quantile_kriging(
+    kriging_distribution, uncertain_space, cls, input_value, expected
 ):
     """Check the criteria deriving from BaseQuantile with a Kriging distribution."""
-    criterion = cls(algo_distribution, 0.8, uncertain_space)
+    criterion = cls(kriging_distribution, 0.8, uncertain_space)
+    assert_almost_equal(criterion.func(input_value), expected)
+
+
+@pytest.mark.parametrize(
+    ("cls", "input_value", "expected"),
+    [
+        (U, array([0.25]), array([0.11785113])),
+        (EF, array([0.25]), array([0.25])),
+        (EI, array([0.25]), array([0.64])),
+        (U, array([[0.25]] * 2), array([[0.11785113]] * 2)),
+        (EF, array([[0.25]] * 2), array([[0.25]] * 2)),
+        (EI, array([[0.25]] * 2), array([[0.64]] * 2)),
+    ],
+)
+def test_quantile_regressor(
+    algo_distribution, cls, input_value, expected, uncertain_space
+):
+    """Check the criteria deriving from BaseQuantile with non GP regressor."""
+    criterion = cls(
+        regressor_distribution=algo_distribution,
+        level=0.8,
+        uncertain_space=uncertain_space,
+    )
+    assert_almost_equal(criterion.func(input_value), expected, decimal=2)
+
+
+@pytest.mark.parametrize(
+    ("cls", "input_value", "expected"),
+    [
+        (U, array([[0.25]] * 2), array([1.0013774e-08])),
+        (EF, array([[0.25]] * 2), array([0.9427619])),
+        (EI, array([[0.25]] * 2), array([0.8888889])),
+    ],
+)
+def test_quantile_parallel(
+    kriging_distribution, cls, input_value, expected, uncertain_space
+):
+    """Check the parallelized criteria deriving from BaseQuantile."""
+    criterion = cls(
+        regressor_distribution=kriging_distribution,
+        level=0.8,
+        uncertain_space=uncertain_space,
+        batch_size=2,
+    )
     assert_almost_equal(criterion.func(input_value), expected)
 
 
@@ -68,3 +112,30 @@ def test_quantile_error(algo_distribution):
         ),
     ):
         EF(algo_distribution, 0.8, uncertain_space)
+
+
+@pytest.mark.parametrize(
+    "cls",
+    [
+        U,
+        EI,
+        EF,
+    ],
+)
+def test_bad_parallel_regressor(algo_distribution, cls, uncertain_space):
+    """Check that parallelized criteria with non GP regressor lead to failure."""
+    criterion = cls(
+        regressor_distribution=algo_distribution,
+        level=0.8,
+        uncertain_space=uncertain_space,
+        batch_size=2,
+    )
+
+    with pytest.raises(
+        NotImplementedError,
+        match=re.escape(
+            "Parallelization with batch_size > 1 is not yet implemented "
+            "for regressors that are not based on a random process."
+        ),
+    ):
+        criterion.func(array([0.123]))

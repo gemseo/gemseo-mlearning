@@ -35,13 +35,38 @@ if TYPE_CHECKING:
 class EI(ExpectedImprovement, BaseMinimum):
     r"""Expected improvement.
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$EI[x] = \mathbb{E}[\max(y_{\text{min}}-Y(x),0)]$$
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$
-    and $y_{\text{min}}$ is the minimum output values in the learning set.
+    and $y_{\text{min}}$ is the minimum output value in the learning set.
+
+    In the case of a Gaussian regressor,
+    it has an analytic expression:
+
+    $$
+    EI[x] = (y_{\text{min}}-\mathbb{E}[Y(x)])\Phi(t)
+    + \mathbb{S}[Y(x)]\phi(t)
+    $$
+
+    where $Y$ is the random process
+    modelling the uncertainty of the surrogate model $\hat{f}$,
+    $t=\frac{y_{\text{min}}-\mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}$.
+
+    For the acquisition of $q>1$ points at a time,
+    the acquisition criterion changes to
+
+    $$EI[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
+    \max(y_{\text{min}}-Y(x_1),0),\dots,
+    \max(y_{\text{min}}-Y(x_q),0)
+    \right)\right]$$
+
+    where the expectation is taken with respect to the distribution of
+    the random vector $(Y(x_1),\dots,Y(x_q))$.
+    There is no analytic expression
+    and the acquisition is thus instead evaluated with crude Monte-Carlo.
     """
 
     _OPTIMIZE: ClassVar[Callable[[NumberArray], float]] = min

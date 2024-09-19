@@ -16,8 +16,6 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 from gemseo_mlearning.active_learning.acquisition_criteria.maximum._output import (
     Output as _Output,
 )
@@ -25,22 +23,14 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.base_maximum 
     BaseMaximum,
 )
 
-if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
-
 
 class Output(_Output, BaseMaximum):
     r"""Output-based criterion.
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$E[x] = \mathbb{E}[Y(x)]$$
 
-    where $Y$ is the random process
-    modelling the uncertainty of the surrogate model $\hat{f}$.
+    where $Y$ is the random process modelling the uncertainty of the surrogate model
+    $\hat{f}$.
     """
-
-    def evaluate(self, input_data: NumberArray) -> NumberArray:  # noqa: D102
-        return (
-            self._regressor_distribution.compute_mean(input_data) / self._scaling_factor
-        )

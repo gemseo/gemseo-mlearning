@@ -50,8 +50,20 @@ class AcquisitionView:
     def __init__(self, active_learning_algo: ActiveLearningAlgo) -> None:
         """
         Args:
-            active_learning_algo: The active learning algorithm.
+            active_learning_algo: The active learning algorithm using sequential
+            acquisition.
+
+        Raises:
+            NotImplementedError: When the active learning algorithm uses parallel
+            acquisition.
         """  # noqa: D205, D212
+        if active_learning_algo.batch_size > 1:
+            msg = (
+                "AcquisitionView does not support active learning algorithm using "
+                "parallel acquisition."
+            )
+            raise NotImplementedError(msg)
+
         self.__algo = active_learning_algo
         self.__input_dimension = (
             active_learning_algo.regressor_distribution.algo.input_dimension

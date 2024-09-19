@@ -18,6 +18,7 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import re
 from operator import eq
 from pathlib import Path
 from unittest import mock
@@ -58,6 +59,14 @@ def dataset() -> IODataset:
     return dataset
 
 
+@pytest.fixture(scope="module")
+def kriging_distribution(dataset) -> KrigingDistribution:
+    """A Kriging distribution."""
+    distribution = KrigingDistribution(GaussianProcessRegressor(dataset, alpha=0.0))
+    distribution.learn()
+    return distribution
+
+
 @pytest.fixture
 def algo_distribution_for_update(dataset) -> RegressorDistribution:
     """The distribution of a linear regression model to be updated."""
@@ -78,17 +87,20 @@ def algo_distribution(dataset) -> RegressorDistribution:
 def input_space() -> DesignSpace:
     """The input space used to acquire new points."""
     space = DesignSpace()
-    space.add_variable("x", l_b=0.0, u_b=1.0, value=0.5)
+    space.add_variable("x", l_b=0.0, u_b=1.0)
     return space
 
 
 def test_init(algo_distribution, input_space):
-    """Check the initialization of the ActiveLearningAlgo."""
+    """Check the initialization of the ActiveLearningAlgo for sequential active
+    learning."""
     algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution)
     assert algo.n_initial_samples == 2
     assert algo.regressor_distribution == algo_distribution
     assert algo.regressor == algo_distribution.algo
     assert algo.input_space == input_space
+    assert algo._ActiveLearningAlgo__batch_size == 1
+    assert algo.acquisition_criterion._mc_size == 10000
     assert algo.acquisition_criterion.name == "EI"
     assert algo._ActiveLearningAlgo__acquisition_problem.objective.name == "-EI"
     assert (
@@ -104,6 +116,19 @@ def test_init(algo_distribution, input_space):
     assert algo._ActiveLearningAlgo__acquisition_problem.design_space == input_space
     assert algo._ActiveLearningAlgo__distribution == algo_distribution
     assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == "NLOPT_COBYLA"
+
+
+def test_init_parallel(kriging_distribution, input_space):
+    """Check the initialization of the ActiveLearningAlgo for parallel active
+    learning."""
+    algo = ActiveLearningAlgo(
+        "Minimum", input_space, kriging_distribution, batch_size=2
+    )
+    assert algo.input_space.variable_names == input_space.variable_names
+    assert len(
+        algo._ActiveLearningAlgo__acquisition_problem.design_space.get_lower_bounds()
+    ) / 2 == len(input_space.variable_names)
+    assert algo._ActiveLearningAlgo__batch_size == 2
 
 
 def test_init_with_bad_output_dimension(input_space):
@@ -123,9 +148,47 @@ def test_init_with_bad_output_dimension(input_space):
     algo.learn()
     algo_distribution = RegressorDistribution(algo, size=3)
     with pytest.raises(
-        NotImplementedError, match="ActiveLearningAlgo works only with scalar output."
+        NotImplementedError,
+        match=re.escape("ActiveLearningAlgo works only with scalar output."),
     ):
         ActiveLearningAlgo("Minimum", input_space, algo_distribution)
+
+
+@pytest.mark.parametrize(
+    ("criterion_family_name", "criterion_name"),
+    [
+        ("Minimum", "Output"),
+        ("Maximum", "Output"),
+        ("Maximum", "UCB"),
+        ("Minimum", "LCB"),
+        ("Exploration", "Variance"),
+        ("Exploration", "Distance"),
+        ("Exploration", "StandardDeviation"),
+    ],
+)
+def test_with_bad_parallelization(
+    kriging_distribution, input_space, criterion_family_name, criterion_name
+):
+    """Check parallelization raising errors.
+
+    A NotImplementedError is raised when parallelization is considered for criteria not
+    compatible with this method.
+    """
+    active_learning = ActiveLearningAlgo(
+        criterion_family_name=criterion_family_name,
+        criterion_name=criterion_name,
+        input_space=input_space,
+        regressor=kriging_distribution,
+        batch_size=2,
+    )
+
+    with pytest.raises(
+        NotImplementedError,
+        match=re.escape(
+            "Parallelization is not defined for this acquisition criterion."
+        ),
+    ):
+        active_learning.find_next_point()
 
 
 @pytest.mark.parametrize(
@@ -160,13 +223,19 @@ def test_set_acquisition_algorithm(
 
 
 @pytest.mark.parametrize("as_dict", [False, True])
-def test_compute(algo_distribution, input_space, as_dict):
+@pytest.mark.parametrize("batch_size", [1, 2])
+def test_compute_parallel(kriging_distribution, input_space, as_dict, batch_size):
     """Check the acquisition of a new point by the ActiveLearningAlgo."""
-    algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution)
+    algo = ActiveLearningAlgo(
+        criterion_family_name="Minimum",
+        input_space=input_space,
+        regressor=kriging_distribution,
+        batch_size=batch_size,
+    )
     algo.set_acquisition_algorithm("fullfact", n_samples=3)
     x_opt = algo.find_next_point(as_dict=as_dict)
     x_opt = x_opt if isinstance(x_opt, ndarray) else x_opt["x"]
-    assert x_opt.shape == (1,)
+    assert x_opt.shape == (batch_size, len(input_space.variable_names))
 
 
 def test_update_algo(algo_distribution_for_update, input_space):
@@ -219,7 +288,6 @@ def test_build_opt_problem_maximize(
         uncertain_space = ParameterSpace()
         uncertain_space.add_random_variable("x", "OTNormalDistribution")
         options["uncertain_space"] = uncertain_space
-
     algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **options)
     assert algo._ActiveLearningAlgo__acquisition_problem.minimize_objective == minimize
 

@@ -282,6 +282,15 @@ class RegressorDistribution(BaseRegressorDistribution):
         term2 = self.__average(weights, predictions) ** 2
         return term1 - term2
 
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
+    def compute_samples(  # noqa: D102
+        self,
+        input_data: NumberArray,
+        n_samples: int,
+    ) -> NumberArray:
+        return self.predict_members(input_data)
+
     @staticmethod
     def __average(
         weights: NumberArray,

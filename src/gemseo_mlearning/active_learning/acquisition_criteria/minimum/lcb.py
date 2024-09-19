@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 class LCB(ConfidenceBound, BaseMinimum):
     r"""The lower confidence bound (LCB).
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$M[x;\kappa] = \mathbb{E}[Y(x)] - \kappa \times \mathbb{S}[Y(x)]$$
 
@@ -45,6 +45,15 @@ class LCB(ConfidenceBound, BaseMinimum):
     MAXIMIZE: ClassVar[bool] = False
 
     def __init__(  # noqa: D107
-        self, regressor_distribution: BaseRegressorDistribution, kappa: float = 2.0
-    ) -> None:
-        super().__init__(regressor_distribution, kappa=-abs(kappa))
+        self,
+        regressor_distribution: BaseRegressorDistribution,
+        kappa: float = 2.0,
+        batch_size: int = 1,
+        mc_size: int = 10000,
+    ) -> None:  # noqa: D102
+        super().__init__(
+            regressor_distribution,
+            kappa=-abs(kappa),
+            batch_size=batch_size,
+            mc_size=mc_size,
+        )

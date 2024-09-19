@@ -48,13 +48,20 @@ class BaseEIEF(BaseLevelSet):
         regressor_distribution: BaseRegressorDistribution,
         output_value: float,
         kappa: float = 2.0,
+        batch_size: int = 1,
+        mc_size: int = 10000,
     ) -> None:
         """
         Args:
             kappa: A percentage of the standard deviation
                 describing the area around `output_value` where to add points.
         """  # noqa: D205 D212 D415
-        super().__init__(regressor_distribution, output_value)
+        super().__init__(
+            regressor_distribution,
+            output_value,
+            batch_size=batch_size,
+            mc_size=mc_size,
+        )
         self._kappa = kappa
 
     def _get_material(

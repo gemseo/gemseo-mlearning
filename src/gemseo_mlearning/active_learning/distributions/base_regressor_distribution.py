@@ -219,3 +219,21 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """
         self.algo.learning_set = learning_set
         self.learn()
+
+    @abstractmethod
+    def compute_samples(
+        self,
+        input_data: NumberArray,
+        n_samples: int,
+    ) -> NumberArray:
+        """Generate samples from the random process.
+
+        Args:
+            input_data: The $N$ input points of dimension $d$
+                at which to observe the random process;
+                shaped as `(N, d)`.
+            n_samples: The number of samples `M`.
+
+        Returns:
+            The output samples per output dimension shaped as `(N, M)`.
+        """

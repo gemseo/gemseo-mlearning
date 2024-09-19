@@ -29,6 +29,7 @@ from typing import ClassVar
 from gemseo.algos._progress_bars.custom_tqdm_progress_bar import LOGGER as TQDM_LOGGER
 from gemseo.algos._progress_bars.custom_tqdm_progress_bar import CustomTqdmProgressBar
 from gemseo.algos.database import Database
+from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.factory import OptimizationLibraryFactory
 from gemseo.algos.optimization_problem import OptimizationProblem
@@ -42,6 +43,7 @@ from gemseo.utils.logging_tools import OneLineLogging
 from numpy import array
 from numpy import hstack
 from numpy import newaxis
+from numpy import tile
 from pandas import concat
 
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family import (  # noqa: E501
@@ -56,7 +58,6 @@ from gemseo_mlearning.active_learning.visualization.acquisition_view import (
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from gemseo.algos.design_space import DesignSpace
     from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
     from gemseo.core.discipline import MDODiscipline
     from gemseo.mlearning.core.algos.ml_algo import DataType
@@ -113,12 +114,20 @@ class ActiveLearningAlgo:
     __n_initial_samples: int
     """The number of initial samples."""
 
+    __batch_size: int
+    """The number of points to be acquired in parallel.
+
+    If `1`, acquire points sequentially.
+    """
+
     def __init__(
         self,
         criterion_family_name: str,
         input_space: DesignSpace,
         regressor: BaseRegressor | BaseRegressorDistribution,
         criterion_name: str = "",
+        batch_size: int = 1,
+        mc_size: int = 10000,
         **criterion_arguments: Any,
     ) -> None:
         """
@@ -131,6 +140,9 @@ class ActiveLearningAlgo:
             criterion_name: The name of the acquisition criterion.
                 If empty,
                 use the default criterion of the family `criterion_family_name`.
+            batch_size: The number of points to be acquired in parallel;
+                if `1`, acquire points sequentially.
+            mc_size: The sample size to estimate the acquisition criteria in parallel.
             **criterion_arguments: The parameters of the acquisition criterion.
 
         Raises:
@@ -155,9 +167,24 @@ class ActiveLearningAlgo:
         criterion_family = family_factory.get_class(criterion_family_name)
         criterion_factory = criterion_family.ACQUISITION_CRITERION_FACTORY()
         self.__acquisition_criterion = criterion_factory.create(
-            criterion_name, distribution, **criterion_arguments
+            criterion_name,
+            distribution,
+            batch_size=batch_size,
+            mc_size=mc_size,
+            **criterion_arguments,
         )
-        problem = self.__acquisition_problem = OptimizationProblem(input_space)
+        # Create the optimization space
+        # that is different from the input space
+        # when acquiring points in parallel.
+        optimization_space = DesignSpace()
+        l_b = tile(input_space.get_lower_bounds(), batch_size)
+        u_b = tile(input_space.get_upper_bounds(), batch_size)
+        input_space.initialize_missing_current_values()
+        value = tile(input_space.get_current_value(), batch_size)
+        optimization_space.add_variable(
+            name="x", size=int(len(l_b)), l_b=l_b, u_b=u_b, value=value
+        )
+        problem = self.__acquisition_problem = OptimizationProblem(optimization_space)
         problem.objective = self.__acquisition_criterion
         if not problem.objective.has_jac:
             problem.differentiation_method = (
@@ -165,7 +192,6 @@ class ActiveLearningAlgo:
             )
         if problem.objective.MAXIMIZE:
             problem.minimize_objective = False
-
         # Initialize acquisition algorithm.
         optimization_factory = OptimizationLibraryFactory()
         self.__acquisition_algo = optimization_factory.create(self.default_algo_name)
@@ -176,9 +202,10 @@ class ActiveLearningAlgo:
         self.__n_initial_samples = len(distribution.algo.learning_set)
         self.__distribution = distribution
         self.__input_space = input_space
+        self.__batch_size = batch_size
 
         # Create the acquisition view.
-        if distribution.algo.input_dimension == 2:
+        if distribution.algo.input_dimension == 2 and batch_size == 1:
             self.__acquisition_view = AcquisitionView(self)
         else:
             self.__acquisition_view = None
@@ -208,6 +235,11 @@ class ActiveLearningAlgo:
         """The input space."""
         return self.__input_space
 
+    @property
+    def batch_size(self) -> int:
+        """The number of points to be acquired in parallel."""
+        return self.__batch_size
+
     def set_acquisition_algorithm(self, algo_name: str, **options: Any) -> None:
         """Set sampling or optimization algorithm.
 
@@ -231,20 +263,22 @@ class ActiveLearningAlgo:
         self,
         as_dict: bool = False,
     ) -> DataType:
-        """Find the next learning point.
+        """Find the next `batch_size` learning point(s).
 
         Args:
             as_dict: Whether to return the input data split by input names.
                 Otherwise, return a unique array.
+                In both cases,
+                the arrays will be shaped as ``(batch_size, input_dimension)``.
 
         Returns:
-            The next learning point.
+            The next `batch_size` learning point(s).
         """
         with LoggingContext(logging.getLogger("gemseo")):
             input_data = self.__acquisition_algo.execute(
                 self.__acquisition_problem, **self.__acquisition_algo_options
             ).x_opt
-
+            input_data = input_data.reshape(self.__batch_size, -1)
         if as_dict:
             return self.__acquisition_problem.design_space.array_to_dict(input_data)
 
@@ -262,11 +296,14 @@ class ActiveLearningAlgo:
         This method acquires new learning input-output samples
         and trains the machine learning algorithm
         with the resulting enriched learning set.
+        The effective number of points will be the largest integer multiple
+        of batch_size and less than or equal to n_samples.
 
         Args:
             discipline: The discipline computing the reference output data
                 from the input data provided by the acquisition process.
             n_samples: The number of samples to update the machine learning algorithm.
+                It should be a multiple of batch_size.
             show: Whether to display intermediate results.
             file_path: The file path to save the view.
                 If empty, do not save it.
@@ -276,9 +313,10 @@ class ActiveLearningAlgo:
             related to the different points
             and the last acquisition problem.
         """
-        LOGGER.info("Acquiring %s points", n_samples)
+        n_batches = int(n_samples / self.batch_size)
+        LOGGER.info("Acquiring %s points in batches of %s", n_samples, self.batch_size)
         with OneLineLogging(TQDM_LOGGER):
-            for sample_id in CustomTqdmProgressBar(range(1, n_samples + 1)):
+            for batch_id in CustomTqdmProgressBar(range(1, n_batches + 1)):
                 array_input_data = self.find_next_point()
                 if self.__acquisition_view and (show or file_path):
                     self.__acquisition_view.draw(
@@ -288,40 +326,45 @@ class ActiveLearningAlgo:
                         file_path=file_path,
                     )
 
-                input_data = self.__acquisition_problem.design_space.array_to_dict(
-                    array_input_data
-                )
                 for inputs, outputs in self.__acquisition_problem.database.items():
                     self.__database.store(
-                        array([sample_id, *inputs.unwrap().tolist()]), outputs
+                        array([batch_id, *inputs.unwrap().tolist()]), outputs
                     )
 
-                discipline.execute(input_data)
+                for points in range(self.batch_size):
+                    input_data = self.__input_space.array_to_dict(
+                        array_input_data[points, :]
+                    )
 
-                extra_learning_set = IODataset()
-                distribution = self.__distribution
-                variable_names_to_n_components = distribution.algo.sizes
-                new_points = hstack(list(input_data.values()))[newaxis]
-                extra_learning_set.add_group(
-                    group_name=IODataset.INPUT_GROUP,
-                    data=new_points,
-                    variable_names=distribution.input_names,
-                    variable_names_to_n_components=variable_names_to_n_components,
-                )
-                output_names = distribution.output_names
-                output_data = discipline.get_output_data()
-                extra_learning_set.add_group(
-                    group_name=IODataset.OUTPUT_GROUP,
-                    data=hstack(list(output_data.values()))[newaxis],
-                    variable_names=output_names,
-                    variable_names_to_n_components=variable_names_to_n_components,
-                )
-                augmented_learning_set = concat(
-                    [distribution.algo.learning_set, extra_learning_set],
-                    ignore_index=True,
-                )
+                    discipline.execute(input_data)
 
-                self.__distribution.change_learning_set(augmented_learning_set)
+                    extra_learning_set = IODataset()
+                    distribution = self.__distribution
+                    variable_names_to_n_components = distribution.algo.sizes
+                    new_points = hstack(list(input_data.values()))[newaxis]
+                    extra_learning_set.add_group(
+                        group_name=IODataset.INPUT_GROUP,
+                        data=new_points,
+                        variable_names=distribution.input_names,
+                        variable_names_to_n_components=variable_names_to_n_components,
+                    )
+
+                    output_names = distribution.output_names
+                    output_data = discipline.get_output_data()
+                    extra_learning_set.add_group(
+                        group_name=IODataset.OUTPUT_GROUP,
+                        data=hstack(list(output_data.values()))[newaxis],
+                        variable_names=output_names,
+                        variable_names_to_n_components=variable_names_to_n_components,
+                    )
+
+                    augmented_learning_set = concat(
+                        [distribution.algo.learning_set, extra_learning_set],
+                        ignore_index=True,
+                    )
+
+                    self.__distribution.change_learning_set(augmented_learning_set)
+
                 self.update_problem()
 
         return self.__database, self.__acquisition_problem

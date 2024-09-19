@@ -29,7 +29,16 @@ and this project adheres to
 # Develop
 
 ## Added
-
+- [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
+  can acquire points by batch using the `batch_size`
+  and `mc_size` argument,
+  when the regressor is based on a random process
+  such as `GaussianProcessRegressor`
+  and `OTGaussianProcessRegressor`.
+  This option is only available for criteria dedicated
+  to level set [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
+  (alternatively quantile estimation [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile.Quantile])
+  and the expected improvement for maximum/minimum estimation [Maximum][gemseo_mlearning.active_learning.acquisition_criteria.maximum].
 - [BraninProblem][gemseo_mlearning.problems.branin]
   can be used to benchmark
   the efficiency of the active learning algorithms

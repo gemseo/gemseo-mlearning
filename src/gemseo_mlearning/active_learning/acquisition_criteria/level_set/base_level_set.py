@@ -43,12 +43,14 @@ class BaseLevelSet(BaseAcquisitionCriterion):
         self,
         regressor_distribution: BaseRegressorDistribution,
         output_value: float,
+        batch_size: int = 1,
+        mc_size: int = 10000,
     ) -> None:
         """
         Args:
             output_value: The model output value characterizing the level set.
         """  # noqa: D205 D212 D415
-        super().__init__(regressor_distribution)
+        super().__init__(regressor_distribution, batch_size=batch_size, mc_size=mc_size)
         self._output_value = output_value
 
     def update(self, output_value: float | None = None) -> None:

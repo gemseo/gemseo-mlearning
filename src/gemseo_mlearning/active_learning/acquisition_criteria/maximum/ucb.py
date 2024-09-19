@@ -27,11 +27,10 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.base_maximum 
 class UCB(ConfidenceBound, BaseMaximum):
     r"""The upper confidence bound (UCB).
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$M[x;\kappa] = \mathbb{E}[Y(x)] + \kappa \times \mathbb{S}[Y(x)]$$
 
-    where $Y$ is the random process
-    modelling the uncertainty of the surrogate model $\hat{f}$
-    and $\kappa>0$.
+    where $Y$ is the random process modelling the uncertainty of the surrogate model
+    $\hat{f}$ and $\kappa>0$.
     """

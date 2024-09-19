@@ -107,3 +107,19 @@ def test_confidence_interval(distribution, point):
         upper = upper["y"]
     assert (lower < upper).all()
     assert lower.shape == upper.shape == point.shape
+
+
+@pytest.mark.parametrize(
+    "input_data",
+    [
+        array([1 / 3.97]),
+        array([[1 / 3.97], [1 / 1.97]]),
+    ],
+)
+def test_compute_samples(distribution, input_data):
+    """Check that the samples from the GP are of appropriate shape."""
+    samples = distribution.compute_samples(input_data=input_data, n_samples=1000)
+    expected_shape = (
+        (1000,) if len(input_data.shape) == 1 else (input_data.shape[0], 1000)
+    )
+    assert samples.shape == expected_shape
