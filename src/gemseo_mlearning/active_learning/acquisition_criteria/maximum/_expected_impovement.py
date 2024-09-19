@@ -24,21 +24,15 @@ from typing import Literal
 from numpy import array
 from numpy import atleast_2d
 from numpy import dot
+from numpy import max as np_max
 from numpy import maximum
+from numpy import mean
 from numpy import nan_to_num
 from scipy.stats import norm
 
-from gemseo_mlearning.active_learning.distributions.kriging_distribution import (
-    KrigingDistribution,
-)
-
 if TYPE_CHECKING:
-    from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.typing import NumberArray
 
-    from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
-        BaseRegressorDistribution,
-    )
     from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
         RegressorDistribution,
     )
@@ -53,56 +47,27 @@ class ExpectedImprovement:
     _SIGN: ClassVar[Literal[-1] | Literal[1]] = 1
     """The sign."""
 
-    __compute_ei: Callable[[DataType, float], DataType]
-    """The function computing the expected improvement."""
-
     __optimum: NumberArray
     """The current optimum estimation."""
-
-    def __init__(  # noqa: D107
-        self,
-        regressor_distribution: BaseRegressorDistribution,
-    ) -> None:
-        super().__init__(regressor_distribution)
-        if isinstance(regressor_distribution, KrigingDistribution):
-            self.__compute_ei = self.__compute_gaussian_expected_improvement
-        else:
-            self.__compute_ei = self.__compute_empirical_expected_improvement
 
     def update(self) -> None:
         data = self._regressor_distribution.learning_set.output_dataset.to_numpy()
         self.__optimum = self._OPTIMIZE(data)
 
-    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
-        return self.__compute_ei(input_value) / self._scaling_factor
-
-    def __compute_gaussian_expected_improvement(  # noqa: D102
-        self, input_data: DataType
-    ) -> DataType:
-        """Compute the expected improvement from a Gaussian process regressor.
-
-        Args:
-            input_data: The input point at which to compute the expected improvement.
-
-        Returns:
-            The expected improvement.
-        """
+    def _compute(  # noqa: D102
+        self, input_data: NumberArray
+    ) -> NumberArray | float:
+        # See Proposition 14, Jones et al, 1998
         improvement = (self._compute_mean(input_data) - self.__optimum) * self._SIGN
         std = self._compute_standard_deviation(input_data)
         value = nan_to_num(improvement / std)
-        return improvement * norm.cdf(value) + std * norm.pdf(value)
+        return (
+            improvement * norm.cdf(value) + std * norm.pdf(value)
+        ) / self._scaling_factor
 
-    def __compute_empirical_expected_improvement(  # noqa: D102
-        self, input_data: DataType
-    ) -> DataType:
-        """Compute the expected improvement from a regressor.
-
-        Args:
-            input_data: The input point at which to compute the expected improvement.
-
-        Returns:
-            The expected improvement.
-        """
+    def _compute_empirically(  # noqa: D102
+        self, input_data: NumberArray
+    ) -> NumberArray | float:
         self._regressor_distribution: RegressorDistribution
         ndim_is_two = input_data.ndim == 2
         input_data = atleast_2d(input_data)
@@ -114,6 +79,20 @@ class ExpectedImprovement:
             for index in range(expected_improvement.shape[1])
         ])
         if ndim_is_two:
-            return expected_improvement
+            return expected_improvement / self._scaling_factor
 
-        return expected_improvement[0]
+        return expected_improvement[0] / self._scaling_factor
+
+    def _compute_by_batch(  # noqa: D102
+        self, q_input_values: NumberArray
+    ) -> NumberArray | float:
+        q_input_values = self._reshape_input_values(q_input_values)
+        try:
+            samples = self._compute_samples(
+                input_data=q_input_values, n_samples=self._mc_size
+            )
+            improvement = (samples - self.__optimum) * self._SIGN
+            return mean(np_max(maximum(improvement, 0), axis=0)) / self._scaling_factor
+        # distribution is not positive definite.
+        except TypeError:
+            return 0.0

@@ -31,17 +31,25 @@ class ConfidenceBound:
     """The factor associated with the standard deviation."""
 
     def __init__(
-        self, regressor_distribution: BaseRegressorDistribution, kappa: float = 2.0
+        self,
+        regressor_distribution: BaseRegressorDistribution,
+        kappa: float = 2.0,
+        batch_size: int = 1,
+        mc_size: int = 10000,
     ) -> None:
         """
         Args:
+            regressor_distribution: The distribution of the regressor.
             kappa: A factor associated with the standard deviation
                 to increase the mean value.
+            batch_size: The number of points to be acquired in parallel;
+                if `1`, acquire points sequentially.
+            mc_size: The sample size to estimate the acquisition criterion in parallel.
         """  # noqa: D205 D212 D415
         self.__kappa = kappa
-        super().__init__(regressor_distribution)
+        super().__init__(regressor_distribution, batch_size=batch_size, mc_size=mc_size)
 
-    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102        mean = self._compute_mean(input_data)
+    def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102        mean = self._compute_mean(input_data)
         mean = self._compute_mean(input_value)
         sigma = self._compute_standard_deviation(input_value)
         return (mean + self.__kappa * sigma) / self._scaling_factor

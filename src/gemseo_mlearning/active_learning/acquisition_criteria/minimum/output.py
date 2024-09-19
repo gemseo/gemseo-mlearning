@@ -29,12 +29,12 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.base_minimum 
 class Output(_Output, BaseMinimum):
     r"""Output-based criterion.
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$E[x] = \mathbb{E}[Y(x)]$$
 
-    where $Y$ is the random process
-    modelling the uncertainty of the surrogate model $\hat{f}$.
+    where $Y$ is the random process modelling the uncertainty of the surrogate model
+    $\hat{f}$.
     """
 
     MAXIMIZE: ClassVar[bool] = False

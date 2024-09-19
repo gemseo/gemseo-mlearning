@@ -27,13 +27,28 @@ from gemseo_mlearning.active_learning.acquisition_criteria.quantile.base_quantil
 class U(BaseQuantile):
     r"""The U-function.
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$U[x] = \frac{|y_{\alpha}-\mathbb{E}[Y(x)]|}{\mathbb{S}[Y(x)])}$$
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$
     and $y_{\alpha}$ is the $\alpha$-quantile of the model output.
+    For numerical purposes,
+    the expression effectively minimized corresponds to its square root.
+
+    For the acquisition of $q>1$ points at a time,
+    the acquisition criterion changes to
+
+    $$U[x_1,\dots,x_q] = \mathbb{E}\left[\min\left(
+    \left(\frac{y_{\alpha}-Y(x_1)}{\mathbb{S}[Y(x_1)]}\right)^2,\dots,
+    \left(\frac{y_{\alpha}-Y(x_q)}{\mathbb{S}[Y(x_q)]}
+    \right)^2\right)\right]$$
+
+    where the expectation is taken with respect to the distribution of
+    the random vector $(Y(x_1),\dots,Y(x_q))$.
+    There is no analytic expression
+    and the acquisition is thus instead evaluated with crude Monte-Carlo.
     """
 
     MAXIMIZE: ClassVar[bool] = False

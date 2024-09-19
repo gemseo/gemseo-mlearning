@@ -181,7 +181,7 @@ class SurrogateBasedOptimizer:
         self.__distribution.learn()
         message = self.__STOP_BECAUSE_MAX_ACQUISITIONS
         for _ in range(number_of_acquisitions):
-            input_data = self.__active_learning_algo.find_next_point()
+            input_data = self.__active_learning_algo.find_next_point()[0]
             if input_data in self.__problem.database:
                 message = self.__STOP_BECAUSE_ALREADY_KNOWN
                 break

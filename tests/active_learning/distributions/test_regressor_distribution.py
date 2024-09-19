@@ -233,3 +233,17 @@ def test_compute_confidence_interval(distribution, point, outputs):
     for index, output in enumerate(outputs):
         assert pytest.approx(lower[index], 0.1) == quantile(output, 0.025)
         assert pytest.approx(upper[index], 0.1) == quantile(output, 0.975)
+
+
+@pytest.mark.parametrize(
+    "input_data",
+    [
+        array([[1 / 3.97]]),
+        array([[1 / 3.97], [1 / 1.97]]),
+    ],
+)
+def test_compute_samples(distribution, input_data):
+    """Check that the samples from the regressor are of appropriate shape."""
+    nb_samples = distribution.size
+    samples = distribution.compute_samples(input_data=input_data, n_samples=nb_samples)
+    assert samples.shape == (nb_samples, input_data.shape[0], 1)

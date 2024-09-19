@@ -25,7 +25,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.quantile.base_quantil
 class EI(BaseQuantile):
     r"""The expected improvement.
 
-    This acquisition criterion is expressed as:
+    This acquisition criterion is expressed as
 
     $$
     EI[x] = \mathbb{V}[Y(x)]\times
@@ -43,7 +43,20 @@ class EI(BaseQuantile):
     $t^+=t+\kappa$,
     $t^-=t-\kappa$,
     $y_{\alpha}$ is the $\alpha$-quantile of the model output
-    and $\kappa\in[0,1]$ (default: 1).
+    and $\kappa>0$.
+
+    For the acquisition of $q>1$ points at a time,
+    the acquisition criterion changes to
+
+    $$EI[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
+    \max((\kappa\mathbb{S}[Y(x_1)])^2 - (y_{\alpha} - Y(x_1))^2,0),\dots,
+    \max((\kappa\mathbb{S}[Y(x_q)])^2 - (y_{\alpha} - Y(x_q))^2,0)
+    \right)\right]$$
+
+    where the expectation is taken with respect to the distribution of
+    the random vector $(Y(x_1),\dots,Y(x_q))$.
+    There is no analytic expression
+    and the acquisition is thus instead evaluated with crude Monte-Carlo.
     """
 
     _LEVEL_SET_CLASS = _EI

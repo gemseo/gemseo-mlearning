@@ -92,3 +92,12 @@ class KrigingDistribution(BaseRegressorDistribution):
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict_std(input_data)
+
+    @RegressionDataFormatters.format_dict
+    @RegressionDataFormatters.format_samples
+    def compute_samples(  # noqa: D102
+        self,
+        input_data: NumberArray,
+        n_samples: int,
+    ) -> NumberArray:
+        return self.algo.compute_samples(input_data, n_samples)[0]

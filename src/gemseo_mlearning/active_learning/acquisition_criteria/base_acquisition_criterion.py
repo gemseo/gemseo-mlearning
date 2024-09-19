@@ -24,6 +24,10 @@ from typing import ClassVar
 from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from numpy import ones
 
+from gemseo_mlearning.active_learning.distributions.kriging_distribution import (  # noqa: E501
+    KrigingDistribution,
+)
+
 if TYPE_CHECKING:
     from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.typing import NumberArray
@@ -51,16 +55,28 @@ class BaseAcquisitionCriterion(MDOFunction):
     _regressor_distribution: BaseRegressorDistribution
     """The distribution of the regressor."""
 
+    _batch_size: int
+    """The number of points to be acquired in parallel; if `1`, acquire points
+    sequentially."""
+
+    _mc_size: int
+    """The sample size to estimate the acquisition criteria in parallel."""
+
     MAXIMIZE: ClassVar[bool] = True
     """Whether this acquisition criterion must be maximized."""
 
     def __init__(
         self,
         regressor_distribution: BaseRegressorDistribution,
+        batch_size: int = 1,
+        mc_size: int = 10000,
     ) -> None:
         """
         Args:
             regressor_distribution: The distribution of the regressor.
+            batch_size: The number of points to be acquired in parallel;
+                if `1`, acquire points sequentially.
+            mc_size: The sample size to estimate the acquisition criterion in parallel.
         """  # noqa: D205 D212 D415
         self._compute_mean = regressor_distribution.compute_mean
         self._compute_standard_deviation = (
@@ -76,16 +92,33 @@ class BaseAcquisitionCriterion(MDOFunction):
             )
         except NotImplementedError:
             jac = None
+
+        self._batch_size = batch_size
+        self._mc_size = mc_size
+        self._compute_samples = regressor_distribution.compute_samples
+
+        if batch_size == 1:
+            if isinstance(regressor_distribution, KrigingDistribution):
+                compute_output = self._compute
+            else:
+                compute_output = self._compute_empirically
+        else:
+            if isinstance(regressor_distribution, KrigingDistribution):
+                compute_output = self._compute_by_batch
+            else:
+                compute_output = self._compute_by_batch_empirically
+
         super().__init__(
-            self._compute_output,
+            compute_output,
             self.__class__.__name__,
             jac=jac,
         )
+
         self.update()
 
     @abstractmethod
-    def _compute_output(self, input_value: NumberArray) -> NumberArray:
-        """Compute the acquisition criterion value.
+    def _compute(self, input_value: NumberArray) -> NumberArray | float:
+        """Compute the acquisition criterion value using a random process regressor.
 
         Args:
             input_value: The model input value.
@@ -93,6 +126,46 @@ class BaseAcquisitionCriterion(MDOFunction):
         Returns:
             The acquisition criterion value.
         """
+
+    def _compute_empirically(self, input_value: NumberArray) -> NumberArray | float:
+        """Compute the acquisition criterion value using resampling.
+
+        Args:
+            input_value: The model input value.
+
+        Returns:
+            The acquisition criterion value.
+        """
+        return self._compute(input_value)
+
+    def _compute_by_batch(self, q_input_values: NumberArray) -> NumberArray | float:
+        """Compute the parallelized acquisition criterion value using a random process.
+
+        Args:
+            q_input_values: The batch of $q$ input values.
+
+        Returns:
+            The parallelized acquisition criterion value.
+        """
+        msg = "Parallelization is not defined for this acquisition criterion."
+        raise NotImplementedError(msg)
+
+    def _compute_by_batch_empirically(
+        self, q_input_values: NumberArray
+    ) -> NumberArray | float:
+        """Compute the parallelized acquisition criterion using resampling.
+
+        Args:
+            q_input_values: The batch of $q$ input values.
+
+        Returns:
+            The parallelized acquisition criterion value.
+        """
+        msg = (
+            "Parallelization with batch_size > 1 is not yet implemented "
+            "for regressors that are not based on a random process."
+        )
+        raise NotImplementedError(msg)
 
     def _compute_jacobian(self, input_value: NumberArray) -> NumberArray:
         """Compute the Jacobian of the acquisition criterion.
@@ -115,6 +188,17 @@ class BaseAcquisitionCriterion(MDOFunction):
             return 1.0
 
         return self.output_range
+
+    def _reshape_input_values(self, input_values: NumberArray) -> NumberArray:
+        r"""Reshape an array from `(q\times d,)` to `(q, d)`.
+
+        Args:
+            input_values: The input values shaped as `(q\times d,)`.
+
+        Returns:
+            The input values shaped as `(q, d)`.
+        """
+        return input_values.reshape(self._batch_size, -1)
 
     def update(self) -> None:
         """Update the acquisition criterion."""

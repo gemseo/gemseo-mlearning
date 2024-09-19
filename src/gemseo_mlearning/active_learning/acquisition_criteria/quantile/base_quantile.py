@@ -64,6 +64,8 @@ class BaseQuantile(BaseAcquisitionCriterion):
         level: float,
         uncertain_space: ParameterSpace,
         n_samples: int = 10000,
+        batch_size: int = 1,
+        mc_size: int = 10000,
     ) -> None:
         """
         Args:
@@ -89,8 +91,11 @@ class BaseQuantile(BaseAcquisitionCriterion):
         self.__level = level
         # The value 0. will be replaced by the quantile estimation at each update,
         # including the first one due to super().__init__.
-        self.__level_set_criterion = self._LEVEL_SET_CLASS(regressor_distribution, 0.0)
-        super().__init__(regressor_distribution)
+        self.__level_set_criterion = self._LEVEL_SET_CLASS(
+            regressor_distribution, 0.0, batch_size=batch_size, mc_size=mc_size
+        )
+
+        super().__init__(regressor_distribution, batch_size=batch_size, mc_size=mc_size)
 
     def update(self) -> None:  # noqa: D102
         super().update()
@@ -105,5 +110,11 @@ class BaseQuantile(BaseAcquisitionCriterion):
         output_data = self._regressor_distribution.predict(self.__input_data)
         return quantile(output_data, self.__level)
 
-    def _compute_output(self, input_value: NumberArray) -> NumberArray:
+    def _compute(self, input_value: NumberArray) -> NumberArray:
+        return self.__level_set_criterion.func(input_value)
+
+    def _compute_empirically(self, input_value: NumberArray) -> NumberArray:
+        return self.__level_set_criterion.func(input_value)
+
+    def _compute_by_batch(self, input_value: NumberArray) -> NumberArray:
         return self.__level_set_criterion.func(input_value)

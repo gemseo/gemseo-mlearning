@@ -43,7 +43,7 @@ class Distance(BaseExploration):
     learning points.
     """
 
-    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
+    def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102
         train = self._regressor_distribution.learning_set.input_dataset.to_numpy()
         return (
             cdist(atleast_2d(input_value), train).min(axis=-1)

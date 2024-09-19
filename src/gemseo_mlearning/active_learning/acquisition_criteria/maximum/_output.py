@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class Output:
     """A mixin for output-based criterion."""
 
-    def _compute_output(self, input_value: NumberArray) -> NumberArray:  # noqa: D102
+    def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102
         return (
             self._regressor_distribution.compute_mean(input_value)
             / self._scaling_factor

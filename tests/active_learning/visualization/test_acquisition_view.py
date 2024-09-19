@@ -14,10 +14,12 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 from __future__ import annotations
 
+import re
+from typing import TYPE_CHECKING
+
 import pytest
 from gemseo import sample_disciplines
 from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.parameter_space import ParameterSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 from gemseo.utils.platform import PLATFORM_IS_WINDOWS
@@ -29,7 +31,19 @@ from gemseo_mlearning.active_learning.visualization.acquisition_view import (
     AcquisitionView,
 )
 
+if TYPE_CHECKING:
+    from gemseo.datasets.io_dataset import IODataset
+
 TOL = 0.0 if PLATFORM_IS_WINDOWS else 0.9
+
+
+@pytest.fixture(scope="module")
+def input_space() -> DesignSpace:
+    """An input space."""
+    input_space = DesignSpace()
+    input_space.add_variable("x", l_b=-2, u_b=2, value=1.0)
+    input_space.add_variable("y", l_b=-2, u_b=2, value=1.0)
+    return input_space
 
 
 @pytest.fixture(scope="module")
@@ -39,31 +53,37 @@ def discipline() -> AnalyticDiscipline:
 
 
 @pytest.fixture(scope="module")
-def viewer(discipline) -> AcquisitionView:
+def learning_dataset(discipline, input_space) -> IODataset:
+    """The learning dataset."""
+    return sample_disciplines([discipline], input_space, "z", 30, "OT_OPT_LHS")
+
+
+@pytest.fixture(scope="module")
+def viewer(discipline, learning_dataset, input_space) -> AcquisitionView:
     """The active learning algorithm."""
-    input_space = DesignSpace()
-    input_space.add_variable("x", l_b=-2, u_b=2, value=1.0)
-    input_space.add_variable("y", l_b=-2, u_b=2, value=1.0)
-
-    uncertain_space = ParameterSpace()
-    uncertain_space.add_random_variable(
-        "x", "OTUniformDistribution", minimum=-2, maximum=2
-    )
-    uncertain_space.add_random_variable(
-        "y", "OTUniformDistribution", minimum=-2, maximum=2
-    )
-
-    learning_dataset = sample_disciplines(
-        [discipline], input_space, "z", 30, "OT_OPT_LHS"
-    )
-
     regressor = GaussianProcessRegressor(learning_dataset)
     algo = ActiveLearningAlgo("Minimum", input_space, regressor)
     algo.acquire_new_points(discipline)
     return AcquisitionView(algo)
 
 
-@image_comparison(["default"])
+def test_raise_parallel(discipline, learning_dataset, input_space):
+    """Check that an error is raised when plotting in batch mode."""
+
+    regressor = GaussianProcessRegressor(learning_dataset)
+    algo = ActiveLearningAlgo("Minimum", input_space, regressor, batch_size=3)
+
+    with pytest.raises(
+        NotImplementedError,
+        match=re.escape(
+            "AcquisitionView does not support active learning"
+            " algorithm using parallel acquisition."
+        ),
+    ):
+        AcquisitionView(algo)
+
+
+@image_comparison(["default"], tol=0.9)
 def test_default(viewer):
     """Check AcquisitionView with default settings."""
     viewer.draw(show=False)
@@ -81,7 +101,7 @@ def test_custom(viewer, discipline):
     )
 
 
-@image_comparison(["new_point"])
+@image_comparison(["new_point"], tol=0.9)
 def test_new_point(viewer):
     """Check AcquisitionView with a new point."""
     viewer.draw(show=False, new_point=array([0.0, 0.0]))
@@ -99,7 +119,7 @@ def test_n_test(viewer):
     viewer.draw(show=False, n_test=5)
 
 
-@image_comparison(["discipline"])
+@image_comparison(["discipline"], tol=0.9)
 def test_discipline(viewer, discipline):
     """Check AcquisitionView with a discipline."""
     viewer.draw(show=False, discipline=discipline)

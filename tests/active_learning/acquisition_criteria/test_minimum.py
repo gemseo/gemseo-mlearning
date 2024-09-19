@@ -18,6 +18,8 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import re
+
 import pytest
 from numpy import array
 from numpy.testing import assert_almost_equal
@@ -65,3 +67,25 @@ def test_minimum_regressor(algo_distribution, cls, options, input_value, expecte
     """Check the criteria deriving from BaseMinimum with a non-Kriging distribution."""
     criterion = cls(algo_distribution, **options)
     assert_almost_equal(criterion.func(input_value), expected, decimal=2)
+
+
+@pytest.mark.parametrize(
+    ("cls", "input_value"),
+    [
+        (EI, array([0.123])),
+        (LCB, array([0.123])),
+        (Output, array([0.123])),
+    ],
+)
+def test_bad_parallel_regressor(algo_distribution, cls, input_value):
+    """Check that parallelized criteria with non GP regressor lead to failure."""
+    criterion = cls(algo_distribution, batch_size=2)
+
+    with pytest.raises(
+        NotImplementedError,
+        match=re.escape(
+            "Parallelization with batch_size > 1 is not yet implemented "
+            "for regressors that are not based on a random process."
+        ),
+    ):
+        criterion.func(input_value)
