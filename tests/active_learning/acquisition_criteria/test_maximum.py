@@ -77,8 +77,8 @@ def test_maximum_regressor(algo_distribution, options, cls, input_value, expecte
     ("options", "input_value", "expected"),
     [
         ({}, array([[1.0]] * 2), 0),
-        ({}, array([[3]] * 2), 0.0668520),
-        ({"mc_size": 50000}, array([[3]] * 2), 0.06647122),
+        ({}, array([[3]] * 2), 0.0683573378647329),
+        ({"mc_size": 50000}, array([[3]] * 2), 0.06590207611720739),
     ],
 )
 def test_maximum_parallel_kriging_regressor(

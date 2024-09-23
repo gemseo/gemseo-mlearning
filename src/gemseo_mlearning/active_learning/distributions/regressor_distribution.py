@@ -148,7 +148,7 @@ class RegressorDistribution(BaseRegressorDistribution):
                 other_samples = list(set(self._samples) - set(new_samples))
                 self.weights.append(self.__weight_function(other_samples))
 
-            algo.learn(new_samples)
+            algo.learn(new_samples.tolist())
 
     def __weight_function(self, indices: list[int]) -> Callable[[NumberArray], float]:
         """Return a function evaluating the weights at an input vector.

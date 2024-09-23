@@ -85,7 +85,7 @@ def test_quantile_regressor(
     ("cls", "input_value", "expected"),
     [
         (U, array([[0.25]] * 2), array([1.0013774e-08])),
-        (EF, array([[0.25]] * 2), array([0.9427619])),
+        (EF, array([[0.25]] * 2), 0.9428065),
         (EI, array([[0.25]] * 2), array([0.8888889])),
     ],
 )

@@ -75,7 +75,7 @@ def test_level_set_regressor(algo_distribution, cls, input_value, expected):
         (U, array([8.1571496e-08]), {}),
         (
             EF,
-            array([0.9425967]),
+            0.9428005,
             {},
         ),
         (EI, array([0.8888888]), {}),
@@ -86,7 +86,7 @@ def test_level_set_regressor(algo_distribution, cls, input_value, expected):
         ),
         (
             EF,
-            array([0.9428067]),
+            0.942708,
             {"mc_size": 20000},
         ),
         (
