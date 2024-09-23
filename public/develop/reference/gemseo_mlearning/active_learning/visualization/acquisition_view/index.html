@@ -573,16 +573,89 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../../../user_guide/active_learning/" class="md-nav__link">
+    
+    
+      
         
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
   
   <span class="md-ellipsis">
     Active learning
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../user_guide/active_learning/what_active_learning_is/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What active learning is
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../user_guide/active_learning/active_learning_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Active learning algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3362,7 +3435,8 @@
               (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></code>)
           –
           <div class="doc-md-description">
-            <p>The active learning algorithm using sequential</p>
+            <p>The active learning algorithm
+using sequential acquisition.</p>
           </div>
         </li>
     </ul>
@@ -3374,7 +3448,8 @@
               <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
             –
           <div class="doc-md-description">
-            <p>When the active learning algorithm uses parallel</p>
+            <p>When the active learning algorithm uses parallel
+acquisition.</p>
           </div>
         </li>
     </ul>
@@ -3404,12 +3479,12 @@
 <span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active_learning_algo</span><span class="p">:</span> <span class="n">ActiveLearningAlgo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">        active_learning_algo: The active learning algorithm using sequential</span>
-<span class="sd">        acquisition.</span>
+<span class="sd">        active_learning_algo: The active learning algorithm</span>
+<span class="sd">            using sequential acquisition.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        NotImplementedError: When the active learning algorithm uses parallel</span>
-<span class="sd">        acquisition.</span>
+<span class="sd">            acquisition.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205, D212</span>
     <span class="k">if</span> <span class="n">active_learning_algo</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>

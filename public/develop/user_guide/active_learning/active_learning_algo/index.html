@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/">
+        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/active_learning_algo/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../what_active_learning_is/">
       
       
-        <link rel="next" href="../../generated/examples/active_learning/">
+        <link rel="next" href="../../../generated/examples/active_learning/">
       
       
-      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="icon" href="../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
     
     
       
-        <title>Active learning - gemseo-mlearning</title>
+        <title>Active learning algorithm - gemseo-mlearning</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.06209087.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.06209087.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,21 +48,21 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_markdown_exec_pyodide.css">
+      <link rel="stylesheet" href="../../../assets/_markdown_exec_pyodide.css">
     
-      <link rel="stylesheet" href="../../assets/_markdown_exec_ansi.css">
+      <link rel="stylesheet" href="../../../assets/_markdown_exec_ansi.css">
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../sg_gallery-binder.css">
+      <link rel="stylesheet" href="../../../sg_gallery-binder.css">
     
-      <link rel="stylesheet" href="../../sg_gallery.css">
+      <link rel="stylesheet" href="../../../sg_gallery.css">
     
-      <link rel="stylesheet" href="../../sg_gallery-rendered-html.css">
+      <link rel="stylesheet" href="../../../sg_gallery-rendered-html.css">
     
-      <link rel="stylesheet" href="../../sg_gallery-dataframe.css">
+      <link rel="stylesheet" href="../../../sg_gallery-dataframe.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#active-learning" class="md-skip">
+        <a href="#active-learning-algorithm" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+    <a href="../../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Active learning
+              Active learning algorithm
             
           </span>
         </div>
@@ -235,7 +235,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../.." class="md-tabs__link">
+        <a href="../../.." class="md-tabs__link">
           
   
     
@@ -257,7 +257,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
     
@@ -283,7 +283,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../generated/examples/active_learning/" class="md-tabs__link">
+        <a href="../../../generated/examples/active_learning/" class="md-tabs__link">
           
   
     
@@ -304,7 +304,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../reference/gemseo_mlearning/" class="md-tabs__link">
+      <a href="../../../reference/gemseo_mlearning/" class="md-tabs__link">
         
   
     
@@ -323,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../developer_guide/active_learning/" class="md-tabs__link">
+        <a href="../../../developer_guide/active_learning/" class="md-tabs__link">
           
   
     
@@ -358,7 +358,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+    <a href="../../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -415,7 +415,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../.." class="md-nav__link ">
+            <a href="../../.." class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -448,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../changelog/" class="md-nav__link">
+      <a href="../../../changelog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../credits/" class="md-nav__link">
+      <a href="../../../credits/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../licenses/" class="md-nav__link">
+      <a href="../../../licenses/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -546,7 +546,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -580,6 +580,73 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Active learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what_active_learning_is/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What active learning is
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -592,7 +659,7 @@
           
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning algorithm
   </span>
   
 
@@ -603,7 +670,7 @@
         
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning algorithm
   </span>
   
 
@@ -625,108 +692,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-active-learning-is" class="md-nav__link">
+  <a href="#in-a-nutshell" class="md-nav__link">
     <span class="md-ellipsis">
-      What active learning is
+      In a nutshell
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="What active learning is">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#surrogate-modeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Surrogate modeling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Surrogate modeling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-rosenbrock-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Rosenbrock function
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#acquisition-criteria" class="md-nav__link">
-    <span class="md-ellipsis">
-      Acquisition criteria
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Acquisition criteria">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#improving-the-quality-of-the-surrogate" class="md-nav__link">
-    <span class="md-ellipsis">
-      Improving the quality of the surrogate
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#finding-optimas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Finding optimas
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#estimating-contour-sets" class="md-nav__link">
-    <span class="md-ellipsis">
-      Estimating contour sets
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parallelization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parallelization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#choosing-an-acquisition-criterion" class="md-nav__link">
     <span class="md-ellipsis">
-      API
+      Choosing an acquisition criterion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-surrogate-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing a surrogate model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-this-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use this algorithm
     </span>
   </a>
   
@@ -735,6 +730,14 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -836,7 +839,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../generated/examples/active_learning/" class="md-nav__link ">
+            <a href="../../../generated/examples/active_learning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -869,7 +872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -890,7 +893,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -911,7 +914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -932,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -953,7 +956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -974,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -995,7 +998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
+      <a href="../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1047,7 +1050,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../generated/examples/optimization/" class="md-nav__link ">
+            <a href="../../../generated/examples/optimization/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1080,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
+      <a href="../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1109,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../generated/examples/sampling" class="md-nav__link">
+      <a href="../../../generated/examples/sampling" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1170,7 +1173,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1232,7 +1235,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1263,7 +1266,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/active_learning_algo/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1327,7 +1330,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1358,7 +1361,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1379,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1400,7 +1403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1450,7 +1453,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1481,7 +1484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/base_exploration/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/base_exploration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1502,7 +1505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/distance/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/distance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1523,7 +1526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1544,7 +1547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/factory/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1565,7 +1568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/standard_deviation/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/standard_deviation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1586,7 +1589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/variance/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/variance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1646,7 +1649,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1677,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_ei_ef/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_ei_ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1698,7 +1701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1719,7 +1722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ef/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1740,7 +1743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ei/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1761,7 +1764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/factory/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1782,7 +1785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1803,7 +1806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/u/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/u/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1861,7 +1864,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1892,7 +1895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/base_maximum/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/base_maximum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1913,7 +1916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ei/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1934,7 +1937,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/factory/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1955,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1976,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/output/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/output/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1997,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ucb/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ucb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2055,7 +2058,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2086,7 +2089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/base_minimum/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/base_minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2107,7 +2110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/ei/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2128,7 +2131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/factory/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2149,7 +2152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/lcb/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/lcb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2170,7 +2173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2191,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/output/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/output/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2249,7 +2252,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2280,7 +2283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2301,7 +2304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ef/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2322,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ei/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2343,7 +2346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/factory/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2364,7 +2367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2385,7 +2388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/u/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/u/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2445,7 +2448,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/distributions/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/distributions/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2476,7 +2479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2497,7 +2500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2518,7 +2521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2566,7 +2569,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/active_learning/visualization/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/active_learning/visualization/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2597,7 +2600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/active_learning/visualization/acquisition_view/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/visualization/acquisition_view/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2655,7 +2658,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/algos/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/algos/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2709,7 +2712,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/algos/opt/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/algos/opt/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2740,7 +2743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2780,7 +2783,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/algos/opt/core/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/algos/opt/core/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2811,7 +2814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2877,7 +2880,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/problems/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/problems/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2935,7 +2938,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/problems/branin/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/problems/branin/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2966,7 +2969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/problems/branin/branin_discipline/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/problems/branin/branin_discipline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2987,7 +2990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/problems/branin/branin_function/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/problems/branin/branin_function/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3008,7 +3011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/problems/branin/branin_problem/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/problems/branin/branin_problem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3029,7 +3032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/problems/branin/branin_space/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/problems/branin/branin_space/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3050,7 +3053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/problems/branin/functions/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/problems/branin/functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3106,7 +3109,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../reference/gemseo_mlearning/regression/" class="md-nav__link ">
+            <a href="../../../reference/gemseo_mlearning/regression/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3137,7 +3140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/gemseo_mlearning/regression/smt_regression_model/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/regression/smt_regression_model/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3215,7 +3218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developer_guide/active_learning/" class="md-nav__link">
+      <a href="../../../developer_guide/active_learning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3263,108 +3266,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-active-learning-is" class="md-nav__link">
+  <a href="#in-a-nutshell" class="md-nav__link">
     <span class="md-ellipsis">
-      What active learning is
+      In a nutshell
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="What active learning is">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    <span class="md-ellipsis">
-      Introduction
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#surrogate-modeling" class="md-nav__link">
-    <span class="md-ellipsis">
-      Surrogate modeling
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Surrogate modeling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-rosenbrock-function" class="md-nav__link">
-    <span class="md-ellipsis">
-      The Rosenbrock function
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#acquisition-criteria" class="md-nav__link">
-    <span class="md-ellipsis">
-      Acquisition criteria
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Acquisition criteria">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#improving-the-quality-of-the-surrogate" class="md-nav__link">
-    <span class="md-ellipsis">
-      Improving the quality of the surrogate
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#finding-optimas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Finding optimas
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#estimating-contour-sets" class="md-nav__link">
-    <span class="md-ellipsis">
-      Estimating contour sets
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parallelization" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parallelization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#api" class="md-nav__link">
+  <a href="#choosing-an-acquisition-criterion" class="md-nav__link">
     <span class="md-ellipsis">
-      API
+      Choosing an acquisition criterion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-surrogate-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing a surrogate model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-this-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use this algorithm
     </span>
   </a>
   
@@ -3389,210 +3320,93 @@
 
 
 <!--
-Copyright 2021 IRT Saint Exupéry, https://www.irt-saintexupery.com
+ Copyright 2021 IRT Saint Exupéry, https://www.irt-saintexupery.com
 
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
-International License. To view a copy of this license, visit
-http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
-Commons, PO Box 1866, Mountain View, CA 94042, USA.
+ This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+ International License. To view a copy of this license, visit
+ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
-<h1 id="active-learning">Active learning<a class="headerlink" href="#active-learning" title="Permanent link">&para;</a></h1>
-<h2 id="what-active-learning-is">What active learning is<a class="headerlink" href="#what-active-learning-is" title="Permanent link">&para;</a></h2>
-<h3 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h3>
-<p>Active learning techniques are iterative methods that aim to sequentially estimate various
-quantities of interest:
-optimas, contours, failure probabilities, quantiles, expected values, <em>etc</em>.
-These methods generally start by constructing a rough surrogate model
-(an approximation of a costly exact physical model much faster to run).
-Then, they iteratively look for new simulations to run,
-and update the surrogate model
-and the estimated target quantities until a budget or accuracy criterion is reached.
-This search is guided by an acquisition criterion,
-also called infill criterion,
-to be minimized or maximized.
-This approach is inspired by
-the efficient global optimization (EGO) algorithm <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
-<h3 id="surrogate-modeling">Surrogate modeling<a class="headerlink" href="#surrogate-modeling" title="Permanent link">&para;</a></h3>
-<p>Surrogate models<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> are approximations of a costly exact model
-<span class="arithmatex">\(f:\mathbf{x} \in \mathbb{X}\subset\mathbb{R}^d\mapsto y \in \mathbb{R}\)</span> much faster to run.
-There are many types of surrogates,
-but one of the most popular,
-in particular in the active learning literature,
-is the Kriging model, a.k.a. Gaussian processes (GP) regressor <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
-One reason is that GP models provide a characterization of the prediction uncertainty.
-The exact simulator <span class="arithmatex">\(f\)</span> is considered as a realization of a GP, <span class="arithmatex">\(F\)</span>,
-with trend <span class="arithmatex">\(m : \mathbb{X} \rightarrow \mathbb{R}\)</span>
-and covariance kernel <span class="arithmatex">\(c : \mathbb{X}\times \mathbb{X} \rightarrow \mathbb{R}\)</span>.
-Conditioned by <span class="arithmatex">\(n\)</span> observations <span class="arithmatex">\(\mathcal{A}_n = \{(\mathbf{x}_1,y_1),\dots,(\mathbf{x}_n,y_n)\}\)</span>,
-<span class="arithmatex">\(F_n  = F|\mathcal{A}_n\)</span> is also a GP,
-with trend <span class="arithmatex">\(m_n(\cdot)\)</span> and covariance function <span class="arithmatex">\(c_n(\cdot,\cdot)\)</span>
-that express differently depending on whether the trend function is known or not.
-The variance of the output prediction is denoted by <span class="arithmatex">\(s_n^2(\cdot) = c_n(\cdot,\cdot)\)</span>.</p>
-<p>Note that the implementation of active learning strategies is not limited to the use of GP surrogates.
-In this case,
-a critical step of the method is the characterization
-of the uncertainty of the surrogate prediction,
-which can be achieved using bootstrap-based techniques<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
-<h4 id="the-rosenbrock-function">The Rosenbrock function<a class="headerlink" href="#the-rosenbrock-function" title="Permanent link">&para;</a></h4>
-<p>The Rosenbrock function<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>,
-which will be used for illustrative purposes,
-expresses as :</p>
-<div class="arithmatex">\[ f(\mathbf{x}) = \sum_{i = 1}^{d-1} [100(x_{i+1} - x_i^2)^2 +(1-x_i)^2], \]</div>
-<p>with <span class="arithmatex">\(\mathbf{x}\)</span> a <span class="arithmatex">\(d\)</span>-dimensional input, <span class="arithmatex">\(d \geqslant 2\)</span>.
-An illustration of the function
-with a two-dimensional input is depicted below:</p>
-<figure>
-<img alt="" height="150px" src="../../images/ImRosenbrock.jpg" width="75%" />  <figcaption>
-Bidimensional Rosenbrock function
-</figcaption>
-</figure>
-<p>In the case of quantile estimation,
-<span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> are replaced by
-the independent random variables <span class="arithmatex">\(X_1\)</span> and <span class="arithmatex">\(X_2\)</span>
-uniformly distributed over <span class="arithmatex">\([-2,2]\)</span>.</p>
-<h3 id="acquisition-criteria">Acquisition criteria<a class="headerlink" href="#acquisition-criteria" title="Permanent link">&para;</a></h3>
-<p>One of the key step of the active learning methodology is the choice of the acquisition criterion
-that guides the enrichment of the surrogate model.
-It is noted <span class="arithmatex">\(J_n(\cdot)\)</span> in the following.
-Several criteria have been developed for different purposes <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>.
-Typical applications of this methodology include the improvement of the surrogate model,
-the minimization of black-box functions
-and contour estimation, among others.
-Some popular criteria are detailed next for the objectives listed above.</p>
-<h4 id="improving-the-quality-of-the-surrogate">Improving the quality of the surrogate<a class="headerlink" href="#improving-the-quality-of-the-surrogate" title="Permanent link">&para;</a></h4>
-<p>A straightforward method to improve a surrogate model consists in choosing as enrichment points those
-with the highest predicted uncertainty,
-giving for the infill criterion <span class="arithmatex">\(J_n(\cdot)\)</span> :</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) = s_n^2(\mathbf{x}),\]</div>
-<figure>
-<img _height="150px" alt="" src="../../images/SD_field.jpg" width="75%" />
-<figcaption>
-Level plot of the predicted uncertainty.<br/>
-The learning points are denoted with a red star.
-</figcaption>
-</figure>
-<p>Note in this figure that,
-the predicted uncertainty (in fact the infill criterion) is the highest in the areas
-where the amount of learning points for the training of the surrogate is the smallest.</p>
-<h4 id="finding-optimas">Finding optimas<a class="headerlink" href="#finding-optimas" title="Permanent link">&para;</a></h4>
-<p>One of the most popular acquisition criterion to minimize (alternatively to maximize) black-box functions
-is the expected improvement <sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> defined as:</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) =  \text{EI}_n(\mathbf{x})  = \mathbb{E}[\max(\mathbf{y}_n - F_n(\mathbf{x}),0)],\]</div>
-<p>where the expectation is taken with respect to
-the distribution of the conditioned GP <span class="arithmatex">\(F_n(\cdot)\)</span>.
-In the previous equation,
-<span class="arithmatex">\(\mathbf{y}_n\)</span> corresponds to the output values of the database <span class="arithmatex">\(\mathcal{A}_n\)</span>
-and stands for <span class="arithmatex">\(\mathbf{y}_n = (y_i)_{i \in [1, n]}\)</span>.</p>
-<figure>
-<img _height="150px" alt="" src="../../images/EI_field.jpg" width="75%" />
-<figcaption>
-Level plot of the expected improvement.<br/>
-The learning points are denoted with a red star. <br/>
-The global minimum is set in green.
-</figcaption>
-</figure>
-<p>In this figure,
-some learning points are already close to the global minimum,
-so the infill criterion rather seeks here to improve the GP overall prediction.</p>
-<h4 id="estimating-contour-sets">Estimating contour sets<a class="headerlink" href="#estimating-contour-sets" title="Permanent link">&para;</a></h4>
-<p>A usual criterion to estimate the level set<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> associated to value <span class="arithmatex">\(a\)</span> is :</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) =  \mathbb{E}[\max((2 s_n^2(\mathbf{x})) -\vert{a - F_n(\mathbf{x})}\vert^2,0)],\]</div>
-<p>where the expectation is taken with respect to
-the distribution of the conditioned GP <span class="arithmatex">\(F_n(\cdot)\)</span>.
-With an appropriate choice of <span class="arithmatex">\(a\)</span>,
-this criterion can be used to estimate quantiles
-or failure probabilities.
-In the following,
-it is implemented to estimate the <span class="arithmatex">\(35\%\)</span> quantile of the Rosenbrock function.</p>
-<figure>
-<img _height="150px" alt="" src="../../images/IQ_field.jpg" width="75%" />
-<figcaption>
-Level plot of the acquisition criterion for level set estimation.<br/>
-The learning points are denoted with a red star.<br/>
-The level set associated to the quantile to estimate is drawn in black.
-</figcaption>
-</figure>
-<p>In this figure,
-the areas with the highest acquisition criterion values refer to those
-that are located around the level set corresponding to the target quantile
-(which is here the objective study)
-and far from the learning points
-(where knowledge is already available).</p>
-<h3 id="parallelization">Parallelization<a class="headerlink" href="#parallelization" title="Permanent link">&para;</a></h3>
-<p>Most of the time,
-a single observation is added at the different steps of the active learning algorithm.
-However,
-to reduce the number of iterations of the active learning strategy,
-a batch of several points can be added <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>
-instead of considering a single one.
-This implies several changes,
-among which the expression of the infill criterion and its maximization.
-Let emphasize that
-parallelizing the active learning methodology significantly increases the computational burden
-which can still be alleviated by considering approximated heuristics <sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">8</a></sup>.</p>
-<p>A key challenge of this method is defining the size of the batch of points added at each iteration.
-In theory,
-it should be as high as possible,
-because for a fixed number of black-box evaluations,
-the higher it is,
-the lower the number of iterations is.
-However,
-this is synonymous with an increase of the numerical complexity of the method,
-and a balance must be therefore struck between the computational costs
-and the efficiency of the active learning strategy.</p>
-<p>In the following,
-we present the active learning functionalities available in <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">gemseo-mlearning</a>.</p>
-<h2 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h2>
-<p>The <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a> class
-defines an active learning algorithm.</p>
+
+<h1 id="active-learning-algorithm">Active learning algorithm<a class="headerlink" href="#active-learning-algorithm" title="Permanent link">&para;</a></h1>
+<p>The <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a> class
+defines an <a href="../what_active_learning_is/">active learning</a> algorithm.</p>
+<h2 id="in-a-nutshell">In a nutshell<a class="headerlink" href="#in-a-nutshell" title="Permanent link">&para;</a></h2>
 <p>Given a coarse regressor <span class="arithmatex">\(\hat{f}\)</span> (a.k.a. surrogate model)
 of a model <span class="arithmatex">\(f\)</span> (a.k.a. substituted model),
 this algorithm updates this regressor sequentially
 from input-output points maximizing (or minimizing) an acquisition criterion
-(a.k.a. infill criterion).</p>
-<p>There are five families of acquisition criteria:</p>
+(a.k.a. infill criterion)
+chosen for a specific purpose.</p>
+<h2 id="choosing-an-acquisition-criterion">Choosing an acquisition criterion<a class="headerlink" href="#choosing-an-acquisition-criterion" title="Permanent link">&para;</a></h2>
+<p><code>gemseo-mlearning</code> includes five families of acquisition criteria corresponding to as many purposes:</p>
 <ul>
-<li><a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a>:
-  make the minimum of the surrogate model
+<li>the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a> family
+  aims to make the minimum of the surrogate model
   tends towards the minimum of the substituted model
   when the number of acquired points tends to infinity,</li>
-<li><a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/#gemseo_mlearning.active_learning.acquisition_criteria.maximum.maximum.Maximum">Maximum</a>:
-  make the maximum of the surrogate model
+<li>the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/#gemseo_mlearning.active_learning.acquisition_criteria.maximum.maximum.Maximum">Maximum</a> family
+  aims to make the maximum of the surrogate model
   tends towards the maximum of the substituted model
   when the number of acquired points tends to infinity,</li>
-<li><a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet">LevelSet</a>:
-  make a level set of the surrogate model
+<li>the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet">LevelSet</a> family
+  aims to make a level set of the surrogate model
   tends towards the corresponding level set of the substituted model
   when the number of acquired points tends to infinity,</li>
-<li><a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile">Quantile</a>:
-  make a quantile of the surrogate model
-  tends towards the quantile of the substituted model
+<li>the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile">Quantile</a> family
+  aims to make a quantile of the surrogate model
+  tends towards the corresponding quantile of the substituted model
   when the number of acquired points tends to infinity,</li>
-<li><a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/#gemseo_mlearning.active_learning.acquisition_criteria.exploration.exploration.Exploration">Exploration</a>:
-  make the error of the surrogate model tends towards zero
+<li>the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/#gemseo_mlearning.active_learning.acquisition_criteria.exploration.exploration.Exploration">Exploration</a> family
+  aims to make the error of the surrogate model tends towards zero
   when the number of acquired points tends to infinity.</li>
 </ul>
+<p><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a>,
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/#gemseo_mlearning.active_learning.acquisition_criteria.maximum.maximum.Maximum">Maximum</a>
+and <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile">Quantile</a>
+provides an estimation of the quantity of interest,
+namely the minimum, the maximum and a quantile respectively.
+Whatever the family,
+the surrogate model can be used for prediction as any surrogate model.
+However,
+outside the
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/#gemseo_mlearning.active_learning.acquisition_criteria.exploration.exploration.Exploration">Exploration</a> family,
+it is important to bear in mind
+that its learning dataset has been designed to estimate a particular quantity of interest,
+and should therefore be used with caution.
+In other words,
+a surrogate model built to find the minimum can be bad at predicting the high output values.
+In such cases,
+the predicted standard-deviation
+that characterizes the uncertainty of the prediction
+can help to judge the accuracy of the surrogate prediction.</p>
+<h2 id="choosing-a-surrogate-model">Choosing a surrogate model<a class="headerlink" href="#choosing-a-surrogate-model" title="Permanent link">&para;</a></h2>
 <p>Many of these acquisition criteria consider that
 the surrogate model is a Gaussian process (GP) regressor <span class="arithmatex">\(\hat{f}\)</span>
 and are expressed from realizations or statistics of this GP <span class="arithmatex">\(\hat{F}\)</span>,
 <em>e.g.</em> its mean <span class="arithmatex">\(m_n(x)\)</span> and its variance <span class="arithmatex">\(c_n(x,x)\)</span> at <span class="arithmatex">\(x\)</span>
 where <span class="arithmatex">\(c_n(\cdot,\cdot)\)</span> is its covariance function.
 These statistics and realizations can be obtained using the
-<a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution">KrigingDistribution</a>
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution">KrigingDistribution</a>
 class
 which can be built from any regressor deriving from
-[BaseRandomProcessRegressor][gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor].
+[BaseRandomProcessRegressor][gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor],
+such as [GaussianProcessRegressor][gemseo.mlearning.regressions.algos.gpr.GaussianProcessRegressor] based on
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html">scikit-learn</a>
+and [OTGaussianProcessRegressor][gemseo.mlearning.regressions.algos.ot_gpr.OTGaussianProcessRegressor] based on
+<a href="https://openturns.github.io/openturns/latest/user_manual/response_surface/_generated/openturns.KrigingAlgorithm.html">OpenTURNS</a>.
 By <em>distribution</em> we mean
 the probability distribution of a random function of which <span class="arithmatex">\(f\)</span> is an instance.
 For non-GP regressors,
 this distribution is not a random process from the literature
 but an empirical distribution based on resampling techniques
 and is qualified as <em>universal</em> by its authors:
-<a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution">RegressorDistribution</a>.</p>
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution">RegressorDistribution</a>.</p>
+<h2 id="how-to-use-this-algorithm">How to use this algorithm<a class="headerlink" href="#how-to-use-this-algorithm" title="Permanent link">&para;</a></h2>
 <p>A basic use of this class is</p>
 <ol>
 <li>instantiate
-   the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
+   the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
    from an input space of type <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a>,
    a [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
    and the name of a family of acquisition criteria
@@ -3605,38 +3419,9 @@ it is possible to change the acquisition algorithm,
 i.e. the optimization algorithm to minimize or maximize the acquisition criterion,
 as well as the acquisition criterion among the selected family.</p>
 <p>Lastly,
-the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/visualization/#gemseo_mlearning.active_learning.visualization">visualization</a> subpackage
+the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/visualization/#gemseo_mlearning.active_learning.visualization">visualization</a> subpackage
 offers plotting capabilities
 to draw the evolution of both the surrogate model and the acquisition criterion.</p>
-<div class="footnote">
-<hr />
-<ol>
-<li id="fn:1">
-<p>D. Jones, M. Schonlau, and W. Welch. Efficient global optimization of expensive black-box functions. <em>Journal of Global optimization</em>, 13:455–492, 1998.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>A. Forrester, A. Sobester, and A. Keane. <em>Engineering design via surrogate modelling: a practical guide</em>. John Wiley &amp; Sons, 2008.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>C. Williams and C. Rasmussen. <em>Gaussian processes for machine learning</em>. Volume 2. MIT press Cambridge, MA, 2006.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p>M. Ben Salem, O. Roustant, F. Gamboa, and L. Tomaso. Universal prediction distribution for surrogate models. <em>SIAM/ASA Journal on Uncertainty Quantification</em>, 5:, 12 2015. <a href="https://doi.org/10.1137/15M1053529">doi:10.1137/15M1053529</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
-</li>
-<li id="fn:5">
-<p>M. Molga and C. Smutnicki. Test functions for optimization needs. <em>Test functions for optimization needs</em>, 101:48, 2005.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
-</li>
-<li id="fn:6">
-<p>F. Viana, C. Gogu, and T. Goel. Surrogate modeling: tricks that endured the test of time and some recent developments. <em>Structural and Multidisciplinary Optimization</em>, pages 1–28, 2021.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
-</li>
-<li id="fn:7">
-<p>P. Ranjan, D. Bingham, and G. Michailidis. Sequential experiment design for contour estimation from complex computer codes. <em>Technometrics</em>, 50(4):527–541, 2008.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
-</li>
-<li id="fn:8">
-<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>
 
 
 
@@ -3683,14 +3468,14 @@ to draw the evolution of both the surrogate model and the acquisition criterion.
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
       
-        <script src="../../assets/_markdown_exec_pyodide.js"></script>
+        <script src="../../../assets/_markdown_exec_pyodide.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

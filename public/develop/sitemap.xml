@@ -321,7 +321,11 @@
          <lastmod>2024-09-23</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/</loc>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/active_learning_algo/</loc>
+         <lastmod>2024-09-23</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/what_active_learning_is/</loc>
          <lastmod>2024-09-23</lastmod>
     </url>
 </urlset>
