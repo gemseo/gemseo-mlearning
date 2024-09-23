@@ -50,12 +50,12 @@ class AcquisitionView:
     def __init__(self, active_learning_algo: ActiveLearningAlgo) -> None:
         """
         Args:
-            active_learning_algo: The active learning algorithm using sequential
-            acquisition.
+            active_learning_algo: The active learning algorithm
+                using sequential acquisition.
 
         Raises:
             NotImplementedError: When the active learning algorithm uses parallel
-            acquisition.
+                acquisition.
         """  # noqa: D205, D212
         if active_learning_algo.batch_size > 1:
             msg = (

@@ -86,7 +86,9 @@ nav:
   - Licenses: licenses.md
 - User guide:
   - Introduction: user_guide/index.md
-  - Active learning: user_guide/active_learning.md
+  - Active learning:
+    - What active learning is: user_guide/active_learning/what_active_learning_is.md
+    - Active learning algorithm: user_guide/active_learning/active_learning_algo.md
 - Examples:
   - Active learning: generated/examples/active_learning
   - Optimization:  generated/examples/optimization
