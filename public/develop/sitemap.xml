@@ -309,6 +309,30 @@
          <lastmod>2024-09-24</lastmod>
     </url>
     <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/</loc>
+         <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/functions/</loc>
+         <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_discipline/</loc>
+         <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_function/</loc>
+         <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_problem/</loc>
+         <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_space/</loc>
+         <lastmod>2024-09-24</lastmod>
+    </url>
+    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/</loc>
          <lastmod>2024-09-24</lastmod>
     </url>
