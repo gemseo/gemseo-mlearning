@@ -39,7 +39,8 @@ and this project adheres to
   to level set [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
   (alternatively quantile estimation [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile.Quantile])
   and the expected improvement for maximum/minimum estimation [Maximum][gemseo_mlearning.active_learning.acquisition_criteria.maximum].
-- [BraninProblem][gemseo_mlearning.problems.branin]
+- The [Branin][gemseo_mlearning.problems.branin] and
+  [Rosenbrock][gemseo_mlearning.problems.rosenbrock] problems
   can be used to benchmark
   the efficiency of the active learning algorithms
   and estimate several quantities of interest,
