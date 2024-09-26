@@ -41,8 +41,8 @@ TOL = 0.0 if PLATFORM_IS_WINDOWS else 0.9
 def input_space() -> DesignSpace:
     """An input space."""
     input_space = DesignSpace()
-    input_space.add_variable("x", l_b=-2, u_b=2, value=1.0)
-    input_space.add_variable("y", l_b=-2, u_b=2, value=1.0)
+    input_space.add_variable("x", lower_bound=-2, upper_bound=2, value=1.0)
+    input_space.add_variable("y", lower_bound=-2, upper_bound=2, value=1.0)
     return input_space
 
 

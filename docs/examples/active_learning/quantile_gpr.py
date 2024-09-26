@@ -42,8 +42,8 @@ discipline = AnalyticDiscipline({"z": "(1-x)**2+100*(y-x**2)**2"}, name="Rosenbr
 # %%
 # defined over the input space $[-2,2]^2$:
 input_space = DesignSpace()
-input_space.add_variable("x", l_b=-2, u_b=2, value=1.0)
-input_space.add_variable("y", l_b=-2, u_b=2, value=1.0)
+input_space.add_variable("x", lower_bound=-2, upper_bound=2, value=1.0)
+input_space.add_variable("y", lower_bound=-2, upper_bound=2, value=1.0)
 
 # %%
 # with the uncertain space:

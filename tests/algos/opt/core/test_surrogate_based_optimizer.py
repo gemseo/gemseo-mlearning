@@ -54,7 +54,7 @@ def test_all_acquisitions_made(regression_algorithm, regression_options):
 def test_known_acquired_input_data():
     """Check the termination when the acquired input data is already known."""
     space = DesignSpace()
-    space.add_variable("x", l_b=0, u_b=1)
+    space.add_variable("x", lower_bound=0, upper_bound=1)
     problem = OptimizationProblem(space)
     problem.objective = MDOFunction(lambda _: 0, "f")
     assert (
