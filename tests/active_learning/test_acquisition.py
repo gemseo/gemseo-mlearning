@@ -87,7 +87,7 @@ def algo_distribution(dataset) -> RegressorDistribution:
 def input_space() -> DesignSpace:
     """The input space used to acquire new points."""
     space = DesignSpace()
-    space.add_variable("x", l_b=0.0, u_b=1.0)
+    space.add_variable("x", lower_bound=0.0, upper_bound=1.0)
     return space
 
 
@@ -266,8 +266,8 @@ def test_plot(algo_distribution_for_update, tmp_wd):
     )
     regressor = GaussianProcessRegressor(dataset)
     space = DesignSpace()
-    space.add_variable("x1", l_b=0.0, u_b=1.0, value=0.5)
-    space.add_variable("x2", l_b=0.0, u_b=1.0, value=0.5)
+    space.add_variable("x1", lower_bound=0.0, upper_bound=1.0, value=0.5)
+    space.add_variable("x2", lower_bound=0.0, upper_bound=1.0, value=0.5)
     algo = ActiveLearningAlgo("Minimum", space, regressor)
     file_path = Path("foo.png")
     algo.acquire_new_points(AnalyticDiscipline({"y": "1+x1+x2"}), file_path=file_path)

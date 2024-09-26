@@ -45,7 +45,9 @@ def f(x):
 input_space = DesignSpace()
 lower_bound = -3.0
 upper_bound = 3.0
-input_space.add_variable("x", l_b=lower_bound, u_b=upper_bound, value=1.5)
+input_space.add_variable(
+    "x", lower_bound=lower_bound, upper_bound=upper_bound, value=1.5
+)
 
 # %%
 # First,

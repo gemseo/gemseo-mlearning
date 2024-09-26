@@ -85,8 +85,7 @@ class BaseQuantile(BaseAcquisitionCriterion):
 
         # Create a new uncertain space sorted by model inputs.
         self.__uncertain_space = uncertain_space.__class__()
-        for input_name in input_names:
-            self.__uncertain_space[input_name] = uncertain_space[input_name]
+        self.__uncertain_space.add_variables_from(uncertain_space, *input_names)
         self.__input_data = self.__uncertain_space.compute_samples(n_samples)
         self.__level = level
         # The value 0. will be replaced by the quantile estimation at each update,

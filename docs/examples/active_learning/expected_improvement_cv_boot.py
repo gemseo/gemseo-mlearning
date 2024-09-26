@@ -80,7 +80,7 @@ for index, bootstrap in enumerate([False, True]):
 
     # Define the input_space
     input_space = DesignSpace()
-    input_space.add_variable("x", l_b=x_l, u_b=x_u, value=1.5)
+    input_space.add_variable("x", lower_bound=x_l, upper_bound=x_u, value=1.5)
 
     # Define the data acquisition process
     acquisition = ActiveLearningAlgo("Minimum", input_space, distribution)

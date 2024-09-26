@@ -177,12 +177,16 @@ class ActiveLearningAlgo:
         # that is different from the input space
         # when acquiring points in parallel.
         optimization_space = DesignSpace()
-        l_b = tile(input_space.get_lower_bounds(), batch_size)
-        u_b = tile(input_space.get_upper_bounds(), batch_size)
+        lower_bound = tile(input_space.get_lower_bounds(), batch_size)
+        upper_bound = tile(input_space.get_upper_bounds(), batch_size)
         input_space.initialize_missing_current_values()
         value = tile(input_space.get_current_value(), batch_size)
         optimization_space.add_variable(
-            name="x", size=int(len(l_b)), l_b=l_b, u_b=u_b, value=value
+            "x",
+            size=int(len(lower_bound)),
+            lower_bound=lower_bound,
+            upper_bound=upper_bound,
+            value=value,
         )
         problem = self.__acquisition_problem = OptimizationProblem(optimization_space)
         problem.objective = self.__acquisition_criterion
@@ -280,7 +284,9 @@ class ActiveLearningAlgo:
             ).x_opt
             input_data = input_data.reshape(self.__batch_size, -1)
         if as_dict:
-            return self.__acquisition_problem.design_space.array_to_dict(input_data)
+            return self.__acquisition_problem.design_space.convert_array_to_dict(
+                input_data
+            )
 
         return input_data
 
@@ -332,7 +338,7 @@ class ActiveLearningAlgo:
                     )
 
                 for points in range(self.batch_size):
-                    input_data = self.__input_space.array_to_dict(
+                    input_data = self.__input_space.convert_array_to_dict(
                         array_input_data[points, :]
                     )
 
