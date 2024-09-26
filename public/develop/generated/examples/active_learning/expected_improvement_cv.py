@@ -70,7 +70,7 @@ upper = UCB(distribution, kappa=2.0)
 # %%
 # ## Find next training point
 space = DesignSpace()
-space.add_variable("x", l_b=x_l, u_b=x_u, value=1.5)
+space.add_variable("x", lower_bound=x_l, upper_bound=x_u, value=1.5)
 
 acquisition = ActiveLearningAlgo("Minimum", space, distribution)
 acquisition.set_acquisition_algorithm("fullfact")

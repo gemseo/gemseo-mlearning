@@ -3546,7 +3546,7 @@ in order to estimate the minimum of the discipline</p>
 
     <span class="c1"># Define the input_space</span>
     <span class="n">input_space</span> <span class="o">=</span> <span class="n">DesignSpace</span><span class="p">()</span>
-    <span class="n">input_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">l_b</span><span class="o">=</span><span class="n">x_l</span><span class="p">,</span> <span class="n">u_b</span><span class="o">=</span><span class="n">x_u</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+    <span class="n">input_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="n">x_l</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="n">x_u</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
 
     <span class="c1"># Define the data acquisition process</span>
     <span class="n">acquisition</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Minimum&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">distribution</span><span class="p">)</span>

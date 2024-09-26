@@ -3431,18 +3431,20 @@ to download the full example code</p>
 <!-- GENERATED FROM PYTHON SOURCE LINES 44-45 -->
 
 <p>defined over the input space <span class="arithmatex">\([-3,3]\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 45-50 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 45-52 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">DesignSpace</span><span class="p">()</span>
 <span class="n">lower_bound</span> <span class="o">=</span> <span class="o">-</span><span class="mf">3.0</span>
 <span class="n">upper_bound</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="n">input_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">l_b</span><span class="o">=</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">u_b</span><span class="o">=</span><span class="n">upper_bound</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">input_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span>
+    <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="n">upper_bound</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 51-53 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 53-55 -->
 
 <p>First,
 we create an initial training dataset:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 53-60 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 55-62 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">x_train</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">])</span>
 <span class="n">y_train</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
@@ -3451,50 +3453,50 @@ we create an initial training dataset:</p>
 <span class="n">training_dataset</span><span class="o">.</span><span class="n">add_input_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">x_train</span><span class="p">)</span>
 <span class="n">training_dataset</span><span class="o">.</span><span class="n">add_output_variable</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 61-62 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 63-64 -->
 
 <p>and an initial Gaussian process regressor:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 62-64 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 64-66 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">gpr</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">training_dataset</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 65-67 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 67-69 -->
 
 <p>Then,
 we create a Kriging distribution:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 67-70 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 69-72 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">kriging_distribution</span> <span class="o">=</span> <span class="n">KrigingDistribution</span><span class="p">(</span><span class="n">gpr</span><span class="p">)</span>
 <span class="n">kriging_distribution</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 71-72 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 73-74 -->
 
 <p>as well as three acquisition criteria:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 72-76 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 74-78 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">expected_improvement</span> <span class="o">=</span> <span class="n">EI</span><span class="p">(</span><span class="n">kriging_distribution</span><span class="p">)</span>
 <span class="n">mean_minus_2sigma</span> <span class="o">=</span> <span class="n">LCB</span><span class="p">(</span><span class="n">kriging_distribution</span><span class="p">,</span> <span class="n">kappa</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 <span class="n">mean_plus_2sigma</span> <span class="o">=</span> <span class="n">UCB</span><span class="p">(</span><span class="n">kriging_distribution</span><span class="p">,</span> <span class="n">kappa</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 77-82 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 79-84 -->
 
 <p>Thirdly,
 we look for the point that will help us get closer to the minimum;
 by default,
 for this purpose,
 the active learning algorithm looks for the point maximizing the expected improvement.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 82-86 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 84-88 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Minimum&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">kriging_distribution</span><span class="p">)</span>
 <span class="n">active_learning</span><span class="o">.</span><span class="n">set_acquisition_algorithm</span><span class="p">(</span><span class="s2">&quot;TNC&quot;</span><span class="p">)</span>
 <span class="n">next_input_data</span> <span class="o">=</span> <span class="n">active_learning</span><span class="o">.</span><span class="n">find_next_point</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 87-90 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 89-92 -->
 
 <p>Fourthly,
 we evaluate the different acquisition criteria over a fine grid
 as well as the original function and the Gaussian process regressor:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 90-103 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 92-105 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">ei_values</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
@@ -3509,7 +3511,7 @@ as well as the original function and the Gaussian process regressor:</p>
     <span class="n">mm2s_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_minus_2sigma</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x_i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mean_minus_2sigma</span><span class="o">.</span><span class="n">output_range</span><span class="p">)</span>
     <span class="n">mp2s_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mean_plus_2sigma</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="n">x_i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mean_plus_2sigma</span><span class="o">.</span><span class="n">output_range</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 104-110 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 106-112 -->
 
 <p>Lastly,
 we plot the training points,
@@ -3517,7 +3519,7 @@ the original model,
 the Gaussian process regressor
 and the 95% confidence interval
 on a first sub-plot:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 110-118 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 112-120 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;ro&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training points&quot;</span><span class="p">)</span>
@@ -3528,10 +3530,10 @@ on a first sub-plot:</p>
 <span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 119-120 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 121-122 -->
 
 <p>and the expected improvement on a second plots:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 120-128 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 122-130 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">next_input_data</span><span class="p">)</span>
@@ -3541,7 +3543,7 @@ on a first sub-plot:</p>
 <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 129-130 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 131-132 -->
 
 <p>The vertical blue line indicates the point maximizing the expected improvement.</p>
 <p><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>

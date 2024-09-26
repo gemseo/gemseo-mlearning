@@ -4029,7 +4029,11 @@ if <code>1</code>, acquire points sequentially.</p>
 <span class="normal">208</span>
 <span class="normal">209</span>
 <span class="normal">210</span>
-<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">criterion_family_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">input_space</span><span class="p">:</span> <span class="n">DesignSpace</span><span class="p">,</span>
@@ -4086,12 +4090,16 @@ if <code>1</code>, acquire points sequentially.</p>
     <span class="c1"># that is different from the input space</span>
     <span class="c1"># when acquiring points in parallel.</span>
     <span class="n">optimization_space</span> <span class="o">=</span> <span class="n">DesignSpace</span><span class="p">()</span>
-    <span class="n">l_b</span> <span class="o">=</span> <span class="n">tile</span><span class="p">(</span><span class="n">input_space</span><span class="o">.</span><span class="n">get_lower_bounds</span><span class="p">(),</span> <span class="n">batch_size</span><span class="p">)</span>
-    <span class="n">u_b</span> <span class="o">=</span> <span class="n">tile</span><span class="p">(</span><span class="n">input_space</span><span class="o">.</span><span class="n">get_upper_bounds</span><span class="p">(),</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">tile</span><span class="p">(</span><span class="n">input_space</span><span class="o">.</span><span class="n">get_lower_bounds</span><span class="p">(),</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">tile</span><span class="p">(</span><span class="n">input_space</span><span class="o">.</span><span class="n">get_upper_bounds</span><span class="p">(),</span> <span class="n">batch_size</span><span class="p">)</span>
     <span class="n">input_space</span><span class="o">.</span><span class="n">initialize_missing_current_values</span><span class="p">()</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">tile</span><span class="p">(</span><span class="n">input_space</span><span class="o">.</span><span class="n">get_current_value</span><span class="p">(),</span> <span class="n">batch_size</span><span class="p">)</span>
     <span class="n">optimization_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l_b</span><span class="p">)),</span> <span class="n">l_b</span><span class="o">=</span><span class="n">l_b</span><span class="p">,</span> <span class="n">u_b</span><span class="o">=</span><span class="n">u_b</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span>
+        <span class="s2">&quot;x&quot;</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lower_bound</span><span class="p">)),</span>
+        <span class="n">lower_bound</span><span class="o">=</span><span class="n">lower_bound</span><span class="p">,</span>
+        <span class="n">upper_bound</span><span class="o">=</span><span class="n">upper_bound</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">problem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span> <span class="o">=</span> <span class="n">OptimizationProblem</span><span class="p">(</span><span class="n">optimization_space</span><span class="p">)</span>
     <span class="n">problem</span><span class="o">.</span><span class="n">objective</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_criterion</span>
@@ -4428,13 +4436,7 @@ and the last acquisition problem.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">287</span>
-<span class="normal">288</span>
-<span class="normal">289</span>
-<span class="normal">290</span>
-<span class="normal">291</span>
-<span class="normal">292</span>
-<span class="normal">293</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">293</span>
 <span class="normal">294</span>
 <span class="normal">295</span>
 <span class="normal">296</span>
@@ -4511,7 +4513,13 @@ and the last acquisition problem.</p>
 <span class="normal">367</span>
 <span class="normal">368</span>
 <span class="normal">369</span>
-<span class="normal">370</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_new_points</span><span class="p">(</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">acquire_new_points</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">discipline</span><span class="p">:</span> <span class="n">MDODiscipline</span><span class="p">,</span>
     <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -4559,7 +4567,7 @@ and the last acquisition problem.</p>
                 <span class="p">)</span>
 
             <span class="k">for</span> <span class="n">points</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">):</span>
-                <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__input_space</span><span class="o">.</span><span class="n">array_to_dict</span><span class="p">(</span>
+                <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__input_space</span><span class="o">.</span><span class="n">convert_array_to_dict</span><span class="p">(</span>
                     <span class="n">array_input_data</span><span class="p">[</span><span class="n">points</span><span class="p">,</span> <span class="p">:]</span>
                 <span class="p">)</span>
 
@@ -4648,11 +4656,7 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">266</span>
 <span class="normal">267</span>
 <span class="normal">268</span>
 <span class="normal">269</span>
@@ -4671,7 +4675,13 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
 <span class="normal">282</span>
 <span class="normal">283</span>
 <span class="normal">284</span>
-<span class="normal">285</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_next_point</span><span class="p">(</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">find_next_point</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">as_dict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
@@ -4692,7 +4702,9 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
         <span class="p">)</span><span class="o">.</span><span class="n">x_opt</span>
         <span class="n">input_data</span> <span class="o">=</span> <span class="n">input_data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">as_dict</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span><span class="o">.</span><span class="n">design_space</span><span class="o">.</span><span class="n">array_to_dict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span><span class="o">.</span><span class="n">design_space</span><span class="o">.</span><span class="n">convert_array_to_dict</span><span class="p">(</span>
+            <span class="n">input_data</span>
+        <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">input_data</span>
 </code></pre></div></td></tr></table></div>
@@ -4745,11 +4757,7 @@ use the default values for the other ones.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">243</span>
-<span class="normal">244</span>
-<span class="normal">245</span>
-<span class="normal">246</span>
-<span class="normal">247</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
 <span class="normal">248</span>
 <span class="normal">249</span>
 <span class="normal">250</span>
@@ -4762,7 +4770,11 @@ use the default values for the other ones.</p>
 <span class="normal">257</span>
 <span class="normal">258</span>
 <span class="normal">259</span>
-<span class="normal">260</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">set_acquisition_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">set_acquisition_algorithm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">algo_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Set sampling or optimization algorithm.</span>
 
 <span class="sd">    Args:</span>
@@ -4803,10 +4815,10 @@ use the default values for the other ones.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">372</span>
-<span class="normal">373</span>
-<span class="normal">374</span>
-<span class="normal">375</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the acquisition problem.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_criterion</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
