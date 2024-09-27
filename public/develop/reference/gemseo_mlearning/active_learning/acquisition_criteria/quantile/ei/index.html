@@ -2489,6 +2489,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.qoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2757,6 +2766,8 @@
       
         
       
+        
+      
     
     
       
@@ -2808,6 +2819,27 @@
   
   <span class="md-ellipsis">
     Acquisition view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../visualization/qoi_history_view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qoi history view
   </span>
   
 
@@ -3699,6 +3731,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.qoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3801,7 +3842,7 @@
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">,</span>
     <span class="n">uncertain_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.parameter_space.ParameterSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.parameter_space.html#gemseo.algos.parameter_space.ParameterSpace">ParameterSpace</a></span><span class="p">,</span>
-    <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span>
@@ -3864,7 +3905,7 @@ and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
         <li class="doc-section-item field-body">
           <b><code>n_samples</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>10000</code>
+                  <code>100000</code>
 )
           –
           <div class="doc-md-description">
@@ -3876,8 +3917,7 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
-<span class="normal">62</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
@@ -3912,12 +3952,13 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 <span class="normal">94</span>
 <span class="normal">95</span>
 <span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">uncertain_space</span><span class="p">:</span> <span class="n">ParameterSpace</span><span class="p">,</span>
-    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -4008,6 +4049,29 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 
 </div>
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.qoi" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">qoi</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI.qoi" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The quantity of interest.</p>
+    </div>
+
+</div>
+
 <h5 id="gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI-functions">Functions<a href="#gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei.EI-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
 <div class="doc doc-object doc-function">
@@ -4027,11 +4091,13 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D102</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__compute_quantile</span><span class="p">())</span>
+    <span class="n">qoi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qoi</span> <span class="o">=</span> <span class="n">atleast_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__compute_quantile</span><span class="p">())</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__level_set_criterion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">output_value</span><span class="o">=</span><span class="n">qoi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

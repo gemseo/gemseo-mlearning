@@ -2164,6 +2164,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB.qoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2757,6 +2766,8 @@
       
         
       
+        
+      
     
     
       
@@ -2808,6 +2819,27 @@
   
   <span class="md-ellipsis">
     Acquisition view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../visualization/qoi_history_view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qoi history view
   </span>
   
 
@@ -3699,6 +3731,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB.qoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3958,6 +3999,29 @@ if <code>1</code>, acquire points sequentially.</p>
 
 </div>
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB.qoi" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">qoi</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB.qoi" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The quantity of interest.</p>
+    </div>
+
+</div>
+
 <h5 id="gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB-functions">Functions<a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
 <div class="doc doc-object doc-function">
@@ -3977,10 +4041,10 @@ if <code>1</code>, acquire points sequentially.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
-<span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the acquisition criterion.&quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regressor_distribution</span><span class="o">.</span><span class="n">learning_set</span><span class="o">.</span><span class="n">output_dataset</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">output_range</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>

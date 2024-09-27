@@ -2143,6 +2143,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.output.Output.qoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2757,6 +2766,8 @@
       
         
       
+        
+      
     
     
       
@@ -2808,6 +2819,27 @@
   
   <span class="md-ellipsis">
     Acquisition view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../visualization/qoi_history_view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qoi history view
   </span>
   
 
@@ -3699,6 +3731,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.output.Output.qoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3852,11 +3893,7 @@ if <code>1</code>, acquire points sequentially.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 72</span>
 <span class="normal"> 73</span>
 <span class="normal"> 74</span>
 <span class="normal"> 75</span>
@@ -3901,7 +3938,12 @@ if <code>1</code>, acquire points sequentially.</p>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -3944,6 +3986,7 @@ if <code>1</code>, acquire points sequentially.</p>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">compute_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_by_batch_empirically</span>
 
+    <span class="bp">self</span><span class="o">.</span><span class="n">_qoi</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
         <span class="n">compute_output</span><span class="p">,</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
@@ -4010,6 +4053,29 @@ if <code>1</code>, acquire points sequentially.</p>
 
 </div>
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.maximum.output.Output.qoi" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">qoi</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.output.Output.qoi" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The quantity of interest.</p>
+    </div>
+
+</div>
+
 <h5 id="gemseo_mlearning.active_learning.acquisition_criteria.maximum.output.Output-functions">Functions<a href="#gemseo_mlearning.active_learning.acquisition_criteria.maximum.output.Output-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
 <div class="doc doc-object doc-function">
@@ -4029,10 +4095,10 @@ if <code>1</code>, acquire points sequentially.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">203</span>
-<span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the acquisition criterion.&quot;&quot;&quot;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_regressor_distribution</span><span class="o">.</span><span class="n">learning_set</span><span class="o">.</span><span class="n">output_dataset</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">output_range</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>

@@ -23,14 +23,10 @@ from gemseo import sample_disciplines
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.parameter_space import ParameterSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
-from gemseo.disciplines.surrogate import SurrogateDiscipline
 from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 from gemseo.uncertainty.statistics.empirical_statistics import EmpiricalStatistics
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
-from gemseo_mlearning.active_learning.visualization.acquisition_view import (
-    AcquisitionView,
-)
 
 configure(False, False, True, False, False, False, False)
 configure_logger()
@@ -55,7 +51,7 @@ uncertain_space.add_random_variable("y", "OTUniformDistribution", minimum=-2, ma
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 30 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "z", 30, "OT_OPT_LHS")
+learning_dataset = sample_disciplines([discipline], input_space, "z", 10, "OT_OPT_LHS")
 
 # %%
 # and an initial Gaussian process regressor:
@@ -67,11 +63,12 @@ gpr = GaussianProcessRegressor(learning_dataset)
 # by default,
 # for this purpose,
 # the active learning algorithm looks for the point maximizing the U-function.
+level = 0.35
 active_learning = ActiveLearningAlgo(
     "Quantile",
     input_space,
     gpr,
-    level=0.8,
+    level=level,
     uncertain_space=uncertain_space,
     # criterion_name="EF",
 )
@@ -79,22 +76,24 @@ active_learning = ActiveLearningAlgo(
 # active_learning.set_acquisition_algorithm("NELDER-MEAD")
 # active_learning.set_acquisition_algorithm("SLSQP")
 active_learning.set_acquisition_algorithm("DIFFERENTIAL_EVOLUTION")
-active_learning.acquire_new_points(discipline, 20, show=True)
+active_learning.acquire_new_points(discipline, 90)
 
 # %%
 # Lastly,
-# we plot the training points,
+# we plot the history of the quantity of interest
+active_learning.plot_qoi_history()
+
+# %%
+# as well as
+# the training points,
 # the original model,
 # the Gaussian process regressor
 # and the U-function
 # after the last acquisition:
-acquisition_view = AcquisitionView(active_learning)
-acquisition_view.draw(discipline=discipline)
+active_learning.plot_acquisition_view(discipline=discipline)
 
-dataset = sample_disciplines([discipline], uncertain_space, "z", 10000, "OT_OPT_LHS")
-reference_quantile = EmpiricalStatistics(dataset, ["z"]).compute_quantile(0.8)
 dataset = sample_disciplines(
-    [SurrogateDiscipline(gpr)], uncertain_space, "z", 10000, "OT_OPT_LHS"
+    [discipline], uncertain_space, "z", 100000, "OT_MONTE_CARLO"
 )
-estimated_quantile = EmpiricalStatistics(dataset, ["z"]).compute_quantile(0.8)
-print(reference_quantile, estimated_quantile)  # noqa
+reference_quantile = EmpiricalStatistics(dataset, ["z"]).compute_quantile(level)
+print(reference_quantile, active_learning.qoi)  # noqa

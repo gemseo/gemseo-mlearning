@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set/">
+        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/visualization/qoi_history_view/">
       
       
-        <link rel="prev" href="../base_ei_ef/">
+        <link rel="prev" href="../acquisition_view/">
       
       
-        <link rel="next" href="../ef/">
+        <link rel="next" href="../../../algos/">
       
       
-      <link rel="icon" href="../../../../../../images/favicon.ico">
+      <link rel="icon" href="../../../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.38">
     
     
       
-        <title>Base level set - gemseo-mlearning</title>
+        <title>Qoi history view - gemseo-mlearning</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,21 +48,21 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/_markdown_exec_pyodide.css">
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_pyodide.css">
     
-      <link rel="stylesheet" href="../../../../../../assets/_markdown_exec_ansi.css">
+      <link rel="stylesheet" href="../../../../../assets/_markdown_exec_ansi.css">
     
-      <link rel="stylesheet" href="../../../../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery-binder.css">
+      <link rel="stylesheet" href="../../../../../sg_gallery-binder.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery.css">
+      <link rel="stylesheet" href="../../../../../sg_gallery.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery-rendered-html.css">
+      <link rel="stylesheet" href="../../../../../sg_gallery-rendered-html.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery-dataframe.css">
+      <link rel="stylesheet" href="../../../../../sg_gallery-dataframe.css">
     
-    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set" class="md-skip">
+        <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+    <a href="../../../../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Base level set
+              Qoi history view
             
           </span>
         </div>
@@ -235,7 +235,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../.." class="md-tabs__link">
+        <a href="../../../../.." class="md-tabs__link">
           
   
     
@@ -255,7 +255,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../user_guide/" class="md-tabs__link">
+        <a href="../../../../../user_guide/" class="md-tabs__link">
           
   
     
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../generated/examples/active_learning/" class="md-tabs__link">
+        <a href="../../../../../generated/examples/active_learning/" class="md-tabs__link">
           
   
     
@@ -304,7 +304,7 @@
   
   
     <li class="md-tabs__item md-tabs__item--active">
-      <a href="../../../../" class="md-tabs__link">
+      <a href="../../../" class="md-tabs__link">
         
   
     
@@ -323,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../developer_guide/active_learning/" class="md-tabs__link">
+        <a href="../../../../../developer_guide/active_learning/" class="md-tabs__link">
           
   
     
@@ -358,7 +358,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+    <a href="../../../../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -415,7 +415,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../.." class="md-nav__link ">
+            <a href="../../../../.." class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -448,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../changelog/" class="md-nav__link">
+      <a href="../../../../../changelog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../credits/" class="md-nav__link">
+      <a href="../../../../../credits/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../licenses/" class="md-nav__link">
+      <a href="../../../../../licenses/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -543,7 +543,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../user_guide/" class="md-nav__link ">
+            <a href="../../../../../user_guide/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -620,7 +620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/active_learning/what_active_learning_is/" class="md-nav__link">
+      <a href="../../../../../user_guide/active_learning/what_active_learning_is/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -641,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/active_learning/active_learning_algo/" class="md-nav__link">
+      <a href="../../../../../user_guide/active_learning/active_learning_algo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -712,7 +712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/regression/smt/" class="md-nav__link">
+      <a href="../../../../../user_guide/regression/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -829,7 +829,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../generated/examples/active_learning/" class="md-nav__link ">
+            <a href="../../../../../generated/examples/active_learning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -862,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -883,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -904,7 +904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -925,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -946,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -967,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -988,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1040,7 +1040,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../generated/examples/optimization/" class="md-nav__link ">
+            <a href="../../../../../generated/examples/optimization/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1073,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
+      <a href="../../../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1125,7 +1125,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../generated/examples/regression/" class="md-nav__link ">
+            <a href="../../../../../generated/examples/regression/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1158,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/regression/plot_smt/" class="md-nav__link">
+      <a href="../../../../../generated/examples/regression/plot_smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1232,7 +1232,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../" class="md-nav__link ">
+            <a href="../../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1296,7 +1296,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1327,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active_learning_algo/" class="md-nav__link">
+      <a href="../../active_learning_algo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1345,10 +1345,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1384,16 +1382,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../acquisition_criteria/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1410,7 +1408,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1_2">
             <span class="md-nav__icon md-icon"></span>
             Acquisition criteria
@@ -1424,7 +1422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../base_acquisition_criterion/" class="md-nav__link">
+      <a href="../../acquisition_criteria/base_acquisition_criterion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1445,7 +1443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../base_acquisition_criterion_family/" class="md-nav__link">
+      <a href="../../acquisition_criteria/base_acquisition_criterion_family/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1466,7 +1464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../base_factory/" class="md-nav__link">
+      <a href="../../acquisition_criteria/base_factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1516,7 +1514,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../exploration/" class="md-nav__link ">
+            <a href="../../acquisition_criteria/exploration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1547,7 +1545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/base_exploration/" class="md-nav__link">
+      <a href="../../acquisition_criteria/exploration/base_exploration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1568,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/distance/" class="md-nav__link">
+      <a href="../../acquisition_criteria/exploration/distance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1589,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/exploration/" class="md-nav__link">
+      <a href="../../acquisition_criteria/exploration/exploration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1610,7 +1608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/factory/" class="md-nav__link">
+      <a href="../../acquisition_criteria/exploration/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1631,7 +1629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/standard_deviation/" class="md-nav__link">
+      <a href="../../acquisition_criteria/exploration/standard_deviation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1652,7 +1650,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/variance/" class="md-nav__link">
+      <a href="../../acquisition_criteria/exploration/variance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1678,10 +1676,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1705,16 +1701,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_5" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../acquisition_criteria/level_set/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1731,7 +1727,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1_2_5">
             <span class="md-nav__icon md-icon"></span>
             Level set
@@ -1745,7 +1741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../base_ei_ef/" class="md-nav__link">
+      <a href="../../acquisition_criteria/level_set/base_ei_ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1763,28 +1759,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Base level set
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../acquisition_criteria/level_set/base_level_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1793,135 +1771,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;base_level_set
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" base_level_set">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set-classes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Classes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Classes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseLevelSet
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" BaseLevelSet">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Attributes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Attributes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.MAXIMIZE" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MAXIMIZE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.output_range" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;output_range
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.qoi" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functions
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.update" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;update
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1934,7 +1783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ef/" class="md-nav__link">
+      <a href="../../acquisition_criteria/level_set/ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1955,7 +1804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ei/" class="md-nav__link">
+      <a href="../../acquisition_criteria/level_set/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1976,7 +1825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../factory/" class="md-nav__link">
+      <a href="../../acquisition_criteria/level_set/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1997,7 +1846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../level_set/" class="md-nav__link">
+      <a href="../../acquisition_criteria/level_set/level_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2018,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../u/" class="md-nav__link">
+      <a href="../../acquisition_criteria/level_set/u/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2076,7 +1925,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../maximum/" class="md-nav__link ">
+            <a href="../../acquisition_criteria/maximum/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2107,7 +1956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/base_maximum/" class="md-nav__link">
+      <a href="../../acquisition_criteria/maximum/base_maximum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2128,7 +1977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/ei/" class="md-nav__link">
+      <a href="../../acquisition_criteria/maximum/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2149,7 +1998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/factory/" class="md-nav__link">
+      <a href="../../acquisition_criteria/maximum/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2170,7 +2019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/maximum/" class="md-nav__link">
+      <a href="../../acquisition_criteria/maximum/maximum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2191,7 +2040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/output/" class="md-nav__link">
+      <a href="../../acquisition_criteria/maximum/output/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2212,7 +2061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/ucb/" class="md-nav__link">
+      <a href="../../acquisition_criteria/maximum/ucb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2270,7 +2119,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../minimum/" class="md-nav__link ">
+            <a href="../../acquisition_criteria/minimum/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2301,7 +2150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/base_minimum/" class="md-nav__link">
+      <a href="../../acquisition_criteria/minimum/base_minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2322,7 +2171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/ei/" class="md-nav__link">
+      <a href="../../acquisition_criteria/minimum/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2343,7 +2192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/factory/" class="md-nav__link">
+      <a href="../../acquisition_criteria/minimum/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2364,7 +2213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/lcb/" class="md-nav__link">
+      <a href="../../acquisition_criteria/minimum/lcb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2385,7 +2234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/minimum/" class="md-nav__link">
+      <a href="../../acquisition_criteria/minimum/minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2406,7 +2255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/output/" class="md-nav__link">
+      <a href="../../acquisition_criteria/minimum/output/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2464,7 +2313,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../quantile/" class="md-nav__link ">
+            <a href="../../acquisition_criteria/quantile/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2495,7 +2344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/base_quantile/" class="md-nav__link">
+      <a href="../../acquisition_criteria/quantile/base_quantile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2516,7 +2365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/ef/" class="md-nav__link">
+      <a href="../../acquisition_criteria/quantile/ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2537,7 +2386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/ei/" class="md-nav__link">
+      <a href="../../acquisition_criteria/quantile/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2558,7 +2407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/factory/" class="md-nav__link">
+      <a href="../../acquisition_criteria/quantile/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2579,7 +2428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/quantile/" class="md-nav__link">
+      <a href="../../acquisition_criteria/quantile/quantile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2600,7 +2449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/u/" class="md-nav__link">
+      <a href="../../acquisition_criteria/quantile/u/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2660,7 +2509,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../distributions/" class="md-nav__link ">
+            <a href="../../distributions/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2691,7 +2540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../distributions/base_regressor_distribution/" class="md-nav__link">
+      <a href="../../distributions/base_regressor_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2712,7 +2561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../distributions/kriging_distribution/" class="md-nav__link">
+      <a href="../../distributions/kriging_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2733,7 +2582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../distributions/regressor_distribution/" class="md-nav__link">
+      <a href="../../distributions/regressor_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2759,8 +2608,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -2774,16 +2625,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_4" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../visualization/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2800,7 +2651,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_1_4">
             <span class="md-nav__icon md-icon"></span>
             Visualization
@@ -2814,7 +2665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../visualization/acquisition_view/" class="md-nav__link">
+      <a href="../acquisition_view/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2832,10 +2683,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../visualization/qoi_history_view/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Qoi history view
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -2844,6 +2713,93 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;qoi_history_view
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" qoi_history_view">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;QOIHistoryView
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" QOIHistoryView">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView.draw" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;draw
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2893,7 +2849,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/" class="md-nav__link ">
+            <a href="../../../algos/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2947,7 +2903,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/opt/" class="md-nav__link ">
+            <a href="../../../algos/opt/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2978,7 +2934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/surrogate_based_optimization/" class="md-nav__link">
+      <a href="../../../algos/opt/surrogate_based_optimization/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3018,7 +2974,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/opt/core/" class="md-nav__link ">
+            <a href="../../../algos/opt/core/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3049,7 +3005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
+      <a href="../../../algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3119,7 +3075,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../problems/" class="md-nav__link ">
+            <a href="../../../problems/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3177,7 +3133,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../problems/branin/" class="md-nav__link ">
+            <a href="../../../problems/branin/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3208,7 +3164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_discipline/" class="md-nav__link">
+      <a href="../../../problems/branin/branin_discipline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3229,7 +3185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_function/" class="md-nav__link">
+      <a href="../../../problems/branin/branin_function/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3250,7 +3206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_problem/" class="md-nav__link">
+      <a href="../../../problems/branin/branin_problem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3271,7 +3227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_space/" class="md-nav__link">
+      <a href="../../../problems/branin/branin_space/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3292,7 +3248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/functions/" class="md-nav__link">
+      <a href="../../../problems/branin/functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3348,7 +3304,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../problems/rosenbrock/" class="md-nav__link ">
+            <a href="../../../problems/rosenbrock/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3379,7 +3335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/functions/" class="md-nav__link">
+      <a href="../../../problems/rosenbrock/functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3400,7 +3356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_discipline/" class="md-nav__link">
+      <a href="../../../problems/rosenbrock/rosenbrock_discipline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3421,7 +3377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_function/" class="md-nav__link">
+      <a href="../../../problems/rosenbrock/rosenbrock_function/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3442,7 +3398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_problem/" class="md-nav__link">
+      <a href="../../../problems/rosenbrock/rosenbrock_problem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3463,7 +3419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_space/" class="md-nav__link">
+      <a href="../../../problems/rosenbrock/rosenbrock_space/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3519,7 +3475,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../regression/" class="md-nav__link ">
+            <a href="../../../regression/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3550,7 +3506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../regression/smt_regressor/" class="md-nav__link">
+      <a href="../../../regression/smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3628,7 +3584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../developer_guide/active_learning/" class="md-nav__link">
+      <a href="../../../../../developer_guide/active_learning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3674,17 +3630,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set" class="md-nav__link">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;base_level_set
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;qoi_history_view
     </span>
   </a>
   
-    <nav class="md-nav" aria-label=" base_level_set">
+    <nav class="md-nav" aria-label=" qoi_history_view">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set-classes" class="md-nav__link">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view-classes" class="md-nav__link">
     <span class="md-ellipsis">
       Classes
     </span>
@@ -3694,59 +3650,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet" class="md-nav__link">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseLevelSet
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;QOIHistoryView
     </span>
   </a>
   
-    <nav class="md-nav" aria-label=" BaseLevelSet">
+    <nav class="md-nav" aria-label=" QOIHistoryView">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-attributes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Attributes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Attributes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.MAXIMIZE" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MAXIMIZE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.output_range" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;output_range
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.qoi" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;qoi
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-functions" class="md-nav__link">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView-functions" class="md-nav__link">
     <span class="md-ellipsis">
       Functions
     </span>
@@ -3756,9 +3670,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.update" class="md-nav__link">
+  <a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView.draw" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;update
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;draw
     </span>
   </a>
   
@@ -3802,21 +3716,21 @@
   
 
 
-  <h1>Base level set</h1>
+  <h1>Qoi history view</h1>
 
 <div class="doc doc-object doc-module">
 
 
 
-<h2 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">base_level_set</span>
+<h2 id="gemseo_mlearning.active_learning.visualization.qoi_history_view" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">qoi_history_view</span>
 
 
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents first">
 
-        <p>Base class for acquisition criteria to estimate a level set.</p>
+        <p>History view.</p>
 
 
 
@@ -3827,49 +3741,58 @@
 
 
 
-<h3 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set-classes">Classes<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set-classes" class="headerlink" title="Permanent link">&para;</a></h3>
+<h3 id="gemseo_mlearning.active_learning.visualization.qoi_history_view-classes">Classes<a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view-classes" class="headerlink" title="Permanent link">&para;</a></h3>
 
 <div class="doc doc-object doc-class">
 
 
 
-<h4 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BaseLevelSet</span>
+<h4 id="gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">QOIHistoryView</span>
 
 
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet" class="headerlink" title="Permanent link">&para;</a></h4>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">BaseLevelSet</span><span class="p">(</span>
-    <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
-    <span class="n">output_value</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">,</span>
-    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
-<span class="p">)</span>
+<a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">QOIHistoryView</span><span class="p">(</span><span class="n">active_learning_algo</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion" href="../../base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a></code></p>
 
 
-        <p>The base class for acquisition criteria to estimate a level set estimation.</p>
+        <p>View of the history of the quantity of interest (QOI).</p>
 
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>output_value</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
+          <b><code>active_learning_algo</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></code>)
           –
           <div class="doc-md-description">
-            <p>The model output value characterizing the level set.</p>
+            <p>The active learning algorithm.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
+            –
+          <div class="doc-md-description">
+            <p>When there is no quantity of interest
+associated with the acquisition criterion.</p>
           </div>
         </li>
     </ul>
 
                   <details class="quote">
-                    <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
+                    <summary>Source code in <code>src/gemseo_mlearning/active_learning/visualization/qoi_history_view.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
@@ -3881,19 +3804,26 @@
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
-    <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
-    <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active_learning_algo</span><span class="p">:</span> <span class="n">ActiveLearningAlgo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">        output_value: The model output value characterizing the level set.</span>
-<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">mc_size</span><span class="o">=</span><span class="n">mc_size</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_output_value</span> <span class="o">=</span> <span class="n">output_value</span>
+<span class="sd">        active_learning_algo: The active learning algorithm.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: When there is no quantity of interest</span>
+<span class="sd">            associated with the acquisition criterion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205, D212</span>
+    <span class="k">if</span> <span class="n">active_learning_algo</span><span class="o">.</span><span class="n">acquisition_criterion</span><span class="o">.</span><span class="n">qoi</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;There is no quantity of interest &quot;</span>
+            <span class="s2">&quot;associated with the acquisition criterion &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">active_learning_algo</span><span class="o">.</span><span class="n">acquisition_criterion</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span> <span class="o">=</span> <span class="n">active_learning_algo</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -3905,128 +3835,186 @@
 
 
 
-<h5 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-attributes">Attributes<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-attributes" class="headerlink" title="Permanent link">&para;</a></h5>
-
-<div class="doc doc-object doc-attribute">
 
 
-
-<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.MAXIMIZE" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">MAXIMIZE</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-  </span>
-
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.MAXIMIZE" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">MAXIMIZE</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Whether this acquisition criterion must be maximized.</p>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.output_range" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">output_range</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.output_range" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">output_range</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span> <span class="o">=</span> <span class="n"><span title="output_data.max">max</span></span><span class="p">()</span> <span class="o">-</span> <span class="n"><span title="output_data.min">min</span></span><span class="p">()</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>The output range.</p>
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.qoi" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">qoi</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-property"><code>property</code></small>
-  </span>
-
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.qoi" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>The quantity of interest.</p>
-    </div>
-
-</div>
-
-<h5 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-functions">Functions<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet-functions" class="headerlink" title="Permanent link">&para;</a></h5>
+<h5 id="gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView-functions">Functions<a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView-functions" class="headerlink" title="Permanent link">&para;</a></h5>
 
 <div class="doc doc-object doc-function">
 
 
-<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.update" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">update</span>
+<h6 id="gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView.draw" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">draw</span>
 
 
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set.BaseLevelSet.update" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">update</span><span class="p">(</span><span class="n">output_value</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+<a href="#gemseo_mlearning.active_learning.visualization.qoi_history_view.QOIHistoryView.draw" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">draw</span><span class="p">(</span>
+    <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">add_markers</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
+        <p>Draw the QOI history.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>output_value</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a> | None</code>, default:
-                  <code>None</code>
+          <b><code>show</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>True</code>
 )
           –
           <div class="doc-md-description">
-            <p>The model output value characterizing the level set.
-If <code>None</code>, do not update the acquisition criterion.</p>
+            <p>Whether to display the view.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>file_path</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>, default:
+                  <code>&#39;&#39;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The file path to save the view.
+If empty, do not save it.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>label</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
+                  <code>&#39;&#39;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The label for the QOI.
+If empty, use the name of the acquisition criterion family.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>add_markers</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>True</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Whether to add markers.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+          <b><code>**options</code></b>
+              (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
+                  <code>{}</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The options to create the
+<a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a> object.</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></code>
+          –
+          <div class="doc-md-description">
+            <p>A view of the QOI history.</p>
           </div>
         </li>
     </ul>
 
             <details class="quote">
-              <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/visualization/qoi_history_view.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
-<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">show</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">add_markers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Lines</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Draw the QOI history.</span>
+
 <span class="sd">    Args:</span>
-<span class="sd">        output_value: The model output value characterizing the level set.</span>
-<span class="sd">            If ``None``, do not update the acquisition criterion.</span>
-<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205, D212</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">output_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_output_value</span> <span class="o">=</span> <span class="n">output_value</span>
+<span class="sd">        show: Whether to display the view.</span>
+<span class="sd">        file_path: The file path to save the view.</span>
+<span class="sd">            If empty, do not save it.</span>
+<span class="sd">        label: The label for the QOI.</span>
+<span class="sd">            If empty, use the name of the acquisition criterion family.</span>
+<span class="sd">        add_markers: Whether to add markers.</span>
+<span class="sd">        **options: The options to create the</span>
+<span class="sd">            [Lines][gemseo.post.dataset.lines.Lines] object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A view of the QOI history.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">label</span><span class="p">:</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">acquisition_criterion_family_name</span>
+
+    <span class="n">x_label</span> <span class="o">=</span> <span class="s2">&quot;Number of evaluations&quot;</span>
+    <span class="n">n_evaluations_history</span><span class="p">,</span> <span class="n">qoi_history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">qoi_history</span>
+    <span class="n">qoi_history</span> <span class="o">=</span> <span class="p">[</span><span class="n">qoi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">qoi</span> <span class="ow">in</span> <span class="n">qoi_history</span><span class="p">]</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">IODataset</span><span class="p">()</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">x_label</span><span class="p">,</span> <span class="n">array</span><span class="p">(</span><span class="n">n_evaluations_history</span><span class="p">)[:,</span> <span class="n">newaxis</span><span class="p">])</span>
+    <span class="n">dataset</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">array</span><span class="p">(</span><span class="n">qoi_history</span><span class="p">)[:,</span> <span class="n">newaxis</span><span class="p">])</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">Lines</span><span class="p">(</span>
+        <span class="n">dataset</span><span class="p">,</span>
+        <span class="n">variables</span><span class="o">=</span><span class="p">[</span><span class="n">label</span><span class="p">],</span>
+        <span class="n">abscissa_variable</span><span class="o">=</span><span class="n">x_label</span><span class="p">,</span>
+        <span class="n">add_markers</span><span class="o">=</span><span class="n">add_markers</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">options</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">file_path</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lines</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -4095,14 +4083,14 @@ If <code>None</code>, do not update the acquisition criterion.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
       
-        <script src="../../../../../../assets/_markdown_exec_pyodide.js"></script>
+        <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
       
-        <script src="../../../../../../javascripts/mathjax.js"></script>
+        <script src="../../../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

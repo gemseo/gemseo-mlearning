@@ -2627,6 +2627,8 @@
       
         
       
+        
+      
     
     
       
@@ -2678,6 +2680,27 @@
   
   <span class="md-ellipsis">
     Acquisition view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/gemseo_mlearning/active_learning/visualization/qoi_history_view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qoi history view
   </span>
   
 
@@ -3537,7 +3560,7 @@
 to download the full example code</p>
 </div>
 <h1 id="efficient-global-optimization-using-a-gaussian-process-regressor">Efficient global optimization using a Gaussian process regressor.<a class="headerlink" href="#efficient-global-optimization-using-a-gaussian-process-regressor" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-35 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-32 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
@@ -3549,59 +3572,56 @@ to download the full example code</p>
 <span class="kn">from</span> <span class="nn">gemseo.mlearning.regression.algos.gpr</span> <span class="kn">import</span> <span class="n">GaussianProcessRegressor</span>
 
 <span class="kn">from</span> <span class="nn">gemseo_mlearning.active_learning.active_learning_algo</span> <span class="kn">import</span> <span class="n">ActiveLearningAlgo</span>
-<span class="kn">from</span> <span class="nn">gemseo_mlearning.active_learning.visualization.acquisition_view</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">AcquisitionView</span><span class="p">,</span>
-<span class="p">)</span>
 
 <span class="n">configure</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">configure_logger</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 36-37 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 33-34 -->
 
 <p>We consider the Rosenbrock function <span class="arithmatex">\(f(x,y)=(1-x)^2+100(y-x^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 37-39 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 34-36 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">AnalyticDiscipline</span><span class="p">({</span><span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="s2">&quot;(1-x)**2+100*(y-x**2)**2&quot;</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Rosenbrock&quot;</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 40-41 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 37-38 -->
 
 <p>defined over the input space <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 41-46 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 38-43 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">DesignSpace</span><span class="p">()</span>
 <span class="n">input_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">input_space</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">lower_bound</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">upper_bound</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 47-49 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 44-46 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 30 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 49-51 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 46-48 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">([</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 52-53 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 49-50 -->
 
 <p>and an initial Gaussian process regressor:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 53-55 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 50-52 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">gpr</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 56-61 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 53-58 -->
 
 <p>Thirdly,
 we look for 20 points that will help us get closer to the minimum;
 by default,
 for this purpose,
 the active learning algorithm looks for the point maximizing the expected improvement.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 61-66 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 58-63 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Minimum&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">gpr</span><span class="p">)</span>
 <span class="n">active_learning</span><span class="o">.</span><span class="n">set_acquisition_algorithm</span><span class="p">(</span><span class="s2">&quot;DIFFERENTIAL_EVOLUTION&quot;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="c1"># active_learning.set_acquisition_algorithm(&quot;fullfact&quot;, n_samples=30 * 30)</span>
 <span class="n">active_learning</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 67-73 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 64-70 -->
 
 <p>Lastly,
 we plot the training points,
@@ -3609,10 +3629,9 @@ the original model,
 the Gaussian process regressor
 and the expected improvement
 after the last acquisition:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 73-75 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 70-71 -->
 
-<div class="highlight"><pre><span></span><code><span class="n">acquisition_view</span> <span class="o">=</span> <span class="n">AcquisitionView</span><span class="p">(</span><span class="n">active_learning</span><span class="p">)</span>
-<span class="n">acquisition_view</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">discipline</span><span class="o">=</span><span class="n">discipline</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">active_learning</span><span class="o">.</span><span class="n">plot_acquisition_view</span><span class="p">(</span><span class="n">discipline</span><span class="o">=</span><span class="n">discipline</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Total running time of the script:</strong> ( 0 minutes  0.000 seconds)</p>
 <div id="download_links"></div>

@@ -25,9 +25,6 @@ from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
-from gemseo_mlearning.active_learning.visualization.acquisition_view import (
-    AcquisitionView,
-)
 
 configure(False, False, True, False, False, False, False)
 configure_logger()
@@ -70,5 +67,4 @@ active_learning.acquire_new_points(discipline, 20)
 # the Gaussian process regressor
 # and the expected improvement
 # after the last acquisition:
-acquisition_view = AcquisitionView(active_learning)
-acquisition_view.draw(discipline=discipline)
+active_learning.plot_acquisition_view(discipline=discipline)
