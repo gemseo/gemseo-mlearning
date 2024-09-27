@@ -108,6 +108,9 @@ class AcquisitionView:
             show: Whether to display the view.
             file_path: The file path to save the view.
                 If empty, do not save it.
+
+        Returns:
+            The acquisition view.
         """
         # Create grid.
         input_space = self.__algo.input_space

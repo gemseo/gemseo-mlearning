@@ -54,6 +54,9 @@ from gemseo_mlearning.active_learning.distributions import RegressorDistribution
 from gemseo_mlearning.active_learning.visualization.acquisition_view import (
     AcquisitionView,
 )
+from gemseo_mlearning.active_learning.visualization.qoi_history_view import (
+    QOIHistoryView,
+)
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -61,6 +64,8 @@ if TYPE_CHECKING:
     from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
     from gemseo.core.discipline import MDODiscipline
     from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.post.dataset.lines import Lines
+    from matplotlib.figure import Figure
 
     from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
         BaseAcquisitionCriterion,
@@ -120,6 +125,12 @@ class ActiveLearningAlgo:
     If `1`, acquire points sequentially.
     """
 
+    __n_evaluations_history: list[int, ...]
+    """The history of the number of evaluations."""
+
+    __qoi_history: list[float, ...]
+    """The history of the quantity of interest."""
+
     def __init__(
         self,
         criterion_family_name: str,
@@ -164,6 +175,7 @@ class ActiveLearningAlgo:
 
         # Create the acquisition problem.
         family_factory = AcquisitionCriterionFamilyFactory()
+        self.__criterion_family_name = criterion_family_name
         criterion_family = family_factory.get_class(criterion_family_name)
         criterion_factory = criterion_family.ACQUISITION_CRITERION_FACTORY()
         self.__acquisition_criterion = criterion_factory.create(
@@ -214,10 +226,42 @@ class ActiveLearningAlgo:
         else:
             self.__acquisition_view = None
 
+        self.__n_evaluations_history = []
+        self.__qoi_history = []
+
+    @property
+    def qoi(self) -> float | None:
+        """The quantity of interest (QOI).
+
+        When there is no quantity of interest associated with the acquisition criterion,
+        this attribute is `None`.
+        """
+        return (
+            None if self.__acquisition_criterion.qoi is None else self.__qoi_history[-1]
+        )
+
+    @property
+    def qoi_history(self) -> tuple[list[int, ...], list[float, ...]]:
+        """The history of the quantity of interest (QOI) when it exists.
+
+        The second term represents this history while the first one represents the
+        history of the number of model evaluations corresponding to these QOI
+        estimations.
+
+        When there is no quantity of interest associated with the acquisition criterion,
+        these lists are empty.
+        """
+        return self.__n_evaluations_history, self.__qoi_history
+
     @property
     def acquisition_criterion(self) -> BaseAcquisitionCriterion:
         """The acquisition criterion."""
         return self.__acquisition_criterion
+
+    @property
+    def acquisition_criterion_family_name(self) -> str:
+        """The name of the acquisition criterion family."""
+        return self.__criterion_family_name
 
     @property
     def regressor(self) -> BaseRegressor:
@@ -310,21 +354,33 @@ class ActiveLearningAlgo:
                 from the input data provided by the acquisition process.
             n_samples: The number of samples to update the machine learning algorithm.
                 It should be a multiple of batch_size.
-            show: Whether to display intermediate results.
-            file_path: The file path to save the view.
-                If empty, do not save it.
+            show: Whether to display intermediate results
+                Only when the input space dimension is 2.
+            file_path: The file path to save the plots of the intermediate results.
+                If empty, do not save them.
+                Only when the input space dimension is 2.
 
         Returns:
             The concatenation of the optimization histories
             related to the different points
             and the last acquisition problem.
+
+        Raises:
+            ValueError: When the input space dimension is not 2.
         """
-        n_batches = int(n_samples / self.batch_size)
+        plot = show or file_path
+        if plot:
+            self.__check_acquisition_view()
+
+        self.__n_evaluations_history.append(self.__n_initial_samples)
+        self.__qoi_history.append(self.__acquisition_criterion.qoi)
+        total_n_samples = self.__n_initial_samples
+        n_batches = int(n_samples / self.__batch_size)
         LOGGER.info("Acquiring %s points in batches of %s", n_samples, self.batch_size)
         with OneLineLogging(TQDM_LOGGER):
             for batch_id in CustomTqdmProgressBar(range(1, n_batches + 1)):
                 array_input_data = self.find_next_point()
-                if self.__acquisition_view and (show or file_path):
+                if plot:
                     self.__acquisition_view.draw(
                         discipline=discipline,
                         new_point=array_input_data,
@@ -337,7 +393,7 @@ class ActiveLearningAlgo:
                         array([batch_id, *inputs.unwrap().tolist()]), outputs
                     )
 
-                for points in range(self.batch_size):
+                for points in range(self.__batch_size):
                     input_data = self.__input_space.convert_array_to_dict(
                         array_input_data[points, :]
                     )
@@ -372,8 +428,107 @@ class ActiveLearningAlgo:
                     self.__distribution.change_learning_set(augmented_learning_set)
 
                 self.update_problem()
+                self.__qoi_history.append(self.__acquisition_criterion.qoi)
+                total_n_samples += self.__batch_size
+                self.__n_evaluations_history.append(total_n_samples)
 
         return self.__database, self.__acquisition_problem
+
+    def __check_acquisition_view(self) -> None:
+        """Check that the acquisition view can be used.
+
+        Raises:
+            ValueError: When the input space dimension is not 2.
+        """
+        if not self.__acquisition_view:
+            msg = (
+                "Plotting intermediate results "
+                "requires an input space dimension equal to 2."
+            )
+            raise ValueError(msg)
+
+    def plot_acquisition_view(
+        self,
+        discipline: MDODiscipline | None = None,
+        filled: bool = True,
+        n_test: int = 30,
+        show: bool = True,
+        file_path: str | Path = "",
+    ) -> Figure:
+        """Draw the points acquired through active learning.
+
+        This visualization includes four surface plots
+        representing variables of interest in function of the two inputs:
+
+        - (top left) the surface plot of the discipline,
+        - (top right) the surface plot of the acquisition criterion,
+        - (bottom left) the surface plot of the regressor,
+        - (bottom right) the standard deviation of the regressor.
+
+        The $N$ data used to initialize the regressor are represented by small dots,
+        the point optimizing the acquisition criterion is represented by a big dot
+        (this will be the next point to learn)
+        and the points added by the active learning procedure are represented
+        by plus signs and labeled by their position in the learning dataset.
+
+        Args:
+            discipline: The discipline for which `n_test**2` evaluations will be done.
+                If `None`,
+                do not plot the discipline, i.e. the first subplot.
+                In particular,
+                if the discipline is costly,
+                it is better to leave this argument to `None`.
+            n_test: The number of points per dimension.
+            filled: Whether to plot filled contours.
+                Otherwise, plot contour lines.
+            show: Whether to display the view.
+            file_path: The file path to save the view.
+                If empty, do not save it.
+
+        Returns:
+            The acquisition view.
+
+        Raises:
+            ValueError: When the input space dimension is not 2.
+        """
+        self.__check_acquisition_view()
+        return self.__acquisition_view.draw(
+            discipline=discipline,
+            filled=filled,
+            n_test=n_test,
+            show=show,
+            file_path=file_path,
+        )
+
+    def plot_qoi_history(
+        self,
+        show: bool = True,
+        file_path: str | Path = "",
+        label: str = "Quantity of interest",
+        add_markers: bool = True,
+        **options: Any,
+    ) -> Lines:
+        """Plot the history of the quantity of interest.
+
+        Args:
+            show: Whether to display the view.
+            file_path: The file path to save the view.
+                If empty, do not save it.
+            label: The label for the QOI.
+            add_markers: Whether to add markers.
+            **options: The options to create the
+                [Lines][gemseo.post.dataset.lines.Lines] object.
+
+        Returns:
+            The history of the quantity of interest.
+        """
+        return QOIHistoryView(self).draw(
+            show=show,
+            file_path=file_path,
+            label=label,
+            add_markers=add_markers,
+            **options,
+        )
 
     def update_problem(self) -> None:
         """Update the acquisition problem."""

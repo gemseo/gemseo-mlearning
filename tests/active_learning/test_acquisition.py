@@ -33,6 +33,7 @@ from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 from gemseo.mlearning.regression.algos.linreg import LinearRegressor
 from numpy import array
 from numpy import ndarray
+from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.minimum.base_minimum import (
     BaseMinimum,
@@ -41,6 +42,12 @@ from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearning
 from gemseo_mlearning.active_learning.distributions import KrigingDistribution
 from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
     RegressorDistribution,
+)
+from gemseo_mlearning.active_learning.visualization.acquisition_view import (
+    AcquisitionView,
+)
+from gemseo_mlearning.active_learning.visualization.qoi_history_view import (
+    QOIHistoryView,
 )
 
 
@@ -238,40 +245,19 @@ def test_compute_parallel(kriging_distribution, input_space, as_dict, batch_size
     assert x_opt.shape == (batch_size, len(input_space.variable_names))
 
 
-def test_update_algo(algo_distribution_for_update, input_space):
+@pytest.mark.parametrize("criterion_family_name", ["Exploration", "Maximum"])
+def test_update_algo(algo_distribution_for_update, input_space, criterion_family_name):
     """Check the update of the machine learning algorithm."""
     distribution = algo_distribution_for_update
     initial_size = len(distribution.learning_set)
-    algo = ActiveLearningAlgo(
-        "Exploration", input_space, distribution, criterion_name="Distance"
-    )
+    algo = ActiveLearningAlgo(criterion_family_name, input_space, distribution)
     algo.set_acquisition_algorithm("fullfact", n_samples=3)
     algo.acquire_new_points(AnalyticDiscipline({"y": "1+x"}))
+    if criterion_family_name == "Exploration":
+        assert algo.qoi is None
+    else:
+        assert_almost_equal(algo.qoi, array([2.0]))
     assert len(distribution.learning_set) == initial_size + 1
-
-
-def test_plot(algo_distribution_for_update, tmp_wd):
-    """Check that a plot is generated when acquiring new points."""
-    dataset = IODataset()
-    dataset.add_variable(
-        "x1", array([[0.0], [1.0], [2.0]]), group_name=dataset.INPUT_GROUP
-    )
-    dataset.add_variable(
-        "x2", array([[1.0], [2.0], [3.0]]), group_name=dataset.INPUT_GROUP
-    )
-    dataset.add_variable(
-        "y",
-        array([[1.0], [2.0], [3.0]]),
-        group_name=dataset.OUTPUT_GROUP,
-    )
-    regressor = GaussianProcessRegressor(dataset)
-    space = DesignSpace()
-    space.add_variable("x1", lower_bound=0.0, upper_bound=1.0, value=0.5)
-    space.add_variable("x2", lower_bound=0.0, upper_bound=1.0, value=0.5)
-    algo = ActiveLearningAlgo("Minimum", space, regressor)
-    file_path = Path("foo.png")
-    algo.acquire_new_points(AnalyticDiscipline({"y": "1+x1+x2"}), file_path=file_path)
-    assert file_path.exists()
 
 
 @pytest.mark.parametrize(
@@ -346,3 +332,123 @@ def test_regressor_at_instantiation(
     distribution = algo._ActiveLearningAlgo__distribution
     assert isinstance(distribution, regressor_distribution_class)
     assert distribution.algo == regressor
+
+
+@pytest.fixture
+def algo_for_plotting(algo_distribution_for_update) -> ActiveLearningAlgo:
+    """An active learning algorithm to test plotting methods."""
+    dataset = IODataset()
+    dataset.add_variable(
+        "x1", array([[0.0], [1.0], [2.0]]), group_name=dataset.INPUT_GROUP
+    )
+    dataset.add_variable(
+        "x2", array([[1.0], [2.0], [3.0]]), group_name=dataset.INPUT_GROUP
+    )
+    dataset.add_variable(
+        "y",
+        array([[1.0], [2.0], [3.0]]),
+        group_name=dataset.OUTPUT_GROUP,
+    )
+    regressor = GaussianProcessRegressor(dataset)
+    space = DesignSpace()
+    space.add_variable("x1", lower_bound=0.0, upper_bound=1.0, value=0.5)
+    space.add_variable("x2", lower_bound=0.0, upper_bound=1.0, value=0.5)
+    return ActiveLearningAlgo("Minimum", space, regressor)
+
+
+def test_online_plot(algo_for_plotting, tmp_wd):
+    """Check that a plot is generated when acquiring new points."""
+    algo_for_plotting.acquire_new_points(
+        AnalyticDiscipline({"y": "1+x1+x2"}), file_path=Path("foo.png")
+    )
+    with mock.patch.object(AcquisitionView, "draw") as draw:
+        algo_for_plotting.plot_acquisition_view()
+
+    assert draw.call_args.kwargs == {
+        "discipline": None,
+        "file_path": "",
+        "filled": True,
+        "n_test": 30,
+        "show": True,
+    }
+
+
+@pytest.mark.parametrize("input_dimension", [1, 3])
+def test_online_plot_error(algo_distribution_for_update, input_dimension):
+    """Check that an error is raised when plotting in dimension != 2."""
+    dataset = IODataset()
+    space = DesignSpace()
+    for i in range(input_dimension):
+        dataset.add_variable(
+            f"x{i}", array([[0.0], [1.0], [2.0]]), group_name=dataset.INPUT_GROUP
+        )
+        space.add_variable(f"x{i}", lower_bound=0.0, upper_bound=1.0, value=0.5)
+
+    dataset.add_variable(
+        "y",
+        array([[1.0], [2.0], [3.0]]),
+        group_name=dataset.OUTPUT_GROUP,
+    )
+
+    algo = ActiveLearningAlgo("Minimum", space, GaussianProcessRegressor(dataset))
+    with pytest.raises(
+        ValueError,
+        match=re.escape(
+            "Plotting intermediate results "
+            "requires an input space dimension equal to 2."
+        ),
+    ):
+        algo.acquire_new_points(AnalyticDiscipline({"y": "1+x1"}), show=True)
+
+
+def test_plot_qoi_history(input_space, algo_distribution_for_update):
+    """Check that plot_qoi_history works correctly."""
+    algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution_for_update)
+    algo.acquire_new_points(AnalyticDiscipline({"y": "1+x"}))
+    with mock.patch.object(QOIHistoryView, "draw") as draw:
+        algo.plot_qoi_history()
+
+    assert draw.call_args.kwargs == {
+        "add_markers": True,
+        "file_path": "",
+        "label": "Quantity of interest",
+        "show": True,
+    }
+
+    with mock.patch.object(QOIHistoryView, "draw") as draw:
+        algo.plot_qoi_history(show=1, file_path=2, label=3, add_markers=4)
+
+    assert draw.call_args.kwargs == {
+        "add_markers": 4,
+        "file_path": 2,
+        "label": 3,
+        "show": 1,
+    }
+
+
+def test_plot_acquisition_view(algo_for_plotting):
+    """Check that plot_acquisition_view works correctly."""
+    algo_for_plotting.acquire_new_points(AnalyticDiscipline({"y": "1+x1+x2"}))
+    with mock.patch.object(AcquisitionView, "draw") as draw:
+        algo_for_plotting.plot_acquisition_view()
+
+    assert draw.call_args.kwargs == {
+        "discipline": None,
+        "file_path": "",
+        "filled": True,
+        "n_test": 30,
+        "show": True,
+    }
+
+    with mock.patch.object(AcquisitionView, "draw") as draw:
+        algo_for_plotting.plot_acquisition_view(
+            discipline=1, filled=2, n_test=3, show=4, file_path=5
+        )
+
+    assert draw.call_args.kwargs == {
+        "discipline": 1,
+        "file_path": 5,
+        "filled": 2,
+        "n_test": 3,
+        "show": 4,
+    }
