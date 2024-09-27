@@ -52,7 +52,7 @@ and this project adheres to
   the standard deviation of the surrogate model
   and the acquisition criterion,
   when the input dimension is 1 or 2.
-- [SMTRegressionModel][gemseo_mlearning.regression.smt_regression_model.SMTRegressionModel]
+- [SMTRegressor][gemseo_mlearning.regression.smt_regressor.SMTRegressor]
   can be any surrogate model available in the Python package [SMT](https://smt.readthedocs.io/).
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   can use an existing [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]

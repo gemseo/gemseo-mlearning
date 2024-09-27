@@ -89,10 +89,12 @@ nav:
   - Active learning:
     - What active learning is: user_guide/active_learning/what_active_learning_is.md
     - Active learning algorithm: user_guide/active_learning/active_learning_algo.md
+  - Regression models:
+    - SMT: user_guide/regression/smt.md
 - Examples:
   - Active learning: generated/examples/active_learning
   - Optimization:  generated/examples/optimization
-  - Sampling: generated/examples/sampling
+  - Regression models: generated/examples/regression
 - API documentation: reference/gemseo_mlearning/
 - Developer guide:
   - Active learning: developer_guide/active_learning.md

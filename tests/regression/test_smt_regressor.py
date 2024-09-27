@@ -12,6 +12,9 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+from __future__ import annotations
+
+import pytest
 from gemseo.datasets.io_dataset import IODataset
 from numpy import array
 from numpy import linspace
@@ -19,11 +22,18 @@ from numpy import newaxis
 from numpy.testing import assert_almost_equal
 from smt.surrogate_models import RBF
 
-from gemseo_mlearning.regression.smt_regression_model import SMTRegressionModel
+from gemseo_mlearning.regression.smt_regressor import _NAMES_TO_CLASSES
+from gemseo_mlearning.regression.smt_regressor import SMTRegressor
+
+
+@pytest.mark.parametrize("name", ["RBF", "KRG"])
+def test_available_models(name):
+    """Check the SMT's surrogate models that can be instantiated."""
+    assert name in _NAMES_TO_CLASSES
 
 
 def test_smt_regression_model():
-    """Check SMTRegressionModel."""
+    """Check SMTRegressor."""
     input_data = linspace(-1, 1, 10)[:, newaxis]
     output_data = input_data**2
 
@@ -31,7 +41,7 @@ def test_smt_regression_model():
     dataset.add_input_group(input_data)
     dataset.add_output_group(output_data)
 
-    model = SMTRegressionModel(dataset, "RBF", d0=2)
+    model = SMTRegressor(dataset, "RBF", d0=2)
     model.learn()
 
     smt_model = RBF(d0=2)
