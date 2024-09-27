@@ -18,6 +18,7 @@ from __future__ import annotations
 
 from abc import abstractmethod
 from typing import TYPE_CHECKING
+from typing import Any
 from typing import Callable
 from typing import ClassVar
 
@@ -51,6 +52,9 @@ class BaseAcquisitionCriterion(MDOFunction):
 
     _compute_variance: Callable[[DataType], DataType]
     """The function to compute the output variance at a given input point."""
+
+    _qoi: Any
+    """The quantity of interest."""
 
     _regressor_distribution: BaseRegressorDistribution
     """The distribution of the regressor."""
@@ -108,6 +112,7 @@ class BaseAcquisitionCriterion(MDOFunction):
             else:
                 compute_output = self._compute_by_batch_empirically
 
+        self._qoi = None
         super().__init__(
             compute_output,
             self.__class__.__name__,
@@ -115,6 +120,11 @@ class BaseAcquisitionCriterion(MDOFunction):
         )
 
         self.update()
+
+    @property
+    def qoi(self) -> Any:
+        """The quantity of interest."""
+        return self._qoi
 
     @abstractmethod
     def _compute(self, input_value: NumberArray) -> NumberArray | float:

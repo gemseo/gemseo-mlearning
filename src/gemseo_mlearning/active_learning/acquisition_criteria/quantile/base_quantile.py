@@ -25,6 +25,7 @@ from abc import abstractmethod
 from typing import TYPE_CHECKING
 
 from gemseo.utils.string_tools import pretty_str
+from numpy import atleast_1d
 from numpy import quantile
 
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
@@ -63,7 +64,7 @@ class BaseQuantile(BaseAcquisitionCriterion):
         regressor_distribution: BaseRegressorDistribution,
         level: float,
         uncertain_space: ParameterSpace,
-        n_samples: int = 10000,
+        n_samples: int = 100000,
         batch_size: int = 1,
         mc_size: int = 10000,
     ) -> None:
@@ -98,7 +99,8 @@ class BaseQuantile(BaseAcquisitionCriterion):
 
     def update(self) -> None:  # noqa: D102
         super().update()
-        self.__level_set_criterion.update(output_value=self.__compute_quantile())
+        qoi = self._qoi = atleast_1d(self.__compute_quantile())
+        self.__level_set_criterion.update(output_value=qoi[0])
 
     def __compute_quantile(self) -> float:
         """Return the quantile estimation.

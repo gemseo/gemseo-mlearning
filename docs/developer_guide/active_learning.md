@@ -78,12 +78,17 @@ classDiagram
         +default_doe_options
         +default_opt_options
         +acquisition_criterion
+        +input_space
         +n_initial_samples
+        +qoi
+        +qoi_history
         +regressor
         +regressor_distribution
         +set_acquisition_algorithm()
         +find_nex_point()
         +acquire_new_points()
+        +plot_acquisition_view()
+        +plot_qoi_history()
         +update_problem()
     }
 

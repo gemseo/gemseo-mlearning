@@ -44,21 +44,19 @@ class ExpectedImprovement:
     _OPTIMIZE: ClassVar[Callable[[NumberArray], float]] = max
     """The optimization function."""
 
-    _SIGN: ClassVar[Literal[-1] | Literal[1]] = 1
+    _SIGN: ClassVar[Literal[-1, 1]] = 1
     """The sign."""
 
-    __optimum: NumberArray
-    """The current optimum estimation."""
-
     def update(self) -> None:
-        data = self._regressor_distribution.learning_set.output_dataset.to_numpy()
-        self.__optimum = self._OPTIMIZE(data)
+        self._qoi = self._OPTIMIZE(
+            self._regressor_distribution.learning_set.output_dataset.to_numpy()
+        )
 
     def _compute(  # noqa: D102
         self, input_data: NumberArray
     ) -> NumberArray | float:
         # See Proposition 14, Jones et al, 1998
-        improvement = (self._compute_mean(input_data) - self.__optimum) * self._SIGN
+        improvement = (self._compute_mean(input_data) - self._qoi) * self._SIGN
         std = self._compute_standard_deviation(input_data)
         value = nan_to_num(improvement / std)
         return (
@@ -73,7 +71,7 @@ class ExpectedImprovement:
         input_data = atleast_2d(input_data)
         predictions = self._regressor_distribution.predict_members(input_data)
         weights = self._regressor_distribution.evaluate_weights(input_data)
-        expected_improvement = maximum((predictions - self.__optimum) * self._SIGN, 0.0)
+        expected_improvement = maximum((predictions - self._qoi) * self._SIGN, 0.0)
         expected_improvement = array([
             dot(weights[:, index], expected_improvement[:, index, :])
             for index in range(expected_improvement.shape[1])
@@ -91,7 +89,7 @@ class ExpectedImprovement:
             samples = self._compute_samples(
                 input_data=q_input_values, n_samples=self._mc_size
             )
-            improvement = (samples - self.__optimum) * self._SIGN
+            improvement = (samples - self._qoi) * self._SIGN
             return mean(np_max(maximum(improvement, 0), axis=0)) / self._scaling_factor
         # distribution is not positive definite.
         except TypeError:

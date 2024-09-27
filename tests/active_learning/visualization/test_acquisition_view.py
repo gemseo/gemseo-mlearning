@@ -15,15 +15,12 @@
 from __future__ import annotations
 
 import re
-from typing import TYPE_CHECKING
 
 import pytest
-from gemseo import sample_disciplines
-from gemseo.algos.design_space import DesignSpace
-from gemseo.disciplines.analytic import AnalyticDiscipline
 from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
 from gemseo.utils.platform import PLATFORM_IS_WINDOWS
 from gemseo.utils.testing.helpers import image_comparison
+from matplotlib.figure import Figure
 from numpy import array
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
@@ -31,45 +28,17 @@ from gemseo_mlearning.active_learning.visualization.acquisition_view import (
     AcquisitionView,
 )
 
-if TYPE_CHECKING:
-    from gemseo.datasets.io_dataset import IODataset
-
 TOL = 0.0 if PLATFORM_IS_WINDOWS else 0.9
 
 
 @pytest.fixture(scope="module")
-def input_space() -> DesignSpace:
-    """An input space."""
-    input_space = DesignSpace()
-    input_space.add_variable("x", lower_bound=-2, upper_bound=2, value=1.0)
-    input_space.add_variable("y", lower_bound=-2, upper_bound=2, value=1.0)
-    return input_space
-
-
-@pytest.fixture(scope="module")
-def discipline() -> AnalyticDiscipline:
-    """The original discipline."""
-    return AnalyticDiscipline({"z": "(1-x)**2+100*(y-x**2)**2"}, name="Rosenbrock")
-
-
-@pytest.fixture(scope="module")
-def learning_dataset(discipline, input_space) -> IODataset:
-    """The learning dataset."""
-    return sample_disciplines([discipline], input_space, "z", 30, "OT_OPT_LHS")
-
-
-@pytest.fixture(scope="module")
-def viewer(discipline, learning_dataset, input_space) -> AcquisitionView:
-    """The active learning algorithm."""
-    regressor = GaussianProcessRegressor(learning_dataset)
-    algo = ActiveLearningAlgo("Minimum", input_space, regressor)
-    algo.acquire_new_points(discipline)
-    return AcquisitionView(algo)
+def acquisition_view(active_learning_algo) -> AcquisitionView:
+    """The acquisition view."""
+    return AcquisitionView(active_learning_algo)
 
 
 def test_raise_parallel(discipline, learning_dataset, input_space):
     """Check that an error is raised when plotting in batch mode."""
-
     regressor = GaussianProcessRegressor(learning_dataset)
     algo = ActiveLearningAlgo("Minimum", input_space, regressor, batch_size=3)
 
@@ -83,16 +52,21 @@ def test_raise_parallel(discipline, learning_dataset, input_space):
         AcquisitionView(algo)
 
 
+def test_return_type(acquisition_view):
+    """Check the return type of AcquisitionView."""
+    assert isinstance(acquisition_view.draw(show=False), Figure)
+
+
 @image_comparison(["default"], tol=0.9)
-def test_default(viewer):
+def test_default(acquisition_view):
     """Check AcquisitionView with default settings."""
-    viewer.draw(show=False)
+    acquisition_view.draw(show=False)
 
 
 @image_comparison(["custom"], tol=0.9)
-def test_custom(viewer, discipline):
+def test_custom(acquisition_view, discipline):
     """Check AcquisitionView with custom settings."""
-    viewer.draw(
+    acquisition_view.draw(
         show=False,
         discipline=discipline,
         new_point=array([0.0, 0.0]),
@@ -102,24 +76,24 @@ def test_custom(viewer, discipline):
 
 
 @image_comparison(["new_point"], tol=0.9)
-def test_new_point(viewer):
+def test_new_point(acquisition_view):
     """Check AcquisitionView with a new point."""
-    viewer.draw(show=False, new_point=array([0.0, 0.0]))
+    acquisition_view.draw(show=False, new_point=array([0.0, 0.0]))
 
 
 @image_comparison(["filled_false"], tol=TOL)
-def test_filled(viewer):
+def test_filled(acquisition_view):
     """Check AcquisitionView without filled contours."""
-    viewer.draw(show=False, filled=False)
+    acquisition_view.draw(show=False, filled=False)
 
 
 @image_comparison(["n_test"])
-def test_n_test(viewer):
+def test_n_test(acquisition_view):
     """Check AcquisitionView with a lower number of points."""
-    viewer.draw(show=False, n_test=5)
+    acquisition_view.draw(show=False, n_test=5)
 
 
 @image_comparison(["discipline"], tol=0.9)
-def test_discipline(viewer, discipline):
+def test_discipline(acquisition_view, discipline):
     """Check AcquisitionView with a discipline."""
-    viewer.draw(show=False, discipline=discipline)
+    acquisition_view.draw(show=False, discipline=discipline)
