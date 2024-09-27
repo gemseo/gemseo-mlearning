@@ -61,6 +61,18 @@
          <lastmod>2024-09-27</lastmod>
     </url>
     <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/</loc>
+         <lastmod>2024-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/mg_execution_times/</loc>
+         <lastmod>2024-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/plot_smt/</loc>
+         <lastmod>2024-09-27</lastmod>
+    </url>
+    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/SUMMARY/</loc>
          <lastmod>2024-09-27</lastmod>
     </url>
@@ -337,7 +349,7 @@
          <lastmod>2024-09-27</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regression_model/</loc>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regressor/</loc>
          <lastmod>2024-09-27</lastmod>
     </url>
     <url>
@@ -350,6 +362,10 @@
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/what_active_learning_is/</loc>
+         <lastmod>2024-09-27</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/regression/smt/</loc>
          <lastmod>2024-09-27</lastmod>
     </url>
 </urlset>
