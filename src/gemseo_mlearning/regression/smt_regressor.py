@@ -29,20 +29,36 @@ from strenum import StrEnum
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
+    from collections.abc import Iterator
 
     from gemseo.datasets.io_dataset import IODataset
     from gemseo.mlearning.core.algos.ml_algo import TransformerType
     from gemseo.typing import NumberArray
 
+
+def _get_subclasses(cls: type) -> Iterator[type]:
+    """Return the subclasses of a class of interest recursively.
+
+    Args:
+        cls: The class of interest.
+
+    Yields:
+        The subclasses of the class of interest.
+    """
+    for subclass in cls.__subclasses__():
+        yield from _get_subclasses(subclass)
+        yield subclass
+
+
 _NAMES_TO_CLASSES: Final[dict[str, type[SurrogateModel]]] = {
-    cls.__name__: cls for cls in SurrogateModel.__subclasses__()
+    cls.__name__: cls for cls in _get_subclasses(SurrogateModel)
 }
 
 SMTSurrogateModel = StrEnum("SurrogateModel", list(_NAMES_TO_CLASSES.keys()))
 """The class name of an SMT surrogate model."""
 
 
-class SMTRegressionModel(BaseRegressor):
+class SMTRegressor(BaseRegressor):
     """A regression model from SMT.
 
     !!! note
