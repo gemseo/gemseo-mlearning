@@ -14,12 +14,23 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 from __future__ import annotations
 
+import re
+from typing import TYPE_CHECKING
+
 import pytest
+from gemseo.algos.doe.lib_scipy import SciPyDOE
+from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from gemseo.datasets.io_dataset import IODataset
+from gemseo.problems.optimization.rosenbrock import Rosenbrock
 from numpy import array
+from numpy import atleast_2d
+from numpy import concatenate
+from numpy import full
+from numpy import hstack
 from numpy import linspace
 from numpy import newaxis
 from numpy.testing import assert_almost_equal
+from smt.surrogate_models import GEKPLS
 from smt.surrogate_models import RBF
 
 from gemseo_mlearning.regression.smt_regressor import _NAMES_TO_CLASSES
@@ -32,23 +43,125 @@ def test_available_models(name):
     assert name in _NAMES_TO_CLASSES
 
 
-def test_smt_regression_model():
-    """Check SMTRegressor."""
-    input_data = linspace(-1, 1, 10)[:, newaxis]
-    output_data = input_data**2
+if TYPE_CHECKING:
+    from gemseo.typing import RealArray
+
+
+@pytest.fixture(scope="module", params=[False, True])
+def io_data(request) -> tuple[RealArray, RealArray]:
+    """Input and output data."""
+    if request.param:
+        x = linspace(-1, 1, 10)[:, newaxis]
+        y = x**2
+    else:
+        x = linspace(-1, 1, 10).reshape((5, 2))
+        y = hstack(((x[:, [0]] - x[:, [1]]) ** 2, (x[:, [0]] + x[:, [1]]) ** 2))
+
+    return x, y
+
+
+@pytest.fixture(scope="module")
+def regressor_and_model(io_data) -> tuple[SMTRegressor, RBF]:
+    """The SMT-based regressor and the corresponding SMT model."""
+    input_data, output_data = io_data
 
     dataset = IODataset()
     dataset.add_input_group(input_data)
     dataset.add_output_group(output_data)
 
-    model = SMTRegressor(dataset, "RBF", d0=2)
-    model.learn()
+    regressor = SMTRegressor(dataset, "RBF", d0=2)
+    regressor.learn()
 
-    smt_model = RBF(d0=2)
-    smt_model.set_training_values(input_data, output_data)
-    smt_model.train()
+    model = RBF(d0=2)
+    model.set_training_values(input_data, output_data)
+    model.train()
+    return regressor, model
 
-    input_value = array([0.25])
-    assert_almost_equal(
-        model.predict(input_value), smt_model.predict_values(input_value).ravel()
-    )
+
+@pytest.fixture(scope="module", params=[False, True])
+def input_value(regressor_and_model, request) -> RealArray:
+    """The input value."""
+    _input_value = full((regressor_and_model[0].output_dimension,), 0.25)
+    if request.param:
+        return _input_value[newaxis, :]
+
+    return _input_value
+
+
+def test_smt_regression_model_predict(regressor_and_model, input_value):
+    """Check SMTRegressor.predict method."""
+    regressor, model = regressor_and_model
+    expected = model.predict_values(atleast_2d(input_value))
+    if input_value.ndim == 1:
+        expected = expected[0]
+
+    assert_almost_equal(regressor.predict(input_value), expected)
+
+
+def test_smt_regression_model_predict_jacobian(regressor_and_model, input_value):
+    """Check SMTRegressor.predict_jacobian method."""
+    regressor, model = regressor_and_model
+    expected = model.predict_derivatives(atleast_2d(input_value), 0)[..., newaxis]
+    if regressor.output_dimension == 2:
+        expected = concatenate(
+            (
+                expected,
+                model.predict_derivatives(atleast_2d(input_value), 1)[..., newaxis],
+            ),
+            axis=2,
+        )
+
+    if input_value.ndim == 1:
+        expected = expected[0]
+
+    assert_almost_equal(regressor.predict_jacobian(input_value), expected)
+
+
+def test_gradient_enhanced_smt_regressor():
+    """Check that gradient-enhanced SMT surrogate models use the gradient samples."""
+
+    def compute_sum_jacobian(input_value: RealArray) -> RealArray:
+        """Compute the Jacobian of the sum function at a given point.
+
+        Args:
+            input_value: The input value.
+
+        Returns:
+            The Jacobian.
+        """
+        return array([[1.0, 1.0]])
+
+    problem = Rosenbrock()
+    problem.add_observable(MDOFunction(sum, "sum", jac=compute_sum_jacobian))
+    SciPyDOE("LHS").execute(problem, eval_jac=True, n_samples=30)
+    dataset = problem.to_dataset(opt_naming=False, export_gradients=True)
+
+    regressor = SMTRegressor(dataset, "GEKPLS")
+
+    # Check that the training does not raise an exception
+    regressor.learn()
+
+    # Check the default values
+    algo = regressor.algo
+    assert isinstance(algo, GEKPLS)
+    assert algo.options["n_comp"] == 2
+
+    # Check that custom values can be passed
+    regressor = SMTRegressor(dataset, "GEKPLS", n_comp=5)
+    assert regressor.algo.options["n_comp"] == 5
+
+    # Check that passing a gradient-free IODataset raises a ValueError
+    x = linspace(-1, 1, 10)[:, newaxis]
+    y = x**2
+    dataset = IODataset()
+    dataset.add_input_group(x)
+    dataset.add_output_group(y)
+
+    regressor = SMTRegressor(dataset, "GEKPLS")
+    with pytest.raises(
+        ValueError,
+        match=re.escape(
+            "GEKPLS did not found gradient samples in the training dataset."
+        ),
+    ):
+        regressor.learn()

@@ -19,11 +19,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import Final
-from typing import NoReturn
 
 from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo.mlearning.regression.algos.rbf import RBFRegressor
+from numpy import concatenate
 from numpy import double
+from numpy import newaxis
 from smt.surrogate_models.surrogate_model import SurrogateModel
 from strenum import StrEnum
 
@@ -70,10 +71,7 @@ class SMTRegressor(BaseRegressor):
         for the list of surrogate models and options.
     """
 
-    __smt_model: SurrogateModel
-    """The SMT surrogate model."""
-
-    def __init__(  # noqa: D107
+    def __init__(
         self,
         data: IODataset,
         model_class_name: SMTSurrogateModel,
@@ -86,7 +84,7 @@ class SMTRegressor(BaseRegressor):
         Args:
             model_class_name: The class name of a surrogate model available in SMT,
                 i.e. a subclass of
-                ``smt.surrogate_models.surrogate_model.SurrogateModel``.
+                `smt.surrogate_models.surrogate_model.SurrogateModel`.
             **model_options: The options of the surrogate model.
         """  # noqa: D205 D212 D415
         super().__init__(
@@ -99,11 +97,47 @@ class SMTRegressor(BaseRegressor):
         )
         _model_options = {"print_global": False}
         _model_options.update(model_options)
-        self.__smt_model = _NAMES_TO_CLASSES[model_class_name](**_model_options)
+        self.algo = _NAMES_TO_CLASSES[model_class_name](**_model_options)
 
-    def _fit(self, input_data: NumberArray, output_data: NumberArray) -> NoReturn:
-        self.__smt_model.set_training_values(input_data, output_data)
-        self.__smt_model.train()
+    def _fit(self, input_data: NumberArray, output_data: NumberArray) -> None:
+        """
+        Raises:
+            ValueError: When the training dataset does not include gradient samples
+                in the case of a gradient-enhanced surrogate model.
+        """  # noqa: D205 D212 D415
+        self.algo.set_training_values(input_data, output_data)
+        surrogate_model_class_name = self.algo.__class__.__name__
+        if not surrogate_model_class_name.startswith("GE"):
+            self.algo.train()
+            return
 
-    def _predict(self, input_data: NumberArray) -> NoReturn:
-        return self.__smt_model.predict_values(input_data.astype(double))
+        # Gradient-enhanced (GE) surrogate models learn both outputs and gradients.
+        try:
+            get_view = self.learning_set.get_view
+            gradient_group_name = self.learning_set.GRADIENT_GROUP
+            jac_data = get_view(group_names=gradient_group_name).to_numpy()
+        except KeyError as err:
+            msg = (
+                f"{surrogate_model_class_name} did not found gradient samples "
+                "in the training dataset."
+            )
+            raise ValueError(msg) from err
+
+        for i in range(self.input_dimension):
+            self.algo.set_training_derivatives(
+                input_data, jac_data[:, i :: self.input_dimension], i
+            )
+
+        self.algo.train()
+
+    def _predict(self, input_data: NumberArray) -> NumberArray:
+        return self.algo.predict_values(input_data.astype(double))
+
+    def _predict_jacobian(self, input_data: NumberArray) -> NumberArray:
+        return concatenate(
+            tuple(
+                self.algo.predict_derivatives(input_data, i)[..., newaxis]
+                for i in range(input_data.shape[1])
+            ),
+            axis=2,
+        )
