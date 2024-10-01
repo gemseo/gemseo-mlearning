@@ -16,14 +16,20 @@
 """# SMT's surrogate model.
 
 The [surrogate modeling toolbox (SMT)](../../../user_guide/regression/smt.md)
-is an open-source Python package for surrogate modeling.
+is an open-source Python package for surrogate modeling,
+with a focus on derivatives.
 The [SMTRegressor][gemseo_mlearning.regression.smt_regressor.SMTRegressor] class
-allows you to use any SMT's surrogate model in your GEMSEO processes.
+allows you to use any SMT's surrogate model in your GEMSEO processes,
+including the gradient-enhanced surrogate models
+as long as your training dataset includes both output and gradient samples
+as explained at the end of [this page](../../../user_guide/regression/smt.md).
 
 In this example,
 we will approximate the
 [Rosenbrock function][@molga2005test]
+
 $$f(x,y) = (1-x)^2 + 100(y-x^2)^2$$
+
 over the domain $[-2,2]^2$.
 """
 
