@@ -3877,7 +3877,9 @@ have a transformer.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/regression/smt_regressor.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 76</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
 <span class="normal"> 77</span>
 <span class="normal"> 78</span>
 <span class="normal"> 79</span>
@@ -3901,9 +3903,7 @@ have a transformer.</p>
 <span class="normal"> 97</span>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: D107</span>
+<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">IODataset</span><span class="p">,</span>
     <span class="n">model_class_name</span><span class="p">:</span> <span class="n">SMTSurrogateModel</span><span class="p">,</span>
@@ -3916,7 +3916,7 @@ have a transformer.</p>
 <span class="sd">    Args:</span>
 <span class="sd">        model_class_name: The class name of a surrogate model available in SMT,</span>
 <span class="sd">            i.e. a subclass of</span>
-<span class="sd">            ``smt.surrogate_models.surrogate_model.SurrogateModel``.</span>
+<span class="sd">            `smt.surrogate_models.surrogate_model.SurrogateModel`.</span>
 <span class="sd">        **model_options: The options of the surrogate model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205 D212 D415</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -3929,7 +3929,7 @@ have a transformer.</p>
     <span class="p">)</span>
     <span class="n">_model_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;print_global&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
     <span class="n">_model_options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model_options</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__smt_model</span> <span class="o">=</span> <span class="n">_NAMES_TO_CLASSES</span><span class="p">[</span><span class="n">model_class_name</span><span class="p">](</span><span class="o">**</span><span class="n">_model_options</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">algo</span> <span class="o">=</span> <span class="n">_NAMES_TO_CLASSES</span><span class="p">[</span><span class="n">model_class_name</span><span class="p">](</span><span class="o">**</span><span class="n">_model_options</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
