@@ -88,7 +88,7 @@ class ExpectedImprovement:
         try:
             samples = self._compute_samples(
                 input_data=q_input_values, n_samples=self._mc_size
-            )
+            )[..., 0]
             improvement = (samples - self._qoi) * self._SIGN
             return mean(np_max(maximum(improvement, 0), axis=0)) / self._scaling_factor
         # distribution is not positive definite.

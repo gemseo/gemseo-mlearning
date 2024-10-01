@@ -189,7 +189,7 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         """
 
     @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
+    @RegressionDataFormatters.format_samples()
     def compute_standard_deviation(
         self,
         input_data: DataType,
@@ -235,5 +235,6 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
             n_samples: The number of samples `M`.
 
         Returns:
-            The output samples per output dimension shaped as `(N, M)`.
+            The output samples per output dimension shaped as `(N, M, p)`
+            where `p` is the output dimension.
         """
