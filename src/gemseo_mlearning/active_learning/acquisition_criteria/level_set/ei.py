@@ -131,7 +131,7 @@ class EI(BaseEIEF):
         try:
             samples = self._compute_samples(
                 input_data=q_input_values, n_samples=self._mc_size
-            )
+            )[..., 0]
             return nan_to_num(
                 mean(
                     np_max(
@@ -141,7 +141,7 @@ class EI(BaseEIEF):
                                 * self._compute_standard_deviation(q_input_values)
                             )
                             ** 2
-                            - square(self._output_value - samples),
+                            - square(self._output_value - samples.T),
                             0,
                         ),
                         axis=1,

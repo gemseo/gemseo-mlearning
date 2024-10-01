@@ -267,14 +267,14 @@ class RegressorDistribution(BaseRegressorDistribution):
         return weights / npsum(weights, 0)
 
     @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
+    @RegressionDataFormatters.format_samples()
     def compute_mean(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
         weights = self.evaluate_weights(input_data)
         return self.__average(weights, predictions)
 
     @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
+    @RegressionDataFormatters.format_samples()
     def compute_variance(self, input_data: DataType) -> DataType:  # noqa: D102
         predictions = self.predict_members(input_data)
         weights = self.evaluate_weights(input_data)
@@ -282,8 +282,6 @@ class RegressorDistribution(BaseRegressorDistribution):
         term2 = self.__average(weights, predictions) ** 2
         return term1 - term2
 
-    @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
     def compute_samples(  # noqa: D102
         self,
         input_data: NumberArray,

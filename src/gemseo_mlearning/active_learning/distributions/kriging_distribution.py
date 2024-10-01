@@ -45,6 +45,8 @@ if TYPE_CHECKING:
 class KrigingDistribution(BaseRegressorDistribution):
     """Kriging-like regressor distribution."""
 
+    algo: BaseRandomProcessRegressor
+
     def __init__(  # noqa: D107
         self, algo: BaseRandomProcessRegressor
     ) -> None:
@@ -70,7 +72,7 @@ class KrigingDistribution(BaseRegressorDistribution):
         return lower, upper
 
     @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
+    @RegressionDataFormatters.format_samples()
     def compute_mean(  # noqa: D102
         self,
         input_data: DataType,
@@ -78,7 +80,7 @@ class KrigingDistribution(BaseRegressorDistribution):
         return self.algo.predict(input_data)
 
     @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
+    @RegressionDataFormatters.format_samples()
     def compute_variance(  # noqa: D102
         self,
         input_data: DataType,
@@ -86,18 +88,16 @@ class KrigingDistribution(BaseRegressorDistribution):
         return self.compute_standard_deviation(input_data) ** 2
 
     @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
+    @RegressionDataFormatters.format_samples()
     def compute_standard_deviation(  # noqa: D102
         self,
         input_data: DataType,
     ) -> DataType:
         return self.algo.predict_std(input_data)
 
-    @RegressionDataFormatters.format_dict
-    @RegressionDataFormatters.format_samples
     def compute_samples(  # noqa: D102
         self,
         input_data: NumberArray,
         n_samples: int,
     ) -> NumberArray:
-        return self.algo.compute_samples(input_data, n_samples)[0]
+        return self.algo.compute_samples(input_data, n_samples)

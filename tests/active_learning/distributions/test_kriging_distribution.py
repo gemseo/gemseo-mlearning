@@ -120,6 +120,6 @@ def test_compute_samples(distribution, input_data):
     """Check that the samples from the GP are of appropriate shape."""
     samples = distribution.compute_samples(input_data=input_data, n_samples=1000)
     expected_shape = (
-        (1000,) if len(input_data.shape) == 1 else (input_data.shape[0], 1000)
+        (1000, 1) if len(input_data.shape) == 1 else (1000, input_data.shape[0], 1)
     )
     assert samples.shape == expected_shape
