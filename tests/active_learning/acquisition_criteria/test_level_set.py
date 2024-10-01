@@ -155,20 +155,12 @@ def test_improvement_parallel_at_training_point(cls, kriging_distribution):
 def test_u_parallel_at_training_point(kriging_distribution, std):
     """Check that the discrepancy criterion take predefined values a training point."""
     u = U(kriging_distribution, 1, batch_size=2)
-    u._compute_standard_deviation = lambda x: std
-    nan_to_num(inf)
+    u._compute_variance = lambda x: std
     assert_almost_equal(u.evaluate(array([0.0, 0.0])), nan_to_num(array([inf])))
 
 
-@pytest.mark.parametrize(
-    ("cls", "input_value"),
-    [
-        (U, array([0.123])),
-        (EI, array([0.123])),
-        (EF, array([0.123])),
-    ],
-)
-def test_bad_parallel_regressor(algo_distribution, cls, input_value):
+@pytest.mark.parametrize("cls", [U, EI, EF])
+def test_bad_parallel_regressor(algo_distribution, cls):
     """Check that parallelized criteria with non GP regressor lead to failure."""
     criterion = cls(algo_distribution, batch_size=2, output_value=1)
 
@@ -179,4 +171,4 @@ def test_bad_parallel_regressor(algo_distribution, cls, input_value):
             "for regressors that are not based on a random process."
         ),
     ):
-        criterion.func(input_value)
+        criterion.func(array([0.123]))
