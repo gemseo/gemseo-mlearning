@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.38">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
     
     
       
@@ -4504,7 +4504,8 @@ shaped as <code>(N, d)</code>.</p>
               <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
           –
           <div class="doc-md-description">
-            <p>The output samples per output dimension shaped as <code>(N, M)</code>.</p>
+            <p>The output samples per output dimension shaped as <code>(N, M, p)</code>
+where <code>p</code> is the output dimension.</p>
           </div>
         </li>
     </ul>
@@ -4527,7 +4528,8 @@ shaped as <code>(N, d)</code>.</p>
 <span class="normal">236</span>
 <span class="normal">237</span>
 <span class="normal">238</span>
-<span class="normal">239</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">239</span>
+<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
 <span class="k">def</span> <span class="nf">compute_samples</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">NumberArray</span><span class="p">,</span>
@@ -4542,7 +4544,8 @@ shaped as <code>(N, d)</code>.</p>
 <span class="sd">        n_samples: The number of samples `M`.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        The output samples per output dimension shaped as `(N, M)`.</span>
+<span class="sd">        The output samples per output dimension shaped as `(N, M, p)`</span>
+<span class="sd">        where `p` is the output dimension.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -4621,7 +4624,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">210</span>
 <span class="normal">211</span>
 <span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
-<span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_samples</span>
+<span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_samples</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">compute_standard_deviation</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
@@ -4957,7 +4960,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
     <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
       
         <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
       
