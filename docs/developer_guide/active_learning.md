@@ -75,8 +75,8 @@ classDiagram
 
     class ActiveLearning {
         +default_algo_name
-        +default_doe_options
-        +default_opt_options
+        +default_doe_settings
+        +default_opt_settings
         +acquisition_criterion
         +input_space
         +n_initial_samples

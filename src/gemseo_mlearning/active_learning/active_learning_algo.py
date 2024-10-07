@@ -83,8 +83,8 @@ class ActiveLearningAlgo:
     __acquisition_algo: BaseOptimizationLibrary
     """The algorithm to find the new training point(s)."""
 
-    __acquisition_algo_options: dict[str, Any]
-    """The options of the algorithm to find the new training points()."""
+    __acquisition_algo_settings: dict[str, Any]
+    """The settings of the algorithm to find the new training points()."""
 
     __acquisition_criterion: BaseAcquisitionCriterion
     """The acquisition criterion."""
@@ -107,11 +107,11 @@ class ActiveLearningAlgo:
     Typically a DoE or an optimizer.
     """
 
-    default_doe_options: ClassVar[dict[str, Any]] = {"n_samples": 100}
-    """The names and values of the default DoE options."""
+    default_doe_settings: ClassVar[dict[str, Any]] = {"n_samples": 100}
+    """The names and values of the default DoE settings."""
 
-    default_opt_options: ClassVar[dict[str, Any]] = {"max_iter": 100}
-    """The names and values of the default optimization options."""
+    default_opt_settings: ClassVar[dict[str, Any]] = {"max_iter": 100}
+    """The names and values of the default optimization settings."""
 
     __distribution: BaseRegressorDistribution
     """The distribution of the machine learning algorithm."""
@@ -211,7 +211,7 @@ class ActiveLearningAlgo:
         # Initialize acquisition algorithm.
         optimization_factory = OptimizationLibraryFactory()
         self.__acquisition_algo = optimization_factory.create(self.default_algo_name)
-        self.__acquisition_algo_options = self.default_opt_options
+        self.__acquisition_algo_settings = self.default_opt_settings
 
         # Miscellaneous.
         self.__database = Database()
@@ -288,23 +288,23 @@ class ActiveLearningAlgo:
         """The number of points to be acquired in parallel."""
         return self.__batch_size
 
-    def set_acquisition_algorithm(self, algo_name: str, **options: Any) -> None:
+    def set_acquisition_algorithm(self, algo_name: str, **settings: Any) -> None:
         """Set sampling or optimization algorithm.
 
         Args:
             algo_name: The name of a DOE or optimization algorithm
                 to find the learning point(s).
-            **options: The values of some algorithm options;
+            **settings: The values of some algorithm settings;
                 use the default values for the other ones.
         """
         factory = DOELibraryFactory()
         if factory.is_available(algo_name):
-            self.__acquisition_algo_options = self.default_doe_options.copy()
+            self.__acquisition_algo_settings = self.default_doe_settings.copy()
         else:
             factory = OptimizationLibraryFactory()
-            self.__acquisition_algo_options = self.default_opt_options.copy()
+            self.__acquisition_algo_settings = self.default_opt_settings.copy()
 
-        self.__acquisition_algo_options.update(options)
+        self.__acquisition_algo_settings.update(settings)
         self.__acquisition_algo = factory.create(algo_name)
 
     def find_next_point(
@@ -324,7 +324,7 @@ class ActiveLearningAlgo:
         """
         with LoggingContext(logging.getLogger("gemseo")):
             input_data = self.__acquisition_algo.execute(
-                self.__acquisition_problem, **self.__acquisition_algo_options
+                self.__acquisition_problem, **self.__acquisition_algo_settings
             ).x_opt
             input_data = input_data.reshape(self.__batch_size, -1)
         if as_dict:

@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.output import
 
 
 @pytest.mark.parametrize(
-    ("cls", "options", "input_value", "expected"),
+    ("cls", "kwargs", "input_value", "expected"),
     [
         (EI, {}, array([0.0]), array([0.0])),
         (LCB, {}, array([0.0]), array([1.0])),
@@ -43,15 +43,15 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.output import
     ],
 )
 def test_minimum_kriging_regressor(
-    kriging_distribution, cls, options, input_value, expected
+    kriging_distribution, cls, kwargs, input_value, expected
 ):
     """Check the criteria deriving from BaseMinimum with a Kriging distribution."""
-    criterion = cls(kriging_distribution, **options)
+    criterion = cls(kriging_distribution, **kwargs)
     assert_almost_equal(criterion.func(input_value), expected)
 
 
 @pytest.mark.parametrize(
-    ("cls", "options", "input_value", "expected"),
+    ("cls", "kwargs", "input_value", "expected"),
     [
         (EI, {}, array([0.123]), array([0.75])),
         (LCB, {}, array([0.123]), array([-0.620])),
@@ -63,9 +63,9 @@ def test_minimum_kriging_regressor(
         (Output, {}, array([[0.123]] * 2), array([[0.37]] * 2)),
     ],
 )
-def test_minimum_regressor(algo_distribution, cls, options, input_value, expected):
+def test_minimum_regressor(algo_distribution, cls, kwargs, input_value, expected):
     """Check the criteria deriving from BaseMinimum with a non-Kriging distribution."""
-    criterion = cls(algo_distribution, **options)
+    criterion = cls(algo_distribution, **kwargs)
     assert_almost_equal(criterion.func(input_value), expected, decimal=2)
 
 

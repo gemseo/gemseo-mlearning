@@ -79,6 +79,7 @@ and this project adheres to
 
 ## Changed
 
+- BREAKING CHANGE: The term `option` has been replaced by `setting` when it was linked to a DOE or an optimization algorithm.
 - BREAKING CHANGE: The argument `distribution` of
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
   renamed to `regressor`; it can be either a regressor

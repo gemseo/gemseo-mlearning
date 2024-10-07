@@ -81,7 +81,7 @@ def test_convergence_on_rastrigin():
         problem,
         "DIFFERENTIAL_EVOLUTION",
         doe_size=20,
-        acquisition_options={"max_iter": 1000, "popsize": 50, "seed": 1},
+        acquisition_settings={"max_iter": 1000, "popsize": 50, "seed": 1},
     ).execute(5)
     assert problem.optimum.objective < 0.12
 
@@ -96,7 +96,7 @@ def test_stratified_algorithm():
             Rastrigin(),
             "DIFFERENTIAL_EVOLUTION",
             doe_algorithm="OT_AXIAL",
-            doe_options={"centers": [0.5, 0.5], "levels": [0.1, 0.2]},
+            doe_settings={"centers": [0.5, 0.5], "levels": [0.1, 0.2]},
         ).execute(1)
         == "All the data acquisitions have been made."
     )

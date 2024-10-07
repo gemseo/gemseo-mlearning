@@ -70,7 +70,7 @@ def test_level_set_regressor(algo_distribution, cls, input_value, expected):
 
 
 @pytest.mark.parametrize(
-    ("cls", "expected", "options"),
+    ("cls", "expected", "kwargs"),
     [
         (U, array([8.1571496e-08]), {}),
         (
@@ -96,15 +96,15 @@ def test_level_set_regressor(algo_distribution, cls, input_value, expected):
         ),
     ],
 )
-def test_level_set_parallel(kriging_distribution, cls, expected, options):
+def test_level_set_parallel(kriging_distribution, cls, expected, kwargs):
     """Check the parallelized criteria deriving from BaseLevelSet."""
     criterion = cls(
         regressor_distribution=kriging_distribution,
         output_value=0.5,
         batch_size=2,
-        **options,
+        **kwargs,
     )
-    expected_mc_size = options.get("mc_size", 10000)
+    expected_mc_size = kwargs.get("mc_size", 10000)
     input_value = array([[0.25], [0.25]])
     assert_almost_equal(criterion.func(input_value), expected)
     assert criterion._mc_size == expected_mc_size
