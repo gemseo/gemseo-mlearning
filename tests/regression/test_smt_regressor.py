@@ -18,7 +18,7 @@ import re
 from typing import TYPE_CHECKING
 
 import pytest
-from gemseo.algos.doe.lib_scipy import SciPyDOE
+from gemseo.algos.doe.scipy.scipy_doe import SciPyDOE
 from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.problems.optimization.rosenbrock import Rosenbrock

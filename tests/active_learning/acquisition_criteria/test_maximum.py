@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb import UC
 
 
 @pytest.mark.parametrize(
-    ("cls", "options", "input_value", "expected"),
+    ("cls", "kwargs", "input_value", "expected"),
     [
         (EI, {}, array([0.0]), array([0.0])),
         (UCB, {}, array([0.0]), array([1.0])),
@@ -43,17 +43,17 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb import UC
     ],
 )
 def test_maximum_kriging_regressor(
-    kriging_distribution, cls, options, input_value, expected
+    kriging_distribution, cls, kwargs, input_value, expected
 ):
     """Check the criteria deriving from BaseMaximum with a Kriging distribution."""
-    criterion = cls(kriging_distribution, **options)
+    criterion = cls(kriging_distribution, **kwargs)
     assert_almost_equal(criterion.func(input_value), expected)
     assert criterion._mc_size == 10000
     assert criterion._batch_size == 1
 
 
 @pytest.mark.parametrize(
-    ("cls", "options", "input_value", "expected"),
+    ("cls", "kwargs", "input_value", "expected"),
     [
         (EI, {}, array([0.123]), array([0.0])),
         (UCB, {}, array([0.123]), array([1.3609677])),
@@ -65,16 +65,16 @@ def test_maximum_kriging_regressor(
         (Output, {}, array([[0.123]] * 2), array([[0.369]] * 2)),
     ],
 )
-def test_maximum_regressor(algo_distribution, options, cls, input_value, expected):
+def test_maximum_regressor(algo_distribution, kwargs, cls, input_value, expected):
     """Check the criteria deriving from BaseMaximum with a RegressorDistribution."""
-    criterion = cls(algo_distribution, **options)
+    criterion = cls(algo_distribution, **kwargs)
     assert_almost_equal(criterion.func(input_value), expected)
     assert criterion._mc_size == 10000
     assert criterion._batch_size == 1
 
 
 @pytest.mark.parametrize(
-    ("options", "input_value", "expected"),
+    ("kwargs", "input_value", "expected"),
     [
         ({}, array([[1.0]] * 2), 0),
         ({}, array([[3]] * 2), 1.533606426240575),
@@ -82,12 +82,12 @@ def test_maximum_regressor(algo_distribution, options, cls, input_value, expecte
     ],
 )
 def test_maximum_parallel_kriging_regressor(
-    kriging_distribution, options, input_value, expected
+    kriging_distribution, kwargs, input_value, expected
 ):
     """Check the parallelized criteria deriving from BaseMaximum."""
-    criterion = EI(kriging_distribution, batch_size=2, **options)
+    criterion = EI(kriging_distribution, batch_size=2, **kwargs)
     assert_almost_equal(criterion.func(input_value), expected)
-    expected_mc_size = options.get("mc_size", 10000)
+    expected_mc_size = kwargs.get("mc_size", 10000)
     assert criterion._mc_size == expected_mc_size
     assert criterion._batch_size == 2
 

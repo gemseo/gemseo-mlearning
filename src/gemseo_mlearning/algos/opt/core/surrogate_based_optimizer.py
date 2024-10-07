@@ -81,11 +81,11 @@ class SurrogateBasedOptimizer:
         acquisition_algorithm: str,
         doe_size: int = 0,
         doe_algorithm: str = "OT_OPT_LHS",
-        doe_options: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
+        doe_settings: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
-        acquisition_options: Mapping[
+        acquisition_settings: Mapping[
             str, OptimizationLibraryOptionType
         ] = READ_ONLY_EMPTY_DICT,
     ) -> None:
@@ -97,7 +97,7 @@ class SurrogateBasedOptimizer:
                 variables are integers.
             problem: The optimization problem.
             doe_size: Either the size of the initial DOE
-                or 0 if the size is inferred from doe_options.
+                or 0 if the size is inferred from doe_settings.
                 This argument is ignored
                 when regression_algorithm is a
                 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -105,7 +105,7 @@ class SurrogateBasedOptimizer:
                 This argument is ignored
                 when regression_algorithm is a
                 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
-            doe_options: The options of the algorithm for the initial sampling.
+            doe_settings: The settings of the algorithm for the initial sampling.
                 This argument is ignored
                 when regression_algorithm is a
                 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -120,7 +120,7 @@ class SurrogateBasedOptimizer:
                 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             regression_file_path: The path to the file to save the regression model.
                 If empty, do not save the regression model.
-            acquisition_options: The options of the algorithm to optimize
+            acquisition_settings: The settings of the algorithm to optimize
                 the data acquisition criterion.
         """  # noqa: D205, D212, D415
         self.__problem = problem
@@ -129,14 +129,14 @@ class SurrogateBasedOptimizer:
         else:
             # Store max_iter as it will be overwritten by DOELibrary
             max_iter = problem.evaluation_counter.maximum
-            options = dict(doe_options)
-            if doe_size > 0 and "n_samples" not in options:
-                options["n_samples"] = doe_size
+            settings = dict(doe_settings)
+            if doe_size > 0 and "n_samples" not in settings:
+                settings["n_samples"] = doe_size
 
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = problem.database.clear_listeners()
             with LoggingContext(logging.getLogger("gemseo")):
-                DOELibraryFactory().execute(problem, doe_algorithm, **options)
+                DOELibraryFactory().execute(problem, doe_algorithm, **settings)
 
             database = self.__problem.database
             for listener in new_iter_listeners:
@@ -165,7 +165,7 @@ class SurrogateBasedOptimizer:
             self.__distribution,
         )
         self.__active_learning_algo.set_acquisition_algorithm(
-            acquisition_algorithm, **acquisition_options
+            acquisition_algorithm, **acquisition_settings
         )
         self.__regression_file_path = regression_file_path
 

@@ -114,7 +114,7 @@ def test_init(algo_distribution, input_space):
         algo._ActiveLearningAlgo__acquisition_algo.algo_name == algo.default_algo_name
     )
     assert (
-        algo._ActiveLearningAlgo__acquisition_algo_options == algo.default_opt_options
+        algo._ActiveLearningAlgo__acquisition_algo_settings == algo.default_opt_settings
     )
     assert (
         algo._ActiveLearningAlgo__acquisition_problem.design_space.variable_names
@@ -199,7 +199,7 @@ def test_with_bad_parallelization(
 
 
 @pytest.mark.parametrize(
-    ("algo_name", "option_name", "option_value"),
+    ("algo_name", "setting_name", "setting_value"),
     [
         ("fullfact", "n_samples", 3),
         ("SLSQP", "max_iter", 3),
@@ -208,25 +208,25 @@ def test_with_bad_parallelization(
     ],
 )
 def test_set_acquisition_algorithm(
-    algo_distribution, input_space, algo_name, option_name, option_value
+    algo_distribution, input_space, algo_name, setting_name, setting_value
 ):
     """Check the setting of the acquisition algorithm used by the ActiveLearningAlgo."""
     algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution)
     kwargs = {"algo_name": algo_name}
-    options = {}
-    if option_value is not None:
-        options[option_name] = option_value
-        kwargs.update(options)
+    settings = {}
+    if setting_value is not None:
+        settings[setting_name] = setting_value
+        kwargs.update(settings)
 
     algo.set_acquisition_algorithm(**kwargs)
     if algo_name == "fullfact":
-        algo_options = ActiveLearningAlgo.default_doe_options.copy()
+        algo_settings = ActiveLearningAlgo.default_doe_settings.copy()
     else:
-        algo_options = ActiveLearningAlgo.default_opt_options.copy()
+        algo_settings = ActiveLearningAlgo.default_opt_settings.copy()
 
-    algo_options.update(options)
+    algo_settings.update(settings)
     assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == algo_name
-    assert algo._ActiveLearningAlgo__acquisition_algo_options == algo_options
+    assert algo._ActiveLearningAlgo__acquisition_algo_settings == algo_settings
 
 
 @pytest.mark.parametrize("as_dict", [False, True])
@@ -268,13 +268,13 @@ def test_build_opt_problem_maximize(
     algo_distribution, input_space, criterion, minimize
 ):
     """Check that the optimization problem handles both cost & performance criteria."""
-    options = {}
+    kwargs = {}
     if criterion == "Quantile":
-        options["level"] = 0.1
+        kwargs["level"] = 0.1
         uncertain_space = ParameterSpace()
         uncertain_space.add_random_variable("x", "OTNormalDistribution")
-        options["uncertain_space"] = uncertain_space
-    algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **options)
+        kwargs["uncertain_space"] = uncertain_space
+    algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **kwargs)
     assert algo._ActiveLearningAlgo__acquisition_problem.minimize_objective == minimize
 
 

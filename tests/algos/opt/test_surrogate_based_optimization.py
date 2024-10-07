@@ -27,8 +27,8 @@ from gemseo.problems.optimization.rosenbrock import Rosenbrock
 from pandas.testing import assert_frame_equal
 
 
-def test_default_options():
-    """Check the default options of the surrogate-based optimizer."""
+def test_default_settings():
+    """Check the default settings of the surrogate-based optimizer."""
     assert OptimizationLibraryFactory().execute(Rastrigin(), "SBO").f_opt < 0.5
 
 
@@ -58,7 +58,7 @@ def test_save(regression_algorithm, tmp_wd):
         "SBO",
         max_iter=3,
         acquisition_algorithm="OT_MONTE_CARLO",
-        acquisition_options={"n_samples": 10},
+        acquisition_settings={"n_samples": 10},
         regression_algorithm=regression_algorithm,
         regression_file_path=file_path,
     )
@@ -77,7 +77,7 @@ def test_problem_counters():
         max_iter=13,
         doe_size=10,
         acquisition_algorithm="OT_MONTE_CARLO",
-        acquisition_options={"n_samples": 100},
+        acquisition_settings={"n_samples": 100},
     )
     assert problem.evaluation_counter.maximum == 13
     assert problem.evaluation_counter.current == 13
