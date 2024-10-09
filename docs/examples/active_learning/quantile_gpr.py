@@ -96,4 +96,4 @@ dataset = sample_disciplines(
     [discipline], uncertain_space, "z", 100000, "OT_MONTE_CARLO"
 )
 reference_quantile = EmpiricalStatistics(dataset, ["z"]).compute_quantile(level)
-print(reference_quantile, active_learning.qoi)  # noqa
+print(reference_quantile, active_learning.qoi)

@@ -28,7 +28,7 @@ plugins:
 - markdown-exec
 - gen-files:
     scripts:
-    - docs/gen_ref_pages.py
+    - docs/gen_ref_nav.py
 - literate-nav:
     nav_file: SUMMARY.md
 - section-index
@@ -48,6 +48,7 @@ plugins:
           extensions:
           - griffe_inherited_docstrings
           - docstring_inheritance.griffe
+          - griffe_fieldz
           filters:
           - "!^_"
           docstring_options:
@@ -89,6 +90,8 @@ nav:
   - Active learning:
     - What active learning is: user_guide/active_learning/what_active_learning_is.md
     - Active learning algorithm: user_guide/active_learning/active_learning_algo.md
+  - Optimization:
+    - SMT: user_guide/optimization/smt.md
   - Regression models:
     - SMT: user_guide/regression/smt.md
 - Examples:
@@ -116,6 +119,9 @@ markdown_extensions:
 - pymdownx.snippets
 - pymdownx.highlight
 - pymdownx.inlinehilite
+- pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_javascript:
 - javascripts/mathjax.js
@@ -124,6 +130,8 @@ extra_javascript:
 
 watch:
   - src/gemseo_mlearning
+  - README.md
+  - CHANGELOG.md
 
 extra:
   version:

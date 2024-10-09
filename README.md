@@ -8,11 +8,10 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 # gemseo-mlearning
 
-[![PyPI - License](https://img.shields.io/pypi/l/gemseo)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+[![PyPI - License](https://img.shields.io/pypi/l/gemseo-mlearning)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/gemseo-mlearning)](https://pypi.org/project/gemseo-mlearning/)
 [![PyPI](https://img.shields.io/pypi/v/gemseo-mlearning)](https://pypi.org/project/gemseo-mlearning/)
-[![Codecov branch](https://img.shields.io/codecov/c/gitlab/gemseo:dev/gemseo-mlearning/develop
-)](https://app.codecov.io/gl/gemseo:dev/gemseo-mlearning)
+[![Codecov branch](https://img.shields.io/codecov/c/gitlab/gemseo:dev/gemseo-mlearning/develop)](https://app.codecov.io/gl/gemseo:dev/gemseo-mlearning)
 
 `gemseo-mlearning` is a plugin of the library [GEMSEO](https://www.gemseo.org), dedicated to machine learning.
 This package is open-source,
@@ -21,6 +20,7 @@ under the [LGPL v3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html).
 ## Overview
 
 This package adds new [regression models][gemseo_mlearning.regression]
+and [optimization algorithms][gemseo_mlearning.algos.opt.smt]
 based on [SMT](https://smt.readthedocs.io/).
 
 A [package for active learning][gemseo_mlearning.active_learning] is also available,
@@ -32,10 +32,7 @@ An effort is being made to improve both content and performance in future versio
 
 ## Installation
 
-Install the latest stable version with `pip install gemseo-mlearning`.
-
-Install the development version with
-`pip install gemseo-mlearning@git+https://gitlab.com/gemseo/dev/gemseo-mlearning.git@develop`.
+Install the latest version with `pip install gemseo-mlearning`.
 
 See [pip](https://pip.pypa.io/en/stable/getting-started/) for more information.
 

@@ -54,6 +54,9 @@ and this project adheres to
   when the input dimension is 1 or 2.
 - [SMTRegressor][gemseo_mlearning.regression.smt_regressor.SMTRegressor]
   can be any surrogate model available in the Python package [SMT](https://smt.readthedocs.io/).
+- `"SMT_EGO"` is the name of the expected global optimization (EGO) algorithm
+  wrapping the surrogate-based optimizers available in the Python package [SMT](https://smt.readthedocs.io/);
+  this is the unique algorithm of the [SMTEGO][gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO] optimization library.
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   can use an existing [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
   and save the [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo] that it enriches

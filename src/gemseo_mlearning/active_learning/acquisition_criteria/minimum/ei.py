@@ -72,5 +72,5 @@ class EI(ExpectedImprovement, BaseMinimum):
     _OPTIMIZE: ClassVar[Callable[[NumberArray], float]] = min
     """The optimization function."""
 
-    _SIGN: ClassVar[Literal[-1] | Literal[1]] = -1
+    _SIGN: ClassVar[Literal[-1, 1]] = -1
     """The sign."""

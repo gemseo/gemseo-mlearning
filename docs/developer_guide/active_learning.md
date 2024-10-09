@@ -12,7 +12,8 @@ This section describes the design of the [active_learning][gemseo_mlearning.acti
 
 !!! info
 
-    Open the [user guide](../user_guide/active_learning.md) for general information, *e.g.* concepts, API, examples, etc.
+    Open the [user guide](../user_guide/active_learning/active_learning_algo.md) for general information,
+    *e.g.* concepts, API, examples, etc.
 
 ## Tree structure
 
