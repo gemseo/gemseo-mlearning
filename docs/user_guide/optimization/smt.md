@@ -95,9 +95,10 @@ where $\kappa(x)$ is the realization of a random variable distributed according 
 
 ### Surrogate models
 
-| Value     | Name                                                                    |
-|-----------|-------------------------------------------------------------------------|
-| `"KRG"`   | Kriging                                                                 |
-| `"KPLS"`  | Kriging using partial least squares (PLS) to reduce the input dimension |
-| `"KPLSK"` | A variant of KPLS                                                       |
-| `"MGP"`   | A marginal Gaussian process (MGP) regressor                             |
+| Value     | Name                                                                                  |
+|-----------|---------------------------------------------------------------------------------------|
+| `"GPX"`   | Kriging based on the [egobox](https://github.com/relf/egobox) library written in Rust |
+| `"KRG"`   | Kriging                                                                               |
+| `"KPLS"`  | Kriging using partial least squares (PLS) to reduce the input dimension               |
+| `"KPLSK"` | A variant of KPLS                                                                     |
+| `"MGP"`   | A marginal Gaussian process (MGP) regressor                                           |

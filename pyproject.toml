@@ -26,7 +26,7 @@ dependencies = [
     "openturns",
     "scikit-learn",
     "scipy",
-    "smt >=1.3.0,<=2.7.0",
+    "smt[gpx] >=2.5.0,<=2.7.0",
 ]
 
 [project.optional-dependencies]
