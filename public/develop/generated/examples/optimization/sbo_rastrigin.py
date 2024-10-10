@@ -29,7 +29,7 @@ problem = Rastrigin()
 execute_algo(
     problem,
     algo_name="SBO",
-    acquisition_options={
+    acquisition_settings={
         "max_iter": 1000,
         "popsize": 50,
         "stop_crit_n_x": 10000,
