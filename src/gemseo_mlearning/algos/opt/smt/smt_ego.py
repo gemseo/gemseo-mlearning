@@ -32,6 +32,7 @@ from gemseo.algos.optimization_result import OptimizationResult
 from numpy import atleast_2d
 from smt.applications.ego import EGO
 from smt.surrogate_models import GEKPLS
+from smt.surrogate_models import GPX
 from smt.surrogate_models import KPLS
 from smt.surrogate_models import KPLSK
 from smt.surrogate_models import KRG
@@ -51,6 +52,7 @@ class SMTEGO(BaseOptimizationLibrary):
 
     __NAMES_TO_CLASSES: Final[dict[str, type[SurrogateModel]]] = {
         "GEKPLS": GEKPLS,
+        "GPX": GPX,
         "KPLS": KPLS,
         "KPLSK": KPLSK,
         "KRG": KRG,

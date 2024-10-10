@@ -101,6 +101,9 @@ class ParallelStrategy(StrEnum):
 class Surrogate(StrEnum):
     """A surrogate model."""
 
+    GPX = "GPX"
+    """Kriging based on the `egobox` library."""
+
     KRG = "KRG"
     """Kriging."""
 
