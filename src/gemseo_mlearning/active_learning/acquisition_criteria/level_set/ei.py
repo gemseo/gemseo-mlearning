@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import warnings
 from typing import TYPE_CHECKING
 
 from numpy import array
@@ -38,6 +39,8 @@ if TYPE_CHECKING:
     from gemseo_mlearning.active_learning.distributions.regressor_distribution import (  # noqa: E501
         RegressorDistribution,
     )
+
+warnings.filterwarnings("ignore")
 
 
 class EI(BaseEIEF):

@@ -82,6 +82,9 @@ and this project adheres to
 
 ## Changed
 
+- BREAKING CHANGE: The acquisition algorithm settings have to be passed to
+  [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.surrogate_based_optimization.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
+  as keyword arguments, *i.e.* `SurrogateBasedOptimizer(..., key_1=value_1, key_2=value_2, ...)`.
 - BREAKING CHANGE: The term `option` has been replaced by `setting` when it was linked to a DOE or an optimization algorithm.
 - BREAKING CHANGE: The argument `distribution` of
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].

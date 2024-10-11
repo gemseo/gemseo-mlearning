@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import warnings
 from typing import TYPE_CHECKING
 
 from numpy import array
@@ -37,6 +38,8 @@ if TYPE_CHECKING:
     from gemseo_mlearning.active_learning.distributions.regressor_distribution import (  # noqa: E501
         RegressorDistribution,
     )
+
+warnings.filterwarnings("ignore")
 
 
 class EF(BaseEIEF):
@@ -89,6 +92,8 @@ class EF(BaseEIEF):
     def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102
         # See Proposition 4, Bect et al, 2012
         standard_deviation, t, t_m, t_p = self._get_material(input_value)
+        # As the next line would log warnings when value is a big number,
+        # we filter these warnings before defining the class
         return nan_to_num(
             standard_deviation
             * (

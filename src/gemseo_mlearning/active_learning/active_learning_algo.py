@@ -61,7 +61,7 @@ from gemseo_mlearning.active_learning.visualization.qoi_history_view import (
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
+    from gemseo.algos.base_driver_library import BaseDriverLibrary
     from gemseo.core.discipline import MDODiscipline
     from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.post.dataset.lines import Lines
@@ -80,7 +80,7 @@ LOGGER = logging.getLogger(__name__)
 class ActiveLearningAlgo:
     """An active learning algorithm using a regressor and acquisition criteria."""
 
-    __acquisition_algo: BaseOptimizationLibrary
+    __acquisition_algo: BaseDriverLibrary
     """The algorithm to find the new training point(s)."""
 
     __acquisition_algo_settings: dict[str, Any]
@@ -101,17 +101,18 @@ class ActiveLearningAlgo:
     __input_space: DesignSpace
     """The input space on which to look for the new learning point."""
 
-    default_algo_name: ClassVar[str] = "NLOPT_COBYLA"
+    __default_algo_name: ClassVar[str] = "MultiStart"
     """The name of the default algorithm to find the new training point(s).
 
     Typically a DoE or an optimizer.
     """
 
-    default_doe_settings: ClassVar[dict[str, Any]] = {"n_samples": 100}
-    """The names and values of the default DoE settings."""
-
-    default_opt_settings: ClassVar[dict[str, Any]] = {"max_iter": 100}
-    """The names and values of the default optimization settings."""
+    __default_algo_settings: ClassVar[dict[str, Any]] = {
+        "max_iter": 200,
+        "n_start": 20,
+        "opt_algo_name": "SLSQP",
+    }
+    """The names and values of the default algorithm settings."""
 
     __distribution: BaseRegressorDistribution
     """The distribution of the machine learning algorithm."""
@@ -125,10 +126,10 @@ class ActiveLearningAlgo:
     If `1`, acquire points sequentially.
     """
 
-    __n_evaluations_history: list[int, ...]
+    __n_evaluations_history: list[int]
     """The history of the number of evaluations."""
 
-    __qoi_history: list[float, ...]
+    __qoi_history: list[float]
     """The history of the quantity of interest."""
 
     def __init__(
@@ -208,10 +209,11 @@ class ActiveLearningAlgo:
             )
         if problem.objective.MAXIMIZE:
             problem.minimize_objective = False
+
         # Initialize acquisition algorithm.
-        optimization_factory = OptimizationLibraryFactory()
-        self.__acquisition_algo = optimization_factory.create(self.default_algo_name)
-        self.__acquisition_algo_settings = self.default_opt_settings
+        self.set_acquisition_algorithm(
+            self.__default_algo_name, **self.__default_algo_settings
+        )
 
         # Miscellaneous.
         self.__database = Database()
@@ -241,7 +243,7 @@ class ActiveLearningAlgo:
         )
 
     @property
-    def qoi_history(self) -> tuple[list[int, ...], list[float, ...]]:
+    def qoi_history(self) -> tuple[list[int], list[float]]:
         """The history of the quantity of interest (QOI) when it exists.
 
         The second term represents this history while the first one represents the
@@ -294,18 +296,14 @@ class ActiveLearningAlgo:
         Args:
             algo_name: The name of a DOE or optimization algorithm
                 to find the learning point(s).
-            **settings: The values of some algorithm settings;
-                use the default values for the other ones.
+            **settings: The values of some algorithm settings.
         """
         factory = DOELibraryFactory()
-        if factory.is_available(algo_name):
-            self.__acquisition_algo_settings = self.default_doe_settings.copy()
-        else:
+        if not factory.is_available(algo_name):
             factory = OptimizationLibraryFactory()
-            self.__acquisition_algo_settings = self.default_opt_settings.copy()
 
-        self.__acquisition_algo_settings.update(settings)
         self.__acquisition_algo = factory.create(algo_name)
+        self.__acquisition_algo_settings = settings
 
     def find_next_point(
         self,
@@ -383,7 +381,7 @@ class ActiveLearningAlgo:
                 if plot:
                     self.__acquisition_view.draw(
                         discipline=discipline,
-                        new_point=array_input_data,
+                        new_point=array_input_data[0],
                         show=show,
                         file_path=file_path,
                     )

@@ -13,14 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Surrogate-based optimization using SMT.
-
-The [surrogate modeling toolbox (SMT)](../../../user_guide/regression/smt.md)
-is an open-source Python package for surrogate modeling,
-with a focus on derivatives.
-Bayesian optimization features are also available through its `EGO` class,
-with various acquisition criteria and strategies to acquire points in parallel.
-"""
+"""# Surrogate-based optimization using in-house features."""
 
 from __future__ import annotations
 
@@ -44,21 +37,22 @@ problem = Rosenbrock()
 # Then,
 # we minimize the Rosenbrock function using:
 #
-# - the `"SMT_EGO"` algorithm,
-# - a maximum number of evaluations equal to 40,
+# - the `"SBO"` algorithm,
+# - a maximum number of 40 evaluations,
 #   including the initial one at the center of the design space
 #   (this first point is common to all optimization algorithms)
 #   and the initial training dataset,
 # - its default settings,
-#   namely
+#   namely:
 #
 #   - the expected improvement as acquisition criterion,
 #   - 1 point acquired at a time,
-#   - the Kriging-based surrogate model `"KRG"`,
-#   - 10 initial training points based on a latin hypercube sampling (LHS) technique,
+#   - the `GaussianProcessRegressor` based on scikit-learn,
+#   - 10 initial training points
+#     based on an optimized latin hypercube sampling (LHS) technique,
 #   - a multi-start local optimization of the acquisition criterion
 #     from 50 start points with a limit of 20 iterations per local optimization.
-execute_algo(problem, "SMT_EGO", max_iter=40)
+execute_algo(problem, "SBO", max_iter=40)
 
 # %%
 # We can see

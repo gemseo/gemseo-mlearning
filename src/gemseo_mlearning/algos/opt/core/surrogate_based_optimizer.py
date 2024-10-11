@@ -22,10 +22,11 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from gemseo.algos.doe.factory import DOELibraryFactory
+from gemseo.algos.hashable_ndarray import HashableNdarray
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo.mlearning.regression.algos.factory import RegressorFactory
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
+from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
 from gemseo.utils.logging_tools import LoggingContext
 from numpy import hstack
@@ -36,19 +37,13 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum impor
     Minimum,
 )
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
-from gemseo_mlearning.active_learning.distributions import get_regressor_distribution
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from gemseo.algos.base_driver_library import DriverLibraryOptionType
+    from gemseo.algos.base_driver_library import DriverLibrarySettingType
     from gemseo.algos.optimization_problem import OptimizationProblem
     from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
-
-    from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
-        BaseRegressorDistribution,
-    )
-    from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
 
 
 class SurrogateBasedOptimizer:
@@ -63,8 +58,8 @@ class SurrogateBasedOptimizer:
     __dataset: IODataset
     """The original learning dataset enriched by new samples."""
 
-    __distribution: BaseRegressorDistribution
-    """The distribution associated with the regression algorithm."""
+    __initial_input_samples: tuple[HashableNdarray, ...]
+    """The initial input samples, if any."""
 
     __regression_file_path: str | Path
     """The path to the file to save the regression model.
@@ -81,13 +76,11 @@ class SurrogateBasedOptimizer:
         acquisition_algorithm: str,
         doe_size: int = 0,
         doe_algorithm: str = "OT_OPT_LHS",
-        doe_settings: Mapping[str, DriverLibraryOptionType] = READ_ONLY_EMPTY_DICT,
-        regression_algorithm: (str | BaseRegressor) = GaussianProcessRegressor.__name__,
+        doe_settings: Mapping[str, DriverLibrarySettingType] = READ_ONLY_EMPTY_DICT,
+        regression_algorithm: str | BaseRegressor = OTGaussianProcessRegressor.__name__,
         regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
-        acquisition_settings: Mapping[
-            str, OptimizationLibraryOptionType
-        ] = READ_ONLY_EMPTY_DICT,
+        **acquisition_settings: DriverLibrarySettingType,
     ) -> None:
         """
         Args:
@@ -120,10 +113,12 @@ class SurrogateBasedOptimizer:
                 [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             regression_file_path: The path to the file to save the regression model.
                 If empty, do not save the regression model.
-            acquisition_settings: The settings of the algorithm to optimize
+            **acquisition_settings: The settings of the algorithm to optimize
                 the data acquisition criterion.
         """  # noqa: D205, D212, D415
         self.__problem = problem
+        database = problem.database
+        self.__initial_input_samples = tuple(database.keys())
         if isinstance(regression_algorithm, BaseRegressor):
             self.__dataset = regression_algorithm.learning_set
         else:
@@ -134,11 +129,10 @@ class SurrogateBasedOptimizer:
                 settings["n_samples"] = doe_size
 
             # Store the listeners as they will be cleared by DOELibrary.
-            new_iter_listeners, store_listeners = problem.database.clear_listeners()
+            new_iter_listeners, store_listeners = database.clear_listeners()
             with LoggingContext(logging.getLogger("gemseo")):
                 DOELibraryFactory().execute(problem, doe_algorithm, **settings)
 
-            database = self.__problem.database
             for listener in new_iter_listeners:
                 database.add_new_iter_listener(listener)
 
@@ -146,11 +140,14 @@ class SurrogateBasedOptimizer:
                 database.add_store_listener(listener)
 
             self.__dataset = problem.to_dataset(opt_naming=False)
-            _regression_options = {"transformer": BaseRegressor.DEFAULT_TRANSFORMER}
+            if self.__initial_input_samples:
+                self.__dataset = self.__dataset[len(self.__initial_input_samples) :]
+
+            _regression_options = {"transformer": {"inputs": "MinMaxScaler"}}
             _regression_options.update(dict(regression_options))
             regression_algorithm = RegressorFactory().create(
                 regression_algorithm,
-                data=self.__dataset,
+                self.__dataset,
                 **_regression_options,
             )
             # Add the first iteration to the current_iter reset by DOELibrary.
@@ -158,15 +155,13 @@ class SurrogateBasedOptimizer:
             # And restore max_iter.
             problem.evaluation_counter.maximum = max_iter
 
-        self.__distribution = get_regressor_distribution(regression_algorithm)
         self.__active_learning_algo = ActiveLearningAlgo(
-            Minimum.__name__,
-            problem.design_space,
-            self.__distribution,
+            Minimum.__name__, problem.design_space, regression_algorithm
         )
-        self.__active_learning_algo.set_acquisition_algorithm(
-            acquisition_algorithm, **acquisition_settings
-        )
+        if acquisition_algorithm:
+            self.__active_learning_algo.set_acquisition_algorithm(
+                acquisition_algorithm, **acquisition_settings
+            )
         self.__regression_file_path = regression_file_path
 
     def execute(self, number_of_acquisitions: int) -> str:
@@ -178,11 +173,15 @@ class SurrogateBasedOptimizer:
         Returns:
             The termination message.
         """
-        self.__distribution.learn()
+        regressor_distribution = self.__active_learning_algo.regressor_distribution
+        regressor_distribution.learn()
         message = self.__STOP_BECAUSE_MAX_ACQUISITIONS
         for _ in range(number_of_acquisitions):
             input_data = self.__active_learning_algo.find_next_point()[0]
-            if input_data in self.__problem.database:
+            hashed_input_data = HashableNdarray(input_data)
+            if hashed_input_data in self.__problem.database and (
+                hashed_input_data not in self.__initial_input_samples
+            ):
                 message = self.__STOP_BECAUSE_ALREADY_KNOWN
                 break
 
@@ -190,15 +189,14 @@ class SurrogateBasedOptimizer:
                 design_vector=input_data, design_vector_is_normalized=False
             )[0]
             extra_learning_set = IODataset()
-            distribution = self.__distribution
-            variable_names_to_n_components = distribution.algo.sizes
+            variable_names_to_n_components = regressor_distribution.algo.sizes
             extra_learning_set.add_group(
                 group_name=IODataset.INPUT_GROUP,
                 data=input_data[newaxis],
-                variable_names=distribution.input_names,
+                variable_names=regressor_distribution.input_names,
                 variable_names_to_n_components=variable_names_to_n_components,
             )
-            output_names = distribution.output_names
+            output_names = regressor_distribution.output_names
             extra_learning_set.add_group(
                 group_name=IODataset.OUTPUT_GROUP,
                 data=hstack([output_data[output_name] for output_name in output_names])[
@@ -208,15 +206,15 @@ class SurrogateBasedOptimizer:
                 variable_names_to_n_components=variable_names_to_n_components,
             )
             self.__dataset = concat(
-                [distribution.algo.learning_set, extra_learning_set],
+                [regressor_distribution.algo.learning_set, extra_learning_set],
                 ignore_index=True,
             )
             self.__dataset = self.__dataset.map(lambda x: x.real)
-            distribution.change_learning_set(self.__dataset)
+            regressor_distribution.change_learning_set(self.__dataset)
             self.__active_learning_algo.update_problem()
 
             if self.__regression_file_path:
                 with Path(self.__regression_file_path).open("wb") as file:
-                    pickle.dump(distribution.algo, file)
+                    pickle.dump(regressor_distribution.algo, file)
 
         return message

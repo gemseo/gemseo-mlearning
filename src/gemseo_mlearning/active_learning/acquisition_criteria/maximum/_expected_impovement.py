@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import warnings
 from typing import TYPE_CHECKING
 from typing import Callable
 from typing import ClassVar
@@ -36,6 +37,8 @@ if TYPE_CHECKING:
     from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
         RegressorDistribution,
     )
+
+warnings.filterwarnings("ignore")
 
 
 class ExpectedImprovement:

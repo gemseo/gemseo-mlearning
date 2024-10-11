@@ -23,6 +23,7 @@ from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.optimization_problem import OptimizationProblem
 from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from gemseo.problems.optimization.rastrigin import Rastrigin
+from numpy import array
 from pandas._testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
@@ -46,6 +47,7 @@ def test_all_acquisitions_made(regression_algorithm, regression_options):
             5,
             regression_algorithm=regression_algorithm,
             regression_options=regression_options,
+            n_samples=10,
         ).execute(1)
         == "All the data acquisitions have been made."
     )
@@ -60,10 +62,11 @@ def test_known_acquired_input_data():
     assert (
         SurrogateBasedOptimizer(
             problem,
-            "DIFFERENTIAL_EVOLUTION",
+            "CustomDOE",
             2,
             regression_algorithm="LinearRegressor",
-        ).execute(1)
+            samples=array([[0.0]]),
+        ).execute(2)
         == "The acquired input data is already known."
     )
 
@@ -81,7 +84,9 @@ def test_convergence_on_rastrigin():
         problem,
         "DIFFERENTIAL_EVOLUTION",
         doe_size=20,
-        acquisition_settings={"max_iter": 1000, "popsize": 50, "seed": 1},
+        max_iter=1000,
+        popsize=50,
+        seed=1,
     ).execute(5)
     assert problem.optimum.objective < 0.12
 
@@ -97,6 +102,7 @@ def test_stratified_algorithm():
             "DIFFERENTIAL_EVOLUTION",
             doe_algorithm="OT_AXIAL",
             doe_settings={"centers": [0.5, 0.5], "levels": [0.1, 0.2]},
+            max_iter=10,
         ).execute(1)
         == "All the data acquisitions have been made."
     )
@@ -106,17 +112,21 @@ def test_ml_regression_algo_instance(regression_algorithm):
     """Check the execution of the surrogate-based optimizer with an
     BaseMLRegressionAlgo."""
     optimizer = SurrogateBasedOptimizer(
-        Rastrigin(), "fullfact", regression_algorithm=regression_algorithm
+        Rastrigin(),
+        "CustomDOE",
+        regression_algorithm=regression_algorithm,
+        samples=array([[0.03, 0.03]]),
     )
     optimizer.execute(1)
     dataset = optimizer._SurrogateBasedOptimizer__dataset
 
     optimizer = SurrogateBasedOptimizer(
         Rastrigin(),
-        "fullfact",
+        "CustomDOE",
         doe_size=5,
         doe_algorithm="OT_SOBOL",
         regression_algorithm="OTGaussianProcessRegressor",
+        samples=array([[0.03, 0.03]]),
     )
     optimizer.execute(1)
     assert_frame_equal(optimizer._SurrogateBasedOptimizer__dataset, dataset)

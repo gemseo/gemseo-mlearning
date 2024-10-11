@@ -15,7 +15,3 @@
 """Wrappers for optimization algorithms."""
 
 from __future__ import annotations
-
-from typing import Union
-
-OptimizationLibraryOptionType = Union[str, int, float]

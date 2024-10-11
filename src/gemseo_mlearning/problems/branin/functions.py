@@ -38,11 +38,8 @@ def compute_output(x: ndarray) -> float:
     Returns:
         The output value.
     """
-    return (
-        (15 * x[1] - __A * (15 * x[0] - 5) ** 2 + __B * (15 * x[0] - 5) - 6) ** 2
-        + __C * cos(15 * x[0] - 5)
-        + 10
-    )
+    x0 = 15 * x[0] - 5
+    return (15 * x[1] - __A * x0**2 + __B * x0 - 6) ** 2 + __C * cos(x0) + 10
 
 
 def compute_gradient(x: ndarray) -> ndarray:
@@ -54,13 +51,6 @@ def compute_gradient(x: ndarray) -> ndarray:
     Returns:
         The value of the gradient of the Branin function.
     """
-    return array([
-        -15
-        * (
-            __C * sin(15 * x[0] - 5)
-            + 2
-            * (15 * x[1] - __A * (15 * x[0] - 5) ** 2 + __B * (15 * x[0] - 5) - 6)
-            * (2 * __A * (15 * x[0] - 5) - __B)
-        ),
-        30 * (15 * x[1] - __A * (15 * x[0] - 5) ** 2 + __B * (15 * x[0] - 5) - 6),
-    ])
+    x0 = 15 * x[0] - 5
+    tmp = 15 * x[1] - __A * x0**2 + __B * x0 - 6
+    return array([-15 * (__C * sin(x0) + 2 * tmp * (2 * __A * x0 - __B)), 30 * tmp])
