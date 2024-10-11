@@ -27,7 +27,7 @@ from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType  # noqa: TCH
 from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TCH002
     BaseRegressor,
 )
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
+from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
 from pydantic import Field
 from pydantic import NonNegativeInt
 
@@ -35,15 +35,20 @@ from pydantic import NonNegativeInt
 class SBOSettings(BaseOptimizationLibrarySettings):
     """The settings for the surrogate-based optimization algorithm."""
 
-    doe_size: NonNegativeInt = Field(
-        default=10,
+    acquisition_algorithm: str = Field(
+        default="",
         description=(
-            """Either the size of the initial DOE or `0` if the size is inferred`.
+            """The name of the algorithm to optimize the data acquisition criterion.
+            If empty, use the default algorithm with its default settings."""
+        ),
+    )
 
-            This argument is ignored
-            when `regression_algorithm` is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
-            """
+    acquisition_settings: Mapping[str, DriverLibrarySettingType] = Field(
+        default_factory=dict,
+        description=(
+            """The settings of the algorithm
+            to optimize the data acquisition criterion.
+            Ignored when `acquisition_algorithm` is empty."""
         ),
     )
 
@@ -71,26 +76,33 @@ class SBOSettings(BaseOptimizationLibrarySettings):
         ),
     )
 
+    doe_size: NonNegativeInt = Field(
+        default=10,
+        description=(
+            """Either the initial DOE size or 0 if it is inferred from `doe_settings`.
+
+            This argument is ignored
+            when regression_algorithm is a
+            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+            """
+        ),
+    )
+
+    normalize_design_space: bool = Field(
+        default=False,
+        description=(
+            """Whether to normalize the design space variables between 0 and 1."""
+        ),
+    )
+
     regression_algorithm: str | BaseRegressor = Field(
-        default=GaussianProcessRegressor.__name__,
+        default=OTGaussianProcessRegressor.__name__,
         description=(
             """The regression algorithm.
 
             Either the name of the regression algorithm
             approximating the objective function over the design space
             or the regression algorithm itself.
-            """
-        ),
-    )
-
-    regression_options: Mapping[str, MLAlgoParameterType] = Field(
-        default_factory=dict,
-        description=(
-            """The options of the regression algorithm.
-
-            This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             """
         ),
     )
@@ -105,17 +117,14 @@ class SBOSettings(BaseOptimizationLibrarySettings):
         ),
     )
 
-    acquisition_algorithm: str = Field(
-        default="DIFFERENTIAL_EVOLUTION",
-        description=(
-            """The name of the algorithm to optimize the data acquisition criterion."""
-        ),
-    )
-
-    acquisition_settings: Mapping[str, DriverLibrarySettingType] = Field(
+    regression_options: Mapping[str, MLAlgoParameterType] = Field(
         default_factory=dict,
         description=(
-            """The settings of the algorithm
-            to optimize the data acquisition criterion."""
+            """The options of the regression algorithm.
+
+            This argument is ignored
+            when regression_algorithm is a
+            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+            """
         ),
     )

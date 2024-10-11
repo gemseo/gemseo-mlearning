@@ -24,12 +24,18 @@ import pytest
 from gemseo.algos.opt.factory import OptimizationLibraryFactory
 from gemseo.problems.optimization.rastrigin import Rastrigin
 from gemseo.problems.optimization.rosenbrock import Rosenbrock
+from numpy import array
+from numpy.testing import assert_almost_equal
 from pandas.testing import assert_frame_equal
 
 
 def test_default_settings():
     """Check the default settings of the surrogate-based optimizer."""
-    assert OptimizationLibraryFactory().execute(Rastrigin(), "SBO").f_opt < 0.5
+    assert_almost_equal(
+        OptimizationLibraryFactory().execute(Rastrigin(), "SBO", max_iter=12).f_opt,
+        array([0.04]),
+        decimal=2,
+    )
 
 
 @pytest.mark.parametrize("max_iter", [8, 10])

@@ -12,7 +12,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""A problem connecting the Branin function with its uncertain space."""
+"""A problem connecting the Branin function with its input space."""
 
 from __future__ import annotations
 
@@ -23,8 +23,17 @@ from gemseo_mlearning.problems.branin.branin_space import BraninSpace
 
 
 class BraninProblem(OptimizationProblem):
-    """A problem connecting the Branin function with its uncertain space."""
+    """A problem connecting the Branin function with its input space."""
 
-    def __init__(self) -> None:  # noqa:D107
-        super().__init__(BraninSpace())
+    def __init__(self, use_uncertain_space: bool = True) -> None:
+        """
+        Args:
+            use_uncertain_space: Whether to consider the input space
+                as an uncertain space.
+        """  # noqa: D205 D212
+        input_space = BraninSpace()
+        if not use_uncertain_space:
+            input_space = input_space.to_design_space()
+
+        super().__init__(input_space)
         self.objective = BraninFunction()

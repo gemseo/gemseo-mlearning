@@ -111,10 +111,12 @@ def test_init(algo_distribution, input_space):
     assert algo.acquisition_criterion.name == "EI"
     assert algo._ActiveLearningAlgo__acquisition_problem.objective.name == "-EI"
     assert (
-        algo._ActiveLearningAlgo__acquisition_algo.algo_name == algo.default_algo_name
+        algo._ActiveLearningAlgo__acquisition_algo.algo_name
+        == algo._ActiveLearningAlgo__default_algo_name
     )
     assert (
-        algo._ActiveLearningAlgo__acquisition_algo_settings == algo.default_opt_settings
+        algo._ActiveLearningAlgo__acquisition_algo_settings
+        == algo._ActiveLearningAlgo__default_algo_settings
     )
     assert (
         algo._ActiveLearningAlgo__acquisition_problem.design_space.variable_names
@@ -122,7 +124,7 @@ def test_init(algo_distribution, input_space):
     )
     assert algo._ActiveLearningAlgo__acquisition_problem.design_space == input_space
     assert algo._ActiveLearningAlgo__distribution == algo_distribution
-    assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == "NLOPT_COBYLA"
+    assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == "MultiStart"
 
 
 def test_init_parallel(kriging_distribution, input_space):
@@ -219,14 +221,8 @@ def test_set_acquisition_algorithm(
         kwargs.update(settings)
 
     algo.set_acquisition_algorithm(**kwargs)
-    if algo_name == "fullfact":
-        algo_settings = ActiveLearningAlgo.default_doe_settings.copy()
-    else:
-        algo_settings = ActiveLearningAlgo.default_opt_settings.copy()
-
-    algo_settings.update(settings)
     assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == algo_name
-    assert algo._ActiveLearningAlgo__acquisition_algo_settings == algo_settings
+    assert algo._ActiveLearningAlgo__acquisition_algo_settings == settings
 
 
 @pytest.mark.parametrize("as_dict", [False, True])

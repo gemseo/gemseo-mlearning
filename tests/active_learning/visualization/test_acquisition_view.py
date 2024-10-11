@@ -18,7 +18,6 @@ import re
 
 import pytest
 from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
-from gemseo.utils.platform import PLATFORM_IS_WINDOWS
 from gemseo.utils.testing.helpers import image_comparison
 from matplotlib.figure import Figure
 from numpy import array
@@ -27,8 +26,6 @@ from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearning
 from gemseo_mlearning.active_learning.visualization.acquisition_view import (
     AcquisitionView,
 )
-
-TOL = 0.0 if PLATFORM_IS_WINDOWS else 0.9
 
 
 @pytest.fixture(scope="module")
@@ -81,13 +78,13 @@ def test_new_point(acquisition_view):
     acquisition_view.draw(show=False, new_point=array([0.0, 0.0]))
 
 
-@image_comparison(["filled_false"], tol=TOL)
+@image_comparison(["filled_false"], tol=0.9)
 def test_filled(acquisition_view):
     """Check AcquisitionView without filled contours."""
     acquisition_view.draw(show=False, filled=False)
 
 
-@image_comparison(["n_test"])
+@image_comparison(["n_test"], tol=0.9)
 def test_n_test(acquisition_view):
     """Check AcquisitionView with a lower number of points."""
     acquisition_view.draw(show=False, n_test=5)

@@ -25,6 +25,15 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpac
 class RosenbrockProblem(OptimizationProblem):
     """A problem connecting the Rosenbrock function with its uncertain space."""
 
-    def __init__(self) -> None:  # noqa:D107
-        super().__init__(RosenbrockSpace())
+    def __init__(self, use_uncertain_space: bool = True) -> None:
+        """
+        Args:
+            use_uncertain_space: Whether to consider the input space
+                as an uncertain space.
+        """  # noqa: D205 D212
+        input_space = RosenbrockSpace()
+        if not use_uncertain_space:
+            input_space = input_space.to_design_space()
+
+        super().__init__(input_space)
         self.objective = RosenbrockFunction()

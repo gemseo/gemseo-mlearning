@@ -31,7 +31,6 @@ from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDesc
 from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
 from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 
-from gemseo_mlearning.algos.opt import OptimizationLibraryOptionType
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
 )
@@ -49,7 +48,6 @@ SBOSettingType = Union[
     Mapping[str, DriverLibrarySettingType],
     Mapping[str, MLAlgoParameterType],
     Mapping[str, Any],
-    Mapping[str, OptimizationLibraryOptionType],
 ]
 
 
@@ -119,7 +117,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             regression_algorithm=regression_algorithm,
             regression_options=settings["regression_options"],
             regression_file_path=settings["regression_file_path"],
-            acquisition_settings=settings["acquisition_settings"],
+            **settings["acquisition_settings"],
         )
         # Set a large bound on the number of acquisitions as GEMSEO handles stopping
         return self._get_optimum_from_database(problem, optimizer.execute(sys.maxsize))

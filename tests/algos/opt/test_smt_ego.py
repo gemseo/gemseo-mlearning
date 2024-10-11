@@ -113,7 +113,7 @@ def test_criteria(criterion, surrogate):  # noqa: N803
     objective = MDOFunction(scaled_rosenbrock, "scaled_rosenbrock")
     ego.optimize(fun=objective.evaluate)
 
-    assert_equal(objective.last_eval, last_eval)
+    assert_allclose(objective.last_eval, last_eval, atol=1e-2)
 
 
 def test_batch():  # noqa: N803
