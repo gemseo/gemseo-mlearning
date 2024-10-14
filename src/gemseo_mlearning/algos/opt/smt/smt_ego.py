@@ -67,7 +67,7 @@ class SMTEGO(BaseOptimizationLibrary):
             description="Efficient Global Optimization",
             internal_algorithm_name="SMT_EGO",
             website="https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html",  # noqa: E501
-            settings=EGOSettings,
+            Settings=EGOSettings,
         )
     }
 

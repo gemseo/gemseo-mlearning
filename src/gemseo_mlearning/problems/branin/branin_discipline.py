@@ -18,8 +18,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from gemseo.core.discipline import MDODiscipline
+from gemseo.core.discipline.discipline import Discipline
 from numpy import array
+from numpy import concatenate
 
 from gemseo_mlearning.problems.branin.functions import compute_gradient
 from gemseo_mlearning.problems.branin.functions import compute_output
@@ -28,31 +29,37 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
 
 
-class BraninDiscipline(MDODiscipline):
+class BraninDiscipline(Discipline):
     """The Branin function as a discipline."""
 
     def __init__(self) -> None:  # noqa: D107
         super().__init__()
         self.input_grammar.update_from_names(["x1", "x2"])
         self.output_grammar.update_from_names(["y"])
-        self.default_inputs.update({
+        self.default_input_data.update({
             name: array([0.0]) for name in self.input_grammar.names
         })
 
     def _run(self) -> None:
-        self.store_local_data(y=array([compute_output(self.get_inputs_asarray())]))
+        inputs_array = concatenate([
+            self.io.data[name] for name in self.io.input_grammar
+        ])
+        self.io.update_output_data({"y": array([compute_output(inputs_array)])})
 
     def _compute_jacobian(
         self,
         inputs: Iterable[str] | None = None,
         outputs: Iterable[str] | None = None,
     ) -> None:
+        inputs_array = concatenate([
+            self.io.data[name] for name in self.io.input_grammar
+        ])
         self.jac = {
             "y": {
                 input_name: array([[derivative]])
                 for input_name, derivative in zip(
-                    self.get_input_data_names(),
-                    compute_gradient(self.get_inputs_asarray()),
+                    self.io.input_grammar.names,
+                    compute_gradient(inputs_array),
                 )
             }
         }
