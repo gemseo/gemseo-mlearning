@@ -62,7 +62,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 
     from gemseo.algos.base_driver_library import BaseDriverLibrary
-    from gemseo.core.discipline import MDODiscipline
+    from gemseo.core.discipline.discipline import Discipline
     from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.post.dataset.lines import Lines
     from matplotlib.figure import Figure
@@ -334,7 +334,7 @@ class ActiveLearningAlgo:
 
     def acquire_new_points(
         self,
-        discipline: MDODiscipline,
+        discipline: Discipline,
         n_samples: int = 1,
         show: bool = False,
         file_path: str | Path = "",
@@ -447,7 +447,7 @@ class ActiveLearningAlgo:
 
     def plot_acquisition_view(
         self,
-        discipline: MDODiscipline | None = None,
+        discipline: Discipline | None = None,
         filled: bool = True,
         n_test: int = 30,
         show: bool = True,

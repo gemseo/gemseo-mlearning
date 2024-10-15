@@ -72,7 +72,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             handle_inequality_constraints=False,
             handle_integer_variables=True,  # provided acquisition handles integers
             internal_algorithm_name="SBO",
-            settings=SBOSettings,
+            Settings=SBOSettings,
         )
     }
 

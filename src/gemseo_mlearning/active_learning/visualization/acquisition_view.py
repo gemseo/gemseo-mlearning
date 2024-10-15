@@ -28,7 +28,7 @@ from numpy import zeros
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from gemseo.core.discipline import MDODiscipline
+    from gemseo.core.discipline.discipline import Discipline
     from gemseo.typing import RealArray
     from matplotlib.figure import Figure
 
@@ -72,7 +72,7 @@ class AcquisitionView:
     def draw(
         self,
         new_point: RealArray | None = None,
-        discipline: MDODiscipline | None = None,
+        discipline: Discipline | None = None,
         filled: bool = True,
         n_test: int = 30,
         show: bool = True,
