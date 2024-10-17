@@ -48,8 +48,8 @@ class RosenbrockDiscipline(Discipline):
 
     def _compute_jacobian(
         self,
-        inputs: Iterable[str] | None = None,
-        outputs: Iterable[str] | None = None,
+        input_names: Iterable[str] = (),
+        output_names: Iterable[str] = (),
     ) -> None:
         inputs_array = concatenate([
             self.io.data[name] for name in self.io.input_grammar

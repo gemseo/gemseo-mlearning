@@ -44,6 +44,7 @@ from gemseo_mlearning.algos.opt.smt.ego_settings import EGOSettings
 
 if TYPE_CHECKING:
     from gemseo.algos.optimization_problem import OptimizationProblem
+    from gemseo.typing import RealArray
     from smt.surrogate_models.surrogate_model import SurrogateModel
 
 
@@ -74,9 +75,11 @@ class SMTEGO(BaseOptimizationLibrary):
     def __init__(self, algo_name: str = "SMT_EGO") -> None:  # noqa: D107
         super().__init__(algo_name)
 
-    def _run(self, problem: OptimizationProblem, **settings: Any) -> OptimizationResult:
+    def _run(
+        self, problem: OptimizationProblem, **settings: Any
+    ) -> tuple[None, None, RealArray, RealArray, RealArray]:
         x_0, lower_bounds, upper_bounds = get_value_and_bounds(
-            self.problem.design_space, normalize_ds=True
+            problem.design_space, normalize_ds=True
         )
 
         surrogate = settings["surrogate"]
@@ -126,12 +129,29 @@ class SMTEGO(BaseOptimizationLibrary):
             random_state=settings["random_state"],
             n_max_optim=settings["n_max_optim"],
         )
-        x_opt, y_opt, _, _, _ = ego.optimize(fun=self.problem.objective.evaluate)
+        x_opt, y_opt, _, _, _ = ego.optimize(fun=problem.objective.evaluate)
+        return (
+            None,
+            None,
+            x_0,
+            x_opt,
+            y_opt,
+        )
+
+    def _get_result(
+        self,
+        problem: OptimizationProblem,
+        message: Any,
+        status: Any,
+        x_0: RealArray,
+        x_opt: RealArray,
+        f_opt: RealArray,
+    ) -> OptimizationResult:
         return OptimizationResult(
             x_0=x_0,
             x_opt=x_opt,
-            f_opt=y_opt,
+            f_opt=f_opt,
             optimizer_name=self.algo_name,
-            n_obj_call=self.problem.objective.n_calls,
+            n_obj_call=problem.objective.n_calls,
             is_feasible=True,
         )
