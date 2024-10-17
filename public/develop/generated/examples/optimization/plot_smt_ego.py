@@ -35,18 +35,18 @@ configure_logger()
 # %%
 # In this example,
 # we seek to minimize the Rosenbrock function $f(x,y)=(1-x)^2+100(y-x^2)^2$
-# over the design space $[-2,2]$.
+# over the design space $[-2,2]^2$.
 # First,
 # we instantiate the problem with $(0, 0)$ as initial guess:
 problem = Rosenbrock()
 
 # %%
 # Then,
-# we minimize the Rosenbrock function using
+# we minimize the Rosenbrock function using:
 #
 # - the `"SMT_EGO"` algorithm,
-# - a maximum number of iterations equal to 40,
-#   including the initial evaluation at the center of the design space
+# - a maximum number of evaluations equal to 40,
+#   including the initial one at the center of the design space
 #   (this first point is common to all optimization algorithms)
 #   and the initial training dataset,
 # - its default settings,
@@ -61,7 +61,7 @@ problem = Rosenbrock()
 execute_algo(problem, "SMT_EGO", max_iter=40)
 
 # %%
-# We can see in the log
+# We can see
 # that the solution is close to the theoretical one $(x^*,f^*)=((1,1),0)$.
 #
 # We can also visualize all the evaluations

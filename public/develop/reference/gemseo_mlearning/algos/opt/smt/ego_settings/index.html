@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1148,11 +1148,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
+      <a href="../../../../../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Surrogate-based optimization of Rastrigin's function.
+    Surrogate-based optimization using in-house features.
   </span>
   
 
@@ -1254,7 +1254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/regression/plot_smt/" class="md-nav__link">
+      <a href="../../../../../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3329,6 +3329,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate.GPX" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GPX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate.KPLS" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;KPLS
@@ -4206,6 +4215,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate.GPX" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GPX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate.KPLS" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;KPLS
@@ -4297,6 +4315,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -4326,6 +4349,11 @@
 <p>In the following, the training output values already used and the output and
 uncertainty predictions at a given input point <span class="arithmatex">\(x\)</span> are respectively denoted
 <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>, <span class="arithmatex">\(\mu(x)\)</span> and <span class="arithmatex">\(\sigma(x)\)</span>.</p>
+
+
+
+
+
 
 
 
@@ -4446,7 +4474,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>criterion</code></b>
+            <b><code>criterion</code></b>
               (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
                   <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
 )
@@ -4456,7 +4484,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>enable_tunneling</code></b>
+            <b><code>enable_tunneling</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
                   <code>False</code>
 )
@@ -4466,7 +4494,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>n_doe</code></b>
+            <b><code>n_doe</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>10</code>
 )
@@ -4476,7 +4504,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>n_max_optim</code></b>
+            <b><code>n_max_optim</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>20</code>
 )
@@ -4486,7 +4514,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>n_parallel</code></b>
+            <b><code>n_parallel</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>1</code>
 )
@@ -4496,7 +4524,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>n_start</code></b>
+            <b><code>n_start</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>50</code>
 )
@@ -4506,7 +4534,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>qEI</code></b>
+            <b><code>qEI</code></b>
               (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
                   <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
 )
@@ -4516,7 +4544,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>random_state</code></b>
+            <b><code>random_state</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>1</code>
 )
@@ -4526,7 +4554,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>surrogate</code></b>
+            <b><code>surrogate</code></b>
               (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
                   <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
 )
@@ -4536,6 +4564,11 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
           </div>
         </li>
     </ul>
+
+
+
+
+
 
 
 
@@ -4578,6 +4611,11 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
 <p>In the following, the output variable, the training output values already used, and
 the output and uncertainty predictions at a given input point <span class="arithmatex">\(x\)</span> are respectively
 denoted <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>, <span class="arithmatex">\(\mu(x)\)</span> and <span class="arithmatex">\(\sigma(x)\)</span>.</p>
+
+
+
+
+
 
 
 
@@ -4748,6 +4786,11 @@ the standard normal distribution.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -4755,6 +4798,30 @@ the standard normal distribution.</p>
 
 
 <h5 id="gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate-attributes">Attributes<a href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate-attributes" class="headerlink" title="Permanent link">&para;</a></h5>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate.GPX" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">GPX</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate.GPX" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">GPX</span> <span class="o">=</span> <span class="s1">&#39;GPX&#39;</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Kriging based on the <code>egobox</code> library.</p>
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-attribute">
 
@@ -4919,7 +4986,7 @@ the standard normal distribution.</p>
     <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../../../../../assets/_markdown_exec_pyodide.js"></script>
       

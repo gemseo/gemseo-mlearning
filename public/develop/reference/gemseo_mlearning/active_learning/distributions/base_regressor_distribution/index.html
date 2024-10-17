@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1148,11 +1148,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
+      <a href="../../../../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Surrogate-based optimization of Rastrigin's function.
+    Surrogate-based optimization using in-house features.
   </span>
   
 
@@ -1254,7 +1254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/regression/plot_smt/" class="md-nav__link">
+      <a href="../../../../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4205,6 +4205,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -4236,7 +4241,7 @@
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>regressor</code></b>
+            <b><code>regressor</code></b>
               (<code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>)
           –
           <div class="doc-md-description">
@@ -4244,6 +4249,11 @@
           </div>
         </li>
     </ul>
+
+
+
+
+
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
@@ -4417,7 +4427,7 @@
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>learning_set</code></b>
+            <b><code>learning_set</code></b>
               (<code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.dataset_.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>)
           –
           <div class="doc-md-description">
@@ -4486,7 +4496,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>input_data</code></b>
+            <b><code>input_data</code></b>
               (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
           –
           <div class="doc-md-description">
@@ -4494,7 +4504,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>level</code></b>
+            <b><code>level</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
                   <code>0.95</code>
 )
@@ -4610,7 +4620,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>input_data</code></b>
+            <b><code>input_data</code></b>
               (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
           –
           <div class="doc-md-description">
@@ -4703,7 +4713,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>input_data</code></b>
+            <b><code>input_data</code></b>
               (<code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>)
           –
           <div class="doc-md-description">
@@ -4713,7 +4723,7 @@ shaped as <code>(N, d)</code>.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>n_samples</code></b>
+            <b><code>n_samples</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
           –
           <div class="doc-md-description">
@@ -4804,7 +4814,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>input_data</code></b>
+            <b><code>input_data</code></b>
               (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
           –
           <div class="doc-md-description">
@@ -4904,7 +4914,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>input_data</code></b>
+            <b><code>input_data</code></b>
               (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
           –
           <div class="doc-md-description">
@@ -4991,7 +5001,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>samples</code></b>
+            <b><code>samples</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>, default:
                   <code>None</code>
 )
@@ -5052,7 +5062,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>input_data</code></b>
+            <b><code>input_data</code></b>
               (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
           –
           <div class="doc-md-description">
@@ -5185,7 +5195,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
     <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../../../../assets/_markdown_exec_pyodide.js"></script>
       

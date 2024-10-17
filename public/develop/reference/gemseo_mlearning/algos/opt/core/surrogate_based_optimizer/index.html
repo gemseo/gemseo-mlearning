@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1148,11 +1148,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
+      <a href="../../../../../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Surrogate-based optimization of Rastrigin's function.
+    Surrogate-based optimization using in-house features.
   </span>
   
 
@@ -1254,7 +1254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/regression/plot_smt/" class="md-nav__link">
+      <a href="../../../../../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3130,15 +3130,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functions
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -3929,15 +3920,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      Functions
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -3979,6 +3961,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -4003,18 +3990,14 @@
     <span class="n">doe_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">doe_algorithm</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span>
     <span class="n">doe_settings</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span>
-        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.base_driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span></span>
-    <span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
-    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="p">(</span>
-        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span>
-    <span class="p">)</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.base_driver_library.DriverLibrarySettingType">DriverLibrarySettingType</span></span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></span><span class="p">,</span>
+    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">=</span> <span class="n"><span title="gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor.__name__">__name__</span></span><span class="p">,</span>
     <span class="n">regression_options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span>
         <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.MLAlgoParameterType">MLAlgoParameterType</span></span>
-    <span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></span><span class="p">,</span>
     <span class="n">regression_file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">acquisition_settings</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a></span><span class="p">[</span>
-        <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n"><span title="gemseo_mlearning.algos.opt.OptimizationLibraryOptionType">OptimizationLibraryOptionType</span></span>
-    <span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">acquisition_settings</span><span class="p">:</span> <span class="n"><span title="gemseo.algos.base_driver_library.DriverLibrarySettingType">DriverLibrarySettingType</span></span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -4028,7 +4011,7 @@
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>acquisition_algorithm</code></b>
+            <b><code>acquisition_algorithm</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>)
           –
           <div class="doc-md-description">
@@ -4039,7 +4022,7 @@ variables are integers.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>problem</code></b>
+            <b><code>problem</code></b>
               (<code><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></code>)
           –
           <div class="doc-md-description">
@@ -4047,7 +4030,7 @@ variables are integers.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>doe_size</code></b>
+            <b><code>doe_size</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>0</code>
 )
@@ -4061,7 +4044,7 @@ when regression_algorithm is a
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>doe_algorithm</code></b>
+            <b><code>doe_algorithm</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
                   <code>&#39;OT_OPT_LHS&#39;</code>
 )
@@ -4074,8 +4057,8 @@ when regression_algorithm is a
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>doe_settings</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.algos.base_driver_library.DriverLibraryOptionType">DriverLibraryOptionType</span>]</code>, default:
+            <b><code>doe_settings</code></b>
+              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.algos.base_driver_library.DriverLibrarySettingType">DriverLibrarySettingType</span>]</code>, default:
                   <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
 )
           –
@@ -4087,9 +4070,9 @@ when regression_algorithm is a
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>regression_algorithm</code></b>
+            <b><code>regression_algorithm</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>, default:
-                  <code><span title="gemseo.mlearning.regression.algos.gpr.GaussianProcessRegressor.__name__">__name__</span></code>
+                  <code><span title="gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor.__name__">__name__</span></code>
 )
           –
           <div class="doc-md-description">
@@ -4099,7 +4082,7 @@ or the regression algorithm itself.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>regression_options</code></b>
+            <b><code>regression_options</code></b>
               (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo.mlearning.core.algos.ml_algo.MLAlgoParameterType">MLAlgoParameterType</span>]</code>, default:
                   <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
 )
@@ -4114,7 +4097,7 @@ when regression_algorithm is a
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>regression_file_path</code></b>
+            <b><code>regression_file_path</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>, default:
                   <code>&#39;&#39;</code>
 )
@@ -4125,9 +4108,9 @@ If empty, do not save the regression model.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>acquisition_settings</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <span title="gemseo_mlearning.algos.opt.OptimizationLibraryOptionType">OptimizationLibraryOptionType</span>]</code>, default:
-                  <code><a class="autorefs autorefs-external" title="gemseo.utils.constants.READ_ONLY_EMPTY_DICT" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.utils.constants.html#gemseo.utils.constants.READ_ONLY_EMPTY_DICT">READ_ONLY_EMPTY_DICT</a></code>
+            <b><code>**acquisition_settings</code></b>
+              (<code><span title="gemseo.algos.base_driver_library.DriverLibrarySettingType">DriverLibrarySettingType</span></code>, default:
+                  <code>{}</code>
 )
           –
           <div class="doc-md-description">
@@ -4137,9 +4120,19 @@ the data acquisition criterion.</p>
         </li>
     </ul>
 
+
+
+
+
+
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
 <span class="normal"> 81</span>
@@ -4226,24 +4219,17 @@ the data acquisition criterion.</p>
 <span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">problem</span><span class="p">:</span> <span class="n">OptimizationProblem</span><span class="p">,</span>
     <span class="n">acquisition_algorithm</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">doe_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">doe_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span>
-    <span class="n">doe_settings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DriverLibraryOptionType</span><span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
-    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="n">BaseRegressor</span><span class="p">)</span> <span class="o">=</span> <span class="n">GaussianProcessRegressor</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+    <span class="n">doe_settings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">DriverLibrarySettingType</span><span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
+    <span class="n">regression_algorithm</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">BaseRegressor</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
     <span class="n">regression_options</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MLAlgoParameterType</span><span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
     <span class="n">regression_file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">acquisition_settings</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span>
-        <span class="nb">str</span><span class="p">,</span> <span class="n">OptimizationLibraryOptionType</span>
-    <span class="p">]</span> <span class="o">=</span> <span class="n">READ_ONLY_EMPTY_DICT</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">acquisition_settings</span><span class="p">:</span> <span class="n">DriverLibrarySettingType</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
@@ -4276,10 +4262,12 @@ the data acquisition criterion.</p>
 <span class="sd">            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</span>
 <span class="sd">        regression_file_path: The path to the file to save the regression model.</span>
 <span class="sd">            If empty, do not save the regression model.</span>
-<span class="sd">        acquisition_settings: The settings of the algorithm to optimize</span>
+<span class="sd">        **acquisition_settings: The settings of the algorithm to optimize</span>
 <span class="sd">            the data acquisition criterion.</span>
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: D205, D212, D415</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__problem</span> <span class="o">=</span> <span class="n">problem</span>
+    <span class="n">database</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">database</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__initial_input_samples</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">database</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">regression_algorithm</span><span class="p">,</span> <span class="n">BaseRegressor</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="n">regression_algorithm</span><span class="o">.</span><span class="n">learning_set</span>
     <span class="k">else</span><span class="p">:</span>
@@ -4290,11 +4278,10 @@ the data acquisition criterion.</p>
             <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;n_samples&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doe_size</span>
 
         <span class="c1"># Store the listeners as they will be cleared by DOELibrary.</span>
-        <span class="n">new_iter_listeners</span><span class="p">,</span> <span class="n">store_listeners</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">clear_listeners</span><span class="p">()</span>
+        <span class="n">new_iter_listeners</span><span class="p">,</span> <span class="n">store_listeners</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">clear_listeners</span><span class="p">()</span>
         <span class="k">with</span> <span class="n">LoggingContext</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;gemseo&quot;</span><span class="p">)):</span>
             <span class="n">DOELibraryFactory</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">doe_algorithm</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
 
-        <span class="n">database</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__problem</span><span class="o">.</span><span class="n">database</span>
         <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="n">new_iter_listeners</span><span class="p">:</span>
             <span class="n">database</span><span class="o">.</span><span class="n">add_new_iter_listener</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span>
 
@@ -4302,11 +4289,14 @@ the data acquisition criterion.</p>
             <span class="n">database</span><span class="o">.</span><span class="n">add_store_listener</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="n">problem</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">(</span><span class="n">opt_naming</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">_regression_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;transformer&quot;</span><span class="p">:</span> <span class="n">BaseRegressor</span><span class="o">.</span><span class="n">DEFAULT_TRANSFORMER</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initial_input_samples</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__initial_input_samples</span><span class="p">)</span> <span class="p">:]</span>
+
+        <span class="n">_regression_options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;transformer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="s2">&quot;MinMaxScaler&quot;</span><span class="p">}}</span>
         <span class="n">_regression_options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">regression_options</span><span class="p">))</span>
         <span class="n">regression_algorithm</span> <span class="o">=</span> <span class="n">RegressorFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
             <span class="n">regression_algorithm</span><span class="p">,</span>
-            <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">,</span>
             <span class="o">**</span><span class="n">_regression_options</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="c1"># Add the first iteration to the current_iter reset by DOELibrary.</span>
@@ -4314,15 +4304,13 @@ the data acquisition criterion.</p>
         <span class="c1"># And restore max_iter.</span>
         <span class="n">problem</span><span class="o">.</span><span class="n">evaluation_counter</span><span class="o">.</span><span class="n">maximum</span> <span class="o">=</span> <span class="n">max_iter</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span> <span class="o">=</span> <span class="n">get_regressor_distribution</span><span class="p">(</span><span class="n">regression_algorithm</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
-        <span class="n">Minimum</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-        <span class="n">problem</span><span class="o">.</span><span class="n">design_space</span><span class="p">,</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span><span class="p">,</span>
+        <span class="n">Minimum</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">problem</span><span class="o">.</span><span class="n">design_space</span><span class="p">,</span> <span class="n">regression_algorithm</span>
     <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">set_acquisition_algorithm</span><span class="p">(</span>
-        <span class="n">acquisition_algorithm</span><span class="p">,</span> <span class="o">**</span><span class="n">acquisition_settings</span>
-    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">acquisition_algorithm</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">set_acquisition_algorithm</span><span class="p">(</span>
+            <span class="n">acquisition_algorithm</span><span class="p">,</span> <span class="o">**</span><span class="n">acquisition_settings</span>
+        <span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__regression_file_path</span> <span class="o">=</span> <span class="n">regression_file_path</span>
 </code></pre></div></td></tr></table></div>
                   </details>
@@ -4358,7 +4346,7 @@ the data acquisition criterion.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>number_of_acquisitions</code></b>
+            <b><code>number_of_acquisitions</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
           –
           <div class="doc-md-description">
@@ -4381,7 +4369,12 @@ the data acquisition criterion.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span>
@@ -4429,9 +4422,7 @@ the data acquisition criterion.</p>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
-<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the surrogate-based optimization.</span>
 
 <span class="sd">    Args:</span>
@@ -4440,11 +4431,15 @@ the data acquisition criterion.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        The termination message.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
+    <span class="n">regressor_distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">regressor_distribution</span>
+    <span class="n">regressor_distribution</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
     <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__STOP_BECAUSE_MAX_ACQUISITIONS</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_acquisitions</span><span class="p">):</span>
         <span class="n">input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">find_next_point</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">input_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__problem</span><span class="o">.</span><span class="n">database</span><span class="p">:</span>
+        <span class="n">hashed_input_data</span> <span class="o">=</span> <span class="n">HashableNdarray</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hashed_input_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__problem</span><span class="o">.</span><span class="n">database</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="n">hashed_input_data</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initial_input_samples</span>
+        <span class="p">):</span>
             <span class="n">message</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__STOP_BECAUSE_ALREADY_KNOWN</span>
             <span class="k">break</span>
 
@@ -4452,15 +4447,14 @@ the data acquisition criterion.</p>
             <span class="n">design_vector</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">design_vector_is_normalized</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">extra_learning_set</span> <span class="o">=</span> <span class="n">IODataset</span><span class="p">()</span>
-        <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span>
-        <span class="n">variable_names_to_n_components</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">sizes</span>
+        <span class="n">variable_names_to_n_components</span> <span class="o">=</span> <span class="n">regressor_distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">sizes</span>
         <span class="n">extra_learning_set</span><span class="o">.</span><span class="n">add_group</span><span class="p">(</span>
             <span class="n">group_name</span><span class="o">=</span><span class="n">IODataset</span><span class="o">.</span><span class="n">INPUT_GROUP</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="n">input_data</span><span class="p">[</span><span class="n">newaxis</span><span class="p">],</span>
-            <span class="n">variable_names</span><span class="o">=</span><span class="n">distribution</span><span class="o">.</span><span class="n">input_names</span><span class="p">,</span>
+            <span class="n">variable_names</span><span class="o">=</span><span class="n">regressor_distribution</span><span class="o">.</span><span class="n">input_names</span><span class="p">,</span>
             <span class="n">variable_names_to_n_components</span><span class="o">=</span><span class="n">variable_names_to_n_components</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">output_names</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">output_names</span>
+        <span class="n">output_names</span> <span class="o">=</span> <span class="n">regressor_distribution</span><span class="o">.</span><span class="n">output_names</span>
         <span class="n">extra_learning_set</span><span class="o">.</span><span class="n">add_group</span><span class="p">(</span>
             <span class="n">group_name</span><span class="o">=</span><span class="n">IODataset</span><span class="o">.</span><span class="n">OUTPUT_GROUP</span><span class="p">,</span>
             <span class="n">data</span><span class="o">=</span><span class="n">hstack</span><span class="p">([</span><span class="n">output_data</span><span class="p">[</span><span class="n">output_name</span><span class="p">]</span> <span class="k">for</span> <span class="n">output_name</span> <span class="ow">in</span> <span class="n">output_names</span><span class="p">])[</span>
@@ -4470,16 +4464,16 @@ the data acquisition criterion.</p>
             <span class="n">variable_names_to_n_components</span><span class="o">=</span><span class="n">variable_names_to_n_components</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span><span class="p">,</span> <span class="n">extra_learning_set</span><span class="p">],</span>
+            <span class="p">[</span><span class="n">regressor_distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span><span class="p">,</span> <span class="n">extra_learning_set</span><span class="p">],</span>
             <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
-        <span class="n">distribution</span><span class="o">.</span><span class="n">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">)</span>
+        <span class="n">regressor_distribution</span><span class="o">.</span><span class="n">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__active_learning_algo</span><span class="o">.</span><span class="n">update_problem</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__regression_file_path</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__regression_file_path</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-                <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+                <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">regressor_distribution</span><span class="o">.</span><span class="n">algo</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">message</span>
 </code></pre></div></td></tr></table></div>
@@ -4495,7 +4489,7 @@ the data acquisition criterion.</p>
     </div>
 
 </div>
-<h3 id="gemseo_mlearning.algos.opt.core.surrogate_based_optimizer-functions">Functions<a href="#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer-functions" class="headerlink" title="Permanent link">&para;</a></h3>
+
 
 
 
@@ -4553,7 +4547,7 @@ the data acquisition criterion.</p>
     <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../../../../../assets/_markdown_exec_pyodide.js"></script>
       

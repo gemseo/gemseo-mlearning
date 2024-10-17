@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1148,11 +1148,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/optimization/sbo_rastrigin/" class="md-nav__link">
+      <a href="../../../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Surrogate-based optimization of Rastrigin's function.
+    Surrogate-based optimization using in-house features.
   </span>
   
 
@@ -1254,7 +1254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/regression/plot_smt/" class="md-nav__link">
+      <a href="../../../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3945,6 +3945,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -3989,7 +3994,7 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">SMTRegressor</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></span><span class="p">,</span>
     <span class="n">model_class_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.smt_regressor.SMTSurrogateModel" href="#gemseo_mlearning.regression.smt_regressor.SMTSurrogateModel">SMTSurrogateModel</a></span><span class="p">,</span>
-    <span class="n">transformer</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></span> <span class="o">=</span> <span class="n">BaseRegressor</span><span class="o">.</span><span class="n">IDENTITY</span><span class="p">,</span>
+    <span class="n">transformer</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></span> <span class="o">=</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor.IDENTITY">IDENTITY</span></span><span class="p">,</span>
     <span class="n">input_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="n">output_names</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">(),</span>
     <span class="o">**</span><span class="n">model_options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
@@ -4016,7 +4021,7 @@ for the list of surrogate models and options.</p>
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-          <b><code>data</code></b>
+            <b><code>data</code></b>
               (<code><a class="autorefs autorefs-external" title="gemseo.datasets.io_dataset.IODataset" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a></code>)
           –
           <div class="doc-md-description">
@@ -4024,7 +4029,7 @@ for the list of surrogate models and options.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>model_class_name</code></b>
+            <b><code>model_class_name</code></b>
               (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.regression.smt_regressor.SMTSurrogateModel" href="#gemseo_mlearning.regression.smt_regressor.SMTSurrogateModel">SMTSurrogateModel</a></code>)
           –
           <div class="doc-md-description">
@@ -4034,7 +4039,7 @@ i.e. a subclass of
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>transformer</code></b>
+            <b><code>transformer</code></b>
               (<code><span title="gemseo.mlearning.core.algos.ml_algo.TransformerType">TransformerType</span></code>, default:
                   <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor.IDENTITY">IDENTITY</span></code>
 )
@@ -4054,7 +4059,7 @@ If :attr:<code>.IDENTITY</code>, do not transform the variables.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>input_names</code></b>
+            <b><code>input_names</code></b>
               (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
                   <code>()</code>
 )
@@ -4065,7 +4070,7 @@ If empty, consider all the input variables of the learning dataset.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>output_names</code></b>
+            <b><code>output_names</code></b>
               (<code><a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>, default:
                   <code>()</code>
 )
@@ -4076,7 +4081,7 @@ If empty, consider all the output variables of the learning dataset.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-          <b><code>**model_options</code></b>
+            <b><code>**model_options</code></b>
               (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
                   <code>{}</code>
 )
@@ -4099,6 +4104,11 @@ have a transformer.</p>
           </div>
         </li>
     </ul>
+
+
+
+
+
 
                   <details class="quote">
                     <summary>Source code in <code>src/gemseo_mlearning/regression/smt_regressor.py</code></summary>
@@ -4235,7 +4245,7 @@ have a transformer.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
       

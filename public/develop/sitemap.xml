@@ -2,402 +2,402 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/changelog/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/credits/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/licenses/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/developer_guide/active_learning/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/ego_gpr/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/ego_rbf/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_bootstrap/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_cv/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_cv_boot/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_gpr/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/quantile_gpr/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/mg_execution_times/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
+    </url>
+    <url>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/plot_sbo_ego/</loc>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/plot_smt_ego/</loc>
-         <lastmod>2024-10-10</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/sbo_rastrigin/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/mg_execution_times/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/plot_smt/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/plot_smt_regressor/</loc>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/SUMMARY/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/active_learning_algo/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/base_exploration/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/distance/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/factory/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/standard_deviation/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/variance/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_ei_ef/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ef/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ei/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/factory/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/u/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/base_maximum/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ei/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/factory/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/output/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ucb/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/base_minimum/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/ei/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/factory/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/lcb/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/output/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ef/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ei/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/factory/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/u/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/distributions/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/visualization/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/visualization/acquisition_view/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/visualization/qoi_history_view/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/sbo_settings/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/core/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/smt/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/smt/ego_settings/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/smt/smt_ego/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/branin/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/branin/branin_discipline/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/branin/branin_function/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/branin/branin_problem/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/branin/branin_space/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/branin/functions/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/functions/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_discipline/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_function/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_problem/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_space/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regressor/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/active_learning_algo/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/active_learning/what_active_learning_is/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/optimization/smt/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/regression/smt/</loc>
-         <lastmod>2024-10-10</lastmod>
+         <lastmod>2024-10-17</lastmod>
     </url>
 </urlset>
