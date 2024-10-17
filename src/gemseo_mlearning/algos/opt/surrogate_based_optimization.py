@@ -38,7 +38,6 @@ from gemseo_mlearning.algos.opt.sbo_settings import SBOSettings
 
 if TYPE_CHECKING:
     from gemseo.algos.base_problem import BaseProblem
-    from gemseo.algos.optimization_result import OptimizationResult
 
 
 SBOSettingType = Union[
@@ -78,7 +77,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
 
     def _run(
         self, problem: BaseProblem, **settings: SBOSettingType
-    ) -> OptimizationResult:
+    ) -> tuple[str, None]:
         """
         Raises:
             ValueError: When the maximum number of iterations
@@ -96,9 +95,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
             doe_algo = DOELibraryFactory().create(doe_algorithm)
             initial_doe_size = len(
-                doe_algo.compute_doe(
-                    self.problem.design_space, doe_size, **doe_settings
-                )
+                doe_algo.compute_doe(problem.design_space, doe_size, **doe_settings)
             )
             max_iter = settings["max_iter"]
             if max_iter < 1 + initial_doe_size:
@@ -119,5 +116,4 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             regression_file_path=settings["regression_file_path"],
             **settings["acquisition_settings"],
         )
-        # Set a large bound on the number of acquisitions as GEMSEO handles stopping
-        return self._get_optimum_from_database(problem, optimizer.execute(sys.maxsize))
+        return optimizer.execute(sys.maxsize), None
