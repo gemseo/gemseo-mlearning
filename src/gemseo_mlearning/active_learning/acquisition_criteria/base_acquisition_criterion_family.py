@@ -37,4 +37,4 @@ class AcquisitionCriterionFamilyFactory(BaseFactory):
     """The factory of families of acquisition criteria."""
 
     _CLASS = BaseAcquisitionCriterionFamily
-    _MODULE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria",)
+    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria",)

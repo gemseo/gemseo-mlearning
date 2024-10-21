@@ -19,7 +19,7 @@
 
 from __future__ import annotations
 
-from gemseo.algos.opt._base_optimization_library_settings import (
+from gemseo.algos.opt.base_optimization_library_settings import (
     BaseOptimizationLibrarySettings,
 )
 from pydantic import Field

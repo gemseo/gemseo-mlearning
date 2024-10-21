@@ -112,7 +112,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             doe_algorithm=doe_algorithm,
             doe_settings=doe_settings,
             regression_algorithm=regression_algorithm,
-            regression_options=settings["regression_options"],
+            regression_settings=settings["regression_settings"],
             regression_file_path=settings["regression_file_path"],
             **settings["acquisition_settings"],
         )

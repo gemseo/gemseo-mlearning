@@ -28,5 +28,5 @@ class MaximumFactory(BaseAcquisitionCriterionFactory):
     """A factory of acquisition criteria to approximate a maximum."""
 
     _CLASS = BaseMaximum
-    _MODULE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria.maximum",)
+    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria.maximum",)
     _DEFAULT_CLASS_NAME = "EI"

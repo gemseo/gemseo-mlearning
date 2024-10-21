@@ -20,7 +20,7 @@ from collections.abc import Mapping  # noqa: TCH003
 from pathlib import Path  # noqa: TCH003
 
 from gemseo.algos.base_driver_library import DriverLibrarySettingType  # noqa: TCH002
-from gemseo.algos.opt._base_optimization_library_settings import (
+from gemseo.algos.opt.base_optimization_library_settings import (  # noqa: TCH002
     BaseOptimizationLibrarySettings,
 )
 from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType  # noqa: TCH002
@@ -117,10 +117,10 @@ class SBOSettings(BaseOptimizationLibrarySettings):
         ),
     )
 
-    regression_options: Mapping[str, MLAlgoParameterType] = Field(
+    regression_settings: Mapping[str, MLAlgoParameterType] = Field(
         default_factory=dict,
         description=(
-            """The options of the regression algorithm.
+            """The settings of the regression algorithm.
 
             This argument is ignored
             when regression_algorithm is a

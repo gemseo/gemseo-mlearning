@@ -32,13 +32,13 @@ from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
 
 
 @pytest.mark.parametrize(
-    ("regression_algorithm", "regression_options"),
+    ("regression_algorithm", "regression_settings"),
     [
         ("GaussianProcessRegressor", {}),
         ("OTGaussianProcessRegressor", {"use_hmat": False}),
     ],
 )
-def test_all_acquisitions_made(regression_algorithm, regression_options):
+def test_all_acquisitions_made(regression_algorithm, regression_settings):
     """Check the execution of the surrogate-based optimizer with all acquisitions."""
     assert (
         SurrogateBasedOptimizer(
@@ -46,7 +46,7 @@ def test_all_acquisitions_made(regression_algorithm, regression_options):
             "fullfact",
             5,
             regression_algorithm=regression_algorithm,
-            regression_options=regression_options,
+            regression_settings=regression_settings,
             n_samples=10,
         ).execute(1)
         == "All the data acquisitions have been made."
@@ -110,7 +110,8 @@ def test_stratified_algorithm():
 
 def test_ml_regression_algo_instance(regression_algorithm):
     """Check the execution of the surrogate-based optimizer with an
-    BaseMLRegressionAlgo."""
+    BaseMLRegressionAlgo.
+    """
     optimizer = SurrogateBasedOptimizer(
         Rastrigin(),
         "CustomDOE",
