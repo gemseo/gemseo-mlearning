@@ -33,6 +33,8 @@ $$f(x,y) = (1-x)^2 + 100(y-x^2)^2$$
 over the domain $[-2,2]^2$.
 """
 
+from __future__ import annotations
+
 from gemseo import compute_doe
 from gemseo import sample_disciplines
 from gemseo.datasets.io_dataset import IODataset
@@ -66,7 +68,9 @@ training_data = sample_disciplines([discipline], input_space, "y", 20, "OT_OPT_L
 # based on the
 # [SMT's RBF surrogate model](https://smt.readthedocs.io/en/latest/_src_docs/surrogate_models/rbf.html)
 # with the basis function scaling parameter `d_0` set to 2.0 (instead of 1.0):
-surrogate_model = SMTRegressor(training_data, "RBF", d0=2)
+surrogate_model = SMTRegressor(
+    training_data, model_class_name="RBF", parameters={"d0": 2}
+)
 surrogate_model.learn()
 
 # %%

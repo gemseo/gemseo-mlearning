@@ -30,7 +30,7 @@ You only have to instantiate this [SMTRegressor][gemseo_mlearning.regression.smt
 Here's how to build an SMT's RBF surrogate model with the basis function scaling parameter `d_0` set to 2.0 (instead of 1.0):
 
 ```python
-model = SMTRegressor(training_dataset, "RBF", d0=2.0)
+model = SMTRegressor(training_dataset, model_class_name="RBF", parameters={"d0": 2})
 model.learn()
 ```
 

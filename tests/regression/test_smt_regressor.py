@@ -69,7 +69,7 @@ def regressor_and_model(io_data) -> tuple[SMTRegressor, RBF]:
     dataset.add_input_group(input_data)
     dataset.add_output_group(output_data)
 
-    regressor = SMTRegressor(dataset, "RBF", d0=2)
+    regressor = SMTRegressor(dataset, model_class_name="RBF", parameters={"d0": 2})
     regressor.learn()
 
     model = RBF(d0=2)
@@ -136,7 +136,7 @@ def test_gradient_enhanced_smt_regressor():
     SciPyDOE("LHS").execute(problem, eval_jac=True, n_samples=30)
     dataset = problem.to_dataset(opt_naming=False, export_gradients=True)
 
-    regressor = SMTRegressor(dataset, "GEKPLS")
+    regressor = SMTRegressor(dataset, model_class_name="GEKPLS")
 
     # Check that the training does not raise an exception
     regressor.learn()
@@ -147,7 +147,9 @@ def test_gradient_enhanced_smt_regressor():
     assert algo.options["n_comp"] == 2
 
     # Check that custom values can be passed
-    regressor = SMTRegressor(dataset, "GEKPLS", n_comp=5)
+    regressor = SMTRegressor(
+        dataset, model_class_name="GEKPLS", parameters={"n_comp": 5}
+    )
     assert regressor.algo.options["n_comp"] == 5
 
     # Check that passing a gradient-free IODataset raises a ValueError
@@ -157,7 +159,7 @@ def test_gradient_enhanced_smt_regressor():
     dataset.add_input_group(x)
     dataset.add_output_group(y)
 
-    regressor = SMTRegressor(dataset, "GEKPLS")
+    regressor = SMTRegressor(dataset, model_class_name="GEKPLS")
     with pytest.raises(
         ValueError,
         match=re.escape(

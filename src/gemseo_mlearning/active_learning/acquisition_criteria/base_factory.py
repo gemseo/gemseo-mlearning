@@ -14,6 +14,8 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """A factory of acquisition criteria."""
 
+from __future__ import annotations
+
 from abc import abstractmethod
 from typing import ClassVar
 
@@ -28,7 +30,7 @@ class BaseAcquisitionCriterionFactory(BaseFactory):
     """A factory of acquisition criteria."""
 
     _CLASS = BaseAcquisitionCriterion
-    _MODULE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria",)
+    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria",)
 
     @property
     @abstractmethod

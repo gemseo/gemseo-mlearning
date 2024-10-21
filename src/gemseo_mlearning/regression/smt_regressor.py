@@ -17,43 +17,20 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Any
-from typing import Final
+from typing import ClassVar
 
 from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
-from gemseo.mlearning.regression.algos.rbf import RBFRegressor
 from numpy import concatenate
 from numpy import double
 from numpy import newaxis
-from smt.surrogate_models.surrogate_model import SurrogateModel
 from strenum import StrEnum
 
-if TYPE_CHECKING:
-    from collections.abc import Iterable
-    from collections.abc import Iterator
+from gemseo_mlearning.regression.smt_regressor_settings import SMTRegressorSettings
 
-    from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.algos.ml_algo import TransformerType
+if TYPE_CHECKING:
     from gemseo.typing import NumberArray
 
-
-def _get_subclasses(cls: type) -> Iterator[type]:
-    """Return the subclasses of a class of interest recursively.
-
-    Args:
-        cls: The class of interest.
-
-    Yields:
-        The subclasses of the class of interest.
-    """
-    for subclass in cls.__subclasses__():
-        yield from _get_subclasses(subclass)
-        yield subclass
-
-
-_NAMES_TO_CLASSES: Final[dict[str, type[SurrogateModel]]] = {
-    cls.__name__: cls for cls in _get_subclasses(SurrogateModel)
-}
+from gemseo_mlearning.regression.smt_regressor_settings import _NAMES_TO_CLASSES
 
 SMTSurrogateModel = StrEnum("SurrogateModel", list(_NAMES_TO_CLASSES.keys()))
 """The class name of an SMT surrogate model."""
@@ -71,33 +48,12 @@ class SMTRegressor(BaseRegressor):
         for the list of surrogate models and options.
     """
 
-    def __init__(
-        self,
-        data: IODataset,
-        model_class_name: SMTSurrogateModel,
-        transformer: TransformerType = BaseRegressor.IDENTITY,
-        input_names: Iterable[str] = (),
-        output_names: Iterable[str] = (),
-        **model_options: Any,
-    ) -> None:
-        """
-        Args:
-            model_class_name: The class name of a surrogate model available in SMT,
-                i.e. a subclass of
-                `smt.surrogate_models.surrogate_model.SurrogateModel`.
-            **model_options: The options of the surrogate model.
-        """  # noqa: D205 D212 D415
-        super().__init__(
-            data,
-            transformer=transformer,
-            input_names=input_names,
-            output_names=output_names,
-            function=RBFRegressor.Function.THIN_PLATE,
-            **model_options,
-        )
-        _model_options = {"print_global": False}
-        _model_options.update(model_options)
-        self.algo = _NAMES_TO_CLASSES[model_class_name](**_model_options)
+    Settings: ClassVar[type[SMTRegressorSettings]] = SMTRegressorSettings
+
+    def _post_init(self):
+        super()._post_init()
+        model_class = _NAMES_TO_CLASSES[str(self._settings.model_class_name)]
+        self.algo = model_class(**self._settings.parameters)
 
     def _fit(self, input_data: NumberArray, output_data: NumberArray) -> None:
         """

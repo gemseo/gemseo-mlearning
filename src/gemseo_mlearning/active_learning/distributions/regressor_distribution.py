@@ -118,9 +118,7 @@ class RegressorDistribution(BaseRegressorDistribution):
                 self.method = self.CROSS_VALIDATION
                 self.size = size or self.N_FOLDS
         self.algos = [
-            algo.__class__(
-                data=algo.learning_set, transformer=algo.transformer, **algo.parameters
-            )
+            algo.__class__(algo.learning_set, settings_model=algo._settings)
             for _ in range(self.size)
         ]
         self.weights = []

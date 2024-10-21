@@ -28,7 +28,7 @@ class ExplorationFactory(BaseAcquisitionCriterionFactory):
     """A factory of acquisition criteria to explore the input space."""
 
     _CLASS = BaseExploration
-    _MODULE_NAMES = (
+    _PACKAGE_NAMES = (
         "gemseo_mlearning.active_learning.acquisition_criteria.exploration",
     )
     _DEFAULT_CLASS_NAME = "Variance"

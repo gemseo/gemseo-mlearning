@@ -78,7 +78,7 @@ class SurrogateBasedOptimizer:
         doe_algorithm: str = "OT_OPT_LHS",
         doe_settings: Mapping[str, DriverLibrarySettingType] = READ_ONLY_EMPTY_DICT,
         regression_algorithm: str | BaseRegressor = OTGaussianProcessRegressor.__name__,
-        regression_options: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
+        regression_settings: Mapping[str, MLAlgoParameterType] = READ_ONLY_EMPTY_DICT,
         regression_file_path: str | Path = "",
         **acquisition_settings: DriverLibrarySettingType,
     ) -> None:
@@ -105,7 +105,7 @@ class SurrogateBasedOptimizer:
             regression_algorithm: Either the name of the regression algorithm
                 approximating the objective function over the design space
                 or the regression algorithm itself.
-            regression_options: The options of the regression algorithm.
+            regression_settings: The settings of the regression algorithm.
                 If transformer is missing,
                 use :attr:`.BaseMLRegressionAlgo.DEFAULT_TRANSFORMER`.
                 This argument is ignored
@@ -143,12 +143,12 @@ class SurrogateBasedOptimizer:
             if self.__initial_input_samples:
                 self.__dataset = self.__dataset[len(self.__initial_input_samples) :]
 
-            _regression_options = {"transformer": {"inputs": "MinMaxScaler"}}
-            _regression_options.update(dict(regression_options))
+            _regression_settings = {"transformer": {"inputs": "MinMaxScaler"}}
+            _regression_settings.update(dict(regression_settings))
             regression_algorithm = RegressorFactory().create(
                 regression_algorithm,
                 self.__dataset,
-                **_regression_options,
+                **_regression_settings,
             )
             # Add the first iteration to the current_iter reset by DOELibrary.
             problem.evaluation_counter.current += 1

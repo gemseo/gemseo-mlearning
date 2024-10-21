@@ -28,5 +28,5 @@ class QuantileFactory(BaseAcquisitionCriterionFactory):
     """A factory of acquisition criteria to approximate level sets."""
 
     _CLASS = BaseQuantile
-    _MODULE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria.quantile",)
+    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria.quantile",)
     _DEFAULT_CLASS_NAME = "U"
