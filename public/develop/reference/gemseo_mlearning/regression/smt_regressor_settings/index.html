@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/">
+        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regressor_settings/">
       
       
-        <link rel="prev" href="../factory/">
+        <link rel="prev" href="../smt_regressor/">
       
       
-        <link rel="next" href="../u/">
+        <link rel="next" href="../../../../developer_guide/active_learning/">
       
       
-      <link rel="icon" href="../../../../../../images/favicon.ico">
+      <link rel="icon" href="../../../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
-        <title>Level set - gemseo-mlearning</title>
+        <title>Smt regressor settings - gemseo-mlearning</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,21 +48,21 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../../assets/_markdown_exec_pyodide.css">
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
     
-      <link rel="stylesheet" href="../../../../../../assets/_markdown_exec_ansi.css">
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
     
-      <link rel="stylesheet" href="../../../../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery-binder.css">
+      <link rel="stylesheet" href="../../../../sg_gallery-binder.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery.css">
+      <link rel="stylesheet" href="../../../../sg_gallery.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery-rendered-html.css">
+      <link rel="stylesheet" href="../../../../sg_gallery-rendered-html.css">
     
-      <link rel="stylesheet" href="../../../../../../sg_gallery-dataframe.css">
+      <link rel="stylesheet" href="../../../../sg_gallery-dataframe.css">
     
-    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set" class="md-skip">
+        <a href="#gemseo_mlearning.regression.smt_regressor_settings" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+    <a href="../../../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Level set
+              Smt regressor settings
             
           </span>
         </div>
@@ -235,7 +235,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../.." class="md-tabs__link">
+        <a href="../../../.." class="md-tabs__link">
           
   
     
@@ -255,7 +255,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../user_guide/" class="md-tabs__link">
+        <a href="../../../../user_guide/" class="md-tabs__link">
           
   
     
@@ -281,7 +281,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../generated/examples/active_learning/" class="md-tabs__link">
+        <a href="../../../../generated/examples/active_learning/" class="md-tabs__link">
           
   
     
@@ -304,7 +304,7 @@
   
   
     <li class="md-tabs__item md-tabs__item--active">
-      <a href="../../../../" class="md-tabs__link">
+      <a href="../../" class="md-tabs__link">
         
   
     
@@ -323,7 +323,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../../../developer_guide/active_learning/" class="md-tabs__link">
+        <a href="../../../../developer_guide/active_learning/" class="md-tabs__link">
           
   
     
@@ -358,7 +358,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+    <a href="../../../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -415,7 +415,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../.." class="md-nav__link ">
+            <a href="../../../.." class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -448,7 +448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../changelog/" class="md-nav__link">
+      <a href="../../../../changelog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -469,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../credits/" class="md-nav__link">
+      <a href="../../../../credits/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -490,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../licenses/" class="md-nav__link">
+      <a href="../../../../licenses/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -545,7 +545,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../user_guide/" class="md-nav__link ">
+            <a href="../../../../user_guide/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -622,7 +622,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/active_learning/what_active_learning_is/" class="md-nav__link">
+      <a href="../../../../user_guide/active_learning/what_active_learning_is/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -643,7 +643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/active_learning/active_learning_algo/" class="md-nav__link">
+      <a href="../../../../user_guide/active_learning/active_learning_algo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -714,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/optimization/smt/" class="md-nav__link">
+      <a href="../../../../user_guide/optimization/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -785,7 +785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../user_guide/regression/smt/" class="md-nav__link">
+      <a href="../../../../user_guide/regression/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -902,7 +902,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../generated/examples/active_learning/" class="md-nav__link ">
+            <a href="../../../../generated/examples/active_learning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -935,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -956,7 +956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -977,7 +977,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -998,7 +998,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1019,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1040,7 +1040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1061,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1115,7 +1115,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../generated/examples/optimization/" class="md-nav__link ">
+            <a href="../../../../generated/examples/optimization/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1148,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
+      <a href="../../../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1169,7 +1169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/optimization/plot_smt_ego/" class="md-nav__link">
+      <a href="../../../../generated/examples/optimization/plot_smt_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1221,7 +1221,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../../../generated/examples/regression/" class="md-nav__link ">
+            <a href="../../../../generated/examples/regression/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1254,7 +1254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
+      <a href="../../../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1328,7 +1328,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1356,8 +1356,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1383,16 +1381,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../active_learning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1409,7 +1407,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             Active learning
@@ -1423,7 +1421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../active_learning_algo/" class="md-nav__link">
+      <a href="../../active_learning/active_learning_algo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1441,10 +1439,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1480,16 +1476,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../active_learning/acquisition_criteria/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1506,7 +1502,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1_2">
             <span class="md-nav__icon md-icon"></span>
             Acquisition criteria
@@ -1520,7 +1516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../base_acquisition_criterion/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/base_acquisition_criterion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1541,7 +1537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../base_acquisition_criterion_family/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/base_acquisition_criterion_family/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1562,7 +1558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../base_factory/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/base_factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1612,7 +1608,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../exploration/" class="md-nav__link ">
+            <a href="../../active_learning/acquisition_criteria/exploration/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1643,7 +1639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/base_exploration/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/exploration/base_exploration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1664,7 +1660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/distance/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/exploration/distance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1685,7 +1681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/exploration/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/exploration/exploration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1706,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/factory/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/exploration/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1727,7 +1723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/standard_deviation/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/exploration/standard_deviation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1748,7 +1744,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../exploration/variance/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/exploration/variance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1774,10 +1770,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -1801,16 +1795,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_5" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../active_learning/acquisition_criteria/level_set/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1827,7 +1821,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1_2_5">
             <span class="md-nav__icon md-icon"></span>
             Level set
@@ -1841,7 +1835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../base_ei_ef/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/level_set/base_ei_ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1862,7 +1856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../base_level_set/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/level_set/base_level_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1883,7 +1877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ef/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/level_set/ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1904,7 +1898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ei/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/level_set/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1925,7 +1919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../factory/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/level_set/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1943,28 +1937,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Level set
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../active_learning/acquisition_criteria/level_set/level_set/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1973,63 +1949,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;level_set
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" level_set">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set-classes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Classes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Classes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;LevelSet
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2042,7 +1961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../u/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/level_set/u/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2100,7 +2019,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../maximum/" class="md-nav__link ">
+            <a href="../../active_learning/acquisition_criteria/maximum/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2131,7 +2050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/base_maximum/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/maximum/base_maximum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2152,7 +2071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/ei/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/maximum/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2173,7 +2092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/factory/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/maximum/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2194,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/maximum/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/maximum/maximum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2215,7 +2134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/output/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/maximum/output/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2236,7 +2155,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../maximum/ucb/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/maximum/ucb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2294,7 +2213,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../minimum/" class="md-nav__link ">
+            <a href="../../active_learning/acquisition_criteria/minimum/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2325,7 +2244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/base_minimum/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/minimum/base_minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2346,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/ei/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/minimum/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2367,7 +2286,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/factory/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/minimum/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2388,7 +2307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/lcb/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/minimum/lcb/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2409,7 +2328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/minimum/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/minimum/minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2430,7 +2349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../minimum/output/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/minimum/output/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2488,7 +2407,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../quantile/" class="md-nav__link ">
+            <a href="../../active_learning/acquisition_criteria/quantile/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2519,7 +2438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/base_quantile/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/quantile/base_quantile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2540,7 +2459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/ef/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/quantile/ef/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2561,7 +2480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/ei/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/quantile/ei/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2582,7 +2501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/factory/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/quantile/factory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2603,7 +2522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/quantile/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/quantile/quantile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2624,7 +2543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quantile/u/" class="md-nav__link">
+      <a href="../../active_learning/acquisition_criteria/quantile/u/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2684,7 +2603,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../distributions/" class="md-nav__link ">
+            <a href="../../active_learning/distributions/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2715,7 +2634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../distributions/base_regressor_distribution/" class="md-nav__link">
+      <a href="../../active_learning/distributions/base_regressor_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2736,7 +2655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../distributions/kriging_distribution/" class="md-nav__link">
+      <a href="../../active_learning/distributions/kriging_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2757,7 +2676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../distributions/regressor_distribution/" class="md-nav__link">
+      <a href="../../active_learning/distributions/regressor_distribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2807,7 +2726,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../visualization/" class="md-nav__link ">
+            <a href="../../active_learning/visualization/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2838,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../visualization/acquisition_view/" class="md-nav__link">
+      <a href="../../active_learning/visualization/acquisition_view/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2859,7 +2778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../visualization/qoi_history_view/" class="md-nav__link">
+      <a href="../../active_learning/visualization/qoi_history_view/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2917,7 +2836,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/" class="md-nav__link ">
+            <a href="../../algos/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -2977,7 +2896,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/opt/" class="md-nav__link ">
+            <a href="../../algos/opt/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3008,7 +2927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/sbo_settings/" class="md-nav__link">
+      <a href="../../algos/opt/sbo_settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3029,7 +2948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/surrogate_based_optimization/" class="md-nav__link">
+      <a href="../../algos/opt/surrogate_based_optimization/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3069,7 +2988,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/opt/core/" class="md-nav__link ">
+            <a href="../../algos/opt/core/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3100,7 +3019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
+      <a href="../../algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3150,7 +3069,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../algos/opt/smt/" class="md-nav__link ">
+            <a href="../../algos/opt/smt/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3181,7 +3100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/smt/ego_settings/" class="md-nav__link">
+      <a href="../../algos/opt/smt/ego_settings/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3202,7 +3121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../algos/opt/smt/smt_ego/" class="md-nav__link">
+      <a href="../../algos/opt/smt/smt_ego/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3272,7 +3191,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../problems/" class="md-nav__link ">
+            <a href="../../problems/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3330,7 +3249,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../problems/branin/" class="md-nav__link ">
+            <a href="../../problems/branin/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3361,7 +3280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_discipline/" class="md-nav__link">
+      <a href="../../problems/branin/branin_discipline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3382,7 +3301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_function/" class="md-nav__link">
+      <a href="../../problems/branin/branin_function/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3403,7 +3322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_problem/" class="md-nav__link">
+      <a href="../../problems/branin/branin_problem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3424,7 +3343,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/branin_space/" class="md-nav__link">
+      <a href="../../problems/branin/branin_space/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3445,7 +3364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/branin/functions/" class="md-nav__link">
+      <a href="../../problems/branin/functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3501,7 +3420,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../problems/rosenbrock/" class="md-nav__link ">
+            <a href="../../problems/rosenbrock/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3532,7 +3451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/functions/" class="md-nav__link">
+      <a href="../../problems/rosenbrock/functions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3553,7 +3472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_discipline/" class="md-nav__link">
+      <a href="../../problems/rosenbrock/rosenbrock_discipline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3574,7 +3493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_function/" class="md-nav__link">
+      <a href="../../problems/rosenbrock/rosenbrock_function/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3595,7 +3514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_problem/" class="md-nav__link">
+      <a href="../../problems/rosenbrock/rosenbrock_problem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3616,7 +3535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../problems/rosenbrock/rosenbrock_space/" class="md-nav__link">
+      <a href="../../problems/rosenbrock/rosenbrock_space/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3650,8 +3569,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -3665,16 +3586,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../regression/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -3691,7 +3612,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             Regression
@@ -3705,7 +3626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../regression/smt_regressor/" class="md-nav__link">
+      <a href="../smt_regressor/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3723,10 +3644,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../regression/smt_regressor_settings/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Smt regressor settings
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -3735,6 +3674,87 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;smt_regressor_settings
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" smt_regressor_settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings.SMTSurrogateModel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;SMTSurrogateModel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings.SMTRegressorSettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;SMTRegressorSettings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3804,7 +3824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../developer_guide/active_learning/" class="md-nav__link">
+      <a href="../../../../developer_guide/active_learning/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3850,17 +3870,41 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set" class="md-nav__link">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;level_set
+      <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;smt_regressor_settings
     </span>
   </a>
   
-    <nav class="md-nav" aria-label=" level_set">
+    <nav class="md-nav" aria-label=" smt_regressor_settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set-classes" class="md-nav__link">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings.SMTSurrogateModel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;SMTSurrogateModel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings-classes" class="md-nav__link">
     <span class="md-ellipsis">
       Classes
     </span>
@@ -3870,9 +3914,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet" class="md-nav__link">
+  <a href="#gemseo_mlearning.regression.smt_regressor_settings.SMTRegressorSettings" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;LevelSet
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;SMTRegressorSettings
     </span>
   </a>
   
@@ -3906,21 +3950,21 @@
   
 
 
-  <h1>Level set</h1>
+  <h1>Smt regressor settings</h1>
 
 <div class="doc doc-object doc-module">
 
 
 
-<h2 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">level_set</span>
+<h2 id="gemseo_mlearning.regression.smt_regressor_settings" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">smt_regressor_settings</span>
 
 
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#gemseo_mlearning.regression.smt_regressor_settings" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents first">
 
-        <p>Family of acquisition criteria to estimate a level set.</p>
+        <p>The settings for the SMT's regression models.</p>
 
 
 
@@ -3935,26 +3979,62 @@
 
 
 
+<h3 id="gemseo_mlearning.regression.smt_regressor_settings-attributes">Attributes<a href="#gemseo_mlearning.regression.smt_regressor_settings-attributes" class="headerlink" title="Permanent link">&para;</a></h3>
 
-<h3 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set-classes">Classes<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set-classes" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="gemseo_mlearning.regression.smt_regressor_settings.SMTSurrogateModel" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">SMTSurrogateModel</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+<a href="#gemseo_mlearning.regression.smt_regressor_settings.SMTSurrogateModel" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">SMTSurrogateModel</span> <span class="o">=</span> <span class="n"><span title="strenum.StrEnum">StrEnum</span></span><span class="p">(</span><span class="s1">&#39;SurrogateModel&#39;</span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">(</span><span class="n"><span title="gemseo_mlearning.regression.smt_regressor_settings._NAMES_TO_CLASSES.keys">keys</span></span><span class="p">()))</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>The class name of an SMT surrogate model.</p>
+    </div>
+
+</div>
+<h3 id="gemseo_mlearning.regression.smt_regressor_settings-classes">Classes<a href="#gemseo_mlearning.regression.smt_regressor_settings-classes" class="headerlink" title="Permanent link">&para;</a></h3>
 
 <div class="doc doc-object doc-class">
 
 
 
-<h4 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">LevelSet</span>
+<h4 id="gemseo_mlearning.regression.smt_regressor_settings.SMTRegressorSettings" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">SMTRegressorSettings</span>
 
 
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet" class="headerlink" title="Permanent link">&para;</a></h4>
+<a href="#gemseo_mlearning.regression.smt_regressor_settings.SMTRegressorSettings" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily" href="../../base_acquisition_criterion_family/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily">BaseAcquisitionCriterionFamily</a></code></p>
+              Bases: <code><span title="gemseo.mlearning.regression.algos.base_regressor_settings.BaseRegressorSettings">BaseRegressorSettings</span></code></p>
 
 
-        <p>The family of acquisition criteria to estimate a level set.</p>
+        <p>The settings for the SMT's regression models.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>model_class_name</code></b>
+              (<code><span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>The class name of a surrogate model available in SMT,i.e. a subclass of<code>smt.surrogate_models.surrogate_model.SurrogateModel</code>.</p>
+          </div>
+        </li>
+    </ul>
 
 
 
@@ -4036,14 +4116,14 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
-        <script src="../../../../../../assets/_markdown_exec_pyodide.js"></script>
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
       
-        <script src="../../../../../../javascripts/mathjax.js"></script>
+        <script src="../../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

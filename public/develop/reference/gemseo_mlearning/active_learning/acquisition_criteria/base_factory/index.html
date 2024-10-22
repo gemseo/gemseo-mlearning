@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
@@ -3694,6 +3694,8 @@
       
         
       
+        
+      
     
     
       
@@ -3745,6 +3747,27 @@
   
   <span class="md-ellipsis">
     Smt regressor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../regression/smt_regressor_settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Smt regressor settings
   </span>
   
 
@@ -4083,8 +4106,8 @@
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/acquisition_criteria/base_factory.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseAcquisitionCriterion</span><span class="p">]:</span>  <span class="c1"># noqa: D102</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">[</span><span class="n">BaseAcquisitionCriterion</span><span class="p">]:</span>  <span class="c1"># noqa: D102</span>
     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_class</span><span class="p">(</span><span class="n">name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_DEFAULT_CLASS_NAME</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
