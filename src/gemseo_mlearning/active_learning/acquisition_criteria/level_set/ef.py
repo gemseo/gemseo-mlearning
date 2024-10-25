@@ -47,19 +47,18 @@ class EF(BaseEIEF):
 
     This acquisition criterion is expressed as
 
-    $$
-    EF[x] =  \mathbb{E}\left[\max(\kappa\mathbb{S}[Y(x)] - |y - Y(x)|,0)\right]
-    $$
+    $$EF[x]=\mathbb{E}\left[\max\left(\kappa\mathbb{S}[Y(x)]-|y-Y(x)|,0\right)\right]$$
+
     where $y$ is the model output value characterizing the level set
     and $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$.
 
-    In the case of a Gaussian regressor,
+    In the case of a Gaussian process regressor,
     it has an analytic expression:
 
     $$
     EF[x] =
-    \mathbb{S}[Y(x)]\times
+    \mathbb{S}[Y(x)]
     (
     \kappa
     (\Phi(t^+)-\Phi(t^-))
@@ -68,19 +67,19 @@ class EF(BaseEIEF):
     )
     $$
 
-    where
+    where $\Phi$ and $\phi$ are respectively
+    the cumulative and probability density functions
+    of the standard normal distribution,
     $t=\frac{y - \mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}$,
     $t^+=t+\kappa$,
-    $t^-=t-\kappa$,
-    $y$ is the model output value characterizing the level set
+    $t^-=t-\kappa$
     and $\kappa>0$.
 
     For the acquisition of $q>1$ points at a time,
     the acquisition criterion changes to
-    $$EF[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
-    \max(\kappa\mathbb{S}[Y(x_1)] - |y - Y(x_1)|,0),\dots,
-    \max(\kappa\mathbb{S}[Y(x_q)]
-     -|y - Y(x_q)|,0)
+
+    $$EF[x_1,\dots,x_q] = \mathbb{E}\left[\max_{1\leq i \leq q}\left(
+    \max(\kappa\mathbb{S}[Y(x_i)] - |y - Y(x_i)|,0)
     \right)\right]$$
 
     where the expectation is taken with respect to the distribution of

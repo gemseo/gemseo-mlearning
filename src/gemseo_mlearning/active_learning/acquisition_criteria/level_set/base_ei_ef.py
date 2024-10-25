@@ -49,7 +49,7 @@ class BaseEIEF(BaseLevelSet):
         output_value: float,
         kappa: float = 2.0,
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
     ) -> None:
         """
         Args:

@@ -28,29 +28,40 @@ class EI(BaseQuantile):
     This acquisition criterion is expressed as
 
     $$
-    EI[x] = \mathbb{V}[Y(x)]\times
-    (
+    EI[x] =
+    \mathbb{E}
+    \left[\max\left((\kappa\mathbb{S}[Y(x)])^2 - (y_{\alpha} - Y(x))^2,0\right)\right]
+    $$
+
+    where $y_{\alpha}$ is the $\alpha$-quantile of the model output
+    and $Y$ is the random process
+    modelling the uncertainty of the surrogate model $\hat{f}$.
+
+    In the case of a Gaussian process regressor,
+    it has an analytic expression:
+
+    $$
+    EI[x] = \mathbb{V}[Y(x)]
+    \left(
     (\kappa^2-1-t^2)(\Phi(t^+)-\Phi(t^-))
     -2t(\phi(t^+)-\phi(t^-))
     +t^+\phi(t^+)
     -t^-\phi(t^-)
-    )
+    \right)
     $$
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$,
     $t=\frac{y_{\alpha} - \mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}$,
     $t^+=t+\kappa$,
-    $t^-=t-\kappa$,
-    $y_{\alpha}$ is the $\alpha$-quantile of the model output
+    $t^-=t-\kappa$
     and $\kappa>0$.
 
     For the acquisition of $q>1$ points at a time,
     the acquisition criterion changes to
 
-    $$EI[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
-    \max((\kappa\mathbb{S}[Y(x_1)])^2 - (y_{\alpha} - Y(x_1))^2,0),\dots,
-    \max((\kappa\mathbb{S}[Y(x_q)])^2 - (y_{\alpha} - Y(x_q))^2,0)
+    $$EI[x_1,\dots,x_q] = \mathbb{E}\left[\max_{1\leq i\leq q}\left(
+    \max((\kappa\mathbb{S}[Y(x_i)])^2 - (y_{\alpha} - Y(x_i))^2,0)
     \right)\right]$$
 
     where the expectation is taken with respect to the distribution of

@@ -35,7 +35,7 @@ class ConfidenceBound:
         regressor_distribution: BaseRegressorDistribution,
         kappa: float = 2.0,
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
     ) -> None:
         """
         Args:
@@ -49,7 +49,7 @@ class ConfidenceBound:
         self.__kappa = kappa
         super().__init__(regressor_distribution, batch_size=batch_size, mc_size=mc_size)
 
-    def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102        mean = self._compute_mean(input_data)
+    def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102
         mean = self._compute_mean(input_value)
         sigma = self._compute_standard_deviation(input_value)
         return (mean + self.__kappa * sigma) / self._scaling_factor

@@ -27,3 +27,9 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 
 class BaseMaximum(BaseAcquisitionCriterion):
     """The base class for acquisition criteria to estimate a maximum."""
+
+    def update(self) -> None:  # noqa: D102
+        super().update()
+        self._qoi = max(
+            self._regressor_distribution.learning_set.output_dataset.to_numpy()
+        )

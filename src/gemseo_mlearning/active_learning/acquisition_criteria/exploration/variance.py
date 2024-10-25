@@ -36,7 +36,7 @@ class Variance(BaseExploration):
 
     This acquisition criterion is expressed as:
 
-    $$\sigma[x] = \mathbb{E}[(Y(x)-\mathbb{E}[Y(x)])^2]$$
+    $$\sigma^2[x] = \mathbb{E}[(Y(x)-\mathbb{E}[Y(x)])^2]$$
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$.

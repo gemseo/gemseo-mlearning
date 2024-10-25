@@ -49,7 +49,7 @@ class LCB(ConfidenceBound, BaseMinimum):
         regressor_distribution: BaseRegressorDistribution,
         kappa: float = 2.0,
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
     ) -> None:  # noqa: D102
         super().__init__(
             regressor_distribution,

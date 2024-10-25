@@ -50,6 +50,10 @@ chosen for a specific purpose.
 and [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile]
 provides an estimation of the quantity of interest,
 namely the minimum, the maximum and a quantile respectively.
+This value is updated each time a training point is acquired
+and can be accessed via the attribute
+[qoi][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.qoi].
+
 Whatever the family,
 the surrogate model can be used for prediction as any surrogate model.
 However,
@@ -111,3 +115,12 @@ Lastly,
 the [visualization][gemseo_mlearning.active_learning.visualization] subpackage
 offers plotting capabilities
 to draw the evolution of both the surrogate model and the acquisition criterion.
+They can be easily accessed
+from the [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
+using its methods:
+
+- [plot_qoi_history][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_qoi_history]
+  to visualize the estimation of the quantity of interest in function of the acquisition step,
+- [plot_acquisition_view][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_acquisition_view]
+  to visualize the discipline, the regressor, the acquisition criterion and the standard deviation
+  in the case of two scalar input variables.

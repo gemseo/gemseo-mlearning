@@ -12,8 +12,8 @@ This section describes the design of the [active_learning][gemseo_mlearning.acti
 
 !!! info
 
-    Open the [user guide](../user_guide/active_learning/active_learning_algo.md) for general information,
-    *e.g.* concepts, API, examples, etc.
+    Open the [user guide](../user_guide/active_learning/what_active_learning_is.md)
+    for general information, *e.g.* concepts, API, examples, etc.
 
 ## Tree structure
 
@@ -42,6 +42,7 @@ gemseo_mlearning
       regressor_distribution.py # The RD for any regressor
     visualization # Visualization tools
       acquisition_view.py # Plot the acquisition process (in 2D only)
+      qoi_history_view.py # Plot the history of the quantity of interest
 ```
 
 ## Class diagram
@@ -49,16 +50,17 @@ gemseo_mlearning
 ``` mermaid
 classDiagram
 
-    ActiveLearning *-- OptimizationProblem
-    ActiveLearning o-- DesignSpace
-    ActiveLearning --> AcquisitionCriterionFamilyFactory: criterion_family_name
-    ActiveLearning --> BaseAcquisitionCriterionFactory: criterion_name \n criterion_options
-    ActiveLearning --> BaseRegressorDistribution: regressor
-    BaseDriverLibrary --* ActiveLearning
+    ActiveLearningAlgo *-- OptimizationProblem
+    ActiveLearningAlgo o-- DesignSpace
+    ActiveLearningAlgo --> AcquisitionCriterionFamilyFactory: criterion_family_name
+    ActiveLearningAlgo --> BaseAcquisitionCriterionFactory: criterion_name \n criterion_options
+    ActiveLearningAlgo --> BaseRegressorDistribution: regressor
+    BaseDriverLibrary --* ActiveLearningAlgo
     BaseDOELibrary --* BaseDriverLibrary
     BaseOptimizationLibrary --* BaseDriverLibrary
-    Database --* ActiveLearning
-    AcquisitionView --* ActiveLearning
+    Database --* ActiveLearningAlgo
+    AcquisitionView --* ActiveLearningAlgo
+    QOIHistoryView --* ActiveLearningAlgo
 
     OptimizationProblem o-- BaseAcquisitionCriterion
 
@@ -74,7 +76,7 @@ classDiagram
     <<abstract>> BaseAcquisitionCriterionFamily
     <<abstract>> BaseRegressorDistribution
 
-    class ActiveLearning {
+    class ActiveLearningAlgo {
         +default_algo_name
         +default_doe_settings
         +default_opt_settings

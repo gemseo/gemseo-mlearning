@@ -30,6 +30,38 @@ from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TCH002
 from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
 from pydantic import Field
 from pydantic import NonNegativeInt
+from pydantic import PositiveInt
+from strenum import StrEnum
+
+
+class AcquisitionCriterion(StrEnum):
+    r"""An acquisition criterion.
+
+    In the following,
+    the training output values already used
+    and the random output of the surrogate model at a given input point $x$
+    are respectively denoted $\{y_1,\ldots,y_n\}$ and $Y(x)$.
+    The expectation and the standard deviation of $Y(x)$ are respectively denoted
+    $\mathbb{E}[Y(x)]$ and $\mathbb{S}[Y(x)]$.
+    """
+
+    EI = "EI"
+    r"""The expected improvement.
+
+    The acquisition criterion is $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0]$.
+    """
+
+    CB = "CB"
+    r"""The confidence bound.
+
+    The acquisition criterion is $\mathbb{E}[Y(x)]-3\mathbb{S}[Y(x)]$.
+    """
+
+    Output = "Output"
+    r"""The mean output.
+
+    The acquisition criterion is $\mathbb{E}[Y(x)]$.
+    """
 
 
 class SBOSettings(BaseOptimizationLibrarySettings):
@@ -50,6 +82,14 @@ class SBOSettings(BaseOptimizationLibrarySettings):
             to optimize the data acquisition criterion.
             Ignored when `acquisition_algorithm` is empty."""
         ),
+    )
+
+    batch_size: PositiveInt = Field(
+        default=1, description="The number of points to be acquired in parallel."
+    )
+
+    criterion: AcquisitionCriterion = Field(
+        default=AcquisitionCriterion.EI, description="The acquisition criterion."
     )
 
     doe_algorithm: str = Field(
@@ -86,6 +126,11 @@ class SBOSettings(BaseOptimizationLibrarySettings):
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
             """
         ),
+    )
+
+    mc_size: PositiveInt = Field(
+        default=10_000,
+        description="The sample size to estimate the acquisition criteria in parallel.",
     )
 
     normalize_design_space: bool = Field(

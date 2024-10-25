@@ -139,7 +139,7 @@ class ActiveLearningAlgo:
         regressor: BaseRegressor | BaseRegressorDistribution,
         criterion_name: str = "",
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
         **criterion_arguments: Any,
     ) -> None:
         """

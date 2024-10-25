@@ -33,9 +33,9 @@ class EI(ExpectedImprovement, BaseMaximum):
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$
-    and $y_{\text{max}}$ is the maximum output values in the learning set.
+    and $y_{\text{max}}$ is the maximum output value in the learning set.
 
-    In the case of a Gaussian regressor,
+    In the case of a Gaussian process regressor,
     it has an analytic expression:
 
     $$
@@ -43,18 +43,16 @@ class EI(ExpectedImprovement, BaseMaximum):
     + \mathbb{S}[Y(x)]\phi(t)
     $$
 
-    where $Y$ is the random process
-    modelling the uncertainty of the surrogate model $\hat{f}$,
-    $t=\frac{\mathbb{E}[Y(x)] - y_{\text{max}}}{\mathbb{S}[Y(x)]}$
-    and $y_{\text{max}}$ is the maximum output value in the learning set.
+    where $\Phi$ and $\phi$ are respectively
+    the cumulative and probability density functions
+    of the standard normal distribution
+    and $t=\frac{\mathbb{E}[Y(x)] - y_{\text{max}}}{\mathbb{S}[Y(x)]}$.
 
     For the acquisition of $q>1$ points at a time,
     the acquisition criterion changes to
 
-    $$EI[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
-    \max(Y(x_1)-y_{\text{max}},0),\dots,
-    \max(Y(x_q)-y_{\text{max}},0)
-    \right)\right]$$
+    $$EI[x_1,\dots,x_q] = \mathbb{E}\left[\max_{1\leq i\leq q}\left(
+    \max(Y(x_i)-y_{\text{max}},0)\right)\right]$$
 
     where the expectation is taken with respect to the distribution of
     the random vector $(Y(x_1),\dots,Y(x_q))$.

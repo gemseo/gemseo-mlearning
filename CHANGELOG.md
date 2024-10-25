@@ -36,8 +36,8 @@ and this project adheres to
   such as `GaussianProcessRegressor`
   and `OTGaussianProcessRegressor`.
   This option is only available for criteria dedicated
-  to level set [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
-  (alternatively quantile estimation [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile.Quantile])
+  to level set [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet]
+  (alternatively quantile estimation [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile])
   and the expected improvement for maximum/minimum estimation [Maximum][gemseo_mlearning.active_learning.acquisition_criteria.maximum].
 - The [Branin][gemseo_mlearning.problems.branin] and
   [Rosenbrock][gemseo_mlearning.problems.rosenbrock] problems
@@ -58,40 +58,25 @@ and this project adheres to
   wrapping the surrogate-based optimizers available in the Python package [SMT](https://smt.readthedocs.io/);
   this is the unique algorithm of the [SMTEGO][gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO] optimization library.
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
-  can use an existing [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
-  and save the [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo] that it enriches
+  can use the acquisition criteria `CB` and `Output` in addition to `EI`.
+- [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
+  can use an existing [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+  and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches
   using the `regression_file_path` option.
-- Given a sequence of input points,
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  can generate samples of the conditioned Gaussian process
-  with its method [compute_samples][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.compute_samples].
-- The `multi_start_n_samples`, `multi_start_algo_name` and `multi_start_algo_options` arguments of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to use multi-start optimization for the covariance model parameters;
-  by default, the number of starting points `multi_start_n_samples` is set to 10.
-- The `optimization_space` argument of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to set the lower and upper bounds of the covariance model parameters
-  by means of a [DesignSpace][gemseo.algos.design_space.DesignSpace].
-- The `covariance_model` argument of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to use any covariance model proposed by OpenTURNS
-  and facilitates the use of some of them through the enumeration
-  [CovarianceModel][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModel];
-  its default value is Matérn 5/2.
 
 ## Changed
 
 - BREAKING CHANGE: The acquisition algorithm settings have to be passed to
-  [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.surrogate_based_optimization.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
+  [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
   as keyword arguments, *i.e.* `SurrogateBasedOptimizer(..., key_1=value_1, key_2=value_2, ...)`.
 - BREAKING CHANGE: The term `option` has been replaced by `setting` when it was linked to a DOE or an optimization algorithm.
 - BREAKING CHANGE: The argument `distribution` of
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
-  renamed to `regressor`; it can be either a regressor
-  [gemseo.mlearning.regression.algos.base_regressor.BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+  renamed to `regressor`;
+  it can be either a
+- [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
   or a
-  [gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution].
+  [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution].
 - BREAKING CHANGE: The method `compute_next_input_data` of
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
   renamed to
@@ -100,14 +85,11 @@ and this project adheres to
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
   renamed to
   [acquire_new_points][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points].
-- BREAKING CHANGE: The argument `trend_type` and the attribute `TrendType` of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  renamed to `trend` and `Trend` respectively.
 - BREAKING CHANGE: `MaxExpectedImprovement` renamed to ``Maximum`.
 - BREAKING CHANGE: `MinExpectedImprovement` renamed to ``Minimum`.
 - BREAKING CHANGE: `ExpectedImprovement` removed.
 - BREAKING CHANGE: the acquisition criterion `LimitState` renamed to
-  [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
+  [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet]
 - BREAKING CHANGE: each acquisition criterion class has a specific module
   in [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria]
   whose name is the snake-case version of it class name, i.e. `nice_criterion.py` contains `NiceCriterion`.
@@ -124,31 +106,26 @@ and this project adheres to
   and moved to
 - [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].
 - BREAKING CHANGE: `MLDataAcquisitionCriterionFactory` renamed to
-  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.acquisition_criterion_factory.AcquisitionCriterionFactory],
+  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.AcquisitionCriterionFactory],
   moved to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria]
   and without the property `available_criteria` (use `AcquisitionCriterionFactory.class_names`).
 - BREAKING CHANGE: `gemseo.adaptive` renamed to [gemseo_mlearning.active_learning][gemseo_mlearning.active_learning].
 - BREAKING CHANGE: `gemseo.adaptive.criteria` renamed to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].
-- BREAKING CHANGE:
-  The module `gemseo_mlearning.api` no longer exists;
-  the functions
-  [sample_discipline][gemseo_mlearning.sample_discipline]
-  and [sample_disciplines][gemseo_mlearning.sample_disciplines]
-  must be imported from [gemseo_mlearning][gemseo_mlearning].
 
 ## Fixed
 
 - The data transformer can be set with the `"transformer"` key of the `regression_options` dictionary
-  passed to [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization].
+  passed to [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization].
 - The [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile]
   estimates the quantile by Monte Carlo sampling
   by means of the probability distributions of the input variables;
-  this distributions are defined with its new argument `uncertain_space`.
+  these distributions are defined with its new argument `uncertain_space`.
 
 ## Removed
 
+- `AcquisitionCriterionFactory`; replaced by different factories for the developers.
 - `sample_discipline`; use [sample_disciplines][gemseo.sample_disciplines] from `gemseo` instead.
 - `sample_disciplines`; move to `gemseo`: [sample_disciplines][gemseo.sample_disciplines].
 - `MAEMeasure`; moved to `gemseo`: [MAEMeasure][gemseo.mlearning.regression.quality.mae_measure.MAEMeasure].
@@ -165,8 +142,7 @@ and this project adheres to
 ## Added
 
 - Support for Python 3.11.
-- [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  has a new optional argument `optimizer`
+- `OTGaussianProcessRegressor` has a new optional argument `optimizer`
   to select the OpenTURNS optimizer for the covariance model parameters.
 
 ## Removed
@@ -177,25 +153,23 @@ and this project adheres to
 
 ## Fixed
 
-- [OTGaussianProcessRegressor.predict_std][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.predict_std]
+- `OTGaussianProcessRegressor.predict_std`
   no longer returns the variance of the output but its standard deviation.
 
 # Version 1.1.0 (June 2023)
 
 ## Added
 
-- An argument `trend_type` of type
-  [OTGaussianProcessRegressor.TrendType][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType]
-  to [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor];
+- An argument `trend_type` of type `OTGaussianProcessRegressor.TrendType` to `OTGaussianProcessRegressor`;
   the trend type of the Gaussian process regressor can be either constant,
   linear or quadratic.
 - A new optimization library
-  [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization]
+  [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   to perform EGO-like surrogate-based optimization on unconstrained problems.
 
 ## Fixed
 
-- The output of an [MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
+- The output of an `MLDataAcquisitionCriterion`
   based on a regressor built from constant output values is no longer `nan`.
 
 # Version 1.0.1 (February 2022)
