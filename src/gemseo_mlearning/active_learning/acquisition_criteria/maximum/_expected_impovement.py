@@ -18,7 +18,6 @@ from __future__ import annotations
 
 import warnings
 from typing import TYPE_CHECKING
-from typing import Callable
 from typing import ClassVar
 from typing import Literal
 
@@ -44,16 +43,8 @@ warnings.filterwarnings("ignore")
 class ExpectedImprovement:
     """A mixin for expected improvement."""
 
-    _OPTIMIZE: ClassVar[Callable[[NumberArray], float]] = max
-    """The optimization function."""
-
     _SIGN: ClassVar[Literal[-1, 1]] = 1
     """The sign."""
-
-    def update(self) -> None:
-        self._qoi = self._OPTIMIZE(
-            self._regressor_distribution.learning_set.output_dataset.to_numpy()
-        )
 
     def _compute(  # noqa: D102
         self, input_data: NumberArray

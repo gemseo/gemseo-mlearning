@@ -73,7 +73,7 @@ class BaseAcquisitionCriterion(MDOFunction):
         self,
         regressor_distribution: BaseRegressorDistribution,
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
     ) -> None:
         """
         Args:

@@ -87,13 +87,18 @@ nav:
   - Licenses: licenses.md
 - User guide:
   - Introduction: user_guide/index.md
-  - Active learning:
-    - What active learning is: user_guide/active_learning/what_active_learning_is.md
-    - Active learning algorithm: user_guide/active_learning/active_learning_algo.md
+  - Active learning (AL):
+    - What AL is: user_guide/active_learning/what_active_learning_is.md
+    - AL algorithm: user_guide/active_learning/active_learning_algo.md
+    - AL for exploration: user_guide/active_learning/exploration.md
+    - AL for level sets: user_guide/active_learning/level_set.md
+    - AL for optimization: user_guide/active_learning/optimization.md
+    - AL for quantiles: user_guide/active_learning/quantile.md
   - Optimization:
-    - SMT: user_guide/optimization/smt.md
+    - AL package: user_guide/optimization/al.md
+    - SMT library: user_guide/optimization/smt.md
   - Regression models:
-    - SMT: user_guide/regression/smt.md
+    - SMT library: user_guide/regression/smt.md
 - Examples:
   - Active learning: generated/examples/active_learning
   - Optimization:  generated/examples/optimization

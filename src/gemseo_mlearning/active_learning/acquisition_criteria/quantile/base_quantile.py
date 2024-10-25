@@ -64,9 +64,9 @@ class BaseQuantile(BaseAcquisitionCriterion):
         regressor_distribution: BaseRegressorDistribution,
         level: float,
         uncertain_space: ParameterSpace,
-        n_samples: int = 100000,
+        n_samples: int = 10_0000,
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
     ) -> None:
         """
         Args:

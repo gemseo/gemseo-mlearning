@@ -46,21 +46,16 @@ class U(BaseLevelSet):
     modelling the uncertainty of the surrogate model $\hat{f}$.
     It has an analytic expression:
 
-    $$U[x] = \left(\frac{y-\mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}\right)^2$$
+    $$U[x] = \left(\frac{y-\mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}\right)^2.$$
 
-    where $Y$ is the random process
-    modelling the uncertainty of the surrogate model $\hat{f}$
-    and $y$ is the model output value characterizing the level set.
     For numerical purposes,
     the expression effectively minimized corresponds to its square root.
 
     For the acquisition of $q>1$ points at a time,
     the acquisition criterion changes to
 
-    $$U[x_1,\dots,x_q] = \mathbb{E}\left[\min\left(
-    \left(\frac{y-Y(x_1)}{\mathbb{S}[Y(x_1)]}\right)^2,\dots,
-    \left(\frac{y-Y(x_q)}{\mathbb{S}[Y(x_q)]}
-    \right)^2\right)\right]$$
+    $$U[x_1,\dots,x_q] = \mathbb{E}\left[\min_{1\leq i \leq q}\left(
+    \left(\frac{y-Y(x_i)}{\mathbb{S}[Y(x_i)]}\right)^2\right)\right]$$
 
     where the expectation is taken with respect to the distribution of
     the random vector $(Y(x_1),\dots,Y(x_q))$.

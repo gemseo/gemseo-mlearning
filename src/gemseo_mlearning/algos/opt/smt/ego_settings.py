@@ -117,7 +117,7 @@ class Surrogate(StrEnum):
     """A marginal Gaussian process (MGP) regressor."""
 
 
-class EGOSettings(BaseOptimizationLibrarySettings):
+class SMTEGOSettings(BaseOptimizationLibrarySettings):
     """The settings of the SMT's SBO algorithm."""
 
     criterion: AcquisitionCriterion = Field(

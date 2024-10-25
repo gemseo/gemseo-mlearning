@@ -28,28 +28,38 @@ class EF(BaseQuantile):
     This acquisition criterion is expressed as
 
     $$
+    EF[x] = \mathbb{E}\left[\max(\kappa\mathbb{S}[Y(x)] - |y_{\alpha} - Y(x)|,0)\right]
+    $$
+
+    where $y_{\alpha}$ is the $\alpha$-quantile of the model output
+    and $Y$ is the random process
+    modelling the uncertainty of the surrogate model $\hat{f}$.
+
+    In the case of a Gaussian process regressor,
+    it has an analytic expression:
+
+    $$
     EF[x] = \mathbb{S}[Y(x)]\times
-    (
+    \left(
     \kappa
     (\Phi(t^+)-\Phi(t^-))
     -t(2\Phi(t)-\Phi(t^+)-\Phi(t^-))
     -(2\phi(t)-\phi(t^+)-\phi(t^-))
-    )
+    \right)
     $$
 
     where $Y$ is the random process
     modelling the uncertainty of the surrogate model $\hat{f}$,
     $t=\frac{y_{\alpha} - \mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}$,
     $t^+=t+\kappa$,
-    $t^-=t-\kappa$,
-    $y_{\alpha}$ is the $\alpha$-quantile of the model output
+    $t^-=t-\kappa$
     and $\kappa>0$.
 
     For the acquisition of $q>1$ points at a time,
     the acquisition criterion changes to
-    $$EF[x_1,\dots,x_q] = \mathbb{E}\left[\max\left(
-    \max(\kappa\mathbb{S}[Y(x_1)] - |y_{\alpha} - Y(x_1)|,0),\dots,
-    \max(\kappa\mathbb{S}[Y(x_q)] - |y_{\alpha} - Y(x_q)|,0)
+
+    $$EF[x_1,\dots,x_q] = \mathbb{E}\left[\max_{1\leq i\leq q}\left(
+    \max(\kappa\mathbb{S}[Y(x_i)] - |y_{\alpha} - Y(x_i)|,0)
     \right)\right]$$
 
     where the expectation is taken with respect to the distribution of

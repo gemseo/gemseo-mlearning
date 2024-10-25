@@ -44,7 +44,7 @@ class BaseLevelSet(BaseAcquisitionCriterion):
         regressor_distribution: BaseRegressorDistribution,
         output_value: float,
         batch_size: int = 1,
-        mc_size: int = 10000,
+        mc_size: int = 10_000,
     ) -> None:
         """
         Args:

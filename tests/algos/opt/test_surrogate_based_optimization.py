@@ -28,11 +28,25 @@ from numpy import array
 from numpy.testing import assert_almost_equal
 from pandas.testing import assert_frame_equal
 
+from gemseo_mlearning.algos.opt.sbo_settings import AcquisitionCriterion
+
 
 def test_default_settings():
     """Check the default settings of the surrogate-based optimizer."""
     assert_almost_equal(
         OptimizationLibraryFactory().execute(Rastrigin(), "SBO", max_iter=12).f_opt,
+        array([0.04]),
+        decimal=2,
+    )
+
+
+@pytest.mark.parametrize("criterion", AcquisitionCriterion)
+def test_criterion(criterion):
+    """Check the surrogate-based optimizer with different criteria."""
+    assert_almost_equal(
+        OptimizationLibraryFactory()
+        .execute(Rastrigin(), "SBO", max_iter=12, criterion=criterion)
+        .f_opt,
         array([0.04]),
         decimal=2,
     )

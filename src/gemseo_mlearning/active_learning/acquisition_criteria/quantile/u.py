@@ -40,10 +40,8 @@ class U(BaseQuantile):
     For the acquisition of $q>1$ points at a time,
     the acquisition criterion changes to
 
-    $$U[x_1,\dots,x_q] = \mathbb{E}\left[\min\left(
-    \left(\frac{y_{\alpha}-Y(x_1)}{\mathbb{S}[Y(x_1)]}\right)^2,\dots,
-    \left(\frac{y_{\alpha}-Y(x_q)}{\mathbb{S}[Y(x_q)]}
-    \right)^2\right)\right]$$
+    $$U[x_1,\dots,x_q] = \mathbb{E}\left[\min_{1\leq i\leq q}\left(
+    \left(\frac{y_{\alpha}-Y(x_i)}{\mathbb{S}[Y(x_i)]}\right)^2\right)\right]$$
 
     where the expectation is taken with respect to the distribution of
     the random vector $(Y(x_1),\dots,Y(x_q))$.

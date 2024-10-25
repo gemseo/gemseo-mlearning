@@ -54,7 +54,7 @@ are respectively denoted $\{y_1,\ldots,y_n\}$, $\mu(x)$ and $\sigma(x)$.
 
 ### General
 
-::: gemseo_mlearning.algos.opt.smt.ego_settings.EGOSettings
+::: gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings
     options:
       show_root_heading: false
       show_bases: false
@@ -64,12 +64,11 @@ are respectively denoted $\{y_1,\ldots,y_n\}$, $\mu(x)$ and $\sigma(x)$.
 
 The three acquisition criteria are
 
-
 | Value   | Name                   | Expression                                 |
 |---------|------------------------|--------------------------------------------|
 | `"EI"`  | Expected improvement   | $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y,0]$ |
-| `"LCB"` | Lower confidence bound | $\mu(x)-3\sigma(x)$                        |
-| `"SBO"` | Expected improvement   | $\mu(x)$                                   |
+| `"LCB"` | Lower confidence bound | $\mu(x)-3\times\sigma(x)$                  |
+| `"SBO"` | Kriging believer       | $\mu(x)$                                   |
 
 where $Y$ is a Gaussian random variable with mean $\mu(x)$ and standard deviation $\sigma(x)$,
 
@@ -78,7 +77,7 @@ where $Y$ is a Gaussian random variable with mean $\mu(x)$ and standard deviatio
 Points can be acquired by batch of $q>1$ points,
 as Kriging is well-suited to parallelize optimization[@ginsbourger2010kriging].
 To this aim,
-when `n_parallel` is equal to $q$,
+when `n_parallel` is greater than 1,
 SMT uses a technique of virtual points to update the training dataset with $k\leq q$ training points
 whose output value mimics the substituted model using a strategy.
 The four strategies are:
