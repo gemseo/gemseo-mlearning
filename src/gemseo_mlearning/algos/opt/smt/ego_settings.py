@@ -19,9 +19,7 @@
 
 from __future__ import annotations
 
-from gemseo.algos.opt.base_optimization_library_settings import (
-    BaseOptimizationLibrarySettings,
-)
+from gemseo.algos.opt.base_optimizer_settings import BaseOptimizerSettings
 from pydantic import Field
 from pydantic import NonNegativeInt
 from pydantic import PositiveInt
@@ -117,7 +115,7 @@ class Surrogate(StrEnum):
     """A marginal Gaussian process (MGP) regressor."""
 
 
-class SMTEGOSettings(BaseOptimizationLibrarySettings):
+class SMTEGOSettings(BaseOptimizerSettings):
     """The settings of the SMT's SBO algorithm."""
 
     criterion: AcquisitionCriterion = Field(

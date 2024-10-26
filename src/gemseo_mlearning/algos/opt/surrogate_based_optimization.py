@@ -24,7 +24,7 @@ from typing import Any
 from typing import ClassVar
 from typing import Union
 
-from gemseo.algos.base_driver_library import DriverLibrarySettingType
+from gemseo.algos.base_driver_library import DriverSettingType
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
 from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
@@ -44,7 +44,7 @@ SBOSettingType = Union[
     int,
     float,
     str,
-    Mapping[str, DriverLibrarySettingType],
+    Mapping[str, DriverSettingType],
     Mapping[str, MLAlgoParameterType],
     Mapping[str, Any],
 ]
