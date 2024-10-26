@@ -35,7 +35,7 @@ docstring-inheritance==2.2.1
     # via gemseo
 egobox==0.23.0
     # via smt
-et-xmlfile==1.1.0
+et-xmlfile==2.0.0
     # via openpyxl
 eval-type-backport==0.2.0
     # via gemseo
@@ -45,7 +45,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.54.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@e5969d4b00ea31df83930393515132fc9542b2fe
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@d0fc19a0940d7a95b813808e4aeae875fa790373
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -62,7 +62,7 @@ griffe==1.5.1
     #   mkdocstrings-python
 griffe-fieldz==0.2.0
     # via gemseo-mlearning (pyproject.toml)
-griffe-inherited-docstrings==1.0.1
+griffe-inherited-docstrings==1.1.0
     # via gemseo-mlearning (pyproject.toml)
 h5py==3.11.0
     # via gemseo
