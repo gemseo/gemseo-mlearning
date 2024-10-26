@@ -76,14 +76,17 @@ surrogate_model.learn()
 # %%
 # Finally,
 # we assess its quality:
-test_data = sample_disciplines([discipline], input_space, "y", 1000, "OT_MONTE_CARLO")
 r2 = R2Measure(surrogate_model)
-f"Learning R2: {r2.compute_learning_measure()[0]}; test R2: {r2.compute_test_measure(test_data)[0]}"
+r2_l = r2.compute_learning_measure()[0]
+r2_cv = r2.compute_cross_validation_measure()[0]
+test_data = sample_disciplines([discipline], input_space, "y", 1000, "OT_MONTE_CARLO")
+r2_t = r2.compute_test_measure(test_data)[0]
+f"Learning R2: {r2_l}; cross-validation R2: {r2_cv}; test R2: {r2_t}"
 
 # %%
 # see how good it is with its R2 close to 1 on the test dataset,
 # and plot its output over a 20x20 grid:
-input_data = compute_doe(input_space, "fullfact", 400)
+input_data = compute_doe(input_space, "fullfact", n_samples=400)
 output_data = surrogate_model.predict(input_data)
 predictions = IODataset()
 predictions.add_input_group(input_data, variable_names=["x1", "x2"])

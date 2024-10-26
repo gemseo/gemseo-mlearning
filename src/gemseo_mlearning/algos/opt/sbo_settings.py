@@ -19,9 +19,9 @@ from __future__ import annotations
 from collections.abc import Mapping  # noqa: TCH003
 from pathlib import Path  # noqa: TCH003
 
-from gemseo.algos.base_driver_library import DriverLibrarySettingType  # noqa: TCH002
-from gemseo.algos.opt.base_optimization_library_settings import (  # noqa: TCH002
-    BaseOptimizationLibrarySettings,
+from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TCH002
+from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TCH002
+    BaseOptimizerSettings,
 )
 from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType  # noqa: TCH002
 from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TCH002
@@ -64,7 +64,7 @@ class AcquisitionCriterion(StrEnum):
     """
 
 
-class SBOSettings(BaseOptimizationLibrarySettings):
+class SBOSettings(BaseOptimizerSettings):
     """The settings for the surrogate-based optimization algorithm."""
 
     acquisition_algorithm: str = Field(
@@ -75,7 +75,7 @@ class SBOSettings(BaseOptimizationLibrarySettings):
         ),
     )
 
-    acquisition_settings: Mapping[str, DriverLibrarySettingType] = Field(
+    acquisition_settings: Mapping[str, DriverSettingType] = Field(
         default_factory=dict,
         description=(
             """The settings of the algorithm
@@ -104,7 +104,7 @@ class SBOSettings(BaseOptimizationLibrarySettings):
         ),
     )
 
-    doe_settings: Mapping[str, DriverLibrarySettingType] = Field(
+    doe_settings: Mapping[str, DriverSettingType] = Field(
         default_factory=dict,
         description=(
             """The settings of the DOE algorithm for the initial sampling.
