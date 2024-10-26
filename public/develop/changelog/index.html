@@ -599,6 +599,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -616,7 +624,7 @@
             
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning (AL)
   </span>
   
 
@@ -626,7 +634,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Active learning
+            Active learning (AL)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -641,7 +649,7 @@
         
   
   <span class="md-ellipsis">
-    What active learning is
+    What AL is
   </span>
   
 
@@ -662,7 +670,91 @@
         
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/active_learning/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/active_learning/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/active_learning/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user_guide/active_learning/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
   </span>
   
 
@@ -688,6 +780,8 @@
   
     
     
+      
+        
       
         
       
@@ -729,11 +823,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../user_guide/optimization/al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../user_guide/optimization/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -804,7 +919,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -3833,8 +3948,8 @@ and this project adheres to
   such as <code>GaussianProcessRegressor</code>
   and <code>OTGaussianProcessRegressor</code>.
   This option is only available for criteria dedicated
-  to level set [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]
-  (alternatively quantile estimation [Quantile][gemseo_mlearning.active_learning.acquisition_criteria.quantile.Quantile])
+  to level set <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet">LevelSet</a>
+  (alternatively quantile estimation <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile">Quantile</a>)
   and the expected improvement for maximum/minimum estimation <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/#gemseo_mlearning.active_learning.acquisition_criteria.maximum">Maximum</a>.</li>
 <li>The <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/problems/branin/#gemseo_mlearning.problems.branin">Branin</a> and
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/problems/rosenbrock/#gemseo_mlearning.problems.rosenbrock">Rosenbrock</a> problems
@@ -3855,40 +3970,25 @@ and this project adheres to
   wrapping the surrogate-based optimizers available in the Python package <a href="https://smt.readthedocs.io/">SMT</a>;
   this is the unique algorithm of the <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/smt/smt_ego/#gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO">SMTEGO</a> optimization library.</li>
 <li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
-  can use an existing [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo]
-  and save the [BaseMLRegressionAlgo][gemseo.mlearning.regression.regression.BaseMLRegressionAlgo] that it enriches
+  can use the acquisition criteria <code>CB</code> and <code>Output</code> in addition to <code>EI</code>.</li>
+<li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
+  can use an existing [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+  and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches
   using the <code>regression_file_path</code> option.</li>
-<li>Given a sequence of input points,
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  can generate samples of the conditioned Gaussian process
-  with its method [compute_samples][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.compute_samples].</li>
-<li>The <code>multi_start_n_samples</code>, <code>multi_start_algo_name</code> and <code>multi_start_algo_options</code> arguments of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to use multi-start optimization for the covariance model parameters;
-  by default, the number of starting points <code>multi_start_n_samples</code> is set to 10.</li>
-<li>The <code>optimization_space</code> argument of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to set the lower and upper bounds of the covariance model parameters
-  by means of a <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a>.</li>
-<li>The <code>covariance_model</code> argument of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  allows to use any covariance model proposed by OpenTURNS
-  and facilitates the use of some of them through the enumeration
-  [CovarianceModel][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.CovarianceModel];
-  its default value is Matérn 5/2.</li>
 </ul>
 <h2 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h2>
 <ul>
 <li>BREAKING CHANGE: The acquisition algorithm settings have to be passed to
-  [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.surrogate_based_optimization.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer">SurrogateBasedOptimizer</a>
   as keyword arguments, <em>i.e.</em> <code>SurrogateBasedOptimizer(..., key_1=value_1, key_2=value_2, ...)</code>.</li>
 <li>BREAKING CHANGE: The term <code>option</code> has been replaced by <code>setting</code> when it was linked to a DOE or an optimization algorithm.</li>
 <li>BREAKING CHANGE: The argument <code>distribution</code> of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>.
-  renamed to <code>regressor</code>; it can be either a regressor
-  [gemseo.mlearning.regression.algos.base_regressor.BaseRegressor][]
+  renamed to <code>regressor</code>;
+  it can be either a</li>
+<li>[BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
   or a
-  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution</a>.</li>
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a>.</li>
 <li>BREAKING CHANGE: The method <code>compute_next_input_data</code> of
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>.
   renamed to
@@ -3897,14 +3997,11 @@ and this project adheres to
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>.
   renamed to
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points">acquire_new_points</a>.</li>
-<li>BREAKING CHANGE: The argument <code>trend_type</code> and the attribute <code>TrendType</code> of
-  [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  renamed to <code>trend</code> and <code>Trend</code> respectively.</li>
 <li>BREAKING CHANGE: <code>MaxExpectedImprovement</code> renamed to <code>`Maximum</code>.</li>
 <li>BREAKING CHANGE: <code>MinExpectedImprovement</code> renamed to <code>`Minimum</code>.</li>
 <li>BREAKING CHANGE: <code>ExpectedImprovement</code> removed.</li>
 <li>BREAKING CHANGE: the acquisition criterion <code>LimitState</code> renamed to
-  [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.LevelSet]</li>
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet">LevelSet</a></li>
 <li>BREAKING CHANGE: each acquisition criterion class has a specific module
   in <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>
   whose name is the snake-case version of it class name, i.e. <code>nice_criterion.py</code> contains <code>NiceCriterion</code>.</li>
@@ -3921,31 +4018,26 @@ and this project adheres to
   and moved to</li>
 <li><a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>.</li>
 <li>BREAKING CHANGE: <code>MLDataAcquisitionCriterionFactory</code> renamed to
-  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.acquisition_criterion_factory.AcquisitionCriterionFactory],
+  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.AcquisitionCriterionFactory],
   moved to
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>
   and without the property <code>available_criteria</code> (use <code>AcquisitionCriterionFactory.class_names</code>).</li>
 <li>BREAKING CHANGE: <code>gemseo.adaptive</code> renamed to <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">gemseo_mlearning.active_learning</a>.</li>
 <li>BREAKING CHANGE: <code>gemseo.adaptive.criteria</code> renamed to
   <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>.</li>
-<li>BREAKING CHANGE:
-  The module <code>gemseo_mlearning.api</code> no longer exists;
-  the functions
-  [sample_discipline][gemseo_mlearning.sample_discipline]
-  and [sample_disciplines][gemseo_mlearning.sample_disciplines]
-  must be imported from <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/#gemseo_mlearning">gemseo_mlearning</a>.</li>
 </ul>
 <h2 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The data transformer can be set with the <code>"transformer"</code> key of the <code>regression_options</code> dictionary
-  passed to [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization].</li>
+  passed to <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>.</li>
 <li>The <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile">Quantile</a>
   estimates the quantile by Monte Carlo sampling
   by means of the probability distributions of the input variables;
-  this distributions are defined with its new argument <code>uncertain_space</code>.</li>
+  these distributions are defined with its new argument <code>uncertain_space</code>.</li>
 </ul>
 <h2 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h2>
 <ul>
+<li><code>AcquisitionCriterionFactory</code>; replaced by different factories for the developers.</li>
 <li><code>sample_discipline</code>; use [sample_disciplines][gemseo.sample_disciplines] from <code>gemseo</code> instead.</li>
 <li><code>sample_disciplines</code>; move to <code>gemseo</code>: [sample_disciplines][gemseo.sample_disciplines].</li>
 <li><code>MAEMeasure</code>; moved to <code>gemseo</code>: [MAEMeasure][gemseo.mlearning.regression.quality.mae_measure.MAEMeasure].</li>
@@ -3961,8 +4053,7 @@ and this project adheres to
 <h2 id="added_1">Added<a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Support for Python 3.11.</li>
-<li>[OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor]
-  has a new optional argument <code>optimizer</code>
+<li><code>OTGaussianProcessRegressor</code> has a new optional argument <code>optimizer</code>
   to select the OpenTURNS optimizer for the covariance model parameters.</li>
 </ul>
 <h2 id="removed_1">Removed<a class="headerlink" href="#removed_1" title="Permanent link">&para;</a></h2>
@@ -3972,24 +4063,22 @@ and this project adheres to
 <h1 id="version-111-september-2023">Version 1.1.1 (September 2023)<a class="headerlink" href="#version-111-september-2023" title="Permanent link">&para;</a></h1>
 <h2 id="fixed_1">Fixed<a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>[OTGaussianProcessRegressor.predict_std][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.predict_std]
+<li><code>OTGaussianProcessRegressor.predict_std</code>
   no longer returns the variance of the output but its standard deviation.</li>
 </ul>
 <h1 id="version-110-june-2023">Version 1.1.0 (June 2023)<a class="headerlink" href="#version-110-june-2023" title="Permanent link">&para;</a></h1>
 <h2 id="added_2">Added<a class="headerlink" href="#added_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>An argument <code>trend_type</code> of type
-  [OTGaussianProcessRegressor.TrendType][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor.TrendType]
-  to [OTGaussianProcessRegressor][gemseo_mlearning.regression.ot_gpr.OTGaussianProcessRegressor];
+<li>An argument <code>trend_type</code> of type <code>OTGaussianProcessRegressor.TrendType</code> to <code>OTGaussianProcessRegressor</code>;
   the trend type of the Gaussian process regressor can be either constant,
   linear or quadratic.</li>
 <li>A new optimization library
-  [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.lib_surrogate_based.SurrogateBasedOptimization]
+  <a class="autorefs autorefs-internal" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
   to perform EGO-like surrogate-based optimization on unconstrained problems.</li>
 </ul>
 <h2 id="fixed_2">Fixed<a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The output of an [MLDataAcquisitionCriterion][gemseo_mlearning.adaptive.criterion.MLDataAcquisitionCriterion]
+<li>The output of an <code>MLDataAcquisitionCriterion</code>
   based on a regressor built from constant output values is no longer <code>nan</code>.</li>
 </ul>
 <h1 id="version-101-february-2022">Version 1.0.1 (February 2022)<a class="headerlink" href="#version-101-february-2022" title="Permanent link">&para;</a></h1>

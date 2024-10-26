@@ -584,6 +584,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -601,7 +609,7 @@
             
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning (AL)
   </span>
   
 
@@ -611,7 +619,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Active learning
+            Active learning (AL)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -626,7 +634,7 @@
         
   
   <span class="md-ellipsis">
-    What active learning is
+    What AL is
   </span>
   
 
@@ -647,7 +655,91 @@
         
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
   </span>
   
 
@@ -673,6 +765,8 @@
   
     
     
+      
+        
       
         
       
@@ -714,11 +808,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../../user_guide/optimization/al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../../user_guide/optimization/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -789,7 +904,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -3225,15 +3340,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.EGOSettings" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;EGOSettings
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ParallelStrategy
@@ -3305,6 +3411,15 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;SMTEGOSettings
+    </span>
+  </a>
   
 </li>
         
@@ -4134,15 +4249,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.EGOSettings" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;EGOSettings
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ParallelStrategy
@@ -4214,6 +4320,15 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;SMTEGOSettings
+    </span>
+  </a>
   
 </li>
         
@@ -4479,145 +4594,6 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
 
 
 
-<h4 id="gemseo_mlearning.algos.opt.smt.ego_settings.EGOSettings" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">EGOSettings</span>
-
-
-<a href="#gemseo_mlearning.algos.opt.smt.ego_settings.EGOSettings" class="headerlink" title="Permanent link">&para;</a></h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="gemseo.algos.opt.base_optimization_library_settings.BaseOptimizationLibrarySettings">BaseOptimizationLibrarySettings</span></code></p>
-
-
-        <p>The settings of the SMT's SBO algorithm.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>criterion</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
-                  <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The acquisition criterion.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>enable_tunneling</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>False</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to enable the penalization of points that have been already evaluated in EI criterion.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_doe</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>10</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points of the initial LHS DOE to train the surrogate.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_max_optim</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>20</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The maximum number of iterations for each sub-optimization.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_parallel</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points to be acquired in parallel; if <code>1</code>, acquire points sequentially.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_start</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>50</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of sub-optimizations.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>qEI</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
-                  <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The strategy to acquire points in parallel.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>random_state</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The Numpy RandomState object or seed number which controls random draws.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>surrogate</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
-                  <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The SMT Kriging-based surrogate model used internally; either an instance of the surrogate before training or its class name.</p>
-          </div>
-        </li>
-    </ul>
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
 <h4 id="gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">ParallelStrategy</span>
 
@@ -4777,6 +4753,145 @@ the standard normal distribution.</p>
     </div>
 
 </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">SMTEGOSettings</span>
+
+
+<a href="#gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="gemseo.algos.opt.base_optimizer_settings.BaseOptimizerSettings">BaseOptimizerSettings</span></code></p>
+
+
+        <p>The settings of the SMT's SBO algorithm.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>criterion</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
+                  <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The acquisition criterion.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>enable_tunneling</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>Whether to enable the penalization of points that have been already evaluated in EI criterion.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>n_doe</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>10</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of points of the initial LHS DOE to train the surrogate.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>n_max_optim</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>20</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The maximum number of iterations for each sub-optimization.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>n_parallel</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>1</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of points to be acquired in parallel; if <code>1</code>, acquire points sequentially.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>n_start</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>50</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The number of sub-optimizations.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>qEI</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
+                  <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The strategy to acquire points in parallel.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>random_state</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
+                  <code>1</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The Numpy RandomState object or seed number which controls random draws.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>surrogate</code></b>
+              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
+                  <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>The SMT Kriging-based surrogate model used internally; either an instance of the surrogate before training or its class name.</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
 
 
 

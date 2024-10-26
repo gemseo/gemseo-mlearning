@@ -14,7 +14,7 @@
         <link rel="prev" href="../what_active_learning_is/">
       
       
-        <link rel="next" href="../../optimization/smt/">
+        <link rel="next" href="../exploration/">
       
       
       <link rel="icon" href="../../../images/favicon.ico">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Active learning algorithm - gemseo-mlearning</title>
+        <title>AL algorithm - gemseo-mlearning</title>
       
     
     
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Active learning algorithm
+              AL algorithm
             
           </span>
         </div>
@@ -591,6 +591,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -608,7 +616,7 @@
             
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning (AL)
   </span>
   
 
@@ -618,7 +626,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Active learning
+            Active learning (AL)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -633,7 +641,7 @@
         
   
   <span class="md-ellipsis">
-    What active learning is
+    What AL is
   </span>
   
 
@@ -663,7 +671,7 @@
           
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
   </span>
   
 
@@ -674,7 +682,7 @@
         
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
   </span>
   
 
@@ -740,6 +748,90 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -756,6 +848,8 @@
   
     
     
+      
+        
       
         
       
@@ -797,11 +891,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../optimization/al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../optimization/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -872,7 +987,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -3949,7 +4064,10 @@ chosen for a specific purpose.</p>
 and <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/#gemseo_mlearning.active_learning.acquisition_criteria.quantile.quantile.Quantile">Quantile</a>
 provides an estimation of the quantity of interest,
 namely the minimum, the maximum and a quantile respectively.
-Whatever the family,
+This value is updated each time a training point is acquired
+and can be accessed via the attribute
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.qoi">qoi</a>.</p>
+<p>Whatever the family,
 the surrogate model can be used for prediction as any surrogate model.
 However,
 outside the
@@ -4004,7 +4122,17 @@ as well as the acquisition criterion among the selected family.</p>
 <p>Lastly,
 the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/visualization/#gemseo_mlearning.active_learning.visualization">visualization</a> subpackage
 offers plotting capabilities
-to draw the evolution of both the surrogate model and the acquisition criterion.</p>
+to draw the evolution of both the surrogate model and the acquisition criterion.
+They can be easily accessed
+from the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
+using its methods:</p>
+<ul>
+<li><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_qoi_history">plot_qoi_history</a>
+  to visualize the estimation of the quantity of interest in function of the acquisition step,</li>
+<li><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_acquisition_view">plot_acquisition_view</a>
+  to visualize the discipline, the regressor, the acquisition criterion and the standard deviation
+  in the case of two scalar input variables.</li>
+</ul>
 
 
 

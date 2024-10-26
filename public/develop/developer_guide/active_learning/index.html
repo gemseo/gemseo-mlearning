@@ -582,6 +582,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -599,7 +607,7 @@
             
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning (AL)
   </span>
   
 
@@ -609,7 +617,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Active learning
+            Active learning (AL)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -624,7 +632,7 @@
         
   
   <span class="md-ellipsis">
-    What active learning is
+    What AL is
   </span>
   
 
@@ -645,7 +653,91 @@
         
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
   </span>
   
 
@@ -671,6 +763,8 @@
   
     
     
+      
+        
       
         
       
@@ -712,11 +806,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../user_guide/optimization/al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../user_guide/optimization/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -787,7 +902,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -3892,8 +4007,8 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 <p>This section describes the design of the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">active_learning</a> subpackage.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Open the <a href="../../user_guide/active_learning/active_learning_algo/">user guide</a> for general information,
-<em>e.g.</em> concepts, API, examples, etc.</p>
+<p>Open the <a href="../../user_guide/active_learning/what_active_learning_is/">user guide</a>
+for general information, <em>e.g.</em> concepts, API, examples, etc.</p>
 </div>
 <h2 id="tree-structure">Tree structure<a class="headerlink" href="#tree-structure" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>📁<span class="w"> </span>gemseo_mlearning
@@ -3919,21 +4034,23 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 <span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>kriging_distribution.py<span class="w"> </span><span class="c1"># The RD for Kriging regressors</span>
 <span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>📄<span class="w"> </span>regressor_distribution.py<span class="w"> </span><span class="c1"># The RD for any regressor</span>
 <span class="w">    </span>└──<span class="w"> </span>📁<span class="w"> </span>visualization<span class="w"> </span><span class="c1"># Visualization tools</span>
-<span class="w">        </span>└──<span class="w"> </span>📄<span class="w"> </span>acquisition_view.py<span class="w"> </span><span class="c1"># Plot the acquisition process (in 2D only)</span>
+<span class="w">        </span>├──<span class="w"> </span>📄<span class="w"> </span>acquisition_view.py<span class="w"> </span><span class="c1"># Plot the acquisition process (in 2D only)</span>
+<span class="w">        </span>└──<span class="w"> </span>📄<span class="w"> </span>qoi_history_view.py<span class="w"> </span><span class="c1"># Plot the history of the quantity of interest</span>
 </code></pre></div>
 <h2 id="class-diagram">Class diagram<a class="headerlink" href="#class-diagram" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>classDiagram
 
-    ActiveLearning *-- OptimizationProblem
-    ActiveLearning o-- DesignSpace
-    ActiveLearning --&gt; AcquisitionCriterionFamilyFactory: criterion_family_name
-    ActiveLearning --&gt; BaseAcquisitionCriterionFactory: criterion_name \n criterion_options
-    ActiveLearning --&gt; BaseRegressorDistribution: regressor
-    BaseDriverLibrary --* ActiveLearning
+    ActiveLearningAlgo *-- OptimizationProblem
+    ActiveLearningAlgo o-- DesignSpace
+    ActiveLearningAlgo --&gt; AcquisitionCriterionFamilyFactory: criterion_family_name
+    ActiveLearningAlgo --&gt; BaseAcquisitionCriterionFactory: criterion_name \n criterion_options
+    ActiveLearningAlgo --&gt; BaseRegressorDistribution: regressor
+    BaseDriverLibrary --* ActiveLearningAlgo
     BaseDOELibrary --* BaseDriverLibrary
     BaseOptimizationLibrary --* BaseDriverLibrary
-    Database --* ActiveLearning
-    AcquisitionView --* ActiveLearning
+    Database --* ActiveLearningAlgo
+    AcquisitionView --* ActiveLearningAlgo
+    QOIHistoryView --* ActiveLearningAlgo
 
     OptimizationProblem o-- BaseAcquisitionCriterion
 
@@ -3949,7 +4066,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
     &lt;&lt;abstract&gt;&gt; BaseAcquisitionCriterionFamily
     &lt;&lt;abstract&gt;&gt; BaseRegressorDistribution
 
-    class ActiveLearning {
+    class ActiveLearningAlgo {
         +default_algo_name
         +default_doe_settings
         +default_opt_settings

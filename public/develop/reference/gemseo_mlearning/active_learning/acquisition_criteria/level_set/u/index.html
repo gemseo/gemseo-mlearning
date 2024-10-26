@@ -584,6 +584,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -601,7 +609,7 @@
             
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning (AL)
   </span>
   
 
@@ -611,7 +619,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Active learning
+            Active learning (AL)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -626,7 +634,7 @@
         
   
   <span class="md-ellipsis">
-    What active learning is
+    What AL is
   </span>
   
 
@@ -647,7 +655,91 @@
         
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../user_guide/active_learning/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
   </span>
   
 
@@ -673,6 +765,8 @@
   
     
     
+      
+        
       
         
       
@@ -714,11 +808,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../../user_guide/optimization/al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../../user_guide/optimization/smt/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -789,7 +904,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -2047,15 +2162,6 @@
   
     <nav class="md-nav" aria-label="Attributes">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.MAXIMIZE" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MAXIMIZE
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.output_range" class="md-nav__link">
@@ -3962,15 +4068,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.MAXIMIZE" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MAXIMIZE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.output_range" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;output_range
@@ -4112,18 +4209,13 @@
 and <span class="arithmatex">\(Y\)</span> is the random process
 modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>.
 It has an analytic expression:</p>
-<div class="arithmatex">\[U[x] = \left(\frac{y-\mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}\right)^2\]</div>
-<p>where <span class="arithmatex">\(Y\)</span> is the random process
-modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>
-and <span class="arithmatex">\(y\)</span> is the model output value characterizing the level set.
-For numerical purposes,
+<div class="arithmatex">\[U[x] = \left(\frac{y-\mathbb{E}[Y(x)]}{\mathbb{S}[Y(x)]}\right)^2.\]</div>
+<p>For numerical purposes,
 the expression effectively minimized corresponds to its square root.</p>
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
-<div class="arithmatex">\[U[x_1,\dots,x_q] = \mathbb{E}\left[\min\left(
-\left(\frac{y-Y(x_1)}{\mathbb{S}[Y(x_1)]}\right)^2,\dots,
-\left(\frac{y-Y(x_q)}{\mathbb{S}[Y(x_q)]}
-\right)^2\right)\right]\]</div>
+<div class="arithmatex">\[U[x_1,\dots,x_q] = \mathbb{E}\left[\min_{1\leq i \leq q}\left(
+\left(\frac{y-Y(x_i)}{\mathbb{S}[Y(x_i)]}\right)^2\right)\right]\]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
 There is no analytic expression
@@ -4167,7 +4259,7 @@ and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
     <span class="n">regressor_distribution</span><span class="p">:</span> <span class="n">BaseRegressorDistribution</span><span class="p">,</span>
     <span class="n">output_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10_000</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
@@ -4187,29 +4279,6 @@ and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
 
 
 <h5 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U-attributes">Attributes<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U-attributes" class="headerlink" title="Permanent link">&para;</a></h5>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h6 id="gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.MAXIMIZE" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">MAXIMIZE</span>
-
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-  </span>
-
-<a href="#gemseo_mlearning.active_learning.acquisition_criteria.level_set.u.U.MAXIMIZE" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">MAXIMIZE</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Whether this acquisition criterion must be maximized.</p>
-    </div>
-
-</div>
 
 <div class="doc doc-object doc-attribute">
 

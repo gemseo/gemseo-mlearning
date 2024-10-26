@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/optimization/smt/">
       
       
-        <link rel="prev" href="../../active_learning/active_learning_algo/">
+        <link rel="prev" href="../al/">
       
       
         <link rel="next" href="../../regression/smt/">
@@ -22,7 +22,7 @@
     
     
       
-        <title>SMT - gemseo-mlearning</title>
+        <title>SMT library - gemseo-mlearning</title>
       
     
     
@@ -126,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SMT
+              SMT library
             
           </span>
         </div>
@@ -589,6 +589,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -606,7 +614,7 @@
             
   
   <span class="md-ellipsis">
-    Active learning
+    Active learning (AL)
   </span>
   
 
@@ -616,7 +624,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            Active learning
+            Active learning (AL)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -631,7 +639,7 @@
         
   
   <span class="md-ellipsis">
-    What active learning is
+    What AL is
   </span>
   
 
@@ -652,7 +660,91 @@
         
   
   <span class="md-ellipsis">
-    Active learning algorithm
+    AL algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active_learning/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active_learning/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active_learning/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../active_learning/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
   </span>
   
 
@@ -680,6 +772,8 @@
   
     
     
+      
+        
       
         
       
@@ -718,6 +812,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -734,7 +849,7 @@
           
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -745,7 +860,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -896,7 +1011,7 @@
         
   
   <span class="md-ellipsis">
-    SMT
+    SMT library
   </span>
   
 
@@ -4144,11 +4259,11 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 <tr>
 <td><code>"LCB"</code></td>
 <td>Lower confidence bound</td>
-<td><span class="arithmatex">\(\mu(x)-3\sigma(x)\)</span></td>
+<td><span class="arithmatex">\(\mu(x)-3\times\sigma(x)\)</span></td>
 </tr>
 <tr>
 <td><code>"SBO"</code></td>
-<td>Expected improvement</td>
+<td>Kriging believer</td>
 <td><span class="arithmatex">\(\mu(x)\)</span></td>
 </tr>
 </tbody>
@@ -4158,7 +4273,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 <p>Points can be acquired by batch of <span class="arithmatex">\(q&gt;1\)</span> points,
 as Kriging is well-suited to parallelize optimization<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
 To this aim,
-when <code>n_parallel</code> is equal to <span class="arithmatex">\(q\)</span>,
+when <code>n_parallel</code> is greater than 1,
 SMT uses a technique of virtual points to update the training dataset with <span class="arithmatex">\(k\leq q\)</span> training points
 whose output value mimics the substituted model using a strategy.
 The four strategies are:</p>
