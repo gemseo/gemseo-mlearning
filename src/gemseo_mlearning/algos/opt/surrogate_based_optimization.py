@@ -95,7 +95,9 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
             doe_algo = DOELibraryFactory().create(doe_algorithm)
             initial_doe_size = len(
-                doe_algo.compute_doe(problem.design_space, doe_size, **doe_settings)
+                doe_algo.compute_doe(
+                    problem.design_space, n_samples=doe_size, **doe_settings
+                )
             )
             max_iter = settings["max_iter"]
             if max_iter < 1 + initial_doe_size:
