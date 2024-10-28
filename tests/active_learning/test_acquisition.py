@@ -407,7 +407,7 @@ def test_plot_qoi_history(input_space, algo_distribution_for_update):
     assert draw.call_args.kwargs == {
         "add_markers": True,
         "file_path": "",
-        "label": "Quantity of interest",
+        "label": "",
         "show": True,
     }
 

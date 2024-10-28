@@ -24,6 +24,7 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import TYPE_CHECKING
 
+from gemseo.algos.parameter_space import ParameterSpace
 from gemseo.utils.string_tools import pretty_str
 from numpy import atleast_1d
 from numpy import quantile
@@ -33,7 +34,6 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 )
 
 if TYPE_CHECKING:
-    from gemseo.algos.parameter_space import ParameterSpace
     from gemseo.typing import NumberArray
     from gemseo.typing import RealArray
 
@@ -85,9 +85,9 @@ class BaseQuantile(BaseAcquisitionCriterion):
             raise ValueError(msg)
 
         # Create a new uncertain space sorted by model inputs.
-        self.__uncertain_space = uncertain_space.__class__()
-        self.__uncertain_space.add_variables_from(uncertain_space, *input_names)
-        self.__input_data = self.__uncertain_space.compute_samples(n_samples)
+        new_uncertain_space = ParameterSpace()
+        new_uncertain_space.add_variables_from(uncertain_space, *input_names)
+        self.__input_data = new_uncertain_space.compute_samples(n_samples)
         self.__level = level
         # The value 0. will be replaced by the quantile estimation at each update,
         # including the first one due to super().__init__.
