@@ -502,7 +502,7 @@ class ActiveLearningAlgo:
         self,
         show: bool = True,
         file_path: str | Path = "",
-        label: str = "Quantity of interest",
+        label: str = "",
         add_markers: bool = True,
         **options: Any,
     ) -> Lines:
@@ -513,6 +513,7 @@ class ActiveLearningAlgo:
             file_path: The file path to save the view.
                 If empty, do not save it.
             label: The label for the QOI.
+                If empty, the name of the criterion family name.
             add_markers: Whether to add markers.
             **options: The options to create the
                 [Lines][gemseo.post.dataset.lines.Lines] object.
