@@ -46,7 +46,9 @@ def input_space() -> DesignSpace:
 @pytest.fixture(scope="module")
 def learning_dataset(discipline, input_space) -> IODataset:
     """The learning dataset."""
-    return sample_disciplines([discipline], input_space, "z", 30, "OT_OPT_LHS")
+    return sample_disciplines(
+        [discipline], input_space, "z", "OT_OPT_LHS", n_samples=30
+    )
 
 
 @pytest.fixture(scope="module")

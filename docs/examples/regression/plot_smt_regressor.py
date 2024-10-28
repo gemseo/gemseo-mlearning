@@ -60,7 +60,9 @@ input_space = RosenbrockSpace()
 # Then,
 # we use an optimized Latin hypercube sampling (LHS) technique
 # to generate 20 samples:
-training_data = sample_disciplines([discipline], input_space, "y", 20, "OT_OPT_LHS")
+training_data = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=20
+)
 
 # %%
 # From this learning dataset,
@@ -79,7 +81,9 @@ surrogate_model.learn()
 r2 = R2Measure(surrogate_model)
 r2_l = r2.compute_learning_measure()[0]
 r2_cv = r2.compute_cross_validation_measure()[0]
-test_data = sample_disciplines([discipline], input_space, "y", 1000, "OT_MONTE_CARLO")
+test_data = sample_disciplines(
+    [discipline], input_space, "y", "OT_MONTE_CARLO", n_samples=1000
+)
 r2_t = r2.compute_test_measure(test_data)[0]
 f"Learning R2: {r2_l}; cross-validation R2: {r2_cv}; test R2: {r2_t}"
 
