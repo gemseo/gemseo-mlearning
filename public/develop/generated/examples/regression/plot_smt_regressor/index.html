@@ -995,20 +995,6 @@
           
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1048,153 +1034,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/ego_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Efficient global optimization using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/quantile_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Quantile estimation using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/expected_improvement_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/expected_improvement_bootstrap/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement based on bootstrap.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/expected_improvement_cv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement based on cross-validation.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/ego_rbf/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    EGO based on resampling.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../active_learning/expected_improvement_cv_boot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cross-validation vs bootstrap.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
               
             
           </ul>
@@ -3952,6 +3791,16 @@ we will approximate the
 <span class="kn">from</span> <span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span> <span class="kn">import</span> <span class="n">RosenbrockSpace</span>
 <span class="kn">from</span> <span class="nn">gemseo_mlearning.regression.smt_regressor</span> <span class="kn">import</span> <span class="n">SMTRegressor</span>
 </code></pre></div>
+<p class="mkd-glr-script-out">Out:</p>
+<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/third_party/prettytable/prettytable.py:73:<span class="w"> </span>DeprecationWarning:<span class="w"> </span>invalid<span class="w"> </span>escape<span class="w"> </span>sequence<span class="w"> </span><span class="se">\[</span>
+<span class="w">  </span><span class="nv">_re</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>re.compile<span class="o">(</span><span class="s2">&quot;\033\[[0-9;]*m&quot;</span><span class="o">)</span>
+/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/third_party/prettytable/prettytable.py:1291:<span class="w"> </span>DeprecationWarning:<span class="w"> </span>invalid<span class="w"> </span>escape<span class="w"> </span>sequence<span class="w"> </span><span class="se">\{</span>
+<span class="w">  </span>self.vertical_char<span class="w"> </span><span class="o">=</span><span class="w"> </span>random.choice<span class="o">(</span><span class="s2">&quot;~!@#</span>$<span class="s2">%^&amp;*()_+|-=\{}[];&#39;:\&quot;,./;&lt;&gt;?&quot;</span><span class="o">)</span>
+/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/third_party/prettytable/prettytable.py:1292:<span class="w"> </span>DeprecationWarning:<span class="w"> </span>invalid<span class="w"> </span>escape<span class="w"> </span>sequence<span class="w"> </span><span class="se">\{</span>
+<span class="w">  </span>self.horizontal_char<span class="w"> </span><span class="o">=</span><span class="w"> </span>random.choice<span class="o">(</span><span class="s2">&quot;~!@#</span>$<span class="s2">%^&amp;*()_+|-=\{}[];&#39;:\&quot;,./;&lt;&gt;?&quot;</span><span class="o">)</span>
+/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/third_party/prettytable/prettytable.py:1293:<span class="w"> </span>DeprecationWarning:<span class="w"> </span>invalid<span class="w"> </span>escape<span class="w"> </span>sequence<span class="w"> </span><span class="se">\{</span>
+<span class="w">  </span>self.junction_char<span class="w"> </span><span class="o">=</span><span class="w"> </span>random.choice<span class="o">(</span><span class="s2">&quot;~!@#</span>$<span class="s2">%^&amp;*()_+|-=\{}[];&#39;:\&quot;,./;&lt;&gt;?&quot;</span><span class="o">)</span>
+</code></pre></div>
 <!-- GENERATED FROM PYTHON SOURCE LINES 51-53 -->
 
 <p>First,
@@ -3967,10 +3816,6 @@ we create the Rosenbrock discipline:</p>
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<p class="mkd-glr-script-out">Out:</p>
-<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/pydantic/main.py:209:<span class="w"> </span>DeprecationWarning:<span class="w"> </span>Conversion<span class="w"> </span>of<span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>with<span class="w"> </span>ndim<span class="w"> </span>&gt;<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>scalar<span class="w"> </span>is<span class="w"> </span>deprecated,<span class="w"> </span>and<span class="w"> </span>will<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>future.<span class="w"> </span>Ensure<span class="w"> </span>you<span class="w"> </span>extract<span class="w"> </span>a<span class="w"> </span>single<span class="w"> </span>element<span class="w"> </span>from<span class="w"> </span>your<span class="w"> </span>array<span class="w"> </span>before<span class="w"> </span>performing<span class="w"> </span>this<span class="w"> </span>operation.<span class="w"> </span><span class="o">(</span>Deprecated<span class="w"> </span>NumPy<span class="w"> </span><span class="m">1</span>.25.<span class="o">)</span>
-<span class="w">  </span><span class="nv">validated_self</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>self.__pydantic_validator__.validate_python<span class="o">(</span>data,<span class="w"> </span><span class="nv">self_instance</span><span class="o">=</span>self<span class="o">)</span>
-</code></pre></div>
 <!-- GENERATED FROM PYTHON SOURCE LINES 60-63 -->
 
 <p>Then,
@@ -3981,24 +3826,6 @@ to generate 20 samples:</p>
 <div class="highlight"><pre><span></span><code><span class="n">training_data</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
-</code></pre></div>
-<p class="mkd-glr-script-out">Out:</p>
-<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:81:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.node:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;label&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>node<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:81:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.node:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;_attributes&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>node<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:81:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.node:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;**attrs&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>node<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:88:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.edge:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;head_name&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>edge<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:88:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.edge:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;label&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>edge<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:88:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.edge:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;_attributes&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>edge<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/gemseo/post/_graph_view.py:88:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>GraphView.edge:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;**attrs&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
-<span class="w">  </span>def<span class="w"> </span>edge<span class="o">(</span><span class="w">  </span><span class="c1"># noqa:D102</span>
-/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.9/site-packages/networkx/utils/backends.py:135:<span class="w"> </span>RuntimeWarning:<span class="w"> </span>networkx<span class="w"> </span>backend<span class="w"> </span>defined<span class="w"> </span>more<span class="w"> </span>than<span class="w"> </span>once:<span class="w"> </span>nx-loopback
-<span class="w">  </span>backends.update<span class="o">(</span>_get_backends<span class="o">(</span><span class="s2">&quot;networkx.backends&quot;</span><span class="o">))</span>
 </code></pre></div>
 <!-- GENERATED FROM PYTHON SOURCE LINES 68-73 -->
 
@@ -4053,7 +3880,7 @@ and plot its output over a 20x20 grid:</p>
 <p class="mkd-glr-script-out">Out:</p>
 <div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="o">[</span>&lt;Figure<span class="w"> </span>size<span class="w"> </span>640x480<span class="w"> </span>with<span class="w"> </span><span class="m">2</span><span class="w"> </span>Axes&gt;<span class="o">]</span>
 </code></pre></div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  1.611 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  6.258 seconds)</p>
 <div id="download_links"></div>
 
 <p><a class="md-button center" href="../plot_smt_regressor.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v242.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64v-32c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48"/></svg></span> Download Python source code: plot_smt_regressor.py</a></p>

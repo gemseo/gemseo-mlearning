@@ -25,34 +25,6 @@
          <lastmod>2024-10-28</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/ego_gpr/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/ego_rbf/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_bootstrap/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_cv/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_cv_boot/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/expected_improvement_gpr/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/quantile_gpr/</loc>
-         <lastmod>2024-10-28</lastmod>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/</loc>
          <lastmod>2024-10-28</lastmod>
     </url>

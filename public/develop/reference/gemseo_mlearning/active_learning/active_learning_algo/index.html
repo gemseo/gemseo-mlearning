@@ -988,20 +988,6 @@
           
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1041,153 +1027,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Efficient global optimization using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Quantile estimation using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement based on bootstrap.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement based on cross-validation.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    EGO based on resampling.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cross-validation vs bootstrap.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
               
             
           </ul>
@@ -5584,7 +5423,7 @@ If empty, do not save it.</p>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">plot_qoi_history</span><span class="p">(</span>
     <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;Quantity of interest&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">add_markers</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></span>
@@ -5621,11 +5460,12 @@ If empty, do not save it.</p>
         <li class="doc-section-item field-body">
             <b><code>label</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
-                  <code>&#39;Quantity of interest&#39;</code>
+                  <code>&#39;&#39;</code>
 )
           –
           <div class="doc-md-description">
-            <p>The label for the QOI.</p>
+            <p>The label for the QOI.
+If empty, the name of the criterion family name.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
@@ -5693,11 +5533,12 @@ If empty, do not save it.</p>
 <span class="normal">526</span>
 <span class="normal">527</span>
 <span class="normal">528</span>
-<span class="normal">529</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_qoi_history</span><span class="p">(</span>
+<span class="normal">529</span>
+<span class="normal">530</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">plot_qoi_history</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">show</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Quantity of interest&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">add_markers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Lines</span><span class="p">:</span>
@@ -5708,6 +5549,7 @@ If empty, do not save it.</p>
 <span class="sd">        file_path: The file path to save the view.</span>
 <span class="sd">            If empty, do not save it.</span>
 <span class="sd">        label: The label for the QOI.</span>
+<span class="sd">            If empty, the name of the criterion family name.</span>
 <span class="sd">        add_markers: Whether to add markers.</span>
 <span class="sd">        **options: The options to create the</span>
 <span class="sd">            [Lines][gemseo.post.dataset.lines.Lines] object.</span>
@@ -5821,10 +5663,10 @@ to find the learning point(s).</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">531</span>
-<span class="normal">532</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">532</span>
 <span class="normal">533</span>
-<span class="normal">534</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">534</span>
+<span class="normal">535</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">update_problem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the acquisition problem.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_problem</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">preprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_criterion</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>

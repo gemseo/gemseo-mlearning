@@ -988,20 +988,6 @@
           
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
       
@@ -1041,153 +1027,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/ego_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Efficient global optimization using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/quantile_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Quantile estimation using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_gpr/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement using a Gaussian process regressor.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_bootstrap/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement based on bootstrap.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_cv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Expected improvement based on cross-validation.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/ego_rbf/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    EGO based on resampling.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../generated/examples/active_learning/expected_improvement_cv_boot/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cross-validation vs bootstrap.
-  </span>
-  
-
-      </a>
-    </li>
-  
-
               
             
           </ul>
@@ -4322,9 +4161,9 @@ to estimate the quantile of the regressor by Monte Carlo.</p>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
     <span class="c1"># Create a new uncertain space sorted by model inputs.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__uncertain_space</span> <span class="o">=</span> <span class="n">uncertain_space</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__uncertain_space</span><span class="o">.</span><span class="n">add_variables_from</span><span class="p">(</span><span class="n">uncertain_space</span><span class="p">,</span> <span class="o">*</span><span class="n">input_names</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__input_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__uncertain_space</span><span class="o">.</span><span class="n">compute_samples</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="n">new_uncertain_space</span> <span class="o">=</span> <span class="n">ParameterSpace</span><span class="p">()</span>
+    <span class="n">new_uncertain_space</span><span class="o">.</span><span class="n">add_variables_from</span><span class="p">(</span><span class="n">uncertain_space</span><span class="p">,</span> <span class="o">*</span><span class="n">input_names</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__input_data</span> <span class="o">=</span> <span class="n">new_uncertain_space</span><span class="o">.</span><span class="n">compute_samples</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__level</span> <span class="o">=</span> <span class="n">level</span>
     <span class="c1"># The value 0. will be replaced by the quantile estimation at each update,</span>
     <span class="c1"># including the first one due to super().__init__.</span>
