@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Exploration using a RBF regressor"""
+"""# Non-GP regressor."""
 
 from __future__ import annotations
 
@@ -31,15 +31,17 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
 # The use of active learning methods
-# dedicated to exploration
+# dedicated to level set estimation
 # is illustrated in this example,
 # with all default settings.
-# The function to approximate is
+# The function with the level set of interest is
 # the Rosenbrock function $f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2$:
 discipline = RosenbrockDiscipline()
 # %%
@@ -49,33 +51,32 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
-# and a universal Regressor from scikit-learn:
-algo = RBFRegressor(learning_dataset)
-regressor = RegressorDistribution(algo, bootstrap=False, size=50)
-regressor.learn()
+# and a universal regressor, namely a radial basis function network based on SciPy:
+regressor = RBFRegressor(learning_dataset)
+regressor_distribution = RegressorDistribution(regressor, bootstrap=False)
+regressor_distribution.learn()
 
 # %%
 # Then,
 # we look for 20 points that will help us
-# to improve the overall accuracy
-# of the surrogate model.
+# to approximate the level-set associated to the 35% quantile.
 # By default,
 # for this purpose,
 # the active learning algorithm looks
-# for the point maximizing
-# the regressor local variance
+# for the point minimizing the U-function
 # with the help of the SLSQP gradient-based algorithm
 # applied in a multistart framework.
+level_value = 300.0
 active_learning = ActiveLearningAlgo(
-    "Exploration",
+    "LevelSet",
     input_space,
-    regressor,
-)
-active_learning.set_acquisition_algorithm(
-    algo_name="MultiStart", opt_algo_name="NELDER-MEAD", n_start=50
+    regressor_distribution,
+    output_value=level_value,
 )
 active_learning.acquire_new_points(discipline, 20)
 
@@ -84,6 +85,11 @@ active_learning.acquire_new_points(discipline, 20)
 # we plot the training points,
 # the original model,
 # the RBF regressor
-# and the variance
+# and the U-function
 # after the last acquisition:
-active_learning.plot_acquisition_view(discipline=discipline, file_path="rrr")
+active_learning.plot_acquisition_view(discipline=discipline)
+# It can be seen
+# that the learning points
+# are distributed around
+# the target level set,
+# thus approximating it properly.

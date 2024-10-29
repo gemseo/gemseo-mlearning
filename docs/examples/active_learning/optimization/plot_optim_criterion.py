@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Impact of the acquisition criterion on efficient global optimization"""
+"""# Acquisition criterion."""
 
 from __future__ import annotations
 
@@ -32,7 +32,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -56,23 +58,16 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
 # and three identical initial
 # Gaussian process regressors from OpenTURNS:
-regressor_1 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_2 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_3 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor_1 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_2 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_3 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 # %%
 # Then,
@@ -85,22 +80,12 @@ regressor_3 = OTGaussianProcessRegressor(
 # LCB and Output criteria.
 # All other settings are put to
 # their default values.
-active_learning_1 = ActiveLearningAlgo(
-    "Minimum",
-    input_space,
-    regressor_1,
-)
+active_learning_1 = ActiveLearningAlgo("Minimum", input_space, regressor_1)
 active_learning_2 = ActiveLearningAlgo(
-    "Minimum",
-    input_space,
-    regressor_2,
-    criterion_name="LCB",
+    "Minimum", input_space, regressor_2, criterion_name="LCB"
 )
 active_learning_3 = ActiveLearningAlgo(
-    "Minimum",
-    input_space,
-    regressor_3,
-    criterion_name="Output",
+    "Minimum", input_space, regressor_3, criterion_name="Output"
 )
 active_learning_1.acquire_new_points(discipline, n_samples=20)
 active_learning_2.acquire_new_points(discipline, n_samples=20)
@@ -132,9 +117,6 @@ plt.show()
 # from the active learning procedures
 # to their exact counterparts
 # for the three algorithms
-print(0, active_learning_1.qoi)
-print(0, active_learning_2.qoi)
-print(0, active_learning_3.qoi)
 
 
 # %%
@@ -148,10 +130,10 @@ print(0, active_learning_3.qoi)
 # and estimation of the different quantities
 n_test = 10
 observations = sample_disciplines(
-    [discipline], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 
-# Plotting the exact minimum and the estimated minimas
+# Plotting the exact minimum and the estimated minima
 # alongside the learning points
 plt.figure()
 points_1 = active_learning_1.regressor.learning_set.to_numpy()
@@ -163,7 +145,7 @@ plt.contour(
     observations[:, 2].reshape(n_test, n_test),
 )
 bar = plt.colorbar()
-bar.set_label("Rosenbrock function")
+bar.set_label(r"$f(x_1,x_2)$")
 plt.scatter([1], [1], marker="o", label="Exact minimum", color="red")
 plt.scatter(
     points_1[argmin(points_1[:, -1]), 0],

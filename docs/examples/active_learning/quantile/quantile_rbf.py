@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Quantile estimation using a RBF regressor"""
+"""# Non-GP regressor."""
 
 from __future__ import annotations
 
@@ -32,7 +32,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -51,14 +53,14 @@ uncertain_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", 10, "OT_OPT_LHS"
+    [discipline], uncertain_space, "y", "OT_OPT_LHS", n_samples=10
 )
 
 # %%
-# and a universal Regressor from scikit-learn:
-algo = RBFRegressor(learning_dataset)
-regressor = RegressorDistribution(algo, bootstrap=False)
-regressor.learn()
+# and a universal regressor, namely a radial basis function network based on SciPy:
+regressor = RBFRegressor(learning_dataset)
+regressor_distribution = RegressorDistribution(regressor, bootstrap=False)
+regressor_distribution.learn()
 
 # %%
 # Then,
@@ -74,7 +76,7 @@ level = 0.35
 active_learning = ActiveLearningAlgo(
     "Quantile",
     uncertain_space,
-    regressor,
+    regressor_distribution,
     level=level,
     uncertain_space=uncertain_space,
 )
@@ -101,7 +103,6 @@ active_learning.plot_acquisition_view(discipline=discipline)
 # to the Monte Carlo estimate
 # for both algorithms
 dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", 10000, "OT_MONTE_CARLO"
+    [discipline], uncertain_space, "y", "OT_MONTE_CARLO", n_samples=10000
 )
 reference_quantile = EmpiricalStatistics(dataset, ["y"]).compute_quantile(level)
-print(reference_quantile, active_learning.qoi)

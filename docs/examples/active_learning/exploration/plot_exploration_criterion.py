@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Impact of the acquisition criterion on exploration"""
+"""# Acquisition criterion."""
 
 from __future__ import annotations
 
@@ -31,7 +31,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -55,23 +57,16 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
 # and three identical initial
 # Gaussian process regressors from OpenTURNS:
-regressor_1 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_2 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_3 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor_1 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_2 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_3 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 # %%
 # Then,
@@ -85,11 +80,7 @@ regressor_3 = OTGaussianProcessRegressor(
 # and distance criteria.
 # All other settings are put to
 # their default values.
-active_learning_1 = ActiveLearningAlgo(
-    "Exploration",
-    input_space,
-    regressor_1,
-)
+active_learning_1 = ActiveLearningAlgo("Exploration", input_space, regressor_1)
 active_learning_2 = ActiveLearningAlgo(
     "Exploration", input_space, regressor_2, criterion_name="StandardDeviation"
 )
@@ -111,7 +102,7 @@ active_learning_3.acquire_new_points(discipline, n_samples=20)
 # and estimation of the different quantities
 n_test = 10
 observations = sample_disciplines(
-    [discipline], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 
 # Plotting the contours of the Rosenbrock function
@@ -123,27 +114,13 @@ plt.contour(
     observations[:, 2].reshape(n_test, n_test),
 )
 bar = plt.colorbar()
-bar.set_label("Rosenbrock function")
+bar.set_label(r"$f(x_1,x_2)$")
 points_1 = active_learning_1.regressor.learning_set.to_numpy()
 points_2 = active_learning_2.regressor.learning_set.to_numpy()
-plt.scatter(
-    points_1[:, 0],
-    points_1[:, 1],
-    marker="*",
-    label="Learning points from algo with Variance criterion",
-)
-plt.scatter(
-    points_2[:, 0],
-    points_2[:, 1],
-    marker="*",
-    label="Learning points from algo with Standard Deviation criterion",
-)
-plt.scatter(
-    points_2[:, 0],
-    points_2[:, 1],
-    marker="*",
-    label="Learning points from algo with Distance criterion",
-)
+points_3 = active_learning_3.regressor.learning_set.to_numpy()
+plt.scatter(points_1[:, 0], points_1[:, 1], marker="*", label="Variance")
+plt.scatter(points_2[:, 0], points_2[:, 1], marker="*", label="Standard deviation")
+plt.scatter(points_3[:, 0], points_3[:, 1], marker="*", label="Distance")
 plt.xlabel(r"$x_1$")
 plt.ylabel(r"$x_2$")
 plt.legend()
@@ -163,10 +140,10 @@ plt.show()
 # and uniformly fills the input space.
 # All 3 methods provide a
 # surrogate with good accuracy
-dataset_test = sample_disciplines([discipline], input_space, "y", 50, "OT_OPT_LHS")
-R2_1 = R2Measure(active_learning_1.regressor)
-R2_2 = R2Measure(active_learning_2.regressor)
-R2_3 = R2Measure(active_learning_3.regressor)
-print(R2_1.compute_learning_measure(dataset_test.samples))
-print(R2_2.compute_learning_measure(dataset_test.samples))
-print(R2_3.compute_learning_measure(dataset_test.samples))
+dataset_test = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=50
+)
+R2_1 = R2Measure(active_learning_1.regressor).compute_test_measure(dataset_test)
+R2_2 = R2Measure(active_learning_2.regressor).compute_test_measure(dataset_test)
+R2_3 = R2Measure(active_learning_3.regressor).compute_test_measure(dataset_test)
+R2_1[0], R2_2[0], R2_3[0]
