@@ -273,7 +273,7 @@
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/output/</loc>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/mean/</loc>
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>
@@ -301,11 +301,11 @@
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/</loc>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/mean/</loc>
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/output/</loc>
+         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/</loc>
          <lastmod>2024-10-29</lastmod>
     </url>
     <url>

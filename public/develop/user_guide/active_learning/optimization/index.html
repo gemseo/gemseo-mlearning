@@ -777,13 +777,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
+  <a href="#mean" class="md-nav__link">
     <span class="md-ellipsis">
-      Output
+      Mean
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output">
+    <nav class="md-nav" aria-label="Mean">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -882,13 +882,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#output_1" class="md-nav__link">
+  <a href="#mean_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Output
+      Mean
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output">
+    <nav class="md-nav" aria-label="Mean">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3069,11 +3069,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/output/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/mean/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Output
+    Mean
   </span>
   
 
@@ -3263,11 +3263,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/mean/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Minimum
+    Mean
   </span>
   
 
@@ -3284,11 +3284,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/output/" class="md-nav__link">
+      <a href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Output
+    Minimum
   </span>
   
 
@@ -4716,13 +4716,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#output" class="md-nav__link">
+  <a href="#mean" class="md-nav__link">
     <span class="md-ellipsis">
-      Output
+      Mean
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output">
+    <nav class="md-nav" aria-label="Mean">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4821,13 +4821,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#output_1" class="md-nav__link">
+  <a href="#mean_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Output
+      Mean
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output">
+    <nav class="md-nav" aria-label="Mean">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4983,17 +4983,17 @@ the number of points to be acquired at a time
 and the sample size to estimate the statistics defined below
 can be set with the arguments <code>batch_size</code> (default: <code>1</code>) and <code>mc_size</code> (default: <code>10000</code>) respectively.</p>
 <h2 id="minimum">Minimum<a class="headerlink" href="#minimum" title="Permanent link">&para;</a></h2>
-<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<h3 id="mean">Mean<a class="headerlink" href="#mean" title="Permanent link">&para;</a></h3>
 <p>The simplest criterion to <em>minimize</em> is the expectation:</p>
 <div class="arithmatex">\[E[x] = \mu(x),\]</div>
 <p>also called Kriging believer in the case of a Gaussian process regressor.</p>
 <h4 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
-<p>This criterion can be accessed via the name <code>"Output"</code>:</p>
+<p>This criterion can be accessed via the name <code>"Mean"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
     <span class="s2">&quot;Minimum&quot;</span><span class="p">,</span>
     <span class="n">input_space</span><span class="p">,</span>
     <span class="n">initial_regressor</span><span class="p">,</span>
-    <span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;Output&quot;</span>
+    <span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
 <h3 id="lower-confidence-bound">Lower confidence bound<a class="headerlink" href="#lower-confidence-bound" title="Permanent link">&para;</a></h3>
@@ -5043,17 +5043,17 @@ the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
 There is no analytic expression
 and the acquisition criterion is thus instead evaluated with crude Monte Carlo.</p>
 <h2 id="maximum">Maximum<a class="headerlink" href="#maximum" title="Permanent link">&para;</a></h2>
-<h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
+<h3 id="mean_1">Mean<a class="headerlink" href="#mean_1" title="Permanent link">&para;</a></h3>
 <p>The simplest criterion to <em>maximize</em> is the expectation</p>
 <div class="arithmatex">\[E[x] = \mu(x),\]</div>
 <p>also called Kriging believer in the case of a Gaussian process regressor.</p>
 <h4 id="api_3">API<a class="headerlink" href="#api_3" title="Permanent link">&para;</a></h4>
-<p>This criterion can be accessed via the name <code>"Output"</code>:</p>
+<p>This criterion can be accessed via the name <code>"Mean"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
   <span class="s2">&quot;Maximum&quot;</span><span class="p">,</span>
   <span class="n">input_space</span><span class="p">,</span>
   <span class="n">initial_regressor</span><span class="p">,</span>
-  <span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;Output&quot;</span>
+  <span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;Mean&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
 <h3 id="upper-confidence-bound">Upper confidence bound<a class="headerlink" href="#upper-confidence-bound" title="Permanent link">&para;</a></h3>
