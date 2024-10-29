@@ -12,7 +12,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""Mixin for output-based criterion."""
+"""Mixin for mean-based criterion."""
 
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ if TYPE_CHECKING:
     from gemseo.typing import NumberArray
 
 
-class Output:
-    """A mixin for output-based criterion."""
+class Mean:
+    """A mixin for mean-based criterion."""
 
     def _compute(self, input_value: NumberArray) -> NumberArray | float:  # noqa: D102
         return (

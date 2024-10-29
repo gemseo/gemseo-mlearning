@@ -25,7 +25,7 @@ from numpy import array
 from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ei import EI
-from gemseo_mlearning.active_learning.acquisition_criteria.maximum.output import Output
+from gemseo_mlearning.active_learning.acquisition_criteria.maximum.mean import Mean
 from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb import UCB
 
 
@@ -35,11 +35,11 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb import UC
         (EI, {}, array([0.0]), array([0.0])),
         (UCB, {}, array([0.0]), array([1.0])),
         (UCB, {"kappa": 3.0}, array([0.0]), array([1.0])),
-        (Output, {}, array([0.0]), array([1.0])),
+        (Mean, {}, array([0.0]), array([1.0])),
         (EI, {}, array([[0.0]] * 2), array([[0.0]] * 2)),
         (UCB, {}, array([[0.0]] * 2), array([[1.0]] * 2)),
         (UCB, {"kappa": 3.0}, array([[0.0]] * 2), array([[1.0]] * 2)),
-        (Output, {}, array([[0.0]] * 2), array([[1.0]] * 2)),
+        (Mean, {}, array([[0.0]] * 2), array([[1.0]] * 2)),
     ],
 )
 def test_maximum_kriging_regressor(
@@ -58,11 +58,11 @@ def test_maximum_kriging_regressor(
         (EI, {}, array([0.123]), array([0.0])),
         (UCB, {}, array([0.123]), array([1.3609677])),
         (UCB, {"kappa": 3.0}, array([0.123]), array([1.8569516])),
-        (Output, {}, array([0.123]), array([0.369])),
+        (Mean, {}, array([0.123]), array([0.369])),
         (EI, {}, array([[0.123]] * 2), array([[0.0]] * 2)),
         (UCB, {}, array([[0.123]] * 2), array([[1.3609677]] * 2)),
         (UCB, {"kappa": 3.0}, array([[0.123]] * 2), array([[1.8569516]] * 2)),
-        (Output, {}, array([[0.123]] * 2), array([[0.369]] * 2)),
+        (Mean, {}, array([[0.123]] * 2), array([[0.369]] * 2)),
     ],
 )
 def test_maximum_regressor(algo_distribution, kwargs, cls, input_value, expected):
@@ -104,7 +104,7 @@ def test_improvement_parallel_at_training_point(kriging_distribution):
     [
         (EI, array([0.123])),
         (UCB, array([0.123])),
-        (Output, array([0.123])),
+        (Mean, array([0.123])),
     ],
 )
 def test_bad_parallel_regressor(algo_distribution, cls, input_value):

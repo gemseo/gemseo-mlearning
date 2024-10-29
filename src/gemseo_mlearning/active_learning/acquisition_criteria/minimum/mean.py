@@ -12,20 +12,22 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""Output-based criterion."""
+"""The mean-based criterion to approximate a maximum."""
 
 from __future__ import annotations
 
-from gemseo_mlearning.active_learning.acquisition_criteria.maximum._output import (
-    Output as _Output,
+from typing import ClassVar
+
+from gemseo_mlearning.active_learning.acquisition_criteria.maximum._mean import (
+    Mean as _Mean,
 )
-from gemseo_mlearning.active_learning.acquisition_criteria.maximum.base_maximum import (
-    BaseMaximum,
+from gemseo_mlearning.active_learning.acquisition_criteria.minimum.base_minimum import (
+    BaseMinimum,
 )
 
 
-class Output(_Output, BaseMaximum):
-    r"""Output-based criterion.
+class Mean(_Mean, BaseMinimum):
+    r"""Mean-based criterion.
 
     This acquisition criterion is expressed as
 
@@ -34,3 +36,5 @@ class Output(_Output, BaseMaximum):
     where $Y$ is the random process modelling the uncertainty of the surrogate model
     $\hat{f}$.
     """
+
+    MAXIMIZE: ClassVar[bool] = False

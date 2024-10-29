@@ -100,7 +100,8 @@ def input_space() -> DesignSpace:
 
 def test_init(algo_distribution, input_space):
     """Check the initialization of the ActiveLearningAlgo for sequential active
-    learning."""
+    learning.
+    """
     algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution)
     assert algo.n_initial_samples == 2
     assert algo.regressor_distribution == algo_distribution
@@ -129,7 +130,8 @@ def test_init(algo_distribution, input_space):
 
 def test_init_parallel(kriging_distribution, input_space):
     """Check the initialization of the ActiveLearningAlgo for parallel active
-    learning."""
+    learning.
+    """
     algo = ActiveLearningAlgo(
         "Minimum", input_space, kriging_distribution, batch_size=2
     )
@@ -166,8 +168,8 @@ def test_init_with_bad_output_dimension(input_space):
 @pytest.mark.parametrize(
     ("criterion_family_name", "criterion_name"),
     [
-        ("Minimum", "Output"),
-        ("Maximum", "Output"),
+        ("Minimum", "Mean"),
+        ("Maximum", "Mean"),
         ("Maximum", "UCB"),
         ("Minimum", "LCB"),
         ("Exploration", "Variance"),

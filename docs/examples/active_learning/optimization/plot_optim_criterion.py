@@ -77,7 +77,7 @@ regressor_3 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 # on the active learning procedure.
 # They respectively refer to the
 # EI (default),
-# LCB and Output criteria.
+# LCB and Mean criteria.
 # All other settings are put to
 # their default values.
 active_learning_1 = ActiveLearningAlgo("Minimum", input_space, regressor_1)
@@ -85,7 +85,7 @@ active_learning_2 = ActiveLearningAlgo(
     "Minimum", input_space, regressor_2, criterion_name="LCB"
 )
 active_learning_3 = ActiveLearningAlgo(
-    "Minimum", input_space, regressor_3, criterion_name="Output"
+    "Minimum", input_space, regressor_3, criterion_name="Mean"
 )
 active_learning_1.acquire_new_points(discipline, n_samples=20)
 active_learning_2.acquire_new_points(discipline, n_samples=20)
@@ -105,7 +105,7 @@ history_3 = active_learning_3.qoi_history
 # and we compare them in a plot
 plt.plot(history_1[0], concatenate(history_1[1]), marker="o", label="EI criterion")
 plt.plot(history_2[0], concatenate(history_2[1]), marker="o", label="LCB criterion")
-plt.plot(history_3[0], concatenate(history_2[1]), marker="o", label="Output criterion")
+plt.plot(history_3[0], concatenate(history_2[1]), marker="o", label="Mean criterion")
 plt.xlabel("Number of evaluations")
 plt.ylabel("Minimum")
 plt.legend()
@@ -163,7 +163,7 @@ plt.scatter(
     points_3[argmin(points_3[:, -1]), 0],
     points_3[argmin(points_3[:, -1]), 1],
     marker="o",
-    label="Minimum with Output criterion",
+    label="Minimum with Mean criterion",
 )
 plt.scatter(
     points_1[:, 0],
@@ -181,7 +181,7 @@ plt.scatter(
     points_3[:, 0],
     points_3[:, 1],
     marker="*",
-    label="Learning points from algo with Output criterion",
+    label="Learning points from algo with Mean criterion",
 )
 plt.xlabel(r"$x_1$")
 plt.ylabel(r"$x_2$")
