@@ -22,17 +22,17 @@ import pytest
 from numpy import array
 from numpy.testing import assert_equal
 
-from gemseo_mlearning.active_learning.acquisition_criteria.minimum.output import (  # noqa: E501
-    Output,
+from gemseo_mlearning.active_learning.acquisition_criteria.minimum.mean import (  # noqa: E501
+    Mean,
 )
 
 
 @pytest.mark.parametrize(
     ("input_value", "shape"), [(array([0.5]), (1,)), (array([[0.5], [0.5]]), (2, 1))]
 )
-def test_output(algo_distribution, input_value, shape):
-    """Check the Output criterion."""
-    criterion = Output(algo_distribution)
+def test_mean(algo_distribution, input_value, shape):
+    """Check the Mean criterion."""
+    criterion = Mean(algo_distribution)
     mean = algo_distribution.compute_mean(input_value)
     output_range = criterion.output_range
     assert mean.shape == shape

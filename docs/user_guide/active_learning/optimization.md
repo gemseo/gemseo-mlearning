@@ -54,7 +54,7 @@ can be set with the arguments `batch_size` (default: `1`) and `mc_size` (default
 
 ## Minimum
 
-### Output
+### Mean
 
 The simplest criterion to _minimize_ is the expectation:
 
@@ -64,14 +64,14 @@ also called Kriging believer in the case of a Gaussian process regressor.
 
 #### API
 
-This criterion can be accessed via the name `"Output"`:
+This criterion can be accessed via the name `"Mean"`:
 
 ```python
 active_learning = ActiveLearningAlgo(
     "Minimum",
     input_space,
     initial_regressor,
-    criterion_name="Output"
+    criterion_name="Mean"
 )
 ```
 
@@ -148,7 +148,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.
 
 ## Maximum
 
-### Output
+### Mean
 
 The simplest criterion to _maximize_ is the expectation
 
@@ -158,14 +158,14 @@ also called Kriging believer in the case of a Gaussian process regressor.
 
 #### API
 
-This criterion can be accessed via the name `"Output"`:
+This criterion can be accessed via the name `"Mean"`:
 
 ```python
 active_learning = ActiveLearningAlgo(
   "Maximum",
   input_space,
   initial_regressor,
-  criterion_name="Output"
+  criterion_name="Mean"
 )
 ```
 

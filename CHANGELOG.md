@@ -58,7 +58,7 @@ and this project adheres to
   wrapping the surrogate-based optimizers available in the Python package [SMT](https://smt.readthedocs.io/);
   this is the unique algorithm of the [SMTEGO][gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO] optimization library.
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
-  can use the acquisition criteria `CB` and `Output` in addition to `EI`.
+  can use the acquisition criteria `CB` and `Mean` in addition to `EI`.
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   can use an existing [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
   and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches

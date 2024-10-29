@@ -67,11 +67,11 @@ $\mu(x)$ and $\sigma(x)$.
 
 The three acquisition criteria are
 
-| Value      | Name                   | Expression                                     |
-|------------|------------------------|------------------------------------------------|
-| `"EI"`     | Expected improvement   | $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0]$     |
-| `"LCB"`    | Lower confidence bound | $\mu(x)-\kappa\times\sigma(x)$ with $\kappa>0$ |
-| `"Output"` | Mean output            | $\mu(x)$                                       |
+| Value     | Name                   | Expression                                     |
+|-----------|------------------------|------------------------------------------------|
+| `"EI"`    | Expected improvement   | $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0]$  |
+| `"LCB"`   | Lower confidence bound | $\mu(x)-\kappa\times\sigma(x)$ with $\kappa>0$ |
+| `"Mean" ` | Mean output            | $\mu(x)$                                       |
 
 where $Y$ is a random process modelling the uncertainty of the surrogate model $\hat{f}$ and
 $\mu(x)\equiv\mathbb{E}[Y(x)]$ and $\sigma(x)\equiv\mathbb{S}[Y(x)]$ denote
