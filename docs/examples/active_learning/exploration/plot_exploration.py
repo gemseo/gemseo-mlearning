@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Exploration using a Gaussian process regressor"""
+"""# Default settings."""
 
 from __future__ import annotations
 
@@ -29,7 +29,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -47,14 +49,13 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
 # and an initial Gaussian process regressor from OpenTURNS:
-regressor = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 # %%
 # Then,
@@ -68,11 +69,7 @@ regressor = OTGaussianProcessRegressor(
 # the regressor local variance
 # with the help of the SLSQP gradient-based algorithm
 # applied in a multistart framework.
-active_learning = ActiveLearningAlgo(
-    "Exploration",
-    input_space,
-    regressor,
-)
+active_learning = ActiveLearningAlgo("Exploration", input_space, regressor)
 active_learning.acquire_new_points(discipline, 20)
 
 # %%
@@ -95,9 +92,11 @@ active_learning.plot_acquisition_view(discipline=discipline)
 # Overall,
 # the target surrogate reproduces
 # faithfully the Rosenbrock function with a good R²
-dataset_test = sample_disciplines([discipline], input_space, "y", 50, "OT_OPT_LHS")
-R2 = R2Measure(active_learning.regressor)
-print(R2.compute_learning_measure(dataset_test.samples))
+dataset_test = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=50
+)
+R2 = R2Measure(active_learning.regressor).compute_test_measure(dataset_test)
+R2
 # Caution:
 # the variance is scaled and thus
 # does not here directly corresponds

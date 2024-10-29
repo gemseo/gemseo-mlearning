@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Impact of the acquisition criterion on level set estimation"""
+"""# Acquisition criterion."""
 
 from __future__ import annotations
 
@@ -31,7 +31,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -55,23 +57,16 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
 # and three identical initial
 # Gaussian process regressors from OpenTURNS:
-regressor_1 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_2 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_3 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor_1 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_2 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_3 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 
 # %%
@@ -87,24 +82,13 @@ regressor_3 = OTGaussianProcessRegressor(
 # their default values.
 value_level = 400
 active_learning_1 = ActiveLearningAlgo(
-    "LevelSet",
-    input_space,
-    regressor_1,
-    output_value=value_level,
+    "LevelSet", input_space, regressor_1, output_value=value_level
 )
 active_learning_2 = ActiveLearningAlgo(
-    "LevelSet",
-    input_space,
-    regressor_2,
-    output_value=value_level,
-    criterion_name="EI",
+    "LevelSet", input_space, regressor_2, output_value=value_level, criterion_name="EI"
 )
 active_learning_3 = ActiveLearningAlgo(
-    "LevelSet",
-    input_space,
-    regressor_3,
-    output_value=value_level,
-    criterion_name="EF",
+    "LevelSet", input_space, regressor_3, output_value=value_level, criterion_name="EF"
 )
 active_learning_1.acquire_new_points(discipline, n_samples=20)
 active_learning_2.acquire_new_points(discipline, n_samples=20)
@@ -124,16 +108,16 @@ surrogate_1 = SurrogateDiscipline(active_learning_1.regressor)
 surrogate_2 = SurrogateDiscipline(active_learning_2.regressor)
 surrogate_3 = SurrogateDiscipline(active_learning_3.regressor)
 observations = sample_disciplines(
-    [discipline], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 observations_gp_1 = sample_disciplines(
-    [surrogate_1], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [surrogate_1], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 observations_gp_2 = sample_disciplines(
-    [surrogate_2], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [surrogate_2], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 observations_gp_3 = sample_disciplines(
-    [surrogate_3], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [surrogate_3], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 
 # Plotting the contours of the Rosenbrock function
@@ -194,26 +178,10 @@ plt.contour(
     observations[:, 2].reshape(n_test, n_test),
 )
 bar = plt.colorbar()
-bar.set_label("Rosenbrock function")
-plt.scatter(
-    points_1[:, 0],
-    points_1[:, 1],
-    marker="*",
-    label="Learning points from algo with U criterion",
-)
-plt.scatter(
-    points_2[:, 0],
-    points_2[:, 1],
-    marker="*",
-    label="Learning points from algo with EI criterion",
-)
-plt.scatter(
-    points_3[:, 0],
-    points_3[:, 1],
-    marker="*",
-    label="Learning points from algo with EF criterion",
-    color="tab:purple",
-)
+bar.set_label(r"$f(x_1,x_2)$")
+plt.scatter(points_1[:, 0], points_1[:, 1], marker="*", label="U")
+plt.scatter(points_2[:, 0], points_2[:, 1], marker="*", label="EI")
+plt.scatter(points_3[:, 0], points_3[:, 1], marker="*", label="EF", color="tab:purple")
 plt.xlabel(r"$x_1$")
 plt.ylabel(r"$x_2$")
 plt.legend()

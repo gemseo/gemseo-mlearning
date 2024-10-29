@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Impact of the acquisition algorithm on efficient global optimization"""
+"""# Acquisition algorithm."""
 
 from __future__ import annotations
 
@@ -32,7 +32,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -56,19 +58,15 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
 # and two identical initial
 # Gaussian process regressors from OpenTURNS:
-regressor_1 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
-regressor_2 = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor_1 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_2 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 # %%
 # Then,
@@ -85,16 +83,8 @@ regressor_2 = OTGaussianProcessRegressor(
 # also in a multistart fashion.
 # All other settings are put to
 # their default values.
-active_learning_1 = ActiveLearningAlgo(
-    "Minimum",
-    input_space,
-    regressor_1,
-)
-active_learning_2 = ActiveLearningAlgo(
-    "Minimum",
-    input_space,
-    regressor_2,
-)
+active_learning_1 = ActiveLearningAlgo("Minimum", input_space, regressor_1)
+active_learning_2 = ActiveLearningAlgo("Minimum", input_space, regressor_2)
 active_learning_1.acquire_new_points(discipline, n_samples=20)
 active_learning_2.set_acquisition_algorithm(
     algo_name="MultiStart", opt_algo_name="NELDER-MEAD", n_start=20
@@ -111,10 +101,8 @@ active_learning_2.acquire_new_points(discipline, n_samples=20)
 history_1 = active_learning_1.qoi_history
 history_2 = active_learning_2.qoi_history
 # and we compare them in a plot
-plt.plot(history_1[0], concatenate(history_1[1]), marker="o", label="MultiStart SLSQP")
-plt.plot(
-    history_2[0], concatenate(history_2[1]), marker="o", label="MultiStart NELDER-MEAD"
-)
+plt.plot(history_1[0], concatenate(history_1[1]), marker="o", label="SLSQP")
+plt.plot(history_2[0], concatenate(history_2[1]), marker="o", label="NELDER-MEAD")
 plt.xlabel("Number of evaluations")
 plt.ylabel("Minimum")
 plt.legend()
@@ -126,8 +114,6 @@ plt.show()
 # from the active learning procedure
 # to their exact counterparts
 # for both algorithms
-print(0, active_learning_1.qoi)
-print(0, active_learning_2.qoi)
 
 # %%
 # Finally,
@@ -139,10 +125,10 @@ print(0, active_learning_2.qoi)
 # and estimation of the different quantities
 n_test = 10
 observations = sample_disciplines(
-    [discipline], input_space, "y", n_test * n_test, "OT_FULLFACT"
+    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
 ).values
 
-# Plotting the exact minimum and the estimated minimas
+# Plotting the exact minimum and the estimated minima
 # alongside the learning points
 plt.figure()
 points_1 = active_learning_1.regressor.learning_set.to_numpy()
@@ -153,7 +139,7 @@ plt.contour(
     observations[:, 2].reshape(n_test, n_test),
 )
 bar = plt.colorbar()
-bar.set_label("Rosenbrock function")
+bar.set_label(r"$f(x_1,x_2)$")
 plt.scatter([1], [1], marker="o", label="Exact minimum", color="red")
 plt.scatter(
     points_1[argmin(points_1[:, -1]), 0],

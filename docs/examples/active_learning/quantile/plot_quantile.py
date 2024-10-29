@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Quantile estimation using a Gaussian process regressor"""
+"""# Default settings."""
 
 from __future__ import annotations
 
@@ -29,7 +29,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -48,15 +50,12 @@ uncertain_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", 10, "OT_OPT_LHS"
+    [discipline], uncertain_space, "y", "OT_OPT_LHS", n_samples=10
 )
 
 # %%
 # and an initial Gaussian process regressor from OpenTURNS:
-regressor = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 # %%
 # Then,
@@ -81,7 +80,7 @@ active_learning.acquire_new_points(discipline, 20)
 # %%
 # Then,
 # we plot the history of the quantity of interest
-active_learning.plot_qoi_history(file_path="tot.png")
+active_learning.plot_qoi_history()
 # %%
 # as well as
 # the training points,
@@ -98,7 +97,6 @@ active_learning.plot_acquisition_view(discipline=discipline)
 # to the Monte Carlo estimate
 # for both algorithms:
 dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", 10000, "OT_MONTE_CARLO"
+    [discipline], uncertain_space, "y", "OT_MONTE_CARLO", n_samples=10000
 )
 reference_quantile = EmpiricalStatistics(dataset, ["y"]).compute_quantile(level)
-print(reference_quantile, active_learning.qoi)

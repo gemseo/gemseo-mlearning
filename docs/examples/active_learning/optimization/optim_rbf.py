@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Level set using a RBF regressor"""
+"""# Non-GP regressor."""
 
 from __future__ import annotations
 
@@ -31,15 +31,17 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
 # The use of active learning methods
-# dedicated to level set estimation
+# dedicated to optimization
 # is illustrated in this example,
 # with all default settings.
-# The function with the level set of interest is
+# The function to minimize is
 # the Rosenbrock function $f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2$:
 discipline = RosenbrockDiscipline()
 # %%
@@ -49,43 +51,45 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
-# and a universal Regressor from scikit-learn:
-algo = RBFRegressor(learning_dataset)
-regressor = RegressorDistribution(algo, bootstrap=False)
-regressor.learn()
+# and a universal regressor, namely a radial basis function network based on SciPy:
+regressor = RBFRegressor(learning_dataset)
+regressor_distribution = RegressorDistribution(regressor, bootstrap=False)
+regressor_distribution.learn()
 
 # %%
 # Then,
 # we look for 20 points that will help us
-# to approximate the level-set associated to the 35% quantile.
+# to find the minimum.
 # By default,
 # for this purpose,
 # the active learning algorithm looks
-# for the point minimizing the U-function
+# for the point maximizing the expected improvement
 # with the help of the SLSQP gradient-based algorithm
 # applied in a multistart framework.
-level_value = 300.0
-active_learning = ActiveLearningAlgo(
-    "LevelSet",
-    input_space,
-    regressor,
-    output_value=level_value,
-)
+active_learning = ActiveLearningAlgo("Minimum", input_space, regressor_distribution)
 active_learning.acquire_new_points(discipline, 20)
 
+
 # %%
-# Lastly,
-# we plot the training points,
+# Then,
+# we plot the history of the quantity of interest
+active_learning.plot_qoi_history()
+# %%
+# as well as
+# the training points,
 # the original model,
 # the RBF regressor
-# and the U-function
+# and the expected improvement
 # after the last acquisition:
-active_learning.plot_acquisition_view(discipline=discipline, file_path="rbf")
-# It can be seen
-# that the learning points
-# are distributed around
-# the target level set,
-# thus approximating it properly.
+active_learning.plot_acquisition_view(discipline=discipline)
+
+# %%
+# Finally,
+# we compare the estimated minimum
+# from the active learning procedure
+# to its exact theoretical value:

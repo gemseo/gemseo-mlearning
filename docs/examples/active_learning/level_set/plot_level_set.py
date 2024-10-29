@@ -13,7 +13,7 @@
 # FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
 # NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
 # WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"""# Level set estimation using a Gaussian process regressor"""
+"""# Default settings."""
 
 from __future__ import annotations
 
@@ -28,7 +28,9 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
+# Update the configuration of |g| to speed up the script (use configure() with care)
 configure(False, False, True, False, False, False, False)
+
 configure_logger()
 
 # %%
@@ -46,14 +48,13 @@ input_space = RosenbrockSpace()
 # %%
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
-learning_dataset = sample_disciplines([discipline], input_space, "y", 10, "OT_OPT_LHS")
+learning_dataset = sample_disciplines(
+    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+)
 
 # %%
 # and an initial Gaussian process regressor from OpenTURNS:
-regressor = OTGaussianProcessRegressor(
-    learning_dataset,
-    trend="quadratic",
-)
+regressor = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
 
 # %%
 # Then,
@@ -67,10 +68,7 @@ regressor = OTGaussianProcessRegressor(
 # applied in a multistart framework.
 level_value = 300.0
 active_learning = ActiveLearningAlgo(
-    "LevelSet",
-    input_space,
-    regressor,
-    output_value=level_value,
+    "LevelSet", input_space, regressor, output_value=level_value
 )
 active_learning.acquire_new_points(discipline, 20)
 
