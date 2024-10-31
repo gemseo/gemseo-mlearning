@@ -4925,7 +4925,9 @@ the data acquisition criterion.</p>
 <span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
-<span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">problem</span><span class="p">:</span> <span class="n">OptimizationProblem</span><span class="p">,</span>
     <span class="n">acquisition_algorithm</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -4986,7 +4988,9 @@ the data acquisition criterion.</p>
         <span class="c1"># Store the listeners as they will be cleared by DOELibrary.</span>
         <span class="n">new_iter_listeners</span><span class="p">,</span> <span class="n">store_listeners</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">clear_listeners</span><span class="p">()</span>
         <span class="k">with</span> <span class="n">LoggingContext</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;gemseo&quot;</span><span class="p">)):</span>
-            <span class="n">DOELibraryFactory</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">doe_algorithm</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+            <span class="n">DOELibraryFactory</span><span class="p">()</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="n">problem</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="n">doe_algorithm</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span>
+            <span class="p">)</span>
 
         <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="n">new_iter_listeners</span><span class="p">:</span>
             <span class="n">database</span><span class="o">.</span><span class="n">add_new_iter_listener</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span>
@@ -5075,9 +5079,7 @@ the data acquisition criterion.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">169</span>
 <span class="normal">170</span>
 <span class="normal">171</span>
 <span class="normal">172</span>
@@ -5128,7 +5130,9 @@ the data acquisition criterion.</p>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
-<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_acquisitions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the surrogate-based optimization.</span>
 
 <span class="sd">    Args:</span>

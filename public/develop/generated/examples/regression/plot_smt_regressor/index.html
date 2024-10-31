@@ -4588,7 +4588,7 @@ we assess its quality:</p>
 and plot its output over a 20x20 grid:</p>
 <!-- GENERATED FROM PYTHON SOURCE LINES 93-103 -->
 
-<div class="highlight"><pre><span></span><code><span class="n">input_data</span> <span class="o">=</span> <span class="n">compute_doe</span><span class="p">(</span><span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;fullfact&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">input_data</span> <span class="o">=</span> <span class="n">compute_doe</span><span class="p">(</span><span class="n">input_space</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;PYDOE_FULLFACT&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 <span class="n">output_data</span> <span class="o">=</span> <span class="n">surrogate_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="n">IODataset</span><span class="p">()</span>
 <span class="n">predictions</span><span class="o">.</span><span class="n">add_input_group</span><span class="p">(</span><span class="n">input_data</span><span class="p">,</span> <span class="n">variable_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="s2">&quot;x2&quot;</span><span class="p">])</span>

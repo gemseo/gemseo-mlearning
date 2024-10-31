@@ -52,7 +52,7 @@ problem = Rosenbrock()
 #     based on an optimized latin hypercube sampling (LHS) technique,
 #   - a multi-start local optimization of the acquisition criterion
 #     from 50 start points with a limit of 20 iterations per local optimization.
-execute_algo(problem, "SBO", max_iter=40)
+execute_algo(problem, algo_name="SBO", max_iter=40)
 
 # %%
 # We can see
@@ -85,7 +85,7 @@ visualization.execute(save=False, show=True)
 # Lastly,
 # we can compare the solution to the one obtained with COBYLA,
 # which is another popular gradient-free optimization algorithm:
-execute_algo(Rosenbrock(), "NLOPT_COBYLA", max_iter=40)
+execute_algo(Rosenbrock(), algo_name="NLOPT_COBYLA", max_iter=40)
 
 # %%
 # and conclude that for this problem and this initial guess,
