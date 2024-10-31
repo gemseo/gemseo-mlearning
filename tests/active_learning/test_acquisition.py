@@ -205,9 +205,9 @@ def test_with_bad_parallelization(
 @pytest.mark.parametrize(
     ("algo_name", "setting_name", "setting_value"),
     [
-        ("fullfact", "n_samples", 3),
+        ("PYDOE_FULLFACT", "n_samples", 3),
         ("SLSQP", "max_iter", 3),
-        ("fullfact", "n_samples", None),
+        ("PYDOE_FULLFACT", "n_samples", None),
         ("SLSQP", "max_iter", None),
     ],
 )
@@ -237,7 +237,7 @@ def test_compute_parallel(kriging_distribution, input_space, as_dict, batch_size
         regressor=kriging_distribution,
         batch_size=batch_size,
     )
-    algo.set_acquisition_algorithm("fullfact", n_samples=3)
+    algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
     x_opt = algo.find_next_point(as_dict=as_dict)
     x_opt = x_opt if isinstance(x_opt, ndarray) else x_opt["x"]
     assert x_opt.shape == (batch_size, len(input_space.variable_names))
@@ -249,7 +249,7 @@ def test_update_algo(algo_distribution_for_update, input_space, criterion_family
     distribution = algo_distribution_for_update
     initial_size = len(distribution.learning_set)
     algo = ActiveLearningAlgo(criterion_family_name, input_space, distribution)
-    algo.set_acquisition_algorithm("fullfact", n_samples=3)
+    algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
     algo.acquire_new_points(AnalyticDiscipline({"y": "1+x"}))
     if criterion_family_name == "Exploration":
         assert algo.qoi is None

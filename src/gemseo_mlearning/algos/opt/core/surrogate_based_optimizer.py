@@ -131,7 +131,9 @@ class SurrogateBasedOptimizer:
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = database.clear_listeners()
             with LoggingContext(logging.getLogger("gemseo")):
-                DOELibraryFactory().execute(problem, doe_algorithm, **settings)
+                DOELibraryFactory().execute(
+                    problem, algo_name=doe_algorithm, **settings
+                )
 
             for listener in new_iter_listeners:
                 database.add_new_iter_listener(listener)

@@ -24,11 +24,11 @@ Given a maximum number of iterations,
 it can be used as is
 by any [OptimizationProblem][gemseo.algos.optimization_problem.OptimizationProblem]:
 ```python
-execute_algo(optimization_problem, "SMT_EGO", max_iter=50)
+execute_algo(optimization_problem, algo_name="SMT_EGO", max_iter=50)
 ```
 and any [MDOScenario][gemseo.scenarios.mdo_scenario.MDOScenario]:
 ```python
-scenario.execute({"algo_name": "SMT_EGO", "max_iter": 50})
+scenario.execute(algo_name="SMT_EGO", max_iter=50)
 ```
 
 In this case,

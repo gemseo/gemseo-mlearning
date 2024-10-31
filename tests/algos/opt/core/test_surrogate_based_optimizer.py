@@ -43,7 +43,7 @@ def test_all_acquisitions_made(regression_algorithm, regression_settings):
     assert (
         SurrogateBasedOptimizer(
             Rastrigin(),
-            "fullfact",
+            "PYDOE_FULLFACT",
             5,
             regression_algorithm=regression_algorithm,
             regression_settings=regression_settings,
