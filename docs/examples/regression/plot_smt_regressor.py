@@ -90,7 +90,7 @@ f"Learning R2: {r2_l}; cross-validation R2: {r2_cv}; test R2: {r2_t}"
 # %%
 # see how good it is with its R2 close to 1 on the test dataset,
 # and plot its output over a 20x20 grid:
-input_data = compute_doe(input_space, "fullfact", n_samples=400)
+input_data = compute_doe(input_space, "PYDOE_FULLFACT", n_samples=400)
 output_data = surrogate_model.predict(input_data)
 predictions = IODataset()
 predictions.add_input_group(input_data, variable_names=["x1", "x2"])
