@@ -23,7 +23,7 @@ from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TCH002
 from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TCH002
     BaseOptimizerSettings,
 )
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType  # noqa: TCH002
+from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TCH002
 from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TCH002
     BaseRegressor,
 )
@@ -162,7 +162,7 @@ class SBOSettings(BaseOptimizerSettings):
         ),
     )
 
-    regression_settings: Mapping[str, MLAlgoParameterType] = Field(
+    regression_settings: Mapping[str, MLAlgoSettingsType] = Field(
         default_factory=dict,
         description=(
             """The settings of the regression algorithm.

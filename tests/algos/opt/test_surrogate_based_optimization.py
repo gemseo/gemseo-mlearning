@@ -34,7 +34,9 @@ from gemseo_mlearning.algos.opt.sbo_settings import AcquisitionCriterion
 def test_default_settings():
     """Check the default settings of the surrogate-based optimizer."""
     assert_almost_equal(
-        OptimizationLibraryFactory().execute(Rastrigin(), "SBO", max_iter=12).f_opt,
+        OptimizationLibraryFactory()
+        .execute(Rastrigin(), algo_name="SBO", max_iter=12)
+        .f_opt,
         array([0.04]),
         decimal=2,
     )
@@ -45,7 +47,7 @@ def test_criterion(criterion):
     """Check the surrogate-based optimizer with different criteria."""
     assert_almost_equal(
         OptimizationLibraryFactory()
-        .execute(Rastrigin(), "SBO", max_iter=12, criterion=criterion)
+        .execute(Rastrigin(), algo_name="SBO", max_iter=12, criterion=criterion)
         .f_opt,
         array([0.04]),
         decimal=2,
@@ -62,11 +64,16 @@ def test_inconsistent_max_iter(max_iter, regression_algorithm):
             f"strictly greater than the initial DOE size (10)."
         ),
     ):
-        OptimizationLibraryFactory().execute(Rastrigin(), "SBO", max_iter=max_iter)
+        OptimizationLibraryFactory().execute(
+            Rastrigin(), algo_name="SBO", max_iter=max_iter
+        )
 
     # Except if the regression algorithm is already built.
     OptimizationLibraryFactory().execute(
-        Rastrigin(), "SBO", max_iter=max_iter, regression_algorithm=regression_algorithm
+        Rastrigin(),
+        algo_name="SBO",
+        max_iter=max_iter,
+        regression_algorithm=regression_algorithm,
     )
 
 
@@ -75,7 +82,7 @@ def test_save(regression_algorithm, tmp_wd):
     file_path = Path("model.pkl")
     OptimizationLibraryFactory().execute(
         Rastrigin(),
-        "SBO",
+        algo_name="SBO",
         max_iter=3,
         acquisition_algorithm="OT_MONTE_CARLO",
         acquisition_settings={"n_samples": 10},
@@ -93,7 +100,7 @@ def test_problem_counters():
     problem = Rosenbrock()
     OptimizationLibraryFactory().execute(
         problem,
-        "SBO",
+        algo_name="SBO",
         max_iter=13,
         doe_size=10,
         acquisition_algorithm="OT_MONTE_CARLO",
