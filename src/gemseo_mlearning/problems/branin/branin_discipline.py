@@ -28,6 +28,8 @@ from gemseo_mlearning.problems.branin.functions import compute_output
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
+    from gemseo.typing import StrKeyMapping
+
 
 class BraninDiscipline(Discipline):
     """The Branin function as a discipline."""
@@ -40,7 +42,7 @@ class BraninDiscipline(Discipline):
             name: array([0.0]) for name in self.input_grammar.names
         })
 
-    def _run(self) -> None:
+    def _run(self, input_data: StrKeyMapping) -> None:
         inputs_array = concatenate([
             self.io.data[name] for name in self.io.input_grammar
         ])
