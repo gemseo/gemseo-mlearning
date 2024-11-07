@@ -47,7 +47,7 @@ def input_space() -> DesignSpace:
 def learning_dataset(discipline, input_space) -> IODataset:
     """The learning dataset."""
     return sample_disciplines(
-        [discipline], input_space, "z", "OT_OPT_LHS", n_samples=30
+        [discipline], input_space, "z", algo_name="OT_OPT_LHS", n_samples=30
     )
 
 

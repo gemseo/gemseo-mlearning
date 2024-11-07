@@ -52,7 +52,7 @@ input_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
