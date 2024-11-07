@@ -59,7 +59,7 @@ uncertain_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], uncertain_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
@@ -128,7 +128,7 @@ plt.show()
 # to the Monte Carlo estimate
 # for both algorithms
 dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", "OT_MONTE_CARLO", n_samples=1000
+    [discipline], uncertain_space, "y", algo_name="OT_MONTE_CARLO", n_samples=1000
 )
 reference_quantile = EmpiricalStatistics(dataset, ["y"]).compute_quantile(level)
 
@@ -142,7 +142,7 @@ reference_quantile = EmpiricalStatistics(dataset, ["y"]).compute_quantile(level)
 # and estimation of the different quantities
 n_test = 10
 observations = sample_disciplines(
-    [discipline], uncertain_space, "y", "OT_FULLFACT", n_samples=n_test**2
+    [discipline], uncertain_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
 
 # Plotting the contours of the Rosenbrock function

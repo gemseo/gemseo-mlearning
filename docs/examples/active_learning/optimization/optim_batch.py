@@ -58,7 +58,7 @@ input_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
@@ -131,7 +131,7 @@ plt.show()
 # and estimation of the different quantities
 n_test = 10
 observations = sample_disciplines(
-    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
+    [discipline], input_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
 
 # Plotting the exact minimum and the estimated minima
