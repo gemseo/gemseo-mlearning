@@ -57,7 +57,7 @@ input_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
@@ -96,7 +96,7 @@ active_learning_2.acquire_new_points(discipline, n_samples=20)
 # and estimation of the different quantities
 n_test = 10
 observations = sample_disciplines(
-    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
+    [discipline], input_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
 
 # Plotting the contours of the Rosenbrock function
@@ -128,7 +128,7 @@ plt.show()
 # they have a similar
 # R2 validation metric:
 dataset_test = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=50
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=50
 )
 R2_1 = R2Measure(active_learning_1.regressor).compute_test_measure(dataset_test)
 R2_2 = R2Measure(active_learning_2.regressor).compute_test_measure(dataset_test)

@@ -58,7 +58,7 @@ input_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
@@ -118,13 +118,13 @@ n_test = 10
 surrogate_1 = SurrogateDiscipline(active_learning_1.regressor)
 surrogate_2 = SurrogateDiscipline(active_learning_2.regressor)
 observations = sample_disciplines(
-    [discipline], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
+    [discipline], input_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
 observations_gp_1 = sample_disciplines(
-    [surrogate_1], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
+    [surrogate_1], input_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
 observations_gp_2 = sample_disciplines(
-    [surrogate_2], input_space, "y", "OT_FULLFACT", n_samples=n_test**2
+    [surrogate_2], input_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
 
 # Plotting the contours of the Rosenbrock function
