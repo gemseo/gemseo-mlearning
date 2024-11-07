@@ -50,7 +50,7 @@ uncertain_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], uncertain_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
@@ -97,6 +97,6 @@ active_learning.plot_acquisition_view(discipline=discipline)
 # to the Monte Carlo estimate
 # for both algorithms:
 dataset = sample_disciplines(
-    [discipline], uncertain_space, "y", "OT_MONTE_CARLO", n_samples=10000
+    [discipline], uncertain_space, "y", algo_name="OT_MONTE_CARLO", n_samples=10000
 )
 reference_quantile = EmpiricalStatistics(dataset, ["y"]).compute_quantile(level)

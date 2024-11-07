@@ -4548,7 +4548,7 @@ we create an initial training dataset using an optimal LHS including 10 samples:
 <!-- GENERATED FROM PYTHON SOURCE LINES 60-64 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
 <!-- GENERATED FROM PYTHON SOURCE LINES 65-67 -->
@@ -4632,7 +4632,7 @@ for both algorithms</p>
 <!-- GENERATED FROM PYTHON SOURCE LINES 133-138 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;OT_MONTE_CARLO&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span>
+    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_MONTE_CARLO&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span>
 <span class="p">)</span>
 <span class="n">reference_quantile</span> <span class="o">=</span> <span class="n">EmpiricalStatistics</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">compute_quantile</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
 </code></pre></div>
@@ -4648,7 +4648,7 @@ alongside the original model.</p>
 <span class="c1"># and estimation of the different quantities</span>
 <span class="n">n_test</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">observations</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;OT_FULLFACT&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_test</span><span class="o">**</span><span class="mi">2</span>
+    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_FULLFACT&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_test</span><span class="o">**</span><span class="mi">2</span>
 <span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Plotting the contours of the Rosenbrock function</span>

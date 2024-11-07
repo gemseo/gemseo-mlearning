@@ -50,7 +50,7 @@ input_space = RosenbrockSpace()
 # First,
 # we create an initial training dataset using an optimal LHS including 10 samples:
 learning_dataset = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=10
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=10
 )
 
 # %%
@@ -93,7 +93,7 @@ active_learning.plot_acquisition_view(discipline=discipline)
 # the target surrogate reproduces
 # faithfully the Rosenbrock function with a good R²
 dataset_test = sample_disciplines(
-    [discipline], input_space, "y", "OT_OPT_LHS", n_samples=50
+    [discipline], input_space, "y", algo_name="OT_OPT_LHS", n_samples=50
 )
 R2 = R2Measure(active_learning.regressor).compute_test_measure(dataset_test)
 R2

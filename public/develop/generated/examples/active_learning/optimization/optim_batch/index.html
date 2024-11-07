@@ -4548,7 +4548,7 @@ we create an initial training dataset using an optimal LHS including 10 samples:
 <!-- GENERATED FROM PYTHON SOURCE LINES 60-64 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
 <!-- GENERATED FROM PYTHON SOURCE LINES 65-67 -->
@@ -4632,7 +4632,7 @@ alongside the original model.</p>
 <span class="c1"># and estimation of the different quantities</span>
 <span class="n">n_test</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">observations</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;OT_FULLFACT&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_test</span><span class="o">**</span><span class="mi">2</span>
+    <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_FULLFACT&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_test</span><span class="o">**</span><span class="mi">2</span>
 <span class="p">)</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Plotting the exact minimum and the estimated minima</span>
