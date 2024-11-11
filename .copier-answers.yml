@@ -1,13 +1,13 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: e89dd0c
+_commit: 332dceb
 _src_path: https://gitlab.com/gemseo/dev/copier-gemseo
 author_email: contact@gemseo.org
 author_name: Matthias De Lozzo
-gemseo_min_version: '5'
+gemseo_min_version: '6'
 package_is_a_gemseo_plugin: true
 project_is_open_source: true
 project_name: gemseo-mlearning
 project_name_suffix: mlearning
 project_slug: gemseo_mlearning
-short_description: Miscellaneous machine learning capabilities.
+short_description: A GEMSEO extension for machine learning.
 use_gemseo_develop: true
