@@ -16,23 +16,40 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 dynamic = ["version"]
-requires-python = ">=3.9, <3.12"
+requires-python = ">=3.9, <3.13"
 dependencies = [
-    "gemseo[all] >=5",
+    "gemseo[all] >=6,<7",
     "numpy",
     "openturns",
-    "scipy",
     "scikit-learn",
+    "scipy",
+    "smt[gpx] >=2.5.0,<=2.7.0",
 ]
 
 [project.optional-dependencies]
 test = [
     "covdefaults",
-    "pytest",
+    "pytest <9",
     "pytest-cov",
     "pytest-xdist",
+]
+doc = [
+    "black",
+    "griffe-inherited-docstrings",
+    "griffe-fieldz",
+    "markdown-exec[ansi]",
+    "mike",
+    "mkdocs-bibtex",
+    "mkdocs-gallery",
+    "mkdocs-gen-files",
+    "mkdocs-include-markdown-plugin",
+    "mkdocs-literate-nav",
+    "mkdocs-material",
+    "mkdocs-section-index",
+    "mkdocstrings[python]",
 ]
 
 [project.urls]
