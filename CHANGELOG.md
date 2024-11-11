@@ -26,9 +26,12 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Develop
+# Version 2.0.0 (November 2024)
 
 ## Added
+
+- Support GEMSEO v6.
+- Support for Python 3.12.
 - [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
   can acquire points by batch using the `batch_size`
   and `mc_size` argument,
