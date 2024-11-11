@@ -13,11 +13,9 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 [![PyPI](https://img.shields.io/pypi/v/gemseo-mlearning)](https://pypi.org/project/gemseo-mlearning/)
 [![Codecov branch](https://img.shields.io/codecov/c/gitlab/gemseo:dev/gemseo-mlearning/develop)](https://app.codecov.io/gl/gemseo:dev/gemseo-mlearning)
 
-`gemseo-mlearning` is a plugin of the library [GEMSEO](https://www.gemseo.org), dedicated to machine learning.
-This package is open-source,
-under the [LGPL v3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html).
-
 ## Overview
+
+`gemseo-mlearning` is a plugin of the library [GEMSEO](https://www.gemseo.org), dedicated to machine learning.
 
 This package adds new [regression models][gemseo_mlearning.regression]
 and [optimization algorithms][gemseo_mlearning.algos.opt.smt]
