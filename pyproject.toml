@@ -3,7 +3,7 @@ name = "gemseo-mlearning"
 authors = [
     {name = "Matthias De Lozzo", email = "contact@gemseo.org"}
 ]
-description = "A GEMSEO extension for machine learning."
+description = "Miscellaneous machine learning capabilities."
 license = {text = "GNU Lesser General Public License v3"}
 classifiers = [
     "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
@@ -21,7 +21,7 @@ classifiers = [
 dynamic = ["version"]
 requires-python = ">=3.9, <3.13"
 dependencies = [
-    "gemseo[all] >=5,<6",
+    "gemseo[all] >=6,<7",
     "numpy",
     "openturns",
     "scikit-learn",
