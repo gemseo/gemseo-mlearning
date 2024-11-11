@@ -1,0 +1,4760 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/developer_guide/active_learning/">
+      
+      
+        <link rel="prev" href="../../reference/gemseo_mlearning/regression/smt_regressor_settings/">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Active learning - gemseo-mlearning</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_markdown_exec_pyodide.css">
+    
+      <link rel="stylesheet" href="../../assets/_markdown_exec_ansi.css">
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../sg_gallery-binder.css">
+    
+      <link rel="stylesheet" href="../../sg_gallery.css">
+    
+      <link rel="stylesheet" href="../../sg_gallery-rendered-html.css">
+    
+      <link rel="stylesheet" href="../../sg_gallery-dataframe.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#active-learning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="gemseo-mlearning" class="md-header__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            gemseo-mlearning
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Active learning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://gitlab.com/gemseo/dev/gemseo-mlearning" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m503.5 204.6-.7-1.8-69.7-181.78c-1.4-3.57-3.9-6.59-7.2-8.64-2.4-1.55-5.1-2.515-8-2.81s-5.7.083-8.4 1.11c-2.7 1.02-5.1 2.66-7.1 4.78-1.9 2.12-3.3 4.67-4.1 7.44l-47 144H160.8l-47.1-144c-.8-2.77-2.2-5.31-4.1-7.43-2-2.12-4.4-3.75-7.1-4.77a18.1 18.1 0 0 0-8.38-1.113 18.4 18.4 0 0 0-8.04 2.793 18.1 18.1 0 0 0-7.16 8.64L9.267 202.8l-.724 1.8a129.57 129.57 0 0 0-3.52 82c7.747 26.9 24.047 50.7 46.447 67.6l.27.2.59.4 105.97 79.5 52.6 39.7 32 24.2c3.7 1.9 8.3 4.3 13 4.3s9.3-2.4 13-4.3l32-24.2 52.6-39.7 106.7-79.9.3-.3c22.4-16.9 38.7-40.6 45.6-67.5 8.6-27 7.4-55.8-2.6-82"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gemseo-mlearning
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user_guide/" class="md-tabs__link">
+          
+  
+    
+  
+  User guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../generated/examples/active_learning/" class="md-tabs__link">
+          
+  
+    
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/gemseo_mlearning/" class="md-tabs__link">
+        
+  
+    
+  
+  API documentation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  Developer guide
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="gemseo-mlearning" class="md-nav__button md-logo" aria-label="gemseo-mlearning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    gemseo-mlearning
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://gitlab.com/gemseo/dev/gemseo-mlearning" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="m503.5 204.6-.7-1.8-69.7-181.78c-1.4-3.57-3.9-6.59-7.2-8.64-2.4-1.55-5.1-2.515-8-2.81s-5.7.083-8.4 1.11c-2.7 1.02-5.1 2.66-7.1 4.78-1.9 2.12-3.3 4.67-4.1 7.44l-47 144H160.8l-47.1-144c-.8-2.77-2.2-5.31-4.1-7.43-2-2.12-4.4-3.75-7.1-4.77a18.1 18.1 0 0 0-8.38-1.113 18.4 18.4 0 0 0-8.04 2.793 18.1 18.1 0 0 0-7.16 8.64L9.267 202.8l-.724 1.8a129.57 129.57 0 0 0-3.52 82c7.747 26.9 24.047 50.7 46.447 67.6l.27.2.59.4 105.97 79.5 52.6 39.7 32 24.2c3.7 1.9 8.3 4.3 13 4.3s9.3-2.4 13-4.3l32-24.2 52.6-39.7 106.7-79.9.3-.3c22.4-16.9 38.7-40.6 45.6-67.5 8.6-27 7.4-55.8-2.6-82"/></svg>
+  </div>
+  <div class="md-source__repository">
+    gemseo-mlearning
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Credits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../licenses/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Licenses
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user_guide/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    User guide
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            User guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Active learning (AL)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning (AL)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/what_active_learning_is/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What AL is
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/active_learning_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for level sets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/active_learning/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL for quantiles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/optimization/al/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AL package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/optimization/smt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SMT library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Regression models
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Regression models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user_guide/regression/smt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SMT library
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../generated/examples/active_learning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Active learning
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Active learning and exploration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning and exploration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/exploration/exploration_rbf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Non-GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/exploration/plot_exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default settings.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/exploration/plot_exploration_gp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/exploration/plot_exploration_acquisition_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition algorithm.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/exploration/plot_exploration_criterion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition criterion.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Active learning and level set estimation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning and level set estimation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default settings.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Non-GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/level_set/level_set_batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Batch acquisition.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/level_set/plot_level_set_gp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/level_set/plot_level_set_acquisition_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition algorithm.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/level_set/plot_level_set_criterion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition criterion.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Active learning and optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning and optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/optimization/plot_optim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default settings.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/optimization/optim_rbf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Non-GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/optimization/plot_optim_gp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Batch acquisition.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition algorithm.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/optimization/plot_optim_criterion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition criterion.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Active learning and quantile estimation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning and quantile estimation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/quantile/plot_quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Default settings.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/quantile/quantile_rbf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Non-GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/quantile/plot_quantile_gp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GP regressor.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/quantile/quantile_batch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Batch acquisition.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/quantile/plot_quantile_acquisition_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition algorithm.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/active_learning/quantile/plot_quantile_criterion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition criterion.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../generated/examples/optimization/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Optimization
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/optimization/plot_sbo_ego/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surrogate-based optimization using in-house features.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/optimization/plot_smt_ego/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surrogate-based optimization using SMT.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../generated/examples/regression/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Regression models
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Regression models
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generated/examples/regression/plot_smt_regressor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SMT's surrogate model.
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    API documentation
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Active learning
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Active learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/active_learning_algo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Active learning algo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Acquisition criteria
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2" id="__nav_4_1_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Acquisition criteria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base acquisition criterion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base acquisition criterion family
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base factory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Exploration
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2_4" id="__nav_4_1_2_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exploration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/base_exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/distance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exploration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/factory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/standard_deviation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Standard deviation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/variance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Level set
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2_5" id="__nav_4_1_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Level set
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_ei_ef/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base ei ef
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/base_level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base level set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ef/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ef
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/ei/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ei
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/factory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Level set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/u/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    U
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Maximum
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2_6" id="__nav_4_1_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Maximum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/base_maximum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base maximum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ei/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ei
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/factory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Maximum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/mean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mean
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/ucb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ucb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Minimum
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2_7" id="__nav_4_1_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Minimum
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/base_minimum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base minimum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/ei/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ei
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/factory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/lcb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lcb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/mean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mean
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_2_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Quantile
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_2_8" id="__nav_4_1_2_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Quantile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/base_quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base quantile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ef/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ef
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/ei/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ei
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/factory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factory
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/quantile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/quantile/u/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    U
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/distributions/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Distributions
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_3" id="__nav_4_1_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Distributions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base regressor distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kriging distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Regressor distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/active_learning/visualization/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Visualization
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_1_4" id="__nav_4_1_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Visualization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/visualization/acquisition_view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acquisition view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/active_learning/visualization/qoi_history_view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qoi history view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/algos/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Algos
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/algos/opt/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Opt
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_1" id="__nav_4_2_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Opt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/algos/opt/sbo_settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sbo settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surrogate based optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_1_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/algos/opt/core/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Core
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_1_3" id="__nav_4_2_1_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Core
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Surrogate based optimizer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_1_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/algos/opt/smt/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Smt
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_1_4" id="__nav_4_2_1_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Smt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/algos/opt/smt/ego_settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ego settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/algos/opt/smt/smt_ego/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Smt ego
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/problems/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Problems
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Problems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/problems/branin/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Branin
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3_1" id="__nav_4_3_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Branin
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/branin/branin_discipline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branin discipline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/branin/branin_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branin function
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/branin/branin_problem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branin problem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/branin/branin_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branin space
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/branin/functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/problems/rosenbrock/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Rosenbrock
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Rosenbrock
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/rosenbrock/functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_discipline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rosenbrock discipline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rosenbrock function
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_problem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rosenbrock problem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/problems/rosenbrock/rosenbrock_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rosenbrock space
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/gemseo_mlearning/regression/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Regression
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Regression
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/regression/smt_regressor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Smt regressor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gemseo_mlearning/regression/smt_regressor_settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Smt regressor settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Developer guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Developer guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Active learning
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Active learning
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tree-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to...
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tree-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tree structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Class diagram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to...
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<!--
+Copyright 2021 IRT Saint Exupéry, https://www.irt-saintexupery.com
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+International License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
+Commons, PO Box 1866, Mountain View, CA 94042, USA.
+-->
+<h1 id="active-learning">Active learning<a class="headerlink" href="#active-learning" title="Permanent link">&para;</a></h1>
+<p>This section describes the design of the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">active_learning</a> subpackage.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Open the <a href="../../user_guide/active_learning/what_active_learning_is/">user guide</a>
+for general information, <em>e.g.</em> concepts, API, examples, etc.</p>
+</div>
+<h2 id="tree-structure">Tree structure<a class="headerlink" href="#tree-structure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>📁<span class="w"> </span>gemseo_mlearning
+└──<span class="w"> </span>📁<span class="w"> </span>active_learning<span class="w"> </span><span class="c1"># Subpackage for active learning (AL)</span>
+<span class="w">    </span>├──<span class="w"> </span>📄<span class="w"> </span>active_learning_algo.py<span class="w"> </span><span class="c1"># Class to set and solve an AL problem</span>
+<span class="w">    </span>├──<span class="w"> </span>📁<span class="w"> </span>acquisition_criteria<span class="w"> </span><span class="c1"># Acquisition criteria (ACs)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>exploration<span class="w"> </span><span class="c1"># ACs to improve the regressor</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>base_exploration.py<span class="w"> </span><span class="c1"># Base class for these ACs</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>distance.py<span class="w"> </span><span class="c1"># AC (distance to the learning set)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>exploration.py<span class="w"> </span><span class="c1"># Specific AC family</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>factory.py<span class="w"> </span><span class="c1"># Factory for these ACs</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>standard_deviation.py<span class="w"> </span><span class="c1"># An AC (regressor&#39;s standard deviation)</span>
+<span class="w">    </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>📄<span class="w"> </span>variance.py<span class="w"> </span><span class="c1"># AC (regressor&#39;s variance)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>level_set/<span class="w"> </span><span class="c1"># ACs to approximate a level set</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>maximum/<span class="w"> </span><span class="c1"># ACs to approximate the global maximum</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>minimum/<span class="w"> </span><span class="c1"># ACs to approximate the global minimum</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📁<span class="w"> </span>quantile/<span class="w"> </span><span class="c1"># ACs to approximate a quantile</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>base_acquisition_criterion.py<span class="w"> </span><span class="c1"># Base class for ACs</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>base_acquisition_criterion_family.py<span class="w"> </span><span class="c1"># Base class for AC families</span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>📄<span class="w"> </span>base_factory.py<span class="w"> </span><span class="c1"># Base class for AC</span>
+<span class="w">    </span>├──<span class="w"> </span>📁<span class="w"> </span>distributions<span class="w"> </span><span class="c1"># Regressor distributions (RD)</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>base_regressor_distribution.py<span class="w"> </span><span class="c1"># The base class for RDs</span>
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>📄<span class="w"> </span>kriging_distribution.py<span class="w"> </span><span class="c1"># The RD for Kriging regressors</span>
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>📄<span class="w"> </span>regressor_distribution.py<span class="w"> </span><span class="c1"># The RD for any regressor</span>
+<span class="w">    </span>└──<span class="w"> </span>📁<span class="w"> </span>visualization<span class="w"> </span><span class="c1"># Visualization tools</span>
+<span class="w">        </span>├──<span class="w"> </span>📄<span class="w"> </span>acquisition_view.py<span class="w"> </span><span class="c1"># Plot the acquisition process (in 2D only)</span>
+<span class="w">        </span>└──<span class="w"> </span>📄<span class="w"> </span>qoi_history_view.py<span class="w"> </span><span class="c1"># Plot the history of the quantity of interest</span>
+</code></pre></div>
+<h2 id="class-diagram">Class diagram<a class="headerlink" href="#class-diagram" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>classDiagram
+
+    ActiveLearningAlgo *-- OptimizationProblem
+    ActiveLearningAlgo o-- DesignSpace
+    ActiveLearningAlgo --&gt; AcquisitionCriterionFamilyFactory: criterion_family_name
+    ActiveLearningAlgo --&gt; BaseAcquisitionCriterionFactory: criterion_name \n criterion_options
+    ActiveLearningAlgo --&gt; BaseRegressorDistribution: regressor
+    BaseDriverLibrary --* ActiveLearningAlgo
+    BaseDOELibrary --* BaseDriverLibrary
+    BaseOptimizationLibrary --* BaseDriverLibrary
+    Database --* ActiveLearningAlgo
+    AcquisitionView --* ActiveLearningAlgo
+    QOIHistoryView --* ActiveLearningAlgo
+
+    OptimizationProblem o-- BaseAcquisitionCriterion
+
+    AcquisitionCriterionFamilyFactory --&gt; BaseAcquisitionCriterionFamily
+    BaseAcquisitionCriterionFamily --&gt; BaseAcquisitionCriterionFactory
+    BaseAcquisitionCriterionFactory --&gt; BaseAcquisitionCriterion
+
+    BaseAcquisitionCriterion --|&gt; MDOFunction
+    BaseAcquisitionCriterion o-- BaseRegressorDistribution
+
+    &lt;&lt;abstract&gt;&gt; BaseAcquisitionCriterion
+    &lt;&lt;abstract&gt;&gt; BaseAcquisitionCriterionFactory
+    &lt;&lt;abstract&gt;&gt; BaseAcquisitionCriterionFamily
+    &lt;&lt;abstract&gt;&gt; BaseRegressorDistribution
+
+    class ActiveLearningAlgo {
+        +default_algo_name
+        +default_doe_settings
+        +default_opt_settings
+        +acquisition_criterion
+        +input_space
+        +n_initial_samples
+        +qoi
+        +qoi_history
+        +regressor
+        +regressor_distribution
+        +set_acquisition_algorithm()
+        +find_nex_point()
+        +acquire_new_points()
+        +plot_acquisition_view()
+        +plot_qoi_history()
+        +update_problem()
+    }
+
+    class AcquisitionCriterionFamilyFactory {
+        +create()
+    }
+
+    class BaseAcquisitionCriterionFamily {
+        +ACQUISITION_CRITERION_FACTORY
+    }
+
+    class BaseAcquisitionCriterionFactory {
+        #DEFAULT_CLASS_NAME
+    }</code></pre>
+<h2 id="how-to">How to...<a class="headerlink" href="#how-to" title="Permanent link">&para;</a></h2>
+<dl>
+<dt><code>... create a new family of acquisition criteria?</code></dt>
+<dd>
+<ol>
+<li>Derive an abstract class <code>BaseNewAcquisitionCriterion</code> from
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a>.</li>
+<li>Derive <code>FirstAcquisitionCriterion</code>, <code>SecondAcquisitionCriterion</code>, ... from <code>BaseNewAcquisitionCriterion</code>
+   in modules located in <code>root_package_name.subpackage_name.package_name</code>.</li>
+<li>Derive <code>NewAcquisitionCriterionFactory</code> from
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/#gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory">BaseAcquisitionCriterionFactory</a>
+   and set the class attributes:
+   <div class="highlight"><pre><span></span><code><span class="n">_CLASS</span> <span class="o">=</span> <span class="n">BaseNewAcquisitionCriterion</span>
+<span class="n">_DEFAULT_CLASS_NAME</span> <span class="o">=</span> <span class="s2">&quot;FirstAcquisitionCriterion&quot;</span>
+<span class="n">_MODULE_NAMES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;root_package.subpackage_name.package_name&quot;</span><span class="p">,)</span>
+</code></pre></div></li>
+<li>Derive <code>NewAcquisitionCriterionFamily</code> from
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily">BaseAcquisitionCriterionFamily</a>
+   and set the class attribute <code>ACQUISITION_CRITERION_FACTORY = NewAcquisitionCriterionFactory</code>.</li>
+</ol>
+<p>Now,
+the user can instantiate
+the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></p>
+<ul>
+<li>with <code class="highlight"><span class="n">criterion_family_name</span><span class="o">=</span><span class="s2">&quot;NewAcquisitionCriterionFamily&quot;</span></code>
+  to use this family of acquisition criteria,</li>
+<li>with <code class="highlight"><span class="n">criterion_family_name</span><span class="o">=</span><span class="s2">&quot;NewAcquisitionCriterionFamily&quot;</span></code>
+  and <code class="highlight"><span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;SecondAcquisitionCriterion&quot;</span></code>
+  to use a specific acquisition criterion from this family.</li>
+</ul>
+</dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../assets/_markdown_exec_pyodide.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
