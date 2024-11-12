@@ -4631,10 +4631,10 @@ to easily use any SMT's surrogate model in your GEMSEO processes.</p>
 <h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
 <p>You only have to instantiate this <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a> class from:</p>
 <ul>
-<li>the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a> including your input and output samples,</li>
+<li>the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.io_dataset.html#gemseo.datasets.io_dataset.IODataset">IODataset</a> including your input and output samples,</li>
 <li>the name of an SMT's surrogate model (<em>e.g.</em> <code>"KRG"</code> for Kriging or <code>"RBF"</code> for radial basis function),</li>
 <li>the options of this surrogate model,</li>
-<li>and the usual options of a [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor],
+<li>and the usual options of a <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#module-gemseo.mlearning.regression.algos.base_regressor">BaseRegressor</a>,
   namely
   <code>transformer</code> to transform the input and output data,
   <code>input_names</code> to use a subset of input variables and
@@ -4658,7 +4658,7 @@ as long as the corresponding SMT's surrogate model can be derived with respect t
 such as <code>"GEKPLS"</code> and <code>"GENN"</code>,
 as long as your training dataset includes both output and Jacobian samples
 (the Jacobian samples have to be stored in the <code>"gradients"</code> group
-of the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.datasets.io_dataset_.html#gemseo.datasets.io_dataset.IODataset">IODataset</a>).</p>
+of the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.io_dataset.html#gemseo.datasets.io_dataset.IODataset">IODataset</a>).</p>
 <p>This feature can improve the quality of the surrogate model without increasing the size of the training dataset.</p>
 <div class="footnote">
 <hr />

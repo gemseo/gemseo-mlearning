@@ -4970,8 +4970,8 @@
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">ActiveLearningAlgo</span><span class="p">(</span>
     <span class="n">criterion_family_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
-    <span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span><span class="p">,</span>
-    <span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
+    <span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span><span class="p">,</span>
+    <span class="n">regressor</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
@@ -5000,7 +5000,7 @@ or <code>"Exploration"</code>.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>input_space</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></code>)
+              (<code><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></code>)
           –
           <div class="doc-md-description">
             <p>The input space on which to look for the new learning point.</p>
@@ -5008,7 +5008,7 @@ or <code>"Exploration"</code>.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>regressor</code></b>
-              (<code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span> | <a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
+              (<code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a> | <a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
           –
           <div class="doc-md-description">
             <p>Either a regressor or a regressor distribution.</p>
@@ -5368,7 +5368,7 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.input_space" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -5467,7 +5467,7 @@ these lists are empty.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.regressor" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -5511,11 +5511,11 @@ these lists are empty.</p>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">acquire_new_points</span><span class="p">(</span>
-    <span class="n">discipline</span><span class="p">:</span> <span class="n"><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span></span><span class="p">,</span>
+    <span class="n">discipline</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a></span><span class="p">,</span>
     <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/data_persistence/database.html#gemseo.algos.database.Database">Database</a></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.database.html#gemseo.algos.database.Database">Database</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.optimization_problem.OptimizationProblem" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.optimization_problem.html#gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</a></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -5532,7 +5532,7 @@ of batch_size and less than or equal to n_samples.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>discipline</code></b>
-              (<code><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span></code>)
+              (<code><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a></code>)
           –
           <div class="doc-md-description">
             <p>The discipline computing the reference output data
@@ -5579,7 +5579,7 @@ Only when the input space dimension is 2.</p>
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/data_persistence/database.html#gemseo.algos.database.Database">Database</a>, <span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span>]</code>
+              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.database.html#gemseo.algos.database.Database">Database</a>, <a class="autorefs autorefs-external" title="gemseo.algos.optimization_problem.OptimizationProblem" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.optimization_problem.html#gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</a>]</code>
           –
           <div class="doc-md-description">
             <p>The concatenation of the optimization histories
@@ -5919,7 +5919,7 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_acquisition_view" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">plot_acquisition_view</span><span class="p">(</span>
-    <span class="n">discipline</span><span class="p">:</span> <span class="n"><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">discipline</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">filled</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">n_test</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
     <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -5949,7 +5949,7 @@ by plus signs and labeled by their position in the learning dataset.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>discipline</code></b>
-              (<code><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span> | None</code>, default:
+              (<code><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a> | None</code>, default:
                   <code>None</code>
 )
           –
@@ -6155,7 +6155,7 @@ If empty, do not save it.</p>
     <span class="n">label</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">add_markers</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6215,7 +6215,7 @@ If empty, the name of the criterion family name.</p>
           –
           <div class="doc-md-description">
             <p>The options to create the
-<a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a> object.</p>
+<a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a> object.</p>
           </div>
         </li>
     </ul>
@@ -6224,7 +6224,7 @@ If empty, the name of the criterion family name.</p>
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/_modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></code>
+              <code><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></code>
           –
           <div class="doc-md-description">
             <p>The history of the quantity of interest.</p>

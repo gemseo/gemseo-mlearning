@@ -4674,10 +4674,10 @@ includes a single optimization algorithm,
 called <code>"SBO"</code>.</p>
 <p>Given a maximum number of iterations,
 it can be used as is
-by any [OptimizationProblem][gemseo.algos.optimization_problem.OptimizationProblem]:
+by any <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.optimization_problem.html#gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</a>:
 <div class="highlight"><pre><span></span><code><span class="n">execute_algo</span><span class="p">(</span><span class="n">optimization_problem</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;SBO&quot;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div>
-and any [MDOScenario][gemseo.scenarios.mdo_scenario.MDOScenario]:
+and any <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.scenarios.mdo_scenario.html#gemseo.scenarios.mdo_scenario.MDOScenario">MDOScenario</a>:
 <div class="highlight"><pre><span></span><code><span class="n">scenario</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;SBO&quot;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div></p>
 <p>In this case,
@@ -4685,7 +4685,7 @@ the settings are</p>
 <ul>
 <li>the expected improvement as acquisition criterion,</li>
 <li>1 point acquired at a time,</li>
-<li>the [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor]
+<li>the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.ot_gpr.html#gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>
   wrapping the Kriging model from OpenTURNS,</li>
 <li>10 initial training points based on an optimized latin hypercube sampling (LHS) technique,</li>
 <li>a multi-start local optimization of the acquisition criterion
@@ -4821,7 +4821,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
         </li>
         <li class="doc-section-item field-body">
             <b><code>regression_algorithm</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>, default:
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></code>, default:
                   <code>&#39;OTGaussianProcessRegressor&#39;</code>
 )
           –
@@ -4933,7 +4933,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte-Carlo.<
 <h3 id="surrogate-models">Surrogate models<a class="headerlink" href="#surrogate-models" title="Permanent link">&para;</a></h3>
 <p><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
 is compatible with all regressors,
-whose classes derive from [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
+whose classes derive from <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a>.</p>
 <p>It can also be used from an existing surrogate models.
 In this case, it will skip the construction and learning of the initial training dataset.</p>
 <div class="footnote">
