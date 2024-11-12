@@ -36,7 +36,7 @@ fastjsonschema==2.20.0
     # via gemseo
 fonttools==4.54.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@29445c63262660b0977accf48bd1b1e2186f81da
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@5dee8a16e600fc1921c213e69c48fb2042a3061b
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -177,7 +177,7 @@ tenacity==9.0.0
     # via plotly
 threadpoolctl==3.5.0
     # via scikit-learn
-tomli==2.0.2
+tomli==2.1.0
     # via
     #   coverage
     #   pytest
