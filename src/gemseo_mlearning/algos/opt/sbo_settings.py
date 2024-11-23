@@ -16,15 +16,15 @@
 
 from __future__ import annotations
 
-from collections.abc import Mapping  # noqa: TCH003
-from pathlib import Path  # noqa: TCH003
+from collections.abc import Mapping  # noqa: TC003
+from pathlib import Path  # noqa: TC003
 
-from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TCH002
-from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TCH002
+from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TC002
+from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TC002
     BaseOptimizerSettings,
 )
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TCH002
-from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TCH002
+from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TC002
+from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TC002
     BaseRegressor,
 )
 from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor

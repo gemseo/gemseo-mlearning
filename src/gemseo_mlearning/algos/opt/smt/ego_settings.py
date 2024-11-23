@@ -23,7 +23,7 @@ from gemseo.algos.opt.base_optimizer_settings import BaseOptimizerSettings
 from pydantic import Field
 from pydantic import NonNegativeInt
 from pydantic import PositiveInt
-from smt.surrogate_models.surrogate_model import SurrogateModel  # noqa: TCH002
+from smt.surrogate_models.surrogate_model import SurrogateModel  # noqa: TC002
 from strenum import StrEnum
 
 
