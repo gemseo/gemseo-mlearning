@@ -38,7 +38,7 @@ fastjsonschema==2.20.0
     # via gemseo
 fonttools==4.55.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@8db7c9f319b019d7516001dcc589a953694f55fc
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@487b7923870a8d1d54d8a4a750203a0402eb7155
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -98,7 +98,7 @@ numpy==1.26.4
     #   scipy
 openpyxl==3.1.5
     # via gemseo
-openturns==1.23
+openturns==1.24
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   gemseo
@@ -120,6 +120,8 @@ plotly==5.24.0
     # via gemseo
 pluggy==1.5.0
     # via pytest
+prettytable==3.12.0
+    # via gemseo
 psutil==6.1.0
     # via openturns
 pydantic==2.9.1
@@ -183,7 +185,7 @@ tenacity==9.0.0
     # via plotly
 threadpoolctl==3.5.0
     # via scikit-learn
-tomli==2.1.0
+tomli==2.2.1
     # via
     #   coverage
     #   pytest
@@ -198,6 +200,8 @@ tzdata==2024.2
     # via pandas
 urllib3==2.2.3
     # via requests
+wcwidth==0.2.13
+    # via prettytable
 xdsmjs==2.0.0
     # via gemseo
 xxhash==3.5.0

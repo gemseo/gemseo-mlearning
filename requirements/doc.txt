@@ -45,7 +45,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.55.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@8db7c9f319b019d7516001dcc589a953694f55fc
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@487b7923870a8d1d54d8a4a750203a0402eb7155
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -192,7 +192,7 @@ numpy==1.26.4
     #   scipy
 openpyxl==3.1.5
     # via gemseo
-openturns==1.23
+openturns==1.24
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   gemseo
@@ -224,6 +224,8 @@ platformdirs==4.3.6
     #   mkdocs-get-deps
     #   mkdocstrings
 plotly==5.24.0
+    # via gemseo
+prettytable==3.12.0
     # via gemseo
 psutil==6.1.0
     # via openturns
@@ -318,7 +320,7 @@ tenacity==9.0.0
     # via plotly
 threadpoolctl==3.5.0
     # via scikit-learn
-tomli==2.1.0
+tomli==2.2.1
     # via black
 tqdm==4.66.5
     # via
@@ -344,6 +346,8 @@ watchdog==6.0.0
     # via mkdocs
 wcmatch==10.0
     # via mkdocs-include-markdown-plugin
+wcwidth==0.2.13
+    # via prettytable
 xdsmjs==2.0.0
     # via gemseo
 xxhash==3.5.0
