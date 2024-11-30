@@ -45,7 +45,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.55.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@487b7923870a8d1d54d8a4a750203a0402eb7155
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@a7481b1cc9f7d5b571b94b0409e3f806e7acd0da
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -150,7 +150,7 @@ mkdocs-gen-files==0.5.0
     # via gemseo-mlearning (pyproject.toml)
 mkdocs-get-deps==0.2.0
     # via mkdocs
-mkdocs-include-markdown-plugin==7.1.1
+mkdocs-include-markdown-plugin==7.1.2
     # via gemseo-mlearning (pyproject.toml)
 mkdocs-literate-nav==0.6.1
     # via gemseo-mlearning (pyproject.toml)
