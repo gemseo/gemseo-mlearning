@@ -12,7 +12,7 @@ cffi==1.17.1
     # via cryptography
 charset-normalizer==3.4.0
     # via requests
-check-wheel-contents==0.6.0
+check-wheel-contents==0.6.1
     # via -r requirements/dist.in
 click==8.1.7
     # via check-wheel-contents
@@ -87,5 +87,5 @@ urllib3==2.2.3
     # via
     #   requests
     #   twine
-wheel-filename==1.4.1
+wheel-filename==1.4.2
     # via check-wheel-contents
