@@ -196,7 +196,7 @@ class ActiveLearningAlgo:
         value = tile(input_space.get_current_value(), batch_size)
         optimization_space.add_variable(
             "x",
-            size=int(len(lower_bound)),
+            size=len(lower_bound),
             lower_bound=lower_bound,
             upper_bound=upper_bound,
             value=value,
