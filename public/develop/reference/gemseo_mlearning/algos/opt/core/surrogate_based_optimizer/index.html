@@ -5002,12 +5002,12 @@ the data acquisition criterion.</p>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__initial_input_samples</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__initial_input_samples</span><span class="p">)</span> <span class="p">:]</span>
 
-        <span class="n">_regression_settings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;transformer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="s2">&quot;MinMaxScaler&quot;</span><span class="p">}}</span>
-        <span class="n">_regression_settings</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">regression_settings</span><span class="p">))</span>
+        <span class="n">regression_settings_</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;transformer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="s2">&quot;MinMaxScaler&quot;</span><span class="p">}}</span>
+        <span class="n">regression_settings_</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">regression_settings</span><span class="p">))</span>
         <span class="n">regression_algorithm</span> <span class="o">=</span> <span class="n">RegressorFactory</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
             <span class="n">regression_algorithm</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__dataset</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">_regression_settings</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">regression_settings_</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="c1"># Add the first iteration to the current_iter reset by DOELibrary.</span>
         <span class="n">problem</span><span class="o">.</span><span class="n">evaluation_counter</span><span class="o">.</span><span class="n">current</span> <span class="o">+=</span> <span class="mi">1</span>
