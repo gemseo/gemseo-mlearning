@@ -5063,16 +5063,16 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 <h4 id="api_4">API<a class="headerlink" href="#api_4" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"UCB"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
-    <span class="s2">&quot;Minimum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Maximum&quot;</span><span class="p">,</span>
     <span class="n">input_space</span><span class="p">,</span>
     <span class="n">initial_regressor</span><span class="p">,</span>
-    <span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;LCB&quot;</span>
+    <span class="n">criterion_name</span><span class="o">=</span><span class="s2">&quot;UCB&quot;</span>
 <span class="p">)</span>
 </code></pre></div>
 <p>and the <span class="arithmatex">\(\kappa\)</span> constant can be set using the argument <code>kappa</code>.</p>
 <h3 id="expected-improvement_1">Expected improvement<a class="headerlink" href="#expected-improvement_1" title="Permanent link">&para;</a></h3>
 <p>The most popular criterion to <em>maximize</em> is the expected improvement<sup id="fnref3:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
-<div class="arithmatex">\[EI[x] = \mathbb{E}[\max(Y(x)-\max(y_1,\dots,y_n)},0)]\]</div>
+<div class="arithmatex">\[EI[x] = \mathbb{E}[\max(Y(x)-\max(y_1,\dots,y_n),0)]\]</div>
 <p>where <span class="arithmatex">\(y_1,\dots,y_n\)</span> are the learning output values.</p>
 <h4 id="api_5">API<a class="headerlink" href="#api_5" title="Permanent link">&para;</a></h4>
 <p>This criterion, named <code>"EI"</code>, is the default one;
@@ -5086,17 +5086,17 @@ so there's no need to provide its name:</p>
 <h4 id="gaussian-case_1">Gaussian case<a class="headerlink" href="#gaussian-case_1" title="Permanent link">&para;</a></h4>
 <p>In the case of a GP,
 the criterion has an analytic expression:</p>
-<div class="arithmatex">\[EI[x] = (\mu(x) - \max(y_1,\dots,y_n)})\Phi(t) + \sigma(x)\phi(t)\]</div>
+<div class="arithmatex">\[EI[x] = (\mu(x) - \max(y_1,\dots,y_n))\Phi(t) + \sigma(x)\phi(t)\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> and <span class="arithmatex">\(\phi\)</span> are respectively
 the cumulative and probability density functions
 of the standard normal distribution
-and <span class="arithmatex">\(t=\frac{\mu(x) - \max(y_1,\dots,y_n)}}{\sigma(x)}\)</span>.</p>
+and <span class="arithmatex">\(t=\frac{\mu(x) - \max(y_1,\dots,y_n)}{\sigma(x)}\)</span>.</p>
 <h4 id="parallel-acquisition_1">Parallel acquisition<a class="headerlink" href="#parallel-acquisition_1" title="Permanent link">&para;</a></h4>
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
 <div class="arithmatex">\[
 EI[x_1,\dots,x_q] =
-\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max(Y(x_i)-\max(y_1,\dots,y_n)},0)\right)\right]
+\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max(Y(x_i)-\max(y_1,\dots,y_n),0)\right)\right]
 \]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
