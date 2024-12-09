@@ -183,10 +183,10 @@ This criterion can be accessed via the name `"UCB"`:
 
 ```python
 active_learning = ActiveLearningAlgo(
-    "Minimum",
+    "Maximum",
     input_space,
     initial_regressor,
-    criterion_name="LCB"
+    criterion_name="UCB"
 )
 ```
 
@@ -196,7 +196,7 @@ and the $\kappa$ constant can be set using the argument `kappa`.
 
 The most popular criterion to _maximize_ is the expected improvement[@jones1998efficient]
 
-$$EI[x] = \mathbb{E}[\max(Y(x)-\max(y_1,\dots,y_n)},0)]$$
+$$EI[x] = \mathbb{E}[\max(Y(x)-\max(y_1,\dots,y_n),0)]$$
 
 where $y_1,\dots,y_n$ are the learning output values.
 
@@ -218,12 +218,12 @@ active_learning = ActiveLearningAlgo(
 In the case of a GP,
 the criterion has an analytic expression:
 
-$$EI[x] = (\mu(x) - \max(y_1,\dots,y_n)})\Phi(t) + \sigma(x)\phi(t)$$
+$$EI[x] = (\mu(x) - \max(y_1,\dots,y_n))\Phi(t) + \sigma(x)\phi(t)$$
 
 where $\Phi$ and $\phi$ are respectively
 the cumulative and probability density functions
 of the standard normal distribution
-and $t=\frac{\mu(x) - \max(y_1,\dots,y_n)}}{\sigma(x)}$.
+and $t=\frac{\mu(x) - \max(y_1,\dots,y_n)}{\sigma(x)}$.
 
 #### Parallel acquisition
 
@@ -232,7 +232,7 @@ the acquisition criterion changes to
 
 $$
 EI[x_1,\dots,x_q] =
-\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max(Y(x_i)-\max(y_1,\dots,y_n)},0)\right)\right]
+\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max(Y(x_i)-\max(y_1,\dots,y_n),0)\right)\right]
 $$
 
 where the expectation is taken with respect to the distribution of
