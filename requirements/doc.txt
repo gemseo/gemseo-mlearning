@@ -45,7 +45,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.55.3
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@bd79e059efb731dbabb584d8dc7d6e028a6a3d7b
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@72b178f15e061991ab7b41fd6d31a72969bcbb81
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
