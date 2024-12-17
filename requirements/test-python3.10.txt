@@ -2,7 +2,7 @@
 #    uv pip compile --extra test --constraint requirements/test-constraints.in -o requirements/test-python3.10.txt --python-version 3.10 pyproject.toml
 annotated-types==0.7.0
     # via pydantic
-attrs==24.2.0
+attrs==24.3.0
     # via
     #   jsonschema
     #   referencing
@@ -36,7 +36,7 @@ fastjsonschema==2.20.0
     # via gemseo
 fonttools==4.55.3
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@836b700bcf570a854e6ae1690f89e461b8a4bbc7
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@6a86a494ffb0696422adfa15d920d6dba4f02391
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
