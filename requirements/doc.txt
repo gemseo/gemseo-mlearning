@@ -16,7 +16,7 @@ certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.0
     # via requests
-click==8.1.7
+click==8.1.8
     # via
     #   black
     #   mkdocs
@@ -45,7 +45,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.55.3
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@60d20b6c7665f82a99b539f7e377a18e47443096
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@cdaf2241d591785f40a94750c5a1d88d32f70286
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
