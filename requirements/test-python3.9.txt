@@ -132,7 +132,7 @@ pydoe3==1.0.4
     # via
     #   gemseo
     #   smt
-pyparsing==3.2.0
+pyparsing==3.2.1
     # via matplotlib
 pytest==8.3.4
     # via
