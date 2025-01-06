@@ -4495,22 +4495,22 @@ to download the full example code</p>
 <h1 id="batch-acquisition">Batch acquisition.<a class="headerlink" href="#batch-acquisition" title="Permanent link">&para;</a></h1>
 <!-- GENERATED FROM PYTHON SOURCE LINES 17-40 -->
 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">gemseo</span> <span class="kn">import</span> <span class="n">configure</span>
-<span class="kn">from</span> <span class="nn">gemseo</span> <span class="kn">import</span> <span class="n">configure_logger</span>
-<span class="kn">from</span> <span class="nn">gemseo</span> <span class="kn">import</span> <span class="n">sample_disciplines</span>
-<span class="kn">from</span> <span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span> <span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
-<span class="kn">from</span> <span class="nn">gemseo.uncertainty.statistics.empirical_statistics</span> <span class="kn">import</span> <span class="n">EmpiricalStatistics</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">concatenate</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">unique</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.uncertainty.statistics.empirical_statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmpiricalStatistics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">concatenate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">unique</span>
 
-<span class="kn">from</span> <span class="nn">gemseo_mlearning.active_learning.active_learning_algo</span> <span class="kn">import</span> <span class="n">ActiveLearningAlgo</span>
-<span class="kn">from</span> <span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.active_learning.active_learning_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActiveLearningAlgo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">RosenbrockDiscipline</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span> <span class="kn">import</span> <span class="n">RosenbrockSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosenbrockSpace</span>
 
 <span class="c1"># Update the configuration of |g| to speed up the script (use configure() with care)</span>
 <span class="n">configure</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>

@@ -4968,7 +4968,7 @@
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
-<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: D107</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>  <span class="c1"># noqa: D107</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">algo</span><span class="p">:</span> <span class="n">BaseRandomProcessRegressor</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">algo</span><span class="p">)</span>
@@ -5139,7 +5139,7 @@
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_set</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">change_learning_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_set</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Re-train the regressor from a new learning set.</span>
 
 <span class="sd">    Args:</span>
@@ -5232,7 +5232,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_confidence_interval</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_confidence_interval</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
@@ -5311,7 +5311,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">79</span>
 <span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
 <span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_samples</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">compute_mean</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_mean</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
@@ -5382,7 +5382,7 @@ where <code>p</code> is the output dimension.</p>
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
-<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_samples</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_samples</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">NumberArray</span><span class="p">,</span>
     <span class="n">n_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -5451,7 +5451,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">95</span>
 <span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
 <span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_samples</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">compute_standard_deviation</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_standard_deviation</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
@@ -5517,7 +5517,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">87</span>
 <span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_dict</span>
 <span class="nd">@RegressionDataFormatters</span><span class="o">.</span><span class="n">format_samples</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">compute_variance</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_variance</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
@@ -5569,7 +5569,7 @@ If <code>None</code>, use the whole learning dataset</p>
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">learn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Train the regressor from the learning dataset.</span>
 
 <span class="sd">    Args:</span>
@@ -5650,7 +5650,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <span class="normal">114</span>
 <span class="normal">115</span>
 <span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_data</span><span class="p">:</span> <span class="n">DataType</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataType</span><span class="p">:</span>
