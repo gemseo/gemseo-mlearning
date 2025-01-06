@@ -240,7 +240,7 @@ pydoe3==1.0.4
     # via
     #   gemseo
     #   smt
-pygments==2.18.0
+pygments==2.19.0
     # via
     #   mkdocs-material
     #   pygments-ansi-color
@@ -305,7 +305,7 @@ scipy==1.13.1
     #   pydoe3
     #   scikit-learn
     #   smt
-setuptools==75.6.0
+setuptools==75.7.0
     # via mkdocs-bibtex
 six==1.17.0
     # via
