@@ -4901,18 +4901,6 @@ The expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)<
           </div>
         </li>
         <li class="doc-section-item field-body">
-            <b><code>acquisition_settings</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, Union[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>], ndarray, Iterable[Callable[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>, None]], <a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, Any]]]</code>, default:
-                  <code>{}</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The settings of the algorithm
-            to optimize the data acquisition criterion.
-            Ignored when <code>acquisition_algorithm</code> is empty.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
             <b><code>batch_size</code></b>
               (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
                   <code>1</code>
@@ -4940,20 +4928,6 @@ The expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)<
           –
           <div class="doc-md-description">
             <p>The name of the DOE algorithm for the initial sampling.</p>
-<div class="highlight"><pre><span></span><code>        This argument is ignored
-        when regression_algorithm is a
-        [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
-</code></pre></div>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>doe_settings</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, Union[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>], ndarray, Iterable[Callable[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>, None]], <a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, Any]]]</code>, default:
-                  <code>{}</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The settings of the DOE algorithm for the initial sampling.</p>
 <div class="highlight"><pre><span></span><code>        This argument is ignored
         when regression_algorithm is a
         [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -5007,20 +4981,6 @@ The expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)<
           <div class="doc-md-description">
             <p>The path to the file to save the regression model.</p>
 <div class="highlight"><pre><span></span><code>        If empty, do not save the regression model.
-</code></pre></div>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>regression_settings</code></b>
-              (<code><a class="autorefs autorefs-external" title="collections.abc.Mapping" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping">Mapping</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, Optional[Any]]</code>, default:
-                  <code>{}</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The settings of the regression algorithm.</p>
-<div class="highlight"><pre><span></span><code>        This argument is ignored
-        when regression_algorithm is a
-        [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
 </code></pre></div>
           </div>
         </li>
