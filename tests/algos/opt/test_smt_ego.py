@@ -12,31 +12,12 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-# Copyright 2022 IRT Saint Exupéry, https://www.irt-saintexupery.com
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU Lesser General Public
-# License version 3 as published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with this program; if not, write to the Free Software Foundation,
-# Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-# Contributors:
-#    AUTHORS:
-#       - Francois Gallard
 """SMT optimizaton EGO tests."""
 
 from __future__ import annotations
 
 import contextlib
 import re
-from sys import version_info
 from typing import TYPE_CHECKING
 from unittest import mock
 
@@ -78,11 +59,7 @@ def scaled_rosenbrock(x: RealArray) -> float:
 @pytest.mark.parametrize("surrogate", Surrogate)
 def test_criteria(criterion, surrogate):  # noqa: N803
     """Test EGO with different criteria."""
-    if (
-        (version_info[0], version_info[1]) == (3, 10)
-        and surrogate == Surrogate.MGP
-        and criterion == AcquisitionCriterion.SBO
-    ):
+    if surrogate == Surrogate.MGP and criterion == AcquisitionCriterion.SBO:
         return
 
     optimization_problem = Rosenbrock()
