@@ -4757,13 +4757,13 @@
 -->
 
 <h1 id="active-learning-for-level-set-estimation">Active learning for level set estimation<a class="headerlink" href="#active-learning-for-level-set-estimation" title="Permanent link">&para;</a></h1>
-<p><a href="../what_active_learning_is/">Active learning</a> techniques are very useful
+<p>(what_active_learning_is.md) techniques are very useful
 to estimate a level set, <em>i.e.</em> the input values for which the model output is equal to a specific value <span class="arithmatex">\(y\)</span>.</p>
-<p>The <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
-presented in <a href="../active_learning_algo/">the previous section</a>
+<p>The 
+presented in (active_learning_algo.md)
 can be used to <em>approximate</em> a particular level set,
 using the family of acquisition criteria
-<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/level_set/level_set/#gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet">LevelSet</a>.
+.
 As new points are acquired,
 the level set of the surrogate model will be increasingly similar to that of the substituted model.</p>
 <p>For now, these acquisition criteria do not have quantities of interest.</p>
@@ -4774,7 +4774,7 @@ Most often,
 and <span class="arithmatex">\(\hat{f}\)</span> is the associated GP regressor,
 which corresponds to its expectation.
 Given an input point <span class="arithmatex">\(x\)</span>,
-<span class="arithmatex">\(\mu(x)\equiv\mathbb{E}[Y(x)]\)</span> and <span class="arithmatex">\(\sigma(x)\equiv\mathbb{S}[Y(x)]\)</span>
+<span class="arithmatex">\(\mu(x)\equiv\mathbb{E}\)</span> and <span class="arithmatex">\(\sigma(x)\equiv\mathbb{S}\)</span>
 denote the expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)</span>.</p>
 <p>The value characterizing the level set can be passed using the argument <code>output_value</code>,
  <em>e.g.</em> <code>output_value=12</code>.</p>
@@ -4784,10 +4784,10 @@ and the sample size to estimate the statistics defined below
 can be set with the arguments <code>batch_size</code> (default: <code>1</code>)
 and <code>mc_size</code> (default: <code>10000</code>) respectively.</p>
 <h2 id="u-function">U-function<a class="headerlink" href="#u-function" title="Permanent link">&para;</a></h2>
-<p>The simplest criterion to approximate a level set <span class="arithmatex">\(y\)</span> is the U-function<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:</p>
-<div class="arithmatex">\[U[x] = \mathbb{E}\left[\left(\frac{y-Y(x)}{\sigma(x)}\right)^2\right]\]</div>
+<p>The simplest criterion to approximate a level set <span class="arithmatex">\(y\)</span> is the U-function<sup id="fnref:roy2014estimating"><a class="footnote-ref" href="#fn:roy2014estimating">1</a></sup>:</p>
+<div class="arithmatex">\[U = \mathbb{E}\left\]</div>
 <p>which can be simplified to</p>
-<div class="arithmatex">\[U[x] = \left(\frac{y-\mu(x)}{\sigma(x)}\right)^2.\]</div>
+<div class="arithmatex">\[U = \left(\frac{y-\mu(x)}{\sigma(x)}\right)^2.\]</div>
 <h3 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
 <p>This criterion, named <code>"U"</code>, is the default one;
 so there's no need to provide its name:</p>
@@ -4802,16 +4802,16 @@ so there's no need to provide its name:</p>
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
 <div class="arithmatex">\[
-U[x_1,\dots,x_q] =
-\mathbb{E}\left[\min_{1\leq i \leq q}\left(\left(\frac{y-Y(x_i)}{\sigma(x_i)}\right)^2\right)\right]
+U =
+\mathbb{E}\left
 \]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
 There is no analytic expression
 and the acquisition criterion is thus instead evaluated with crude Monte Carlo.</p>
 <h2 id="expected-feasibility">Expected feasibility<a class="headerlink" href="#expected-feasibility" title="Permanent link">&para;</a></h2>
-<p>Another criteria to approximate a level set <span class="arithmatex">\(y\)</span> is the expected feasibility<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>:</p>
-<div class="arithmatex">\[EF[x] =  \mathbb{E}\left[\max(\kappa\sigma(x) - |y - Y(x)|,0)\right].\]</div>
+<p>Another criteria to approximate a level set <span class="arithmatex">\(y\)</span> is the expected feasibility<sup id="fnref:bect2012sequential"><a class="footnote-ref" href="#fn:bect2012sequential">2</a></sup>:</p>
+<div class="arithmatex">\[EF =  \mathbb{E}\left.\]</div>
 <h3 id="api_1">API<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h3>
 <p>This criterion can be accessed via the name <code>"EF"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -4826,7 +4826,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 <p>In the case of a GP,
 the criterion has an analytic expression:</p>
 <div class="arithmatex">\[
-EF[x] =
+EF =
 \sigma(x)
 \left(
 \kappa
@@ -4846,16 +4846,16 @@ and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
 <div class="arithmatex">\[
-EF[x_1,\dots,x_q] =
-\mathbb{E}\left[\max_{1\leq i \leq q}\left(\max(\kappa\sigma(x_i) - |y - Y(x_i)|,0)\right)\right]
+EF =
+\mathbb{E}\left
 \]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
 There is no analytic expression
 and the acquisition criterion is thus instead evaluated with crude Monte Carlo.</p>
 <h2 id="expected-improvement">Expected improvement<a class="headerlink" href="#expected-improvement" title="Permanent link">&para;</a></h2>
-<p>Another criteria to approximate a level set <span class="arithmatex">\(y\)</span> is the expected improvement<sup id="fnref2:2"><a class="footnote-ref" href="#fn:2">2</a></sup>:</p>
-<div class="arithmatex">\[EI[x] = \mathbb{E}\left[\max((\kappa\sigma(x))^2 - (y - Y(x))^2,0)\right].\]</div>
+<p>Another criteria to approximate a level set <span class="arithmatex">\(y\)</span> is the expected improvement<sup id="fnref2:bect2012sequential"><a class="footnote-ref" href="#fn:bect2012sequential">2</a></sup>:</p>
+<div class="arithmatex">\[EI = \mathbb{E}\left.\]</div>
 <h3 id="api_2">API<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h3>
 <p>This criterion can be accessed via the name <code>"EI"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -4870,7 +4870,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 <p>In the case of a GP,
 the criterion has an analytic expression:</p>
 <div class="arithmatex">\[
-EI[x] = \sigma(x)
+EI = \sigma(x)
 \left(
 (\kappa^2-1-t^2)(\Phi(t^+)-\Phi(t^-))
 -2t(\phi(t^+)-\phi(t^-))
@@ -4888,8 +4888,8 @@ and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
 <div class="arithmatex">\[
-EI[x_1,\dots,x_q] =
-\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max((\kappa\sigma(x_i))^2 - (y - Y(x_i))^2,0)\right)\right]
+EI =
+\mathbb{E}\left
 \]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
@@ -4898,11 +4898,11 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>S. Roy and W. Notz. Estimating percentiles in computer experiments: a comparison of sequential-adaptive designs and fixed designs. <em>Journal of Statistical Theory and Practice</em>, 8:12–29, 2014.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:roy2014estimating">
+<p>S. Roy and W. Notz. Estimating percentiles in computer experiments: a comparison of sequential-adaptive designs and fixed designs. <em>Journal of Statistical Theory and Practice</em>, 8:12–29, 2014.&#160;<a class="footnote-backref" href="#fnref:roy2014estimating" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:2">
-<p>J. Bect, D. Ginsbourger, L. Li, V. Picheny, and E. Vazquez. Sequential design of computer experiments for the estimation of a probability of failure. <em>Statistics and Computing</em>, 22:773–793, 2012.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn:bect2012sequential">
+<p>J. Bect, D. Ginsbourger, L. Li, V. Picheny, and E. Vazquez. Sequential design of computer experiments for the estimation of a probability of failure. <em>Statistics and Computing</em>, 22:773–793, 2012.&#160;<a class="footnote-backref" href="#fnref:bect2012sequential" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:bect2012sequential" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

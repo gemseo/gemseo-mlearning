@@ -4624,17 +4624,17 @@ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 <h1 id="smts-surrogate-models">SMT's surrogate models<a class="headerlink" href="#smts-surrogate-models" title="Permanent link">&para;</a></h1>
-<p>The <a href="https://smt.readthedocs.io">surrogate modeling toolbox (SMT)</a>
-is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
-<p><code>gemseo-mlearning</code> proposes the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
+<p>The (https://smt.readthedocs.io)
+is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:SMT2019"><a class="footnote-ref" href="#fn:SMT2019">1</a></sup>.</p>
+<p><code>gemseo-mlearning</code> proposes the 
 to easily use any SMT's surrogate model in your GEMSEO processes.</p>
 <h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<p>You only have to instantiate this <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a> class from:</p>
+<p>You only have to instantiate this  class from:</p>
 <ul>
-<li>the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.io_dataset.html#gemseo.datasets.io_dataset.IODataset">IODataset</a> including your input and output samples,</li>
+<li>the  including your input and output samples,</li>
 <li>the name of an SMT's surrogate model (<em>e.g.</em> <code>"KRG"</code> for Kriging or <code>"RBF"</code> for radial basis function),</li>
 <li>the options of this surrogate model,</li>
-<li>and the usual options of a <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#module-gemseo.mlearning.regression.algos.base_regressor">BaseRegressor</a>,
+<li>and the usual options of a ,
   namely
   <code>transformer</code> to transform the input and output data,
   <code>input_names</code> to use a subset of input variables and
@@ -4646,11 +4646,11 @@ to easily use any SMT's surrogate model in your GEMSEO processes.</p>
 </code></pre></div>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
 <p>Regarding the options of the SMT's surrogate models,
-you will find more information in the <a href="https://smt.readthedocs.io/en/latest/_src_docs/surrogate_models.html">SMT's user guide</a>
+you will find more information in the (https://smt.readthedocs.io/en/latest/_src_docs/surrogate_models.html)
 by looking at the tables at the bottom of the pages.</p>
 <h2 id="derivatives">Derivatives<a class="headerlink" href="#derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="differentiation">Differentiation<a class="headerlink" href="#differentiation" title="Permanent link">&para;</a></h3>
-<p>You can use the <code>predict_jacobian</code> method of any <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
+<p>You can use the <code>predict_jacobian</code> method of any 
 as long as the corresponding SMT's surrogate model can be derived with respect to its inputs.</p>
 <p>This feature is particularly useful in the case of gradient-based optimization.</p>
 <h3 id="gradient-enhanced">Gradient-enhanced<a class="headerlink" href="#gradient-enhanced" title="Permanent link">&para;</a></h3>
@@ -4658,16 +4658,13 @@ as long as the corresponding SMT's surrogate model can be derived with respect t
 such as <code>"GEKPLS"</code> and <code>"GENN"</code>,
 as long as your training dataset includes both output and Jacobian samples
 (the Jacobian samples have to be stored in the <code>"gradients"</code> group
-of the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.io_dataset.html#gemseo.datasets.io_dataset.IODataset">IODataset</a>).</p>
+of the ).</p>
 <p>This feature can improve the quality of the surrogate model without increasing the size of the training dataset.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>B. A. Bouhlel, J. T. Hwang, N. Bartoli, R. Lafage, M. Morlier, and J. R. R. A. Martins. A python surrogate modeling framework with derivatives. <em>Advances in Engineering Software</em>, pages 102662, 2019. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2019.03.005">doi:https://doi.org/10.1016/j.advengsoft.2019.03.005</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>P. Saves, R. Lafage, N. Bartoli, Y. Diouane, J. Bussemaker, T. Lefebvre, J. T. Hwang, J. Morlier, and J. R. R. A. Martins. SMT 2.0: A surrogate modeling toolbox with a focus on hierarchical and mixed variables gaussian processes. <em>Advances in Engineering Sofware</em>, 188:103571, 2024. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2023.103571">doi:https://doi.org/10.1016/j.advengsoft.2023.103571</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn:SMT2019">
+<p>B. A. Bouhlel, J. T. Hwang, N. Bartoli, R. Lafage, M. Morlier, and J. R. R. A. Martins. A python surrogate modeling framework with derivatives. <em>Advances in Engineering Software</em>, pages 102662, 2019. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2019.03.005">doi:https://doi.org/10.1016/j.advengsoft.2019.03.005</a>.&#160;<a class="footnote-backref" href="#fnref:SMT2019" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

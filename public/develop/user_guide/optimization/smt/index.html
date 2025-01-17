@@ -4642,20 +4642,20 @@ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 <h1 id="smts-surrogate-based-optimizers">SMT's surrogate-based optimizers<a class="headerlink" href="#smts-surrogate-based-optimizers" title="Permanent link">&para;</a></h1>
-<p>The <a href="https://smt.readthedocs.io">surrogate modeling toolbox (SMT)</a>
-is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
-<p><code>gemseo-mlearning</code> proposes the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/algos/opt/smt/smt_ego/#gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO">SMTEGO</a> optimization library
+<p>The (https://smt.readthedocs.io)
+is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:SMT2019"><a class="footnote-ref" href="#fn:SMT2019">1</a></sup>.</p>
+<p><code>gemseo-mlearning</code> proposes the  optimization library
 to easily use the surrogate-based optimizers available in SMT,
 through its <code>EGO</code> class.</p>
 <h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<p><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/algos/opt/smt/smt_ego/#gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO">SMTEGO</a> includes a single optimization algorithm,
+<p>includes a single optimization algorithm,
 called <code>"SMT_EGO"</code>.</p>
 <p>Given a maximum number of iterations,
 it can be used as is
-by any <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.optimization_problem.html#gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</a>:
+by any :
 <div class="highlight"><pre><span></span><code><span class="n">execute_algo</span><span class="p">(</span><span class="n">optimization_problem</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;SMT_EGO&quot;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div>
-and any <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.scenarios.mdo_scenario.html#gemseo.scenarios.mdo_scenario.MDOScenario">MDOScenario</a>:
+and any :
 <div class="highlight"><pre><span></span><code><span class="n">scenario</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;SMT_EGO&quot;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </code></pre></div></p>
 <p>In this case,
@@ -4670,7 +4670,7 @@ the settings are</p>
 </ul>
 <h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <p>Regarding the settings of the SMT's <code>EGO</code> class,
-you will find more information in the <a href="https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html">SMT's user guide</a>
+you will find more information in the (https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html)
 by looking at the table at the bottom of the page.</p>
 <p>In the following,
 the training output values already used
@@ -4822,7 +4822,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 <tr>
 <td><code>"EI"</code></td>
 <td>Expected improvement</td>
-<td><span class="arithmatex">\(\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y,0]\)</span></td>
+<td><span class="arithmatex">\(\mathbb{E}\)</span></td>
 </tr>
 <tr>
 <td><code>"LCB"</code></td>
@@ -4839,7 +4839,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 <p>where <span class="arithmatex">\(Y\)</span> is a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> and standard deviation <span class="arithmatex">\(\sigma(x)\)</span>,</p>
 <h3 id="parallel-acquisition">Parallel acquisition<a class="headerlink" href="#parallel-acquisition" title="Permanent link">&para;</a></h3>
 <p>Points can be acquired by batch of <span class="arithmatex">\(q&gt;1\)</span> points,
-as Kriging is well-suited to parallelize optimization<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
+as Kriging is well-suited to parallelize optimization<sup id="fnref:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">2</a></sup>.
 To this aim,
 when <code>n_parallel</code> is greater than 1,
 SMT uses a technique of virtual points to update the training dataset with <span class="arithmatex">\(k\leq q\)</span> training points
@@ -4893,7 +4893,7 @@ The four strategies are:</p>
 <tbody>
 <tr>
 <td><code>"GPX"</code></td>
-<td>Kriging based on the <a href="https://github.com/relf/egobox">egobox</a> library written in Rust</td>
+<td>Kriging based on the (https://github.com/relf/egobox) library written in Rust</td>
 </tr>
 <tr>
 <td><code>"KRG"</code></td>
@@ -4916,14 +4916,11 @@ The four strategies are:</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>B. A. Bouhlel, J. T. Hwang, N. Bartoli, R. Lafage, M. Morlier, and J. R. R. A. Martins. A python surrogate modeling framework with derivatives. <em>Advances in Engineering Software</em>, pages 102662, 2019. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2019.03.005">doi:https://doi.org/10.1016/j.advengsoft.2019.03.005</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:SMT2019">
+<p>B. A. Bouhlel, J. T. Hwang, N. Bartoli, R. Lafage, M. Morlier, and J. R. R. A. Martins. A python surrogate modeling framework with derivatives. <em>Advances in Engineering Software</em>, pages 102662, 2019. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2019.03.005">doi:https://doi.org/10.1016/j.advengsoft.2019.03.005</a>.&#160;<a class="footnote-backref" href="#fnref:SMT2019" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:2">
-<p>P. Saves, R. Lafage, N. Bartoli, Y. Diouane, J. Bussemaker, T. Lefebvre, J. T. Hwang, J. Morlier, and J. R. R. A. Martins. SMT 2.0: A surrogate modeling toolbox with a focus on hierarchical and mixed variables gaussian processes. <em>Advances in Engineering Sofware</em>, 188:103571, 2024. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2023.103571">doi:https://doi.org/10.1016/j.advengsoft.2023.103571</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn:ginsbourger2010kriging">
+<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:ginsbourger2010kriging" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

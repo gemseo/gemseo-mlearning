@@ -4734,14 +4734,14 @@ This search is guided by an acquisition criterion,
 also called infill criterion,
 to be minimized or maximized.
 This approach is inspired by
-the efficient global optimization (EGO) algorithm <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+the efficient global optimization (EGO) algorithm <sup id="fnref:jones1998efficient"><a class="footnote-ref" href="#fn:jones1998efficient">1</a></sup>.</p>
 <h3 id="surrogate-modeling">Surrogate modeling<a class="headerlink" href="#surrogate-modeling" title="Permanent link">&para;</a></h3>
-<p>Surrogate models<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> are approximations of a costly exact model
+<p>Surrogate models<sup id="fnref:forrester2008engineering"><a class="footnote-ref" href="#fn:forrester2008engineering">2</a></sup> are approximations of a costly exact model
 <span class="arithmatex">\(f:\mathbf{x} \in \mathbb{X}\subset\mathbb{R}^d\mapsto y \in \mathbb{R}\)</span> much faster to run.
 There are many types of surrogates,
 but one of the most popular,
 in particular in the active learning literature,
-is the Kriging model, a.k.a. Gaussian processes (GP) regressor <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.
+is the Kriging model, a.k.a. Gaussian processes (GP) regressor <sup id="fnref:williams2006gaussian"><a class="footnote-ref" href="#fn:williams2006gaussian">3</a></sup>.
 One reason is that GP models provide a characterization of the prediction uncertainty.
 The exact simulator <span class="arithmatex">\(f\)</span> is considered as a realization of a GP, <span class="arithmatex">\(F\)</span>,
 with trend <span class="arithmatex">\(m : \mathbb{X} \rightarrow \mathbb{R}\)</span>
@@ -4755,29 +4755,29 @@ The variance of the output prediction is denoted by <span class="arithmatex">\(s
 In this case,
 a critical step of the method is the characterization
 of the uncertainty of the surrogate prediction,
-which can be achieved using bootstrap-based techniques<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
+which can be achieved using bootstrap-based techniques<sup id="fnref:BenSalem2015universal"><a class="footnote-ref" href="#fn:BenSalem2015universal">4</a></sup>.</p>
 <h4 id="the-rosenbrock-function">The Rosenbrock function<a class="headerlink" href="#the-rosenbrock-function" title="Permanent link">&para;</a></h4>
-<p>The Rosenbrock function<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>,
+<p>The Rosenbrock function<sup id="fnref:molga2005test"><a class="footnote-ref" href="#fn:molga2005test">5</a></sup>,
 which will be used for illustrative purposes,
 expresses as :</p>
-<div class="arithmatex">\[ f(\mathbf{x}) = \sum_{i = 1}^{d-1} [100(x_{i+1} - x_i^2)^2 +(1-x_i)^2], \]</div>
+<div class="arithmatex">\[ f(\mathbf{x}) = \sum_{i = 1}^{d-1} , \]</div>
 <p>with <span class="arithmatex">\(\mathbf{x}\)</span> a <span class="arithmatex">\(d\)</span>-dimensional input, <span class="arithmatex">\(d \geqslant 2\)</span>.
 An illustration of the function
 with a two-dimensional input is depicted below:</p>
 <figure>
-<img alt="" height="150px" src="../../../images/ImRosenbrock.jpg" width="75%" />  <figcaption>
+!(../../images/ImRosenbrock.jpg ){height=150px width="75%"}  <figcaption>
 Bidimensional Rosenbrock function
 </figcaption>
 </figure>
 <p>In the case of quantile estimation,
 <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> are replaced by
 the independent random variables <span class="arithmatex">\(X_1\)</span> and <span class="arithmatex">\(X_2\)</span>
-uniformly distributed over <span class="arithmatex">\([-2,2]\)</span>.</p>
+uniformly distributed over $$.</p>
 <h3 id="acquisition-criteria">Acquisition criteria<a class="headerlink" href="#acquisition-criteria" title="Permanent link">&para;</a></h3>
 <p>One of the key step of the active learning methodology is the choice of the acquisition criterion
 that guides the enrichment of the surrogate model.
 It is noted <span class="arithmatex">\(J_n(\cdot)\)</span> in the following.
-Several criteria have been developed for different purposes <sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>.
+Several criteria have been developed for different purposes <sup id="fnref:viana2021surrogate"><a class="footnote-ref" href="#fn:viana2021surrogate">6</a></sup>.
 Typical applications of this methodology include the improvement of the surrogate model,
 the minimization of black-box functions
 and contour estimation, among others.
@@ -4788,7 +4788,7 @@ with the highest predicted uncertainty,
 giving for the infill criterion <span class="arithmatex">\(J_n(\cdot)\)</span> :</p>
 <div class="arithmatex">\[ J_n(\mathbf{x}) = s_n^2(\mathbf{x}),\]</div>
 <figure>
-<img _height="150px" alt="" src="../../../images/SD_field.jpg" width="75%" />
+!(../../images/SD_field.jpg ){{height=150px width="75%"}
 <figcaption>
 Level plot of the predicted uncertainty.<br/>
 The learning points are denoted with a red star.
@@ -4799,15 +4799,15 @@ the predicted uncertainty (in fact the infill criterion) is the highest in the a
 where the amount of learning points for the training of the surrogate is the smallest.</p>
 <h4 id="finding-optimas">Finding optimas<a class="headerlink" href="#finding-optimas" title="Permanent link">&para;</a></h4>
 <p>One of the most popular acquisition criterion to minimize (alternatively to maximize) black-box functions
-is the expected improvement <sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> defined as:</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) =  \text{EI}_n(\mathbf{x})  = \mathbb{E}[\max(\mathbf{y}_n - F_n(\mathbf{x}),0)],\]</div>
+is the expected improvement <sup id="fnref2:jones1998efficient"><a class="footnote-ref" href="#fn:jones1998efficient">1</a></sup> defined as:</p>
+<div class="arithmatex">\[ J_n(\mathbf{x}) =  \text{EI}_n(\mathbf{x})  = \mathbb{E},\]</div>
 <p>where the expectation is taken with respect to
 the distribution of the conditioned GP <span class="arithmatex">\(F_n(\cdot)\)</span>.
 In the previous equation,
 <span class="arithmatex">\(\mathbf{y}_n\)</span> corresponds to the output values of the database <span class="arithmatex">\(\mathcal{A}_n\)</span>
-and stands for <span class="arithmatex">\(\mathbf{y}_n = (y_i)_{i \in [1, n]}\)</span>.</p>
+and stands for <span class="arithmatex">\(\mathbf{y}_n = (y_i)_{i \in }\)</span>.</p>
 <figure>
-<img _height="150px" alt="" src="../../../images/EI_field.jpg" width="75%" />
+!(../../images/EI_field.jpg ){{height=150px width="75%"}
 <figcaption>
 Level plot of the expected improvement.<br/>
 The learning points are denoted with a red star. <br/>
@@ -4818,8 +4818,8 @@ The global minimum is set in green.
 some learning points are already close to the global minimum,
 so the infill criterion rather seeks here to improve the GP overall prediction.</p>
 <h4 id="estimating-contour-sets">Estimating contour sets<a class="headerlink" href="#estimating-contour-sets" title="Permanent link">&para;</a></h4>
-<p>A usual criterion to estimate the level set<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup> associated to value <span class="arithmatex">\(a\)</span> is :</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) =  \mathbb{E}[\max((2 s_n^2(\mathbf{x})) -\vert{a - F_n(\mathbf{x})}\vert^2,0)],\]</div>
+<p>A usual criterion to estimate the level set<sup id="fnref:ranjan2008sequential"><a class="footnote-ref" href="#fn:ranjan2008sequential">7</a></sup> associated to value <span class="arithmatex">\(a\)</span> is :</p>
+<div class="arithmatex">\[ J_n(\mathbf{x}) =  \mathbb{E},\]</div>
 <p>where the expectation is taken with respect to
 the distribution of the conditioned GP <span class="arithmatex">\(F_n(\cdot)\)</span>.
 With an appropriate choice of <span class="arithmatex">\(a\)</span>,
@@ -4828,7 +4828,7 @@ or failure probabilities.
 In the following,
 it is implemented to estimate the <span class="arithmatex">\(35\%\)</span> quantile of the Rosenbrock function.</p>
 <figure>
-<img _height="150px" alt="" src="../../../images/IQ_field.jpg" width="75%" />
+!(../../images/IQ_field.jpg ){{height=150px width="75%"}
 <figcaption>
 Level plot of the acquisition criterion for level set estimation.<br/>
 The learning points are denoted with a red star.<br/>
@@ -4846,13 +4846,13 @@ and far from the learning points
 a single observation is added at the different steps of the active learning algorithm.
 However,
 to reduce the number of iterations of the active learning strategy,
-a batch of several points can be added <sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>
+a batch of several points can be added <sup id="fnref:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">8</a></sup>
 instead of considering a single one.
 This implies several changes,
 among which the expression of the infill criterion and its maximization.
 Let emphasize that
 parallelizing the active learning methodology significantly increases the computational burden
-which can still be alleviated by considering approximated heuristics <sup id="fnref2:8"><a class="footnote-ref" href="#fn:8">8</a></sup>.</p>
+which can still be alleviated by considering approximated heuristics <sup id="fnref2:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">8</a></sup>.</p>
 <p>A key challenge of this method is defining the size of the batch of points added at each iteration.
 In theory,
 it should be as high as possible,
@@ -4863,34 +4863,34 @@ However,
 this is synonymous with an increase of the numerical complexity of the method,
 and a balance must be therefore struck between the computational costs
 and the efficiency of the active learning strategy.</p>
-<p>In the <a href="../active_learning_algo/">next section</a>,
-we will present the active learning algorithm available in <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">gemseo-mlearning</a>.</p>
+<p>In the (active_learning_algo.md),
+we will present the active learning algorithm available in .</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>D. Jones, M. Schonlau, and W. Welch. Efficient global optimization of expensive black-box functions. <em>Journal of Global optimization</em>, 13:455–492, 1998.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:jones1998efficient">
+<p>D. Jones, M. Schonlau, and W. Welch. Efficient global optimization of expensive black-box functions. <em>Journal of Global optimization</em>, 13:455–492, 1998.&#160;<a class="footnote-backref" href="#fnref:jones1998efficient" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:jones1998efficient" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:2">
-<p>A. Forrester, A. Sobester, and A. Keane. <em>Engineering design via surrogate modelling: a practical guide</em>. John Wiley &amp; Sons, 2008.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn:forrester2008engineering">
+<p>A. Forrester, A. Sobester, and A. Keane. <em>Engineering design via surrogate modelling: a practical guide</em>. John Wiley &amp; Sons, 2008.&#160;<a class="footnote-backref" href="#fnref:forrester2008engineering" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:3">
-<p>C. Williams and C. Rasmussen. <em>Gaussian processes for machine learning</em>. Volume 2. MIT press Cambridge, MA, 2006.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn:williams2006gaussian">
+<p>C. Williams and C. Rasmussen. <em>Gaussian processes for machine learning</em>. Volume 2. MIT press Cambridge, MA, 2006.&#160;<a class="footnote-backref" href="#fnref:williams2006gaussian" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li id="fn:4">
-<p>M. Ben Salem, O. Roustant, F. Gamboa, and L. Tomaso. Universal prediction distribution for surrogate models. <em>SIAM/ASA Journal on Uncertainty Quantification</em>, 5:, 12 2015. <a href="https://doi.org/10.1137/15M1053529">doi:10.1137/15M1053529</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<li id="fn:BenSalem2015universal">
+<p>M. Ben Salem, O. Roustant, F. Gamboa, and L. Tomaso. Universal prediction distribution for surrogate models. <em>SIAM/ASA Journal on Uncertainty Quantification</em>, 5:, 12 2015. <a href="https://doi.org/10.1137/15M1053529">doi:10.1137/15M1053529</a>.&#160;<a class="footnote-backref" href="#fnref:BenSalem2015universal" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
-<li id="fn:5">
-<p>M. Molga and C. Smutnicki. Test functions for optimization needs. <em>Test functions for optimization needs</em>, 101:48, 2005.&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<li id="fn:molga2005test">
+<p>M. Molga and C. Smutnicki. Test functions for optimization needs. <em>Test functions for optimization needs</em>, 101:48, 2005.&#160;<a class="footnote-backref" href="#fnref:molga2005test" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
-<li id="fn:6">
-<p>F. Viana, C. Gogu, and T. Goel. Surrogate modeling: tricks that endured the test of time and some recent developments. <em>Structural and Multidisciplinary Optimization</em>, pages 1–28, 2021.&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<li id="fn:viana2021surrogate">
+<p>F. Viana, C. Gogu, and T. Goel. Surrogate modeling: tricks that endured the test of time and some recent developments. <em>Structural and Multidisciplinary Optimization</em>, pages 1–28, 2021.&#160;<a class="footnote-backref" href="#fnref:viana2021surrogate" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
-<li id="fn:7">
-<p>P. Ranjan, D. Bingham, and G. Michailidis. Sequential experiment design for contour estimation from complex computer codes. <em>Technometrics</em>, 50(4):527–541, 2008.&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<li id="fn:ranjan2008sequential">
+<p>P. Ranjan, D. Bingham, and G. Michailidis. Sequential experiment design for contour estimation from complex computer codes. <em>Technometrics</em>, 50(4):527–541, 2008.&#160;<a class="footnote-backref" href="#fnref:ranjan2008sequential" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
-<li id="fn:8">
-<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<li id="fn:ginsbourger2010kriging">
+<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:ginsbourger2010kriging" title="Jump back to footnote 8 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:ginsbourger2010kriging" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

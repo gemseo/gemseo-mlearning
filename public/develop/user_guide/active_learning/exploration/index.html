@@ -4667,14 +4667,14 @@
 -->
 
 <h1 id="active-learning-for-exploration">Active learning for exploration<a class="headerlink" href="#active-learning-for-exploration" title="Permanent link">&para;</a></h1>
-<p><a href="../what_active_learning_is/">Active learning</a> techniques are very intuitive for refining a surrogate model.
+<p>(what_active_learning_is.md) techniques are very intuitive for refining a surrogate model.
 Instead of spending the entire computational budget to create a training dataset in one-go,
 the idea is to start from a rough surrogate model and acquire new training points sequentially to increase its accuracy.</p>
-<p>The <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
-presented in <a href="../active_learning_algo/">the previous section</a>
+<p>The 
+presented in (active_learning_algo.md)
 can be used to <em>explore</em> the input space in search of unlearned points,
 using the family of acquisition criteria
-<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/exploration/exploration/#gemseo_mlearning.active_learning.acquisition_criteria.exploration.exploration.Exploration">Exploration</a>.</p>
+.</p>
 <p>For now,
 these acquisition criteria do not have quantities of interest
 and do not support parallel acquisition.</p>
@@ -4686,7 +4686,7 @@ and <span class="arithmatex">\(\hat{f}\)</span> is the associated GP regressor,
 which corresponds to its expectation.
 Whatever surrogate model is chosen,
 given an input point <span class="arithmatex">\(x\)</span>,
-<span class="arithmatex">\(\mu(x)\equiv\mathbb{E}[Y(x)]\)</span> and <span class="arithmatex">\(\sigma(x)\equiv\mathbb{S}[Y(x)]\)</span>
+<span class="arithmatex">\(\mu(x)\equiv\mathbb{E}\)</span> and <span class="arithmatex">\(\sigma(x)\equiv\mathbb{S}\)</span>
 denote the expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)</span>.</p>
 <h2 id="distance">Distance<a class="headerlink" href="#distance" title="Permanent link">&para;</a></h2>
 <p>The most naive approach is to learn the point furthest away from those in the training dataset.
@@ -4695,7 +4695,7 @@ this criterion to <em>maximize</em> is
 the minimum distance between a new point
 and the point of the training dataset,
 scaled by the minimum distance between two distinct training points:</p>
-<div class="arithmatex">\[D[x]=\frac{\min_{1\leq i \leq n} \|x-x_i\|_2}{\min_{1\leq i,j \leq n, i\neq j} \|x_i-x_j\|_2}\]</div>
+<div class="arithmatex">\[D=\frac{\min_{1\leq i \leq n} \|x-x_i\|_2}{\min_{1\leq i,j \leq n, i\neq j} \|x_i-x_j\|_2}\]</div>
 <p>where <span class="arithmatex">\(\|.\|_2\)</span> is the Euclidean norm.</p>
 <h4 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"Distance"</code>:</p>
@@ -4711,7 +4711,7 @@ scaled by the minimum distance between two distinct training points:</p>
 However,
 taking account of model uncertainty can be relevant
 and this is the reason why the variance of the prediction is the default criterion:</p>
-<div class="arithmatex">\[V[x]=\sigma^2(x).\]</div>
+<div class="arithmatex">\[V=\sigma^2(x).\]</div>
 <h4 id="api_1">API<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h4>
 <p>This criterion, named <code>"Variance"</code>,
 is the default one;
@@ -4724,7 +4724,7 @@ so there's no need to provide its name:</p>
 </code></pre></div>
 <h2 id="standard-deviation">Standard deviation<a class="headerlink" href="#standard-deviation" title="Permanent link">&para;</a></h2>
 <p>This criterion is simply the square root of the previous one:</p>
-<div class="arithmatex">\[S[x]=\sigma(x).\]</div>
+<div class="arithmatex">\[S=\sigma(x).\]</div>
 <h4 id="api_2">API<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"StandardDeviation"</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
