@@ -170,18 +170,21 @@ plt.scatter(
     points_1[:, 1],
     marker="*",
     label="Learning points from algo with EI criterion",
+    color="tab:blue",
 )
 plt.scatter(
     points_2[:, 0],
     points_2[:, 1],
     marker="*",
     label="Learning points from algo with LCB criterion",
+    color="tab:orange",
 )
 plt.scatter(
     points_3[:, 0],
     points_3[:, 1],
     marker="*",
     label="Learning points from algo with Mean criterion",
+    color="tab:green",
 )
 plt.xlabel(r"$x_1$")
 plt.ylabel(r"$x_2$")

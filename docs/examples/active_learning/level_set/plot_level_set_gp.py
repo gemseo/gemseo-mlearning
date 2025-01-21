@@ -168,7 +168,7 @@ plt.xlabel(r"$x_1$")
 plt.ylabel(r"$x_2$")
 plt.legend()
 plt.show()
-# Both active learning procedure
+# Both active learning procedures
 # based on two different Gaussian process regressor
 # provide good approximations
 # of the target level set.
