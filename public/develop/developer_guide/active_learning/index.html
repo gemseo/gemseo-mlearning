@@ -4572,10 +4572,10 @@ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 <h1 id="active-learning">Active learning<a class="headerlink" href="#active-learning" title="Permanent link">&para;</a></h1>
-<p>This section describes the design of the  subpackage.</p>
+<p>This section describes the design of the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">active_learning</a> subpackage.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Open the (../user_guide/active_learning/what_active_learning_is.md)
+<p>Open the <a href="../../user_guide/active_learning/what_active_learning_is/">user guide</a>
 for general information, <em>e.g.</em> concepts, API, examples, etc.</p>
 </div>
 <h2 id="tree-structure">Tree structure<a class="headerlink" href="#tree-structure" title="Permanent link">&para;</a></h2>
@@ -4670,21 +4670,23 @@ for general information, <em>e.g.</em> concepts, API, examples, etc.</p>
 <dd>
 <ol>
 <li>Derive an abstract class <code>BaseNewAcquisitionCriterion</code> from
-   .</li>
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a>.</li>
 <li>Derive <code>FirstAcquisitionCriterion</code>, <code>SecondAcquisitionCriterion</code>, ... from <code>BaseNewAcquisitionCriterion</code>
    in modules located in <code>root_package_name.subpackage_name.package_name</code>.</li>
-<li>Derive <code>NewAcquisitionCriterionFactory</code> from</li>
-</ol>
-<p>and set the class attributes:
+<li>Derive <code>NewAcquisitionCriterionFactory</code> from
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/#gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory">BaseAcquisitionCriterionFactory</a>
+   and set the class attributes:
    <div class="highlight"><pre><span></span><code><span class="n">_CLASS</span> <span class="o">=</span> <span class="n">BaseNewAcquisitionCriterion</span>
 <span class="n">_DEFAULT_CLASS_NAME</span> <span class="o">=</span> <span class="s2">&quot;FirstAcquisitionCriterion&quot;</span>
 <span class="n">_MODULE_NAMES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;root_package.subpackage_name.package_name&quot;</span><span class="p">,)</span>
-</code></pre></div>
-1. Derive <code>NewAcquisitionCriterionFamily</code> from</p>
-<p>and set the class attribute <code>ACQUISITION_CRITERION_FACTORY = NewAcquisitionCriterionFactory</code>.</p>
+</code></pre></div></li>
+<li>Derive <code>NewAcquisitionCriterionFamily</code> from
+   <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_acquisition_criterion_family/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily">BaseAcquisitionCriterionFamily</a>
+   and set the class attribute <code>ACQUISITION_CRITERION_FACTORY = NewAcquisitionCriterionFactory</code>.</li>
+</ol>
 <p>Now,
 the user can instantiate
-the </p>
+the <a class="autorefs autorefs-internal" href="../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></p>
 <ul>
 <li>with <code class="highlight"><span class="n">criterion_family_name</span><span class="o">=</span><span class="s2">&quot;NewAcquisitionCriterionFamily&quot;</span></code>
   to use this family of acquisition criteria,</li>

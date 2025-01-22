@@ -4760,19 +4760,19 @@ which can be achieved using bootstrap-based techniques<sup id="fnref:BenSalem201
 <p>The Rosenbrock function<sup id="fnref:molga2005test"><a class="footnote-ref" href="#fn:molga2005test">5</a></sup>,
 which will be used for illustrative purposes,
 expresses as :</p>
-<div class="arithmatex">\[ f(\mathbf{x}) = \sum_{i = 1}^{d-1} , \]</div>
+<div class="arithmatex">\[ f(\mathbf{x}) = \sum_{i = 1}^{d-1} [100(x_{i+1} - x_i^2)^2 +(1-x_i)^2], \]</div>
 <p>with <span class="arithmatex">\(\mathbf{x}\)</span> a <span class="arithmatex">\(d\)</span>-dimensional input, <span class="arithmatex">\(d \geqslant 2\)</span>.
 An illustration of the function
 with a two-dimensional input is depicted below:</p>
 <figure>
-!(../../images/ImRosenbrock.jpg ){height=150px width="75%"}  <figcaption>
+<img alt="" height="150px" src="../../../images/ImRosenbrock.jpg" width="75%" />  <figcaption>
 Bidimensional Rosenbrock function
 </figcaption>
 </figure>
 <p>In the case of quantile estimation,
 <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> are replaced by
 the independent random variables <span class="arithmatex">\(X_1\)</span> and <span class="arithmatex">\(X_2\)</span>
-uniformly distributed over $$.</p>
+uniformly distributed over <span class="arithmatex">\([-2,2]\)</span>.</p>
 <h3 id="acquisition-criteria">Acquisition criteria<a class="headerlink" href="#acquisition-criteria" title="Permanent link">&para;</a></h3>
 <p>One of the key step of the active learning methodology is the choice of the acquisition criterion
 that guides the enrichment of the surrogate model.
@@ -4788,7 +4788,7 @@ with the highest predicted uncertainty,
 giving for the infill criterion <span class="arithmatex">\(J_n(\cdot)\)</span> :</p>
 <div class="arithmatex">\[ J_n(\mathbf{x}) = s_n^2(\mathbf{x}),\]</div>
 <figure>
-!(../../images/SD_field.jpg ){{height=150px width="75%"}
+<img _height="150px" alt="" src="../../../images/SD_field.jpg" width="75%" />
 <figcaption>
 Level plot of the predicted uncertainty.<br/>
 The learning points are denoted with a red star.
@@ -4800,14 +4800,14 @@ where the amount of learning points for the training of the surrogate is the sma
 <h4 id="finding-optimas">Finding optimas<a class="headerlink" href="#finding-optimas" title="Permanent link">&para;</a></h4>
 <p>One of the most popular acquisition criterion to minimize (alternatively to maximize) black-box functions
 is the expected improvement <sup id="fnref2:jones1998efficient"><a class="footnote-ref" href="#fn:jones1998efficient">1</a></sup> defined as:</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) =  \text{EI}_n(\mathbf{x})  = \mathbb{E},\]</div>
+<div class="arithmatex">\[ J_n(\mathbf{x}) =  \text{EI}_n(\mathbf{x})  = \mathbb{E}[\max(\mathbf{y}_n - F_n(\mathbf{x}),0)],\]</div>
 <p>where the expectation is taken with respect to
 the distribution of the conditioned GP <span class="arithmatex">\(F_n(\cdot)\)</span>.
 In the previous equation,
 <span class="arithmatex">\(\mathbf{y}_n\)</span> corresponds to the output values of the database <span class="arithmatex">\(\mathcal{A}_n\)</span>
-and stands for <span class="arithmatex">\(\mathbf{y}_n = (y_i)_{i \in }\)</span>.</p>
+and stands for <span class="arithmatex">\(\mathbf{y}_n = (y_i)_{i \in [1, n]}\)</span>.</p>
 <figure>
-!(../../images/EI_field.jpg ){{height=150px width="75%"}
+<img _height="150px" alt="" src="../../../images/EI_field.jpg" width="75%" />
 <figcaption>
 Level plot of the expected improvement.<br/>
 The learning points are denoted with a red star. <br/>
@@ -4819,7 +4819,7 @@ some learning points are already close to the global minimum,
 so the infill criterion rather seeks here to improve the GP overall prediction.</p>
 <h4 id="estimating-contour-sets">Estimating contour sets<a class="headerlink" href="#estimating-contour-sets" title="Permanent link">&para;</a></h4>
 <p>A usual criterion to estimate the level set<sup id="fnref:ranjan2008sequential"><a class="footnote-ref" href="#fn:ranjan2008sequential">7</a></sup> associated to value <span class="arithmatex">\(a\)</span> is :</p>
-<div class="arithmatex">\[ J_n(\mathbf{x}) =  \mathbb{E},\]</div>
+<div class="arithmatex">\[ J_n(\mathbf{x}) =  \mathbb{E}[\max((2 s_n^2(\mathbf{x})) -\vert{a - F_n(\mathbf{x})}\vert^2,0)],\]</div>
 <p>where the expectation is taken with respect to
 the distribution of the conditioned GP <span class="arithmatex">\(F_n(\cdot)\)</span>.
 With an appropriate choice of <span class="arithmatex">\(a\)</span>,
@@ -4828,7 +4828,7 @@ or failure probabilities.
 In the following,
 it is implemented to estimate the <span class="arithmatex">\(35\%\)</span> quantile of the Rosenbrock function.</p>
 <figure>
-!(../../images/IQ_field.jpg ){{height=150px width="75%"}
+<img _height="150px" alt="" src="../../../images/IQ_field.jpg" width="75%" />
 <figcaption>
 Level plot of the acquisition criterion for level set estimation.<br/>
 The learning points are denoted with a red star.<br/>
@@ -4863,8 +4863,8 @@ However,
 this is synonymous with an increase of the numerical complexity of the method,
 and a balance must be therefore struck between the computational costs
 and the efficiency of the active learning strategy.</p>
-<p>In the (active_learning_algo.md),
-we will present the active learning algorithm available in .</p>
+<p>In the <a href="../active_learning_algo/">next section</a>,
+we will present the active learning algorithm available in <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">gemseo-mlearning</a>.</p>
 <div class="footnote">
 <hr />
 <ol>

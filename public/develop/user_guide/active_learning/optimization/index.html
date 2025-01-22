@@ -4943,7 +4943,7 @@
 -->
 
 <h1 id="active-learning-for-optimization">Active learning for optimization<a class="headerlink" href="#active-learning-for-optimization" title="Permanent link">&para;</a></h1>
-<p>(what_active_learning_is.md) techniques have become popular in global optimization,
+<p><a href="../what_active_learning_is/">Active learning</a> techniques have become popular in global optimization,
 with the famous Bayesian optimization algorithms,
 including the efficient global optimization (EGO) one<sup id="fnref:jones1998efficient"><a class="footnote-ref" href="#fn:jones1998efficient">1</a></sup>.
 These approaches can be relevant
@@ -4958,12 +4958,14 @@ when the functions of the optimization problem:</p>
 <p>In this case,
 multi-start gradient-based optimization cannot be used,
 and neither can classical global optimization algorithms (<em>e.g.</em> evolutionary algorithms).</p>
-<p>The 
-presented in (active_learning_algo.md)
+<p>The <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
+presented in <a href="../active_learning_algo/">the previous section</a>
 can be used to minimize (resp. maximize) a cost function (resp. performance function)
-using the family of acquisition criteria</p>
-<p>(resp.</p>
-<p>).
+using the family of acquisition criteria
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a>
+(resp.
+<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/maximum/maximum/#gemseo_mlearning.active_learning.acquisition_criteria.maximum.maximum.Maximum">Maximum</a>
+).
 The quantity of interest is the minimum (resp. maximum) of the function.</p>
 <p>Given a random process <span class="arithmatex">\(Y\)</span> modelling the uncertainty of the surrogate model <span class="arithmatex">\(\hat{f}\)</span>,
 this page lists several acquisition criteria,
@@ -4974,7 +4976,7 @@ Most often,
 and <span class="arithmatex">\(\hat{f}\)</span> is the associated GP regressor,
 which corresponds to its expectation.
 Given an input point <span class="arithmatex">\(x\)</span>,
-<span class="arithmatex">\(\mu(x)\equiv\mathbb{E}\)</span> and <span class="arithmatex">\(\sigma(x)\equiv\mathbb{S}\)</span>
+<span class="arithmatex">\(\mu(x)\equiv\mathbb{E}[Y(x)]\)</span> and <span class="arithmatex">\(\sigma(x)\equiv\mathbb{S}[Y(x)]\)</span>
 denote the expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)</span>.</p>
 <p>For acquisition criteria supporting parallel acquisition,
 the number of points to be acquired at a time
@@ -4983,7 +4985,7 @@ can be set with the arguments <code>batch_size</code> (default: <code>1</code>) 
 <h2 id="minimum">Minimum<a class="headerlink" href="#minimum" title="Permanent link">&para;</a></h2>
 <h3 id="mean">Mean<a class="headerlink" href="#mean" title="Permanent link">&para;</a></h3>
 <p>The simplest criterion to <em>minimize</em> is the expectation:</p>
-<div class="arithmatex">\[E = \mu(x),\]</div>
+<div class="arithmatex">\[E[x] = \mu(x),\]</div>
 <p>also called Kriging believer in the case of a Gaussian process regressor.</p>
 <h4 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"Mean"</code>:</p>
@@ -4996,7 +4998,7 @@ can be set with the arguments <code>batch_size</code> (default: <code>1</code>) 
 </code></pre></div>
 <h3 id="lower-confidence-bound">Lower confidence bound<a class="headerlink" href="#lower-confidence-bound" title="Permanent link">&para;</a></h3>
 <p>A more advanced criterion to <em>minimize</em> is the lower confidence bound</p>
-<div class="arithmatex">\[M = \mu(x) - \kappa \times \sigma(x)\]</div>
+<div class="arithmatex">\[M[x;\kappa] = \mu(x) - \kappa \times \sigma(x)\]</div>
 <p>where <span class="arithmatex">\(\kappa &gt; 0\)</span> (default: 2).</p>
 <h4 id="api_1">API<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"LCB"</code>:</p>
@@ -5010,7 +5012,7 @@ can be set with the arguments <code>batch_size</code> (default: <code>1</code>) 
 <p>and the <span class="arithmatex">\(\kappa\)</span> constant can be set using the argument <code>kappa</code>.</p>
 <h3 id="expected-improvement">Expected improvement<a class="headerlink" href="#expected-improvement" title="Permanent link">&para;</a></h3>
 <p>The most popular criterion to <em>maximize</em> is the expected improvement<sup id="fnref2:jones1998efficient"><a class="footnote-ref" href="#fn:jones1998efficient">1</a></sup></p>
-<div class="arithmatex">\[EI = \mathbb{E}.\]</div>
+<div class="arithmatex">\[EI[x] = \mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0)].\]</div>
 <p>where <span class="arithmatex">\(y_1,\dots,y_n\)</span> are the learning output values.</p>
 <h4 id="api_2">API<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h4>
 <p>This criterion, named <code>"EI"</code>, is the default one;
@@ -5024,7 +5026,7 @@ so there's no need to provide its name:</p>
 <h4 id="gaussian-case">Gaussian case<a class="headerlink" href="#gaussian-case" title="Permanent link">&para;</a></h4>
 <p>In the case of a Gaussian process regressor,
 it has an analytic expression:</p>
-<div class="arithmatex">\[EI = (\min(y_1,\dots,y_n)-\mu(x))\Phi(t) + \sigma(x)\phi(t)\]</div>
+<div class="arithmatex">\[EI[x] = (\min(y_1,\dots,y_n)-\mu(x))\Phi(t) + \sigma(x)\phi(t)\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> and <span class="arithmatex">\(\phi\)</span> are respectively
 the cumulative and probability density functions
 of the standard normal distribution
@@ -5033,8 +5035,8 @@ and <span class="arithmatex">\(t=\frac{y_{\text{min}}-\mu(x)}{\sigma(x)}\)</span
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
 <div class="arithmatex">\[
-EI =
-\mathbb{E}\left
+EI[x_1,\dots,x_q] =
+\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max(\min(y_1,\dots,y_n)-Y(x_i),0)\right)\right]
 \]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
@@ -5043,7 +5045,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 <h2 id="maximum">Maximum<a class="headerlink" href="#maximum" title="Permanent link">&para;</a></h2>
 <h3 id="mean_1">Mean<a class="headerlink" href="#mean_1" title="Permanent link">&para;</a></h3>
 <p>The simplest criterion to <em>maximize</em> is the expectation</p>
-<div class="arithmatex">\[E = \mu(x),\]</div>
+<div class="arithmatex">\[E[x] = \mu(x),\]</div>
 <p>also called Kriging believer in the case of a Gaussian process regressor.</p>
 <h4 id="api_3">API<a class="headerlink" href="#api_3" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"Mean"</code>:</p>
@@ -5056,7 +5058,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 </code></pre></div>
 <h3 id="upper-confidence-bound">Upper confidence bound<a class="headerlink" href="#upper-confidence-bound" title="Permanent link">&para;</a></h3>
 <p>A more advanced criterion to <em>maximize</em> is the upper confidence bound</p>
-<div class="arithmatex">\[M = \mu(x) + \kappa \times \sigma(x)\]</div>
+<div class="arithmatex">\[M[x;\kappa] = \mu(x) + \kappa \times \sigma(x)\]</div>
 <p>where <span class="arithmatex">\(\kappa &gt; 0\)</span> (default: 2).</p>
 <h4 id="api_4">API<a class="headerlink" href="#api_4" title="Permanent link">&para;</a></h4>
 <p>This criterion can be accessed via the name <code>"UCB"</code>:</p>
@@ -5070,7 +5072,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte Carlo.<
 <p>and the <span class="arithmatex">\(\kappa\)</span> constant can be set using the argument <code>kappa</code>.</p>
 <h3 id="expected-improvement_1">Expected improvement<a class="headerlink" href="#expected-improvement_1" title="Permanent link">&para;</a></h3>
 <p>The most popular criterion to <em>maximize</em> is the expected improvement<sup id="fnref3:jones1998efficient"><a class="footnote-ref" href="#fn:jones1998efficient">1</a></sup></p>
-<div class="arithmatex">\[EI = \mathbb{E}\]</div>
+<div class="arithmatex">\[EI[x] = \mathbb{E}[\max(Y(x)-\max(y_1,\dots,y_n),0)]\]</div>
 <p>where <span class="arithmatex">\(y_1,\dots,y_n\)</span> are the learning output values.</p>
 <h4 id="api_5">API<a class="headerlink" href="#api_5" title="Permanent link">&para;</a></h4>
 <p>This criterion, named <code>"EI"</code>, is the default one;
@@ -5084,7 +5086,7 @@ so there's no need to provide its name:</p>
 <h4 id="gaussian-case_1">Gaussian case<a class="headerlink" href="#gaussian-case_1" title="Permanent link">&para;</a></h4>
 <p>In the case of a GP,
 the criterion has an analytic expression:</p>
-<div class="arithmatex">\[EI = (\mu(x) - \max(y_1,\dots,y_n))\Phi(t) + \sigma(x)\phi(t)\]</div>
+<div class="arithmatex">\[EI[x] = (\mu(x) - \max(y_1,\dots,y_n))\Phi(t) + \sigma(x)\phi(t)\]</div>
 <p>where <span class="arithmatex">\(\Phi\)</span> and <span class="arithmatex">\(\phi\)</span> are respectively
 the cumulative and probability density functions
 of the standard normal distribution
@@ -5093,8 +5095,8 @@ and <span class="arithmatex">\(t=\frac{\mu(x) - \max(y_1,\dots,y_n)}{\sigma(x)}\
 <p>For the acquisition of <span class="arithmatex">\(q&gt;1\)</span> points at a time,
 the acquisition criterion changes to</p>
 <div class="arithmatex">\[
-EI =
-\mathbb{E}\left
+EI[x_1,\dots,x_q] =
+\mathbb{E}\left[\max_{1\leq i\leq q}\left(\max(Y(x_i)-\max(y_1,\dots,y_n),0)\right)\right]
 \]</div>
 <p>where the expectation is taken with respect to the distribution of
 the random vector <span class="arithmatex">\((Y(x_1),\dots,Y(x_q))\)</span>.
