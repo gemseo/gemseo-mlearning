@@ -34,9 +34,9 @@ execnet==2.1.1
     # via pytest-xdist
 fastjsonschema==2.20.0
     # via gemseo
-fonttools==4.55.3
+fonttools==4.55.4
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@bdffb176b18afc793d1c1e716992ff958659fc9f
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@adb0187d99c50e057f8082963fedf3e83f0b284b
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -192,7 +192,7 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   referencing
-tzdata==2024.2
+tzdata==2025.1
     # via pandas
 urllib3==2.3.0
     # via requests
