@@ -8,7 +8,7 @@ attrs==25.1.0
     #   referencing
 babel==2.16.0
     # via mkdocs-material
-black==24.10.0
+black==25.1.0
     # via gemseo-mlearning (pyproject.toml)
 bracex==2.5.post1
     # via wcmatch
@@ -43,9 +43,9 @@ fastjsonschema==2.20.0
     # via gemseo
 fieldz==0.1.0
     # via griffe-fieldz
-fonttools==4.55.6
+fonttools==4.55.7
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@e54474cb214e137752c7c64ff5dfd4dd87e61e78
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@40ded75da1aadb2ee5ab0a4e890ed6994ac2f35b
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -246,7 +246,7 @@ pygments==2.19.1
     #   pygments-ansi-color
 pygments-ansi-color==0.3.0
     # via markdown-exec
-pymdown-extensions==10.14.1
+pymdown-extensions==10.14.2
     # via
     #   markdown-exec
     #   mkdocs-material
