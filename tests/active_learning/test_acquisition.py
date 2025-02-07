@@ -250,7 +250,11 @@ def test_update_algo(algo_distribution_for_update, input_space, criterion_family
     initial_size = len(distribution.learning_set)
     algo = ActiveLearningAlgo(criterion_family_name, input_space, distribution)
     algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
-    algo.acquire_new_points(AnalyticDiscipline({"y": "1+x"}))
+    # z values will not be used
+    # because the initial surrogate does not have z as an output.
+    # Nevertheless,
+    # we add this output to ensure that ActiveLearningAlgo filters the outputs.
+    algo.acquire_new_points(AnalyticDiscipline({"y": "1+x", "z": "1+x"}))
     if criterion_family_name == "Exploration":
         assert algo.qoi is None
     else:
