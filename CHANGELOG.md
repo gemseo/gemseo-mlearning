@@ -26,6 +26,16 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Develop
+
+### Fixed
+
+- The method
+  [ActiveLearningAlgo.acquire_new_points][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points]
+  works when the discipline it uses has output variables
+  that are not outputs of the regression model
+  used by [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
+
 ## Version 2.0.0 (November 2024)
 
 ### Added
