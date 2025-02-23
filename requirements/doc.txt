@@ -30,7 +30,7 @@ cycler==0.12.1
     # via matplotlib
 dill==0.3.9
     # via openturns
-docstring-inheritance==2.2.1
+docstring-inheritance==2.2.2
     # via gemseo
 egobox==0.26.0
     # via smt
@@ -38,13 +38,13 @@ et-xmlfile==2.0.0
     # via openpyxl
 eval-type-backport==0.2.0
     # via gemseo
-fastjsonschema==2.20.0
+fastjsonschema==2.21.1
     # via gemseo
 fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.56.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@bb264ec3a546f3c2b37991ff54233e7fe9b79fa3
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@51a878894a15e7e681446ae3a88b724d325f5e3b
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -63,7 +63,7 @@ griffe-fieldz==0.2.1
     # via gemseo-mlearning (pyproject.toml)
 griffe-inherited-docstrings==1.1.1
     # via gemseo-mlearning (pyproject.toml)
-h5py==3.11.0
+h5py==3.13.0
     # via gemseo
 idna==3.10
     # via requests
@@ -81,7 +81,7 @@ importlib-resources==6.5.2
     #   mike
 jenn==1.0.8
     # via smt
-jinja2==3.1.4
+jinja2==3.1.5
     # via
     #   gemseo
     #   mike
@@ -115,7 +115,7 @@ markupsafe==3.0.2
     #   mkdocs
     #   mkdocs-autorefs
     #   mkdocstrings
-matplotlib==3.9.2
+matplotlib==3.9.4
     # via
     #   gemseo
     #   jenn
@@ -200,7 +200,7 @@ openturns==1.24
     #   gemseo
 orjson==3.10.15
     # via jenn
-packaging==24.1
+packaging==24.2
     # via
     #   black
     #   gemseo
@@ -210,13 +210,13 @@ packaging==24.1
     #   plotly
 paginate==0.5.7
     # via mkdocs-material
-pandas==2.2.2
+pandas==2.2.3
     # via gemseo
 pathspec==0.12.1
     # via
     #   black
     #   mkdocs
-pillow==10.4.0
+pillow==11.1.0
     # via
     #   gemseo
     #   matplotlib
@@ -224,17 +224,17 @@ platformdirs==4.3.6
     # via
     #   black
     #   mkdocs-get-deps
-plotly==5.24.0
+plotly==5.24.1
     # via gemseo
-prettytable==3.12.0
+prettytable==3.14.0
     # via gemseo
 psutil==7.0.0
     # via openturns
 pybtex==0.24.0
     # via mkdocs-bibtex
-pydantic==2.9.1
+pydantic==2.10.6
     # via gemseo
-pydantic-core==2.23.3
+pydantic-core==2.27.2
     # via pydantic
 pydoe3==1.0.4
     # via
@@ -264,7 +264,7 @@ python-dateutil==2.9.0.post0
     #   pandas
 pytz==2025.1
     # via pandas
-pyxdsm==2.3.0
+pyxdsm==2.3.1
     # via gemseo
 pyyaml==6.0.2
     # via
@@ -297,7 +297,7 @@ rpds-py==0.23.1
     # via
     #   jsonschema
     #   referencing
-scikit-learn==1.5.2
+scikit-learn==1.6.1
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   gemseo
@@ -319,7 +319,7 @@ smt==2.7.0
     # via gemseo-mlearning (pyproject.toml)
 strenum==0.4.15
     # via gemseo
-sympy==1.13.2
+sympy==1.13.3
     # via gemseo
 tenacity==9.0.0
     # via plotly
@@ -327,7 +327,7 @@ threadpoolctl==3.5.0
     # via scikit-learn
 tomli==2.2.1
     # via black
-tqdm==4.66.5
+tqdm==4.67.1
     # via
     #   gemseo
     #   mkdocs-gallery
