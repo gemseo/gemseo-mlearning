@@ -5156,6 +5156,7 @@
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -5185,6 +5186,7 @@
 <p>In the following, the training output values already used and the output and
 uncertainty predictions at a given input point <span class="arithmatex">\(x\)</span> are respectively denoted
 <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>, <span class="arithmatex">\(\mu(x)\)</span> and <span class="arithmatex">\(\sigma(x)\)</span>.</p>
+
 
 
 
@@ -5224,6 +5226,7 @@ uncertainty predictions at a given input point <span class="arithmatex">\(x\)</s
         <p>The expected improvement.</p>
 <p>The acquisition criterion is <span class="arithmatex">\(\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y,0]\)</span> where <span class="arithmatex">\(Y\)</span> is
 a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> and standard deviation <span class="arithmatex">\(\sigma(x)\)</span>.</p>
+
     </div>
 
 </div>
@@ -5249,6 +5252,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
 
         <p>The lower confidence bound.</p>
 <p>The acquisition criterion is <span class="arithmatex">\(\mu(x)-3\sigma(x)\)</span>.</p>
+
     </div>
 
 </div>
@@ -5274,6 +5278,7 @@ a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> 
 
         <p>The surrogate-based optimization.</p>
 <p>The acquisition criterion is <span class="arithmatex">\(\mu(x)\)</span>.</p>
+
     </div>
 
 </div>
@@ -5317,6 +5322,7 @@ denoted <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(\{y_1,
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -5346,6 +5352,7 @@ denoted <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(\{y_1,
 
         <p>The minimum constant liar.</p>
 <p>The output of the virtual point at <span class="arithmatex">\(x\)</span> is defined by <span class="arithmatex">\(\min \{y_1,\ldots,y_n\}\)</span>.</p>
+
     </div>
 
 </div>
@@ -5371,6 +5378,7 @@ denoted <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(\{y_1,
 
         <p>The Kriging believer.</p>
 <p>The output of the virtual point at <span class="arithmatex">\(x\)</span> is defined by <span class="arithmatex">\(\mu(x)\)</span>.</p>
+
     </div>
 
 </div>
@@ -5396,6 +5404,7 @@ denoted <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(\{y_1,
 
         <p>The Kriging believer lower bound.</p>
 <p>The output of the virtual point at <span class="arithmatex">\(x\)</span> is defined by <span class="arithmatex">\(\mu(x)-3\sigma(x)\)</span>.</p>
+
     </div>
 
 </div>
@@ -5423,6 +5432,7 @@ denoted <span class="arithmatex">\(y\)</span>, <span class="arithmatex">\(\{y_1,
 <p>The output of the virtual point at <span class="arithmatex">\(x\)</span> is defined by <span class="arithmatex">\(\mu(x)+\kappa(x)\sigma(x)\)</span>
 where <span class="arithmatex">\(\kappa(x)\)</span> is the realization of a random variable distributed according to
 the standard normal distribution.</p>
+
     </div>
 
 </div>
@@ -5448,6 +5458,7 @@ the standard normal distribution.</p>
 
         <p>The Kriging believer upper bound.</p>
 <p>The output of the virtual point at <span class="arithmatex">\(x\)</span> is defined by <span class="arithmatex">\(\mu(x)+3\sigma(x)\)</span>.</p>
+
     </div>
 
 </div>
@@ -5485,7 +5496,7 @@ the standard normal distribution.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>criterion</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
+              (<code><a class="autorefs autorefs-internal" title="            AcquisitionCriterion (gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
                   <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
 )
           –
@@ -5545,7 +5556,7 @@ the standard normal distribution.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>qEI</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
+              (<code><a class="autorefs autorefs-internal" title="            ParallelStrategy (gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
                   <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
 )
           –
@@ -5565,7 +5576,7 @@ the standard normal distribution.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>surrogate</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
+              (<code><a class="autorefs autorefs-internal" title="            Surrogate (gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
                   <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
 )
           –
@@ -5574,6 +5585,7 @@ the standard normal distribution.</p>
           </div>
         </li>
     </ul>
+
 
 
 
@@ -5627,6 +5639,7 @@ the standard normal distribution.</p>
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -5655,6 +5668,7 @@ the standard normal distribution.</p>
     <div class="doc doc-contents ">
 
         <p>Kriging based on the <code>egobox</code> library.</p>
+
     </div>
 
 </div>
@@ -5679,6 +5693,7 @@ the standard normal distribution.</p>
     <div class="doc doc-contents ">
 
         <p>Kriging using partial least squares (PLS) to reduce the input dimension.</p>
+
     </div>
 
 </div>
@@ -5703,6 +5718,7 @@ the standard normal distribution.</p>
     <div class="doc doc-contents ">
 
         <p>A variant of KPLS.</p>
+
     </div>
 
 </div>
@@ -5727,6 +5743,7 @@ the standard normal distribution.</p>
     <div class="doc doc-contents ">
 
         <p>Kriging.</p>
+
     </div>
 
 </div>
@@ -5751,6 +5768,7 @@ the standard normal distribution.</p>
     <div class="doc doc-contents ">
 
         <p>A marginal Gaussian process (MGP) regressor.</p>
+
     </div>
 
 </div>

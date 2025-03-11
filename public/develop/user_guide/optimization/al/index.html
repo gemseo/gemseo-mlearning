@@ -4790,16 +4790,16 @@ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 <h1 id="surrogate-based-optimizers-using-the-al-algorithm">Surrogate-based optimizers using the AL algorithm<a class="headerlink" href="#surrogate-based-optimizers-using-the-al-algorithm" title="Permanent link">&para;</a></h1>
-<p>The <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
+<p>The <a class="autorefs autorefs-internal" title="            ActiveLearningAlgo" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
 presented in <a href="../../active_learning/active_learning_algo/">this page</a>
 can be used to minimize a cost function using the family of acquisition criteria
-<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a></p>
-<p><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
+<a class="autorefs autorefs-internal" title="            Minimum" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a></p>
+<p><a class="autorefs autorefs-internal" title="            SurrogateBasedOptimization" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
 is a collection of surrogate-based optimization algorithms
-built on top of <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
-and <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a>.</p>
+built on top of <a class="autorefs autorefs-internal" title="            ActiveLearningAlgo" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
+and <a class="autorefs autorefs-internal" title="            Minimum" href="../../../reference/gemseo_mlearning/active_learning/acquisition_criteria/minimum/minimum/#gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum.Minimum">Minimum</a>.</p>
 <h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<p><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
+<p><a class="autorefs autorefs-internal" title="            SurrogateBasedOptimization" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
 includes a single optimization algorithm,
 called <code>"SBO"</code>.</p>
 <p>Given a maximum number of iterations,
@@ -4877,7 +4877,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
         </li>
         <li class="doc-section-item field-body">
             <b><code>criterion</code></b>
-              (<code><a class="autorefs autorefs-internal" title="gemseo_mlearning.algos.opt.sbo_settings.AcquisitionCriterion" href="../../../reference/gemseo_mlearning/algos/opt/sbo_settings/#gemseo_mlearning.algos.opt.sbo_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
+              (<code><a class="autorefs autorefs-internal" title="            AcquisitionCriterion (gemseo_mlearning.algos.opt.sbo_settings.AcquisitionCriterion)" href="../../../reference/gemseo_mlearning/algos/opt/sbo_settings/#gemseo_mlearning.algos.opt.sbo_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
                   <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
 )
           –
@@ -4959,6 +4959,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -5015,13 +5016,13 @@ Most of the time,
 as Kriging is well-suited to parallelize optimization<sup id="fnref:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">1</a></sup>.
 To this aim,
 when <code>batch_size</code> is greater than 1,
-<a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
+<a class="autorefs autorefs-internal" title="            ActiveLearningAlgo" href="../../../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>
 uses a parallel version of the expected improvement criterion.
 Unfortunately,
 the latter has no analytic expression
 and the acquisition criterion is thus instead evaluated with crude Monte-Carlo.</p>
 <h3 id="surrogate-models">Surrogate models<a class="headerlink" href="#surrogate-models" title="Permanent link">&para;</a></h3>
-<p><a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
+<p><a class="autorefs autorefs-internal" title="            SurrogateBasedOptimization" href="../../../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
 is compatible with all regressors,
 whose classes derive from <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a>.</p>
 <p>It can also be used from an existing surrogate models.

@@ -5080,6 +5080,7 @@
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -5101,7 +5102,7 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">ActiveLearningAlgo</span><span class="p">(</span>
     <span class="n">criterion_family_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
     <span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span><span class="p">,</span>
-    <span class="n">regressor</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
+    <span class="n">regressor</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
@@ -5138,7 +5139,7 @@ or <code>"Exploration"</code>.</p>
         </li>
         <li class="doc-section-item field-body">
             <b><code>regressor</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a> | <a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
+              (<code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a> | <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
           –
           <div class="doc-md-description">
             <p>Either a regressor or a regressor distribution.</p>
@@ -5200,6 +5201,7 @@ if <code>1</code>, acquire points sequentially.</p>
           </div>
         </li>
     </ul>
+
 
 
 
@@ -5429,12 +5431,13 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquisition_criterion" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">acquisition_criterion</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion" href="../acquisition_criteria/base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">acquisition_criterion</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseAcquisitionCriterion (gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion)" href="../acquisition_criteria/base_acquisition_criterion/#gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion.BaseAcquisitionCriterion">BaseAcquisitionCriterion</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
         <p>The acquisition criterion.</p>
+
     </div>
 
 </div>
@@ -5458,6 +5461,7 @@ if <code>1</code>, acquire points sequentially.</p>
     <div class="doc doc-contents ">
 
         <p>The name of the acquisition criterion family.</p>
+
     </div>
 
 </div>
@@ -5481,6 +5485,7 @@ if <code>1</code>, acquire points sequentially.</p>
     <div class="doc doc-contents ">
 
         <p>The number of points to be acquired in parallel.</p>
+
     </div>
 
 </div>
@@ -5504,6 +5509,7 @@ if <code>1</code>, acquire points sequentially.</p>
     <div class="doc doc-contents ">
 
         <p>The input space.</p>
+
     </div>
 
 </div>
@@ -5527,6 +5533,7 @@ if <code>1</code>, acquire points sequentially.</p>
     <div class="doc doc-contents ">
 
         <p>The number of initial samples.</p>
+
     </div>
 
 </div>
@@ -5552,6 +5559,7 @@ if <code>1</code>, acquire points sequentially.</p>
         <p>The quantity of interest (QOI).</p>
 <p>When there is no quantity of interest associated with the acquisition criterion,
 this attribute is <code>None</code>.</p>
+
     </div>
 
 </div>
@@ -5580,6 +5588,7 @@ history of the number of model evaluations corresponding to these QOI
 estimations.</p>
 <p>When there is no quantity of interest associated with the acquisition criterion,
 these lists are empty.</p>
+
     </div>
 
 </div>
@@ -5603,6 +5612,7 @@ these lists are empty.</p>
     <div class="doc doc-contents ">
 
         <p>The regressor.</p>
+
     </div>
 
 </div>
@@ -5620,12 +5630,13 @@ these lists are empty.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.regressor_distribution" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor_distribution</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
         <p>The regressor distribution.</p>
+
     </div>
 
 </div>
@@ -5730,6 +5741,7 @@ and the last acquisition problem.</p>
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
@@ -5985,6 +5997,7 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">308</span>
@@ -6163,6 +6176,7 @@ If empty, do not save it.</p>
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
@@ -6366,6 +6380,7 @@ If empty, the name of the criterion family name.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">503</span>
@@ -6474,6 +6489,7 @@ to find the learning point(s).</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">293</span>
@@ -6523,6 +6539,7 @@ to find the learning point(s).</p>
     <div class="doc doc-contents ">
 
         <p>Update the acquisition problem.</p>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/active_learning_algo.py</code></summary>

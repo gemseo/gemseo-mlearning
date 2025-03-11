@@ -5172,6 +5172,7 @@
 
 
 
+
   <div class="doc doc-children">
 
 
@@ -5200,7 +5201,7 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code></p>
 
 
         <p>Universal regressor distribution.</p>
@@ -5251,15 +5252,26 @@ Otherwise use leave-one-out.</p>
             <p>The size of the resampling set,
 i.e. the number of times the regression algorithm is rebuilt.
 If <code>None</code>,
-<a class="autorefs autorefs-internal" href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP">N_BOOTSTRAP</a>
+<a class="autorefs autorefs-internal" title="            N_BOOTSTRAP
+
+
+  
+      class-attribute
+  " href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP">N_BOOTSTRAP</a>
 in the case of bootstrap
 and
-<a class="autorefs autorefs-internal" href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_FOLDS">N_FOLDS</a>
+<a class="autorefs autorefs-internal" title="            N_FOLDS
+
+
+  
+      class-attribute
+  " href="#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_FOLDS">N_FOLDS</a>
 in the case of cross-validation.
 This argument is ignored in the case of leave-one-out.</p>
           </div>
         </li>
     </ul>
+
 
 
 
@@ -5381,6 +5393,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The default number of replicates for the bootstrap method.</p>
+
     </div>
 
 </div>
@@ -5404,6 +5417,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The default number of folds for the cross-validation method.</p>
+
     </div>
 
 </div>
@@ -5427,6 +5441,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The regression model.</p>
+
     </div>
 
 </div>
@@ -5450,6 +5465,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The input names of the regressor.</p>
+
     </div>
 
 </div>
@@ -5473,6 +5489,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The learning dataset used by the regressor.</p>
+
     </div>
 
 </div>
@@ -5496,6 +5513,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The resampling method.</p>
+
     </div>
 
 </div>
@@ -5519,6 +5537,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The output dimension of the regressor.</p>
+
     </div>
 
 </div>
@@ -5542,6 +5561,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The output names of the regressor.</p>
+
     </div>
 
 </div>
@@ -5565,6 +5585,7 @@ This argument is ignored in the case of leave-one-out.</p>
     <div class="doc doc-contents ">
 
         <p>The size of the resampling set.</p>
+
     </div>
 
 </div>
@@ -5589,6 +5610,7 @@ This argument is ignored in the case of leave-one-out.</p>
 
         <p>The weight functions related to the sub-algorithms.</p>
 <p>A weight function computes a weight from an input data array.</p>
+
     </div>
 
 </div>
@@ -5622,6 +5644,7 @@ This argument is ignored in the case of leave-one-out.</p>
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
@@ -5697,6 +5720,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
@@ -5796,6 +5820,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">267</span>
@@ -5868,6 +5893,7 @@ where <code>p</code> is the output dimension.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">283</span>
@@ -5933,6 +5959,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
@@ -6030,6 +6057,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">274</span>
@@ -6093,6 +6121,7 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">255</span>
@@ -6152,6 +6181,7 @@ If <code>None</code>, use the whole learning dataset</p>
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>
@@ -6251,6 +6281,7 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         </li>
     </ul>
 
+
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/base_regressor_distribution.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
@@ -6345,6 +6376,7 @@ or a <code>(M, d)</code> array representing <code>M</code> samples in dimension 
           </div>
         </li>
     </ul>
+
 
             <details class="quote">
               <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/regressor_distribution.py</code></summary>

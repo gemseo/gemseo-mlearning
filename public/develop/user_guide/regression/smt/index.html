@@ -4756,10 +4756,10 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 <h1 id="smts-surrogate-models">SMT's surrogate models<a class="headerlink" href="#smts-surrogate-models" title="Permanent link">&para;</a></h1>
 <p>The <a href="https://smt.readthedocs.io">surrogate modeling toolbox (SMT)</a>
 is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:SMT2019"><a class="footnote-ref" href="#fn:SMT2019">1</a></sup>.</p>
-<p><code>gemseo-mlearning</code> proposes the <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
+<p><code>gemseo-mlearning</code> proposes the <a class="autorefs autorefs-internal" title="            SMTRegressor" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
 to easily use any SMT's surrogate model in your GEMSEO processes.</p>
 <h2 id="basic-usage">Basic usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<p>You only have to instantiate this <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a> class from:</p>
+<p>You only have to instantiate this <a class="autorefs autorefs-internal" title="            SMTRegressor" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a> class from:</p>
 <ul>
 <li>the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.io_dataset.html#gemseo.datasets.io_dataset.IODataset">IODataset</a> including your input and output samples,</li>
 <li>the name of an SMT's surrogate model (<em>e.g.</em> <code>"KRG"</code> for Kriging or <code>"RBF"</code> for radial basis function),</li>
@@ -4780,7 +4780,7 @@ you will find more information in the <a href="https://smt.readthedocs.io/en/lat
 by looking at the tables at the bottom of the pages.</p>
 <h2 id="derivatives">Derivatives<a class="headerlink" href="#derivatives" title="Permanent link">&para;</a></h2>
 <h3 id="differentiation">Differentiation<a class="headerlink" href="#differentiation" title="Permanent link">&para;</a></h3>
-<p>You can use the <code>predict_jacobian</code> method of any <a class="autorefs autorefs-internal" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
+<p>You can use the <code>predict_jacobian</code> method of any <a class="autorefs autorefs-internal" title="            SMTRegressor" href="../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
 as long as the corresponding SMT's surrogate model can be derived with respect to its inputs.</p>
 <p>This feature is particularly useful in the case of gradient-based optimization.</p>
 <h3 id="gradient-enhanced">Gradient-enhanced<a class="headerlink" href="#gradient-enhanced" title="Permanent link">&para;</a></h3>
