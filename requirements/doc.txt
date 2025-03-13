@@ -2,7 +2,7 @@
 #    uv pip compile --extra doc --constraint requirements/test-constraints.in -o requirements/doc.txt --python-version 3.9 pyproject.toml
 annotated-types==0.7.0
     # via pydantic
-attrs==25.1.0
+attrs==25.2.0
     # via
     #   jsonschema
     #   referencing
@@ -46,7 +46,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.56.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@58f68f59dbd149f1830554fdf5ff7fc4a38983e6
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@1053429b9597f0a426827c5ffb4fbdf22747e357
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
