@@ -2,7 +2,7 @@
 #    uv pip compile --extra test --constraint requirements/test-constraints.in -o requirements/test-python3.9.txt --python-version 3.9 pyproject.toml
 annotated-types==0.7.0
     # via pydantic
-attrs==25.2.0
+attrs==25.3.0
     # via
     #   jsonschema
     #   referencing
@@ -24,7 +24,7 @@ dill==0.3.9
     # via openturns
 docstring-inheritance==2.2.2
     # via gemseo
-egobox==0.26.0
+egobox==0.27.0
     # via smt
 et-xmlfile==2.0.0
     # via openpyxl
@@ -38,7 +38,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.56.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@1053429b9597f0a426827c5ffb4fbdf22747e357
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@91ba23f3a20fbb801f9e98c7df0ebd666d000ba8
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -184,7 +184,7 @@ sympy==1.13.3
     # via gemseo
 tenacity==9.0.0
     # via plotly
-threadpoolctl==3.5.0
+threadpoolctl==3.6.0
     # via scikit-learn
 tomli==2.2.1
     # via
