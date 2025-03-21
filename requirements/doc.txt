@@ -46,7 +46,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.56.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@1a7496b8d3a2020cdd9dd25855ca885b09a26578
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@13d857fbfa4d3d50aba0c5e3a49d8bb6b75c7c66
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -56,7 +56,7 @@ ghp-import==2.1.0
     # via mkdocs
 graphviz==0.20.3
     # via gemseo
-griffe==1.6.1
+griffe==1.6.2
     # via
     #   griffe-fieldz
     #   griffe-inherited-docstrings
@@ -167,7 +167,7 @@ mkdocstrings==0.29.0
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   mkdocstrings-python
-mkdocstrings-python==1.16.6
+mkdocstrings-python==1.16.7
     # via mkdocstrings
 mpmath==1.3.0
     # via sympy
@@ -307,7 +307,7 @@ scipy==1.13.1
     #   pydoe3
     #   scikit-learn
     #   smt
-setuptools==77.0.1
+setuptools==77.0.3
     # via mkdocs-bibtex
 six==1.17.0
     # via
