@@ -46,7 +46,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.56.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@503283a7ce2decb93ac702ec4f5400cca18a2914
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@0c9a3544f1d90c442f890ff7eafc35ab7b3c9ce3
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -253,7 +253,7 @@ pymdown-extensions==10.14.3
     #   mkdocstrings
 pypandoc==1.15
     # via mkdocs-bibtex
-pyparsing==3.2.1
+pyparsing==3.2.2
     # via
     #   matplotlib
     #   mike
@@ -339,7 +339,7 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   referencing
-tzdata==2025.1
+tzdata==2025.2
     # via pandas
 urllib3==2.3.0
     # via
