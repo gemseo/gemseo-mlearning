@@ -36,7 +36,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.56.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@0c9a3544f1d90c442f890ff7eafc35ab7b3c9ce3
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@f580aa7fb543e1dccc4db433344836e42ac965b5
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -52,7 +52,7 @@ iniconfig==2.1.0
     # via pytest
 jenn==1.0.8
     # via smt
-jinja2==3.1.5
+jinja2==3.1.6
     # via gemseo
 joblib==1.4.2
     # via scikit-learn
@@ -66,7 +66,7 @@ kiwisolver==1.4.8
     # via matplotlib
 markupsafe==3.0.2
     # via jinja2
-matplotlib==3.10.0
+matplotlib==3.10.1
     # via
     #   gemseo
     #   jenn
@@ -97,7 +97,7 @@ openturns==1.24
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   gemseo
-orjson==3.10.15
+orjson==3.10.16
     # via jenn
 packaging==24.2
     # via
@@ -115,7 +115,7 @@ plotly==5.24.1
     # via gemseo
 pluggy==1.5.0
     # via pytest
-prettytable==3.14.0
+prettytable==3.15.1
     # via gemseo
 psutil==7.0.0
     # via openturns
@@ -127,7 +127,7 @@ pydoe3==1.0.4
     # via
     #   gemseo
     #   smt
-pyparsing==3.2.2
+pyparsing==3.2.3
     # via matplotlib
 pytest==8.3.5
     # via
@@ -142,7 +142,7 @@ python-dateutil==2.9.0.post0
     # via
     #   matplotlib
     #   pandas
-pytz==2025.1
+pytz==2025.2
     # via pandas
 pyxdsm==2.3.1
     # via gemseo
