@@ -78,13 +78,13 @@ class SMTEGO(BaseOptimizationLibrary):
     def _run(
         self, problem: OptimizationProblem, **settings: Any
     ) -> tuple[None, None, RealArray, RealArray, RealArray]:
+        design_space = problem.design_space
         x_0, lower_bounds, upper_bounds = get_value_and_bounds(
-            problem.design_space, normalize_ds=True
+            design_space, normalize_ds=self._normalize_ds
         )
-
         surrogate = settings["surrogate"]
         if isinstance(surrogate, str):
-            design_space = SMTDesignSpace(
+            smt_design_space = SMTDesignSpace(
                 atleast_2d(
                     list(
                         zip(
@@ -101,7 +101,7 @@ class SMTEGO(BaseOptimizationLibrary):
                 )
             )
             surrogate = self.__NAMES_TO_CLASSES[surrogate](
-                design_space=design_space, print_global=False
+                design_space=smt_design_space, print_global=False
             )
 
         n_parallel = settings["n_parallel"]
@@ -130,6 +130,9 @@ class SMTEGO(BaseOptimizationLibrary):
             n_max_optim=settings["n_max_optim"],
         )
         x_opt, y_opt, _, _, _ = ego.optimize(fun=problem.objective.evaluate)
+        if self._normalize_ds:
+            x_opt = design_space.unnormalize_vect(x_opt)
+            x_0 = design_space.unnormalize_vect(x_0)
         return (
             None,
             None,

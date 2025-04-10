@@ -96,7 +96,6 @@ class SBOSettings(BaseOptimizerSettings):
         default="OT_OPT_LHS",
         description=(
             """The name of the DOE algorithm for the initial sampling.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -108,7 +107,6 @@ class SBOSettings(BaseOptimizerSettings):
         default_factory=dict,
         description=(
             """The settings of the DOE algorithm for the initial sampling.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -120,7 +118,6 @@ class SBOSettings(BaseOptimizerSettings):
         default=10,
         description=(
             """Either the initial DOE size or 0 if it is inferred from `doe_settings`.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -144,7 +141,6 @@ class SBOSettings(BaseOptimizerSettings):
         default=OTGaussianProcessRegressor.__name__,
         description=(
             """The regression algorithm.
-
             Either the name of the regression algorithm
             approximating the objective function over the design space
             or the regression algorithm itself.
@@ -156,7 +152,6 @@ class SBOSettings(BaseOptimizerSettings):
         default="",
         description=(
             """The path to the file to save the regression model.
-
             If empty, do not save the regression model.
             """
         ),
@@ -166,7 +161,6 @@ class SBOSettings(BaseOptimizerSettings):
         default_factory=dict,
         description=(
             """The settings of the regression algorithm.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].

@@ -30,6 +30,7 @@ and this project adheres to
 
 ### Fixed
 
+- The optimization algorithm `SMT_EGO` correctly uses the option ``normalize_design_space``.
 - The method
   [ActiveLearningAlgo.acquire_new_points][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points]
   works when the discipline it uses has output variables
@@ -119,10 +120,10 @@ and this project adheres to
   and moved to
 - [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].
 - BREAKING CHANGE: `MLDataAcquisitionCriterionFactory` renamed to
-  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.AcquisitionCriterionFactory],
+  [BaseAcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFactory],
   moved to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria]
-  and without the property `available_criteria` (use `AcquisitionCriterionFactory.class_names`).
+  and without the property `available_criteria` (use `BaseAcquisitionCriterionFactory.class_names`).
 - BREAKING CHANGE: `gemseo.adaptive` renamed to [gemseo_mlearning.active_learning][gemseo_mlearning.active_learning].
 - BREAKING CHANGE: `gemseo.adaptive.criteria` renamed to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].

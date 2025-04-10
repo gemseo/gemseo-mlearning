@@ -25,8 +25,7 @@ as long as your training dataset includes both output and gradient samples
 as explained at the end of [this page](../../../user_guide/regression/smt.md).
 
 In this example,
-we will approximate the
-[Rosenbrock function][@molga2005test]
+we will approximate the Rosenbrock function[@molga2005test]
 
 $$f(x,y) = (1-x)^2 + 100(y-x^2)^2$$
 
