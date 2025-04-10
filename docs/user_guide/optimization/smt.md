@@ -9,7 +9,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 # SMT's surrogate-based optimizers
 
 The [surrogate modeling toolbox (SMT)](https://smt.readthedocs.io)
-is an open-source Python package for surrogate modeling with a focus on derivatives [@SMT2019,@saves2024smt].
+is an open-source Python package for surrogate modeling with a focus on derivatives [@SMT2019][@saves2024smt].
 
 `gemseo-mlearning` proposes the [SMTEGO][gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO] optimization library
 to easily use the surrogate-based optimizers available in SMT,

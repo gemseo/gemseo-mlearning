@@ -81,9 +81,9 @@ These statistics and realizations can be obtained using the
 class
 which can be built from any regressor deriving from
 [BaseRandomProcessRegressor][gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor],
-such as [GaussianProcessRegressor][gemseo.mlearning.regressions.algos.gpr.GaussianProcessRegressor] based on
+such as [GaussianProcessRegressor][gemseo.mlearning.regression.algos.gpr.GaussianProcessRegressor] based on
 [scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html)
-and [OTGaussianProcessRegressor][gemseo.mlearning.regressions.algos.ot_gpr.OTGaussianProcessRegressor] based on
+and [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor] based on
 [OpenTURNS](https://openturns.github.io/openturns/latest/user_manual/response_surface/_generated/openturns.KrigingAlgorithm.html).
 By *distribution* we mean
 the probability distribution of a random function of which $f$ is an instance.

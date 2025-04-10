@@ -36,6 +36,7 @@ from smt.utils.design_space import DesignSpace as SMTDesignSpace
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import AcquisitionCriterion
 from gemseo_mlearning.algos.opt.smt.ego_settings import ParallelStrategy
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
 from gemseo_mlearning.algos.opt.smt.ego_settings import Surrogate
 from gemseo_mlearning.algos.opt.smt.smt_ego import SMTEGO
 
@@ -93,18 +94,30 @@ def test_criteria(criterion, surrogate):  # noqa: N803
     assert_allclose(objective.last_eval, last_eval, atol=1e-2)
 
 
-def test_batch():  # noqa: N803
-    """Test EGO with batch acquisition."""
+@pytest.mark.parametrize(
+    ("n_parallel", "x_opt", "f_opt"),
+    [
+        (1, array([-0.282595, 0.676449]), array([37.23683274])),
+        (2, array([-0.736361, 1.068123]), array([30.670789])),
+    ],
+)
+@pytest.mark.parametrize("normalize_design_space", [False, True])
+def test_batch(n_parallel, x_opt, normalize_design_space, f_opt):  # noqa: N803
+    """Test EGO w/wo batch acquisition and w/wo design space normalization."""
     optimization_problem = Rosenbrock()
     optimization_result = SMTEGO().execute(
         optimization_problem,
-        n_start=2,
-        n_doe=5,
-        max_iter=7,
-        n_max_optim=5,
-        n_parallel=2,
+        settings_model=SMTEGOSettings(
+            n_start=2,
+            n_doe=5,
+            max_iter=7,
+            n_max_optim=5,
+            n_parallel=n_parallel,
+            normalize_design_space=normalize_design_space,
+        ),
     )
-    assert_allclose(optimization_result.x_opt, array([0.31591, 0.767031]), atol=1e-5)
+    assert_allclose(optimization_result.x_opt, x_opt, atol=1e-5)
+    assert_allclose(optimization_result.f_opt, f_opt, atol=1e-3)
 
 
 @pytest.mark.parametrize("criterion", AcquisitionCriterion)
