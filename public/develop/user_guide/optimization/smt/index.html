@@ -4891,7 +4891,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 <h1 id="smts-surrogate-based-optimizers">SMT's surrogate-based optimizers<a class="headerlink" href="#smts-surrogate-based-optimizers" title="Permanent link">&para;</a></h1>
 <p>The <a href="https://smt.readthedocs.io">surrogate modeling toolbox (SMT)</a>
-is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:SMT2019"><a class="footnote-ref" href="#fn:SMT2019">1</a></sup>.</p>
+is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:SMT2019"><a class="footnote-ref" href="#fn:SMT2019">1</a></sup><sup id="fnref:saves2024smt"><a class="footnote-ref" href="#fn:saves2024smt">2</a></sup>.</p>
 <p><code>gemseo-mlearning</code> proposes the <a class="autorefs autorefs-internal" title="            SMTEGO" href="../../../reference/gemseo_mlearning/algos/opt/smt/smt_ego/#gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO">SMTEGO</a> optimization library
 to easily use the surrogate-based optimizers available in SMT,
 through its <code>EGO</code> class.</p>
@@ -5088,7 +5088,7 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 <p>where <span class="arithmatex">\(Y\)</span> is a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> and standard deviation <span class="arithmatex">\(\sigma(x)\)</span>,</p>
 <h3 id="parallel-acquisition">Parallel acquisition<a class="headerlink" href="#parallel-acquisition" title="Permanent link">&para;</a></h3>
 <p>Points can be acquired by batch of <span class="arithmatex">\(q&gt;1\)</span> points,
-as Kriging is well-suited to parallelize optimization<sup id="fnref:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">2</a></sup>.
+as Kriging is well-suited to parallelize optimization<sup id="fnref:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">3</a></sup>.
 To this aim,
 when <code>n_parallel</code> is greater than 1,
 SMT uses a technique of virtual points to update the training dataset with <span class="arithmatex">\(k\leq q\)</span> training points
@@ -5168,8 +5168,11 @@ The four strategies are:</p>
 <li id="fn:SMT2019">
 <p>B. A. Bouhlel, J. T. Hwang, N. Bartoli, R. Lafage, M. Morlier, and J. R. R. A. Martins. A python surrogate modeling framework with derivatives. <em>Advances in Engineering Software</em>, pages 102662, 2019. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2019.03.005">doi:https://doi.org/10.1016/j.advengsoft.2019.03.005</a>.&#160;<a class="footnote-backref" href="#fnref:SMT2019" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
+<li id="fn:saves2024smt">
+<p>P. Saves, R. Lafage, N. Bartoli, Y. Diouane, J. Bussemaker, T. Lefebvre, J. T. Hwang, J. Morlier, and J. R. R. A. Martins. SMT 2.0: A surrogate modeling toolbox with a focus on hierarchical and mixed variables gaussian processes. <em>Advances in Engineering Sofware</em>, 188:103571, 2024. <a href="https://doi.org/https://doi.org/10.1016/j.advengsoft.2023.103571">doi:https://doi.org/10.1016/j.advengsoft.2023.103571</a>.&#160;<a class="footnote-backref" href="#fnref:saves2024smt" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
 <li id="fn:ginsbourger2010kriging">
-<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:ginsbourger2010kriging" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>D. Ginsbourger, R. Le Riche, and L. Carraro. Kriging is well-suited to parallelize optimization. In <em>Computational intelligence in expensive optimization problems</em>, pages 131–162. Springer, 2010.&#160;<a class="footnote-backref" href="#fnref:ginsbourger2010kriging" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

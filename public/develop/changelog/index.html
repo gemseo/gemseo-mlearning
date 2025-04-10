@@ -5191,6 +5191,7 @@ and this project adheres to
 <h2 id="develop">Develop<a class="headerlink" href="#develop" title="Permanent link">&para;</a></h2>
 <h3 id="fixed">Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
 <ul>
+<li>The optimization algorithm <code>SMT_EGO</code> correctly uses the option <code>normalize_design_space</code>.</li>
 <li>The method
   <a class="autorefs autorefs-internal" title="            acquire_new_points" href="../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points">ActiveLearningAlgo.acquire_new_points</a>
   works when the discipline it uses has output variables
@@ -5279,10 +5280,10 @@ and this project adheres to
   and moved to</li>
 <li><a class="autorefs autorefs-internal" title="            acquisition_criteria" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>.</li>
 <li>BREAKING CHANGE: <code>MLDataAcquisitionCriterionFactory</code> renamed to
-  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.AcquisitionCriterionFactory],
+  <a class="autorefs autorefs-internal" title="            BaseAcquisitionCriterionFactory" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/base_factory/#gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory">BaseAcquisitionCriterionFactory</a>,
   moved to
   <a class="autorefs autorefs-internal" title="            acquisition_criteria" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>
-  and without the property <code>available_criteria</code> (use <code>AcquisitionCriterionFactory.class_names</code>).</li>
+  and without the property <code>available_criteria</code> (use <code>BaseAcquisitionCriterionFactory.class_names</code>).</li>
 <li>BREAKING CHANGE: <code>gemseo.adaptive</code> renamed to <a class="autorefs autorefs-internal" title="            active_learning" href="../reference/gemseo_mlearning/active_learning/#gemseo_mlearning.active_learning">gemseo_mlearning.active_learning</a>.</li>
 <li>BREAKING CHANGE: <code>gemseo.adaptive.criteria</code> renamed to
   <a class="autorefs autorefs-internal" title="            acquisition_criteria" href="../reference/gemseo_mlearning/active_learning/acquisition_criteria/#gemseo_mlearning.active_learning.acquisition_criteria">gemseo_mlearning.active_learning.acquisition_criteria</a>.</li>

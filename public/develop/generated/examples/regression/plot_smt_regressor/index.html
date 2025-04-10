@@ -4746,11 +4746,10 @@ including the gradient-enhanced surrogate models
 as long as your training dataset includes both output and gradient samples
 as explained at the end of <a href="../../../../user_guide/regression/smt/">this page</a>.</p>
 <p>In this example,
-we will approximate the
-[Rosenbrock function]<sup id="fnref:molga2005test"><a class="footnote-ref" href="#fn:molga2005test">1</a></sup></p>
+we will approximate the Rosenbrock function<sup id="fnref:molga2005test"><a class="footnote-ref" href="#fn:molga2005test">1</a></sup></p>
 <div class="arithmatex">\[f(x,y) = (1-x)^2 + 100(y-x^2)^2\]</div>
 <p>over the domain <span class="arithmatex">\([-2,2]^2\)</span>.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 35-50 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 34-49 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
@@ -4766,51 +4765,51 @@ we will approximate the
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosenbrockSpace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.regression.smt_regressor</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMTRegressor</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 51-53 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 50-52 -->
 
 <p>First,
 we create the Rosenbrock discipline:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 53-55 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 52-54 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 56-57 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 55-56 -->
 
 <p>and the input space:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 57-59 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 56-58 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 60-63 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 59-62 -->
 
 <p>Then,
 we use an optimized Latin hypercube sampling (LHS) technique
 to generate 20 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 63-67 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 62-66 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">training_data</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 68-73 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 67-72 -->
 
 <p>From this learning dataset,
 we train an <a class="autorefs autorefs-internal" title="            SMTRegressor" href="../../../../reference/gemseo_mlearning/regression/smt_regressor/#gemseo_mlearning.regression.smt_regressor.SMTRegressor">SMTRegressor</a>
 based on the
 <a href="https://smt.readthedocs.io/en/latest/_src_docs/surrogate_models/rbf.html">SMT's RBF surrogate model</a>
 with the basis function scaling parameter <code>d_0</code> set to 2.0 (instead of 1.0):</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 73-78 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 72-77 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">surrogate_model</span> <span class="o">=</span> <span class="n">SMTRegressor</span><span class="p">(</span>
     <span class="n">training_data</span><span class="p">,</span> <span class="n">model_class_name</span><span class="o">=</span><span class="s2">&quot;RBF&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;d0&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
 <span class="p">)</span>
 <span class="n">surrogate_model</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 79-81 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 78-80 -->
 
 <p>Finally,
 we assess its quality:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 81-90 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 80-89 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">r2</span> <span class="o">=</span> <span class="n">R2Measure</span><span class="p">(</span><span class="n">surrogate_model</span><span class="p">)</span>
 <span class="n">r2_l</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">compute_learning_measure</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
@@ -4824,11 +4823,11 @@ we assess its quality:</p>
 <p class="mkd-glr-script-out">Out:</p>
 <div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="s1">&#39;Learning R2: 1.0; cross-validation R2: 0.8257126302519093; test R2: 0.9617160347610478&#39;</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 91-93 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 90-92 -->
 
 <p>see how good it is with its R2 close to 1 on the test dataset,
 and plot its output over a 20x20 grid:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 93-103 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 92-102 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_data</span> <span class="o">=</span> <span class="n">compute_doe</span><span class="p">(</span><span class="n">input_space</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;PYDOE_FULLFACT&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
 <span class="n">output_data</span> <span class="o">=</span> <span class="n">surrogate_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
@@ -4845,7 +4844,7 @@ and plot its output over a 20x20 grid:</p>
 <p class="mkd-glr-script-out">Out:</p>
 <div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="o">[</span>&lt;Figure<span class="w"> </span>size<span class="w"> </span>640x480<span class="w"> </span>with<span class="w"> </span><span class="m">2</span><span class="w"> </span>Axes&gt;<span class="o">]</span>
 </code></pre></div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  0.616 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.652 seconds)</p>
 <div id="download_links"></div>
 
 <p><a class="md-button center" href="../plot_smt_regressor.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v242.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64v-32c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48"/></svg></span> Download Python source code: plot_smt_regressor.py</a></p>
