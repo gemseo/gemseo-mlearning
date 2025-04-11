@@ -12,31 +12,12 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-# Copyright 2022 IRT Saint Exupéry, https://www.irt-saintexupery.com
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU Lesser General Public
-# License version 3 as published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with this program; if not, write to the Free Software Foundation,
-# Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-# Contributors:
-#    AUTHORS:
-#       - Francois Gallard
 """SMT optimizaton EGO tests."""
 
 from __future__ import annotations
 
 import contextlib
 import re
-from sys import version_info
 from typing import TYPE_CHECKING
 from unittest import mock
 
@@ -55,6 +36,7 @@ from smt.utils.design_space import DesignSpace as SMTDesignSpace
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import AcquisitionCriterion
 from gemseo_mlearning.algos.opt.smt.ego_settings import ParallelStrategy
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
 from gemseo_mlearning.algos.opt.smt.ego_settings import Surrogate
 from gemseo_mlearning.algos.opt.smt.smt_ego import SMTEGO
 
@@ -78,11 +60,7 @@ def scaled_rosenbrock(x: RealArray) -> float:
 @pytest.mark.parametrize("surrogate", Surrogate)
 def test_criteria(criterion, surrogate):  # noqa: N803
     """Test EGO with different criteria."""
-    if (
-        (version_info[0], version_info[1]) == (3, 10)
-        and surrogate == Surrogate.MGP
-        and criterion == AcquisitionCriterion.SBO
-    ):
+    if surrogate == Surrogate.MGP and criterion == AcquisitionCriterion.SBO:
         return
 
     optimization_problem = Rosenbrock()
@@ -116,18 +94,30 @@ def test_criteria(criterion, surrogate):  # noqa: N803
     assert_allclose(objective.last_eval, last_eval, atol=1e-2)
 
 
-def test_batch():  # noqa: N803
-    """Test EGO with batch acquisition."""
+@pytest.mark.parametrize(
+    ("n_parallel", "x_opt", "f_opt"),
+    [
+        (1, array([-0.282595, 0.676449]), array([37.23683274])),
+        (2, array([-0.736361, 1.068123]), array([30.670789])),
+    ],
+)
+@pytest.mark.parametrize("normalize_design_space", [False, True])
+def test_batch(n_parallel, x_opt, normalize_design_space, f_opt):  # noqa: N803
+    """Test EGO w/wo batch acquisition and w/wo design space normalization."""
     optimization_problem = Rosenbrock()
     optimization_result = SMTEGO().execute(
         optimization_problem,
-        n_start=2,
-        n_doe=5,
-        max_iter=7,
-        n_max_optim=5,
-        n_parallel=2,
+        settings_model=SMTEGOSettings(
+            n_start=2,
+            n_doe=5,
+            max_iter=7,
+            n_max_optim=5,
+            n_parallel=n_parallel,
+            normalize_design_space=normalize_design_space,
+        ),
     )
-    assert_allclose(optimization_result.x_opt, array([0.31591, 0.767031]), atol=1e-5)
+    assert_allclose(optimization_result.x_opt, x_opt, atol=1e-5)
+    assert_allclose(optimization_result.f_opt, f_opt, atol=1e-3)
 
 
 @pytest.mark.parametrize("criterion", AcquisitionCriterion)

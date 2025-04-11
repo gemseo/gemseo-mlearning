@@ -156,12 +156,14 @@ plt.scatter(
     points_1[:, 1],
     marker="*",
     label="Learning points from algo with OpenTURNS GP",
+    color="tab:blue",
 )
 plt.scatter(
     points_2[:, 0],
     points_2[:, 1],
     marker="*",
     label="Learning points from algo with scikit-learn GP",
+    color="tab:orange",
 )
 plt.xlabel(r"$x_1$")
 plt.ylabel(r"$x_2$")

@@ -145,12 +145,12 @@ class SurrogateBasedOptimizer:
             if self.__initial_input_samples:
                 self.__dataset = self.__dataset[len(self.__initial_input_samples) :]
 
-            _regression_settings = {"transformer": {"inputs": "MinMaxScaler"}}
-            _regression_settings.update(dict(regression_settings))
+            regression_settings_ = {"transformer": {"inputs": "MinMaxScaler"}}
+            regression_settings_.update(dict(regression_settings))
             regression_algorithm = RegressorFactory().create(
                 regression_algorithm,
                 self.__dataset,
-                **_regression_settings,
+                **regression_settings_,
             )
             # Add the first iteration to the current_iter reset by DOELibrary.
             problem.evaluation_counter.current += 1

@@ -26,9 +26,23 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Develop
+## Version 2.0.1 (April 2025)
 
-## Added
+### Fixed
+
+- The optimization algorithm `SMT_EGO` correctly uses the option ``normalize_design_space``.
+- The method
+  [ActiveLearningAlgo.acquire_new_points][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points]
+  works when the discipline it uses has output variables
+  that are not outputs of the regression model
+  used by [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
+
+## Version 2.0.0 (November 2024)
+
+### Added
+
+- Support GEMSEO v6.
+- Support for Python 3.12.
 - [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
   can acquire points by batch using the `batch_size`
   and `mc_size` argument,
@@ -64,7 +78,7 @@ and this project adheres to
   and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches
   using the `regression_file_path` option.
 
-## Changed
+### Changed
 
 - BREAKING CHANGE: The acquisition algorithm settings have to be passed to
   [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
@@ -106,15 +120,15 @@ and this project adheres to
   and moved to
 - [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].
 - BREAKING CHANGE: `MLDataAcquisitionCriterionFactory` renamed to
-  [AcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.AcquisitionCriterionFactory],
+  [BaseAcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFactory],
   moved to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria]
-  and without the property `available_criteria` (use `AcquisitionCriterionFactory.class_names`).
+  and without the property `available_criteria` (use `BaseAcquisitionCriterionFactory.class_names`).
 - BREAKING CHANGE: `gemseo.adaptive` renamed to [gemseo_mlearning.active_learning][gemseo_mlearning.active_learning].
 - BREAKING CHANGE: `gemseo.adaptive.criteria` renamed to
   [gemseo_mlearning.active_learning.acquisition_criteria][gemseo_mlearning.active_learning.acquisition_criteria].
 
-## Fixed
+### Fixed
 
 - The data transformer can be set with the `"transformer"` key of the `regression_options` dictionary
   passed to [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization].
@@ -123,7 +137,7 @@ and this project adheres to
   by means of the probability distributions of the input variables;
   these distributions are defined with its new argument `uncertain_space`.
 
-## Removed
+### Removed
 
 - `AcquisitionCriterionFactory`; replaced by different factories for the developers.
 - `sample_discipline`; use [sample_disciplines][gemseo.sample_disciplines] from `gemseo` instead.
@@ -137,28 +151,28 @@ and this project adheres to
 - `SVMRegressor`; moved to `gemseo`: [SVMRegressor][gemseo.mlearning.regression.algos.svm.SVMRegressor].
 - `TPSRegressor`; moved to `gemseo`: [TPSRegressor][gemseo.mlearning.regression.algos.thin_plate_spline.TPSRegressor].
 
-# Version 1.1.2 (December 2023)
+## Version 1.1.2 (December 2023)
 
-## Added
+### Added
 
 - Support for Python 3.11.
 - `OTGaussianProcessRegressor` has a new optional argument `optimizer`
   to select the OpenTURNS optimizer for the covariance model parameters.
 
-## Removed
+### Removed
 
 - Support for Python 3.8.
 
-# Version 1.1.1 (September 2023)
+## Version 1.1.1 (September 2023)
 
-## Fixed
+### Fixed
 
 - `OTGaussianProcessRegressor.predict_std`
   no longer returns the variance of the output but its standard deviation.
 
-# Version 1.1.0 (June 2023)
+## Version 1.1.0 (June 2023)
 
-## Added
+### Added
 
 - An argument `trend_type` of type `OTGaussianProcessRegressor.TrendType` to `OTGaussianProcessRegressor`;
   the trend type of the Gaussian process regressor can be either constant,
@@ -167,18 +181,18 @@ and this project adheres to
   [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   to perform EGO-like surrogate-based optimization on unconstrained problems.
 
-## Fixed
+### Fixed
 
 - The output of an `MLDataAcquisitionCriterion`
   based on a regressor built from constant output values is no longer `nan`.
 
-# Version 1.0.1 (February 2022)
+## Version 1.0.1 (February 2022)
 
-## Fixed
+### Fixed
 
 - [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
   can now use a regression algorithm instantiated with transformers.
 
-# Version 1.0.0 (July 2022)
+## Version 1.0.0 (July 2022)
 
 First release.

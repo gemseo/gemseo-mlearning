@@ -81,11 +81,11 @@ def regressor_and_model(io_data) -> tuple[SMTRegressor, RBF]:
 @pytest.fixture(scope="module", params=[False, True])
 def input_value(regressor_and_model, request) -> RealArray:
     """The input value."""
-    _input_value = full((regressor_and_model[0].output_dimension,), 0.25)
+    input_value_ = full((regressor_and_model[0].output_dimension,), 0.25)
     if request.param:
-        return _input_value[newaxis, :]
+        return input_value_[newaxis, :]
 
-    return _input_value
+    return input_value_
 
 
 def test_smt_regression_model_predict(regressor_and_model, input_value):

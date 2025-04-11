@@ -196,7 +196,7 @@ class ActiveLearningAlgo:
         value = tile(input_space.get_current_value(), batch_size)
         optimization_space.add_variable(
             "x",
-            size=int(len(lower_bound)),
+            size=len(lower_bound),
             lower_bound=lower_bound,
             upper_bound=upper_bound,
             value=value,
@@ -413,7 +413,9 @@ class ActiveLearningAlgo:
                     output_data = discipline.get_output_data()
                     extra_learning_set.add_group(
                         group_name=IODataset.OUTPUT_GROUP,
-                        data=hstack(list(output_data.values()))[newaxis],
+                        data=hstack([output_data[name] for name in output_names])[
+                            newaxis
+                        ],
                         variable_names=output_names,
                         variable_names_to_n_components=variable_names_to_n_components,
                     )

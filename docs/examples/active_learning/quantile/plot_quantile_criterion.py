@@ -116,7 +116,7 @@ active_learning_3.acquire_new_points(discipline, n_samples=20)
 # the data associated
 # to the history
 # of the quantity of interest
-# for both active learning procedures
+# for the three active learning procedures
 history_1 = active_learning_1.qoi_history
 history_2 = active_learning_2.qoi_history
 history_3 = active_learning_3.qoi_history

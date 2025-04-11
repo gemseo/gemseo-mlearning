@@ -16,15 +16,15 @@
 
 from __future__ import annotations
 
-from collections.abc import Mapping  # noqa: TCH003
-from pathlib import Path  # noqa: TCH003
+from collections.abc import Mapping  # noqa: TC003
+from pathlib import Path  # noqa: TC003
 
-from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TCH002
-from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TCH002
+from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TC002
+from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TC002
     BaseOptimizerSettings,
 )
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TCH002
-from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TCH002
+from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TC002
+from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TC002
     BaseRegressor,
 )
 from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
@@ -96,7 +96,6 @@ class SBOSettings(BaseOptimizerSettings):
         default="OT_OPT_LHS",
         description=(
             """The name of the DOE algorithm for the initial sampling.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -108,7 +107,6 @@ class SBOSettings(BaseOptimizerSettings):
         default_factory=dict,
         description=(
             """The settings of the DOE algorithm for the initial sampling.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -120,7 +118,6 @@ class SBOSettings(BaseOptimizerSettings):
         default=10,
         description=(
             """Either the initial DOE size or 0 if it is inferred from `doe_settings`.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
@@ -144,7 +141,6 @@ class SBOSettings(BaseOptimizerSettings):
         default=OTGaussianProcessRegressor.__name__,
         description=(
             """The regression algorithm.
-
             Either the name of the regression algorithm
             approximating the objective function over the design space
             or the regression algorithm itself.
@@ -156,7 +152,6 @@ class SBOSettings(BaseOptimizerSettings):
         default="",
         description=(
             """The path to the file to save the regression model.
-
             If empty, do not save the regression model.
             """
         ),
@@ -166,7 +161,6 @@ class SBOSettings(BaseOptimizerSettings):
         default_factory=dict,
         description=(
             """The settings of the regression algorithm.
-
             This argument is ignored
             when regression_algorithm is a
             [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
