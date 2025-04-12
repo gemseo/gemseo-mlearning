@@ -102,7 +102,7 @@ kiwisolver==1.4.7
     # via matplotlib
 latexcodec==3.0.0
     # via pybtex
-markdown==3.7
+markdown==3.8
     # via
     #   mkdocs
     #   mkdocs-autorefs
