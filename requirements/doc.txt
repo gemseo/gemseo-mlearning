@@ -34,7 +34,7 @@ dill==0.4.0
     # via openturns
 docstring-inheritance==2.2.2
     # via gemseo
-egobox==0.27.1
+egobox==0.28.0
     # via smt
 et-xmlfile==2.0.0
     # via openpyxl
@@ -46,7 +46,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.57.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@f4b11c94a416c79f7a6d461a769605dda6bc733b
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@430dfb6bd2a08eddaf2455e6dda942218501c80a
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -155,7 +155,7 @@ mkdocs-include-markdown-plugin==7.1.5
     # via gemseo-mlearning (pyproject.toml)
 mkdocs-literate-nav==0.6.2
     # via gemseo-mlearning (pyproject.toml)
-mkdocs-material==9.6.11
+mkdocs-material==9.6.12
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   mkdocs-gallery
