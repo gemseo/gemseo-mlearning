@@ -25,7 +25,7 @@ from numpy import double
 from numpy import newaxis
 from strenum import StrEnum
 
-from gemseo_mlearning.regression.smt_regressor_settings import SMTRegressorSettings
+from gemseo_mlearning.regression.smt_regressor_settings import SMT_Regressor_Settings
 
 if TYPE_CHECKING:
     from gemseo.typing import NumberArray
@@ -48,7 +48,7 @@ class SMTRegressor(BaseRegressor):
         for the list of surrogate models and options.
     """
 
-    Settings: ClassVar[type[SMTRegressorSettings]] = SMTRegressorSettings
+    Settings: ClassVar[type[SMT_Regressor_Settings]] = SMT_Regressor_Settings
 
     def _post_init(self):
         super()._post_init()

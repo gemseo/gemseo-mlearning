@@ -56,7 +56,7 @@ SMTSurrogateModel = StrEnum("SurrogateModel", list(_NAMES_TO_CLASSES.keys()))
 """The class name of an SMT surrogate model."""
 
 
-class SMTRegressorSettings(BaseRegressorSettings):
+class SMT_Regressor_Settings(BaseRegressorSettings):  # noqa: N801
     """The settings for the SMT's regression models."""
 
     model_class_name: SMTSurrogateModel = Field(
@@ -74,3 +74,7 @@ class SMTRegressorSettings(BaseRegressorSettings):
         new_parameters = {"print_global": False}
         new_parameters.update(parameters)
         return new_parameters
+
+
+# TODO: API: remove this alias.
+SMTRegressorSettings = SMT_Regressor_Settings
