@@ -34,7 +34,7 @@ from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
 )
-from gemseo_mlearning.algos.opt.sbo_settings import SBOSettings
+from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
 
 if TYPE_CHECKING:
     from gemseo.algos.base_problem import BaseProblem
@@ -71,7 +71,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
             handle_inequality_constraints=False,
             handle_integer_variables=True,  # provided acquisition handles integers
             internal_algorithm_name="SBO",
-            Settings=SBOSettings,
+            Settings=SBO_Settings,
         )
     }
 

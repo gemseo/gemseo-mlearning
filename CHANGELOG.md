@@ -26,6 +26,19 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Develop
+
+### Added
+
+- [gemseo_mlearning.settings.opt][gemseo_mlearning.settings.opt]: the Pydantic models to define the settings of the optimization algorithms.
+- [gemseo_mlearning.settings.mlearning][gemseo_mlearning.settings.mlearning]: the Pydantic models to define the settings of the machine learning algorithms.
+
+### Changed
+
+- `SBOSettings` renamed to `SBO_Settings`.
+- `SMTEGOSettings` renamed to `SMT_EGO_Settings`.
+- `SMTRegressorSettings` renamed to `SMT_Regressor_Settings`.
+
 ## Version 2.0.1 (April 2025)
 
 ### Fixed

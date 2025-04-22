@@ -54,7 +54,7 @@ are respectively denoted $\{y_1,\ldots,y_n\}$, $\mu(x)$ and $\sigma(x)$.
 
 ### General
 
-::: gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings
+::: gemseo_mlearning.algos.opt.smt.ego_settings.SMT_EGO_Settings
     options:
       show_root_heading: false
       show_bases: false

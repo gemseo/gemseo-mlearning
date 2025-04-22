@@ -36,7 +36,7 @@ from smt.utils.design_space import DesignSpace as SMTDesignSpace
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import AcquisitionCriterion
 from gemseo_mlearning.algos.opt.smt.ego_settings import ParallelStrategy
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
 from gemseo_mlearning.algos.opt.smt.ego_settings import Surrogate
 from gemseo_mlearning.algos.opt.smt.smt_ego import SMTEGO
 
@@ -107,7 +107,7 @@ def test_batch(n_parallel, x_opt, normalize_design_space, f_opt):  # noqa: N803
     optimization_problem = Rosenbrock()
     optimization_result = SMTEGO().execute(
         optimization_problem,
-        settings_model=SMTEGOSettings(
+        settings_model=SMT_EGO_Settings(
             n_start=2,
             n_doe=5,
             max_iter=7,

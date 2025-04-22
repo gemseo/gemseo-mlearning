@@ -64,7 +64,7 @@ class AcquisitionCriterion(StrEnum):
     """
 
 
-class SBOSettings(BaseOptimizerSettings):
+class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
     """The settings for the surrogate-based optimization algorithm."""
 
     acquisition_algorithm: str = Field(
@@ -167,3 +167,7 @@ class SBOSettings(BaseOptimizerSettings):
             """
         ),
     )
+
+
+# TODO: API: remove this alias.
+SBOSettings = SBO_Settings

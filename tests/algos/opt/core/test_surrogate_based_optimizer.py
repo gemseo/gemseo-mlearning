@@ -29,6 +29,8 @@ from pandas._testing import assert_frame_equal
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
 )
+from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
+from gemseo_mlearning.algos.opt.sbo_settings import SBOSettings
 
 
 @pytest.mark.parametrize(
@@ -131,3 +133,8 @@ def test_ml_regression_algo_instance(regression_algorithm):
     )
     optimizer.execute(1)
     assert_frame_equal(optimizer._SurrogateBasedOptimizer__dataset, dataset)
+
+
+def test_alias():
+    """Verify that SBOSettings is an alias of SBO_Settings."""
+    assert SBOSettings == SBO_Settings
