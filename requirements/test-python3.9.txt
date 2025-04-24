@@ -38,7 +38,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.57.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@6b88b9302b4d79bbe3260bddd6f4a748aedf4ace
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@15afd03c77dec4a4b052b19050164c7f5e07572a
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -66,7 +66,7 @@ jsonpointer==3.0.0
     # via jenn
 jsonschema==4.23.0
     # via jenn
-jsonschema-specifications==2024.10.1
+jsonschema-specifications==2025.4.1
     # via jsonschema
 kiwisolver==1.4.7
     # via matplotlib
