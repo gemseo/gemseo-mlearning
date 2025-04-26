@@ -6,7 +6,7 @@ attrs==25.3.0
     # via
     #   jsonschema
     #   referencing
-certifi==2025.1.31
+certifi==2025.4.26
     # via requests
 charset-normalizer==3.4.1
     # via requests
@@ -24,7 +24,7 @@ dill==0.4.0
     # via openturns
 docstring-inheritance==2.2.2
     # via gemseo
-egobox==0.28.0
+egobox==0.28.1
     # via smt
 et-xmlfile==2.0.0
     # via openpyxl
