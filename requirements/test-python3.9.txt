@@ -38,7 +38,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.57.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@394848ea675d25e9e4a3e194e0991d515ab81619
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@2bf6471a6ce887783339a6c67c14638b2e8822a3
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -103,7 +103,7 @@ openturns==1.24
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   gemseo
-orjson==3.10.16
+orjson==3.10.18
     # via jenn
 packaging==24.2
     # via
