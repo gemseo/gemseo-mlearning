@@ -46,7 +46,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.57.0
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@87e86e4320ad7fa6748fe41572b14323a7d4c140
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@de414705bc3769d546606f3e4c97b90f62890ddd
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -307,7 +307,7 @@ scipy==1.13.1
     #   pydoe3
     #   scikit-learn
     #   smt
-setuptools==80.3.0
+setuptools==80.3.1
     # via mkdocs-bibtex
 six==1.17.0
     # via
