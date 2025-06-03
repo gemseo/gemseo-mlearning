@@ -34,7 +34,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.58.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@c391bd74bb4c3c8c9a1b6557c31f94372a0dd20f
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@6569e713824311bbefd50feb843ef7b83bad2a6e
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -127,9 +127,11 @@ pydoe3==1.0.4
     # via
     #   gemseo
     #   smt
+pygments==2.19.1
+    # via pytest
 pyparsing==3.2.3
     # via matplotlib
-pytest==8.3.5
+pytest==8.4.0
     # via
     #   gemseo-mlearning (pyproject.toml)
     #   pytest-cov
@@ -182,7 +184,7 @@ threadpoolctl==3.6.0
     # via scikit-learn
 tqdm==4.67.1
     # via gemseo
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via
     #   gemseo
     #   pydantic
