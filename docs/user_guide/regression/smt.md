@@ -8,7 +8,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 # SMT's surrogate models
 
-The [surrogate modeling toolbox (SMT)](https://smt.readthedocs.io)
+![SMT](../../images/smt_logo.webp){ align=right } The [surrogate modeling toolbox (SMT)](https://smt.readthedocs.io)
 is an open-source Python package for surrogate modeling with a focus on derivatives [@SMT2019][@saves2024smt].
 
 `gemseo-mlearning` proposes the [SMTRegressor][gemseo_mlearning.regression.smt_regressor.SMTRegressor]
