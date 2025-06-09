@@ -949,18 +949,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general" class="md-nav__link">
+  <a href="#acquisition-criteria" class="md-nav__link">
     <span class="md-ellipsis">
-      General
+      Acquisition criteria
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#acquisition-criteria" class="md-nav__link">
+  <a href="#optimization-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
-      Acquisition criteria
+      Optimization algorithm
     </span>
   </a>
   
@@ -4932,18 +4932,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#general" class="md-nav__link">
+  <a href="#acquisition-criteria" class="md-nav__link">
     <span class="md-ellipsis">
-      General
+      Acquisition criteria
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#acquisition-criteria" class="md-nav__link">
+  <a href="#optimization-algorithm" class="md-nav__link">
     <span class="md-ellipsis">
-      Acquisition criteria
+      Optimization algorithm
     </span>
   </a>
   
@@ -5000,7 +5000,7 @@ http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 <h1 id="smts-surrogate-based-optimizers">SMT's surrogate-based optimizers<a class="headerlink" href="#smts-surrogate-based-optimizers" title="Permanent link">&para;</a></h1>
-<p>The <a href="https://smt.readthedocs.io">surrogate modeling toolbox (SMT)</a>
+<p><img align="right" alt="SMT" src="../../../images/smt_logo.webp" /> The <a href="https://smt.readthedocs.io">surrogate modeling toolbox (SMT)</a>
 is an open-source Python package for surrogate modeling with a focus on derivatives <sup id="fnref:SMT2019"><a class="footnote-ref" href="#fn:SMT2019">1</a></sup><sup id="fnref:saves2024smt"><a class="footnote-ref" href="#fn:saves2024smt">2</a></sup>.</p>
 <p><code>gemseo-mlearning</code> proposes the <a class="autorefs autorefs-internal" title="            SMTEGO" href="../../../reference/gemseo_mlearning/algos/opt/smt/smt_ego/#gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO">SMTEGO</a> optimization library
 to easily use the surrogate-based optimizers available in SMT,
@@ -5027,148 +5027,14 @@ the settings are</p>
   from 50 start points with a limit of 20 iterations per local optimization.</li>
 </ul>
 <h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
-<p>Regarding the settings of the SMT's <code>EGO</code> class,
-you will find more information in the <a href="https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html">SMT's user guide</a>
-by looking at the table at the bottom of the page.</p>
-<p>In the following,
-the training output values already used
-and the output and uncertainty predictions at a given input point <span class="arithmatex">\(x\)</span>
-are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>, <span class="arithmatex">\(\mu(x)\)</span> and <span class="arithmatex">\(\sigma(x)\)</span>.</p>
-<h3 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h3>
-
-
-<div class="doc doc-object doc-class">
-
-
-
-
-    <div class="doc doc-contents first">
-
-
-        <p>The settings of the SMT's SBO algorithm.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>criterion</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            AcquisitionCriterion (gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion)" href="../../../reference/gemseo_mlearning/algos/opt/smt/ego_settings/#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
-                  <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The acquisition criterion.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>enable_tunneling</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>False</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to enable the penalization of points that have been already evaluated in EI criterion.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_doe</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>10</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points of the initial LHS DOE to train the surrogate.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_max_optim</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>20</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The maximum number of iterations for each sub-optimization.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_parallel</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points to be acquired in parallel; if <code>1</code>, acquire points sequentially.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_start</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>50</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of sub-optimizations.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>qEI</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            ParallelStrategy (gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy)" href="../../../reference/gemseo_mlearning/algos/opt/smt/ego_settings/#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
-                  <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The strategy to acquire points in parallel.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>random_state</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The Numpy RandomState object or seed number which controls random draws.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>surrogate</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            Surrogate (gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate)" href="../../../reference/gemseo_mlearning/algos/opt/smt/ego_settings/#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
-                  <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The SMT Kriging-based surrogate model used internally; either an instance of the surrogate before training or its class name.</p>
-          </div>
-        </li>
-    </ul>
-
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div><h3 id="acquisition-criteria">Acquisition criteria<a class="headerlink" href="#acquisition-criteria" title="Permanent link">&para;</a></h3>
-<p>The three acquisition criteria are</p>
+<p>This section presents the options of the optimization algorithm <code>"SMT_EGO"</code>.</p>
+<p>Their default values are defined in <a class="autorefs autorefs-internal" title="            SMT_EGO_Settings" href="../../../reference/gemseo_mlearning/algos/opt/smt/ego_settings/#gemseo_mlearning.algos.opt.smt.ego_settings.SMT_EGO_Settings">SMT_EGO_Settings</a>.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You will find more information in the <a href="https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html">SMT's user guide</a>.</p>
+</div>
+<h3 id="acquisition-criteria">Acquisition criteria<a class="headerlink" href="#acquisition-criteria" title="Permanent link">&para;</a></h3>
+<p>You can use the option <code>criterion</code> to change the acquisition criterion:</p>
 <table>
 <thead>
 <tr>
@@ -5195,15 +5061,21 @@ are respectively denoted <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span>,
 </tr>
 </tbody>
 </table>
-<p>where <span class="arithmatex">\(Y\)</span> is a Gaussian random variable with mean <span class="arithmatex">\(\mu(x)\)</span> and standard deviation <span class="arithmatex">\(\sigma(x)\)</span>,</p>
+<p>where <span class="arithmatex">\(Y\)</span> is a Gaussian random variable with mean function <span class="arithmatex">\(\mu\)</span> and standard deviation function <span class="arithmatex">\(\sigma\)</span>,
+and where <span class="arithmatex">\(\{y_1,\ldots,y_n\}\)</span> denote the training output values already used.</p>
+<h3 id="optimization-algorithm">Optimization algorithm<a class="headerlink" href="#optimization-algorithm" title="Permanent link">&para;</a></h3>
+<p>The optimization algorithm <code>"SMT_EGO"</code> uses sub-optimizations to optimize the acquisition criterion.
+The number of sub-optimizations is parametrized by <code>n_start</code>
+while the maximum number of iterations for each sub-optimization is parametrized by <code>n_max_optim</code>.</p>
 <h3 id="parallel-acquisition">Parallel acquisition<a class="headerlink" href="#parallel-acquisition" title="Permanent link">&para;</a></h3>
 <p>Points can be acquired by batch of <span class="arithmatex">\(q&gt;1\)</span> points,
 as Kriging is well-suited to parallelize optimization<sup id="fnref:ginsbourger2010kriging"><a class="footnote-ref" href="#fn:ginsbourger2010kriging">3</a></sup>.
 To this aim,
 when <code>n_parallel</code> is greater than 1,
 SMT uses a technique of virtual points to update the training dataset with <span class="arithmatex">\(k\leq q\)</span> training points
-whose output value mimics the substituted model using a strategy.
-The four strategies are:</p>
+whose output value mimics the substituted model using a strategy.</p>
+<p>You can use the options <code>n_parallel</code> to acquire <code>n_parallel</code> points in parallel using the acquisition strategy <code>qEI</code>.</p>
+<p>The strategies are:</p>
 <table>
 <thead>
 <tr>
@@ -5241,7 +5113,10 @@ The four strategies are:</p>
 </tbody>
 </table>
 <p>where <span class="arithmatex">\(\kappa(x)\)</span> is the realization of a random variable distributed according to the standard normal distribution.</p>
+<p>You can also enable the penalization of points that have been already evaluated in EI criterion,
+by using the option <code>enable_tunneling</code>.</p>
 <h3 id="surrogate-models">Surrogate models<a class="headerlink" href="#surrogate-models" title="Permanent link">&para;</a></h3>
+<p>You can use the option <code>surrogate</code> to change the surrogate model:</p>
 <table>
 <thead>
 <tr>
@@ -5272,6 +5147,7 @@ The four strategies are:</p>
 </tr>
 </tbody>
 </table>
+<p>You can also change the size of the training dataset using the option <code>n_doe</code>.</p>
 <div class="footnote">
 <hr />
 <ol>

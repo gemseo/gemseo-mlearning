@@ -5187,36 +5187,69 @@ and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
 
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>level</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The quantile level.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>uncertain_space</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.algos.parameter_space.ParameterSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.parameter_space.html#gemseo.algos.parameter_space.ParameterSpace">ParameterSpace</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The uncertain variable space.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_samples</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>100000</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of samples
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>level</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The quantile level.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>uncertain_space</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The uncertain variable space.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.algos.parameter_space.ParameterSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.parameter_space.html#gemseo.algos.parameter_space.ParameterSpace">ParameterSpace</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_samples</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of samples
 to estimate the quantile of the regressor by Monte Carlo.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>100000</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 

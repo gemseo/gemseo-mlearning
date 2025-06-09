@@ -5303,17 +5303,32 @@
 
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>regressor</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>A regression model.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>regressor</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A regression model.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -5495,17 +5510,32 @@
         <p>Re-train the regressor from a new learning set.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>learning_set</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.dataset.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The new learning set.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>learning_set</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The new learning set.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.datasets.dataset.Dataset" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.datasets.dataset.html#gemseo.datasets.dataset.Dataset">Dataset</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -5565,39 +5595,76 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>input_data</code></b>
-              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The input data.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>level</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
-                  <code>0.95</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>A quantile level.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The input data.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>level</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A quantile level.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.95</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]] | None</code>
-          –
-          <div class="doc-md-description">
-            <p>The lower and upper bound values of the regressor.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>, <a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a>]] | None</code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The lower and upper bound values of the regressor.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -5690,29 +5757,56 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>input_data</code></b>
-              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The input data.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The input data.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-          –
-          <div class="doc-md-description">
-            <p>The output mean of the regressor.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The output mean of the regressor.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -5784,40 +5878,75 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         <p>Generate samples from the random process.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>input_data</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The <span class="arithmatex">\(N\)</span> input points of dimension <span class="arithmatex">\(d\)</span>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The <span class="arithmatex">\(N\)</span> input points of dimension <span class="arithmatex">\(d\)</span>
 at which to observe the random process;
 shaped as <code>(N, d)</code>.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_samples</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The number of samples <code>M</code>.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_samples</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of samples <code>M</code>.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
-          –
-          <div class="doc-md-description">
-            <p>The output samples per output dimension shaped as <code>(N, M, p)</code>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The output samples per output dimension shaped as <code>(N, M, p)</code>
 where <code>p</code> is the output dimension.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -5886,29 +6015,56 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>input_data</code></b>
-              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The input data.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The input data.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-          –
-          <div class="doc-md-description">
-            <p>The output standard deviation  of the regressor.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The output standard deviation  of the regressor.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -5987,29 +6143,56 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>input_data</code></b>
-              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The input data.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The input data.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-          –
-          <div class="doc-md-description">
-            <p>The output variance of the regressor.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The output variance of the regressor.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -6075,20 +6258,37 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         <p>Train the regressor from the learning dataset.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>samples</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>, default:
-                  <code>None</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The indices of the learning samples.
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>samples</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The indices of the learning samples.
 If <code>None</code>, use the whole learning dataset</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a>] | None</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">
@@ -6137,29 +6337,56 @@ e.g. <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
 <p>The output data type will be consistent with the input data type.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>input_data</code></b>
-              (<code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The input data.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The input data.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
-          –
-          <div class="doc-md-description">
-            <p>The output value(s) of the regressor.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The output value(s) of the regressor.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">

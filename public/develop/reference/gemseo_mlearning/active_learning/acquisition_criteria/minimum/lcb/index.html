@@ -5155,49 +5155,94 @@ and <span class="arithmatex">\(\kappa&gt;0\)</span>.</p>
 
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>regressor_distribution</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.BaseRegressorDistribution)" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The distribution of the regressor.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>kappa</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>, default:
-                  <code>2.0</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>A factor associated with the standard deviation
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>regressor_distribution</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The distribution of the regressor.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.BaseRegressorDistribution)" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>kappa</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>A factor associated with the standard deviation
 to increase the mean value.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>batch_size</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points to be acquired in parallel;
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>2.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>batch_size</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of points to be acquired in parallel;
 if <code>1</code>, acquire points sequentially.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>mc_size</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>10000</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The sample size to estimate the acquisition criterion in parallel.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>1</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>mc_size</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The sample size to estimate the acquisition criterion in parallel.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>10000</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 

@@ -5720,99 +5720,562 @@ the standard normal distribution.</p>
         <p>The settings of the SMT's SBO algorithm.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>criterion</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            AcquisitionCriterion (gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>, default:
-                  <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The acquisition criterion.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>enable_tunneling</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>False</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to enable the penalization of points that have been already evaluated in EI criterion.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_doe</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>10</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points of the initial LHS DOE to train the surrogate.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_max_optim</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>20</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The maximum number of iterations for each sub-optimization.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_parallel</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points to be acquired in parallel; if <code>1</code>, acquire points sequentially.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_start</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>50</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of sub-optimizations.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>qEI</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            ParallelStrategy (gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>, default:
-                  <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The strategy to acquire points in parallel.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>random_state</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>1</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The Numpy RandomState object or seed number which controls random draws.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>surrogate</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            Surrogate (gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>, default:
-                  <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The SMT Kriging-based surrogate model used internally; either an instance of the surrogate before training or its class name.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>enable_progress_bar</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to enable the progress bar in the optimization log.</p>
+<p>If <code>None</code>, use the global value of <code>enable_progress_bar</code> (see the
+<code>configure</code> function to change it globally).</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>eq_tolerance</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The tolerance on the equality constraints.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.01</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ineq_tolerance</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The tolerance on the inequality constraints.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.0001</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>log_problem</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to log the definition and result of the problem.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>max_time</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The maximum runtime in seconds, disabled if 0.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>normalize_design_space</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to normalize the design space variables between 0 and 1.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reset_iteration_counters</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to reset the iteration counters before each execution.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>round_ints</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to round the integer variables.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>use_database</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to wrap the functions in the database.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>use_one_line_progress_bar</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to log the progress bar on a single line.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>store_jacobian</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to store the Jacobian matrices in the database.</p>
+<p>This argument is ignored when the <code>use_database</code> option is <code>False</code>.
+If a gradient-based algorithm is used,
+this option cannot be set along with kkt options.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ftol_rel</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The relative tolerance on the objective function.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>ftol_abs</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The absolute tolerance on the objective function.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>max_iter</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The maximum number of iterations.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>1000</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>scaling_threshold</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The threshold on the reference function value that triggers scaling.</p>
+<p>If <code>None</code>, do not scale the functions.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="Annotated">Annotated</span>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a>, <span title="Ge">Ge</span>(<span title="Ge(ge)">ge</span>=0)] | None</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>stop_crit_n_x</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The minimum number of design vectors to consider in the stopping criteria.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>3</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>xtol_rel</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The relative tolerance on the design parameters.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>xtol_abs</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The absolute tolerance on the design parameters.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>0.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>criterion</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The acquisition criterion.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            AcquisitionCriterion (gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.AcquisitionCriterion">AcquisitionCriterion</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&lt;AcquisitionCriterion.EI: &#39;EI&#39;&gt;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>enable_tunneling</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to enable the penalization of points that have been already evaluated in EI criterion.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>False</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_doe</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of points of the initial LHS DOE to train the surrogate.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>10</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_max_optim</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The maximum number of iterations for each sub-optimization.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>20</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_parallel</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of points to be acquired in parallel; if <code>1</code>, acquire points sequentially.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>1</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_start</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of sub-optimizations.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>50</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>qEI</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The strategy to acquire points in parallel.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            ParallelStrategy (gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.ParallelStrategy">ParallelStrategy</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&lt;ParallelStrategy.KBUB: &#39;KBUB&#39;&gt;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>random_state</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The Numpy RandomState object or seed number which controls random draws.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>1</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>surrogate</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The SMT Kriging-based surrogate model used internally; either an instance of the surrogate before training or its class name.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            Surrogate (gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate)" href="#gemseo_mlearning.algos.opt.smt.ego_settings.Surrogate">Surrogate</a> | <span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&lt;Surrogate.KRG: &#39;KRG&#39;&gt;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 

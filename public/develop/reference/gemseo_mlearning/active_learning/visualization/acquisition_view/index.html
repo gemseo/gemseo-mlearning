@@ -5058,31 +5058,58 @@
 
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>active_learning_algo</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            ActiveLearningAlgo (gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo)" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The active learning algorithm
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>active_learning_algo</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The active learning algorithm
 using sequential acquisition.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            ActiveLearningAlgo (gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo)" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Raises:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
-            –
-          <div class="doc-md-description">
-            <p>When the active learning algorithm uses parallel
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>When the active learning algorithm uses parallel
 acquisition.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -5184,88 +5211,167 @@ and the points added by the active learning procedure are represented
 by plus signs and labeled by their position in the learning dataset.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>new_point</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.typing.RealArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.RealArray">RealArray</a> | None</code>, default:
-                  <code>None</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The new point to be acquired.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>discipline</code></b>
-              (<code><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a> | None</code>, default:
-                  <code>None</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The discipline for which <code>n_test**2</code> evaluations will be done.
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>new_point</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The new point to be acquired.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.typing.RealArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.RealArray">RealArray</a> | None</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>discipline</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The discipline for which <code>n_test**2</code> evaluations will be done.
 If <code>None</code>,
 do not plot the discipline, i.e. the first subplot.
 In particular,
 if the discipline is costly,
 it is better to leave this argument to <code>None</code>.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>n_test</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>, default:
-                  <code>30</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The number of points per dimension.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>filled</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>True</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to plot filled contours.
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a> | None</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>None</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>n_test</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of points per dimension.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>30</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>filled</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to plot filled contours.
 Otherwise, plot contour lines.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>show</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>True</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to display the view.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>file_path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>, default:
-                  <code>&#39;&#39;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The file path to save the view.
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>show</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to display the view.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>file_path</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The file path to save the view.
 If empty, do not save it.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="matplotlib.figure.Figure" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure">Figure</a></code>
-          –
-          <div class="doc-md-description">
-            <p>The acquisition view.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><a class="autorefs autorefs-external" title="matplotlib.figure.Figure" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure">Figure</a></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The acquisition view.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">

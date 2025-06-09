@@ -5057,30 +5057,57 @@
 
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>active_learning_algo</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            ActiveLearningAlgo (gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo)" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>The active learning algorithm.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>active_learning_algo</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The active learning algorithm.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            ActiveLearningAlgo (gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo)" href="../../active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Raises:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
-            –
-          <div class="doc-md-description">
-            <p>When there is no quantity of interest
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RAISES</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+              <span class="doc-raises-annotation">
+                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
+              </span>
+            </td>
+            <td class="doc-raises-details">
+              <div class="doc-md-description">
+                <p>When there is no quantity of interest
 associated with the acquisition criterion.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -5162,74 +5189,143 @@ associated with the acquisition criterion.</p>
         <p>Draw the QOI history.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>show</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>True</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to display the view.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>file_path</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>, default:
-                  <code>&#39;&#39;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The file path to save the view.
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>show</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to display the view.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>file_path</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The file path to save the view.
 If empty, do not save it.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>label</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>, default:
-                  <code>&#39;&#39;</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The label for the QOI.
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>label</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The label for the QOI.
 If empty, use the name of the acquisition criterion family.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>add_markers</code></b>
-              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>, default:
-                  <code>True</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>Whether to add markers.</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>**options</code></b>
-              (<code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>, default:
-                  <code>{}</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>The options to create the
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>add_markers</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to add markers.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>**options</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The options to create the
 <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a> object.</p>
-          </div>
-        </li>
-    </ul>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>{}</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></code>
-          –
-          <div class="doc-md-description">
-            <p>A view of the QOI history.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>A view of the QOI history.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
             <details class="quote">

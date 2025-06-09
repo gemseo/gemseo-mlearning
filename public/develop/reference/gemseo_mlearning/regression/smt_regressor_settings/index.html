@@ -5067,17 +5067,72 @@
         <p>The settings for the SMT's regression models.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>model_class_name</code></b>
-              (<code><span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>The class name of a surrogate model available in SMT,i.e. a subclass of<code>smt.surrogate_models.surrogate_model.SurrogateModel</code>.</p>
-          </div>
-        </li>
-    </ul>
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_names</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The names of the input variables</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="Sequence">Sequence</span>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>()</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_names</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The names of the output variables</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="Sequence">Sequence</span>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>]</code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>()</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>model_class_name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The class name of a surrogate model available in SMT, i.e. a subclass of <code>smt.surrogate_models.surrogate_model.SurrogateModel</code>.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="smt.surrogate_models.surrogate_model.SurrogateModel">SurrogateModel</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
