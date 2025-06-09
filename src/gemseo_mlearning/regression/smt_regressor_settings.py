@@ -62,8 +62,8 @@ class SMT_Regressor_Settings(BaseRegressorSettings):  # noqa: N801
     model_class_name: SMTSurrogateModel = Field(
         default=...,
         description=(
-            "The class name of a surrogate model available in SMT,"
-            "i.e. a subclass of`smt.surrogate_models.surrogate_model.SurrogateModel`."
+            "The class name of a surrogate model available in SMT, "
+            "i.e. a subclass of `smt.surrogate_models.surrogate_model.SurrogateModel`."
         ),
     )
 
