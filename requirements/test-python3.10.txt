@@ -24,7 +24,7 @@ dill==0.4.0
     # via openturns
 docstring-inheritance==2.2.2
     # via gemseo
-egobox==0.29.0
+egobox==0.29.1
     # via smt
 et-xmlfile==2.0.0
     # via openpyxl
@@ -36,7 +36,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.58.2
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@3e4de7aaa3adf185ebe51c29941f2ed1ab2dcb89
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@59d4b659f6308042053c7c23ed4fa6a891721fb7
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
