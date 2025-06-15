@@ -6,7 +6,7 @@ attrs==25.3.0
     # via
     #   jsonschema
     #   referencing
-certifi==2025.4.26
+certifi==2025.6.15
     # via requests
 charset-normalizer==3.4.2
     # via requests
@@ -38,7 +38,7 @@ fastjsonschema==2.21.1
     # via gemseo
 fonttools==4.58.4
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@10597cb1b691a797cbb7202ffbfe6c83dc47cc89
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@8bc9a8b00e555499e36d3129d7cff8635213f592
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
