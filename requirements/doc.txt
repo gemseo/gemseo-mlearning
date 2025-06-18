@@ -100,7 +100,7 @@ jsonschema-specifications==2025.4.1
     # via jsonschema
 kiwisolver==1.4.7
     # via matplotlib
-latexcodec==3.0.0
+latexcodec==3.0.1
     # via pybtex
 markdown==3.8
     # via
