@@ -137,7 +137,7 @@ pydoe3==1.0.4
     # via
     #   gemseo
     #   smt
-pygments==2.19.1
+pygments==2.19.2
     # via pytest
 pyparsing==3.2.3
     # via matplotlib
