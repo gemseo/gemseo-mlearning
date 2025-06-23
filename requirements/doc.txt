@@ -8,11 +8,11 @@ attrs==25.3.0
     #   referencing
 babel==2.17.0
     # via mkdocs-material
-backrefs==5.8
+backrefs==5.9
     # via mkdocs-material
 black==25.1.0
     # via gemseo-mlearning (pyproject.toml)
-bracex==2.5.post1
+bracex==2.6
     # via wcmatch
 certifi==2025.6.15
     # via requests
@@ -351,7 +351,7 @@ verspec==0.1.0
     # via mike
 watchdog==6.0.0
     # via mkdocs
-wcmatch==10.0
+wcmatch==10.1
     # via mkdocs-include-markdown-plugin
 wcwidth==0.2.13
     # via prettytable
