@@ -46,7 +46,7 @@ fieldz==0.1.0
     # via griffe-fieldz
 fonttools==4.58.4
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@db3823fa206b9908dca50707a6adb72e8451429c
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@3220164ec5606ec0d088dc1498cc8487372d4459
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -233,7 +233,7 @@ prettytable==3.15.1
     # via gemseo
 psutil==7.0.0
     # via openturns
-pybtex==0.25.0
+pybtex==0.25.1
     # via mkdocs-bibtex
 pydantic==2.10.6
     # via gemseo
