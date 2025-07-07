@@ -3,10 +3,11 @@ name = "gemseo-mlearning"
 authors = [
     {name = "Matthias De Lozzo", email = "contact@gemseo.org"}
 ]
-description = "Miscellaneous machine learning capabilities."
-license = {text = "GNU Lesser General Public License v3"}
+description = "A GEMSEO extension for machine learning."
+readme = "README.md"
+license = "LGPL-3.0"
+license-files = ["LICENSE.txt"]
 classifiers = [
-    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering",
     "Operating System :: POSIX :: Linux",
@@ -29,8 +30,8 @@ dependencies = [
     "smt[gpx] >=2.5.0,<=2.7.0",
 ]
 
-[project.optional-dependencies]
-test = [
+[dependency-groups]
+dev = [
     "covdefaults",
     "pytest <9",
     "pytest-cov",
@@ -53,16 +54,12 @@ doc = [
 ]
 
 [project.urls]
-Homepage = "https://gitlab.com/gemseo"
+Homepage = "https://gemseo.org"
 Source = "https://gitlab.com/gemseo/dev/gemseo-mlearning"
-Tracker = "https://gitlab.com/gemseo/dev/gemseo-mlearning/-/issues"
-
-[project.readme]
-file = "README.md"
-content-type = "text/markdown"
+Issues = "https://gitlab.com/gemseo/dev/gemseo-mlearning/-/issues"
 
 [project.entry-points]
-gemseo_plugins = { gemseo-mlearning = "gemseo_mlearning"}
+gemseo_plugins = { gemseo-mlearning = "gemseo_mlearning" }
 
 [build-system]
 requires = [
@@ -72,9 +69,3 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
-
-[tool.setuptools]
-license-files = [
-    "LICENSE.txt",
-    "CREDITS.md",
-]
