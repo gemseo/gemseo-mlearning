@@ -14,7 +14,7 @@ black==25.1.0
     # via gemseo-mlearning (pyproject.toml:doc)
 bracex==2.6
     # via wcmatch
-certifi==2025.6.15
+certifi==2025.7.9
     # via requests
 charset-normalizer==3.4.2
     # via requests
@@ -44,7 +44,7 @@ fieldz==0.1.2
     # via griffe-fieldz
 fonttools==4.58.5
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@c4035540b0578869ee477cfd6f26f60242c76770
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@02873591c0419df401e0df33966463fc7769344d
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
