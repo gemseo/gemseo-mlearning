@@ -59,7 +59,7 @@ griffe==1.9.0
     #   griffe-fieldz
     #   griffe-inherited-docstrings
     #   mkdocstrings-python
-griffe-fieldz==0.2.1
+griffe-fieldz==0.3.0
     # via gemseo-mlearning (pyproject.toml:doc)
 griffe-inherited-docstrings==1.1.1
     # via gemseo-mlearning (pyproject.toml:doc)
