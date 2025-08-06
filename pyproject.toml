@@ -24,7 +24,8 @@ requires-python = ">=3.9, <3.13"
 dependencies = [
     "gemseo[all] >=6,<7",
     "numpy",
-    "openturns",
+    # Version 1.25 break one of the quantile example.
+    "openturns <1.25",
     "scikit-learn",
     "scipy",
     "smt[gpx] >=2.5.0,<=2.7.0",
