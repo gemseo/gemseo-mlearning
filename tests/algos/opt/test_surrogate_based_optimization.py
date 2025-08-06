@@ -97,7 +97,7 @@ def test_save(regression_algorithm, tmp_wd):
     assert_frame_equal(model.learning_set, regression_algorithm.learning_set)
 
 
-def test_problem_counters():
+def test_problem_counters(enable_function_statistics):
     """Check the counters attached to the optimization problem."""
     problem = Rosenbrock()
     OptimizationLibraryFactory().execute(
