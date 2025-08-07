@@ -57,7 +57,8 @@ def get_setting_classes(
             ]
 
     for cls in SettingsFactory().classes:
-        yield module_, cls
+        if cls.__module__.startswith("gemseo_mlearning"):
+            yield module_, cls
 
 
 @pytest.mark.parametrize(
