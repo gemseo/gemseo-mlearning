@@ -26,7 +26,7 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Develop
+## Version 3.0.0 (August 2025)
 
 ### Added
 
