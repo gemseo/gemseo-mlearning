@@ -115,7 +115,7 @@ class Surrogate(StrEnum):
     """A marginal Gaussian process (MGP) regressor."""
 
 
-class SMTEGOSettings(BaseOptimizerSettings):
+class SMT_EGO_Settings(BaseOptimizerSettings):  # noqa: N801
     """The settings of the SMT's SBO algorithm."""
 
     criterion: AcquisitionCriterion = Field(
@@ -173,3 +173,7 @@ class SMTEGOSettings(BaseOptimizerSettings):
             "either an instance of the surrogate before training or its class name."
         ),
     )
+
+
+# TODO: API: remove this alias.
+SMTEGOSettings = SMT_EGO_Settings

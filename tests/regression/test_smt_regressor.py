@@ -35,6 +35,8 @@ from smt.surrogate_models import RBF
 
 from gemseo_mlearning.regression.smt_regressor import _NAMES_TO_CLASSES
 from gemseo_mlearning.regression.smt_regressor import SMTRegressor
+from gemseo_mlearning.regression.smt_regressor_settings import SMT_Regressor_Settings
+from gemseo_mlearning.regression.smt_regressor_settings import SMTRegressorSettings
 
 
 @pytest.mark.parametrize("name", ["RBF", "KRG"])
@@ -167,3 +169,8 @@ def test_gradient_enhanced_smt_regressor():
         ),
     ):
         regressor.learn()
+
+
+def test_alias():
+    """Verify that SMTRegressorSettings is an alias of SMT_Regressor_Settings."""
+    assert SMTRegressorSettings == SMT_Regressor_Settings

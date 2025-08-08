@@ -29,6 +29,8 @@ from numpy.testing import assert_almost_equal
 from pandas.testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.sbo_settings import AcquisitionCriterion
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
 
 
 def test_default_settings():
@@ -95,7 +97,7 @@ def test_save(regression_algorithm, tmp_wd):
     assert_frame_equal(model.learning_set, regression_algorithm.learning_set)
 
 
-def test_problem_counters():
+def test_problem_counters(enable_function_statistics):
     """Check the counters attached to the optimization problem."""
     problem = Rosenbrock()
     OptimizationLibraryFactory().execute(
@@ -109,3 +111,8 @@ def test_problem_counters():
     assert problem.evaluation_counter.maximum == 13
     assert problem.evaluation_counter.current == 13
     assert problem.objective.n_calls == 14
+
+
+def test_alias():
+    """Verify that SMTEGOSettings is an alias of SMT_EGO_Settings."""
+    assert SMTEGOSettings == SMT_EGO_Settings

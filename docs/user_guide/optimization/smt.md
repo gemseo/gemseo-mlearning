@@ -8,7 +8,7 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 -->
 # SMT's surrogate-based optimizers
 
-The [surrogate modeling toolbox (SMT)](https://smt.readthedocs.io)
+![SMT](../../images/smt_logo.webp){ align=right } The [surrogate modeling toolbox (SMT)](https://smt.readthedocs.io)
 is an open-source Python package for surrogate modeling with a focus on derivatives [@SMT2019][@saves2024smt].
 
 `gemseo-mlearning` proposes the [SMTEGO][gemseo_mlearning.algos.opt.smt.smt_ego.SMTEGO] optimization library
@@ -43,26 +43,16 @@ the settings are
 
 ## Settings
 
-Regarding the settings of the SMT's `EGO` class,
-you will find more information in the [SMT's user guide](https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html)
-by looking at the table at the bottom of the page.
+This section presents the options of the optimization algorithm `"SMT_EGO"`.
 
-In the following,
-the training output values already used
-and the output and uncertainty predictions at a given input point $x$
-are respectively denoted $\{y_1,\ldots,y_n\}$, $\mu(x)$ and $\sigma(x)$.
+Their default values are defined in [SMT_EGO_Settings][gemseo_mlearning.algos.opt.smt.ego_settings.SMT_EGO_Settings].
 
-### General
-
-::: gemseo_mlearning.algos.opt.smt.ego_settings.SMTEGOSettings
-    options:
-      show_root_heading: false
-      show_bases: false
-      show_root_toc_entry: false
+!!! info
+    You will find more information in the [SMT's user guide](https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html).
 
 ### Acquisition criteria
 
-The three acquisition criteria are
+You can use the option `criterion` to change the acquisition criterion:
 
 | Value   | Name                   | Expression                                 |
 |---------|------------------------|--------------------------------------------|
@@ -70,9 +60,17 @@ The three acquisition criteria are
 | `"LCB"` | Lower confidence bound | $\mu(x)-3\times\sigma(x)$                  |
 | `"SBO"` | Kriging believer       | $\mu(x)$                                   |
 
-where $Y$ is a Gaussian random variable with mean $\mu(x)$ and standard deviation $\sigma(x)$,
+where $Y$ is a Gaussian random variable with mean function $\mu$ and standard deviation function $\sigma$,
+and where $\{y_1,\ldots,y_n\}$ denote the training output values already used.
+
+### Optimization algorithm
+
+The optimization algorithm `"SMT_EGO"` uses sub-optimizations to optimize the acquisition criterion.
+The number of sub-optimizations is parametrized by `n_start`
+while the maximum number of iterations for each sub-optimization is parametrized by `n_max_optim`.
 
 ### Parallel acquisition
+
 
 Points can be acquired by batch of $q>1$ points,
 as Kriging is well-suited to parallelize optimization[@ginsbourger2010kriging].
@@ -80,7 +78,10 @@ To this aim,
 when `n_parallel` is greater than 1,
 SMT uses a technique of virtual points to update the training dataset with $k\leq q$ training points
 whose output value mimics the substituted model using a strategy.
-The four strategies are:
+
+You can use the options `n_parallel` to acquire `n_parallel` points in parallel using the acquisition strategy `qEI`.
+
+The strategies are:
 
 | Value      | Name                          | Expression                  |
 |------------|-------------------------------|-----------------------------|
@@ -92,7 +93,12 @@ The four strategies are:
 
 where $\kappa(x)$ is the realization of a random variable distributed according to the standard normal distribution.
 
+You can also enable the penalization of points that have been already evaluated in EI criterion,
+by using the option `enable_tunneling`.
+
 ### Surrogate models
+
+You can use the option `surrogate` to change the surrogate model:
 
 | Value     | Name                                                                                  |
 |-----------|---------------------------------------------------------------------------------------|
@@ -101,3 +107,5 @@ where $\kappa(x)$ is the realization of a random variable distributed according 
 | `"KPLS"`  | Kriging using partial least squares (PLS) to reduce the input dimension               |
 | `"KPLSK"` | A variant of KPLS                                                                     |
 | `"MGP"`   | A marginal Gaussian process (MGP) regressor                                           |
+
+You can also change the size of the training dataset using the option `n_doe`.

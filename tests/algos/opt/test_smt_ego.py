@@ -22,7 +22,6 @@ from typing import TYPE_CHECKING
 from unittest import mock
 
 import pytest
-from gemseo.core.mdo_functions.mdo_function import MDOFunction
 from gemseo.problems.optimization.rosenbrock import Rosenbrock
 from numpy import array
 from numpy.testing import assert_allclose
@@ -36,7 +35,7 @@ from smt.utils.design_space import DesignSpace as SMTDesignSpace
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import AcquisitionCriterion
 from gemseo_mlearning.algos.opt.smt.ego_settings import ParallelStrategy
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
 from gemseo_mlearning.algos.opt.smt.ego_settings import Surrogate
 from gemseo_mlearning.algos.opt.smt.smt_ego import SMTEGO
 
@@ -44,16 +43,23 @@ if TYPE_CHECKING:
     from gemseo.typing import RealArray
 
 
-def scaled_rosenbrock(x: RealArray) -> float:
-    """Evaluate the Rosenbrock function with normalized input data.
+class ScaledRosenbrock:
+    """The Rosenbrock function with normalized inputs."""
 
-    Args:
-        x: The input value.
+    def __init__(self):
+        self.last_eval = None
 
-    Returns:
-        The output value of the Rosenbrock function.
-    """
-    return rosen(x * 4 - 2)
+    def __call__(self, x: RealArray) -> float:
+        """Evaluate the Rosenbrock function with normalized input data.
+
+        Args:
+            x: The input value.
+
+        Returns:
+            The output value of the Rosenbrock function.
+        """
+        self.last_eval = rosen(x * 4 - 2)
+        return self.last_eval
 
 
 @pytest.mark.parametrize("criterion", AcquisitionCriterion)
@@ -73,7 +79,7 @@ def test_criteria(criterion, surrogate):  # noqa: N803
         criterion=criterion,
         surrogate=surrogate,
     )
-    last_eval = optimization_problem.objective.last_eval
+    last_eval = optimization_problem.database.last_item["rosen"]
 
     # Reference results using SMT directly.
     design_space = DesignSpace(array([[0.0, 1.0], [0.0, 1.0]]))
@@ -88,10 +94,9 @@ def test_criteria(criterion, surrogate):  # noqa: N803
         n_max_optim=2,
         evaluator=ParallelEvaluator(1),
     )
-    objective = MDOFunction(scaled_rosenbrock, "scaled_rosenbrock")
-    ego.optimize(fun=objective.evaluate)
-
-    assert_allclose(objective.last_eval, last_eval, atol=1e-2)
+    scaled_rosenbrock = ScaledRosenbrock()
+    ego.optimize(fun=scaled_rosenbrock)
+    assert_allclose(scaled_rosenbrock.last_eval, last_eval, atol=1e-2)
 
 
 @pytest.mark.parametrize(
@@ -107,7 +112,7 @@ def test_batch(n_parallel, x_opt, normalize_design_space, f_opt):  # noqa: N803
     optimization_problem = Rosenbrock()
     optimization_result = SMTEGO().execute(
         optimization_problem,
-        settings_model=SMTEGOSettings(
+        settings_model=SMT_EGO_Settings(
             n_start=2,
             n_doe=5,
             max_iter=7,

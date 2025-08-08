@@ -40,7 +40,7 @@ from smt.surrogate_models import MGP
 from smt.utils.design_space import DesignSpace as SMTDesignSpace
 
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
+from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
 
 if TYPE_CHECKING:
     from gemseo.algos.optimization_problem import OptimizationProblem
@@ -68,7 +68,7 @@ class SMTEGO(BaseOptimizationLibrary):
             description="Efficient Global Optimization",
             internal_algorithm_name="SMT_EGO",
             website="https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html",  # noqa: E501
-            Settings=SMTEGOSettings,
+            Settings=SMT_EGO_Settings,
         )
     }
 

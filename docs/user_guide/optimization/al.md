@@ -57,7 +57,7 @@ $\mu(x)$ and $\sigma(x)$.
 
 ### General
 
-::: gemseo_mlearning.algos.opt.sbo_settings.SBOSettings
+::: gemseo_mlearning.algos.opt.sbo_settings.SBO_Settings
     options:
       show_root_heading: false
       show_bases: false
