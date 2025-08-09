@@ -281,7 +281,7 @@ requests==2.32.4
     #   mkdocs-bibtex
     #   mkdocs-material
     #   responses
-responses==0.25.7
+responses==0.25.8
     # via mkdocs-bibtex
 rpds-py==0.27.0
     # via
