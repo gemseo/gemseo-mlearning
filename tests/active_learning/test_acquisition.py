@@ -170,8 +170,6 @@ def test_init_with_bad_output_dimension(input_space):
     [
         ("Minimum", "Mean"),
         ("Maximum", "Mean"),
-        ("Maximum", "UCB"),
-        ("Minimum", "LCB"),
         ("Exploration", "Variance"),
         ("Exploration", "Distance"),
         ("Exploration", "StandardDeviation"),

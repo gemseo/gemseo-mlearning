@@ -101,3 +101,9 @@ class KrigingDistribution(BaseRegressorDistribution):
         n_samples: int,
     ) -> NumberArray:
         return self.algo.compute_samples(input_data, n_samples)
+
+    def compute_covariance(  # noqa: D102
+        self,
+        input_data: NumberArray,
+    ) -> NumberArray:
+        return self.algo.predict_covariance(input_data)

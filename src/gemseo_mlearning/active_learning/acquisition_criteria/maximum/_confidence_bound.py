@@ -18,6 +18,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from numpy import abs as np_abs
+from numpy import inf
+from numpy import max as np_max
+from numpy import mean
+from numpy import nan_to_num
+from numpy import pi
+from numpy import sign
+from numpy import sqrt
+
 if TYPE_CHECKING:
     from gemseo.typing import NumberArray
 
@@ -53,3 +62,34 @@ class ConfidenceBound:
         mean = self._compute_mean(input_value)
         sigma = self._compute_standard_deviation(input_value)
         return (mean + self.__kappa * sigma) / self._scaling_factor
+
+    def _compute_by_batch(  # noqa: D102
+        self, q_input_values: NumberArray
+    ) -> NumberArray | float:
+        # See Equation 8 in
+        # Wilson, J. T., Moriconi, R., Hutter, F., & Deisenroth, M. P. (2017).
+        # The reparameterization trick for acquisition functions.
+        # arXiv preprint arXiv:1712.00424.
+        q_input_values = self._reshape_input_values(q_input_values)
+        kappa_sign = sign(self.__kappa)
+        try:
+            samples = self._compute_samples(
+                input_data=q_input_values, n_samples=self._mc_size
+            )[..., 0]
+        except TypeError:
+            # The covariance matrix is not positive definite.
+            return -kappa_sign * nan_to_num(inf)
+
+        means = self._compute_mean(q_input_values).ravel()
+        centered_samples = samples - means
+        return (
+            mean(
+                kappa_sign
+                * np_max(
+                    kappa_sign
+                    * (means + self.__kappa * sqrt(pi / 2) * np_abs(centered_samples)),
+                    axis=0,
+                )
+            )
+            / self._scaling_factor
+        )
