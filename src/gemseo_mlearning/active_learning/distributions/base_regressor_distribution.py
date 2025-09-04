@@ -238,3 +238,31 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
             The output samples per output dimension shaped as `(N, M, p)`
             where `p` is the output dimension.
         """
+
+    @abstractmethod
+    def compute_covariance(
+        self,
+        input_data: NumberArray,
+    ) -> NumberArray:
+        r"""Compute the output covariance of the regressor.
+
+        Args:
+            input_data: The $N$ input points of dimension $d$
+                at which to compute the covariance;
+                shaped as $(N, d)$.
+
+        Returns:
+            The posterior covariance matrix at the input points
+            of shape $(Np, Np)$
+            with $p$ the output dimension.
+            The covariance between
+            the $k$-th output
+            at the $i$-th input point
+            and the $l$-th output
+            at the $j$-th input point
+            is located at
+            the $m$-th line and $n$-th column
+            with $m=ip+k$, $n=jp+l$,
+            $i,j\in\{0,\ldots,N-1\}$
+            and $k,l\in\{0,\ldots,p-1\}$.
+        """

@@ -79,16 +79,17 @@ class U(BaseLevelSet):
             samples = self._compute_samples(
                 input_data=q_input_values, n_samples=self._mc_size
             )[..., 0]
-            return nan_to_num(
-                mean(
-                    np_min(
-                        square(self._output_value - samples.T)
-                        / self._compute_variance(q_input_values),
-                        axis=1,
-                    )
-                ),
-                nan=nan_to_num(inf),
-            )
-        # distribution is not positive definite.
         except TypeError:
+            # The covariance matrix is not positive definite.
             return nan_to_num(inf)
+
+        return nan_to_num(
+            mean(
+                np_min(
+                    square(self._output_value - samples.T)
+                    / self._compute_variance(q_input_values),
+                    axis=1,
+                )
+            ),
+            nan=nan_to_num(inf),
+        )

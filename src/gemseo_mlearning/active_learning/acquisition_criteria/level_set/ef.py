@@ -131,19 +131,19 @@ class EF(BaseEIEF):
             samples = self._compute_samples(
                 input_data=q_input_values, n_samples=self._mc_size
             )[..., 0]
-            return nan_to_num(
-                mean(
-                    np_max(
-                        maximum(
-                            self._kappa
-                            * self._compute_standard_deviation(q_input_values)
-                            - abs(self._output_value - samples.T),
-                            0,
-                        ),
-                        axis=1,
-                    ),
-                ),
-            )
-        # distribution is not positive definite.
         except TypeError:
+            # The covariance matrix is not positive definite.
             return 0.0
+
+        return nan_to_num(
+            mean(
+                np_max(
+                    maximum(
+                        self._kappa * self._compute_standard_deviation(q_input_values)
+                        - abs(self._output_value - samples.T),
+                        0,
+                    ),
+                    axis=1,
+                ),
+            ),
+        )

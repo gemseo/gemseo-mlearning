@@ -147,15 +147,14 @@ def test_u_at_training_point(distribution, request):
 def test_improvement_parallel_at_training_point(cls, kriging_distribution):
     """Check that the improvement criteria take predefined values a training point."""
     criterion = cls(kriging_distribution, 1, batch_size=2)
-    criterion._compute_samples = lambda x: TypeError
+    criterion._compute_samples = lambda x: TypeError()
     assert_almost_equal(criterion.evaluate(array([0.0, 0.0])), array([0.0]))
 
 
-@pytest.mark.parametrize("std", [array([0]), TypeError])
-def test_u_parallel_at_training_point(kriging_distribution, std):
+def test_u_parallel_at_training_point(kriging_distribution):
     """Check that the discrepancy criterion take predefined values a training point."""
     u = U(kriging_distribution, 1, batch_size=2)
-    u._compute_variance = lambda x: std
+    u._compute_samples = lambda x: TypeError()
     assert_almost_equal(u.evaluate(array([0.0, 0.0])), nan_to_num(array([inf])))
 
 

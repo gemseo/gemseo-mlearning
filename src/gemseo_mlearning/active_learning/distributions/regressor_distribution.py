@@ -309,3 +309,14 @@ class RegressorDistribution(BaseRegressorDistribution):
         for algo in self.algos:
             algo.learning_set = learning_set
         super().change_learning_set(learning_set)
+
+    def compute_covariance(  # noqa: D102
+        self,
+        input_data: NumberArray,
+    ) -> NumberArray:
+        msg = (
+            "The estimation of the covariance matrix for regressors "
+            "that are not based on a random process "
+            "is not implemented."
+        )
+        raise NotImplementedError(msg)
