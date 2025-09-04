@@ -3698,6 +3698,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_covariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_covariance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_mean" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_mean
@@ -5159,6 +5168,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_covariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_covariance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_mean" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;compute_mean
@@ -5688,6 +5706,105 @@ e.g.  <code>{"a": array([1.]), "b": array([2., 3.])}</code>.</p>
         <span class="n">lower</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">-</span> <span class="n">quantile</span> <span class="o">*</span> <span class="n">std</span>
         <span class="n">upper</span> <span class="o">=</span> <span class="n">mean</span> <span class="o">+</span> <span class="n">quantile</span> <span class="o">*</span> <span class="n">std</span>
     <span class="k">return</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_covariance" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">compute_covariance</span>
+
+
+<a href="#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution.compute_covariance" class="headerlink" title="Permanent link">&para;</a></h6>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">compute_covariance</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Compute the output covariance of the regressor.</p>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">PARAMETER</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>input_data</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The <span class="arithmatex">\(N\)</span> input points of dimension <span class="arithmatex">\(d\)</span>
+at which to compute the covariance;
+shaped as <span class="arithmatex">\((N, d)\)</span>.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<table>
+      <thead>
+        <tr>
+          <th><span class="doc-section-title">RETURNS</span></th>
+          <th><span>DESCRIPTION</span></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <span class="doc-returns-annotation">
+                    <code><a class="autorefs autorefs-external" title="gemseo.typing.NumberArray" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.typing.html#gemseo.typing.NumberArray">NumberArray</a></code>
+                </span>
+            </td>
+            <td class="doc-returns-details">
+              <div class="doc-md-description">
+                <p>The posterior covariance matrix at the input points
+of shape <span class="arithmatex">\((Np, Np)\)</span>
+with <span class="arithmatex">\(p\)</span> the output dimension.
+The covariance between
+the <span class="arithmatex">\(k\)</span>-th output
+at the <span class="arithmatex">\(i\)</span>-th input point
+and the <span class="arithmatex">\(l\)</span>-th output
+at the <span class="arithmatex">\(j\)</span>-th input point
+is located at
+the <span class="arithmatex">\(m\)</span>-th line and <span class="arithmatex">\(n\)</span>-th column
+with <span class="arithmatex">\(m=ip+k\)</span>, <span class="arithmatex">\(n=jp+l\)</span>,
+<span class="arithmatex">\(i,j\in\{0,\ldots,N-1\}\)</span>
+and <span class="arithmatex">\(k,l\in\{0,\ldots,p-1\}\)</span>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>src/gemseo_mlearning/active_learning/distributions/kriging_distribution.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_covariance</span><span class="p">(</span>  <span class="c1"># noqa: D102</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">input_data</span><span class="p">:</span> <span class="n">NumberArray</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NumberArray</span><span class="p">:</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">predict_covariance</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
