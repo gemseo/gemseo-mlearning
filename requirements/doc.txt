@@ -45,7 +45,7 @@ fieldz==0.1.2
     # via griffe-fieldz
 fonttools==4.59.2
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@fed9603a931a30d39e5bdd3f63a65a8e44426e7d
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@a407d3ae464f200bd630245ddf9b74864efb1549
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -93,7 +93,7 @@ kiwisolver==1.4.9
     # via matplotlib
 latexcodec==3.0.1
     # via pybtex
-markdown==3.8.2
+markdown==3.9
     # via
     #   mkdocs
     #   mkdocs-autorefs
