@@ -48,7 +48,7 @@ if TYPE_CHECKING:
     from smt.surrogate_models.surrogate_model import SurrogateModel
 
 
-class SMTEGO(BaseOptimizationLibrary):
+class SMTEGO(BaseOptimizationLibrary[SMT_EGO_Settings]):
     """Surrogate-based optimizers from SMT."""
 
     __NAMES_TO_CLASSES: Final[dict[str, type[SurrogateModel]]] = {
@@ -76,13 +76,14 @@ class SMTEGO(BaseOptimizationLibrary):
         super().__init__(algo_name)
 
     def _run(
-        self, problem: OptimizationProblem, **settings: Any
+        self,
+        problem: OptimizationProblem,
     ) -> tuple[None, None, RealArray, RealArray, RealArray]:
         design_space = problem.design_space
         x_0, lower_bounds, upper_bounds = get_value_and_bounds(
-            design_space, normalize_ds=self._normalize_ds
+            design_space, normalize_ds=self._settings.normalize_design_space
         )
-        surrogate = settings["surrogate"]
+        surrogate = self._settings.surrogate
         if isinstance(surrogate, str):
             smt_design_space = SMTDesignSpace(
                 atleast_2d(
@@ -104,11 +105,11 @@ class SMTEGO(BaseOptimizationLibrary):
                 design_space=smt_design_space, print_global=False
             )
 
-        n_parallel = settings["n_parallel"]
+        n_parallel = self._settings.n_parallel
         evaluator = ParallelEvaluator(n_parallel)
 
-        max_iter = settings["max_iter"]
-        n_doe = settings["n_doe"]
+        max_iter = self._settings.max_iter
+        n_doe = self._settings.n_doe
         n_iter = max_iter - n_doe - 1
         if n_iter <= 0:
             msg = (
@@ -121,16 +122,16 @@ class SMTEGO(BaseOptimizationLibrary):
             surrogate=surrogate,
             n_doe=n_doe,
             n_iter=n_iter,
-            criterion=settings["criterion"],
+            criterion=self._settings.criterion,
             n_parallel=n_parallel,
-            qEI=settings["qEI"],
-            n_start=settings["n_start"],
+            qEI=self._settings.qEI,
+            n_start=self._settings.n_start,
             evaluator=evaluator,
-            random_state=settings["random_state"],
-            n_max_optim=settings["n_max_optim"],
+            random_state=self._settings.random_state,
+            n_max_optim=self._settings.n_max_optim,
         )
         x_opt, y_opt, _, _, _ = ego.optimize(fun=problem.objective.evaluate)
-        if self._normalize_ds:
+        if self._settings.normalize_design_space:
             x_opt = design_space.unnormalize_vect(x_opt)
             x_0 = design_space.unnormalize_vect(x_0)
         return (
