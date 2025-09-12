@@ -4849,12 +4849,11 @@
 to download the full example code</p>
 </div>
 <h1 id="non-gp-regressor">Non-GP regressor.<a class="headerlink" href="#non-gp-regressor" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-40 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-37 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.rbf</span><span class="w"> </span><span class="kn">import</span> <span class="n">RBFRegressor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.uncertainty.statistics.empirical_statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmpiricalStatistics</span>
@@ -4868,12 +4867,10 @@ to download the full example code</p>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosenbrockSpace</span>
 
-<span class="c1"># Update the configuration of |g| to speed up the script (use configure() with care)</span>
-<span class="n">configure</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-<span class="n">configure_logger</span><span class="p">()</span>
+<span class="c1"># Update the configuration of |g| to speed up the script.</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">fast</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 41-47 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 38-44 -->
 
 <p>The use of active learning methods
 dedicated to quantile estimation
@@ -4881,37 +4878,37 @@ is illustrated in this example,
 with all default settings.
 The function with the quantile of interest is
 the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 47-48 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 44-45 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 49-50 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 46-47 -->
 
 <p>with <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> uniformly distributed over <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 50-52 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 47-49 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">uncertain_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 53-55 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 50-52 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 10 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 55-59 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 52-56 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 60-61 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 57-58 -->
 
 <p>and a universal regressor, namely a radial basis function network based on SciPy:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 61-65 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 58-62 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">regressor</span> <span class="o">=</span> <span class="n">RBFRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">)</span>
 <span class="n">regressor_distribution</span> <span class="o">=</span> <span class="n">RegressorDistribution</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">regressor_distribution</span><span class="o">.</span><span class="n">learn</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 66-75 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 63-72 -->
 
 <p>Then,
 we look for 20 points that will help us
@@ -4922,7 +4919,7 @@ the active learning algorithm looks
 for the point minimizing the U-function
 with the help of the SLSQP gradient-based algorithm
 applied in a multistart framework.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 75-86 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 72-83 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">level</span> <span class="o">=</span> <span class="mf">0.35</span>
 <span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -4934,15 +4931,15 @@ applied in a multistart framework.</p>
 <span class="p">)</span>
 <span class="n">active_learning</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 87-89 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 84-86 -->
 
 <p>Then,
 we plot the history of the quantity of interest</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 89-90 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 86-87 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span><span class="o">.</span><span class="n">plot_qoi_history</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 91-97 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 88-94 -->
 
 <p>as well as
 the training points,
@@ -4950,18 +4947,18 @@ the original model,
 the RBF regressor
 and the U-function
 after the last acquisition:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 97-99 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 94-96 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span><span class="o">.</span><span class="n">plot_acquisition_view</span><span class="p">(</span><span class="n">discipline</span><span class="o">=</span><span class="n">discipline</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 100-105 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 97-102 -->
 
 <p>Finally,
 we compare the estimated quantile
 from the active learning procedure
 to the Monte Carlo estimate
 for both algorithms</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 105-109 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 102-106 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_MONTE_CARLO&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span>

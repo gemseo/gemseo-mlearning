@@ -4849,13 +4849,12 @@
 to download the full example code</p>
 </div>
 <h1 id="batch-acquisition">Batch acquisition.<a class="headerlink" href="#batch-acquisition" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-40 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-37 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">argmin</span>
@@ -4868,12 +4867,10 @@ to download the full example code</p>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosenbrockSpace</span>
 
-<span class="c1"># Update the configuration of |g| to speed up the script (use configure() with care)</span>
-<span class="n">configure</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-<span class="n">configure_logger</span><span class="p">()</span>
+<span class="c1"># Update the configuration of |g| to speed up the script.</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">fast</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 41-52 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 38-49 -->
 
 <p>The use of active learning methods
 dedicated to optimization
@@ -4886,32 +4883,32 @@ are added at each method iteration,
 on the active learning procedure.
 The function to minimize is
 the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 52-53 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 49-50 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 54-55 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 51-52 -->
 
 <p>with <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> belonging to <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 52-54 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 58-60 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 10 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 60-64 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 57-61 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 65-67 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 62-64 -->
 
 <p>and two identical initial
 Gaussian process regressors from OpenTURNS:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 67-74 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 64-71 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">regressor_1</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
     <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="n">multi_start_n_samples</span><span class="o">=</span><span class="mi">20</span>
@@ -4920,7 +4917,7 @@ Gaussian process regressors from OpenTURNS:</p>
     <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">,</span> <span class="n">multi_start_n_samples</span><span class="o">=</span><span class="mi">20</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 75-93 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 72-90 -->
 
 <p>Then,
 we build two active learning algorithms
@@ -4940,7 +4937,7 @@ this feature is only available
 with the expected improvement criterion.
 All other settings are put to
 their default values.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 93-100 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 90-97 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning_1</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Minimum&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">regressor_1</span><span class="p">)</span>
 <span class="n">active_learning_2</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -4949,7 +4946,7 @@ their default values.</p>
 <span class="n">active_learning_1</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">active_learning_2</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 101-107 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 98-104 -->
 
 <p>To study the results,
 we extract first
@@ -4957,7 +4954,7 @@ the data associated
 to the history
 of the quantity of interest
 for both active learning procedures</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 107-117 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 104-114 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">history_1</span> <span class="o">=</span> <span class="n">active_learning_1</span><span class="o">.</span><span class="n">qoi_history</span>
 <span class="n">history_2</span> <span class="o">=</span> <span class="n">active_learning_2</span><span class="o">.</span><span class="n">qoi_history</span>
@@ -4969,20 +4966,20 @@ for both active learning procedures</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 118-123 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 115-120 -->
 
 <p>We can also
 compare the estimated optimas
 from the active learning procedures
 to their exact counterparts
 for both algorithms</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 125-129 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 122-126 -->
 
 <p>Finally,
 for both active learning algorithms,
 we plot the training points,
 alongside the original model.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 129-180 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 126-177 -->
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Creation of the grid</span>
 <span class="c1"># and estimation of the different quantities</span>

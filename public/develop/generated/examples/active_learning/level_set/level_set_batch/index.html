@@ -4849,13 +4849,12 @@
 to download the full example code</p>
 </div>
 <h1 id="batch-acquisition">Batch acquisition.<a class="headerlink" href="#batch-acquisition" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-39 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-36 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configure_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.disciplines.surrogate</span><span class="w"> </span><span class="kn">import</span> <span class="n">SurrogateDiscipline</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
@@ -4867,12 +4866,10 @@ to download the full example code</p>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_space</span><span class="w"> </span><span class="kn">import</span> <span class="n">RosenbrockSpace</span>
 
-<span class="c1"># Update the configuration of |g| to speed up the script (use configure() with care)</span>
-<span class="n">configure</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-
-<span class="n">configure_logger</span><span class="p">()</span>
+<span class="c1"># Update the configuration of |g| to speed up the script.</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">fast</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 40-51 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 37-48 -->
 
 <p>The use of active learning methods
 dedicated to level set estimation
@@ -4885,37 +4882,37 @@ are added at each method iteration,
 on the active learning procedure.
 The function with the level set of interest is
 the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 51-52 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 48-49 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 53-54 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 50-51 -->
 
 <p>with <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> belonging to <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 54-56 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 51-53 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 57-59 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 54-56 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 10 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 59-63 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 56-60 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 64-66 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 61-63 -->
 
 <p>and two identical initial
 Gaussian process regressors from OpenTURNS:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 66-69 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 63-66 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">regressor_1</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
 <span class="n">regressor_2</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 70-85 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 67-82 -->
 
 <p>Then,
 we build two active learning algorithms
@@ -4932,7 +4929,7 @@ are added at each iteration (parallel acquisition),
 using argument <code>batch_size</code> set to 4.
 All other settings are put to
 their default values.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 85-95 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 82-92 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">value_level</span> <span class="o">=</span> <span class="mi">400</span>
 <span class="n">active_learning_1</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -4944,14 +4941,14 @@ their default values.</p>
 <span class="n">active_learning_1</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">active_learning_2</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 96-101 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 93-98 -->
 
 <p>To study the results,
 for both active learning algorithms,
 we plot the training points,
 the estimated level sets
 alongside the original model.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 101-178 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 98-175 -->
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Creation of the grid</span>
 <span class="c1"># and estimation of the different quantities</span>
