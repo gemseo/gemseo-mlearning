@@ -62,6 +62,7 @@ class BraninDiscipline(Discipline):
                 for input_name, derivative in zip(
                     self.io.input_grammar.names,
                     compute_gradient(inputs_array),
+                    strict=False,
                 )
             }
         }

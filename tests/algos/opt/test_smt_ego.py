@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import contextlib
 import re
+from importlib.metadata import version
 from typing import TYPE_CHECKING
 from unittest import mock
 
@@ -26,11 +27,15 @@ from gemseo.problems.optimization.rosenbrock import Rosenbrock
 from numpy import array
 from numpy.testing import assert_allclose
 from numpy.testing import assert_equal
+from packaging.version import parse
 from scipy.optimize import rosen
 from smt.applications import EGO
 from smt.surrogate_models import KRG
-from smt.utils.design_space import DesignSpace
-from smt.utils.design_space import DesignSpace as SMTDesignSpace
+
+if parse("2.8") > parse(version("smt")):
+    from smt.utils.design_space import DesignSpace
+else:
+    from smt.design_space import DesignSpace
 
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import AcquisitionCriterion
@@ -196,7 +201,7 @@ def test_from_existing_surrogate():
         surrogate=KRG(
             # The design space is not [-2,2] but the unit hypercube,
             # because the optimization algorithm normalizes the design values.
-            design_space=SMTDesignSpace(array([[0.0, 1.0], [0.0, 1.0]])),
+            design_space=DesignSpace(array([[0.0, 1.0], [0.0, 1.0]])),
             print_global=False,
         ),
     )

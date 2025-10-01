@@ -19,6 +19,7 @@
 
 from __future__ import annotations
 
+from importlib.metadata import version
 from math import isfinite
 from typing import TYPE_CHECKING
 from typing import Any
@@ -30,6 +31,7 @@ from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
 from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
 from gemseo.algos.optimization_result import OptimizationResult
 from numpy import atleast_2d
+from packaging.version import parse
 from smt.applications.ego import EGO
 from smt.surrogate_models import GEKPLS
 from smt.surrogate_models import GPX
@@ -37,7 +39,11 @@ from smt.surrogate_models import KPLS
 from smt.surrogate_models import KPLSK
 from smt.surrogate_models import KRG
 from smt.surrogate_models import MGP
-from smt.utils.design_space import DesignSpace as SMTDesignSpace
+
+if parse("2.8") > parse(version("smt")):  # pragma: no cover
+    from smt.utils.design_space import DesignSpace as SMTDesignSpace
+else:
+    from smt.design_space import DesignSpace as SMTDesignSpace
 
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
@@ -97,6 +103,7 @@ class SMTEGO(BaseOptimizationLibrary[SMT_EGO_Settings]):
                                 upper_bound if isfinite(upper_bound) else None
                                 for upper_bound in upper_bounds
                             ],
+                            strict=False,
                         )
                     )
                 )

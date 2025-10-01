@@ -19,7 +19,6 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import TYPE_CHECKING
 from typing import Any
-from typing import Callable
 from typing import ClassVar
 
 from gemseo.core.mdo_functions.mdo_function import MDOFunction
@@ -30,6 +29,8 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+
     from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.typing import NumberArray
 
