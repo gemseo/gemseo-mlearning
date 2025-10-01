@@ -20,7 +20,6 @@
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-from typing import Callable
 
 from gemseo.core.parallel_execution.callable_parallel_execution import (
     CallableParallelExecution,
@@ -29,7 +28,16 @@ from numpy import array
 from smt.applications.ego import Evaluator
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+    from importlib.metadata import version
+
     from gemseo.typing import RealArray
+    from packaging.version import parse
+
+    if parse("2.8") > parse(version("smt")):
+        from smt.utils.design_space import DesignSpace
+    else:
+        from smt.design_space import DesignSpace
 
 
 class ParallelEvaluator(Evaluator):
@@ -50,12 +58,15 @@ class ParallelEvaluator(Evaluator):
         self,
         function: Callable[[RealArray], float],
         input_values: RealArray,
+        design_space: DesignSpace | None = None,
     ) -> RealArray:
         """Evaluate a function on a sample of input points.
 
         Args:
             function: The function to evaluate.
             input_values: The sample of input points.
+            design_space: The design space.
+                If ``None``, do not use it.
 
         Returns:
             The function evaluations on the sample of points.

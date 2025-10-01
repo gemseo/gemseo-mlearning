@@ -165,6 +165,7 @@ class AcquisitionView:
                 for x, y in zip(
                     points_x[:n_initial_samples],
                     points_y[:n_initial_samples],
+                    strict=False,
                 ):
                     ax.plot(x, y, ".", ms=2, color=color)
 
@@ -172,6 +173,7 @@ class AcquisitionView:
                     zip(
                         points_x[n_initial_samples:],
                         points_y[n_initial_samples:],
+                        strict=False,
                     )
                 ):
                     ax.plot(x, y, "+", color=color)

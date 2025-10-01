@@ -14,9 +14,10 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import pytest
 from numpy import array
-from numpy import ndarray
 from numpy.testing import assert_equal
 
 from gemseo_mlearning.problems.rosenbrock.functions import compute_gradient
@@ -24,6 +25,9 @@ from gemseo_mlearning.problems.rosenbrock.functions import compute_output
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
     RosenbrockDiscipline,
 )
+
+if TYPE_CHECKING:
+    from numpy import ndarray
 
 
 @pytest.fixture(scope="module")
