@@ -108,9 +108,10 @@ def test_problem_counters(enable_function_statistics):
         acquisition_algorithm="OT_MONTE_CARLO",
         acquisition_settings={"n_samples": 100},
     )
+    assert len(problem.database) == 13
     assert problem.evaluation_counter.maximum == 13
     assert problem.evaluation_counter.current == 13
-    assert problem.objective.n_calls == 14
+    assert problem.objective.n_calls == 13
 
 
 def test_alias():

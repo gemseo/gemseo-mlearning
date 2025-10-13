@@ -94,6 +94,8 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             ValueError: When the maximum number of iterations
                 is less than or equal to the initial DOE size.
         """  # noqa: D205 D212 D415
+        self._finalize_previous_iteration()
+        problem.evaluation_counter.enabled = False
         doe_settings = self._settings.doe_settings
         doe_size = self._settings.doe_size
         doe_algorithm = self._settings.doe_algorithm
@@ -129,4 +131,4 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             regression_file_path=self._settings.regression_file_path,
             **self._settings.acquisition_settings,
         )
-        return optimizer.execute(sys.maxsize), None
+        return (optimizer.execute(sys.maxsize), None)
