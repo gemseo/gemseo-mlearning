@@ -5376,6 +5376,27 @@ The expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)<
           </tr>
           <tr class="doc-section-item">
             <td>
+                <code>progress_bar_data_name</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The name of a :class:<code>.BaseProgressBarData</code> class
+to define the data of an evaluation problem to be displayed in the progress bar.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="ProgressBarDataName">ProgressBarDataName</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>&#39;ProgressBarData&#39;</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
                 <code>reset_iteration_counters</code>
             </td>
             <td class="doc-param-details">
@@ -5401,6 +5422,30 @@ The expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)<
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>Whether to round the integer variables.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>True</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>store_jacobian</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>Whether to store the Jacobian matrices in the database.</p>
+<div class="highlight"><pre><span></span><code>This argument is ignored when the ``use_database`` option is ``False``.
+If a gradient-based algorithm is used,
+this option cannot be set along with kkt options.
+</code></pre></div>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -5450,29 +5495,6 @@ The expectation and the standard deviation of <span class="arithmatex">\(Y(x)\)<
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>False</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>store_jacobian</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>Whether to store the Jacobian matrices in the database.</p>
-<p>This argument is ignored when the <code>use_database</code> option is <code>False</code>.
-If a gradient-based algorithm is used,
-this option cannot be set along with kkt options.</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>True</code>
                   </span>
               </p>
             </td>
