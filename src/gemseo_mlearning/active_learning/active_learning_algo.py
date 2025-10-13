@@ -26,8 +26,8 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.algos._progress_bars.custom_tqdm_progress_bar import LOGGER as TQDM_LOGGER
-from gemseo.algos._progress_bars.custom_tqdm_progress_bar import CustomTqdmProgressBar
+from gemseo.algos._progress_bar.custom import LOGGER as TQDM_LOGGER
+from gemseo.algos._progress_bar.custom import CustomTqdmProgressBar
 from gemseo.algos.database import Database
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.doe.factory import DOELibraryFactory
