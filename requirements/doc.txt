@@ -16,7 +16,7 @@ bracex==2.6
     # via wcmatch
 certifi==2025.10.5
     # via requests
-charset-normalizer==3.4.3
+charset-normalizer==3.4.4
     # via requests
 click==8.3.0
     # via
@@ -44,7 +44,7 @@ fieldz==0.1.3
     # via griffe-fieldz
 fonttools==4.60.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@a5422a5f8759e3fd04cac0e80a7b27bff067dd7b
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@0651eff2d205708cb14406a39cc2b8cb3d1bbd93
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -165,7 +165,7 @@ mpmath==1.3.0
     # via sympy
 mypy-extensions==1.1.0
     # via black
-narwhals==2.7.0
+narwhals==2.8.0
     # via plotly
 networkx==3.5
     # via gemseo
@@ -283,7 +283,7 @@ pyyaml-env-tag==1.1
     # via
     #   mike
     #   mkdocs
-referencing==0.36.2
+referencing==0.37.0
     # via
     #   jsonschema
     #   jsonschema-specifications
