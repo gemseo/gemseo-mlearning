@@ -16,13 +16,16 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
 from typing import Final
 
 from numpy import array
 from numpy import cos
-from numpy import ndarray
 from numpy import pi
 from numpy import sin
+
+if TYPE_CHECKING:
+    from numpy import ndarray
 
 __A: Final[float] = 5.1 / (4 * pi**2)
 __B: Final[float] = 5 / pi

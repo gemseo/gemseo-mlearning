@@ -26,6 +26,24 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Version 3.1.0 (October 2025)
+
+### Added
+
+- [UCB][gemseo_mlearning.active_learning.acquisition_criteria.maximum.ucb.UCB]
+  and
+  [LCB][gemseo_mlearning.active_learning.acquisition_criteria.minimum.lcb.LCB]
+  can now acquire learning points by batch
+  with `batch_size` argument,
+  when the regressor is based on a random process
+  such as `GaussianProcessRegressor`
+  and `OTGaussianProcessRegressor`.
+- Support for Python 3.13.
+
+### Removed
+
+- Support for Python 3.9.
+
 ## Version 3.0.0 (August 2025)
 
 ### Added

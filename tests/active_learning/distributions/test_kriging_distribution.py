@@ -21,7 +21,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
+from numpy import allclose
 from numpy import array
+from numpy import diag
 
 from gemseo_mlearning.active_learning.distributions.kriging_distribution import (
     KrigingDistribution,
@@ -123,3 +125,16 @@ def test_compute_samples(distribution, input_data):
         (1000, 1) if len(input_data.shape) == 1 else (1000, input_data.shape[0], 1)
     )
     assert samples.shape == expected_shape
+
+
+@pytest.mark.parametrize(
+    "input_value",
+    [
+        array([[1 / 3.97]]),
+        array([[1 / 3.97], [1 / 1.97]]),
+    ],
+)
+def test_covariance_matrix(distribution, input_value):
+    """Check the computation of the covariance."""
+    cov = distribution.compute_covariance(input_value)
+    assert allclose(diag(cov), distribution.compute_variance(input_value).ravel())

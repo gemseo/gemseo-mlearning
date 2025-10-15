@@ -17,8 +17,7 @@
 
 from __future__ import annotations
 
-from gemseo import configure
-from gemseo import configure_logger
+from gemseo import configuration
 from gemseo import sample_disciplines
 from gemseo.mlearning.regression.algos.rbf import RBFRegressor
 
@@ -31,10 +30,8 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 )
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
-# Update the configuration of |g| to speed up the script (use configure() with care)
-configure(False, False, True, False, False, False, False)
-
-configure_logger()
+# Update the configuration of |g| to speed up the script.
+configuration.fast = True
 
 # %%
 # The use of active learning methods

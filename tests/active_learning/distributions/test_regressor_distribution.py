@@ -18,6 +18,8 @@
 #    OTHER AUTHORS   - MACROSCOPIC CHANGES
 from __future__ import annotations
 
+import re
+
 import pytest
 from gemseo.mlearning.regression.algos.linreg import LinearRegressor
 from numpy import array
@@ -247,3 +249,16 @@ def test_compute_samples(distribution, input_data):
     nb_samples = distribution.size
     samples = distribution.compute_samples(input_data=input_data, n_samples=nb_samples)
     assert samples.shape == (nb_samples, input_data.shape[0], 1)
+
+
+def test_bad_covariance_matrix(distribution):
+    """Check covariance matrix is not implementd with universal regressor."""
+    with pytest.raises(
+        NotImplementedError,
+        match=re.escape(
+            "The estimation of the covariance matrix for regressors "
+            "that are not based on a random process "
+            "is not implemented."
+        ),
+    ):
+        distribution.compute_covariance(array([[1 / 3.97]]))

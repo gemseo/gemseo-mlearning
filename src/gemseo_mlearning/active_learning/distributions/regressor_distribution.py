@@ -24,7 +24,6 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
-from typing import Callable
 from typing import ClassVar
 from typing import Final
 
@@ -51,6 +50,8 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+
     from gemseo.datasets.dataset import Dataset
     from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
@@ -309,3 +310,14 @@ class RegressorDistribution(BaseRegressorDistribution):
         for algo in self.algos:
             algo.learning_set = learning_set
         super().change_learning_set(learning_set)
+
+    def compute_covariance(  # noqa: D102
+        self,
+        input_data: NumberArray,
+    ) -> NumberArray:
+        msg = (
+            "The estimation of the covariance matrix for regressors "
+            "that are not based on a random process "
+            "is not implemented."
+        )
+        raise NotImplementedError(msg)

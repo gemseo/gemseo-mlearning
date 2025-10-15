@@ -19,6 +19,7 @@
 
 from __future__ import annotations
 
+from importlib.metadata import version
 from math import isfinite
 from typing import TYPE_CHECKING
 from typing import Any
@@ -30,6 +31,7 @@ from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
 from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
 from gemseo.algos.optimization_result import OptimizationResult
 from numpy import atleast_2d
+from packaging.version import parse
 from smt.applications.ego import EGO
 from smt.surrogate_models import GEKPLS
 from smt.surrogate_models import GPX
@@ -37,7 +39,11 @@ from smt.surrogate_models import KPLS
 from smt.surrogate_models import KPLSK
 from smt.surrogate_models import KRG
 from smt.surrogate_models import MGP
-from smt.utils.design_space import DesignSpace as SMTDesignSpace
+
+if parse("2.8") > parse(version("smt")):  # pragma: no cover
+    from smt.utils.design_space import DesignSpace as SMTDesignSpace
+else:
+    from smt.design_space import DesignSpace as SMTDesignSpace
 
 from gemseo_mlearning.algos.opt.smt._parallel_evaluator import ParallelEvaluator
 from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
@@ -48,7 +54,7 @@ if TYPE_CHECKING:
     from smt.surrogate_models.surrogate_model import SurrogateModel
 
 
-class SMTEGO(BaseOptimizationLibrary):
+class SMTEGO(BaseOptimizationLibrary[SMT_EGO_Settings]):
     """Surrogate-based optimizers from SMT."""
 
     __NAMES_TO_CLASSES: Final[dict[str, type[SurrogateModel]]] = {
@@ -76,13 +82,14 @@ class SMTEGO(BaseOptimizationLibrary):
         super().__init__(algo_name)
 
     def _run(
-        self, problem: OptimizationProblem, **settings: Any
+        self,
+        problem: OptimizationProblem,
     ) -> tuple[None, None, RealArray, RealArray, RealArray]:
         design_space = problem.design_space
         x_0, lower_bounds, upper_bounds = get_value_and_bounds(
-            design_space, normalize_ds=self._normalize_ds
+            design_space, normalize_ds=self._settings.normalize_design_space
         )
-        surrogate = settings["surrogate"]
+        surrogate = self._settings.surrogate
         if isinstance(surrogate, str):
             smt_design_space = SMTDesignSpace(
                 atleast_2d(
@@ -96,6 +103,7 @@ class SMTEGO(BaseOptimizationLibrary):
                                 upper_bound if isfinite(upper_bound) else None
                                 for upper_bound in upper_bounds
                             ],
+                            strict=False,
                         )
                     )
                 )
@@ -104,11 +112,11 @@ class SMTEGO(BaseOptimizationLibrary):
                 design_space=smt_design_space, print_global=False
             )
 
-        n_parallel = settings["n_parallel"]
+        n_parallel = self._settings.n_parallel
         evaluator = ParallelEvaluator(n_parallel)
 
-        max_iter = settings["max_iter"]
-        n_doe = settings["n_doe"]
+        max_iter = self._settings.max_iter
+        n_doe = self._settings.n_doe
         n_iter = max_iter - n_doe - 1
         if n_iter <= 0:
             msg = (
@@ -121,16 +129,16 @@ class SMTEGO(BaseOptimizationLibrary):
             surrogate=surrogate,
             n_doe=n_doe,
             n_iter=n_iter,
-            criterion=settings["criterion"],
+            criterion=self._settings.criterion,
             n_parallel=n_parallel,
-            qEI=settings["qEI"],
-            n_start=settings["n_start"],
+            qEI=self._settings.qEI,
+            n_start=self._settings.n_start,
             evaluator=evaluator,
-            random_state=settings["random_state"],
-            n_max_optim=settings["n_max_optim"],
+            random_state=self._settings.random_state,
+            n_max_optim=self._settings.n_max_optim,
         )
         x_opt, y_opt, _, _, _ = ego.optimize(fun=problem.objective.evaluate)
-        if self._normalize_ds:
+        if self._settings.normalize_design_space:
             x_opt = design_space.unnormalize_vect(x_opt)
             x_0 = design_space.unnormalize_vect(x_0)
         return (

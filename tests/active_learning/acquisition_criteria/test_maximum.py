@@ -22,6 +22,8 @@ import re
 
 import pytest
 from numpy import array
+from numpy import inf
+from numpy import nan_to_num
 from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.maximum.ei import EI
@@ -74,29 +76,40 @@ def test_maximum_regressor(algo_distribution, kwargs, cls, input_value, expected
 
 
 @pytest.mark.parametrize(
-    ("kwargs", "input_value", "expected"),
+    ("cls", "kwargs", "input_value", "expected"),
     [
-        ({}, array([[1.0]] * 2), 0),
-        ({}, array([[3]] * 2), 1.533606426240575),
-        ({"mc_size": 50000}, array([[3]] * 2), 1.8365297109444447),
+        (EI, {}, array([[1.0]] * 2), 0),
+        (EI, {}, array([[3]] * 2), 1.533606426240575),
+        (EI, {"mc_size": 50000}, array([[3]] * 2), 1.8365297109444447),
+        (UCB, {"kappa": 1}, array([[1.0]] * 2), 1),
+        (UCB, {"kappa": 1}, array([[3]] * 2), 2.83337067750123),
+        (UCB, {"kappa": 1, "mc_size": 50000}, array([[3]] * 2), 3.2533378588648274),
     ],
 )
 def test_maximum_parallel_kriging_regressor(
-    kriging_distribution, kwargs, input_value, expected
+    cls, kriging_distribution, kwargs, input_value, expected
 ):
     """Check the parallelized criteria deriving from BaseMaximum."""
-    criterion = EI(kriging_distribution, batch_size=2, **kwargs)
+    criterion = cls(kriging_distribution, batch_size=2, **kwargs)
     assert_almost_equal(criterion.func(input_value), expected)
     expected_mc_size = kwargs.get("mc_size", 10000)
     assert criterion._mc_size == expected_mc_size
     assert criterion._batch_size == 2
 
 
-def test_improvement_parallel_at_training_point(kriging_distribution):
-    """Check that the improvement criteria take predefined values a training point."""
-    criterion = EI(kriging_distribution, 2)
+@pytest.mark.parametrize(
+    ("cls", "expected"),
+    [
+        (EI, 0),
+        (UCB, -nan_to_num(inf)),
+    ],
+)
+def test_criteria_parallel_at_training_point(cls, kriging_distribution, expected):
+    """Check that the acquisition criteria take predefined values
+    when a TypeError is raised."""
+    criterion = cls(kriging_distribution, batch_size=2)
     criterion._compute_samples = lambda x: TypeError
-    assert_almost_equal(criterion.evaluate(array([0.0, 0.0])), 0)
+    assert_almost_equal(criterion.evaluate(array([0.0, 0.0])), expected)
 
 
 @pytest.mark.parametrize(

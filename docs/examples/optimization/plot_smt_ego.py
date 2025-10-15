@@ -24,13 +24,10 @@ with various acquisition criteria and strategies to acquire points in parallel.
 
 from __future__ import annotations
 
-from gemseo import configure_logger
 from gemseo import execute_algo
 from gemseo.post.dataset.zvsxy import ZvsXY
 from gemseo.problems.dataset.rosenbrock import create_rosenbrock_dataset
 from gemseo.problems.optimization.rosenbrock import Rosenbrock
-
-configure_logger()
 
 # %%
 # In this example,

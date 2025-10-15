@@ -12,6 +12,20 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License version 3 as published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """A library for surrogate-based optimization."""
 
 from __future__ import annotations
@@ -22,7 +36,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
-from typing import Union
 
 from gemseo.algos.base_driver_library import DriverSettingType
 from gemseo.algos.doe.factory import DOELibraryFactory
@@ -40,14 +53,14 @@ if TYPE_CHECKING:
     from gemseo.algos.base_problem import BaseProblem
 
 
-SBOSettingType = Union[
-    int,
-    float,
-    str,
-    Mapping[str, DriverSettingType],
-    Mapping[str, MLAlgoSettingsType],
-    Mapping[str, Any],
-]
+SBOSettingType = (
+    int
+    | float
+    | str
+    | Mapping[str | DriverSettingType]
+    | Mapping[str | MLAlgoSettingsType]
+    | Mapping[str | Any]
+)
 
 
 @dataclass
@@ -57,7 +70,7 @@ class SurrogateBasedAlgorithmDescription(OptimizationAlgorithmDescription):
     library_name: str = "gemseo-mlearning"
 
 
-class SurrogateBasedOptimization(BaseOptimizationLibrary):
+class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
     """A wrapper for surrogate-based optimization."""
 
     LIBRARY_NAME = SurrogateBasedAlgorithmDescription.library_name
@@ -75,18 +88,18 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
         )
     }
 
-    def _run(
-        self, problem: BaseProblem, **settings: SBOSettingType
-    ) -> tuple[str, None]:
+    def _run(self, problem: BaseProblem) -> tuple[str, None]:
         """
         Raises:
             ValueError: When the maximum number of iterations
                 is less than or equal to the initial DOE size.
         """  # noqa: D205 D212 D415
-        doe_settings = settings["doe_settings"]
-        doe_size = settings["doe_size"]
-        doe_algorithm = settings["doe_algorithm"]
-        regression_algorithm = settings["regression_algorithm"]
+        self._finalize_previous_iteration()
+        problem.evaluation_counter.enabled = False
+        doe_settings = self._settings.doe_settings
+        doe_size = self._settings.doe_size
+        doe_algorithm = self._settings.doe_algorithm
+        regression_algorithm = self._settings.regression_algorithm
         if not isinstance(regression_algorithm, BaseRegressor):
             # The number of evaluations is equal to
             #     1 for the initial evaluation in OptimizationLibrary._pre_run
@@ -99,7 +112,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
                     problem.design_space, n_samples=doe_size, **doe_settings
                 )
             )
-            max_iter = settings["max_iter"]
+            max_iter = self._settings.max_iter
             if max_iter < 1 + initial_doe_size:
                 msg = (
                     f"max_iter ({max_iter}) must be "
@@ -109,13 +122,13 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary):
 
         optimizer = SurrogateBasedOptimizer(
             problem,
-            settings["acquisition_algorithm"],
+            self._settings.acquisition_algorithm,
             doe_size=doe_size,
             doe_algorithm=doe_algorithm,
             doe_settings=doe_settings,
             regression_algorithm=regression_algorithm,
-            regression_settings=settings["regression_settings"],
-            regression_file_path=settings["regression_file_path"],
-            **settings["acquisition_settings"],
+            regression_settings=self._settings.regression_settings,
+            regression_file_path=self._settings.regression_file_path,
+            **self._settings.acquisition_settings,
         )
-        return optimizer.execute(sys.maxsize), None
+        return (optimizer.execute(sys.maxsize), None)
