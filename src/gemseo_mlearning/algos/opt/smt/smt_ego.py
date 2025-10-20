@@ -12,9 +12,6 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-# Contributors:
-#    AUTHORS:
-#       - Francois Gallard
 """The efficient global optimization (EGO) algorithm of SMT."""
 
 from __future__ import annotations
@@ -71,7 +68,7 @@ class SMTEGO(BaseOptimizationLibrary[SMT_EGO_Settings]):
         "SMT_EGO": OptimizationAlgorithmDescription(
             library_name="SMT",
             algorithm_name="SMT_EGO",
-            description="Efficient Global Optimization",
+            description="Efficient Global Optimization (EGO)",
             internal_algorithm_name="SMT_EGO",
             website="https://smt.readthedocs.io/en/latest/_src_docs/applications/ego.html",  # noqa: E501
             Settings=SMT_EGO_Settings,

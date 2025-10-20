@@ -26,6 +26,16 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Develop
+
+### Added
+
+- The algorithm `EGObox_Egor` available in [EGOboxEgor][gemseo_mlearning.algos.opt.egobox.egobox_egor.EGOboxEgor]
+  interfaces the efficient global optimization (EGO) algorithm available in
+  [EGObox](https://github.com/relf/egobox/tree/master);
+  the settings can be changed using
+  [EGObox_Egor_Settings][gemseo_mlearning.algos.opt.egobox.egor_settings.EGObox_Egor_Settings].
+
 ## Version 3.1.0 (October 2025)
 
 ### Added

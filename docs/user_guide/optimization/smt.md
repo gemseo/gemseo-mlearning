@@ -54,18 +54,18 @@ Their default values are defined in [SMT_EGO_Settings][gemseo_mlearning.algos.op
 
 You can use the option `criterion` to change the acquisition criterion:
 
-| Value   | Name                   | Expression                                 |
-|---------|------------------------|--------------------------------------------|
-| `"EI"`  | Expected improvement   | $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y,0]$ |
-| `"LCB"` | Lower confidence bound | $\mu(x)-3\times\sigma(x)$                  |
-| `"SBO"` | Kriging believer       | $\mu(x)$                                   |
+| Value   | Name                   | Expression                                    |
+|---------|------------------------|-----------------------------------------------|
+| `"EI"`  | Expected improvement   | $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0]$ |
+| `"LCB"` | Lower confidence bound | $\mu(x)-3\times\sigma(x)$                     |
+| `"SBO"` | Kriging believer       | $\mu(x)$                                      |
 
 where $Y$ is a Gaussian random variable with mean function $\mu$ and standard deviation function $\sigma$,
 and where $\{y_1,\ldots,y_n\}$ denote the training output values already used.
 
 ### Optimization algorithm
 
-The optimization algorithm `"SMT_EGO"` uses sub-optimizations to optimize the acquisition criterion.
+The optimization algorithm `"SMT_EGO"` uses sub-optimizations to maximize the acquisition criterion.
 The number of sub-optimizations is parametrized by `n_start`
 while the maximum number of iterations for each sub-optimization is parametrized by `n_max_optim`.
 
@@ -81,7 +81,7 @@ whose output value mimics the substituted model using a strategy.
 
 You can use the options `n_parallel` to acquire `n_parallel` points in parallel using the acquisition strategy `qEI`.
 
-The strategies are:
+The batch infill strategies are:
 
 | Value      | Name                          | Expression                  |
 |------------|-------------------------------|-----------------------------|

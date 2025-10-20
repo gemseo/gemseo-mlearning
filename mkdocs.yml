@@ -96,6 +96,7 @@ nav:
     - AL for quantiles: user_guide/active_learning/quantile.md
   - Optimization:
     - AL package: user_guide/optimization/al.md
+    - EGObox library: user_guide/optimization/egobox.md
     - SMT library: user_guide/optimization/smt.md
   - Regression models:
     - SMT library: user_guide/regression/smt.md
