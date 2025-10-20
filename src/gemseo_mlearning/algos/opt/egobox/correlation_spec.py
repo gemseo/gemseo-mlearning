@@ -12,12 +12,26 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""Settings of the optimization algorithms."""
+"""Correlation strategy."""
 
 from __future__ import annotations
 
-from gemseo_mlearning.algos.opt.egobox.egor_settings import (  # noqa: F401
-    EGObox_Egor_Settings,
-)
-from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings  # noqa: F401
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings  # noqa: F401
+from enum import auto
+
+from strenum import StrEnum
+
+
+class CorrelationSpec(StrEnum):
+    """The type of correlation kernel for the Gaussian process (GP) models."""
+
+    ABSOLUTE_EXPONENTIAL = auto()
+    """The absolute exponential kernel."""
+
+    MATERN32 = auto()
+    """The Matérn 3/2 kernel."""
+
+    MATERN52 = auto()
+    """The Matérn 5/2 kernel."""
+
+    SQUARED_EXPONENTIAL = auto()
+    """The squared exponential kernel."""

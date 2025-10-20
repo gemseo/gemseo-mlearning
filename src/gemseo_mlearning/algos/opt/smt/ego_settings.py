@@ -12,12 +12,11 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-# Contributors:
-#    AUTHORS:
-#       - Francois Gallard
-"""Settings for the multi-start algorithm."""
+"""Settings for the SMT surrogate-based optimization algorithms."""
 
 from __future__ import annotations
+
+from enum import auto
 
 from gemseo.algos.opt.base_optimizer_settings import BaseOptimizerSettings
 from pydantic import Field
@@ -35,20 +34,20 @@ class AcquisitionCriterion(StrEnum):
     $\{y_1,\ldots,y_n\}$, $\mu(x)$ and $\sigma(x)$.
     """
 
-    EI = "EI"
+    EI = auto()
     r"""The expected improvement.
 
     The acquisition criterion is $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y,0]$ where $Y$ is
     a Gaussian random variable with mean $\mu(x)$ and standard deviation $\sigma(x)$.
     """
 
-    LCB = "LCB"
+    LCB = auto()
     r"""The lower confidence bound.
 
     The acquisition criterion is $\mu(x)-3\sigma(x)$.
     """
 
-    SBO = "SBO"
+    SBO = auto()
     r"""The surrogate-based optimization.
 
     The acquisition criterion is $\mu(x)$.
@@ -63,25 +62,25 @@ class ParallelStrategy(StrEnum):
     denoted $y$, $\{y_1,\ldots,y_n\}$, $\mu(x)$ and $\sigma(x)$.
     """
 
-    CLmin = "CLmin"
+    CLmin = auto()
     r"""The minimum constant liar.
 
     The output of the virtual point at $x$ is defined by $\min \{y_1,\ldots,y_n\}$.
     """
 
-    KB = "KB"
+    KB = auto()
     r"""The Kriging believer.
 
     The output of the virtual point at $x$ is defined by $\mu(x)$.
     """
 
-    KBLB = "KBLB"
+    KBLB = auto()
     r"""The Kriging believer lower bound.
 
     The output of the virtual point at $x$ is defined by $\mu(x)-3\sigma(x)$.
     """
 
-    KBRand = "KBRand"
+    KBRand = auto()
     r"""The Kriging believer random bound.
 
     The output of the virtual point at $x$ is defined by $\mu(x)+\kappa(x)\sigma(x)$
@@ -89,7 +88,7 @@ class ParallelStrategy(StrEnum):
     the standard normal distribution.
     """
 
-    KBUB = "KBUB"
+    KBUB = auto()
     r"""The Kriging believer upper bound.
 
     The output of the virtual point at $x$ is defined by $\mu(x)+3\sigma(x)$.
@@ -99,19 +98,19 @@ class ParallelStrategy(StrEnum):
 class Surrogate(StrEnum):
     """A surrogate model."""
 
-    GPX = "GPX"
+    GPX = auto()
     """Kriging based on the `egobox` library."""
 
-    KRG = "KRG"
+    KRG = auto()
     """Kriging."""
 
-    KPLS = "KPLS"
+    KPLS = auto()
     """Kriging using partial least squares (PLS) to reduce the input dimension."""
 
-    KPLSK = "KPLSK"
+    KPLSK = auto()
     """A variant of KPLS."""
 
-    MGP = "MGP"
+    MGP = auto()
     """A marginal Gaussian process (MGP) regressor."""
 
 

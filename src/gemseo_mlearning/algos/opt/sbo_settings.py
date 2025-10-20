@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping  # noqa: TC003
+from enum import auto
 from pathlib import Path  # noqa: TC003
 
 from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TC002
@@ -45,19 +46,19 @@ class AcquisitionCriterion(StrEnum):
     $\mathbb{E}[Y(x)]$ and $\mathbb{S}[Y(x)]$.
     """
 
-    EI = "EI"
+    EI = auto()
     r"""The expected improvement.
 
     The acquisition criterion is $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0]$.
     """
 
-    CB = "CB"
+    CB = auto()
     r"""The confidence bound.
 
     The acquisition criterion is $\mathbb{E}[Y(x)]-3\mathbb{S}[Y(x)]$.
     """
 
-    Output = "Output"
+    Output = auto()
     r"""The mean output.
 
     The acquisition criterion is $\mathbb{E}[Y(x)]$.

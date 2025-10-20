@@ -12,12 +12,4 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""Settings of the optimization algorithms."""
-
-from __future__ import annotations
-
-from gemseo_mlearning.algos.opt.egobox.egor_settings import (  # noqa: F401
-    EGObox_Egor_Settings,
-)
-from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings  # noqa: F401
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings  # noqa: F401
+"""Surrogate-based optimization using EGObox."""
