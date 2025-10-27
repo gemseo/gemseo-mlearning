@@ -34,7 +34,7 @@ fastjsonschema==2.21.2
     # via gemseo
 fonttools==4.60.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@ebd35360163ccc57d683d4f46f7895ccadded22b
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@4acf8b597f56ba16b2a21acac9d8b208783b6cfd
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -154,7 +154,7 @@ python-dateutil==2.9.0.post0
     # via
     #   matplotlib
     #   pandas
-python-dotenv==1.1.1
+python-dotenv==1.2.1
     # via pydantic-settings
 pytz==2025.2
     # via pandas
