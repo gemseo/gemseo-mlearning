@@ -147,7 +147,7 @@ mkdocs-include-markdown-plugin==7.2.0
     # via gemseo-mlearning (pyproject.toml:doc)
 mkdocs-literate-nav==0.6.2
     # via gemseo-mlearning (pyproject.toml:doc)
-mkdocs-material==9.6.22
+mkdocs-material==9.6.23
     # via
     #   gemseo-mlearning (pyproject.toml:doc)
     #   mkdocs-gallery
