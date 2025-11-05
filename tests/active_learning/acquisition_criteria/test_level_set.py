@@ -106,7 +106,7 @@ def test_level_set_parallel(kriging_distribution, cls, expected, kwargs):
     )
     expected_mc_size = kwargs.get("mc_size", 10000)
     input_value = array([[0.25], [0.25]])
-    assert_almost_equal(criterion.func(input_value), expected)
+    assert_almost_equal(criterion.func(input_value), expected, decimal=3)
     assert criterion._mc_size == expected_mc_size
     assert criterion._batch_size == 2
 

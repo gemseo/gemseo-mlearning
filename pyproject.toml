@@ -28,7 +28,6 @@ dependencies = [
     "openturns <1.25",
     "scikit-learn",
     "scipy",
-    "smt[gpx] >=2.5.0,<=2.9.5",
 ]
 
 [dependency-groups]

@@ -28,13 +28,9 @@ and this project adheres to
 
 ## Develop
 
-### Added
+### Removed
 
-- The algorithm `EGObox_Egor` available in [EGOboxEgor][gemseo_mlearning.algos.opt.egobox.egobox_egor.EGOboxEgor]
-  interfaces the efficient global optimization (EGO) algorithm available in
-  [EGObox](https://github.com/relf/egobox/tree/master);
-  the settings can be changed using
-  [EGObox_Egor_Settings][gemseo_mlearning.algos.opt.egobox.egor_settings.EGObox_Egor_Settings].
+- Remove the interface to SMT features; use [gemseo-smt](https://gitlab.com/gemseo/dev/gemseo-smt) instead.
 
 ## Version 3.1.0 (October 2025)
 
