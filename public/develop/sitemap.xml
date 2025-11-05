@@ -141,27 +141,7 @@
          <lastmod>2025-11-05</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/plot_egobox_ego/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/plot_sbo_ego/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/optimization/plot_smt_ego/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/mg_execution_times/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/regression/plot_smt_regressor/</loc>
          <lastmod>2025-11-05</lastmod>
     </url>
     <url>
@@ -393,58 +373,6 @@
          <lastmod>2025-11-05</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/constraint_strategy/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/correlation_spec/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/egobox_egor/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/egor_settings/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/gp_config/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/infill_optimizer/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/infill_strategy/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/q_infill_strategy/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/egobox/regression_spec/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/smt/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/smt/ego_settings/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/algos/opt/smt/smt_ego/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/problems/</loc>
          <lastmod>2025-11-05</lastmod>
     </url>
@@ -497,23 +425,7 @@
          <lastmod>2025-11-05</lastmod>
     </url>
     <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regressor/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/regression/smt_regressor_settings/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/settings/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/reference/gemseo_mlearning/settings/mlearning/</loc>
          <lastmod>2025-11-05</lastmod>
     </url>
     <url>
@@ -550,18 +462,6 @@
     </url>
     <url>
          <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/optimization/al/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/optimization/egobox/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/optimization/smt/</loc>
-         <lastmod>2025-11-05</lastmod>
-    </url>
-    <url>
-         <loc>https://gemseo.gitlab.io/gemseo-mlearning/latest/user_guide/regression/smt/</loc>
          <lastmod>2025-11-05</lastmod>
     </url>
 </urlset>
