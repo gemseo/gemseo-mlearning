@@ -94,16 +94,10 @@ nav:
     - AL for level sets: user_guide/active_learning/level_set.md
     - AL for optimization: user_guide/active_learning/optimization.md
     - AL for quantiles: user_guide/active_learning/quantile.md
-  - Optimization:
-    - AL package: user_guide/optimization/al.md
-    - EGObox library: user_guide/optimization/egobox.md
-    - SMT library: user_guide/optimization/smt.md
-  - Regression models:
-    - SMT library: user_guide/regression/smt.md
+  - Optimization: user_guide/optimization/al.md
 - Examples:
   - Active learning: generated/examples/active_learning
   - Optimization:  generated/examples/optimization
-  - Regression models: generated/examples/regression
 - API documentation: reference/gemseo_mlearning/
 - Developer guide:
   - Active learning: developer_guide/active_learning.md

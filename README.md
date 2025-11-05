@@ -17,16 +17,11 @@ Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 `gemseo-mlearning` is a plugin of the library [GEMSEO](https://www.gemseo.org), dedicated to machine learning.
 
-This package adds new [regression models](https://gemseo.gitlab.io/dev/gemseo-mlearning/latest/user_guide/optimization/smt/)
-and [optimization algorithms](https://gemseo.gitlab.io/dev/gemseo-mlearning/latest/user_guide/regression/smt/)
-based on [SMT](https://smt.readthedocs.io/).
-
-A [package for active learning](https://gemseo.gitlab.io/dev/gemseo-mlearning/latest/user_guide/active_learning/what_active_learning_is/) is also available,
+It includes a [package for active learning](https://gemseo.gitlab.io/dev/gemseo-mlearning/latest/user_guide/active_learning/what_active_learning_is/),
 deeply based on the core GEMSEO objects for optimization,
 as well as a
 [SurrogateBasedOptimization](https://gemseo.gitlab.io/dev/gemseo-mlearning/latest/user_guide/optimization/al/)
 library built on its top.
-An effort is being made to improve both content and performance in future versions.
 
 ## Installation
 

@@ -29,8 +29,6 @@ from numpy.testing import assert_almost_equal
 from pandas.testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.sbo_settings import AcquisitionCriterion
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMTEGOSettings
 
 
 def test_default_settings():
@@ -112,8 +110,3 @@ def test_problem_counters(enable_function_statistics):
     assert problem.evaluation_counter.maximum == 13
     assert problem.evaluation_counter.current == 13
     assert problem.objective.n_calls == 13
-
-
-def test_alias():
-    """Verify that SMTEGOSettings is an alias of SMT_EGO_Settings."""
-    assert SMTEGOSettings == SMT_EGO_Settings

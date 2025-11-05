@@ -19,9 +19,7 @@ from typing import TYPE_CHECKING
 import pytest
 from gemseo.algos.opt.base_optimizer_settings import BaseOptimizerSettings
 from gemseo.core.base_factory import BaseFactory
-from gemseo.mlearning.core.algos.ml_algo_settings import BaseMLAlgoSettings
 
-import gemseo_mlearning.settings.mlearning as mlearning
 import gemseo_mlearning.settings.opt as opt
 
 if TYPE_CHECKING:
@@ -67,15 +65,5 @@ def get_setting_classes(
 )
 def test_opt_settings(module_and_cls):
     """Check aliases for optimizer settings."""
-    module, cls = module_and_cls
-    assert cls in module.__dict__.values()
-
-
-@pytest.mark.parametrize(
-    "module_and_cls",
-    get_setting_classes(BaseMLAlgoSettings, "gemseo_mlearning.regression", mlearning),
-)
-def test_machine_learning_settings(module_and_cls):
-    """Check aliases for machine learning algorithm settings."""
     module, cls = module_and_cls
     assert cls in module.__dict__.values()

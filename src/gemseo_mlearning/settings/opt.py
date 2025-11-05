@@ -16,8 +16,4 @@
 
 from __future__ import annotations
 
-from gemseo_mlearning.algos.opt.egobox.egor_settings import (  # noqa: F401
-    EGObox_Egor_Settings,
-)
 from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings  # noqa: F401
-from gemseo_mlearning.algos.opt.smt.ego_settings import SMT_EGO_Settings  # noqa: F401
