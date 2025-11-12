@@ -4,13 +4,13 @@ annotated-types==0.7.0
     # via pydantic
 babel==2.17.0
     # via mkdocs-material
-backrefs==5.9
+backrefs==6.0.1
     # via mkdocs-material
 black==25.11.0
     # via gemseo-mlearning (pyproject.toml:doc)
 bracex==2.6
     # via wcmatch
-certifi==2025.10.5
+certifi==2025.11.12
     # via requests
 charset-normalizer==3.4.4
     # via requests
@@ -85,7 +85,7 @@ markdown==3.10
     #   mkdocs-material
     #   mkdocstrings
     #   pymdown-extensions
-markdown-exec==1.12.0
+markdown-exec==1.12.1
     # via gemseo-mlearning (pyproject.toml:doc)
 markupsafe==3.0.3
     # via
@@ -131,7 +131,7 @@ mkdocs-include-markdown-plugin==7.2.0
     # via gemseo-mlearning (pyproject.toml:doc)
 mkdocs-literate-nav==0.6.2
     # via gemseo-mlearning (pyproject.toml:doc)
-mkdocs-material==9.6.23
+mkdocs-material==9.7.0
     # via
     #   gemseo-mlearning (pyproject.toml:doc)
     #   mkdocs-gallery
@@ -223,7 +223,7 @@ pygments==2.19.2
     #   pygments-ansi-color
 pygments-ansi-color==0.3.0
     # via markdown-exec
-pymdown-extensions==10.16.1
+pymdown-extensions==10.17.1
     # via
     #   markdown-exec
     #   mkdocs-material
