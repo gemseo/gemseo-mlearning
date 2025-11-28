@@ -5598,13 +5598,13 @@
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">ActiveLearningAlgo</span><span class="p">(</span>
-    <span class="n">criterion_family_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span>
-    <span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span><span class="p">,</span>
-    <span class="n">regressor</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
-    <span class="n">criterion_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">criterion_arguments</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
+    <span class="n">criterion_family_name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span>
+    <span class="n">input_space</span><span class="p">:</span> <span class="n"><span title="gemseo.algos.design_space.DesignSpace">DesignSpace</span></span><span class="p">,</span>
+    <span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
+    <span class="n">criterion_name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mc_size</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">criterion_arguments</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -5637,7 +5637,7 @@ or <code>"Exploration"</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                      <code><span title="str">str</span></code>
                   </span>
               </p>
             </td>
@@ -5653,7 +5653,7 @@ or <code>"Exploration"</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></code>
+                      <code><span title="gemseo.algos.design_space.DesignSpace">DesignSpace</span></code>
                   </span>
               </p>
             </td>
@@ -5669,7 +5669,7 @@ or <code>"Exploration"</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a> | <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
+                      <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span> | <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
                   </span>
               </p>
             </td>
@@ -5687,7 +5687,7 @@ use the default criterion of the family <code>criterion_family_name</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                      <code><span title="str">str</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -5708,7 +5708,7 @@ if <code>1</code>, acquire points sequentially.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                      <code><span title="int">int</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -5728,7 +5728,7 @@ if <code>1</code>, acquire points sequentially.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                      <code><span title="int">int</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -5748,7 +5748,7 @@ if <code>1</code>, acquire points sequentially.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>
+                      <code><span title="typing.Any">Any</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -5772,7 +5772,7 @@ if <code>1</code>, acquire points sequentially.</p>
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError">NotImplementedError</a></code>
+                  <code><span title="NotImplementedError">NotImplementedError</span></code>
               </span>
             </td>
             <td class="doc-raises-details">
@@ -6038,7 +6038,7 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquisition_criterion_family_name" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">acquisition_criterion_family_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">acquisition_criterion_family_name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6062,7 +6062,7 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.batch_size" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">batch_size</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">batch_size</span><span class="p">:</span> <span class="n"><span title="int">int</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6086,7 +6086,7 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.input_space" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">input_space</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.design_space.DesignSpace" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.design_space.html#gemseo.algos.design_space.DesignSpace">DesignSpace</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">input_space</span><span class="p">:</span> <span class="n"><span title="gemseo.algos.design_space.DesignSpace">DesignSpace</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6110,7 +6110,7 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.n_initial_samples" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">n_initial_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">n_initial_samples</span><span class="p">:</span> <span class="n"><span title="int">int</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6134,7 +6134,7 @@ if <code>1</code>, acquire points sequentially.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.qoi" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span> <span class="o">|</span> <span class="kc">None</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi</span><span class="p">:</span> <span class="n"><span title="float">float</span></span> <span class="o">|</span> <span class="kc">None</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6160,7 +6160,7 @@ this attribute is <code>None</code>.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.qoi_history" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi_history</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span><span class="p">],</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a></span><span class="p">]]</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">qoi_history</span><span class="p">:</span> <span class="n"><span title="tuple">tuple</span></span><span class="p">[</span><span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="int">int</span></span><span class="p">],</span> <span class="n"><span title="list">list</span></span><span class="p">[</span><span class="n"><span title="float">float</span></span><span class="p">]]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6189,7 +6189,7 @@ these lists are empty.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.regressor" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6236,11 +6236,11 @@ these lists are empty.</p>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.acquire_new_points" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">acquire_new_points</span><span class="p">(</span>
-    <span class="n">discipline</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a></span><span class="p">,</span>
-    <span class="n">n_samples</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a></span><span class="p">[</span><span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.database.html#gemseo.algos.database.Database">Database</a></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.algos.optimization_problem.OptimizationProblem" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.optimization_problem.html#gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</a></span><span class="p">]</span>
+    <span class="n">discipline</span><span class="p">:</span> <span class="n"><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span></span><span class="p">,</span>
+    <span class="n">n_samples</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">show</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="n"><span title="pathlib.Path">Path</span></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="tuple">tuple</span></span><span class="p">[</span><span class="n"><span title="gemseo.algos.database.Database">Database</span></span><span class="p">,</span> <span class="n"><span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6273,7 +6273,7 @@ from the input data provided by the acquisition process.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a></code>
+                      <code><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span></code>
                   </span>
               </p>
             </td>
@@ -6290,7 +6290,7 @@ It should be a multiple of batch_size.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                      <code><span title="int">int</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6311,7 +6311,7 @@ Only when the input space dimension is 2.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                      <code><span title="bool">bool</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6333,7 +6333,7 @@ Only when the input space dimension is 2.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                      <code><span title="str">str</span> | <span title="pathlib.Path">Path</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6357,7 +6357,7 @@ Only when the input space dimension is 2.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#tuple">tuple</a>[<a class="autorefs autorefs-external" title="gemseo.algos.database.Database" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.database.html#gemseo.algos.database.Database">Database</a>, <a class="autorefs autorefs-external" title="gemseo.algos.optimization_problem.OptimizationProblem" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.algos.optimization_problem.html#gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</a>]</code>
+                    <code><span title="tuple">tuple</span>[<span title="gemseo.algos.database.Database">Database</span>, <span title="gemseo.algos.optimization_problem.OptimizationProblem">OptimizationProblem</span>]</code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -6383,7 +6383,7 @@ and the last acquisition problem.</p>
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
+                  <code><span title="ValueError">ValueError</span></code>
               </span>
             </td>
             <td class="doc-raises-details">
@@ -6613,7 +6613,7 @@ and the last acquisition problem.</p>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.find_next_point" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">find_next_point</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">find_next_point</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6643,7 +6643,7 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                      <code><span title="bool">bool</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6748,12 +6748,12 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_acquisition_view" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">plot_acquisition_view</span><span class="p">(</span>
-    <span class="n">discipline</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">filled</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">n_test</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="matplotlib.figure.Figure" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure">Figure</a></span>
+    <span class="n">discipline</span><span class="p">:</span> <span class="n"><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">filled</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">n_test</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">show</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="n"><span title="pathlib.Path">Path</span></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="matplotlib.figure.Figure">Figure</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6798,7 +6798,7 @@ it is better to leave this argument to <code>None</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="gemseo.core.discipline.discipline.Discipline" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.core.discipline.discipline.html#gemseo.core.discipline.discipline.Discipline">Discipline</a> | None</code>
+                      <code><span title="gemseo.core.discipline.discipline.Discipline">Discipline</span> | None</code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6818,7 +6818,7 @@ it is better to leave this argument to <code>None</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>
+                      <code><span title="int">int</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6839,7 +6839,7 @@ Otherwise, plot contour lines.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                      <code><span title="bool">bool</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6859,7 +6859,7 @@ Otherwise, plot contour lines.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                      <code><span title="bool">bool</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6880,7 +6880,7 @@ If empty, do not save it.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                      <code><span title="str">str</span> | <span title="pathlib.Path">Path</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -6904,7 +6904,7 @@ If empty, do not save it.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-external" title="matplotlib.figure.Figure" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure">Figure</a></code>
+                    <code><span title="matplotlib.figure.Figure">Figure</span></code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -6928,7 +6928,7 @@ If empty, do not save it.</p>
           <tr class="doc-section-item">
             <td>
               <span class="doc-raises-annotation">
-                  <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/exceptions.html#ValueError">ValueError</a></code>
+                  <code><span title="ValueError">ValueError</span></code>
               </span>
             </td>
             <td class="doc-raises-details">
@@ -7061,12 +7061,12 @@ If empty, do not save it.</p>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.plot_qoi_history" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">plot_qoi_history</span><span class="p">(</span>
-    <span class="n">show</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">file_path</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">label</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">add_markers</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></span>
+    <span class="n">show</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">file_path</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="n"><span title="pathlib.Path">Path</span></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">add_markers</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">options</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.post.dataset.lines.Lines">Lines</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -7093,7 +7093,7 @@ If empty, do not save it.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                      <code><span title="bool">bool</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -7114,7 +7114,7 @@ If empty, do not save it.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | <a class="autorefs autorefs-external" title="pathlib.Path" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path">Path</a></code>
+                      <code><span title="str">str</span> | <span title="pathlib.Path">Path</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -7135,7 +7135,7 @@ If empty, the name of the criterion family name.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                      <code><span title="str">str</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -7155,7 +7155,7 @@ If empty, the name of the criterion family name.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a></code>
+                      <code><span title="bool">bool</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -7171,12 +7171,12 @@ If empty, the name of the criterion family name.</p>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The options to create the
-<a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a> object.</p>
+[Lines][gemseo.post.dataset.lines.Lines] object.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>
+                      <code><span title="typing.Any">Any</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
@@ -7200,7 +7200,7 @@ If empty, the name of the criterion family name.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><a class="autorefs autorefs-external" title="gemseo.post.dataset.lines.Lines" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.post.dataset.lines.html#gemseo.post.dataset.lines.Lines">Lines</a></code>
+                    <code><span title="gemseo.post.dataset.lines.Lines">Lines</span></code>
                 </span>
             </td>
             <td class="doc-returns-details">
@@ -7289,7 +7289,7 @@ If empty, the name of the criterion family name.</p>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.set_acquisition_algorithm" class="headerlink" title="Permanent link">&para;</a></h6>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">set_acquisition_algorithm</span><span class="p">(</span>
-    <span class="n">algo_name</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></span>
+    <span class="n">algo_name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
 </code></pre></div>
 
@@ -7318,7 +7318,7 @@ to find the learning point(s).</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+                      <code><span title="str">str</span></code>
                   </span>
               </p>
             </td>
@@ -7334,7 +7334,7 @@ to find the learning point(s).</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3/library/typing.html#typing.Any">Any</a></code>
+                      <code><span title="typing.Any">Any</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>

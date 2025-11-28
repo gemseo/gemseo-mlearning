@@ -5850,8 +5850,8 @@ and this project adheres to
 <li><a class="autorefs autorefs-internal" title="            SurrogateBasedOptimization" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
   can use the acquisition criteria <code>CB</code> and <code>Mean</code> in addition to <code>EI</code>.</li>
 <li><a class="autorefs autorefs-internal" title="            SurrogateBasedOptimization" href="../reference/gemseo_mlearning/algos/opt/surrogate_based_optimization/#gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization">SurrogateBasedOptimization</a>
-  can use an existing <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a>
-  and save the <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a> that it enriches
+  can use an existing [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+  and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches
   using the <code>regression_file_path</code> option.</li>
 </ul>
 <h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
@@ -5864,7 +5864,7 @@ and this project adheres to
   <a class="autorefs autorefs-internal" title="            ActiveLearningAlgo" href="../reference/gemseo_mlearning/active_learning/active_learning_algo/#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo">ActiveLearningAlgo</a>.
   renamed to <code>regressor</code>;
   it can be either a</li>
-<li><a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.base_regressor.html#gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</a>
+<li>[BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
   or a
   <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution" href="../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a>.</li>
 <li>BREAKING CHANGE: The method <code>compute_next_input_data</code> of
@@ -5916,16 +5916,16 @@ and this project adheres to
 <h3 id="removed_2">Removed<a class="headerlink" href="#removed_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>AcquisitionCriterionFactory</code>; replaced by different factories for the developers.</li>
-<li><code>sample_discipline</code>; use <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.html#gemseo.sample_disciplines">sample_disciplines</a> from <code>gemseo</code> instead.</li>
-<li><code>sample_disciplines</code>; move to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.html#gemseo.sample_disciplines">sample_disciplines</a>.</li>
-<li><code>MAEMeasure</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.quality.mae_measure.html#gemseo.mlearning.regression.quality.mae_measure.MAEMeasure">MAEMeasure</a>.</li>
-<li><code>MEMeasure</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.quality.me_measure.html#gemseo.mlearning.regression.quality.me_measure.MEMeasure">MEMeasure</a>.</li>
-<li><code>GradientBoostingRegressor</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.gradient_boosting.html#gemseo.mlearning.regression.algos.gradient_boosting.GradientBoostingRegressor">GradientBoostingRegressor</a>.</li>
-<li><code>MLPRegressor</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.mlp.html#gemseo.mlearning.regression.algos.mlp.MLPRegressor">MLPRegressor</a>.</li>
-<li><code>OTGaussianProcessRegressor</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.ot_gpr.html#gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor">OTGaussianProcessRegressor</a>.</li>
-<li><code>RegressorChain</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.regressor_chain.html#gemseo.mlearning.regression.algos.regressor_chain.RegressorChain">RegressorChain</a>.</li>
-<li><code>SVMRegressor</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.svm.html#gemseo.mlearning.regression.algos.svm.SVMRegressor">SVMRegressor</a>.</li>
-<li><code>TPSRegressor</code>; moved to <code>gemseo</code>: <a class="autorefs autorefs-external" href="https://gemseo.readthedocs.io/en/stable/modules/gemseo.mlearning.regression.algos.thin_plate_spline.html#gemseo.mlearning.regression.algos.thin_plate_spline.TPSRegressor">TPSRegressor</a>.</li>
+<li><code>sample_discipline</code>; use [sample_disciplines][gemseo.sample_disciplines] from <code>gemseo</code> instead.</li>
+<li><code>sample_disciplines</code>; move to <code>gemseo</code>: [sample_disciplines][gemseo.sample_disciplines].</li>
+<li><code>MAEMeasure</code>; moved to <code>gemseo</code>: [MAEMeasure][gemseo.mlearning.regression.quality.mae_measure.MAEMeasure].</li>
+<li><code>MEMeasure</code>; moved to <code>gemseo</code>: [MEMeasure][gemseo.mlearning.regression.quality.me_measure.MEMeasure].</li>
+<li><code>GradientBoostingRegressor</code>; moved to <code>gemseo</code>: [GradientBoostingRegressor][gemseo.mlearning.regression.algos.gradient_boosting.GradientBoostingRegressor].</li>
+<li><code>MLPRegressor</code>; moved to <code>gemseo</code>: [MLPRegressor][gemseo.mlearning.regression.algos.mlp.MLPRegressor].</li>
+<li><code>OTGaussianProcessRegressor</code>; moved to <code>gemseo</code>: [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor].</li>
+<li><code>RegressorChain</code>; moved to <code>gemseo</code>: [RegressorChain][gemseo.mlearning.regression.algos.regressor_chain.RegressorChain].</li>
+<li><code>SVMRegressor</code>; moved to <code>gemseo</code>: [SVMRegressor][gemseo.mlearning.regression.algos.svm.SVMRegressor].</li>
+<li><code>TPSRegressor</code>; moved to <code>gemseo</code>: [TPSRegressor][gemseo.mlearning.regression.algos.thin_plate_spline.TPSRegressor].</li>
 </ul>
 <h2 id="version-112-december-2023">Version 1.1.2 (December 2023)<a class="headerlink" href="#version-112-december-2023" title="Permanent link">&para;</a></h2>
 <h3 id="added_3">Added<a class="headerlink" href="#added_3" title="Permanent link">&para;</a></h3>
