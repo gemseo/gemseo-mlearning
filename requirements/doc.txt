@@ -38,7 +38,7 @@ fieldz==0.1.3
     # via griffe-fieldz
 fonttools==4.61.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@9dc63ebbb89014b931eee76c6504ab3ba3d7688f
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@e59a72156600a2ecd3c0616f217dbf6e467f561d
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
@@ -149,7 +149,7 @@ mpmath==1.3.0
     # via sympy
 mypy-extensions==1.1.0
     # via black
-narwhals==2.13.0
+narwhals==2.14.0
     # via plotly
 networkx==3.5
     # via gemseo
