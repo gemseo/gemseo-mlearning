@@ -187,7 +187,7 @@ paginate==0.5.7
     # via mkdocs-material
 pandas==2.3.3
     # via gemseo
-pathspec==1.0.1
+pathspec==1.0.2
     # via
     #   black
     #   mkdocs
@@ -309,7 +309,7 @@ typing-inspection==0.4.2
     #   pydantic-settings
 tzdata==2025.3
     # via pandas
-urllib3==2.6.2
+urllib3==2.6.3
     # via
     #   requests
     #   responses
