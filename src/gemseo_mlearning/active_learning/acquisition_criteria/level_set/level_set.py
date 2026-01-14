@@ -14,6 +14,8 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """Family of acquisition criteria to estimate a level set."""
 
+from __future__ import annotations
+
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family import (  # noqa: E501
     BaseAcquisitionCriterionFamily,
 )
