@@ -5410,6 +5410,24 @@ There is no analytic expression
 and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
 
 
+<details class="note" open>
+  <summary>Note</summary>
+  <p>The callable can be set to <code>None</code> (default)
+when the user does not want to use a callable
+but a database to browse for the output vector corresponding to an input vector
+(see
+[set_pt_from_database()][gemseo.core.mdo_functions.mdo_function.MDOFunction.set_pt_from_database]).</p>
+</details>
+
+<details class="warning" open>
+  <summary>Warning</summary>
+  <p>For the literal expression,
+do not use <code>"f(x) = 2*x"</code> nor <code>"f = 2*x"</code> but <code>"2*x"</code>.
+The other elements will be added automatically
+in the string representation of the MDO function
+based on the name of the MDO function and the names of its inputs.</p>
+</details>
+
 
 <table>
       <thead>
@@ -5419,6 +5437,38 @@ and the acquisition is thus instead evaluated with crude Monte-Carlo.</p>
         </tr>
       </thead>
       <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>regressor_distribution</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The distribution of the regressor.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../../../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>output_value</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The model output value characterizing the level set.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="float">float</span></code>
+                  </span>
+              </p>
+            </td>
+          </tr>
           <tr class="doc-section-item">
             <td>
                 <code>kappa</code>
@@ -5436,6 +5486,47 @@ describing the area around <code>output_value</code> where to add points.</p>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>2.0</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>batch_size</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The number of points to be acquired in parallel;
+if <code>1</code>, acquire points sequentially.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>1</code>
+                  </span>
+              </p>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>mc_size</code>
+            </td>
+            <td class="doc-param-details">
+              <div class="doc-md-description">
+                <p>The sample size to estimate the acquisition criterion in parallel.</p>
+              </div>
+              <p>
+                  <span class="doc-param-annotation">
+                    <b>TYPE:</b>
+                      <code><span title="int">int</span></code>
+                  </span>
+                  <span class="doc-param-default">
+                    <b>DEFAULT:</b>
+                      <code>10000</code>
                   </span>
               </p>
             </td>
@@ -5592,6 +5683,7 @@ describing the area around <code>output_value</code> where to add points.</p>
 
     <div class="doc doc-contents ">
 
+        <p>Update the acquisition criterion.</p>
 
 
 <table>
