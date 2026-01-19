@@ -26,7 +26,7 @@ contourpy==1.3.3
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
-dill==0.4.0
+dill==0.4.1
     # via openturns
 docstring-inheritance==3.0.0
     # via gemseo
@@ -38,7 +38,7 @@ fieldz==0.1.3
     # via griffe-fieldz
 fonttools==4.61.1
     # via matplotlib
-gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@613a1fa043438bbbea494bbf8ef47c1eea15cc34
+gemseo @ git+https://gitlab.com/gemseo/dev/gemseo.git@4aceb3b357a0541ebb6b25bba72ec3deeed848f1
     # via
     #   -c requirements/test-constraints.in
     #   gemseo-mlearning (pyproject.toml)
