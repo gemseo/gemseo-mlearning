@@ -19,8 +19,8 @@ from __future__ import annotations
 
 from gemseo import configuration
 from gemseo import sample_disciplines
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
-from gemseo.mlearning.regression.quality.r2_measure import R2Measure
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.quality.r2_measure import R2Measure
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (

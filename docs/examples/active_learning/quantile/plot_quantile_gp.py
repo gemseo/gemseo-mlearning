@@ -20,8 +20,8 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 from gemseo import configuration
 from gemseo import sample_disciplines
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
 from gemseo.uncertainty.statistics.empirical_statistics import EmpiricalStatistics
 from numpy import concatenate
 from numpy import unique

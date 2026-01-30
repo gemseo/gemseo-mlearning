@@ -40,8 +40,8 @@ if TYPE_CHECKING:
 
     DataType = RealArray | Mapping[str, ndarray]
     from gemseo.machine_learning.regression.models.base_random_process_regressor import (  # noqa: E501
-        BaseRandomProcessRegressor,  # noqa: E501
-    )  # noqa: E501
+        BaseRandomProcessRegressor,
+    )
     from gemseo.typing import NumberArray
 
 

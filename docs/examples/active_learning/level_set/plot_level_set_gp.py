@@ -21,8 +21,8 @@ import matplotlib.pyplot as plt
 from gemseo import configuration
 from gemseo import sample_disciplines
 from gemseo.disciplines.surrogate import SurrogateDiscipline
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
 from numpy import unique
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
