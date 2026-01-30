@@ -24,11 +24,11 @@ from typing import TYPE_CHECKING
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.hashable_ndarray import HashableNdarray
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
-from gemseo.mlearning.regression.algos.factory import RegressorFactory
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+from gemseo.machine_learning.regression.models.factory import RegressorFactory
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
 from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
-from gemseo.utils.logging_tools import LoggingContext
+from gemseo.utils.logging import LoggingContext
 from numpy import hstack
 from numpy import newaxis
 from pandas import concat
@@ -43,7 +43,7 @@ if TYPE_CHECKING:
 
     from gemseo.algos.base_driver_library import DriverLibrarySettingType
     from gemseo.algos.optimization_problem import OptimizationProblem
-    from gemseo.mlearning.core.algos.ml_algo import MLAlgoParameterType
+    from gemseo.machine_learning.core.models.ml_algo import MLAlgoParameterType
 
 
 class SurrogateBasedOptimizer:

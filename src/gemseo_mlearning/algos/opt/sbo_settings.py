@@ -19,16 +19,16 @@ from __future__ import annotations
 from collections.abc import Mapping  # noqa: TC003
 from enum import auto
 from pathlib import Path  # noqa: TC003
+from typing import Any
 
 from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TC002
 from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TC002
     BaseOptimizerSettings,
 )
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TC002
-from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TC002
+from gemseo.machine_learning.regression.models.base_regressor import (  # noqa: TC003
     BaseRegressor,
 )
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
 from pydantic import Field
 from pydantic import NonNegativeInt
 from pydantic import PositiveInt
@@ -158,7 +158,7 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
         ),
     )
 
-    regression_settings: Mapping[str, MLAlgoSettingsType] = Field(
+    regression_settings: Mapping[str, Any | None] = Field(
         default_factory=dict,
         description=(
             """The settings of the regression algorithm.

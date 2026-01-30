@@ -20,7 +20,7 @@ import pytest
 from gemseo import sample_disciplines
 from gemseo.algos.design_space import DesignSpace
 from gemseo.disciplines.analytic import AnalyticDiscipline
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 

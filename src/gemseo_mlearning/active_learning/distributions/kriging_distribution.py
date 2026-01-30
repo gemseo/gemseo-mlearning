@@ -25,7 +25,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
 from scipy.stats import norm
@@ -35,10 +35,13 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.base_random_process_regressor import (
-        BaseRandomProcessRegressor,
-    )
+    from gemseo.typing import RealArray
+    from numpy import ndarray
+
+    DataType = RealArray | Mapping[str, ndarray]
+    from gemseo.machine_learning.regression.models.base_random_process_regressor import (  # noqa: E501
+        BaseRandomProcessRegressor,  # noqa: E501
+    )  # noqa: E501
     from gemseo.typing import NumberArray
 
 

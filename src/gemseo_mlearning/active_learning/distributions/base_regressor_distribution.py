@@ -19,7 +19,7 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
 from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
@@ -27,8 +27,8 @@ from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
 if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+    from gemseo.machine_learning.core.models.ml_algo import DataType
+    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
     from gemseo.typing import NumberArray
 
 

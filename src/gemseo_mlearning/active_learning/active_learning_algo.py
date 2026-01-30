@@ -34,12 +34,12 @@ from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.factory import OptimizationLibraryFactory
 from gemseo.algos.optimization_problem import OptimizationProblem
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+from gemseo.machine_learning.regression.models.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
-from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
-from gemseo.utils.logging_tools import LoggingContext
-from gemseo.utils.logging_tools import OneLineLogging
+from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+from gemseo.utils.logging import LoggingContext
+from gemseo.utils.logging import OneLineLogging
 from numpy import array
 from numpy import hstack
 from numpy import newaxis
@@ -63,7 +63,7 @@ if TYPE_CHECKING:
 
     from gemseo.algos.base_driver_library import BaseDriverLibrary
     from gemseo.core.discipline.discipline import Discipline
-    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.machine_learning.core.models.ml_algo import DataType
     from gemseo.post.dataset.lines import Lines
     from matplotlib.figure import Figure
 

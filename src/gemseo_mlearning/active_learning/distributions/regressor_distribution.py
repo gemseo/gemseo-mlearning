@@ -27,7 +27,7 @@ from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
 
-from gemseo.mlearning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
@@ -53,8 +53,8 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from gemseo.datasets.dataset import Dataset
-    from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+    from gemseo.machine_learning.core.models.ml_algo import DataType
+    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
     from gemseo.typing import NumberArray
 
 

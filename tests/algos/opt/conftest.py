@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import pytest
 from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
 from gemseo.problems.optimization.rastrigin import Rastrigin
 
 

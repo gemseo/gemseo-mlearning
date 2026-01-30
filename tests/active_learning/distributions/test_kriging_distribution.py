@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
+    from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
 
 
 @pytest.fixture(scope="module")
@@ -43,7 +43,7 @@ def distribution(kriging_algo: GaussianProcessRegressor) -> KrigingDistribution:
 
 def test_init(kriging_algo):
     """Check the initialization of the distribution."""
-    assert KrigingDistribution(kriging_algo).algo == kriging_algo
+    assert KrigingDistribution(kriging_algo).model == kriging_algo
 
 
 @pytest.mark.parametrize(

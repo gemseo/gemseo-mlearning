@@ -31,7 +31,7 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.machine_learning.core.models.ml_algo import DataType
     from gemseo.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501

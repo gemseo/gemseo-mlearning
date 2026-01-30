@@ -21,7 +21,7 @@ from __future__ import annotations
 import re
 
 import pytest
-from gemseo.mlearning.regression.algos.linreg import LinearRegressor
+from gemseo.machine_learning.regression.models.linreg import LinearRegressor
 from numpy import array
 from numpy import exp
 from numpy import quantile
@@ -74,8 +74,8 @@ def test_init(linear_algo, bootstrap, loo, size):
         assert distribution.method == distribution.CROSS_VALIDATION
         assert distribution.size == size or distribution.N_FOLDS
 
-    assert len(distribution.algos) == distribution.size
-    for algo in distribution.algos:
+    assert len(distribution.models) == distribution.size
+    for algo in distribution.models:
         assert isinstance(algo, LinearRegressor)
 
 
@@ -85,8 +85,8 @@ def test_learn(distribution):
     Original model: f(x) = 2/3
     Sub-models: f0(x) = -1 + 2x, f1(x) = 1, f2(x) = 1 - 2x
     """
-    assert pytest.approx(distribution.algo.intercept[0], 0.1) == 2.0 / 3
-    assert pytest.approx(distribution.algo.coefficients[0], 0.1) == 0.0
+    assert pytest.approx(distribution.model.intercept[0], 0.1) == 2.0 / 3
+    assert pytest.approx(distribution.model.coefficients[0], 0.1) == 0.0
 
 
 @pytest.mark.parametrize(
@@ -97,8 +97,8 @@ def test_learn_submodels(distribution, model, intercept, coefficient):
 
     Sub-models: f0(x) = -1 + 2x, f1(x) = 1, f2(x) = 1 - 2x
     """
-    assert intercept == pytest.approx(distribution.algos[model].intercept[0], 0.1)
-    assert coefficient == pytest.approx(distribution.algos[model].coefficients[0], 0.1)
+    assert intercept == pytest.approx(distribution.models[model].intercept[0], 0.1)
+    assert coefficient == pytest.approx(distribution.models[model].coefficients[0], 0.1)
 
 
 @pytest.mark.parametrize("point", [0.0, 0.25, 0.5, 0.75, 1.0])

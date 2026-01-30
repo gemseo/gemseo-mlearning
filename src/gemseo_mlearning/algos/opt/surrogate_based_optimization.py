@@ -41,8 +41,8 @@ from gemseo.algos.base_driver_library import DriverSettingType
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
 from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType
-from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+from gemseo.machine_learning.core.models.ml_algo import MLAlgoSettingsType
+from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
 
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,

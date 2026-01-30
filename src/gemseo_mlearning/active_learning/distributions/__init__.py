@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+from gemseo.machine_learning.regression.models.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
 
@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.distributions.regressor_distribution impor
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,

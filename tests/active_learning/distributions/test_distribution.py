@@ -20,8 +20,8 @@ from __future__ import annotations
 
 import pytest
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.algos.linreg import LinearRegressor
-from gemseo.mlearning.regression.algos.rbf import RBFRegressor
+from gemseo.machine_learning.regression.models.linreg import LinearRegressor
+from gemseo.machine_learning.regression.models.rbf import RBFRegressor
 from gemseo.utils.testing.helpers import concretize_classes
 from numpy import array
 from numpy import linspace
@@ -76,7 +76,7 @@ def test_init(distribution):
     Samples must be None (the value is defined by the 'learn' method) and the algorithm
     must be equal to the provided one.
     """
-    assert isinstance(distribution.algo, LinearRegressor)
+    assert isinstance(distribution.model, LinearRegressor)
     assert distribution._samples == []
 
 
@@ -90,7 +90,7 @@ def test_inputs_names(distribution):
 
     Must be equal to the names of the inputs of the regression algorithm.
     """
-    assert distribution.input_names == distribution.algo.input_names
+    assert distribution.input_names == distribution.model.input_names
 
 
 def test_outputs_names(distribution):
@@ -98,7 +98,7 @@ def test_outputs_names(distribution):
 
     Should be equal to the names of the outputs of the regression algorithm.
     """
-    assert distribution.output_names == distribution.algo.output_names
+    assert distribution.output_names == distribution.model.output_names
 
 
 def test_output_dimension(distribution):
@@ -106,7 +106,7 @@ def test_output_dimension(distribution):
 
     Must be equal to the output dimension of the regression algorithm.
     """
-    assert distribution.output_dimension == distribution.algo.output_dimension
+    assert distribution.output_dimension == distribution.model.output_dimension
 
 
 @pytest.mark.parametrize(
@@ -121,9 +121,11 @@ def test_learn(distribution, samples, expected_samples, prediction):
     the output dimension of the regression algorithm.
     """
     distribution.learn(samples)
-    assert distribution.algo.is_trained
+    assert distribution.model.is_trained
     assert distribution._samples == expected_samples
-    assert distribution.algo.predict(array([0.0]))[0] == pytest.approx(prediction, 0.01)
+    assert distribution.model.predict(array([0.0]))[0] == pytest.approx(
+        prediction, 0.01
+    )
 
 
 @pytest.mark.parametrize(
