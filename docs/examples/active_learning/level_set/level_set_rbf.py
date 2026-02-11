@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from gemseo import configuration
 from gemseo import sample_disciplines
-from gemseo.mlearning.regression.algos.rbf import RBFRegressor
+from gemseo.machine_learning.regression.models.rbf import RBFRegressor
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 from gemseo_mlearning.active_learning.distributions.regressor_distribution import (

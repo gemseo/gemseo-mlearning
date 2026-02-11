@@ -25,7 +25,7 @@ from operator import truediv
 
 import pytest
 from gemseo.core.mdo_functions.mdo_function import MDOFunction
-from gemseo.mlearning.regression.algos.linreg import LinearRegressor
+from gemseo.machine_learning.regression.models.linreg import LinearRegressor
 from numpy import array
 
 from gemseo_mlearning.active_learning.acquisition_criteria.exploration.distance import (

@@ -31,11 +31,13 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from gemseo.mlearning.core.algos.ml_algo import DataType
     from gemseo.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
+    )
+    from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
+        DataType,
     )
 
 
@@ -93,7 +95,7 @@ class BaseAcquisitionCriterion(MDOFunction):
         self._regressor_distribution = regressor_distribution
         try:
             jac = self._compute_jacobian(
-                ones(regressor_distribution.algo.input_dimension)
+                ones(regressor_distribution.regressor.input_dimension)
             )
         except NotImplementedError:
             jac = None

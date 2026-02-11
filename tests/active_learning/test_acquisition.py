@@ -29,8 +29,11 @@ from gemseo.algos.optimization_problem import OptimizationProblem
 from gemseo.algos.parameter_space import ParameterSpace
 from gemseo.datasets.io_dataset import IODataset
 from gemseo.disciplines.analytic import AnalyticDiscipline
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.algos.linreg import LinearRegressor
+from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.models.gpr_settings import (
+    GaussianProcessRegressor_Settings,
+)
+from gemseo.machine_learning.regression.models.linreg import LinearRegressor
 from numpy import array
 from numpy import ndarray
 from numpy.testing import assert_almost_equal
@@ -69,7 +72,9 @@ def dataset() -> IODataset:
 @pytest.fixture(scope="module")
 def kriging_distribution(dataset) -> KrigingDistribution:
     """A Kriging distribution."""
-    distribution = KrigingDistribution(GaussianProcessRegressor(dataset, alpha=0.0))
+    distribution = KrigingDistribution(
+        GaussianProcessRegressor(dataset, GaussianProcessRegressor_Settings(alpha=0.0))
+    )
     distribution.learn()
     return distribution
 
@@ -105,7 +110,7 @@ def test_init(algo_distribution, input_space):
     algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution)
     assert algo.n_initial_samples == 2
     assert algo.regressor_distribution == algo_distribution
-    assert algo.regressor == algo_distribution.algo
+    assert algo.regressor == algo_distribution.regressor
     assert algo.input_space == input_space
     assert algo._ActiveLearningAlgo__batch_size == 1
     assert algo.acquisition_criterion._mc_size == 10000
@@ -331,7 +336,7 @@ def test_regressor_at_instantiation(
     algo = ActiveLearningAlgo("Minimum", input_space, regressor)
     distribution = algo._ActiveLearningAlgo__distribution
     assert isinstance(distribution, regressor_distribution_class)
-    assert distribution.algo == regressor
+    assert distribution.regressor == regressor
 
 
 @pytest.fixture

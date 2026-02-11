@@ -66,7 +66,7 @@ class AcquisitionView:
 
         self.__algo = active_learning_algo
         self.__input_dimension = (
-            active_learning_algo.regressor_distribution.algo.input_dimension
+            active_learning_algo.regressor_distribution.regressor.input_dimension
         )
 
     def draw(
@@ -122,7 +122,7 @@ class AcquisitionView:
 
         # Generate data.
         distribution = self.__algo.regressor_distribution
-        final_dataset = distribution.algo.learning_set
+        final_dataset = distribution.regressor.learning_set
         #    The learning input samples.
         points = final_dataset.input_dataset.to_numpy()
         points_x = points[:, 0]

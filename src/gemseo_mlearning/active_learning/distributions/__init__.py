@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+from gemseo.machine_learning.regression.models.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
 
@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.distributions.regressor_distribution impor
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -46,14 +46,14 @@ def get_regressor_distribution(
     """Return the distribution of a regressor.
 
     Args:
-        regressor: The regression algorithm.
+        regressor: The regressor.
         use_bootstrap: Whether to use bootstrap for resampling.
             If `False`, use cross-validation.
         use_loo: Whether to use leave-one-out resampling when
             `use_bootstrap` is `False`.
             If `False`, use parameterized cross-validation.
         size: The size of the resampling set,
-            i.e. the number of times the regression algorithm is rebuilt.
+            i.e. the number of times the regressor is rebuilt.
             If `None`,
             [N_BOOTSTRAP][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP]
             in the case of bootstrap
@@ -63,7 +63,7 @@ def get_regressor_distribution(
             This argument is ignored in the case of leave-one-out.
 
     Returns:
-        The distribution of the regression algorithm.
+        The distribution of the regressor.
     """
     if isinstance(regressor, BaseRandomProcessRegressor):
         return KrigingDistribution(regressor)

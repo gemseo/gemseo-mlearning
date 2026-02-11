@@ -24,11 +24,15 @@ from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TC002
 from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TC002
     BaseOptimizerSettings,
 )
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType  # noqa: TC002
-from gemseo.mlearning.regression.algos.base_regressor import (  # noqa: TC002
+from gemseo.machine_learning.regression.models.base_regressor import (  # noqa: TC003
     BaseRegressor,
 )
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.base_regressor_settings import (
+    BaseRegressorSettings,
+)
+from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+    OTGaussianProcessRegressor_Settings,
+)
 from pydantic import Field
 from pydantic import NonNegativeInt
 from pydantic import PositiveInt
@@ -98,8 +102,8 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
         description=(
             """The name of the DOE algorithm for the initial sampling.
             This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+            when regressor is a
+            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].
             """
         ),
     )
@@ -109,8 +113,8 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
         description=(
             """The settings of the DOE algorithm for the initial sampling.
             This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+            when regressor is a
+            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].
             """
         ),
     )
@@ -120,8 +124,8 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
         description=(
             """Either the initial DOE size or 0 if it is inferred from `doe_settings`.
             This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+            when regressor is a
+            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].
             """
         ),
     )
@@ -138,13 +142,11 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
         ),
     )
 
-    regression_algorithm: str | BaseRegressor = Field(
-        default=OTGaussianProcessRegressor.__name__,
+    regressor: BaseRegressorSettings | BaseRegressor = Field(
+        default_factory=OTGaussianProcessRegressor_Settings,
         description=(
-            """The regression algorithm.
-            Either the name of the regression algorithm
-            approximating the objective function over the design space
-            or the regression algorithm itself.
+            """The regressor to approximate the objective function.
+            Either a regressor or regressor settings.
             """
         ),
     )
@@ -157,18 +159,3 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
             """
         ),
     )
-
-    regression_settings: Mapping[str, MLAlgoSettingsType] = Field(
-        default_factory=dict,
-        description=(
-            """The settings of the regression algorithm.
-            This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
-            """
-        ),
-    )
-
-
-# TODO: API: remove this alias.
-SBOSettings = SBO_Settings

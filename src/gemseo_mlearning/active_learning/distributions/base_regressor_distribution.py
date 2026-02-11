@@ -17,25 +17,28 @@
 from __future__ import annotations
 
 from abc import abstractmethod
+from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
+from gemseo.typing import RealArray
 from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
 
 if TYPE_CHECKING:
     from gemseo.datasets.dataset import Dataset
     from gemseo.datasets.io_dataset import IODataset
-    from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
     from gemseo.typing import NumberArray
+
+DataType = RealArray | Mapping[str, RealArray]
 
 
 class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
     """The distribution of a regressor."""
 
-    algo: BaseRegressor
+    regressor: BaseRegressor
     """The regression model."""
 
     _samples: list[int]
@@ -58,32 +61,36 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         Args:
             regressor: A regression model.
         """  # noqa: D205 D212 D415
-        self.algo = regressor
+        self.regressor = regressor
         self._samples = []
-        self._transform_input_group = self.algo._transform_input_group
-        self._transform_output_group = self.algo._transform_output_group
-        self._input_variables_to_transform = self.algo._input_variables_to_transform
-        self._output_variables_to_transform = self.algo._output_variables_to_transform
+        self._transform_input_group = self.regressor._transform_input_group
+        self._transform_output_group = self.regressor._transform_output_group
+        self._input_variables_to_transform = (
+            self.regressor._input_variables_to_transform
+        )
+        self._output_variables_to_transform = (
+            self.regressor._output_variables_to_transform
+        )
 
     @property
     def learning_set(self) -> IODataset:
         """The learning dataset used by the regressor."""
-        return self.algo.learning_set
+        return self.regressor.learning_set
 
     @property
     def input_names(self) -> list[str]:
         """The input names of the regressor."""
-        return self.algo.input_names
+        return self.regressor.input_names
 
     @property
     def output_names(self) -> list[str]:
         """The output names of the regressor."""
-        return self.algo.output_names
+        return self.regressor.output_names
 
     @property
     def output_dimension(self) -> int:
         """The output dimension of the regressor."""
-        return self.algo.output_dimension
+        return self.regressor.output_dimension
 
     def learn(self, samples: list[int] | None = None) -> None:
         """Train the regressor from the learning dataset.
@@ -93,7 +100,7 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
                 If `None`, use the whole learning dataset
         """
         self._samples = samples or range(len(self.learning_set))
-        self.algo.learn(self._samples)
+        self.regressor.learn(self._samples)
 
     def predict(
         self,
@@ -114,7 +121,7 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         Returns:
             The output value(s) of the regressor.
         """
-        return self.algo.predict(input_data)
+        return self.regressor.predict(input_data)
 
     @abstractmethod
     def compute_confidence_interval(
@@ -217,7 +224,7 @@ class BaseRegressorDistribution(metaclass=ABCGoogleDocstringInheritanceMeta):
         Args:
             learning_set: The new learning set.
         """
-        self.algo.learning_set = learning_set
+        self.regressor.learning_set = learning_set
         self.learn()
 
     @abstractmethod

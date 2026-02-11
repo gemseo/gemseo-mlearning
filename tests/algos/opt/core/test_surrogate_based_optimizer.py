@@ -22,6 +22,15 @@ import pytest
 from gemseo.algos.design_space import DesignSpace
 from gemseo.algos.optimization_problem import OptimizationProblem
 from gemseo.core.mdo_functions.mdo_function import MDOFunction
+from gemseo.machine_learning.regression.models.gpr_settings import (
+    GaussianProcessRegressor_Settings,
+)
+from gemseo.machine_learning.regression.models.linreg_settings import (
+    LinearRegressor_Settings,
+)
+from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+    OTGaussianProcessRegressor_Settings,
+)
 from gemseo.problems.optimization.rastrigin import Rastrigin
 from numpy import array
 from pandas._testing import assert_frame_equal
@@ -29,26 +38,23 @@ from pandas._testing import assert_frame_equal
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
 )
-from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
-from gemseo_mlearning.algos.opt.sbo_settings import SBOSettings
 
 
 @pytest.mark.parametrize(
-    ("regression_algorithm", "regression_settings"),
+    "regressor",
     [
-        ("GaussianProcessRegressor", {}),
-        ("OTGaussianProcessRegressor", {"use_hmat": False}),
+        GaussianProcessRegressor_Settings(),
+        OTGaussianProcessRegressor_Settings(use_hmat=False),
     ],
 )
-def test_all_acquisitions_made(regression_algorithm, regression_settings):
+def test_all_acquisitions_made(regressor):
     """Check the execution of the surrogate-based optimizer with all acquisitions."""
     assert (
         SurrogateBasedOptimizer(
             Rastrigin(),
             "PYDOE_FULLFACT",
             5,
-            regression_algorithm=regression_algorithm,
-            regression_settings=regression_settings,
+            regressor=regressor,
             n_samples=10,
         ).execute(1)
         == "All the data acquisitions have been made."
@@ -66,7 +72,7 @@ def test_known_acquired_input_data():
             problem,
             "CustomDOE",
             2,
-            regression_algorithm="LinearRegressor",
+            regressor=LinearRegressor_Settings(),
             samples=array([[0.0]]),
         ).execute(2)
         == "The acquired input data is already known."
@@ -110,14 +116,15 @@ def test_stratified_algorithm():
     )
 
 
-def test_ml_regression_algo_instance(regression_algorithm):
+@pytest.mark.parametrize("kwargs", [{}, {"transformer": {"inputs": "MinMaxScaler"}}])
+def test_ml_regression_algo_instance(regressor, kwargs):
     """Check the execution of the surrogate-based optimizer with an
     BaseMLRegressionAlgo.
     """
     optimizer = SurrogateBasedOptimizer(
         Rastrigin(),
         "CustomDOE",
-        regression_algorithm=regression_algorithm,
+        regressor=regressor,
         samples=array([[0.03, 0.03]]),
     )
     optimizer.execute(1)
@@ -128,13 +135,8 @@ def test_ml_regression_algo_instance(regression_algorithm):
         "CustomDOE",
         doe_size=5,
         doe_algorithm="OT_SOBOL",
-        regression_algorithm="OTGaussianProcessRegressor",
+        regressor=OTGaussianProcessRegressor_Settings(**kwargs),
         samples=array([[0.03, 0.03]]),
     )
     optimizer.execute(1)
     assert_frame_equal(optimizer._SurrogateBasedOptimizer__dataset, dataset)
-
-
-def test_alias():
-    """Verify that SBOSettings is an alias of SBO_Settings."""
-    assert SBOSettings == SBO_Settings

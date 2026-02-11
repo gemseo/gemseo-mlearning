@@ -41,8 +41,7 @@ from gemseo.algos.base_driver_library import DriverSettingType
 from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
 from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
-from gemseo.mlearning.core.algos.ml_algo import MLAlgoSettingsType
-from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
 
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
@@ -54,12 +53,7 @@ if TYPE_CHECKING:
 
 
 SBOSettingType = (
-    int
-    | float
-    | str
-    | Mapping[str | DriverSettingType]
-    | Mapping[str | MLAlgoSettingsType]
-    | Mapping[str | Any]
+    int | float | str | Mapping[str | DriverSettingType] | Mapping[str | Any]
 )
 
 
@@ -99,8 +93,8 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
         doe_settings = self._settings.doe_settings
         doe_size = self._settings.doe_size
         doe_algorithm = self._settings.doe_algorithm
-        regression_algorithm = self._settings.regression_algorithm
-        if not isinstance(regression_algorithm, BaseRegressor):
+        regressor = self._settings.regressor
+        if not isinstance(regressor, BaseRegressor):
             # The number of evaluations is equal to
             #     1 for the initial evaluation in OptimizationLibrary._pre_run
             #   + N for the N-length DOE
@@ -126,9 +120,8 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             doe_size=doe_size,
             doe_algorithm=doe_algorithm,
             doe_settings=doe_settings,
-            regression_algorithm=regression_algorithm,
-            regression_settings=self._settings.regression_settings,
+            regressor=self._settings.regressor,
             regression_file_path=self._settings.regression_file_path,
             **self._settings.acquisition_settings,
         )
-        return (optimizer.execute(sys.maxsize), None)
+        return optimizer.execute(sys.maxsize), None

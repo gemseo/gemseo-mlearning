@@ -17,7 +17,7 @@ from __future__ import annotations
 import re
 
 import pytest
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
 from gemseo.post.dataset.lines import Lines
 from gemseo.utils.testing.helpers import image_comparison
 

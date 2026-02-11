@@ -25,7 +25,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
-from gemseo.mlearning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
 from scipy.stats import norm
@@ -35,8 +35,11 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 )
 
 if TYPE_CHECKING:
-    from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+    from gemseo.typing import RealArray
+    from numpy import ndarray
+
+    DataType = RealArray | Mapping[str, ndarray]
+    from gemseo.machine_learning.regression.models.base_random_process_regressor import (  # noqa: E501
         BaseRandomProcessRegressor,
     )
     from gemseo.typing import NumberArray
@@ -45,12 +48,12 @@ if TYPE_CHECKING:
 class KrigingDistribution(BaseRegressorDistribution):
     """Kriging-like regressor distribution."""
 
-    algo: BaseRandomProcessRegressor
+    regressor: BaseRandomProcessRegressor
 
     def __init__(  # noqa: D107
-        self, algo: BaseRandomProcessRegressor
+        self, regressor: BaseRandomProcessRegressor
     ) -> None:
-        super().__init__(algo)
+        super().__init__(regressor)
 
     def compute_confidence_interval(  # noqa: D102
         self,
@@ -77,7 +80,7 @@ class KrigingDistribution(BaseRegressorDistribution):
         self,
         input_data: DataType,
     ) -> DataType:
-        return self.algo.predict(input_data)
+        return self.regressor.predict(input_data)
 
     @RegressionDataFormatters.format_dict
     @RegressionDataFormatters.format_samples()
@@ -93,17 +96,17 @@ class KrigingDistribution(BaseRegressorDistribution):
         self,
         input_data: DataType,
     ) -> DataType:
-        return self.algo.predict_std(input_data)
+        return self.regressor.predict_std(input_data)
 
     def compute_samples(  # noqa: D102
         self,
         input_data: NumberArray,
         n_samples: int,
     ) -> NumberArray:
-        return self.algo.compute_samples(input_data, n_samples)
+        return self.regressor.compute_samples(input_data, n_samples)
 
     def compute_covariance(  # noqa: D102
         self,
         input_data: NumberArray,
     ) -> NumberArray:
-        return self.algo.predict_covariance(input_data)
+        return self.regressor.predict_covariance(input_data)
