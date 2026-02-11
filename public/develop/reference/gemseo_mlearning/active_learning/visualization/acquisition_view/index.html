@@ -1313,14 +1313,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1341,14 +1341,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1637,14 +1637,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1665,14 +1665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5370,7 +5370,7 @@ acquisition.</p>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span> <span class="o">=</span> <span class="n">active_learning_algo</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__input_dimension</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">active_learning_algo</span><span class="o">.</span><span class="n">regressor_distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">input_dimension</span>
+        <span class="n">active_learning_algo</span><span class="o">.</span><span class="n">regressor_distribution</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">input_dimension</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
                   </details>
@@ -5778,7 +5778,7 @@ If empty, do not save it.</p>
 
     <span class="c1"># Generate data.</span>
     <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__algo</span><span class="o">.</span><span class="n">regressor_distribution</span>
-    <span class="n">final_dataset</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span>
+    <span class="n">final_dataset</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">learning_set</span>
     <span class="c1">#    The learning input samples.</span>
     <span class="n">points</span> <span class="o">=</span> <span class="n">final_dataset</span><span class="o">.</span><span class="n">input_dataset</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">points_x</span> <span class="o">=</span> <span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>

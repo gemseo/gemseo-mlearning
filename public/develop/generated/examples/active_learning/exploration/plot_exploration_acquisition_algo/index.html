@@ -1334,14 +1334,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1362,14 +1362,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1658,14 +1658,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/optim_batch/" class="md-nav__link">
+      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1686,14 +1686,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5032,15 +5032,18 @@
 to download the full example code</p>
 </div>
 <h1 id="acquisition-algorithm">Acquisition algorithm.<a class="headerlink" href="#acquisition-algorithm" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-36 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-39 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.quality.r2_measure</span><span class="w"> </span><span class="kn">import</span> <span class="n">R2Measure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.ot_gpr_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.quality.r2_measure</span><span class="w"> </span><span class="kn">import</span> <span class="n">R2Measure</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">unique</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.active_learning.active_learning_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActiveLearningAlgo</span>
@@ -5052,7 +5055,7 @@ to download the full example code</p>
 <span class="c1"># Update the configuration of |g| to speed up the script.</span>
 <span class="n">configuration</span><span class="o">.</span><span class="n">fast</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 37-49 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 40-52 -->
 
 <p>The use of active learning methods
 dedicated to exploration
@@ -5066,37 +5069,41 @@ acquisition point
 on the active learning procedure.
 The function to approximate is
 the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 49-50 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 52-53 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 51-52 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 54-55 -->
 
 <p>with <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> belonging to <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 52-54 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 58-60 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 10 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 57-60 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 60-63 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 61-63 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 64-66 -->
 
 <p>and two identical initial
 Gaussian process regressors from OpenTURNS:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 63-66 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 66-73 -->
 
-<div class="highlight"><pre><span></span><code><span class="n">regressor_1</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
-<span class="n">regressor_2</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">regressor_1</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
+    <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">regressor_2</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
+    <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 67-81 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 74-88 -->
 
 <p>Then,
 we build two active learning algorithms
@@ -5112,7 +5119,7 @@ and the second the NELDER-MEAD gradient-free algorithm,
 also in a multistart fashion.
 All other settings are put to
 their default values.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 81-89 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 88-96 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning_1</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Exploration&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">regressor_1</span><span class="p">)</span>
 <span class="n">active_learning_2</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Exploration&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">regressor_2</span><span class="p">)</span>
@@ -5123,17 +5130,17 @@ their default values.</p>
 <span class="n">active_learning_2</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
 <p class="mkd-glr-script-out">Out:</p>
-<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="o">(</span>&lt;gemseo.algos.database.Database<span class="w"> </span>object<span class="w"> </span>at<span class="w"> </span>0x792630adb450&gt;,<span class="w"> </span>Optimization<span class="w"> </span>problem:
+<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="o">(</span>&lt;gemseo.algos.database.Database<span class="w"> </span>object<span class="w"> </span>at<span class="w"> </span>0x7fba0f5567d0&gt;,<span class="w"> </span>Optimization<span class="w"> </span>problem:
 <span class="w">   </span>minimize<span class="w"> </span>-Variance
 <span class="w">   </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>x<span class="o">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 90-94 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 97-101 -->
 
 <p>Finally,
 for both active learning algorithms,
 we plot the training points,
 alongside the original model.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 94-122 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 101-129 -->
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Creation of the grid</span>
 <span class="c1"># and estimation of the different quantities</span>
@@ -5163,7 +5170,7 @@ alongside the original model.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 <p><img alt="Learning points" class="mkd-glr-single-img" src="../images/mkd_glr_plot_exploration_acquisition_algo_001.png" srcset="../images/mkd_glr_plot_exploration_acquisition_algo_001.png" /></p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 123-134 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 130-141 -->
 
 <p>In this implementation,
 changing the acquisition algorithm,
@@ -5176,7 +5183,7 @@ with the gradient.
 This does not result
 into a poorer accuracy as suggests
 the R2 validation metric:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 134-140 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 141-147 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">dataset_test</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">50</span>
@@ -5186,9 +5193,9 @@ the R2 validation metric:</p>
 <span class="n">R2_1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">R2_2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 <p class="mkd-glr-script-out">Out:</p>
-<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="o">(</span>np.float64<span class="o">(</span><span class="m">0</span>.9999562597980046<span class="o">)</span>,<span class="w"> </span>np.float64<span class="o">(</span><span class="m">0</span>.9999749112321269<span class="o">))</span>
+<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code><span class="o">(</span>np.float64<span class="o">(</span><span class="m">0</span>.9999613284646461<span class="o">)</span>,<span class="w"> </span>np.float64<span class="o">(</span><span class="m">0</span>.9999749112321269<span class="o">))</span>
 </code></pre></div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  18.432 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  18.957 seconds)</p>
 <div id="download_links"></div>
 
 <p><a class="md-button center" href="../plot_exploration_acquisition_algo.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v210.7l-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 242.7zM64 320c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64v-32c0-35.3-28.7-64-64-64h-46.9l-56.6 56.6c-31.2 31.2-81.9 31.2-113.1 0L110.9 320zm304 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48"/></svg></span> Download Python source code: plot_exploration_acquisition_algo.py</a></p>

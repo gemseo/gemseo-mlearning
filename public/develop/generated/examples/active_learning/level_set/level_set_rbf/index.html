@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://gemseo.gitlab.io/gemseo-mlearning/latest/generated/examples/active_learning/level_set/level_set_rbf/">
       
       
-        <link rel="prev" href="../plot_level_set/">
+        <link rel="prev" href="../../exploration/plot_exploration_criterion/">
       
       
-        <link rel="next" href="../level_set_batch/">
+        <link rel="next" href="../plot_level_set/">
       
       
         
@@ -1321,34 +1321,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../plot_level_set/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Default settings.
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -1378,6 +1350,34 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plot_level_set/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default settings.
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1658,14 +1658,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/optim_batch/" class="md-nav__link">
+      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1686,14 +1686,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5038,7 +5038,7 @@ to download the full example code</p>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.rbf</span><span class="w"> </span><span class="kn">import</span> <span class="n">RBFRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.rbf</span><span class="w"> </span><span class="kn">import</span> <span class="n">RBFRegressor</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.active_learning.active_learning_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActiveLearningAlgo</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.active_learning.distributions.regressor_distribution</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>

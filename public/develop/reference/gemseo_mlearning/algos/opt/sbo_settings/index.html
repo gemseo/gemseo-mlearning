@@ -1313,14 +1313,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1341,14 +1341,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1637,14 +1637,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1665,14 +1665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5953,8 +5953,8 @@ this option cannot be set along with kkt options.</p>
               <div class="doc-md-description">
                 <p>The name of the DOE algorithm for the initial sampling.
             This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
+            when regressor is a
+            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -5976,8 +5976,8 @@ this option cannot be set along with kkt options.</p>
               <div class="doc-md-description">
                 <p>The settings of the DOE algorithm for the initial sampling.
             This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
+            when regressor is a
+            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -5999,8 +5999,8 @@ this option cannot be set along with kkt options.</p>
               <div class="doc-md-description">
                 <p>Either the initial DOE size or 0 if it is inferred from <code>doe_settings</code>.
             This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
+            when regressor is a
+            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
@@ -6036,23 +6036,21 @@ this option cannot be set along with kkt options.</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                <code>regression_algorithm</code>
+                <code>regressor</code>
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The regression algorithm.
-            Either the name of the regression algorithm
-            approximating the objective function over the design space
-            or the regression algorithm itself.</p>
+                <p>The regressor to approximate the objective function.
+            Either a regressor or regressor settings.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="str">str</span> | <span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>
+                      <code><span title="gemseo.machine_learning.regression.models.base_regressor_settings.BaseRegressorSettings">BaseRegressorSettings</span> | <span title="gemseo.machine_learning.regression.models.base_regressor.BaseRegressor">BaseRegressor</span></code>
                   </span>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
-                      <code>&#39;OTGaussianProcessRegressor&#39;</code>
+                      <code>&lt;dynamic&gt;</code>
                   </span>
               </p>
             </td>
@@ -6074,29 +6072,6 @@ this option cannot be set along with kkt options.</p>
                   <span class="doc-param-default">
                     <b>DEFAULT:</b>
                       <code>&#39;&#39;</code>
-                  </span>
-              </p>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>regression_settings</code>
-            </td>
-            <td class="doc-param-details">
-              <div class="doc-md-description">
-                <p>The settings of the regression algorithm.
-            This argument is ignored
-            when regression_algorithm is a
-            [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].</p>
-              </div>
-              <p>
-                  <span class="doc-param-annotation">
-                    <b>TYPE:</b>
-                      <code><span title="collections.abc.Mapping">Mapping</span>[<span title="str">str</span>, <span title="Any">Any</span> | None]</code>
-                  </span>
-                  <span class="doc-param-default">
-                    <b>DEFAULT:</b>
-                      <code>&lt;class &#39;dict&#39;&gt;</code>
                   </span>
               </p>
             </td>

@@ -1313,14 +1313,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1341,14 +1341,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1637,14 +1637,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1665,14 +1665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5113,7 +5113,7 @@
 
 <a href="#gemseo_mlearning.active_learning.distributions.get_regressor_distribution" class="headerlink" title="Permanent link">&para;</a></h4>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">get_regressor_distribution</span><span class="p">(</span>
-    <span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span><span class="p">,</span>
+    <span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.machine_learning.regression.models.base_regressor.BaseRegressor">BaseRegressor</span></span><span class="p">,</span>
     <span class="n">use_bootstrap</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">use_loo</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">size</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -5139,12 +5139,12 @@
             </td>
             <td class="doc-param-details">
               <div class="doc-md-description">
-                <p>The regression algorithm.</p>
+                <p>The regressor.</p>
               </div>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></code>
+                      <code><span title="gemseo.machine_learning.regression.models.base_regressor.BaseRegressor">BaseRegressor</span></code>
                   </span>
               </p>
             </td>
@@ -5199,7 +5199,7 @@ If <code>False</code>, use parameterized cross-validation.</p>
             <td class="doc-param-details">
               <div class="doc-md-description">
                 <p>The size of the resampling set,
-i.e. the number of times the regression algorithm is rebuilt.
+i.e. the number of times the regressor is rebuilt.
 If <code>None</code>,
 <a class="autorefs autorefs-internal" title="            N_BOOTSTRAP
 
@@ -5250,7 +5250,7 @@ This argument is ignored in the case of leave-one-out.</p>
             </td>
             <td class="doc-returns-details">
               <div class="doc-md-description">
-                <p>The distribution of the regression algorithm.</p>
+                <p>The distribution of the regressor.</p>
               </div>
             </td>
           </tr>
@@ -5300,14 +5300,14 @@ This argument is ignored in the case of leave-one-out.</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the distribution of a regressor.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        regressor: The regression algorithm.</span>
+<span class="sd">        regressor: The regressor.</span>
 <span class="sd">        use_bootstrap: Whether to use bootstrap for resampling.</span>
 <span class="sd">            If `False`, use cross-validation.</span>
 <span class="sd">        use_loo: Whether to use leave-one-out resampling when</span>
 <span class="sd">            `use_bootstrap` is `False`.</span>
 <span class="sd">            If `False`, use parameterized cross-validation.</span>
 <span class="sd">        size: The size of the resampling set,</span>
-<span class="sd">            i.e. the number of times the regression algorithm is rebuilt.</span>
+<span class="sd">            i.e. the number of times the regressor is rebuilt.</span>
 <span class="sd">            If `None`,</span>
 <span class="sd">            [N_BOOTSTRAP][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP]</span>
 <span class="sd">            in the case of bootstrap</span>
@@ -5317,7 +5317,7 @@ This argument is ignored in the case of leave-one-out.</p>
 <span class="sd">            This argument is ignored in the case of leave-one-out.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        The distribution of the regression algorithm.</span>
+<span class="sd">        The distribution of the regressor.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">BaseRandomProcessRegressor</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">KrigingDistribution</span><span class="p">(</span><span class="n">regressor</span><span class="p">)</span>

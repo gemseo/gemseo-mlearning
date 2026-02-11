@@ -1322,14 +1322,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1350,14 +1350,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1646,14 +1646,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/optim_batch/" class="md-nav__link">
+      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1674,14 +1674,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5032,14 +5032,17 @@
 to download the full example code</p>
 </div>
 <h1 id="batch-acquisition">Batch acquisition.<a class="headerlink" href="#batch-acquisition" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-37 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-40 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.ot_gpr_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.uncertainty.statistics.empirical_statistics</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmpiricalStatistics</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">concatenate</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">unique</span>
@@ -5053,7 +5056,7 @@ to download the full example code</p>
 <span class="c1"># Update the configuration of |g| to speed up the script.</span>
 <span class="n">configuration</span><span class="o">.</span><span class="n">fast</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 38-49 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 41-52 -->
 
 <p>The use of active learning methods
 dedicated to quantile estimation
@@ -5066,37 +5069,41 @@ are added at each method iteration,
 on the active learning procedure.
 The function with the quantile of interest is
 the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 49-50 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 52-53 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 51-52 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 54-55 -->
 
 <p>with <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> uniformly distributed over <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 52-54 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">uncertain_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 58-60 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 10 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 57-61 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 60-64 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 62-64 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 65-67 -->
 
 <p>and two identical initial
 Gaussian process regressors from OpenTURNS:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 64-67 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 67-74 -->
 
-<div class="highlight"><pre><span></span><code><span class="n">regressor_1</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
-<span class="n">regressor_2</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">regressor_1</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
+    <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">regressor_2</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
+    <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 68-83 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 75-90 -->
 
 <p>Then,
 we build two active learning algorithms
@@ -5113,7 +5120,7 @@ are added at each iteration (parallel acquisition),
 using argument <code>batch_size</code> set to 4.
 All other settings are put to
 their default values.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 83-103 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 90-110 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">level</span> <span class="o">=</span> <span class="mf">0.35</span>
 <span class="n">active_learning_1</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span>
@@ -5134,7 +5141,7 @@ their default values.</p>
 <span class="n">active_learning_1</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">active_learning_2</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 104-110 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 111-117 -->
 
 <p>To study the results,
 we extract first
@@ -5142,7 +5149,7 @@ the data associated
 to the history
 of the quantity of interest
 for both active learning procedures</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 110-124 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 117-131 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">history_1</span> <span class="o">=</span> <span class="n">active_learning_1</span><span class="o">.</span><span class="n">qoi_history</span>
 <span class="n">history_2</span> <span class="o">=</span> <span class="n">active_learning_2</span><span class="o">.</span><span class="n">qoi_history</span>
@@ -5158,27 +5165,27 @@ for both active learning procedures</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 125-130 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 132-137 -->
 
 <p>We can also
 compare the estimated quantile
 from the active learning procedure
 to the Monte Carlo estimate
 for both algorithms</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 130-135 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 137-142 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">uncertain_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_MONTE_CARLO&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span>
 <span class="p">)</span>
 <span class="n">reference_quantile</span> <span class="o">=</span> <span class="n">EmpiricalStatistics</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">compute_quantile</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 136-140 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 143-147 -->
 
 <p>Finally,
 for both active learning algorithms,
 we plot the training points,
 alongside the original model.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 140-185 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 147-192 -->
 
 <div class="highlight"><pre><span></span><code><span class="c1"># Creation of the grid</span>
 <span class="c1"># and estimation of the different quantities</span>

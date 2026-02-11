@@ -1313,14 +1313,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1341,14 +1341,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1637,14 +1637,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1665,14 +1665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../../../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5600,7 +5600,7 @@
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">ActiveLearningAlgo</span><span class="p">(</span>
     <span class="n">criterion_family_name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span>
     <span class="n">input_space</span><span class="p">:</span> <span class="n"><span title="gemseo.algos.design_space.DesignSpace">DesignSpace</span></span><span class="p">,</span>
-    <span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
+    <span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.machine_learning.regression.models.base_regressor.BaseRegressor">BaseRegressor</span></span> <span class="o">|</span> <span class="n"><a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></span><span class="p">,</span>
     <span class="n">criterion_name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">mc_size</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
@@ -5669,7 +5669,7 @@ or <code>"Exploration"</code>.</p>
               <p>
                   <span class="doc-param-annotation">
                     <b>TYPE:</b>
-                      <code><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span> | <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
+                      <code><span title="gemseo.machine_learning.regression.models.base_regressor.BaseRegressor">BaseRegressor</span> | <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution (gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution)" href="../distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a></code>
                   </span>
               </p>
             </td>
@@ -5975,13 +5975,13 @@ if <code>1</code>, acquire points sequentially.</p>
 
     <span class="c1"># Miscellaneous.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__database</span> <span class="o">=</span> <span class="n">Database</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">__n_initial_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__n_initial_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">distribution</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">learning_set</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span> <span class="o">=</span> <span class="n">distribution</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__input_space</span> <span class="o">=</span> <span class="n">input_space</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">__batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
 
     <span class="c1"># Create the acquisition view.</span>
-    <span class="k">if</span> <span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">input_dimension</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">batch_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">distribution</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">input_dimension</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">batch_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_view</span> <span class="o">=</span> <span class="n">AcquisitionView</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__acquisition_view</span> <span class="o">=</span> <span class="kc">None</span>
@@ -6189,7 +6189,7 @@ these lists are empty.</p>
   </span>
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.regressor" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.mlearning.regression.algos.base_regressor.BaseRegressor">BaseRegressor</span></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">regressor</span><span class="p">:</span> <span class="n"><span title="gemseo.machine_learning.regression.models.base_regressor.BaseRegressor">BaseRegressor</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6566,7 +6566,7 @@ and the last acquisition problem.</p>
 
                 <span class="n">extra_learning_set</span> <span class="o">=</span> <span class="n">IODataset</span><span class="p">()</span>
                 <span class="n">distribution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__distribution</span>
-                <span class="n">variable_names_to_n_components</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">sizes</span>
+                <span class="n">variable_names_to_n_components</span> <span class="o">=</span> <span class="n">distribution</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">sizes</span>
                 <span class="n">new_points</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">input_data</span><span class="o">.</span><span class="n">values</span><span class="p">()))[</span><span class="n">newaxis</span><span class="p">]</span>
                 <span class="n">extra_learning_set</span><span class="o">.</span><span class="n">add_group</span><span class="p">(</span>
                     <span class="n">group_name</span><span class="o">=</span><span class="n">IODataset</span><span class="o">.</span><span class="n">INPUT_GROUP</span><span class="p">,</span>
@@ -6587,7 +6587,7 @@ and the last acquisition problem.</p>
                 <span class="p">)</span>
 
                 <span class="n">augmented_learning_set</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span>
-                    <span class="p">[</span><span class="n">distribution</span><span class="o">.</span><span class="n">algo</span><span class="o">.</span><span class="n">learning_set</span><span class="p">,</span> <span class="n">extra_learning_set</span><span class="p">],</span>
+                    <span class="p">[</span><span class="n">distribution</span><span class="o">.</span><span class="n">regressor</span><span class="o">.</span><span class="n">learning_set</span><span class="p">,</span> <span class="n">extra_learning_set</span><span class="p">],</span>
                     <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="p">)</span>
 
@@ -6613,7 +6613,7 @@ and the last acquisition problem.</p>
 
 
 <a href="#gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo.find_next_point" class="headerlink" title="Permanent link">&para;</a></h6>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">find_next_point</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">find_next_point</span><span class="p">(</span><span class="n">as_dict</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="gemseo.machine_learning.core.models.ml_algo.DataType">DataType</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -6667,7 +6667,7 @@ the arrays will be shaped as <code>(batch_size, input_dimension)</code>.</p>
           <tr class="doc-section-item">
             <td>
                 <span class="doc-returns-annotation">
-                    <code><span title="gemseo.mlearning.core.algos.ml_algo.DataType">DataType</span></code>
+                    <code><span title="gemseo.machine_learning.core.models.ml_algo.DataType">DataType</span></code>
                 </span>
             </td>
             <td class="doc-returns-details">

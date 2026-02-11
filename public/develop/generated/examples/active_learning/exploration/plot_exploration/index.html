@@ -1334,14 +1334,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level_set/plot_level_set/" class="md-nav__link">
+      <a href="../../level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1362,14 +1362,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../../level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -1658,14 +1658,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/optim_batch/" class="md-nav__link">
+      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -1686,14 +1686,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../../optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5032,14 +5032,17 @@
 to download the full example code</p>
 </div>
 <h1 id="default-settings">Default settings.<a class="headerlink" href="#default-settings" title="Permanent link">&para;</a></h1>
-<!-- GENERATED FROM PYTHON SOURCE LINES 17-34 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 17-37 -->
 
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">configuration</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo</span><span class="w"> </span><span class="kn">import</span> <span class="n">sample_disciplines</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.algos.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.mlearning.regression.quality.r2_measure</span><span class="w"> </span><span class="kn">import</span> <span class="n">R2Measure</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.ot_gpr</span><span class="w"> </span><span class="kn">import</span> <span class="n">OTGaussianProcessRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.models.ot_gpr_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gemseo.machine_learning.regression.quality.r2_measure</span><span class="w"> </span><span class="kn">import</span> <span class="n">R2Measure</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.active_learning.active_learning_algo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActiveLearningAlgo</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -5051,10 +5054,10 @@ to download the full example code</p>
 <span class="n">configuration</span><span class="o">.</span><span class="n">fast</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <p class="mkd-glr-script-out">Out:</p>
-<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.13/site-packages/gemseo/mlearning/regression/quality/r2_measure.py:105:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>R2Measure.__evaluate_by_resampling:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;store_resampling_result&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
+<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.13/site-packages/gemseo/machine_learning/regression/quality/r2_measure.py:105:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>R2Measure.__evaluate_by_resampling:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;store_resampling_result&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
 <span class="w">  </span>def<span class="w"> </span>__evaluate_by_resampling<span class="o">(</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 35-41 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 38-44 -->
 
 <p>The use of active learning methods
 dedicated to exploration
@@ -5062,7 +5065,7 @@ is illustrated in this example,
 with all default settings.
 The function to approximate is
 the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-x_1^2)^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 41-42 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 44-45 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">discipline</span> <span class="o">=</span> <span class="n">RosenbrockDiscipline</span><span class="p">()</span>
 </code></pre></div>
@@ -5072,10 +5075,10 @@ the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-
 /builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.13/site-packages/gemseo/core/grammars/simple_grammar.py:229:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>SimpleGrammar.__check_type:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;obj&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
 <span class="w">  </span>@staticmethod
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 43-44 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 46-47 -->
 
 <p>with <span class="arithmatex">\(x_1\)</span> and <span class="arithmatex">\(x_2\)</span> belonging to <span class="arithmatex">\([-2,2]^2\)</span>:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 44-46 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 47-49 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">input_space</span> <span class="o">=</span> <span class="n">RosenbrockSpace</span><span class="p">()</span>
 </code></pre></div>
@@ -5087,24 +5090,26 @@ the Rosenbrock function <span class="arithmatex">\(f(x_1,x_2)=(1-x_1)^2+100(x_2-
 /builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.13/site-packages/gemseo/uncertainty/distributions/scipy/distribution_fitter.py:95:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>SPDistributionFitter._format_significance_test_goodness_of_fit:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;result&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
 <span class="w">  </span>@staticmethod
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 47-49 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 50-52 -->
 
 <p>First,
 we create an initial training dataset using an optimal LHS including 10 samples:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 49-53 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 52-56 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">learning_dataset</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 54-55 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 57-58 -->
 
 <p>and an initial Gaussian process regressor from OpenTURNS:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 55-57 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 58-62 -->
 
-<div class="highlight"><pre><span></span><code><span class="n">regressor</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span><span class="n">learning_dataset</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">regressor</span> <span class="o">=</span> <span class="n">OTGaussianProcessRegressor</span><span class="p">(</span>
+    <span class="n">learning_dataset</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">OTGaussianProcessRegressor_Settings</span><span class="p">(</span><span class="n">trend</span><span class="o">=</span><span class="s2">&quot;quadratic&quot;</span><span class="p">)</span>
+<span class="p">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 58-69 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 63-74 -->
 
 <p>Then,
 we look for 20 points that will help us
@@ -5117,7 +5122,7 @@ for the point maximizing
 the regressor local variance
 with the help of the SLSQP gradient-based algorithm
 applied in a multistart framework.</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 69-72 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 74-77 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span> <span class="o">=</span> <span class="n">ActiveLearningAlgo</span><span class="p">(</span><span class="s2">&quot;Exploration&quot;</span><span class="p">,</span> <span class="n">input_space</span><span class="p">,</span> <span class="n">regressor</span><span class="p">)</span>
 <span class="n">active_learning</span><span class="o">.</span><span class="n">acquire_new_points</span><span class="p">(</span><span class="n">discipline</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
@@ -5126,11 +5131,11 @@ applied in a multistart framework.</p>
 <div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>/builds/gemseo/dev/gemseo-mlearning/.tox/doc/lib64/python3.13/site-packages/gemseo/algos/opt/augmented_lagrangian/base_augmented_lagrangian.py:252:<span class="w"> </span>DocstringInheritanceWarning:<span class="w"> </span><span class="k">in</span><span class="w"> </span>BaseAugmentedLagrangian._check_for_preconditioner:<span class="w"> </span>section<span class="w"> </span>Args:<span class="w"> </span>the<span class="w"> </span>docstring<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>argument<span class="w"> </span><span class="s1">&#39;sub_algorithm_settings&#39;</span><span class="w"> </span>is<span class="w"> </span>missing.
 <span class="w">  </span>@staticmethod
 
-<span class="o">(</span>&lt;gemseo.algos.database.Database<span class="w"> </span>object<span class="w"> </span>at<span class="w"> </span>0x792633c75ba0&gt;,<span class="w"> </span>Optimization<span class="w"> </span>problem:
+<span class="o">(</span>&lt;gemseo.algos.database.Database<span class="w"> </span>object<span class="w"> </span>at<span class="w"> </span>0x7fba121163f0&gt;,<span class="w"> </span>Optimization<span class="w"> </span>problem:
 <span class="w">   </span>minimize<span class="w"> </span>-Variance
 <span class="w">   </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>x<span class="o">)</span>
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 73-79 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 78-84 -->
 
 <p>Lastly,
 we plot the training points,
@@ -5138,7 +5143,7 @@ the original model,
 the Gaussian process regressor
 and the variance
 after the last acquisition:</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 79-81 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 84-86 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">active_learning</span><span class="o">.</span><span class="n">plot_acquisition_view</span><span class="p">(</span><span class="n">discipline</span><span class="o">=</span><span class="n">discipline</span><span class="p">)</span>
 </code></pre></div>
@@ -5146,7 +5151,7 @@ after the last acquisition:</p>
 <p class="mkd-glr-script-out">Out:</p>
 <div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>&lt;Figure<span class="w"> </span>size<span class="w"> </span>640x480<span class="w"> </span>with<span class="w"> </span><span class="m">7</span><span class="w"> </span>Axes&gt;
 </code></pre></div>
-<!-- GENERATED FROM PYTHON SOURCE LINES 82-92 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 87-97 -->
 
 <p>The infill criterion targets areas
 where the variance is the highest.
@@ -5158,7 +5163,7 @@ the input space.
 Overall,
 the target surrogate reproduces
 faithfully the Rosenbrock function with a good R²</p>
-<!-- GENERATED FROM PYTHON SOURCE LINES 92-101 -->
+<!-- GENERATED FROM PYTHON SOURCE LINES 97-106 -->
 
 <div class="highlight"><pre><span></span><code><span class="n">dataset_test</span> <span class="o">=</span> <span class="n">sample_disciplines</span><span class="p">(</span>
     <span class="p">[</span><span class="n">discipline</span><span class="p">],</span> <span class="n">input_space</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">algo_name</span><span class="o">=</span><span class="s2">&quot;OT_OPT_LHS&quot;</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">50</span>
@@ -5171,9 +5176,9 @@ faithfully the Rosenbrock function with a good R²</p>
 <span class="c1"># to the square of the standard deviation.</span>
 </code></pre></div>
 <p class="mkd-glr-script-out">Out:</p>
-<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>array<span class="o">([</span><span class="m">0</span>.99995626<span class="o">])</span>
+<div class="mkd-glr-script-out-disp highlight"><pre><span></span><code>array<span class="o">([</span><span class="m">0</span>.99996133<span class="o">])</span>
 </code></pre></div>
-<p><strong>Total running time of the script:</strong> ( 0 minutes  7.139 seconds)</p>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  7.256 seconds)</p>
 <div id="download_links"></div>
 
 <p><a class="md-button center" href="../plot_exploration.py"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v210.7l-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 242.7zM64 320c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64v-32c0-35.3-28.7-64-64-64h-46.9l-56.6 56.6c-31.2 31.2-81.9 31.2-113.1 0L110.9 320zm304 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48"/></svg></span> Download Python source code: plot_exploration.py</a></p>

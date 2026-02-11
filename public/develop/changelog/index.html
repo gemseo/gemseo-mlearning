@@ -552,6 +552,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#removed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -630,7 +641,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -697,7 +708,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
+  <a href="#changed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -1705,14 +1716,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
+      <a href="../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Default settings.
+    Non-GP regressor.
   
 
     
@@ -1733,14 +1744,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../generated/examples/active_learning/level_set/level_set_rbf/" class="md-nav__link">
+      <a href="../generated/examples/active_learning/level_set/plot_level_set/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Non-GP regressor.
+    Default settings.
   
 
     
@@ -2029,14 +2040,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
+      <a href="../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Batch acquisition.
+    Acquisition algorithm.
   
 
     
@@ -2057,14 +2068,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../generated/examples/active_learning/optimization/plot_optim_acquisition_algo/" class="md-nav__link">
+      <a href="../generated/examples/active_learning/optimization/optim_batch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Acquisition algorithm.
+    Batch acquisition.
   
 
     
@@ -5390,6 +5401,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#removed" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5468,7 +5490,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
+  <a href="#changed_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -5535,7 +5557,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
+  <a href="#changed_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Changed
@@ -5771,6 +5793,27 @@ Changelog titles are:
 and this project adheres to
 <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <h2 id="develop">Develop<a class="headerlink" href="#develop" title="Permanent link">&para;</a></h2>
+<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Rename the <code>algo</code> attribute of
+  <a class="autorefs autorefs-internal" title="            BaseRegressorDistribution" href="../reference/gemseo_mlearning/active_learning/distributions/base_regressor_distribution/#gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution">BaseRegressorDistribution</a>
+  to <code>regressor</code>.</li>
+<li>Rename the <code>algo</code> argument of
+  <a class="autorefs autorefs-internal" title="            KrigingDistribution" href="../reference/gemseo_mlearning/active_learning/distributions/kriging_distribution/#gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution">KrigingDistribution</a>
+  to <code>regressor</code>.</li>
+<li>Rename the <code>algo</code> argument of
+  <a class="autorefs autorefs-internal" title="            RegressorDistribution" href="../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution">RegressorDistribution</a>
+  to <code>regressor</code>.</li>
+<li>Rename the <code>algos</code> argument of
+  <a class="autorefs autorefs-internal" title="            RegressorDistribution" href="../reference/gemseo_mlearning/active_learning/distributions/regressor_distribution/#gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution">RegressorDistribution</a>
+  to <code>regressors</code>.</li>
+<li>Replace the <code>regression_algorithm</code> and <code>regression_settings</code> arguments of
+  <a class="autorefs autorefs-internal" title="            SurrogateBasedOptimizer" href="../reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer">SurrogateBasedOptimizer</a>
+  by <code>regressor</code> of type <code>BaseRegressor | BaseRegressorSettings | None</code>.</li>
+<li>Replace the <code>regression_algorithm</code> and <code>regression_settings</code> fields of
+  <a class="autorefs autorefs-internal" title="            SBO_Settings" href="../reference/gemseo_mlearning/algos/opt/sbo_settings/#gemseo_mlearning.algos.opt.sbo_settings.SBO_Settings">SBO_Settings</a>
+  by <code>regressor</code> of type <code>BaseRegressor | BaseRegressorSettings</code>.</li>
+</ul>
 <h3 id="removed">Removed<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Remove the interface to SMT features; use <a href="https://gitlab.com/gemseo/dev/gemseo-smt">gemseo-smt</a> instead.</li>
@@ -5798,7 +5841,7 @@ and this project adheres to
 <li><a class="autorefs autorefs-internal" title="            opt" href="../reference/gemseo_mlearning/settings/opt/#gemseo_mlearning.settings.opt">gemseo_mlearning.settings.opt</a>: the Pydantic models to define the settings of the optimization algorithms.</li>
 <li>[gemseo_mlearning.settings.mlearning][]: the Pydantic models to define the settings of the machine learning algorithms.</li>
 </ul>
-<h3 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h3>
+<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>SBOSettings</code> renamed to <code>SBO_Settings</code>.</li>
 <li><code>SMTEGOSettings</code> renamed to <code>SMT_EGO_Settings</code>.</li>
@@ -5854,7 +5897,7 @@ and this project adheres to
   and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches
   using the <code>regression_file_path</code> option.</li>
 </ul>
-<h3 id="changed_1">Changed<a class="headerlink" href="#changed_1" title="Permanent link">&para;</a></h3>
+<h3 id="changed_2">Changed<a class="headerlink" href="#changed_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>BREAKING CHANGE: The acquisition algorithm settings have to be passed to
   <a class="autorefs autorefs-internal" title="            SurrogateBasedOptimizer" href="../reference/gemseo_mlearning/algos/opt/core/surrogate_based_optimizer/#gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer">SurrogateBasedOptimizer</a>
