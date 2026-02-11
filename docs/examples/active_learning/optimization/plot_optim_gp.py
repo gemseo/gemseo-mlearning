@@ -20,8 +20,11 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 from gemseo import configuration
 from gemseo import sample_disciplines
-from gemseo.mlearning.regression.algos.gpr import GaussianProcessRegressor
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+    OTGaussianProcessRegressor_Settings,
+)
 from numpy import argmin
 from numpy import concatenate
 from numpy import unique
@@ -62,7 +65,9 @@ learning_dataset = sample_disciplines(
 
 # %%
 # and one Gaussian process regressor OpenTURNS:
-regressor_1 = OTGaussianProcessRegressor(learning_dataset, trend="quadratic")
+regressor_1 = OTGaussianProcessRegressor(
+    learning_dataset, settings=OTGaussianProcessRegressor_Settings(trend="quadratic")
+)
 # and the other from scikit-learn:
 regressor_2 = GaussianProcessRegressor(learning_dataset)
 

@@ -28,6 +28,27 @@ and this project adheres to
 
 ## Develop
 
+### Changed
+
+- Rename the `algo` attribute of
+  [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
+  to `regressor`.
+- Rename the `algo` argument of
+  [KrigingDistribution][gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution]
+  to `regressor`.
+- Rename the `algo` argument of
+  [RegressorDistribution][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution]
+  to `regressor`.
+- Rename the `algos` argument of
+  [RegressorDistribution][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution]
+  to `regressors`.
+- Replace the `regression_algorithm` and `regression_settings` arguments of
+  [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
+  by `regressor` of type `BaseRegressor | BaseRegressorSettings | None`.
+- Replace the `regression_algorithm` and `regression_settings` fields of
+  [SBO_Settings][gemseo_mlearning.algos.opt.sbo_settings.SBO_Settings]
+  by `regressor` of type `BaseRegressor | BaseRegressorSettings`.
+
 ### Removed
 
 - Remove the interface to SMT features; use [gemseo-smt](https://gitlab.com/gemseo/dev/gemseo-smt) instead.

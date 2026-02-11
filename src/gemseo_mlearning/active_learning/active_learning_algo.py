@@ -34,12 +34,12 @@ from gemseo.algos.doe.factory import DOELibraryFactory
 from gemseo.algos.opt.factory import OptimizationLibraryFactory
 from gemseo.algos.optimization_problem import OptimizationProblem
 from gemseo.datasets.io_dataset import IODataset
-from gemseo.mlearning.regression.algos.base_random_process_regressor import (
+from gemseo.machine_learning.regression.models.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
-from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
-from gemseo.utils.logging_tools import LoggingContext
-from gemseo.utils.logging_tools import OneLineLogging
+from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+from gemseo.utils.logging import LoggingContext
+from gemseo.utils.logging import OneLineLogging
 from numpy import array
 from numpy import hstack
 from numpy import newaxis
@@ -63,7 +63,7 @@ if TYPE_CHECKING:
 
     from gemseo.algos.base_driver_library import BaseDriverLibrary
     from gemseo.core.discipline.discipline import Discipline
-    from gemseo.mlearning.core.algos.ml_algo import DataType
+    from gemseo.machine_learning.core.models.ml_algo import DataType
     from gemseo.post.dataset.lines import Lines
     from matplotlib.figure import Figure
 
@@ -217,13 +217,13 @@ class ActiveLearningAlgo:
 
         # Miscellaneous.
         self.__database = Database()
-        self.__n_initial_samples = len(distribution.algo.learning_set)
+        self.__n_initial_samples = len(distribution.regressor.learning_set)
         self.__distribution = distribution
         self.__input_space = input_space
         self.__batch_size = batch_size
 
         # Create the acquisition view.
-        if distribution.algo.input_dimension == 2 and batch_size == 1:
+        if distribution.regressor.input_dimension == 2 and batch_size == 1:
             self.__acquisition_view = AcquisitionView(self)
         else:
             self.__acquisition_view = None
@@ -268,7 +268,7 @@ class ActiveLearningAlgo:
     @property
     def regressor(self) -> BaseRegressor:
         """The regressor."""
-        return self.__distribution.algo
+        return self.__distribution.regressor
 
     @property
     def regressor_distribution(self) -> BaseRegressorDistribution:
@@ -400,7 +400,7 @@ class ActiveLearningAlgo:
 
                     extra_learning_set = IODataset()
                     distribution = self.__distribution
-                    variable_names_to_n_components = distribution.algo.sizes
+                    variable_names_to_n_components = distribution.regressor.sizes
                     new_points = hstack(list(input_data.values()))[newaxis]
                     extra_learning_set.add_group(
                         group_name=IODataset.INPUT_GROUP,
@@ -421,7 +421,7 @@ class ActiveLearningAlgo:
                     )
 
                     augmented_learning_set = concat(
-                        [distribution.algo.learning_set, extra_learning_set],
+                        [distribution.regressor.learning_set, extra_learning_set],
                         ignore_index=True,
                     )
 

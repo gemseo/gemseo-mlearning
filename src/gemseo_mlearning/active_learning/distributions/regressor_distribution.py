@@ -27,9 +27,10 @@ from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
 
-from gemseo.mlearning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
+from gemseo.typing import RealArray
 from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import array_split
@@ -53,9 +54,10 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from gemseo.datasets.dataset import Dataset
-    from gemseo.mlearning.core.algos.ml_algo import DataType
-    from gemseo.mlearning.regression.algos.base_regressor import BaseRegressor
+    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
     from gemseo.typing import NumberArray
+
+DataType = RealArray | Mapping[str, RealArray]
 
 
 class RegressorDistribution(BaseRegressorDistribution):
@@ -85,7 +87,7 @@ class RegressorDistribution(BaseRegressorDistribution):
 
     def __init__(
         self,
-        algo: BaseRegressor,
+        regressor: BaseRegressor,
         bootstrap: bool = True,
         loo: bool = False,
         size: int | None = None,
@@ -99,7 +101,7 @@ class RegressorDistribution(BaseRegressorDistribution):
                 If `False`, use parameterized cross-validation,
                 Otherwise use leave-one-out.
             size: The size of the resampling set,
-                i.e. the number of times the regression algorithm is rebuilt.
+                i.e. the number of times the regressor is rebuilt.
                 If `None`,
                 [N_BOOTSTRAP][gemseo_mlearning.active_learning.distributions.regressor_distribution.RegressorDistribution.N_BOOTSTRAP]
                 in the case of bootstrap
@@ -114,16 +116,16 @@ class RegressorDistribution(BaseRegressorDistribution):
         else:
             if loo:
                 self.method = self.LOO
-                self.size = len(algo.learning_set)
+                self.size = len(regressor.learning_set)
             else:
                 self.method = self.CROSS_VALIDATION
                 self.size = size or self.N_FOLDS
-        self.algos = [
-            algo.__class__(algo.learning_set, settings_model=algo._settings)
+        self.regressors = [
+            regressor.__class__(regressor.learning_set, settings=regressor._settings)
             for _ in range(self.size)
         ]
         self.weights = []
-        super().__init__(algo)
+        super().__init__(regressor)
 
     def learn(  # noqa: D102
         self,
@@ -134,7 +136,7 @@ class RegressorDistribution(BaseRegressorDistribution):
         if self.method in [self.CROSS_VALIDATION, self.LOO]:
             n_folds = self.size
             folds = array_split(self._samples, n_folds)
-        for index, algo in enumerate(self.algos):
+        for index, regressor in enumerate(self.regressors):
             if self.method == self.BOOTSTRAP:
                 new_samples = unique(
                     default_rng(1).choice(self._samples, len(self._samples))
@@ -147,7 +149,7 @@ class RegressorDistribution(BaseRegressorDistribution):
                 other_samples = list(set(self._samples) - set(new_samples))
                 self.weights.append(self.__weight_function(other_samples))
 
-            algo.learn(new_samples.tolist())
+            regressor.learn(new_samples.tolist())
 
     def __weight_function(self, indices: list[int]) -> Callable[[NumberArray], float]:
         """Return a function evaluating the weights at an input vector.
@@ -221,7 +223,7 @@ class RegressorDistribution(BaseRegressorDistribution):
                 If `input_data.shape == (d,)`, then `output_data.shape == (N, p)`.
                 If `input_data.shape == (M,d)`, then `output_data.shape == (N,M,p)`.
         """
-        predictions = [algo.predict(input_data) for algo in self.algos]
+        predictions = [regressor.predict(input_data) for regressor in self.regressors]
         if isinstance(input_data, Mapping):
             return {
                 name: stack([prediction[name] for prediction in predictions])
@@ -307,8 +309,8 @@ class RegressorDistribution(BaseRegressorDistribution):
         ])
 
     def change_learning_set(self, learning_set: Dataset) -> None:  # noqa: D102
-        for algo in self.algos:
-            algo.learning_set = learning_set
+        for regressor in self.regressors:
+            regressor.learning_set = learning_set
         super().change_learning_set(learning_set)
 
     def compute_covariance(  # noqa: D102

@@ -55,7 +55,7 @@ def test_criterion(criterion):
 
 
 @pytest.mark.parametrize("max_iter", [8, 10])
-def test_inconsistent_max_iter(max_iter, regression_algorithm):
+def test_inconsistent_max_iter(max_iter, regressor):
     """Check that max_iter must be strictly greater than doe_size."""
     with pytest.raises(
         ValueError,
@@ -73,11 +73,11 @@ def test_inconsistent_max_iter(max_iter, regression_algorithm):
         Rastrigin(),
         algo_name="SBO",
         max_iter=max_iter,
-        regression_algorithm=regression_algorithm,
+        regressor=regressor,
     )
 
 
-def test_save(regression_algorithm, tmp_wd):
+def test_save(regressor, tmp_wd):
     """Check that the  regression algorithm can be pickled."""
     file_path = Path("model.pkl")
     OptimizationLibraryFactory().execute(
@@ -86,13 +86,13 @@ def test_save(regression_algorithm, tmp_wd):
         max_iter=3,
         acquisition_algorithm="OT_MONTE_CARLO",
         acquisition_settings={"n_samples": 10},
-        regression_algorithm=regression_algorithm,
+        regressor=regressor,
         regression_file_path=file_path,
     )
     with file_path.open("rb") as file:
         model = pickle.load(file)
 
-    assert_frame_equal(model.learning_set, regression_algorithm.learning_set)
+    assert_frame_equal(model.learning_set, regressor.learning_set)
 
 
 def test_problem_counters(enable_function_statistics):

@@ -17,19 +17,25 @@ from __future__ import annotations
 
 import pytest
 from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.mlearning.regression.algos.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+    OTGaussianProcessRegressor_Settings,
+)
 from gemseo.problems.optimization.rastrigin import Rastrigin
 
 
 @pytest.fixture
-def regression_algorithm() -> OTGaussianProcessRegressor:
-    """A regression algorithm for the Rastrigin problem."""
+def regressor() -> OTGaussianProcessRegressor:
+    """A regressor for the Rastrigin problem."""
     problem = Rastrigin()
     DOELibraryFactory().execute(problem, algo_name="OT_SOBOL", n_samples=5)
     dataset = problem.to_dataset(opt_naming=False)
     dataset = dataset.map(lambda x: x.real)
-    algo = OTGaussianProcessRegressor(
-        dataset, transformer=OTGaussianProcessRegressor.DEFAULT_TRANSFORMER
+    ot_gpr = OTGaussianProcessRegressor(
+        dataset,
+        OTGaussianProcessRegressor_Settings(
+            transformer=OTGaussianProcessRegressor.DEFAULT_TRANSFORMER
+        ),
     )
-    algo.learn()
-    return algo
+    ot_gpr.learn()
+    return ot_gpr
