@@ -17,8 +17,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
-from gemseo.optimization.core.base_optimizer_settings import BaseOptimizerSettings
 from gemseo.core.base_factory import BaseFactory
+from gemseo.optimization.core.base_optimizer_settings import BaseOptimizerSettings
 
 import gemseo_mlearning.settings.opt as opt
 

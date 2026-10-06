@@ -22,13 +22,13 @@ import re
 
 import pytest
 from gemseo.space import RandomSpace
+from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
 from numpy import array
 from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ef import EF
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei import EI
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.u import U
-from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
 
 
 @pytest.fixture(scope="module")
