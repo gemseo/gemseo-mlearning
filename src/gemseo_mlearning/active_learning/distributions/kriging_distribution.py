@@ -103,7 +103,6 @@ class KrigingDistribution(BaseRegressorDistribution):
         input_data: NumberArray,
         n_samples: int,
     ) -> NumberArray:
-        # TODO(bump-gemseo): cannot transform: the type of self.regressor could not be inferred; if it is an instance of BaseSensitivityAnalysis, the rules of compute_samples were not applied to its argument(s) parameter_space  # noqa: E501
         return self.regressor.compute_samples(input_data, n_samples)
 
     def compute_covariance(  # noqa: D102
