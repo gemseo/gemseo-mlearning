@@ -47,6 +47,14 @@ and this project adheres to
   [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
   are replaced by `acquisition_settings` of type `BaseDriverSettings | None`
   and `doe_settings` of type `BaseDOESettings | None`.
+- The input space of
+  [BraninProblem][gemseo_mlearning.problems.branin.branin_problem.BraninProblem]
+  and
+  [RosenbrockProblem][gemseo_mlearning.problems.rosenbrock.rosenbrock_problem.RosenbrockProblem]
+  is a `DesignSpace`
+  whose bounds are the limits of the supports of the probability distributions
+  defining the corresponding random space
+  and whose current value is the mean of these distributions.
 - Rename the `algo` attribute of
   [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
   to `regressor`.
@@ -69,6 +77,11 @@ and this project adheres to
 ### Removed
 
 - Support for Python 3.10.
+- The `use_uncertain_space` argument of
+  [BraninProblem][gemseo_mlearning.problems.branin.branin_problem.BraninProblem]
+  and
+  [RosenbrockProblem][gemseo_mlearning.problems.rosenbrock.rosenbrock_problem.RosenbrockProblem],
+  as an optimization problem requires a design space.
 - Remove the interface to SMT features; use [gemseo-smt](https://gitlab.com/gemseo/dev/gemseo-smt) instead.
 
 ## Version 3.1.0 (October 2025)

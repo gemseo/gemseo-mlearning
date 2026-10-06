@@ -12,29 +12,26 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-"""A problem connecting the Rosenbrock function with its uncertain space."""
+"""A problem connecting the Rosenbrock function with its input space."""
 
 from __future__ import annotations
 
 from gemseo.optimization import OptimizationProblem
 
+from gemseo_mlearning._util import create_design_space
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_function import RosenbrockFunction
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
 
 class RosenbrockProblem(OptimizationProblem):
-    """A problem connecting the Rosenbrock function with its uncertain space."""
+    """A problem connecting the Rosenbrock function with its input space.
 
-    def __init__(self, use_uncertain_space: bool = True) -> None:
-        """
-        Args:
-            use_uncertain_space: Whether to consider the input space
-                as an uncertain space.
-        """  # noqa: D205 D212
-        input_space = RosenbrockSpace()
-        if not use_uncertain_space:
-            # TODO(bump-gemseo): ParameterSpace.to_design_space was removed; see the GEMSEO 7 changelog.  # noqa: E501
-            input_space = input_space.to_design_space()
+    The input space is a design space
+    whose bounds are the limits of the support of the probability distributions
+    defining [RosenbrockSpace][gemseo_mlearning.problems.rosenbrock.rosenbrock_space.RosenbrockSpace]
+    and whose current value is the mean of these distributions.
+    """  # noqa: E501
 
-        super().__init__(input_space)
+    def __init__(self) -> None:  # noqa: D107
+        super().__init__(create_design_space(RosenbrockSpace()))
         self.objective = RosenbrockFunction()
