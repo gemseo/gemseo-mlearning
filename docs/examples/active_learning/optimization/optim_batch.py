@@ -20,6 +20,7 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 from gemseo import configuration
 from gemseo import sample_disciplines
+from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.machine_learning.regression.model.ot_gpr import OTGaussianProcessRegressor
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
@@ -64,18 +65,16 @@ learning_dataset = sample_disciplines(
 # %%
 # and two identical initial
 # Gaussian process regressors from OpenTURNS:
-# TODO(bump-gemseo): cannot transform: the type of OTGaussianProcessRegressor_Settings could not be inferred here, so the rules of OTGaussianProcessRegressor_Settings.__init__ were not applied to its argument(s) multi_start_n_samples; check the call  # noqa: E501
 regressor_1 = OTGaussianProcessRegressor(
     learning_dataset,
     settings=OTGaussianProcessRegressor_Settings(
-        trend="quadratic", multi_start_n_samples=20
+        trend="quadratic", multi_start_algo_settings=OT_OPT_LHS_Settings(n_samples=20)
     ),
 )
-# TODO(bump-gemseo): cannot transform: the type of OTGaussianProcessRegressor_Settings could not be inferred here, so the rules of OTGaussianProcessRegressor_Settings.__init__ were not applied to its argument(s) multi_start_n_samples; check the call  # noqa: E501
 regressor_2 = OTGaussianProcessRegressor(
     learning_dataset,
     settings=OTGaussianProcessRegressor_Settings(
-        trend="quadratic", multi_start_n_samples=20
+        trend="quadratic", multi_start_algo_settings=OT_OPT_LHS_Settings(n_samples=20)
     ),
 )
 
