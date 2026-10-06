@@ -21,6 +21,7 @@ from typing import Any
 
 from gemseo.dataset import IODataset
 from gemseo.post.dataset import Lines
+from gemseo.post.dataset.lines_settings import Lines_Settings
 from numpy import array
 from numpy import newaxis
 
@@ -72,7 +73,7 @@ class QOIHistoryView:
             label: The label for the QOI.
                 If empty, use the name of the acquisition criterion family.
             add_markers: Whether to add markers.
-            **options: The options to create the
+            **options: The settings to create the
                 [Lines][gemseo.post.dataset.lines.Lines] object.
 
         Returns:
@@ -87,13 +88,14 @@ class QOIHistoryView:
         dataset = IODataset()
         dataset.add_variable(x_label, array(n_evaluations_history)[:, newaxis])
         dataset.add_variable(label, array(qoi_history)[:, newaxis])
-        # TODO(bump-gemseo): cannot transform: a * or ** unpack may hold arguments to gather into the Settings instance  # noqa: E501
         lines = Lines(
             dataset,
-            variables=[label],
-            abscissa_variable=x_label,
-            add_markers=add_markers,
-            **options,
+            Lines_Settings(
+                variables=[label],
+                abscissa_variable=x_label,
+                add_markers=add_markers,
+                **options,
+            ),
         )
         lines.settings.marker = "."
         lines.execute(show=show, save=file_path != "", file_path=file_path)
