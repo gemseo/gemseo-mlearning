@@ -17,10 +17,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping  # noqa: TC003
-
-# TODO(bump-gemseo): strenum.StrEnum: enum.StrEnum gives auto() the lower-cased member name (MC = auto() was "MC", is now "mc"), so write MC = "MC" to keep the values, or keep strenum as a dependency of your own  # noqa: E501
 from enum import StrEnum
-from enum import auto
 from pathlib import Path  # noqa: TC003
 
 from gemseo.core.algorithm.base_driver_library import DriverSettingType  # noqa: TC002
@@ -52,19 +49,19 @@ class AcquisitionCriterion(StrEnum):
     $\mathbb{E}[Y(x)]$ and $\mathbb{S}[Y(x)]$.
     """
 
-    EI = auto()
+    EI = "EI"
     r"""The expected improvement.
 
     The acquisition criterion is $\mathbb{E}[\max(\min(y_1,\dots,y_n)-Y(x),0]$.
     """
 
-    CB = auto()
+    CB = "CB"
     r"""The confidence bound.
 
     The acquisition criterion is $\mathbb{E}[Y(x)]-3\mathbb{S}[Y(x)]$.
     """
 
-    Output = auto()
+    Output = "Output"
     r"""The mean output.
 
     The acquisition criterion is $\mathbb{E}[Y(x)]$.
