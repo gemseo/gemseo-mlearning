@@ -26,9 +26,8 @@ def test_rosenbrock_space() -> None:
     space = RosenbrockSpace()
     assert space.dimension == 2
     assert list(space.variables) == ["x1", "x2"]
-    # TODO(bump-gemseo): use space.variables[name].distribution instead  # noqa: E501
-    for distribution in space.distributions.values():
-        assert len(distribution.marginals) == 1
-        distribution = distribution.marginals[0].distribution
+    for variable in space.variables.values():
+        assert len(variable.distribution.marginals) == 1
+        distribution = variable.distribution.marginals[0].distribution
         assert distribution.getParameter() == (-2.0, 2.0)
         assert isinstance(distribution, Uniform)
