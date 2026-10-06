@@ -19,8 +19,8 @@ from __future__ import annotations
 
 import matplotlib.pyplot as plt
 from gemseo import configuration
-from gemseo import create_surrogate
 from gemseo import sample_disciplines
+from gemseo.discipline import SurrogateDiscipline
 from gemseo.machine_learning.regression.model.ot_gpr import OTGaussianProcessRegressor
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
@@ -110,9 +110,9 @@ active_learning_3.acquire_new_points(discipline, n_samples=20)
 # Creation of the grid
 # and estimation of the different quantities
 n_test = 10
-surrogate_1 = create_surrogate(active_learning_1.regressor)
-surrogate_2 = create_surrogate(active_learning_2.regressor)
-surrogate_3 = create_surrogate(active_learning_3.regressor)
+surrogate_1 = SurrogateDiscipline(active_learning_1.regressor)
+surrogate_2 = SurrogateDiscipline(active_learning_2.regressor)
+surrogate_3 = SurrogateDiscipline(active_learning_3.regressor)
 observations = sample_disciplines(
     [discipline], input_space, "y", algo_name="OT_FULLFACT", n_samples=n_test**2
 ).values
