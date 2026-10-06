@@ -22,7 +22,6 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from gemseo.dataset import IODataset
-from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
@@ -37,6 +36,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum impor
     Minimum,
 )
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
+from gemseo_mlearning.algos.opt.sbo_settings import create_default_doe_settings
 
 if TYPE_CHECKING:
     from gemseo.core.algorithm.base_driver_settings import BaseDriverSettings
@@ -88,7 +88,7 @@ class SurrogateBasedOptimizer:
                 variables are integers.
                 If `None`, use the default algorithm with its default settings.
             doe_settings: The settings of the DOE algorithm for the initial sampling.
-                If `None`, use `OT_OPT_LHS` with 10 samples.
+                If `None`, use `create_default_doe_settings()`.
                 This argument is ignored
                 when regressor is a
                 [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor].
@@ -113,7 +113,7 @@ class SurrogateBasedOptimizer:
             # Store max_iter as it will be overwritten by DOELibrary
             max_iter = problem.evaluation_counter.maximum
             if doe_settings is None:
-                doe_settings = OT_OPT_LHS_Settings(n_samples=10)
+                doe_settings = create_default_doe_settings()
 
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = database.clear_listeners()

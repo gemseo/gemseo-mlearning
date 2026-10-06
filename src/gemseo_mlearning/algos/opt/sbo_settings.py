@@ -36,6 +36,15 @@ from pydantic import Field
 from pydantic import PositiveInt  # noqa: TC002
 
 
+def create_default_doe_settings() -> OT_OPT_LHS_Settings:
+    """Create the default settings of the DOE algorithm for the initial sampling.
+
+    Returns:
+        The settings of an optimized LHS with 10 samples.
+    """
+    return OT_OPT_LHS_Settings(n_samples=10)
+
+
 class AcquisitionCriterion(StrEnum):
     r"""An acquisition criterion.
 
@@ -87,7 +96,7 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
     )
 
     doe_settings: BaseDOESettings = Field(
-        default_factory=lambda: OT_OPT_LHS_Settings(n_samples=10),
+        default_factory=create_default_doe_settings,
         description=(
             """The settings of the DOE algorithm for the initial sampling.
             This argument is ignored

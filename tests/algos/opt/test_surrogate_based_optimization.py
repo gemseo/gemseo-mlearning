@@ -32,6 +32,7 @@ from pandas.testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.sbo_settings import AcquisitionCriterion
 from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
+from gemseo_mlearning.algos.opt.sbo_settings import create_default_doe_settings
 
 
 def test_default_settings():
@@ -110,3 +111,11 @@ def test_problem_counters(enable_function_statistics):
     assert problem.evaluation_counter.maximum == 13
     assert problem.evaluation_counter.current == 13
     assert problem.objective.n_calls == 13
+
+
+def test_default_doe_settings():
+    """Check the default settings of the DOE algorithm for the initial sampling."""
+    settings = create_default_doe_settings()
+    assert settings == OT_OPT_LHS_Settings(n_samples=10)
+    assert SBO_Settings().doe_settings == settings
+    assert SBO_Settings().doe_settings is not SBO_Settings().doe_settings
