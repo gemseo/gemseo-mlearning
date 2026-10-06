@@ -92,8 +92,6 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
         self._finalize_previous_iteration()
         problem.evaluation_counter.enabled = False
         doe_settings = self._settings.doe_settings
-        doe_size = self._settings.doe_size
-        doe_algorithm = self._settings.doe_algorithm
         regressor = self._settings.regressor
         if not isinstance(regressor, BaseRegressor):
             # The number of evaluations is equal to
@@ -105,12 +103,9 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             # because creating it imports the plugins, including this one.
             from gemseo.doe.factory import DOELibraryFactory
 
-            doe_algo = DOELibraryFactory().create(doe_algorithm)
-            # TODO(bump-gemseo): cannot transform: doe_algo is only known as BaseAlgorithmLibrary; if it is an instance of BaseDOELibrary, compute_doe became sample_space  # noqa: E501
+            doe_algo = DOELibraryFactory().create(doe_settings.target_class_name)
             initial_doe_size = len(
-                doe_algo.compute_doe(
-                    problem.design_space, n_samples=doe_size, **doe_settings
-                )
+                doe_algo.sample_space(problem.design_space, doe_settings)
             )
             max_iter = self._settings.max_iter
             if max_iter < 1 + initial_doe_size:
@@ -122,12 +117,9 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
 
         optimizer = SurrogateBasedOptimizer(
             problem,
-            self._settings.acquisition_algorithm,
-            doe_size=doe_size,
-            doe_algorithm=doe_algorithm,
+            acquisition_settings=self._settings.acquisition_settings,
             doe_settings=doe_settings,
-            regressor=self._settings.regressor,
+            regressor=regressor,
             regression_file_path=self._settings.regression_file_path,
-            **self._settings.acquisition_settings,
         )
         return optimizer.execute(sys.maxsize), None

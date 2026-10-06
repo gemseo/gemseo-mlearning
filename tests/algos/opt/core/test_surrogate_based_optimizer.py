@@ -20,6 +20,11 @@ from unittest.mock import MagicMock
 
 import pytest
 from gemseo.core.function.array_function import ArrayFunction
+from gemseo.doe import CustomDOE_Settings
+from gemseo.doe import OT_AXIAL_Settings
+from gemseo.doe import OT_OPT_LHS_Settings
+from gemseo.doe import OT_SOBOL_Settings
+from gemseo.doe import PYDOE_FULLFACT_Settings
 from gemseo.machine_learning.regression.model.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
@@ -29,6 +34,7 @@ from gemseo.machine_learning.regression.model.linreg_settings import (
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
+from gemseo.optimization import DIFFERENTIAL_EVOLUTION_Settings
 from gemseo.optimization import OptimizationProblem
 from gemseo.problem.optimization.rastrigin import Rastrigin
 from gemseo.space import DesignSpace
@@ -52,10 +58,9 @@ def test_all_acquisitions_made(regressor):
     assert (
         SurrogateBasedOptimizer(
             Rastrigin(),
-            "PYDOE_FULLFACT",
-            5,
+            PYDOE_FULLFACT_Settings(n_samples=10),
+            OT_OPT_LHS_Settings(n_samples=5),
             regressor=regressor,
-            n_samples=10,
         ).execute(1)
         == "All the data acquisitions have been made."
     )
@@ -70,10 +75,9 @@ def test_known_acquired_input_data():
     assert (
         SurrogateBasedOptimizer(
             problem,
-            "CustomDOE",
-            2,
+            CustomDOE_Settings(samples=array([[0.0]])),
+            OT_OPT_LHS_Settings(n_samples=2),
             regressor=LinearRegressor_Settings(),
-            samples=array([[0.0]]),
         ).execute(2)
         == "The acquired input data is already known."
     )
@@ -90,11 +94,8 @@ def test_convergence_on_rastrigin():
     problem.database.add_store_listener = MagicMock()
     SurrogateBasedOptimizer(
         problem,
-        "DIFFERENTIAL_EVOLUTION",
-        doe_size=20,
-        max_iter=1000,
-        popsize=50,
-        seed=1,
+        DIFFERENTIAL_EVOLUTION_Settings(max_iter=1000, popsize=50, seed=1),
+        OT_OPT_LHS_Settings(n_samples=20),
     ).execute(5)
     assert problem.optimum.objective < 0.12
 
@@ -107,10 +108,8 @@ def test_stratified_algorithm():
     assert (
         SurrogateBasedOptimizer(
             Rastrigin(),
-            "DIFFERENTIAL_EVOLUTION",
-            doe_algorithm="OT_AXIAL",
-            doe_settings={"centers": [0.5, 0.5], "levels": [0.1, 0.2]},
-            max_iter=10,
+            DIFFERENTIAL_EVOLUTION_Settings(max_iter=10),
+            OT_AXIAL_Settings(centers=[0.5, 0.5], levels=[0.1, 0.2]),
         ).execute(1)
         == "All the data acquisitions have been made."
     )
@@ -123,20 +122,17 @@ def test_ml_regression_algo_instance(regressor, kwargs):
     """
     optimizer = SurrogateBasedOptimizer(
         Rastrigin(),
-        "CustomDOE",
+        CustomDOE_Settings(samples=array([[0.03, 0.03]])),
         regressor=regressor,
-        samples=array([[0.03, 0.03]]),
     )
     optimizer.execute(1)
     dataset = optimizer._SurrogateBasedOptimizer__dataset
 
     optimizer = SurrogateBasedOptimizer(
         Rastrigin(),
-        "CustomDOE",
-        doe_size=5,
-        doe_algorithm="OT_SOBOL",
+        CustomDOE_Settings(samples=array([[0.03, 0.03]])),
+        OT_SOBOL_Settings(n_samples=5),
         regressor=OTGaussianProcessRegressor_Settings(**kwargs),
-        samples=array([[0.03, 0.03]]),
     )
     optimizer.execute(1)
     assert_frame_equal(optimizer._SurrogateBasedOptimizer__dataset, dataset)

@@ -22,11 +22,11 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from gemseo.dataset import IODataset
+from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
-from gemseo.util.constant import read_only_empty_dict
 from gemseo.util.hashable_ndarray import HashableNdarray
 from gemseo.util.logging import LoggingContext
 from numpy import hstack
@@ -39,9 +39,8 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.minimum impor
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 
 if TYPE_CHECKING:
-    from collections.abc import Mapping
-
-    from gemseo.core.algorithm.base_driver_library import DriverLibrarySettingType
+    from gemseo.core.algorithm.base_driver_settings import BaseDriverSettings
+    from gemseo.doe.core.base_doe_settings import BaseDOESettings
     from gemseo.machine_learning.regression.core.base_regressor_settings import (
         BaseRegressorSettings,
     )
@@ -75,40 +74,28 @@ class SurrogateBasedOptimizer:
     def __init__(
         self,
         problem: OptimizationProblem,
-        acquisition_algorithm: str,
-        doe_size: int = 0,
-        doe_algorithm: str = "OT_OPT_LHS",
-        doe_settings: Mapping[str, DriverLibrarySettingType] = read_only_empty_dict,
+        acquisition_settings: BaseDriverSettings | None = None,
+        doe_settings: BaseDOESettings | None = None,
         regressor: BaseRegressorSettings | BaseRegressor | None = None,
         regression_file_path: str | Path = "",
-        **acquisition_settings: DriverLibrarySettingType,
     ) -> None:
         """
         Args:
-            acquisition_algorithm: The name of the algorithm to optimize the data
-                acquisition criterion.
+            problem: The optimization problem.
+            acquisition_settings: The settings of the algorithm to optimize
+                the data acquisition criterion.
                 N.B. this algorithm must handle integers if some of the optimization
                 variables are integers.
-            problem: The optimization problem.
-            doe_size: Either the size of the initial DOE
-                or 0 if the size is inferred from doe_settings.
+                If `None`, use the default algorithm with its default settings.
+            doe_settings: The settings of the DOE algorithm for the initial sampling.
+                If `None`, use `OT_OPT_LHS` with 10 samples.
                 This argument is ignored
                 when regressor is a
-                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
-            doe_algorithm: The name of the algorithm for the initial sampling.
-                This argument is ignored
-                when regressor is a
-                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
-            doe_settings: The settings of the algorithm for the initial sampling.
-                This argument is ignored
-                when regressor is a
-                [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+                [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor].
             regressor: Either regressor settings or a regressor.
                 If `None`, use the default OpenTURNS-based Gaussian process regressor.
             regression_file_path: The path to the file to save the regression model.
                 If empty, do not save the regression model.
-            **acquisition_settings: The settings of the algorithm to optimize
-                the data acquisition criterion.
         """  # noqa: D205, D212, D415
         # The factories are imported here
         # because creating them imports the plugins, including this one.
@@ -125,18 +112,13 @@ class SurrogateBasedOptimizer:
         else:
             # Store max_iter as it will be overwritten by DOELibrary
             max_iter = problem.evaluation_counter.maximum
-            settings = dict(doe_settings)
-            if doe_size > 0 and "n_samples" not in settings:
-                settings["n_samples"] = doe_size
+            if doe_settings is None:
+                doe_settings = OT_OPT_LHS_Settings(n_samples=10)
 
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = database.clear_listeners()
             with LoggingContext(logging.getLogger("gemseo")):
-                # TODO(bump-gemseo): cannot transform: the Settings class is named by doe_algorithm, which is not a string literal  # noqa: E501
-                # TODO(bump-gemseo): **kwargs may contain: settings_model -> settings  # noqa: E501
-                DOELibraryFactory().execute(
-                    problem, algo_name=doe_algorithm, **settings
-                )
+                DOELibraryFactory().execute(problem, doe_settings)
 
             for listener in new_iter_listeners:
                 database.add_new_iter_listener(listener)
@@ -150,9 +132,8 @@ class SurrogateBasedOptimizer:
 
             if "transformer" not in regressor.model_fields_set:
                 regressor.transformer = {"inputs": "MinMaxScaler"}
-            # TODO(bump-gemseo): cannot transform: the type of regressor could not be inferred; if it is an instance of BaseSettings, read it with the target_class_name property of a settings instance; in a settings class, remove the assignment, as the value is now derived from the name of the class (X_Settings targets X)  # noqa: E501
             regressor = regressor_factory.create(
-                regressor._TARGET_CLASS_NAME, self.__dataset, settings=regressor
+                regressor.target_class_name, self.__dataset, settings=regressor
             )
             # Add the first iteration to the current_iter reset by DOELibrary.
             problem.evaluation_counter.current += 1
@@ -162,10 +143,8 @@ class SurrogateBasedOptimizer:
         self.__active_learning_algo = ActiveLearningAlgo(
             Minimum.__name__, problem.design_space, regressor
         )
-        if acquisition_algorithm:
-            self.__active_learning_algo.set_acquisition_algorithm(
-                acquisition_algorithm, **acquisition_settings
-            )
+        if acquisition_settings is not None:
+            self.__active_learning_algo.set_acquisition_algorithm(acquisition_settings)
         self.__regression_file_path = regression_file_path
 
     def execute(self, number_of_acquisitions: int) -> str:

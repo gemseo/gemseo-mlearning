@@ -18,11 +18,13 @@
 from __future__ import annotations
 
 from gemseo import execute_algo
+from gemseo.optimization import NLOPT_COBYLA_Settings
 from gemseo.post.dataset import ZvsXY
+from gemseo.post.dataset.zvsxy_settings import ZvsXY_Settings
 from gemseo.problem.dataset.rosenbrock import create_rosenbrock_dataset
 from gemseo.problem.optimization.rosenbrock import Rosenbrock
-from gemseo.optimization import NLOPT_COBYLA_Settings
-from gemseo.post.dataset.zvsxy_settings import ZvsXY_Settings
+
+from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
 
 # %%
 # In this example,
@@ -51,7 +53,7 @@ problem = Rosenbrock()
 #     based on an optimized latin hypercube sampling (LHS) technique,
 #   - a multi-start local optimization of the acquisition criterion
 #     from 50 start points with a limit of 20 iterations per local optimization.
-execute_algo(problem, algo_name="SBO", max_iter=40)
+execute_algo(problem, settings_model=SBO_Settings(max_iter=40))
 
 # %%
 # We can see
@@ -71,7 +73,15 @@ acquired_points = optimization_history[12:]
 acquired_points.name = "Acquired points"
 
 visualization = ZvsXY(
-    create_rosenbrock_dataset(900), settings=ZvsXY_Settings(x=("x", 0), y=("x", 1), z="rosen", fill=False, other_datasets=(initial_point, initial_training_points, acquired_points)))
+    create_rosenbrock_dataset(900),
+    settings=ZvsXY_Settings(
+        x=("x", 0),
+        y=("x", 1),
+        z="rosen",
+        fill=False,
+        other_datasets=(initial_point, initial_training_points, acquired_points),
+    ),
+)
 visualization.execute(save=False, show=True)
 
 # %%

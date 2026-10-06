@@ -28,11 +28,13 @@ Given a maximum number of iterations,
 it can be used as is
 by any [OptimizationProblem][gemseo.algos.optimization_problem.OptimizationProblem]:
 ```python
-execute_algo(optimization_problem, algo_name="SBO", max_iter=50)
+from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
+
+execute_algo(optimization_problem, settings_model=SBO_Settings(max_iter=50))
 ```
 and any [MDOScenario][gemseo.scenarios.mdo_scenario.MDOScenario]:
 ```python
-scenario.execute(algo_name="SBO", max_iter=50)
+scenario.execute(SBO_Settings(max_iter=50))
 ```
 
 In this case,

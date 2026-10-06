@@ -25,6 +25,7 @@ from gemseo.machine_learning.regression.model.ot_gpr import OTGaussianProcessReg
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
+from gemseo.optimization import NELDER_MEAD_Settings
 from numpy import unique
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
@@ -101,7 +102,7 @@ active_learning_2 = ActiveLearningAlgo(
     output_value=value_level,
 )
 active_learning_1.acquire_new_points(discipline, n_samples=20)
-active_learning_2.set_acquisition_algorithm(algo_name="NELDER-MEAD")
+active_learning_2.set_acquisition_algorithm(NELDER_MEAD_Settings())
 active_learning_2.acquire_new_points(discipline, n_samples=20)
 
 # %%

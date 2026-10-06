@@ -24,17 +24,19 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 from typing import Any
-from typing import ClassVar
 
 from gemseo.core.algorithm._progress_bar.custom import CustomTqdmProgressBar
 from gemseo.core.algorithm._progress_bar.custom import logger as tqdm_logger
 from gemseo.core.problem.database import Database
 from gemseo.dataset import IODataset
+from gemseo.doe import LHS_Settings
 from gemseo.machine_learning.regression.core.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
+from gemseo.optimization import MultiStart_Settings
 from gemseo.optimization import OptimizationProblem
+from gemseo.optimization import SLSQP_Settings
 from gemseo.space import DesignSpace
 from gemseo.util.logging import LoggingContext
 from gemseo.util.logging import OneLineLogging
@@ -60,6 +62,7 @@ if TYPE_CHECKING:
     from pathlib import Path
 
     from gemseo.core.algorithm.base_driver_library import BaseDriverLibrary
+    from gemseo.core.algorithm.base_driver_settings import BaseDriverSettings
     from gemseo.discipline import Discipline
     from gemseo.machine_learning.core.models.ml_algo import DataType
     from gemseo.post.dataset import Lines
@@ -81,8 +84,8 @@ class ActiveLearningAlgo:
     __acquisition_algo: BaseDriverLibrary
     """The algorithm to find the new training point(s)."""
 
-    __acquisition_algo_settings: dict[str, Any]
-    """The settings of the algorithm to find the new training points()."""
+    __acquisition_algo_settings: BaseDriverSettings
+    """The settings of the algorithm to find the new training point(s)."""
 
     __acquisition_criterion: BaseAcquisitionCriterion
     """The acquisition criterion."""
@@ -98,19 +101,6 @@ class ActiveLearningAlgo:
 
     __input_space: DesignSpace
     """The input space on which to look for the new learning point."""
-
-    __default_algo_name: ClassVar[str] = "MultiStart"
-    """The name of the default algorithm to find the new training point(s).
-
-    Typically a DoE or an optimizer.
-    """
-
-    __default_algo_settings: ClassVar[dict[str, Any]] = {
-        "max_iter": 200,
-        "n_start": 20,
-        "opt_algo_name": "SLSQP",
-    }
-    """The names and values of the default algorithm settings."""
 
     __distribution: BaseRegressorDistribution
     """The distribution of the machine learning algorithm."""
@@ -210,7 +200,11 @@ class ActiveLearningAlgo:
 
         # Initialize acquisition algorithm.
         self.set_acquisition_algorithm(
-            self.__default_algo_name, **self.__default_algo_settings
+            MultiStart_Settings(
+                max_iter=200,
+                doe_algo_settings=LHS_Settings(n_samples=20),
+                opt_algo_settings=SLSQP_Settings(),
+            )
         )
 
         # Miscellaneous.
@@ -288,19 +282,19 @@ class ActiveLearningAlgo:
         """The number of points to be acquired in parallel."""
         return self.__batch_size
 
-    def set_acquisition_algorithm(self, algo_name: str, **settings: Any) -> None:
+    def set_acquisition_algorithm(self, settings: BaseDriverSettings) -> None:
         """Set sampling or optimization algorithm.
 
         Args:
-            algo_name: The name of a DOE or optimization algorithm
+            settings: The settings of a DOE or optimization algorithm
                 to find the learning point(s).
-            **settings: The values of some algorithm settings.
         """
         # The factories are imported here
         # because creating them imports the plugins, including this one.
         from gemseo.doe.factory import DOELibraryFactory
         from gemseo.optimization.factory import OptimizationLibraryFactory
 
+        algo_name = settings.target_class_name
         factory = DOELibraryFactory()
         if not factory.is_available(algo_name):
             factory = OptimizationLibraryFactory()
@@ -324,9 +318,8 @@ class ActiveLearningAlgo:
             The next `batch_size` learning point(s).
         """
         with LoggingContext(logging.getLogger("gemseo")):
-            # TODO(bump-gemseo): **kwargs may contain: settings_model -> settings  # noqa: E501
             input_data = self.__acquisition_algo.execute(
-                self.__acquisition_problem, **self.__acquisition_algo_settings
+                self.__acquisition_problem, self.__acquisition_algo_settings
             ).x_opt
             input_data = input_data.reshape(self.__batch_size, -1)
         if as_dict:

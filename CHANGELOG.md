@@ -31,6 +31,22 @@ and this project adheres to
 ### Changed
 
 - Support GEMSEO 7.
+- The `algo_name` and `**settings` arguments of
+  `ActiveLearningAlgo.set_acquisition_algorithm`
+  are replaced by `settings` of type `BaseDriverSettings`,
+  e.g. `set_acquisition_algorithm(NELDER_MEAD_Settings())`.
+- The `acquisition_algorithm` and `acquisition_settings` fields of
+  [SBO_Settings][gemseo_mlearning.algos.opt.sbo_settings.SBO_Settings]
+  are replaced by `acquisition_settings` of type `BaseDriverSettings | None`.
+- The `doe_algorithm`, `doe_settings` and `doe_size` fields of
+  [SBO_Settings][gemseo_mlearning.algos.opt.sbo_settings.SBO_Settings]
+  are replaced by `doe_settings` of type `BaseDOESettings`,
+  whose default value is `OT_OPT_LHS_Settings(n_samples=10)`.
+- The `acquisition_algorithm`, `doe_size`, `doe_algorithm`, `doe_settings`
+  and `**acquisition_settings` arguments of
+  [SurrogateBasedOptimizer][gemseo_mlearning.algos.opt.core.surrogate_based_optimizer.SurrogateBasedOptimizer]
+  are replaced by `acquisition_settings` of type `BaseDriverSettings | None`
+  and `doe_settings` of type `BaseDOESettings | None`.
 - Rename the `algo` attribute of
   [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
   to `regressor`.

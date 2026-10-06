@@ -26,12 +26,16 @@ from unittest import mock
 import pytest
 from gemseo.dataset import IODataset
 from gemseo.discipline import AnalyticDiscipline
+from gemseo.doe import LHS_Settings
+from gemseo.doe import PYDOE_FULLFACT_Settings
 from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
 from gemseo.machine_learning.regression.model.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
 from gemseo.machine_learning.regression.model.linreg import LinearRegressor
+from gemseo.optimization import MultiStart_Settings
 from gemseo.optimization import OptimizationProblem
+from gemseo.optimization import SLSQP_Settings
 from gemseo.space import DesignSpace
 from gemseo.space import RandomSpace
 from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
@@ -117,13 +121,10 @@ def test_init(algo_distribution, input_space):
     assert algo.acquisition_criterion._mc_size == 10000
     assert algo.acquisition_criterion.name == "EI"
     assert algo._ActiveLearningAlgo__acquisition_problem.objective.name == "-EI"
-    assert (
-        algo._ActiveLearningAlgo__acquisition_algo.algo_name
-        == algo._ActiveLearningAlgo__default_algo_name
-    )
-    assert (
-        algo._ActiveLearningAlgo__acquisition_algo_settings
-        == algo._ActiveLearningAlgo__default_algo_settings
+    assert algo._ActiveLearningAlgo__acquisition_algo_settings == MultiStart_Settings(
+        max_iter=200,
+        doe_algo_settings=LHS_Settings(n_samples=20),
+        opt_algo_settings=SLSQP_Settings(),
     )
     design_space = algo._ActiveLearningAlgo__acquisition_problem.design_space
     assert list(design_space.variables) == ["x"]
@@ -205,28 +206,23 @@ def test_with_bad_parallelization(
 
 
 @pytest.mark.parametrize(
-    ("algo_name", "setting_name", "setting_value"),
+    "settings",
     [
-        ("PYDOE_FULLFACT", "n_samples", 3),
-        ("SLSQP", "max_iter", 3),
-        ("PYDOE_FULLFACT", "n_samples", None),
-        ("SLSQP", "max_iter", None),
+        PYDOE_FULLFACT_Settings(n_samples=3),
+        SLSQP_Settings(max_iter=3),
+        PYDOE_FULLFACT_Settings(),
+        SLSQP_Settings(),
     ],
 )
-def test_set_acquisition_algorithm(
-    algo_distribution, input_space, algo_name, setting_name, setting_value
-):
+def test_set_acquisition_algorithm(algo_distribution, input_space, settings):
     """Check the setting of the acquisition algorithm used by the ActiveLearningAlgo."""
     algo = ActiveLearningAlgo("Minimum", input_space, algo_distribution)
-    kwargs = {"algo_name": algo_name}
-    settings = {}
-    if setting_value is not None:
-        settings[setting_name] = setting_value
-        kwargs.update(settings)
-
-    algo.set_acquisition_algorithm(**kwargs)
-    assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == algo_name
-    assert algo._ActiveLearningAlgo__acquisition_algo_settings == settings
+    algo.set_acquisition_algorithm(settings)
+    assert (
+        algo._ActiveLearningAlgo__acquisition_algo.algo_name
+        == settings.target_class_name
+    )
+    assert algo._ActiveLearningAlgo__acquisition_algo_settings is settings
 
 
 @pytest.mark.parametrize("as_dict", [False, True])
@@ -239,7 +235,7 @@ def test_compute_parallel(kriging_distribution, input_space, as_dict, batch_size
         regressor=kriging_distribution,
         batch_size=batch_size,
     )
-    algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
+    algo.set_acquisition_algorithm(PYDOE_FULLFACT_Settings(n_samples=3))
     x_opt = algo.find_next_point(as_dict=as_dict)
     x_opt = x_opt if isinstance(x_opt, ndarray) else x_opt["x"]
     assert x_opt.shape == (batch_size, len(list(input_space.variables)))
@@ -251,7 +247,7 @@ def test_update_algo(algo_distribution_for_update, input_space, criterion_family
     distribution = algo_distribution_for_update
     initial_size = len(distribution.learning_set)
     algo = ActiveLearningAlgo(criterion_family_name, input_space, distribution)
-    algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
+    algo.set_acquisition_algorithm(PYDOE_FULLFACT_Settings(n_samples=3))
     # z values will not be used
     # because the initial surrogate does not have z as an output.
     # Nevertheless,

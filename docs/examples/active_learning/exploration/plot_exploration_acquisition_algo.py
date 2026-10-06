@@ -20,11 +20,14 @@ from __future__ import annotations
 import matplotlib.pyplot as plt
 from gemseo import configuration
 from gemseo import sample_disciplines
+from gemseo.doe import LHS_Settings
 from gemseo.machine_learning.regression.model.ot_gpr import OTGaussianProcessRegressor
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
 from gemseo.machine_learning.regression.quality.r2_measure import R2Measure
+from gemseo.optimization import MultiStart_Settings
+from gemseo.optimization import NELDER_MEAD_Settings
 from numpy import unique
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
@@ -90,7 +93,10 @@ active_learning_1 = ActiveLearningAlgo("Exploration", input_space, regressor_1)
 active_learning_2 = ActiveLearningAlgo("Exploration", input_space, regressor_2)
 active_learning_1.acquire_new_points(discipline, n_samples=20)
 active_learning_2.set_acquisition_algorithm(
-    algo_name="MultiStart", opt_algo_name="NELDER-MEAD", n_start=20
+    MultiStart_Settings(
+        opt_algo_settings=NELDER_MEAD_Settings(),
+        doe_algo_settings=LHS_Settings(n_samples=20),
+    )
 )
 active_learning_2.acquire_new_points(discipline, n_samples=20)
 

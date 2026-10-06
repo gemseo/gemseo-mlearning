@@ -21,6 +21,8 @@ import re
 from pathlib import Path
 
 import pytest
+from gemseo.doe import OT_MONTE_CARLO_Settings
+from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.optimization.factory import OptimizationLibraryFactory
 from gemseo.problem.optimization.rastrigin import Rastrigin
 from gemseo.problem.optimization.rosenbrock import Rosenbrock
@@ -29,14 +31,14 @@ from numpy.testing import assert_almost_equal
 from pandas.testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.sbo_settings import AcquisitionCriterion
+from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
 
 
 def test_default_settings():
     """Check the default settings of the surrogate-based optimizer."""
-    # TODO(bump-gemseo): cannot transform: no Settings class SBO_Settings in the griffe dump to gather the settings into  # noqa: E501
     assert_almost_equal(
         OptimizationLibraryFactory()
-        .execute(Rastrigin(), algo_name="SBO", max_iter=12)
+        .execute(Rastrigin(), SBO_Settings(max_iter=12))
         .f_opt,
         array([0.04]),
         decimal=2,
@@ -46,10 +48,9 @@ def test_default_settings():
 @pytest.mark.parametrize("criterion", AcquisitionCriterion)
 def test_criterion(criterion):
     """Check the surrogate-based optimizer with different criteria."""
-    # TODO(bump-gemseo): cannot transform: no Settings class SBO_Settings in the griffe dump to gather the settings into  # noqa: E501
     assert_almost_equal(
         OptimizationLibraryFactory()
-        .execute(Rastrigin(), algo_name="SBO", max_iter=12, criterion=criterion)
+        .execute(Rastrigin(), SBO_Settings(max_iter=12, criterion=criterion))
         .f_opt,
         array([0.04]),
         decimal=2,
@@ -66,33 +67,27 @@ def test_inconsistent_max_iter(max_iter, regressor):
             f"strictly greater than the initial DOE size (10)."
         ),
     ):
-        # TODO(bump-gemseo): cannot transform: no Settings class SBO_Settings in the griffe dump to gather the settings into  # noqa: E501
         OptimizationLibraryFactory().execute(
-            Rastrigin(), algo_name="SBO", max_iter=max_iter
+            Rastrigin(), SBO_Settings(max_iter=max_iter)
         )
 
     # Except if the regression algorithm is already built.
-    # TODO(bump-gemseo): cannot transform: no Settings class SBO_Settings in the griffe dump to gather the settings into  # noqa: E501
     OptimizationLibraryFactory().execute(
-        Rastrigin(),
-        algo_name="SBO",
-        max_iter=max_iter,
-        regressor=regressor,
+        Rastrigin(), SBO_Settings(max_iter=max_iter, regressor=regressor)
     )
 
 
 def test_save(regressor, tmp_wd):
     """Check that the  regression algorithm can be pickled."""
     file_path = Path("model.pkl")
-    # TODO(bump-gemseo): cannot transform: no Settings class SBO_Settings in the griffe dump to gather the settings into  # noqa: E501
     OptimizationLibraryFactory().execute(
         Rastrigin(),
-        algo_name="SBO",
-        max_iter=3,
-        acquisition_algorithm="OT_MONTE_CARLO",
-        acquisition_settings={"n_samples": 10},
-        regressor=regressor,
-        regression_file_path=file_path,
+        SBO_Settings(
+            max_iter=3,
+            acquisition_settings=OT_MONTE_CARLO_Settings(n_samples=10),
+            regressor=regressor,
+            regression_file_path=file_path,
+        ),
     )
     with file_path.open("rb") as file:
         model = pickle.load(file)
@@ -103,14 +98,13 @@ def test_save(regressor, tmp_wd):
 def test_problem_counters(enable_function_statistics):
     """Check the counters attached to the optimization problem."""
     problem = Rosenbrock()
-    # TODO(bump-gemseo): cannot transform: no Settings class SBO_Settings in the griffe dump to gather the settings into  # noqa: E501
     OptimizationLibraryFactory().execute(
         problem,
-        algo_name="SBO",
-        max_iter=13,
-        doe_size=10,
-        acquisition_algorithm="OT_MONTE_CARLO",
-        acquisition_settings={"n_samples": 100},
+        SBO_Settings(
+            max_iter=13,
+            doe_settings=OT_OPT_LHS_Settings(n_samples=10),
+            acquisition_settings=OT_MONTE_CARLO_Settings(n_samples=100),
+        ),
     )
     assert len(problem.database) == 13
     assert problem.evaluation_counter.maximum == 13

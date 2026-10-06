@@ -16,26 +16,24 @@
 
 from __future__ import annotations
 
-from collections.abc import Mapping  # noqa: TC003
 from enum import StrEnum
 from pathlib import Path  # noqa: TC003
 
-from gemseo.core.algorithm.base_driver_library import DriverSettingType  # noqa: TC002
-from gemseo.machine_learning.regression.core.base_regressor import (  # noqa: TC003
+from gemseo.core.algorithm.base_driver_settings import BaseDriverSettings  # noqa: TC002
+from gemseo.doe import OT_OPT_LHS_Settings
+from gemseo.doe.core.base_doe_settings import BaseDOESettings  # noqa: TC002
+from gemseo.machine_learning.regression.core.base_regressor import (  # noqa: TC002
     BaseRegressor,
 )
-from gemseo.machine_learning.regression.core.base_regressor_settings import (
+from gemseo.machine_learning.regression.core.base_regressor_settings import (  # noqa: TC002
     BaseRegressorSettings,
 )
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
-from gemseo.optimization.core.base_optimizer_settings import (  # noqa: TC002
-    BaseOptimizerSettings,
-)
+from gemseo.optimization.core.base_optimizer_settings import BaseOptimizerSettings
 from pydantic import Field
-from pydantic import NonNegativeInt
-from pydantic import PositiveInt
+from pydantic import PositiveInt  # noqa: TC002
 
 
 class AcquisitionCriterion(StrEnum):
@@ -71,20 +69,12 @@ class AcquisitionCriterion(StrEnum):
 class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
     """The settings for the surrogate-based optimization algorithm."""
 
-    acquisition_algorithm: str = Field(
-        default="",
-        description=(
-            """The name of the algorithm to optimize the data acquisition criterion.
-            If empty, use the default algorithm with its default settings."""
-        ),
-    )
-
-    acquisition_settings: Mapping[str, DriverSettingType] = Field(
-        default_factory=dict,
+    acquisition_settings: BaseDriverSettings | None = Field(
+        default=None,
         description=(
             """The settings of the algorithm
             to optimize the data acquisition criterion.
-            Ignored when `acquisition_algorithm` is empty."""
+            If `None`, use the default algorithm with its default settings."""
         ),
     )
 
@@ -96,35 +86,13 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
         default=AcquisitionCriterion.EI, description="The acquisition criterion."
     )
 
-    doe_algorithm: str = Field(
-        default="OT_OPT_LHS",
-        description=(
-            """The name of the DOE algorithm for the initial sampling.
-            This argument is ignored
-            when regressor is a
-            [BaseRegressor][gemseo.mlearning.regression.core.base_regressor.BaseRegressor].
-            """
-        ),
-    )
-
-    doe_settings: Mapping[str, DriverSettingType] = Field(
-        default_factory=dict,
+    doe_settings: BaseDOESettings = Field(
+        default_factory=lambda: OT_OPT_LHS_Settings(n_samples=10),
         description=(
             """The settings of the DOE algorithm for the initial sampling.
             This argument is ignored
             when regressor is a
-            [BaseRegressor][gemseo.mlearning.regression.core.base_regressor.BaseRegressor].
-            """
-        ),
-    )
-
-    doe_size: NonNegativeInt = Field(
-        default=10,
-        description=(
-            """Either the initial DOE size or 0 if it is inferred from `doe_settings`.
-            This argument is ignored
-            when regressor is a
-            [BaseRegressor][gemseo.mlearning.regression.core.base_regressor.BaseRegressor].
+            [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor].
             """
         ),
     )
