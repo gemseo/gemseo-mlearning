@@ -30,6 +30,7 @@ and this project adheres to
 
 ### Changed
 
+- Support GEMSEO 7.
 - Rename the `algo` attribute of
   [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution]
   to `regressor`.
@@ -51,6 +52,7 @@ and this project adheres to
 
 ### Removed
 
+- Support for Python 3.10.
 - Remove the interface to SMT features; use [gemseo-smt](https://gitlab.com/gemseo/dev/gemseo-smt) instead.
 
 ## Version 3.1.0 (October 2025)
