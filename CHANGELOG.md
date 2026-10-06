@@ -172,8 +172,8 @@ and this project adheres to
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
   can use the acquisition criteria `CB` and `Mean` in addition to `EI`.
 - [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
-  can use an existing [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
-  and save the [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor] that it enriches
+  can use an existing [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor]
+  and save the [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor] that it enriches
   using the `regression_file_path` option.
 
 ### Changed
@@ -186,7 +186,7 @@ and this project adheres to
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo].
   renamed to `regressor`;
   it can be either a
-- [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+- [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor]
   or a
   [BaseRegressorDistribution][gemseo_mlearning.active_learning.distributions.base_regressor_distribution.BaseRegressorDistribution].
 - BREAKING CHANGE: The method `compute_next_input_data` of
@@ -240,14 +240,14 @@ and this project adheres to
 - `AcquisitionCriterionFactory`; replaced by different factories for the developers.
 - `sample_discipline`; use [sample_disciplines][gemseo.sample_disciplines] from `gemseo` instead.
 - `sample_disciplines`; move to `gemseo`: [sample_disciplines][gemseo.sample_disciplines].
-- `MAEMeasure`; moved to `gemseo`: [MAEMeasure][gemseo.mlearning.regression.quality.mae_measure.MAEMeasure].
-- `MEMeasure`; moved to `gemseo`: [MEMeasure][gemseo.mlearning.regression.quality.me_measure.MEMeasure].
-- `GradientBoostingRegressor`; moved to `gemseo`: [GradientBoostingRegressor][gemseo.mlearning.regression.algos.gradient_boosting.GradientBoostingRegressor].
-- `MLPRegressor`; moved to `gemseo`: [MLPRegressor][gemseo.mlearning.regression.algos.mlp.MLPRegressor].
-- `OTGaussianProcessRegressor`; moved to `gemseo`: [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor].
-- `RegressorChain`; moved to `gemseo`: [RegressorChain][gemseo.mlearning.regression.algos.regressor_chain.RegressorChain].
-- `SVMRegressor`; moved to `gemseo`: [SVMRegressor][gemseo.mlearning.regression.algos.svm.SVMRegressor].
-- `TPSRegressor`; moved to `gemseo`: [TPSRegressor][gemseo.mlearning.regression.algos.thin_plate_spline.TPSRegressor].
+- `MAEMeasure`; moved to `gemseo`: [MAEMeasure][gemseo.machine_learning.regression.quality.mae_measure.MAEMeasure].
+- `MEMeasure`; moved to `gemseo`: [MEMeasure][gemseo.machine_learning.regression.quality.me_measure.MEMeasure].
+- `GradientBoostingRegressor`; moved to `gemseo`: [GradientBoostingRegressor][gemseo.machine_learning.regression.model.gradient_boosting.GradientBoostingRegressor].
+- `MLPRegressor`; moved to `gemseo`: [MLPRegressor][gemseo.machine_learning.regression.model.mlp.MLPRegressor].
+- `OTGaussianProcessRegressor`; moved to `gemseo`: [OTGaussianProcessRegressor][gemseo.machine_learning.regression.model.ot_gpr.OTGaussianProcessRegressor].
+- `RegressorChain`; moved to `gemseo`: [RegressorChain][gemseo.machine_learning.regression.model.regressor_chain.RegressorChain].
+- `SVMRegressor`; moved to `gemseo`: [SVMRegressor][gemseo.machine_learning.regression.model.svm.SVMRegressor].
+- `TPSRegressor`; moved to `gemseo`: [TPSRegressor][gemseo.machine_learning.regression.model.tps.TPSRegressor].
 
 ## Version 1.1.2 (December 2023)
 

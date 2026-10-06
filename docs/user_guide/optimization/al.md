@@ -26,13 +26,13 @@ called `"SBO"`.
 
 Given a maximum number of iterations,
 it can be used as is
-by any [OptimizationProblem][gemseo.algos.optimization_problem.OptimizationProblem]:
+by any [OptimizationProblem][gemseo.optimization.problem.OptimizationProblem]:
 ```python
 from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
 
 execute_algo(optimization_problem, settings_model=SBO_Settings(max_iter=50))
 ```
-and any [MDOScenario][gemseo.scenarios.mdo_scenario.MDOScenario]:
+and any [MDOScenario][gemseo.scenario.mdo.MDOScenario]:
 ```python
 scenario.execute(SBO_Settings(max_iter=50))
 ```
@@ -42,7 +42,7 @@ the settings are
 
 - the expected improvement as acquisition criterion,
 - 1 point acquired at a time,
-- the [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor]
+- the [OTGaussianProcessRegressor][gemseo.machine_learning.regression.model.ot_gpr.OTGaussianProcessRegressor]
   wrapping the Kriging model from OpenTURNS,
 - 10 initial training points based on an optimized latin hypercube sampling (LHS) technique,
 - a multi-start local optimization of the acquisition criterion
@@ -101,7 +101,7 @@ and the acquisition criterion is thus instead evaluated with crude Monte-Carlo.
 
 [SurrogateBasedOptimization][gemseo_mlearning.algos.opt.surrogate_based_optimization.SurrogateBasedOptimization]
 is compatible with all regressors,
-whose classes derive from [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor].
+whose classes derive from [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor].
 
 It can also be used from an existing surrogate models.
 In this case, it will skip the construction and learning of the initial training dataset.

@@ -80,10 +80,10 @@ These statistics and realizations can be obtained using the
 [KrigingDistribution][gemseo_mlearning.active_learning.distributions.kriging_distribution.KrigingDistribution]
 class
 which can be built from any regressor deriving from
-[BaseRandomProcessRegressor][gemseo.mlearning.regression.algos.base_random_process_regressor.BaseRandomProcessRegressor],
-such as [GaussianProcessRegressor][gemseo.mlearning.regression.algos.gpr.GaussianProcessRegressor] based on
+[BaseRandomProcessRegressor][gemseo.machine_learning.regression.core.base_random_process_regressor.BaseRandomProcessRegressor],
+such as [GaussianProcessRegressor][gemseo.machine_learning.regression.model.gpr.GaussianProcessRegressor] based on
 [scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.gaussian_process.GaussianProcessRegressor.html)
-and [OTGaussianProcessRegressor][gemseo.mlearning.regression.algos.ot_gpr.OTGaussianProcessRegressor] based on
+and [OTGaussianProcessRegressor][gemseo.machine_learning.regression.model.ot_gpr.OTGaussianProcessRegressor] based on
 [OpenTURNS](https://openturns.github.io/openturns/latest/user_manual/response_surface/_generated/openturns.KrigingAlgorithm.html).
 By *distribution* we mean
 the probability distribution of a random function of which $f$ is an instance.
@@ -99,8 +99,8 @@ A basic use of this class is
 
 1. instantiate
    the [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
-   from an input space of type [DesignSpace][gemseo.algos.design_space.DesignSpace],
-   a [BaseRegressor][gemseo.mlearning.regression.algos.base_regressor.BaseRegressor]
+   from an input space of type [DesignSpace][gemseo.space.design.DesignSpace],
+   a [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor]
    and the name of a family of acquisition criteria
    (a default acquisition criterion will be set accordingly),
 2. update the regressor with the method ``acquire_new_points``,
