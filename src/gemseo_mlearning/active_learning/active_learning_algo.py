@@ -26,18 +26,18 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.core.algorithm._progress_bar.custom import logger as TQDM_LOGGER
 from gemseo.core.algorithm._progress_bar.custom import CustomTqdmProgressBar
+from gemseo.core.algorithm._progress_bar.custom import logger as tqdm_logger
 from gemseo.core.problem.database import Database
-from gemseo.space import DesignSpace
-from gemseo.doe.factory import DOELibraryFactory
-from gemseo.optimization.factory import OptimizationLibraryFactory
-from gemseo.optimization import OptimizationProblem
 from gemseo.dataset import IODataset
+from gemseo.doe.factory import DOELibraryFactory
 from gemseo.machine_learning.regression.models.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
 from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+from gemseo.optimization import OptimizationProblem
+from gemseo.optimization.factory import OptimizationLibraryFactory
+from gemseo.space import DesignSpace
 from gemseo.util.logging import LoggingContext
 from gemseo.util.logging import OneLineLogging
 from numpy import array
@@ -376,7 +376,7 @@ class ActiveLearningAlgo:
         total_n_samples = self.__n_initial_samples
         n_batches = int(n_samples / self.__batch_size)
         LOGGER.info("Acquiring %s points in batches of %s", n_samples, self.batch_size)
-        with OneLineLogging(TQDM_LOGGER):
+        with OneLineLogging(tqdm_logger):
             for batch_id in CustomTqdmProgressBar(range(1, n_batches + 1)):
                 array_input_data = self.find_next_point()
                 if plot:
