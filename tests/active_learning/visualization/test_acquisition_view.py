@@ -18,9 +18,6 @@ import re
 
 import pytest
 from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
-
-# TODO(bump-gemseo): gemseo.utils.testing.helpers.image_comparison: use the snapshot_matplotlib fixture of syrupy-matplotlib instead; add syrupy-matplotlib to the test dependencies, set snapshot_matplotlib_tolerance = 0.01 in .pytest.ini, replace the @image_comparison([...]) decorator by a snapshot_matplotlib argument of the test, then run pytest --snapshot-update without -n (the baseline_images directories are no longer used)  # noqa: E501
-from gemseo.util.testing.helper import image_comparison
 from matplotlib.figure import Figure
 from numpy import array
 
@@ -56,14 +53,12 @@ def test_return_type(acquisition_view):
     assert isinstance(acquisition_view.draw(show=False), Figure)
 
 
-@image_comparison(["default"], tol=0.9)
-def test_default(acquisition_view):
+def test_default(acquisition_view, snapshot_matplotlib):
     """Check AcquisitionView with default settings."""
     acquisition_view.draw(show=False)
 
 
-@image_comparison(["custom"], tol=0.9)
-def test_custom(acquisition_view, discipline):
+def test_custom(acquisition_view, discipline, snapshot_matplotlib):
     """Check AcquisitionView with custom settings."""
     acquisition_view.draw(
         show=False,
@@ -74,25 +69,21 @@ def test_custom(acquisition_view, discipline):
     )
 
 
-@image_comparison(["new_point"], tol=0.9)
-def test_new_point(acquisition_view):
+def test_new_point(acquisition_view, snapshot_matplotlib):
     """Check AcquisitionView with a new point."""
     acquisition_view.draw(show=False, new_point=array([0.0, 0.0]))
 
 
-@image_comparison(["filled_false"], tol=0.9)
-def test_filled(acquisition_view):
+def test_filled(acquisition_view, snapshot_matplotlib):
     """Check AcquisitionView without filled contours."""
     acquisition_view.draw(show=False, filled=False)
 
 
-@image_comparison(["n_test"], tol=0.9)
-def test_n_test(acquisition_view):
+def test_n_test(acquisition_view, snapshot_matplotlib):
     """Check AcquisitionView with a lower number of points."""
     acquisition_view.draw(show=False, n_test=5)
 
 
-@image_comparison(["discipline"], tol=0.9)
-def test_discipline(acquisition_view, discipline):
+def test_discipline(acquisition_view, discipline, snapshot_matplotlib):
     """Check AcquisitionView with a discipline."""
     acquisition_view.draw(show=False, discipline=discipline)
