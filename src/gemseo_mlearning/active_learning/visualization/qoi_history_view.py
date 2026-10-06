@@ -19,8 +19,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from typing import Any
 
-from gemseo.datasets.io_dataset import IODataset
-from gemseo.post.dataset.lines import Lines
+from gemseo.dataset import IODataset
+from gemseo.post.dataset import Lines
 from numpy import array
 from numpy import newaxis
 
@@ -87,6 +87,7 @@ class QOIHistoryView:
         dataset = IODataset()
         dataset.add_variable(x_label, array(n_evaluations_history)[:, newaxis])
         dataset.add_variable(label, array(qoi_history)[:, newaxis])
+        # TODO(bump-gemseo): cannot transform: a * or ** unpack may hold arguments to gather into the Settings instance  # noqa: E501
         lines = Lines(
             dataset,
             variables=[label],
@@ -94,6 +95,6 @@ class QOIHistoryView:
             add_markers=add_markers,
             **options,
         )
-        lines.marker = "."
+        lines.settings.marker = "."
         lines.execute(show=show, save=file_path != "", file_path=file_path)
         return lines

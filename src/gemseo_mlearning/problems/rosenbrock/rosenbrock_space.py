@@ -16,15 +16,16 @@
 
 from __future__ import annotations
 
-from gemseo.algos.parameter_space import ParameterSpace
+from gemseo.space import RandomSpace
+from gemseo.uncertainty.distribution import OTUniformDistribution_Settings
 
 
-class RosenbrockSpace(ParameterSpace):
+class RosenbrockSpace(RandomSpace):
     """The uncertain space used in the Rosenbrock use case."""
 
     def __init__(self) -> None:  # noqa:D107
         super().__init__()
         for index in range(2):
-            self.add_random_variable(
-                f"x{index + 1}", "OTUniformDistribution", minimum=-2, maximum=2
-            )
+            self.add_variable(
+                f"x{index + 1}", OTUniformDistribution_Settings(minimum=-2, maximum=2
+            ))

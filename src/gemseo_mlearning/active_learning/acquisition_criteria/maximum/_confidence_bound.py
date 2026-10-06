@@ -28,7 +28,7 @@ from numpy import sign
 from numpy import sqrt
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions import BaseRegressorDistribution
 

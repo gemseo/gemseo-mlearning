@@ -25,7 +25,7 @@ from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRe
 from gemseo.machine_learning.regression.models.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
-from gemseo.uncertainty.statistics.empirical_statistics import EmpiricalStatistics
+from gemseo.uncertainty.statistic import EmpiricalStatistics
 from numpy import concatenate
 from numpy import unique
 
@@ -36,6 +36,7 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
 # Update the configuration of |g| to speed up the script.
+# TODO(bump-gemseo): use the methods enable_fast_mode and disable_fast_mode instead  # noqa: E501
 configuration.fast = True
 
 # %%

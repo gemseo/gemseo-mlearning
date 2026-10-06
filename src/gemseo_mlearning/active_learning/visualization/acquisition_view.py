@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from gemseo.utils.matplotlib_figure import save_show_figure
+from gemseo.util.matplotlib_figure import save_show_figure
 from matplotlib import pyplot as plt
 from numpy import array
 from numpy import linspace
@@ -28,8 +28,8 @@ from numpy import zeros
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from gemseo.core.discipline.discipline import Discipline
-    from gemseo.typing import RealArray
+    from gemseo.discipline import Discipline
+    from gemseo.util.typing import RealArray
     from matplotlib.figure import Figure
 
     from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo

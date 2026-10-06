@@ -19,11 +19,11 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.datasets.io_dataset import IODataset
+from gemseo.dataset import IODataset
 from gemseo.machine_learning.regression.models.linreg import LinearRegressor
 from gemseo.machine_learning.regression.models.rbf import RBFRegressor
 from gemseo.machine_learning.regression.models.rbf_settings import RBFRegressor_Settings
-from gemseo.utils.testing.helpers import concretize_classes
+from gemseo.util.testing.helper import concretize_classes
 from numpy import array
 from numpy import linspace
 from numpy import newaxis
@@ -61,8 +61,8 @@ def distribution_with_transformers() -> RegressorDistribution:
     """The distribution of an algorithm using variable transformation."""
     dataset = IODataset()
     x = linspace(-1, 1, 10)[:, None]
-    dataset.add_variable("x", x, group_name=dataset.INPUT_GROUP)
-    dataset.add_variable("y", x**2, group_name=dataset.OUTPUT_GROUP)
+    dataset.add_variable("x", x, group_name=dataset.input_group)
+    dataset.add_variable("y", x**2, group_name=dataset.output_group)
 
     algo = RBFRegressor(
         dataset, RBFRegressor_Settings(transformer=RBFRegressor.DEFAULT_TRANSFORMER)
@@ -174,12 +174,12 @@ def test_change_learning_set(dataset):
 
     new_dataset = IODataset()
     new_dataset.add_variable(
-        "x", array([0.0, 1.0])[:, None], group_name=new_dataset.INPUT_GROUP
+        "x", array([0.0, 1.0])[:, None], group_name=new_dataset.input_group
     )
     new_dataset.add_variable(
         "y",
         array([1.0, 1.0])[:, None],
-        group_name=new_dataset.OUTPUT_GROUP,
+        group_name=new_dataset.output_group,
     )
     distribution.change_learning_set(new_dataset)
     assert len(distribution.learning_set) == 2

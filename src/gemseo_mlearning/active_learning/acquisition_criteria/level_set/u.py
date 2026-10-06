@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_
 )
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
 
 class U(BaseLevelSet):

@@ -21,7 +21,7 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.core.mdo_functions.mdo_function import MDOFunction
+from gemseo.core.function.array_function import ArrayFunction
 from numpy import ones
 
 from gemseo_mlearning.active_learning.distributions.kriging_distribution import (  # noqa: E501
@@ -31,7 +31,7 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.base_regressor_distribution import (  # noqa: E501
         BaseRegressorDistribution,
@@ -41,7 +41,7 @@ if TYPE_CHECKING:
     )
 
 
-class BaseAcquisitionCriterion(MDOFunction):
+class BaseAcquisitionCriterion(ArrayFunction):
     """Base class for acquisition criteria."""
 
     output_range: float
@@ -218,31 +218,31 @@ class BaseAcquisitionCriterion(MDOFunction):
         data = self._regressor_distribution.learning_set.output_dataset.to_numpy()
         self.output_range = data.max() - data.min()
 
-    def __truediv__(self, other: MDOFunction | float) -> MDOFunction:
+    def __truediv__(self, other: ArrayFunction | float) -> ArrayFunction:
         new_criterion = super().__truediv__(other)
         new_criterion._regressor_distribution = self._regressor_distribution
         new_criterion.output_range = self.output_range
         return new_criterion
 
-    def __neg__(self) -> MDOFunction:
+    def __neg__(self) -> ArrayFunction:
         new_criterion = super().__neg__()
         new_criterion._regressor_distribution = self._regressor_distribution
         new_criterion.output_range = self.output_range
         return new_criterion
 
-    def __add__(self, other: MDOFunction | float) -> MDOFunction:
+    def __add__(self, other: ArrayFunction | float) -> ArrayFunction:
         new_criterion = super().__add__(other)
         new_criterion._regressor_distribution = self._regressor_distribution
         new_criterion.output_range = self.output_range
         return new_criterion
 
-    def __sub__(self, other: MDOFunction | float) -> MDOFunction:
+    def __sub__(self, other: ArrayFunction | float) -> ArrayFunction:
         new_criterion = super().__sub__(other)
         new_criterion._regressor_distribution = self._regressor_distribution
         new_criterion.output_range = self.output_range
         return new_criterion
 
-    def __mul__(self, other: MDOFunction | float) -> MDOFunction:
+    def __mul__(self, other: ArrayFunction | float) -> ArrayFunction:
         new_criterion = super().__mul__(other)
         new_criterion._regressor_distribution = self._regressor_distribution
         new_criterion.output_range = self.output_range

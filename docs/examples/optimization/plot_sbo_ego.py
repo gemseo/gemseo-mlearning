@@ -18,9 +18,11 @@
 from __future__ import annotations
 
 from gemseo import execute_algo
-from gemseo.post.dataset.zvsxy import ZvsXY
-from gemseo.problems.dataset.rosenbrock import create_rosenbrock_dataset
-from gemseo.problems.optimization.rosenbrock import Rosenbrock
+from gemseo.post.dataset import ZvsXY
+from gemseo.problem.dataset.rosenbrock import create_rosenbrock_dataset
+from gemseo.problem.optimization.rosenbrock import Rosenbrock
+from gemseo.optimization import NLOPT_COBYLA_Settings
+from gemseo.post.dataset.zvsxy_settings import ZvsXY_Settings
 
 # %%
 # In this example,
@@ -69,20 +71,14 @@ acquired_points = optimization_history[12:]
 acquired_points.name = "Acquired points"
 
 visualization = ZvsXY(
-    create_rosenbrock_dataset(900),
-    ("x", 0),
-    ("x", 1),
-    "rosen",
-    fill=False,
-    other_datasets=(initial_point, initial_training_points, acquired_points),
-)
+    create_rosenbrock_dataset(900), settings=ZvsXY_Settings(x=("x", 0), y=("x", 1), z="rosen", fill=False, other_datasets=(initial_point, initial_training_points, acquired_points)))
 visualization.execute(save=False, show=True)
 
 # %%
 # Lastly,
 # we can compare the solution to the one obtained with COBYLA,
 # which is another popular gradient-free optimization algorithm:
-execute_algo(Rosenbrock(), algo_name="NLOPT_COBYLA", max_iter=40)
+execute_algo(Rosenbrock(), settings_model=NLOPT_COBYLA_Settings(max_iter=40))
 
 # %%
 # and conclude that for this problem and this initial guess,

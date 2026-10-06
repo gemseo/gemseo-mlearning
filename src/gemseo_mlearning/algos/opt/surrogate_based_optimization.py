@@ -37,10 +37,10 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.algos.base_driver_library import DriverSettingType
-from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.algos.opt.base_optimization_library import BaseOptimizationLibrary
-from gemseo.algos.opt.base_optimization_library import OptimizationAlgorithmDescription
+from gemseo.core.algorithm.base_driver_library import DriverSettingType
+from gemseo.doe.factory import DOELibraryFactory
+from gemseo.optimization.core.base_optimization_library import BaseOptimizationLibrary
+from gemseo.optimization.core.base_optimization_library import OptimizationAlgorithmDescription
 from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
 
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
@@ -49,7 +49,7 @@ from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
 from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
 
 if TYPE_CHECKING:
-    from gemseo.algos.base_problem import BaseProblem
+    from gemseo.core.problem.base import BaseProblem
 
 
 SBOSettingType = (
@@ -78,8 +78,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             handle_inequality_constraints=False,
             handle_integer_variables=True,  # provided acquisition handles integers
             internal_algorithm_name="SBO",
-            Settings=SBO_Settings,
-        )
+            settings_class=SBO_Settings)
     }
 
     def _run(self, problem: BaseProblem) -> tuple[str, None]:
@@ -101,6 +100,7 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             #   + n_iter - 1 - N
             # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
             doe_algo = DOELibraryFactory().create(doe_algorithm)
+            # TODO(bump-gemseo): cannot transform: doe_algo is only known as BaseAlgorithmLibrary; if it is an instance of BaseDOELibrary, compute_doe became sample_space  # noqa: E501
             initial_doe_size = len(
                 doe_algo.compute_doe(
                     problem.design_space, n_samples=doe_size, **doe_settings

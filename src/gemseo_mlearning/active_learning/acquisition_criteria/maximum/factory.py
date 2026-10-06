@@ -27,6 +27,6 @@ from gemseo_mlearning.active_learning.acquisition_criteria.maximum.base_maximum 
 class MaximumFactory(BaseAcquisitionCriterionFactory):
     """A factory of acquisition criteria to approximate a maximum."""
 
-    _CLASS = BaseMaximum
-    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria.maximum",)
+    _class = BaseMaximum
+    _package_names = ("gemseo_mlearning.active_learning.acquisition_criteria.maximum",)
     _DEFAULT_CLASS_NAME = "EI"

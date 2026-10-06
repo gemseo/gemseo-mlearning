@@ -17,17 +17,17 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import pytest
-from gemseo.algos.opt.base_optimizer_settings import BaseOptimizerSettings
+from gemseo.optimization.core.base_optimizer_settings import BaseOptimizerSettings
 from gemseo.core.base_factory import BaseFactory
 
 import gemseo_mlearning.settings.opt as opt
 
 if TYPE_CHECKING:
-    from gemseo.algos.base_algorithm_settings import BaseAlgorithmSettings
+    from gemseo.util.pydantic import BaseSettings
 
 
 def get_setting_classes(
-    BaseSettings: type[BaseAlgorithmSettings],  # noqa: N803
+    BaseSettings: type[BaseSettings],  # noqa: N803
     package_name: str,
     module_,
 ) -> list[str]:
@@ -43,8 +43,8 @@ def get_setting_classes(
     """
 
     class SettingsFactory(BaseFactory):
-        _CLASS = BaseSettings
-        _PACKAGE_NAMES = (package_name,)
+        _class = BaseSettings
+        _package_names = (package_name,)
 
         @property
         def classes(self) -> list[str]:

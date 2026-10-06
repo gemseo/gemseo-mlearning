@@ -23,14 +23,14 @@ from typing import TYPE_CHECKING
 from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
-from gemseo.typing import RealArray
-from gemseo.utils.metaclasses import ABCGoogleDocstringInheritanceMeta
+from gemseo.util.typing import RealArray
+from gemseo.util.metaclass import ABCGoogleDocstringInheritanceMeta
 
 if TYPE_CHECKING:
-    from gemseo.datasets.dataset import Dataset
-    from gemseo.datasets.io_dataset import IODataset
+    from gemseo.dataset import Dataset
+    from gemseo.dataset import IODataset
     from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
 DataType = RealArray | Mapping[str, RealArray]
 

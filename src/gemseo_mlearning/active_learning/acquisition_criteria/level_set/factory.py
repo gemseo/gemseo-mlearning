@@ -27,8 +27,8 @@ from gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_
 class LevelSetFactory(BaseAcquisitionCriterionFactory):
     """A factory of acquisition criteria to approximate a level set."""
 
-    _CLASS = BaseLevelSet
-    _PACKAGE_NAMES = (
+    _class = BaseLevelSet
+    _package_names = (
         "gemseo_mlearning.active_learning.acquisition_criteria.level_set",
     )
     _DEFAULT_CLASS_NAME = "U"

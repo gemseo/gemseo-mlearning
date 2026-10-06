@@ -18,7 +18,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from gemseo.core.discipline.discipline import Discipline
+from gemseo.discipline import Discipline
 from numpy import array
 from numpy import concatenate
 
@@ -28,7 +28,7 @@ from gemseo_mlearning.problems.branin.functions import compute_output
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from gemseo.typing import StrKeyMapping
+    from gemseo.util.typing import StrKeyMapping
 
 
 class BraninDiscipline(Discipline):
@@ -43,6 +43,7 @@ class BraninDiscipline(Discipline):
         })
 
     def _run(self, input_data: StrKeyMapping) -> None:
+        # TODO(bump-gemseo): IO.data is deprecated and returns a copy of the input and output data, so setting, updating or removing an item through it has no effect, and an output that _run produces through it is missing, even when produced by changing an input in place; return the outputs from _run or write them to output_data (or update_output_data(data)), write the inputs to input_data, and read input_data, output_data, get(name) or get_merged_data()  # noqa: E501
         inputs_array = concatenate([
             self.io.data[name] for name in self.io.input_grammar
         ])
@@ -53,6 +54,7 @@ class BraninDiscipline(Discipline):
         input_names: Iterable[str] = (),
         output_names: Iterable[str] = (),
     ) -> None:
+        # TODO(bump-gemseo): IO.data is deprecated and returns a copy of the input and output data, so setting, updating or removing an item through it has no effect, and an output that _run produces through it is missing, even when produced by changing an input in place; return the outputs from _run or write them to output_data (or update_output_data(data)), write the inputs to input_data, and read input_data, output_data, get(name) or get_merged_data()  # noqa: E501
         inputs_array = concatenate([
             self.io.data[name] for name in self.io.input_grammar
         ])

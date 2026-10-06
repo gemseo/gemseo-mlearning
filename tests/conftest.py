@@ -16,4 +16,4 @@
 
 from __future__ import annotations
 
-from gemseo.utils.testing.pytest_conftest import *  # noqa: F401 F403
+from gemseo.util.testing.pytest_conftest import *  # noqa: F401 F403

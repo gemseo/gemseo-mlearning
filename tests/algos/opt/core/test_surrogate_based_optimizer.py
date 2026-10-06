@@ -19,9 +19,9 @@ from __future__ import annotations
 from unittest.mock import MagicMock
 
 import pytest
-from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.optimization_problem import OptimizationProblem
-from gemseo.core.mdo_functions.mdo_function import MDOFunction
+from gemseo.space import DesignSpace
+from gemseo.optimization import OptimizationProblem
+from gemseo.core.function.array_function import ArrayFunction
 from gemseo.machine_learning.regression.models.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
@@ -31,7 +31,7 @@ from gemseo.machine_learning.regression.models.linreg_settings import (
 from gemseo.machine_learning.regression.models.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
-from gemseo.problems.optimization.rastrigin import Rastrigin
+from gemseo.problem.optimization.rastrigin import Rastrigin
 from numpy import array
 from pandas._testing import assert_frame_equal
 
@@ -66,7 +66,7 @@ def test_known_acquired_input_data():
     space = DesignSpace()
     space.add_variable("x", lower_bound=0, upper_bound=1)
     problem = OptimizationProblem(space)
-    problem.objective = MDOFunction(lambda _: 0, "f")
+    problem.objective = ArrayFunction(lambda _: 0, "f")
     assert (
         SurrogateBasedOptimizer(
             problem,

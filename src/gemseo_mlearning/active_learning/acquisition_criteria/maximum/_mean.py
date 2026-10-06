@@ -19,7 +19,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
 
 class Mean:

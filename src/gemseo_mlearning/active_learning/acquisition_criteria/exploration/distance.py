@@ -32,7 +32,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.exploration.base_expl
 )
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
 
 class Distance(BaseExploration):

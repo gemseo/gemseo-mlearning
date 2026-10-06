@@ -16,13 +16,13 @@
 
 from __future__ import annotations
 
-from gemseo.core.mdo_functions.mdo_function import MDOFunction
+from gemseo.core.function.array_function import ArrayFunction
 
 from gemseo_mlearning.problems.rosenbrock.functions import compute_gradient
 from gemseo_mlearning.problems.rosenbrock.functions import compute_output
 
 
-class RosenbrockFunction(MDOFunction):
+class RosenbrockFunction(ArrayFunction):
     """The Rosenbrock function."""
 
     def __init__(self) -> None:  # noqa: D107

@@ -24,11 +24,11 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
-from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.optimization_problem import OptimizationProblem
-from gemseo.algos.parameter_space import ParameterSpace
-from gemseo.datasets.io_dataset import IODataset
-from gemseo.disciplines.analytic import AnalyticDiscipline
+from gemseo.space import DesignSpace
+from gemseo.optimization import OptimizationProblem
+from gemseo.space import RandomSpace
+from gemseo.dataset import IODataset
+from gemseo.discipline import AnalyticDiscipline
 from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
 from gemseo.machine_learning.regression.models.gpr_settings import (
     GaussianProcessRegressor_Settings,
@@ -52,6 +52,7 @@ from gemseo_mlearning.active_learning.visualization.acquisition_view import (
 from gemseo_mlearning.active_learning.visualization.qoi_history_view import (
     QOIHistoryView,
 )
+from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
 
 
 @pytest.fixture(scope="module")
@@ -59,12 +60,12 @@ def dataset() -> IODataset:
     """A learning dataset."""
     dataset = IODataset()
     dataset.add_variable(
-        "x", array([0.0, 1.0])[:, None], group_name=dataset.INPUT_GROUP
+        "x", array([0.0, 1.0])[:, None], group_name=dataset.input_group
     )
     dataset.add_variable(
         "y",
         array([1.0, 2.0])[:, None],
-        group_name=dataset.OUTPUT_GROUP,
+        group_name=dataset.output_group,
     )
     return dataset
 
@@ -124,6 +125,7 @@ def test_init(algo_distribution, input_space):
         algo._ActiveLearningAlgo__acquisition_algo_settings
         == algo._ActiveLearningAlgo__default_algo_settings
     )
+    # TODO(bump-gemseo): cannot transform: the type of algo._ActiveLearningAlgo__acquisition... could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
     assert (
         algo._ActiveLearningAlgo__acquisition_problem.design_space.variable_names
         == ["x"]
@@ -140,7 +142,10 @@ def test_init_parallel(kriging_distribution, input_space):
     algo = ActiveLearningAlgo(
         "Minimum", input_space, kriging_distribution, batch_size=2
     )
-    assert algo.input_space.variable_names == input_space.variable_names
+    # TODO(bump-gemseo): cannot transform: the type of input_space could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
+    assert list(algo.input_space.variables) == input_space.variable_names
+    # TODO(bump-gemseo): cannot transform: the type of algo._ActiveLearningAlgo__acquisition... could not be inferred; if it is an instance of ParameterSpace, get_lower_bounds was removed  # noqa: E501
+    # TODO(bump-gemseo): cannot transform: the type of input_space could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
     assert len(
         algo._ActiveLearningAlgo__acquisition_problem.design_space.get_lower_bounds()
     ) / 2 == len(input_space.variable_names)
@@ -154,11 +159,11 @@ def test_init_with_bad_output_dimension(input_space):
     the algorithm is greater than 1.
     """
     dataset = IODataset()
-    dataset.add_variable("x", array([[0.0], [1.0]]), group_name=dataset.INPUT_GROUP)
+    dataset.add_variable("x", array([[0.0], [1.0]]), group_name=dataset.input_group)
     dataset.add_variable(
         "y",
         array([[1.0, 1.0], [2.0, 2.0]]),
-        group_name=dataset.OUTPUT_GROUP,
+        group_name=dataset.output_group,
     )
     algo = LinearRegressor(dataset)
     algo.learn()
@@ -243,6 +248,7 @@ def test_compute_parallel(kriging_distribution, input_space, as_dict, batch_size
     algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
     x_opt = algo.find_next_point(as_dict=as_dict)
     x_opt = x_opt if isinstance(x_opt, ndarray) else x_opt["x"]
+    # TODO(bump-gemseo): cannot transform: the type of input_space could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
     assert x_opt.shape == (batch_size, len(input_space.variable_names))
 
 
@@ -276,8 +282,8 @@ def test_build_opt_problem_maximize(
     kwargs = {}
     if criterion == "Quantile":
         kwargs["level"] = 0.1
-        uncertain_space = ParameterSpace()
-        uncertain_space.add_random_variable("x", "OTNormalDistribution")
+        uncertain_space = RandomSpace()
+        uncertain_space.add_variable("x", OTNormalDistribution_Settings())
         kwargs["uncertain_space"] = uncertain_space
     algo = ActiveLearningAlgo(criterion, input_space, algo_distribution, **kwargs)
     assert algo._ActiveLearningAlgo__acquisition_problem.minimize_objective == minimize
@@ -305,7 +311,7 @@ def test_build_opt_problem_jacobian(
     ("has_jac", "differentiation_method"),
     [
         (False, OptimizationProblem.DifferentiationMethod.FINITE_DIFFERENCES),
-        (True, OptimizationProblem.DifferentiationMethod.USER_GRAD),
+        (True, OptimizationProblem.DifferentiationMethod.USER),
     ],
 )
 def test_analytical_jacobian(
@@ -344,15 +350,15 @@ def algo_for_plotting(algo_distribution_for_update) -> ActiveLearningAlgo:
     """An active learning algorithm to test plotting methods."""
     dataset = IODataset()
     dataset.add_variable(
-        "x1", array([[0.0], [1.0], [2.0]]), group_name=dataset.INPUT_GROUP
+        "x1", array([[0.0], [1.0], [2.0]]), group_name=dataset.input_group
     )
     dataset.add_variable(
-        "x2", array([[1.0], [2.0], [3.0]]), group_name=dataset.INPUT_GROUP
+        "x2", array([[1.0], [2.0], [3.0]]), group_name=dataset.input_group
     )
     dataset.add_variable(
         "y",
         array([[1.0], [2.0], [3.0]]),
-        group_name=dataset.OUTPUT_GROUP,
+        group_name=dataset.output_group,
     )
     regressor = GaussianProcessRegressor(dataset)
     space = DesignSpace()
@@ -385,14 +391,14 @@ def test_online_plot_error(algo_distribution_for_update, input_dimension):
     space = DesignSpace()
     for i in range(input_dimension):
         dataset.add_variable(
-            f"x{i}", array([[0.0], [1.0], [2.0]]), group_name=dataset.INPUT_GROUP
+            f"x{i}", array([[0.0], [1.0], [2.0]]), group_name=dataset.input_group
         )
         space.add_variable(f"x{i}", lower_bound=0.0, upper_bound=1.0, value=0.5)
 
     dataset.add_variable(
         "y",
         array([[1.0], [2.0], [3.0]]),
-        group_name=dataset.OUTPUT_GROUP,
+        group_name=dataset.output_group,
     )
 
     algo = ActiveLearningAlgo("Minimum", space, GaussianProcessRegressor(dataset))

@@ -19,7 +19,7 @@
 from __future__ import annotations
 
 import pytest
-from gemseo.datasets.io_dataset import IODataset
+from gemseo.dataset import IODataset
 from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
 from gemseo.machine_learning.regression.models.gpr_settings import (
     GaussianProcessRegressor_Settings,
@@ -39,12 +39,12 @@ def algo_distribution() -> RegressorDistribution:
     """
     dataset = IODataset()
     dataset.add_variable(
-        "x", array([0.0, 0.5, 1.0])[:, None], group_name=dataset.INPUT_GROUP
+        "x", array([0.0, 0.5, 1.0])[:, None], group_name=dataset.input_group
     )
     dataset.add_variable(
         "y",
         array([1.0, 0.0, 1.0])[:, None],
-        group_name=dataset.OUTPUT_GROUP,
+        group_name=dataset.output_group,
     )
     distribution = RegressorDistribution(LinearRegressor(dataset))
 
@@ -59,12 +59,12 @@ def dataset() -> IODataset:
     """A learning dataset with three samples."""
     dataset = IODataset()
     dataset.add_variable(
-        "x", array([0.0, 0.5, 1.0])[:, None], group_name=dataset.INPUT_GROUP
+        "x", array([0.0, 0.5, 1.0])[:, None], group_name=dataset.input_group
     )
     dataset.add_variable(
         "y",
         array([1.0, 0.0, 1.0])[:, None],
-        group_name=dataset.OUTPUT_GROUP,
+        group_name=dataset.output_group,
     )
     return dataset
 

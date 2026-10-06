@@ -29,8 +29,8 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 class BaseAcquisitionCriterionFactory(BaseFactory):
     """A factory of acquisition criteria."""
 
-    _CLASS = BaseAcquisitionCriterion
-    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria",)
+    _class = BaseAcquisitionCriterion
+    _package_names = ("gemseo_mlearning.active_learning.acquisition_criteria",)
 
     @property
     @abstractmethod

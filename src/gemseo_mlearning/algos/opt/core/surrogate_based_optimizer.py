@@ -21,16 +21,16 @@ import pickle
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.algos.hashable_ndarray import HashableNdarray
-from gemseo.datasets.io_dataset import IODataset
+from gemseo.doe.factory import DOELibraryFactory
+from gemseo.util.hashable_ndarray import HashableNdarray
+from gemseo.dataset import IODataset
 from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
 from gemseo.machine_learning.regression.models.factory import REGRESSOR_FACTORY
 from gemseo.machine_learning.regression.models.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
-from gemseo.utils.constants import READ_ONLY_EMPTY_DICT
-from gemseo.utils.logging import LoggingContext
+from gemseo.util.constant import read_only_empty_dict
+from gemseo.util.logging import LoggingContext
 from numpy import hstack
 from numpy import newaxis
 from pandas import concat
@@ -43,8 +43,8 @@ from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearning
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
-    from gemseo.algos.base_driver_library import DriverLibrarySettingType
-    from gemseo.algos.optimization_problem import OptimizationProblem
+    from gemseo.core.algorithm.base_driver_library import DriverLibrarySettingType
+    from gemseo.optimization import OptimizationProblem
     from gemseo.machine_learning.regression.models.base_regressor_settings import (
         BaseRegressorSettings,
     )
@@ -80,7 +80,7 @@ class SurrogateBasedOptimizer:
         acquisition_algorithm: str,
         doe_size: int = 0,
         doe_algorithm: str = "OT_OPT_LHS",
-        doe_settings: Mapping[str, DriverLibrarySettingType] = READ_ONLY_EMPTY_DICT,
+        doe_settings: Mapping[str, DriverLibrarySettingType] = read_only_empty_dict,
         regressor: BaseRegressorSettings | BaseRegressor | None = None,
         regression_file_path: str | Path = "",
         **acquisition_settings: DriverLibrarySettingType,
@@ -129,6 +129,8 @@ class SurrogateBasedOptimizer:
             # Store the listeners as they will be cleared by DOELibrary.
             new_iter_listeners, store_listeners = database.clear_listeners()
             with LoggingContext(logging.getLogger("gemseo")):
+                # TODO(bump-gemseo): cannot transform: the Settings class is named by doe_algorithm, which is not a string literal  # noqa: E501
+                # TODO(bump-gemseo): **kwargs may contain: settings_model -> settings  # noqa: E501
                 DOELibraryFactory().execute(
                     problem, algo_name=doe_algorithm, **settings
                 )
@@ -145,6 +147,7 @@ class SurrogateBasedOptimizer:
 
             if "transformer" not in regressor.model_fields_set:
                 regressor.transformer = {"inputs": "MinMaxScaler"}
+            # TODO(bump-gemseo): cannot transform: the type of regressor could not be inferred; if it is an instance of BaseSettings, read it with the target_class_name property of a settings instance; in a settings class, remove the assignment, as the value is now derived from the name of the class (X_Settings targets X)  # noqa: E501
             regressor = REGRESSOR_FACTORY.create(
                 regressor._TARGET_CLASS_NAME, self.__dataset, settings=regressor
             )
@@ -184,19 +187,19 @@ class SurrogateBasedOptimizer:
                 break
 
             output_data = self.__problem.evaluate_functions(
-                design_vector=input_data, design_vector_is_normalized=False
+                input_value=input_data, input_value_is_normalized=False
             )[0]
             extra_learning_set = IODataset()
             variable_names_to_n_components = regressor_distribution.regressor.sizes
             extra_learning_set.add_group(
-                group_name=IODataset.INPUT_GROUP,
+                group_name=IODataset.input_group,
                 data=input_data[newaxis],
                 variable_names=regressor_distribution.input_names,
                 variable_names_to_n_components=variable_names_to_n_components,
             )
             output_names = regressor_distribution.output_names
             extra_learning_set.add_group(
-                group_name=IODataset.OUTPUT_GROUP,
+                group_name=IODataset.output_group,
                 data=hstack([output_data[output_name] for output_name in output_names])[
                     newaxis
                 ],

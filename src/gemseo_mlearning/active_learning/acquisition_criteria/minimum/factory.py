@@ -27,6 +27,6 @@ from gemseo_mlearning.active_learning.acquisition_criteria.minimum.base_minimum 
 class MinimumFactory(BaseAcquisitionCriterionFactory):
     """A factory of acquisition criteria to approximate a minimum."""
 
-    _CLASS = BaseMinimum
-    _PACKAGE_NAMES = ("gemseo_mlearning.active_learning.acquisition_criteria.minimum",)
+    _class = BaseMinimum
+    _package_names = ("gemseo_mlearning.active_learning.acquisition_criteria.minimum",)
     _DEFAULT_CLASS_NAME = "EI"

@@ -24,7 +24,7 @@ from operator import sub
 from operator import truediv
 
 import pytest
-from gemseo.core.mdo_functions.mdo_function import MDOFunction
+from gemseo.core.function.array_function import ArrayFunction
 from gemseo.machine_learning.regression.models.linreg import LinearRegressor
 from numpy import array
 
@@ -86,7 +86,7 @@ def test_linear_combination(algo_distribution):
     criterion_1 = EI(algo_distribution)
     criterion_2 = Distance(algo_distribution)
     criterion_3 = criterion_1 * 0.2 + criterion_2 * 0.8
-    assert isinstance(criterion_3, MDOFunction)
+    assert isinstance(criterion_3, ArrayFunction)
     x_new = array([0.5])
     assert (
         criterion_3.func(x_new)

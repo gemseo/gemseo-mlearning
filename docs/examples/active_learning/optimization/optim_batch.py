@@ -35,6 +35,7 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
 # Update the configuration of |g| to speed up the script.
+# TODO(bump-gemseo): use the methods enable_fast_mode and disable_fast_mode instead  # noqa: E501
 configuration.fast = True
 
 # %%
@@ -64,12 +65,14 @@ learning_dataset = sample_disciplines(
 # %%
 # and two identical initial
 # Gaussian process regressors from OpenTURNS:
+# TODO(bump-gemseo): cannot transform: the type of OTGaussianProcessRegressor_Settings could not be inferred here, so the rules of OTGaussianProcessRegressor_Settings.__init__ were not applied to its argument(s) multi_start_n_samples; check the call  # noqa: E501
 regressor_1 = OTGaussianProcessRegressor(
     learning_dataset,
     settings=OTGaussianProcessRegressor_Settings(
         trend="quadratic", multi_start_n_samples=20
     ),
 )
+# TODO(bump-gemseo): cannot transform: the type of OTGaussianProcessRegressor_Settings could not be inferred here, so the rules of OTGaussianProcessRegressor_Settings.__init__ were not applied to its argument(s) multi_start_n_samples; check the call  # noqa: E501
 regressor_2 = OTGaussianProcessRegressor(
     learning_dataset,
     settings=OTGaussianProcessRegressor_Settings(

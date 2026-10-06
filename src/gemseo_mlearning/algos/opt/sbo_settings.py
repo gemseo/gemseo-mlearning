@@ -20,8 +20,8 @@ from collections.abc import Mapping  # noqa: TC003
 from enum import auto
 from pathlib import Path  # noqa: TC003
 
-from gemseo.algos.base_driver_library import DriverSettingType  # noqa: TC002
-from gemseo.algos.opt.base_optimizer_settings import (  # noqa: TC002
+from gemseo.core.algorithm.base_driver_library import DriverSettingType  # noqa: TC002
+from gemseo.optimization.core.base_optimizer_settings import (  # noqa: TC002
     BaseOptimizerSettings,
 )
 from gemseo.machine_learning.regression.models.base_regressor import (  # noqa: TC003
@@ -36,7 +36,8 @@ from gemseo.machine_learning.regression.models.ot_gpr_settings import (
 from pydantic import Field
 from pydantic import NonNegativeInt
 from pydantic import PositiveInt
-from strenum import StrEnum
+# TODO(bump-gemseo): strenum.StrEnum: enum.StrEnum gives auto() the lower-cased member name (MC = auto() was "MC", is now "mc"), so write MC = "MC" to keep the values, or keep strenum as a dependency of your own  # noqa: E501
+from enum import StrEnum
 
 
 class AcquisitionCriterion(StrEnum):

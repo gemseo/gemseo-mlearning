@@ -31,7 +31,7 @@ from numpy import nan_to_num
 from scipy.stats import norm
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.regressor_distribution import (
         RegressorDistribution,

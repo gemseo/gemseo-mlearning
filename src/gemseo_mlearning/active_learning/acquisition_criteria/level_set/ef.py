@@ -33,7 +33,7 @@ from gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_ei_ef 
 )
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
     from gemseo_mlearning.active_learning.distributions.regressor_distribution import (  # noqa: E501
         RegressorDistribution,

@@ -21,21 +21,22 @@ from __future__ import annotations
 import re
 
 import pytest
-from gemseo.algos.parameter_space import ParameterSpace
+from gemseo.space import RandomSpace
 from numpy import array
 from numpy.testing import assert_almost_equal
 
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ef import EF
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei import EI
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.u import U
+from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
 
 
 @pytest.fixture(scope="module")
-def uncertain_space() -> ParameterSpace:
+def uncertain_space() -> RandomSpace:
     """An uncertain space."""
-    parameter_space = ParameterSpace()
-    parameter_space.add_random_variable("a", "OTNormalDistribution")
-    parameter_space.add_random_variable("x", "OTNormalDistribution")
+    parameter_space = RandomSpace()
+    parameter_space.add_variable("a", OTNormalDistribution_Settings())
+    parameter_space.add_variable("x", OTNormalDistribution_Settings())
     return parameter_space
 
 
@@ -104,7 +105,7 @@ def test_quantile_parallel(
 
 def test_quantile_error(algo_distribution):
     """Check the exception raised by a BaseQuantile criterion."""
-    uncertain_space = ParameterSpace()
+    uncertain_space = RandomSpace()
     with pytest.raises(
         ValueError,
         match=re.escape(

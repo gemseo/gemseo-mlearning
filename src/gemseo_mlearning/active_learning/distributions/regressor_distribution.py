@@ -30,8 +30,8 @@ from typing import Final
 from gemseo.machine_learning.data_formatters.regression_data_formatters import (
     RegressionDataFormatters,
 )
-from gemseo.typing import RealArray
-from gemseo.utils.data_conversion import concatenate_dict_of_arrays_to_array
+from gemseo.util.typing import RealArray
+from gemseo.util.data_conversion import concatenate_dict_of_arrays_to_array
 from numpy import array
 from numpy import array_split
 from numpy import atleast_2d
@@ -53,9 +53,9 @@ from gemseo_mlearning.active_learning.distributions.base_regressor_distribution 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from gemseo.datasets.dataset import Dataset
+    from gemseo.dataset import Dataset
     from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
-    from gemseo.typing import NumberArray
+    from gemseo.util.typing import NumberArray
 
 DataType = RealArray | Mapping[str, RealArray]
 
@@ -165,14 +165,14 @@ class RegressorDistribution(BaseRegressorDistribution):
             The weight function returning a weight from a 1D input array.
         """
         dat = self.learning_set.get_view(
-            group_names=self.learning_set.INPUT_GROUP
+            group_names=self.learning_set.input_group
         ).to_numpy()
         all_indices = set(self._samples)
         rho = max(
             min(euclidean(dat[id1], dat[id2]) for id2 in all_indices - {id1})
             for id1 in all_indices
         )
-        in_grp = self.learning_set.INPUT_GROUP
+        in_grp = self.learning_set.input_group
 
         def weight(
             input_data: NumberArray,

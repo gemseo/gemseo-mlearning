@@ -32,7 +32,7 @@ def test_rosenbrock_problem(kwargs) -> None:
     input_space = problem.design_space
     if kwargs:
         assert input_space.dimension == 2
-        assert input_space.variable_names == ["x1", "x2"]
+        assert list(input_space.variables) == ["x1", "x2"]
         assert_equal(input_space.get_lower_bounds(), array([-2.0, -2.0]))
         assert_equal(input_space.get_upper_bounds(), array([2.0, 2.0]))
     else:

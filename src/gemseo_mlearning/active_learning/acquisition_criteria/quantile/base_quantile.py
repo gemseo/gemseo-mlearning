@@ -24,8 +24,8 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import TYPE_CHECKING
 
-from gemseo.algos.parameter_space import ParameterSpace
-from gemseo.utils.string_tools import pretty_str
+from gemseo.space import RandomSpace
+from gemseo.util.string import pretty_str
 from numpy import atleast_1d
 from numpy import quantile
 
@@ -34,8 +34,8 @@ from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_crit
 )
 
 if TYPE_CHECKING:
-    from gemseo.typing import NumberArray
-    from gemseo.typing import RealArray
+    from gemseo.util.typing import NumberArray
+    from gemseo.util.typing import RealArray
 
     from gemseo_mlearning.active_learning.acquisition_criteria.level_set.base_level_set import (  # noqa: E501
         BaseLevelSet,
@@ -63,7 +63,7 @@ class BaseQuantile(BaseAcquisitionCriterion):
         self,
         regressor_distribution: BaseRegressorDistribution,
         level: float,
-        uncertain_space: ParameterSpace,
+        uncertain_space: RandomSpace,
         n_samples: int = 10_0000,
         batch_size: int = 1,
         mc_size: int = 10_000,
@@ -76,7 +76,7 @@ class BaseQuantile(BaseAcquisitionCriterion):
                 to estimate the quantile of the regressor by Monte Carlo.
         """  # noqa: D205 D212 D415
         input_names = regressor_distribution.input_names
-        missing_names = set(input_names) - set(uncertain_space.variable_names)
+        missing_names = set(input_names) - set(list(uncertain_space.variables))
         if missing_names:
             msg = (
                 "The probability distributions of the input variables "
@@ -85,7 +85,8 @@ class BaseQuantile(BaseAcquisitionCriterion):
             raise ValueError(msg)
 
         # Create a new uncertain space sorted by model inputs.
-        new_uncertain_space = ParameterSpace()
+        new_uncertain_space = RandomSpace()
+        # TODO(bump-gemseo): ParameterSpace.add_variables_from was removed; see the GEMSEO 7 changelog.  # noqa: E501
         new_uncertain_space.add_variables_from(uncertain_space, *input_names)
         self.__input_data = new_uncertain_space.compute_samples(n_samples)
         self.__level = level

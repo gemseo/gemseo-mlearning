@@ -26,20 +26,20 @@ from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.algos._progress_bar.custom import LOGGER as TQDM_LOGGER
-from gemseo.algos._progress_bar.custom import CustomTqdmProgressBar
-from gemseo.algos.database import Database
-from gemseo.algos.design_space import DesignSpace
-from gemseo.algos.doe.factory import DOELibraryFactory
-from gemseo.algos.opt.factory import OptimizationLibraryFactory
-from gemseo.algos.optimization_problem import OptimizationProblem
-from gemseo.datasets.io_dataset import IODataset
+from gemseo.core.algorithm._progress_bar.custom import logger as TQDM_LOGGER
+from gemseo.core.algorithm._progress_bar.custom import CustomTqdmProgressBar
+from gemseo.core.problem.database import Database
+from gemseo.space import DesignSpace
+from gemseo.doe.factory import DOELibraryFactory
+from gemseo.optimization.factory import OptimizationLibraryFactory
+from gemseo.optimization import OptimizationProblem
+from gemseo.dataset import IODataset
 from gemseo.machine_learning.regression.models.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
 from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
-from gemseo.utils.logging import LoggingContext
-from gemseo.utils.logging import OneLineLogging
+from gemseo.util.logging import LoggingContext
+from gemseo.util.logging import OneLineLogging
 from numpy import array
 from numpy import hstack
 from numpy import newaxis
@@ -61,10 +61,10 @@ from gemseo_mlearning.active_learning.visualization.qoi_history_view import (
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from gemseo.algos.base_driver_library import BaseDriverLibrary
-    from gemseo.core.discipline.discipline import Discipline
+    from gemseo.core.algorithm.base_driver_library import BaseDriverLibrary
+    from gemseo.discipline import Discipline
     from gemseo.machine_learning.core.models.ml_algo import DataType
-    from gemseo.post.dataset.lines import Lines
+    from gemseo.post.dataset import Lines
     from matplotlib.figure import Figure
 
     from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion import (  # noqa: E501
@@ -321,6 +321,7 @@ class ActiveLearningAlgo:
             The next `batch_size` learning point(s).
         """
         with LoggingContext(logging.getLogger("gemseo")):
+            # TODO(bump-gemseo): **kwargs may contain: settings_model -> settings  # noqa: E501
             input_data = self.__acquisition_algo.execute(
                 self.__acquisition_problem, **self.__acquisition_algo_settings
             ).x_opt
@@ -403,7 +404,7 @@ class ActiveLearningAlgo:
                     variable_names_to_n_components = distribution.regressor.sizes
                     new_points = hstack(list(input_data.values()))[newaxis]
                     extra_learning_set.add_group(
-                        group_name=IODataset.INPUT_GROUP,
+                        group_name=IODataset.input_group,
                         data=new_points,
                         variable_names=distribution.input_names,
                         variable_names_to_n_components=variable_names_to_n_components,
@@ -412,7 +413,7 @@ class ActiveLearningAlgo:
                     output_names = distribution.output_names
                     output_data = discipline.get_output_data()
                     extra_learning_set.add_group(
-                        group_name=IODataset.OUTPUT_GROUP,
+                        group_name=IODataset.output_group,
                         data=hstack([output_data[name] for name in output_names])[
                             newaxis
                         ],
@@ -533,5 +534,5 @@ class ActiveLearningAlgo:
 
     def update_problem(self) -> None:
         """Update the acquisition problem."""
-        self.__acquisition_problem.reset(preprocessing=False)
+        self.__acquisition_problem.reset()
         self.__acquisition_criterion.update()

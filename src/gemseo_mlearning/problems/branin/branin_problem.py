@@ -16,7 +16,7 @@
 
 from __future__ import annotations
 
-from gemseo.algos.optimization_problem import OptimizationProblem
+from gemseo.optimization import OptimizationProblem
 
 from gemseo_mlearning.problems.branin.branin_function import BraninFunction
 from gemseo_mlearning.problems.branin.branin_space import BraninSpace
@@ -33,6 +33,7 @@ class BraninProblem(OptimizationProblem):
         """  # noqa: D205 D212
         input_space = BraninSpace()
         if not use_uncertain_space:
+            # TODO(bump-gemseo): ParameterSpace.to_design_space was removed; see the GEMSEO 7 changelog.  # noqa: E501
             input_space = input_space.to_design_space()
 
         super().__init__(input_space)
