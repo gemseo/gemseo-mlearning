@@ -38,6 +38,7 @@ from gemseo.optimization import MultiStart_Settings
 from gemseo.optimization import OptimizationProblem
 from gemseo.optimization import SLSQP_Settings
 from gemseo.space import DesignSpace
+from gemseo.space import RandomSpace
 from gemseo.util.logging import LoggingContext
 from gemseo.util.logging import OneLineLogging
 from numpy import array
@@ -46,6 +47,7 @@ from numpy import newaxis
 from numpy import tile
 from pandas import concat
 
+from gemseo_mlearning._util import create_design_space
 from gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family import (  # noqa: E501
     AcquisitionCriterionFamilyFactory,
 )
@@ -123,7 +125,7 @@ class ActiveLearningAlgo:
     def __init__(
         self,
         criterion_family_name: str,
-        input_space: DesignSpace,
+        input_space: DesignSpace | RandomSpace,
         regressor: BaseRegressor | BaseRegressorDistribution,
         criterion_name: str = "",
         batch_size: int = 1,
@@ -136,6 +138,10 @@ class ActiveLearningAlgo:
                 *e.g.* `"Minimum"`, `"Maximum"`, `"LevelSet"`, `"Quantile"`
                 or `"Exploration"`.
             input_space: The input space on which to look for the new learning point.
+                A random space is replaced by a design space
+                whose bounds are the limits of the supports
+                of the probability distributions
+                and whose current value is the mean of these distributions.
             regressor: Either a regressor or a regressor distribution.
             criterion_name: The name of the acquisition criterion.
                 If empty,
@@ -148,6 +154,9 @@ class ActiveLearningAlgo:
         Raises:
             NotImplementedError: When the output dimension is greater than 1.
         """  # noqa: D205 D212 D415
+        if isinstance(input_space, RandomSpace):
+            input_space = create_design_space(input_space)
+
         # Create the regressor distribution.
         if isinstance(regressor, BaseRandomProcessRegressor):
             distribution = KrigingDistribution(regressor)

@@ -39,6 +39,7 @@ from gemseo.optimization import SLSQP_Settings
 from gemseo.space import DesignSpace
 from gemseo.space import RandomSpace
 from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
+from gemseo.uncertainty.distribution import OTUniformDistribution_Settings
 from numpy import array
 from numpy import ndarray
 from numpy.testing import assert_almost_equal
@@ -131,6 +132,21 @@ def test_init(algo_distribution, input_space):
     assert algo._ActiveLearningAlgo__acquisition_problem.design_space == input_space
     assert algo._ActiveLearningAlgo__distribution == algo_distribution
     assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == "MultiStart"
+
+
+def test_init_random_space(algo_distribution):
+    """Check that a random input space is replaced by a design space."""
+    random_space = RandomSpace()
+    random_space.add_variable(
+        "x", OTUniformDistribution_Settings(minimum=0.0, maximum=2.0)
+    )
+    algo = ActiveLearningAlgo("Minimum", random_space, algo_distribution)
+    input_space = algo.input_space
+    assert isinstance(input_space, DesignSpace)
+    assert list(input_space.variables) == ["x"]
+    assert_almost_equal(input_space.get_lower_bounds(), array([0.0]))
+    assert_almost_equal(input_space.get_upper_bounds(), array([2.0]))
+    assert_almost_equal(input_space.get_current_value(), array([1.0]))
 
 
 def test_init_parallel(kriging_distribution, input_space):
