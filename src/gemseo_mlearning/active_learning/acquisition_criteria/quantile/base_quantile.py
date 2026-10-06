@@ -76,7 +76,7 @@ class BaseQuantile(BaseAcquisitionCriterion):
                 to estimate the quantile of the regressor by Monte Carlo.
         """  # noqa: D205 D212 D415
         input_names = regressor_distribution.input_names
-        missing_names = set(input_names) - set(list(uncertain_space.variables))
+        missing_names = set(input_names) - set(uncertain_space.variables)
         if missing_names:
             msg = (
                 "The probability distributions of the input variables "

@@ -22,9 +22,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from gemseo.dataset import IODataset
-from gemseo.doe.factory import DOELibraryFactory
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
-from gemseo.machine_learning.regression.model.factory import regressor_factory
 from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
@@ -112,6 +110,11 @@ class SurrogateBasedOptimizer:
             **acquisition_settings: The settings of the algorithm to optimize
                 the data acquisition criterion.
         """  # noqa: D205, D212, D415
+        # The factories are imported here
+        # because creating them imports the plugins, including this one.
+        from gemseo.doe.factory import DOELibraryFactory
+        from gemseo.machine_learning.regression.model.factory import regressor_factory
+
         if regressor is None:
             regressor = OTGaussianProcessRegressor_Settings()
         self.__problem = problem

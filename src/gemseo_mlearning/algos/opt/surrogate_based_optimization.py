@@ -38,7 +38,6 @@ from typing import Any
 from typing import ClassVar
 
 from gemseo.core.algorithm.base_driver_library import DriverSettingType
-from gemseo.doe.factory import DOELibraryFactory
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.optimization.core.base_optimization_library import BaseOptimizationLibrary
 from gemseo.optimization.core.base_optimization_library import (
@@ -102,6 +101,10 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             #   + N for the N-length DOE
             #   + n_iter - 1 - N
             # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
+            # The factory is imported here
+            # because creating it imports the plugins, including this one.
+            from gemseo.doe.factory import DOELibraryFactory
+
             doe_algo = DOELibraryFactory().create(doe_algorithm)
             # TODO(bump-gemseo): cannot transform: doe_algo is only known as BaseAlgorithmLibrary; if it is an instance of BaseDOELibrary, compute_doe became sample_space  # noqa: E501
             initial_doe_size = len(

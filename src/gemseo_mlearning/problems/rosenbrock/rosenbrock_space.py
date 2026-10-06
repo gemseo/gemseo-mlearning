@@ -27,5 +27,5 @@ class RosenbrockSpace(RandomSpace):
         super().__init__()
         for index in range(2):
             self.add_variable(
-                f"x{index + 1}", OTUniformDistribution_Settings(minimum=-2, maximum=2
-            ))
+                f"x{index + 1}", OTUniformDistribution_Settings(minimum=-2, maximum=2)
+            )

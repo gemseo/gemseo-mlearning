@@ -30,13 +30,11 @@ from gemseo.core.algorithm._progress_bar.custom import CustomTqdmProgressBar
 from gemseo.core.algorithm._progress_bar.custom import logger as tqdm_logger
 from gemseo.core.problem.database import Database
 from gemseo.dataset import IODataset
-from gemseo.doe.factory import DOELibraryFactory
 from gemseo.machine_learning.regression.core.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.optimization import OptimizationProblem
-from gemseo.optimization.factory import OptimizationLibraryFactory
 from gemseo.space import DesignSpace
 from gemseo.util.logging import LoggingContext
 from gemseo.util.logging import OneLineLogging
@@ -298,6 +296,11 @@ class ActiveLearningAlgo:
                 to find the learning point(s).
             **settings: The values of some algorithm settings.
         """
+        # The factories are imported here
+        # because creating them imports the plugins, including this one.
+        from gemseo.doe.factory import DOELibraryFactory
+        from gemseo.optimization.factory import OptimizationLibraryFactory
+
         factory = DOELibraryFactory()
         if not factory.is_available(algo_name):
             factory = OptimizationLibraryFactory()
