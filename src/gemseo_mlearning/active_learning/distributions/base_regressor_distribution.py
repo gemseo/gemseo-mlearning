@@ -20,16 +20,16 @@ from abc import abstractmethod
 from collections.abc import Mapping
 from typing import TYPE_CHECKING
 
-from gemseo.machine_learning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatter.regression_data_formatters import (
     RegressionDataFormatters,
 )
-from gemseo.util.typing import RealArray
 from gemseo.util.metaclass import ABCGoogleDocstringInheritanceMeta
+from gemseo.util.typing import RealArray
 
 if TYPE_CHECKING:
     from gemseo.dataset import Dataset
     from gemseo.dataset import IODataset
-    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+    from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
     from gemseo.util.typing import NumberArray
 
 DataType = RealArray | Mapping[str, RealArray]

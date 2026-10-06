@@ -18,9 +18,9 @@ from typing import TYPE_CHECKING
 
 import pytest
 from gemseo import sample_disciplines
-from gemseo.space import DesignSpace
 from gemseo.discipline import AnalyticDiscipline
-from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
+from gemseo.space import DesignSpace
 
 from gemseo_mlearning.active_learning.active_learning_algo import ActiveLearningAlgo
 

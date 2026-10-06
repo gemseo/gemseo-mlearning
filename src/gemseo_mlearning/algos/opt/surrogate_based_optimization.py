@@ -39,9 +39,11 @@ from typing import ClassVar
 
 from gemseo.core.algorithm.base_driver_library import DriverSettingType
 from gemseo.doe.factory import DOELibraryFactory
+from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.optimization.core.base_optimization_library import BaseOptimizationLibrary
-from gemseo.optimization.core.base_optimization_library import OptimizationAlgorithmDescription
-from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+from gemseo.optimization.core.base_optimization_library import (
+    OptimizationAlgorithmDescription,
+)
 
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
@@ -78,7 +80,8 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             handle_inequality_constraints=False,
             handle_integer_variables=True,  # provided acquisition handles integers
             internal_algorithm_name="SBO",
-            settings_class=SBO_Settings)
+            settings_class=SBO_Settings,
+        )
     }
 
     def _run(self, problem: BaseProblem) -> tuple[str, None]:

@@ -31,10 +31,10 @@ from gemseo.core.algorithm._progress_bar.custom import logger as tqdm_logger
 from gemseo.core.problem.database import Database
 from gemseo.dataset import IODataset
 from gemseo.doe.factory import DOELibraryFactory
-from gemseo.machine_learning.regression.models.base_random_process_regressor import (
+from gemseo.machine_learning.regression.core.base_random_process_regressor import (
     BaseRandomProcessRegressor,
 )
-from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.optimization import OptimizationProblem
 from gemseo.optimization.factory import OptimizationLibraryFactory
 from gemseo.space import DesignSpace
@@ -401,13 +401,13 @@ class ActiveLearningAlgo:
 
                     extra_learning_set = IODataset()
                     distribution = self.__distribution
-                    variable_names_to_n_components = distribution.regressor.sizes
+                    variable_name_to_n_components = distribution.regressor.sizes
                     new_points = hstack(list(input_data.values()))[newaxis]
                     extra_learning_set.add_group(
                         group_name=IODataset.input_group,
                         data=new_points,
                         variable_names=distribution.input_names,
-                        variable_names_to_n_components=variable_names_to_n_components,
+                        variable_name_to_n_components=variable_name_to_n_components,
                     )
 
                     output_names = distribution.output_names
@@ -418,7 +418,7 @@ class ActiveLearningAlgo:
                             newaxis
                         ],
                         variable_names=output_names,
-                        variable_names_to_n_components=variable_names_to_n_components,
+                        variable_name_to_n_components=variable_name_to_n_components,
                     )
 
                     augmented_learning_set = concat(

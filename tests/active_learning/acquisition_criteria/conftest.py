@@ -20,11 +20,11 @@ from __future__ import annotations
 
 import pytest
 from gemseo.dataset import IODataset
-from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
-from gemseo.machine_learning.regression.models.gpr_settings import (
+from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.model.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
-from gemseo.machine_learning.regression.models.linreg import LinearRegressor
+from gemseo.machine_learning.regression.model.linreg import LinearRegressor
 from numpy import array
 
 from gemseo_mlearning.active_learning.distributions import KrigingDistribution

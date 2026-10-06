@@ -24,16 +24,17 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
-from gemseo.space import DesignSpace
-from gemseo.optimization import OptimizationProblem
-from gemseo.space import RandomSpace
 from gemseo.dataset import IODataset
 from gemseo.discipline import AnalyticDiscipline
-from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
-from gemseo.machine_learning.regression.models.gpr_settings import (
+from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.model.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
-from gemseo.machine_learning.regression.models.linreg import LinearRegressor
+from gemseo.machine_learning.regression.model.linreg import LinearRegressor
+from gemseo.optimization import OptimizationProblem
+from gemseo.space import DesignSpace
+from gemseo.space import RandomSpace
+from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
 from numpy import array
 from numpy import ndarray
 from numpy.testing import assert_almost_equal
@@ -52,7 +53,6 @@ from gemseo_mlearning.active_learning.visualization.acquisition_view import (
 from gemseo_mlearning.active_learning.visualization.qoi_history_view import (
     QOIHistoryView,
 )
-from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
 
 
 @pytest.fixture(scope="module")

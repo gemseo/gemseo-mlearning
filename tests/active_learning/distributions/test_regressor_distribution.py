@@ -21,7 +21,7 @@ from __future__ import annotations
 import re
 
 import pytest
-from gemseo.machine_learning.regression.models.linreg import LinearRegressor
+from gemseo.machine_learning.regression.model.linreg import LinearRegressor
 from numpy import array
 from numpy import exp
 from numpy import quantile

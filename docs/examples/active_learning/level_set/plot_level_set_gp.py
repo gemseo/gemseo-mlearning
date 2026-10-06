@@ -18,12 +18,12 @@
 from __future__ import annotations
 
 import matplotlib.pyplot as plt
-from gemseo import create_surrogate, configuration
+from gemseo import configuration
+from gemseo import create_surrogate
 from gemseo import sample_disciplines
-from gemseo.discipline import SurrogateDiscipline
-from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
-from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
-from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.model.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
 from numpy import unique

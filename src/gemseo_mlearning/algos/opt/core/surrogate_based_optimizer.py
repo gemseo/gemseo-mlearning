@@ -21,15 +21,15 @@ import pickle
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from gemseo.doe.factory import DOELibraryFactory
-from gemseo.util.hashable_ndarray import HashableNdarray
 from gemseo.dataset import IODataset
-from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
-from gemseo.machine_learning.regression.models.factory import REGRESSOR_FACTORY
-from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+from gemseo.doe.factory import DOELibraryFactory
+from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
+from gemseo.machine_learning.regression.model.factory import regressor_factory
+from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
 from gemseo.util.constant import read_only_empty_dict
+from gemseo.util.hashable_ndarray import HashableNdarray
 from gemseo.util.logging import LoggingContext
 from numpy import hstack
 from numpy import newaxis
@@ -44,10 +44,10 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
     from gemseo.core.algorithm.base_driver_library import DriverLibrarySettingType
-    from gemseo.optimization import OptimizationProblem
-    from gemseo.machine_learning.regression.models.base_regressor_settings import (
+    from gemseo.machine_learning.regression.core.base_regressor_settings import (
         BaseRegressorSettings,
     )
+    from gemseo.optimization import OptimizationProblem
 
 
 class SurrogateBasedOptimizer:
@@ -148,7 +148,7 @@ class SurrogateBasedOptimizer:
             if "transformer" not in regressor.model_fields_set:
                 regressor.transformer = {"inputs": "MinMaxScaler"}
             # TODO(bump-gemseo): cannot transform: the type of regressor could not be inferred; if it is an instance of BaseSettings, read it with the target_class_name property of a settings instance; in a settings class, remove the assignment, as the value is now derived from the name of the class (X_Settings targets X)  # noqa: E501
-            regressor = REGRESSOR_FACTORY.create(
+            regressor = regressor_factory.create(
                 regressor._TARGET_CLASS_NAME, self.__dataset, settings=regressor
             )
             # Add the first iteration to the current_iter reset by DOELibrary.
@@ -190,12 +190,12 @@ class SurrogateBasedOptimizer:
                 input_value=input_data, input_value_is_normalized=False
             )[0]
             extra_learning_set = IODataset()
-            variable_names_to_n_components = regressor_distribution.regressor.sizes
+            variable_name_to_n_components = regressor_distribution.regressor.sizes
             extra_learning_set.add_group(
                 group_name=IODataset.input_group,
                 data=input_data[newaxis],
                 variable_names=regressor_distribution.input_names,
-                variable_names_to_n_components=variable_names_to_n_components,
+                variable_name_to_n_components=variable_name_to_n_components,
             )
             output_names = regressor_distribution.output_names
             extra_learning_set.add_group(
@@ -204,7 +204,7 @@ class SurrogateBasedOptimizer:
                     newaxis
                 ],
                 variable_names=output_names,
-                variable_names_to_n_components=variable_names_to_n_components,
+                variable_name_to_n_components=variable_name_to_n_components,
             )
             self.__dataset = concat(
                 [regressor_distribution.regressor.learning_set, extra_learning_set],

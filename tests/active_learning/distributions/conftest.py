@@ -20,8 +20,8 @@ from __future__ import annotations
 
 import pytest
 from gemseo.dataset import IODataset
-from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
-from gemseo.machine_learning.regression.models.linreg import LinearRegressor
+from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
+from gemseo.machine_learning.regression.model.linreg import LinearRegressor
 from numpy import array
 
 

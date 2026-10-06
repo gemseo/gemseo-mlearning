@@ -17,27 +17,28 @@
 from __future__ import annotations
 
 from collections.abc import Mapping  # noqa: TC003
+
+# TODO(bump-gemseo): strenum.StrEnum: enum.StrEnum gives auto() the lower-cased member name (MC = auto() was "MC", is now "mc"), so write MC = "MC" to keep the values, or keep strenum as a dependency of your own  # noqa: E501
+from enum import StrEnum
 from enum import auto
 from pathlib import Path  # noqa: TC003
 
 from gemseo.core.algorithm.base_driver_library import DriverSettingType  # noqa: TC002
-from gemseo.optimization.core.base_optimizer_settings import (  # noqa: TC002
-    BaseOptimizerSettings,
-)
-from gemseo.machine_learning.regression.models.base_regressor import (  # noqa: TC003
+from gemseo.machine_learning.regression.core.base_regressor import (  # noqa: TC003
     BaseRegressor,
 )
-from gemseo.machine_learning.regression.models.base_regressor_settings import (
+from gemseo.machine_learning.regression.core.base_regressor_settings import (
     BaseRegressorSettings,
 )
-from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
+)
+from gemseo.optimization.core.base_optimizer_settings import (  # noqa: TC002
+    BaseOptimizerSettings,
 )
 from pydantic import Field
 from pydantic import NonNegativeInt
 from pydantic import PositiveInt
-# TODO(bump-gemseo): strenum.StrEnum: enum.StrEnum gives auto() the lower-cased member name (MC = auto() was "MC", is now "mc"), so write MC = "MC" to keep the values, or keep strenum as a dependency of your own  # noqa: E501
-from enum import StrEnum
 
 
 class AcquisitionCriterion(StrEnum):
@@ -104,7 +105,7 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
             """The name of the DOE algorithm for the initial sampling.
             This argument is ignored
             when regressor is a
-            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].
+            [BaseRegressor][gemseo.mlearning.regression.core.base_regressor.BaseRegressor].
             """
         ),
     )
@@ -115,7 +116,7 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
             """The settings of the DOE algorithm for the initial sampling.
             This argument is ignored
             when regressor is a
-            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].
+            [BaseRegressor][gemseo.mlearning.regression.core.base_regressor.BaseRegressor].
             """
         ),
     )
@@ -126,7 +127,7 @@ class SBO_Settings(BaseOptimizerSettings):  # noqa: N801
             """Either the initial DOE size or 0 if it is inferred from `doe_settings`.
             This argument is ignored
             when regressor is a
-            [BaseRegressor][gemseo.mlearning.regression.models.base_regressor.BaseRegressor].
+            [BaseRegressor][gemseo.mlearning.regression.core.base_regressor.BaseRegressor].
             """
         ),
     )

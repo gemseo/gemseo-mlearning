@@ -27,11 +27,11 @@ from typing import TYPE_CHECKING
 from typing import ClassVar
 from typing import Final
 
-from gemseo.machine_learning.data_formatters.regression_data_formatters import (
+from gemseo.machine_learning.data_formatter.regression_data_formatters import (
     RegressionDataFormatters,
 )
-from gemseo.util.typing import RealArray
 from gemseo.util.data_conversion import concatenate_dict_of_arrays_to_array
+from gemseo.util.typing import RealArray
 from numpy import array
 from numpy import array_split
 from numpy import atleast_2d
@@ -54,7 +54,7 @@ if TYPE_CHECKING:
     from collections.abc import Callable
 
     from gemseo.dataset import Dataset
-    from gemseo.machine_learning.regression.models.base_regressor import BaseRegressor
+    from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
     from gemseo.util.typing import NumberArray
 
 DataType = RealArray | Mapping[str, RealArray]

@@ -30,7 +30,7 @@ from gemseo_mlearning.active_learning.distributions.kriging_distribution import 
 )
 
 if TYPE_CHECKING:
-    from gemseo.machine_learning.regression.models.gpr import GaussianProcessRegressor
+    from gemseo.machine_learning.regression.model.gpr import GaussianProcessRegressor
 
 
 @pytest.fixture(scope="module")

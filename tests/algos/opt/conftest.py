@@ -16,13 +16,13 @@
 from __future__ import annotations
 
 import pytest
+from gemseo.doe import OT_SOBOL_Settings
 from gemseo.doe.factory import DOELibraryFactory
-from gemseo.machine_learning.regression.models.ot_gpr import OTGaussianProcessRegressor
-from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+from gemseo.machine_learning.regression.model.ot_gpr import OTGaussianProcessRegressor
+from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
 from gemseo.problem.optimization.rastrigin import Rastrigin
-from gemseo.doe import OT_SOBOL_Settings
 
 
 @pytest.fixture

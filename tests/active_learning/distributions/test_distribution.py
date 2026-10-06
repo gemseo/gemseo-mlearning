@@ -20,9 +20,9 @@ from __future__ import annotations
 
 import pytest
 from gemseo.dataset import IODataset
-from gemseo.machine_learning.regression.models.linreg import LinearRegressor
-from gemseo.machine_learning.regression.models.rbf import RBFRegressor
-from gemseo.machine_learning.regression.models.rbf_settings import RBFRegressor_Settings
+from gemseo.machine_learning.regression.model.linreg import LinearRegressor
+from gemseo.machine_learning.regression.model.rbf import RBFRegressor
+from gemseo.machine_learning.regression.model.rbf_settings import RBFRegressor_Settings
 from gemseo.util.testing.helper import concretize_classes
 from numpy import array
 from numpy import linspace

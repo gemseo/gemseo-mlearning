@@ -19,19 +19,19 @@ from __future__ import annotations
 from unittest.mock import MagicMock
 
 import pytest
-from gemseo.space import DesignSpace
-from gemseo.optimization import OptimizationProblem
 from gemseo.core.function.array_function import ArrayFunction
-from gemseo.machine_learning.regression.models.gpr_settings import (
+from gemseo.machine_learning.regression.model.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
-from gemseo.machine_learning.regression.models.linreg_settings import (
+from gemseo.machine_learning.regression.model.linreg_settings import (
     LinearRegressor_Settings,
 )
-from gemseo.machine_learning.regression.models.ot_gpr_settings import (
+from gemseo.machine_learning.regression.model.ot_gpr_settings import (
     OTGaussianProcessRegressor_Settings,
 )
+from gemseo.optimization import OptimizationProblem
 from gemseo.problem.optimization.rastrigin import Rastrigin
+from gemseo.space import DesignSpace
 from numpy import array
 from pandas._testing import assert_frame_equal
 
