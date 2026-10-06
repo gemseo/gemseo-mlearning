@@ -125,11 +125,8 @@ def test_init(algo_distribution, input_space):
         algo._ActiveLearningAlgo__acquisition_algo_settings
         == algo._ActiveLearningAlgo__default_algo_settings
     )
-    # TODO(bump-gemseo): cannot transform: the type of algo._ActiveLearningAlgo__acquisition... could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
-    assert (
-        algo._ActiveLearningAlgo__acquisition_problem.design_space.variable_names
-        == ["x"]
-    )
+    design_space = algo._ActiveLearningAlgo__acquisition_problem.design_space
+    assert list(design_space.variables) == ["x"]
     assert algo._ActiveLearningAlgo__acquisition_problem.design_space == input_space
     assert algo._ActiveLearningAlgo__distribution == algo_distribution
     assert algo._ActiveLearningAlgo__acquisition_algo.algo_name == "MultiStart"
@@ -142,13 +139,10 @@ def test_init_parallel(kriging_distribution, input_space):
     algo = ActiveLearningAlgo(
         "Minimum", input_space, kriging_distribution, batch_size=2
     )
-    # TODO(bump-gemseo): cannot transform: the type of input_space could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
-    assert list(algo.input_space.variables) == input_space.variable_names
-    # TODO(bump-gemseo): cannot transform: the type of algo._ActiveLearningAlgo__acquisition... could not be inferred; if it is an instance of ParameterSpace, get_lower_bounds was removed  # noqa: E501
-    # TODO(bump-gemseo): cannot transform: the type of input_space could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
+    assert list(algo.input_space.variables) == list(input_space.variables)
     assert len(
         algo._ActiveLearningAlgo__acquisition_problem.design_space.get_lower_bounds()
-    ) / 2 == len(input_space.variable_names)
+    ) / 2 == len(list(input_space.variables))
     assert algo._ActiveLearningAlgo__batch_size == 2
 
 
@@ -248,8 +242,7 @@ def test_compute_parallel(kriging_distribution, input_space, as_dict, batch_size
     algo.set_acquisition_algorithm("PYDOE_FULLFACT", n_samples=3)
     x_opt = algo.find_next_point(as_dict=as_dict)
     x_opt = x_opt if isinstance(x_opt, ndarray) else x_opt["x"]
-    # TODO(bump-gemseo): cannot transform: the type of input_space could not be inferred; if it is an instance of DesignSpace, variable_names became list({receiver}.variables)  # noqa: E501
-    assert x_opt.shape == (batch_size, len(input_space.variable_names))
+    assert x_opt.shape == (batch_size, len(list(input_space.variables)))
 
 
 @pytest.mark.parametrize("criterion_family_name", ["Exploration", "Maximum"])
