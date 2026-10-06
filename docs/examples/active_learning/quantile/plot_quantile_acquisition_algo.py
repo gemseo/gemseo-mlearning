@@ -38,8 +38,7 @@ from gemseo_mlearning.problems.rosenbrock.rosenbrock_discipline import (
 from gemseo_mlearning.problems.rosenbrock.rosenbrock_space import RosenbrockSpace
 
 # Update the configuration of |g| to speed up the script.
-# TODO(bump-gemseo): use the methods enable_fast_mode and disable_fast_mode instead  # noqa: E501
-configuration.fast = True
+configuration.enable_fast_mode()
 
 # %%
 # The use of active learning methods
