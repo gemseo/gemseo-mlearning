@@ -115,11 +115,23 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
                 )
                 raise ValueError(msg)
 
-        optimizer = SurrogateBasedOptimizer(
-            problem,
-            acquisition_settings=self._settings.acquisition_settings,
-            doe_settings=doe_settings,
-            regressor=regressor,
-            regression_file_path=self._settings.regression_file_path,
-        )
+        # The initial DOE is a driver run nested in this one:
+        # the hooks finalizing the iterations of this run are suspended
+        # so that the evaluations of the DOE are not counted twice.
+        functions = self._original_problem.functions
+        hooks = [function.pre_compute_at_new_point for function in functions]
+        for function in functions:
+            function.pre_compute_at_new_point = None
+
+        try:
+            optimizer = SurrogateBasedOptimizer(
+                problem,
+                acquisition_settings=self._settings.acquisition_settings,
+                doe_settings=doe_settings,
+                regressor=regressor,
+                regression_file_path=self._settings.regression_file_path,
+            )
+        finally:
+            for function, hook in zip(functions, hooks, strict=True):
+                function.pre_compute_at_new_point = hook
         return optimizer.execute(sys.maxsize), None
