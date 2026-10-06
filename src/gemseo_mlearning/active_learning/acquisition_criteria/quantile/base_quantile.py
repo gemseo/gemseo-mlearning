@@ -86,8 +86,10 @@ class BaseQuantile(BaseAcquisitionCriterion):
 
         # Create a new uncertain space sorted by model inputs.
         new_uncertain_space = RandomSpace()
-        # TODO(bump-gemseo): ParameterSpace.add_variables_from was removed; see the GEMSEO 7 changelog.  # noqa: E501
-        new_uncertain_space.add_variables_from(uncertain_space, *input_names)
+        for name in input_names:
+            new_uncertain_space.add_variable(
+                name, *uncertain_space.variables[name].distribution_settings
+            )
         self.__input_data = new_uncertain_space.compute_samples(n_samples)
         self.__level = level
         # The value 0. will be replaced by the quantile estimation at each update,
