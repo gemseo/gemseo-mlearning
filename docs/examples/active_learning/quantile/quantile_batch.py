@@ -161,7 +161,7 @@ level_set = plt.contour(
     unique(observations[:, 0]),
     unique(observations[:, 1]),
     observations[:, 2].reshape(n_test, n_test),
-    levels=[reference_quantile["y"]],
+    levels=reference_quantile["y"],
     colors="red",
 )
 plt.clabel(level_set, levels=[reference_quantile["y"]], fontsize=10, colors="red")
