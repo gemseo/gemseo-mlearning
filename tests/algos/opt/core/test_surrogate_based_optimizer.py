@@ -136,3 +136,10 @@ def test_ml_regression_algo_instance(regressor, kwargs):
     )
     optimizer.execute(1)
     assert_frame_equal(optimizer._SurrogateBasedOptimizer__dataset, dataset)
+
+
+def test_default_doe_settings():
+    """Check that the initial sampling uses the default DOE settings by default."""
+    problem = Rastrigin()
+    SurrogateBasedOptimizer(problem, regressor=LinearRegressor_Settings())
+    assert len(problem.database) == 10
