@@ -33,6 +33,15 @@ def acquisition_view(active_learning_algo) -> AcquisitionView:
     return AcquisitionView(active_learning_algo)
 
 
+@pytest.fixture
+def snapshot_matplotlib(snapshot_matplotlib):
+    """The snapshot of the figures, with the tolerance used before GEMSEO 7.
+
+    The contours of the surrogate model depend slightly on the platform.
+    """
+    return snapshot_matplotlib.set_defaults(tolerance=0.9)
+
+
 def test_raise_parallel(discipline, learning_dataset, input_space):
     """Check that an error is raised when plotting in batch mode."""
     regressor = GaussianProcessRegressor(learning_dataset)
