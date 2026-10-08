@@ -25,6 +25,7 @@ from gemseo.doe import OT_AXIAL_Settings
 from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.doe import OT_SOBOL_Settings
 from gemseo.doe import PYDOE_FULLFACT_Settings
+from gemseo.doe.factory import DOELibraryFactory
 from gemseo.machine_learning.regression.model.gpr_settings import (
     GaussianProcessRegressor_Settings,
 )
@@ -39,11 +40,13 @@ from gemseo.optimization import OptimizationProblem
 from gemseo.problem.optimization.rastrigin import Rastrigin
 from gemseo.space import DesignSpace
 from numpy import array
+from numpy.testing import assert_equal
 from pandas._testing import assert_frame_equal
 
 from gemseo_mlearning.algos.opt.core.surrogate_based_optimizer import (
     SurrogateBasedOptimizer,
 )
+from gemseo_mlearning.algos.opt.sbo_settings import create_default_doe_settings
 
 
 @pytest.mark.parametrize(
@@ -142,4 +145,10 @@ def test_default_doe_settings():
     """Check that the initial sampling uses the default DOE settings by default."""
     problem = Rastrigin()
     SurrogateBasedOptimizer(problem, regressor=LinearRegressor_Settings())
-    assert len(problem.database) == 10
+
+    reference_problem = Rastrigin()
+    DOELibraryFactory().execute(reference_problem, create_default_doe_settings())
+    assert_equal(
+        problem.database.get_x_vect_history(),
+        reference_problem.database.get_x_vect_history(),
+    )
