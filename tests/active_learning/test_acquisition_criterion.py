@@ -82,7 +82,7 @@ def test_neg(criterion_1):
 
 
 def test_linear_combination(algo_distribution):
-    """Check that a combination of MLDataAcquisitionCriterion is an MDOFunction."""
+    """Check that a combination of MLDataAcquisitionCriterion is an ArrayFunction."""
     criterion_1 = EI(algo_distribution)
     criterion_2 = Distance(algo_distribution)
     criterion_3 = criterion_1 * 0.2 + criterion_2 * 0.8
