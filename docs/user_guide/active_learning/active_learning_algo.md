@@ -99,7 +99,8 @@ A basic use of this class is
 
 1. instantiate
    the [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
-   from an input space of type [DesignSpace][gemseo.space.design.DesignSpace],
+   from an input space of type [DesignSpace][gemseo.space.design.DesignSpace]
+   or [RandomSpace][gemseo.space.random.RandomSpace],
    a [BaseRegressor][gemseo.machine_learning.regression.core.base_regressor.BaseRegressor]
    and the name of a family of acquisition criteria
    (a default acquisition criterion will be set accordingly),
