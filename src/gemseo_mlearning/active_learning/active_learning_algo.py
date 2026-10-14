@@ -138,10 +138,13 @@ class ActiveLearningAlgo:
                 *e.g.* `"Minimum"`, `"Maximum"`, `"LevelSet"`, `"Quantile"`
                 or `"Exploration"`.
             input_space: The input space on which to look for the new learning point.
-                A random space is replaced by a design space
+                A random space is replaced by a real-valued design space
                 whose bounds are the limits of the supports
                 of the probability distributions
-                and whose current value is the mean of these distributions.
+                and whose current value is the mean of these distributions;
+                so,
+                these distributions must have bounded supports
+                and a discrete distribution is treated as a continuous one.
             regressor: Either a regressor or a regressor distribution.
             criterion_name: The name of the acquisition criterion.
                 If empty,

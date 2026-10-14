@@ -33,9 +33,11 @@ and this project adheres to
 - The input space of
   [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
   can be a `RandomSpace`;
-  it is replaced by a `DesignSpace`
+  it is replaced by a real-valued `DesignSpace`
   whose bounds are the limits of the supports of the probability distributions
-  and whose current value is the mean of these distributions.
+  and whose current value is the mean of these distributions;
+  so,
+  these distributions must have bounded supports.
 
 ### Changed
 

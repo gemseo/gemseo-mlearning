@@ -27,9 +27,13 @@ if TYPE_CHECKING:
 def create_design_space(random_space: RandomSpace) -> DesignSpace:
     """Create a design space from a random space.
 
+    The design variables are real-valued,
+    even for discrete probability distributions.
     The bounds of a design variable are the limits of the support
     of the probability distribution of the corresponding random variable
     and its current value is the mean of this distribution.
+    So,
+    an unbounded probability distribution gives an unbounded design variable.
 
     Args:
         random_space: The random space.
