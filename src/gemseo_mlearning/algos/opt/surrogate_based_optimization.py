@@ -92,14 +92,19 @@ class SurrogateBasedOptimization(BaseOptimizationLibrary[SBO_Settings]):
             #   + N for the N-length DOE
             #   + n_iter - 1 - N
             # So, n_iter - 1 - N >= 0 implies that n_iter >= 1+N
-            # The factory is imported here
-            # because creating it imports the plugins, including this one.
-            from gemseo.doe.factory import DOELibraryFactory
+            # Sampling the DOE only to count its points can be expensive,
+            # e.g. with an optimized LHS;
+            # a full factorial DOE can have fewer points than n_samples.
+            initial_doe_size = getattr(doe_settings, "n_samples", 0)
+            if not initial_doe_size or hasattr(doe_settings, "levels"):
+                # The factory is imported here
+                # because creating it imports the plugins, including this one.
+                from gemseo.doe.factory import DOELibraryFactory
 
-            doe_algo = DOELibraryFactory().create(doe_settings.target_class_name)
-            initial_doe_size = len(
-                doe_algo.sample_space(problem.design_space, doe_settings)
-            )
+                doe_algo = DOELibraryFactory().create(doe_settings.target_class_name)
+                initial_doe_size = len(
+                    doe_algo.sample_space(problem.design_space, doe_settings)
+                )
             max_iter = self._settings.max_iter
             if max_iter < 1 + initial_doe_size:
                 msg = (

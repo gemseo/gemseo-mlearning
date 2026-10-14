@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: test_max_iter_full_factorial
+  'max_iter (9) must be strictly greater than the initial DOE size (9).'
+# ---

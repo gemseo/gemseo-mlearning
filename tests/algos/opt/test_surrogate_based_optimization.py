@@ -21,11 +21,13 @@ import re
 from pathlib import Path
 
 import pytest
+from gemseo.doe import OT_FULLFACT_Settings
 from gemseo.doe import OT_MONTE_CARLO_Settings
 from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.optimization.factory import OptimizationLibraryFactory
 from gemseo.problem.optimization.rastrigin import Rastrigin
 from gemseo.problem.optimization.rosenbrock import Rosenbrock
+from gemseo.util.testing.helper import assert_exception
 from numpy import array
 from numpy.testing import assert_almost_equal
 from pandas.testing import assert_frame_equal
@@ -60,7 +62,7 @@ def test_criterion(criterion):
 
 @pytest.mark.parametrize("max_iter", [8, 10])
 def test_inconsistent_max_iter(max_iter, regressor):
-    """Check that max_iter must be strictly greater than doe_size."""
+    """Check that max_iter must be strictly greater than the initial DOE size."""
     with pytest.raises(
         ValueError,
         match=re.escape(
@@ -75,6 +77,27 @@ def test_inconsistent_max_iter(max_iter, regressor):
     # Except if the regression algorithm is already built.
     OptimizationLibraryFactory().execute(
         Rastrigin(), SBO_Settings(max_iter=max_iter, regressor=regressor)
+    )
+
+
+def test_max_iter_full_factorial(snapshot):
+    """Check max_iter against the size of a full factorial initial DOE.
+
+    With two variables, 10 samples give a 3x3 grid, i.e. 9 points.
+    """
+    with assert_exception(ValueError, snapshot):
+        OptimizationLibraryFactory().execute(
+            Rastrigin(),
+            SBO_Settings(max_iter=9, doe_settings=OT_FULLFACT_Settings(n_samples=10)),
+        )
+
+    OptimizationLibraryFactory().execute(
+        Rastrigin(),
+        SBO_Settings(
+            max_iter=10,
+            doe_settings=OT_FULLFACT_Settings(n_samples=10),
+            acquisition_settings=OT_MONTE_CARLO_Settings(n_samples=10),
+        ),
     )
 
 
