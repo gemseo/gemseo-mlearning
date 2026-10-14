@@ -152,3 +152,11 @@ def test_default_doe_settings():
         problem.database.get_x_vect_history(),
         reference_problem.database.get_x_vect_history(),
     )
+
+
+def test_regressor_settings_unchanged():
+    """Check that the optimizer does not change the regressor settings of the user."""
+    regressor = LinearRegressor_Settings()
+    SurrogateBasedOptimizer(Rastrigin(), regressor=regressor)
+    assert regressor == LinearRegressor_Settings()
+    assert "transformer" not in regressor.model_fields_set

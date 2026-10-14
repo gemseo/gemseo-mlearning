@@ -131,6 +131,8 @@ class SurrogateBasedOptimizer:
                 self.__dataset = self.__dataset[len(self.__initial_input_samples) :]
 
             if "transformer" not in regressor.model_fields_set:
+                # Copy the settings so as not to change those of the user.
+                regressor = regressor.model_copy()
                 regressor.transformer = {"inputs": "MinMaxScaler"}
             regressor = regressor_factory.create(
                 regressor.target_class_name, self.__dataset, settings=regressor
