@@ -31,13 +31,11 @@
 from __future__ import annotations
 
 import sys
-from collections.abc import Mapping
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 from typing import Any
 from typing import ClassVar
 
-from gemseo.core.algorithm.base_driver_library import DriverSettingType
 from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor
 from gemseo.optimization.core.base_optimization_library import BaseOptimizationLibrary
 from gemseo.optimization.core.base_optimization_library import (
@@ -51,11 +49,6 @@ from gemseo_mlearning.algos.opt.sbo_settings import SBO_Settings
 
 if TYPE_CHECKING:
     from gemseo.core.problem.base import BaseProblem
-
-
-SBOSettingType = (
-    int | float | str | Mapping[str | DriverSettingType] | Mapping[str | Any]
-)
 
 
 @dataclass
