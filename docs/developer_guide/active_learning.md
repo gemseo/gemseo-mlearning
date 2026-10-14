@@ -105,7 +105,7 @@ classDiagram
     }
 ```
 
-## How to...
+## How to
 
 `... create a new family of acquisition criteria?`
 
@@ -116,11 +116,13 @@ classDiagram
     1. Derive `NewAcquisitionCriterionFactory` from
        [BaseAcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory]
        and set the class attributes:
+
        ```python
        _class = BaseNewAcquisitionCriterion
        _DEFAULT_CLASS_NAME = "FirstAcquisitionCriterion"
        _package_names = ("root_package.subpackage_name.package_name",)
        ```
+
     1. Derive `NewAcquisitionCriterionFamily` from
        [BaseAcquisitionCriterionFamily][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily]
        and set the class attribute `ACQUISITION_CRITERION_FACTORY = NewAcquisitionCriterionFactory`.

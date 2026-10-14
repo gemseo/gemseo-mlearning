@@ -11,7 +11,7 @@
 
 [Active learning](what_active_learning_is.md) techniques are very useful
 to estimate a level set,
- _i.e._ the input values for which the model output is equal to a specific value $y$.
+ *i.e.* the input values for which the model output is equal to a specific value $y$.
 
 In particular,
 this specific value can be the $\alpha$-quantile for a specific $\alpha\in]0,1[$.

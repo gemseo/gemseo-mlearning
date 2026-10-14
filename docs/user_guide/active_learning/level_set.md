@@ -14,7 +14,7 @@ to estimate a level set, _i.e._ the input values for which the model output is e
 
 The [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
 presented in [the previous section](active_learning_algo.md)
-can be used to *approximate* a particular level set,
+can be used to _approximate_ a particular level set,
 using the family of acquisition criteria
 [LevelSet][gemseo_mlearning.active_learning.acquisition_criteria.level_set.level_set.LevelSet].
 As new points are acquired,

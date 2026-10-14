@@ -1,11 +1,11 @@
 site_name: gemseo-mlearning
-site_url: https://gemseo.gitlab.io/gemseo-mlearning
+site_url: https://gemseo.gitlab.io/dev/gemseo-mlearning
 repo_url: https://gitlab.com/gemseo/dev/gemseo-mlearning
 repo_name: gemseo-mlearning
 
 theme:
   name: material
-  favicon: images/favicon.ico
+  favicon: images/monogram.png
   features:
     - navigation.tabs
     - navigation.instant
@@ -36,7 +36,7 @@ plugins:
     handlers:
       python:
         paths: [src]
-        import:
+        inventories:
         - https://docs.python.org/3/objects.inv
         - https://gemseo.readthedocs.io/en/stable/objects.inv
         - https://matplotlib.org/stable/objects.inv
@@ -125,7 +125,6 @@ markdown_extensions:
 
 extra_javascript:
 - javascripts/mathjax.js
-- https://polyfill.io/v3/polyfill.min.js?features=es6
 - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 watch:

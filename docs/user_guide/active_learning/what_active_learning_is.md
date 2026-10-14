@@ -109,7 +109,7 @@ where the amount of learning points for the training of the surrogate is the sma
 One of the most popular acquisition criterion to minimize (alternatively to maximize) black-box functions
 is the expected improvement [@jones1998efficient] defined as:
 
-$$ J_n(\mathbf{x}) =  \text{EI}_n(\mathbf{x})  = \mathbb{E}[\max(\mathbf{y}_n - F_n(\mathbf{x}),0)],$$
+$$ J_n(\mathbf{x}) = \text{EI}_n(\mathbf{x}) = \mathbb{E}[\max(\mathbf{y}_n - F_n(\mathbf{x}),0)],$$
 
 where the expectation is taken with respect to
 the distribution of the conditioned GP $F_n(\cdot)$.
@@ -134,7 +134,7 @@ so the infill criterion rather seeks here to improve the GP overall prediction.
 
 A usual criterion to estimate the level set[@ranjan2008sequential] associated to value $a$ is :
 
-$$ J_n(\mathbf{x}) =  \mathbb{E}[\max((2 s_n^2(\mathbf{x})) -\vert{a - F_n(\mathbf{x})}\vert^2,0)],$$
+$$ J_n(\mathbf{x}) = \mathbb{E}[\max((2 s_n^2(\mathbf{x})) -\vert{a - F_n(\mathbf{x})}\vert^2,0)],$$
 
 where the expectation is taken with respect to
 the distribution of the conditioned GP $F_n(\cdot)$.

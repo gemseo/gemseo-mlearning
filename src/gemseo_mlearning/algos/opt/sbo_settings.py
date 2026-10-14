@@ -22,9 +22,7 @@ from pathlib import Path  # noqa: TC003
 from gemseo.core.algorithm.base_driver_settings import BaseDriverSettings  # noqa: TC002
 from gemseo.doe import OT_OPT_LHS_Settings
 from gemseo.doe.core.base_doe_settings import BaseDOESettings  # noqa: TC002
-from gemseo.machine_learning.regression.core.base_regressor import (  # noqa: TC002
-    BaseRegressor,
-)
+from gemseo.machine_learning.regression.core.base_regressor import BaseRegressor  # noqa: TC002
 from gemseo.machine_learning.regression.core.base_regressor_settings import (  # noqa: TC002
     BaseRegressorSettings,
 )

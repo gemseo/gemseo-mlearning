@@ -38,7 +38,7 @@ denote the expectation and the standard deviation of $Y(x)$.
 
 The most naive approach is to learn the point furthest away from those in the training dataset.
 So,
-this criterion to _maximize_ is
+this criterion to *maximize* is
 the minimum distance between a new point
 and the point of the training dataset,
 scaled by the minimum distance between two distinct training points:
@@ -47,7 +47,7 @@ $$D[x]=\frac{\min_{1\leq i \leq n} \|x-x_i\|_2}{\min_{1\leq i,j \leq n, i\neq j}
 
 where $\|.\|_2$ is the Euclidean norm.
 
-#### API
+### API
 
 This criterion can be accessed via the name `"Distance"`:
 
@@ -69,7 +69,7 @@ and this is the reason why the variance of the prediction is the default criteri
 
 $$V[x]=\sigma^2(x).$$
 
-#### API
+### API
 
 This criterion, named `"Variance"`,
 is the default one;
@@ -89,7 +89,7 @@ This criterion is simply the square root of the previous one:
 
 $$S[x]=\sigma(x).$$
 
-#### API
+### API
 
 This criterion can be accessed via the name `"StandardDeviation"`:
 

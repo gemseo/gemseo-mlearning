@@ -22,9 +22,7 @@ import pytest
 from numpy import array
 from numpy.testing import assert_equal
 
-from gemseo_mlearning.active_learning.acquisition_criteria.maximum.mean import (  # noqa: E501
-    Mean,
-)
+from gemseo_mlearning.active_learning.acquisition_criteria.maximum.mean import Mean  # noqa: E501
 
 
 @pytest.mark.parametrize(

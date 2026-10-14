@@ -23,7 +23,7 @@ when the functions of the optimization problem:
 
 In this case,
 multi-start gradient-based optimization cannot be used,
-and neither can classical global optimization algorithms (*e.g.* evolutionary algorithms).
+and neither can classical global optimization algorithms (_e.g._ evolutionary algorithms).
 
 The [ActiveLearningAlgo][gemseo_mlearning.active_learning.active_learning_algo.ActiveLearningAlgo]
 presented in [the previous section](active_learning_algo.md)
