@@ -68,7 +68,7 @@ classDiagram
     BaseAcquisitionCriterionFamily --> BaseAcquisitionCriterionFactory
     BaseAcquisitionCriterionFactory --> BaseAcquisitionCriterion
 
-    BaseAcquisitionCriterion --|> MDOFunction
+    BaseAcquisitionCriterion --|> ArrayFunction
     BaseAcquisitionCriterion o-- BaseRegressorDistribution
 
     <<abstract>> BaseAcquisitionCriterion
@@ -117,9 +117,9 @@ classDiagram
        [BaseAcquisitionCriterionFactory][gemseo_mlearning.active_learning.acquisition_criteria.base_factory.BaseAcquisitionCriterionFactory]
        and set the class attributes:
        ```python
-       _CLASS = BaseNewAcquisitionCriterion
+       _class = BaseNewAcquisitionCriterion
        _DEFAULT_CLASS_NAME = "FirstAcquisitionCriterion"
-       _MODULE_NAMES = ("root_package.subpackage_name.package_name",)
+       _package_names = ("root_package.subpackage_name.package_name",)
        ```
     1. Derive `NewAcquisitionCriterionFamily` from
        [BaseAcquisitionCriterionFamily][gemseo_mlearning.active_learning.acquisition_criteria.base_acquisition_criterion_family.BaseAcquisitionCriterionFamily]
