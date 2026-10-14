@@ -40,6 +40,7 @@ and this project adheres to
 ### Changed
 
 - Support GEMSEO 7.
+- Remove the upper bound `<1.25` of the `openturns` requirement.
 - The `algo_name` and `**settings` arguments of
   `ActiveLearningAlgo.set_acquisition_algorithm`
   are replaced by `settings` of type `BaseDriverSettings`,
