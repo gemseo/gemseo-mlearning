@@ -66,7 +66,7 @@ if TYPE_CHECKING:
     from gemseo.core.algorithm.base_driver_library import BaseDriverLibrary
     from gemseo.core.algorithm.base_driver_settings import BaseDriverSettings
     from gemseo.discipline import Discipline
-    from gemseo.machine_learning.core.models.ml_algo import DataType
+    from gemseo.machine_learning.core.model.base_ml_model import DataType
     from gemseo.post.dataset import Lines
     from matplotlib.figure import Figure
 
