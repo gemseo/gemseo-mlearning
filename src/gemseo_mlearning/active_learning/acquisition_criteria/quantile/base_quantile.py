@@ -90,6 +90,20 @@ class BaseQuantile(BaseAcquisitionCriterion):
             new_uncertain_space.add_variable(
                 name, *uncertain_space.variables[name].distribution_settings
             )
+
+        # Keep the dependency structure of the model inputs.
+        for names, copula in uncertain_space.variables.copulas:
+            n_input_names = len(set(names) & set(input_names))
+            if n_input_names == len(names):
+                new_uncertain_space.add_copula(names, copula)
+            elif n_input_names:
+                msg = (
+                    "A copula cannot link inputs of the regressor "
+                    "with other random variables; "
+                    f"the copula of {pretty_str(names, use_and=True)} does."
+                )
+                raise ValueError(msg)
+
         self.__input_data = new_uncertain_space.compute_samples(n_samples)
         self.__level = level
         # The value 0. will be replaced by the quantile estimation at each update,

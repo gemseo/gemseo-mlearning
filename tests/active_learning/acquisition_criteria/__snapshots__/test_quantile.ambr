@@ -1,0 +1,4 @@
+# serializer version: 1
+# name: test_quantile_copula_error
+  'A copula cannot link inputs of the regressor with other random variables; the copula of a and x1 does.'
+# ---

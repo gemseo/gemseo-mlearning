@@ -21,14 +21,21 @@ from __future__ import annotations
 import re
 
 import pytest
+from gemseo.dataset import IODataset
+from gemseo.machine_learning.regression.model.linreg import LinearRegressor
 from gemseo.space import RandomSpace
 from gemseo.uncertainty.distribution import OTNormalDistribution_Settings
+from gemseo.util.testing.helper import assert_exception
 from numpy import array
+from numpy import corrcoef
 from numpy.testing import assert_almost_equal
+from openturns import CorrelationMatrix
+from openturns import NormalCopula
 
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ef import EF
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.ei import EI
 from gemseo_mlearning.active_learning.acquisition_criteria.quantile.u import U
+from gemseo_mlearning.active_learning.distributions import RegressorDistribution
 
 
 @pytest.fixture(scope="module")
@@ -140,3 +147,53 @@ def test_bad_parallel_regressor(algo_distribution, cls, uncertain_space):
         ),
     ):
         criterion.func(array([0.123]))
+
+
+def _create_normal_copula(correlation: float) -> NormalCopula:
+    """Create a bivariate normal copula.
+
+    Args:
+        correlation: The correlation between the two variables.
+
+    Returns:
+        The normal copula.
+    """
+    matrix = CorrelationMatrix(2)
+    matrix[0, 1] = correlation
+    return NormalCopula(matrix)
+
+
+@pytest.fixture(scope="module")
+def two_input_distribution() -> RegressorDistribution:
+    """A distribution of a regressor with the inputs x1 and x2."""
+    dataset = IODataset()
+    dataset.add_input_variable("x1", array([[0.0], [0.5], [1.0]]))
+    dataset.add_input_variable("x2", array([[1.0], [0.0], [0.5]]))
+    dataset.add_output_variable("y", array([[1.0], [0.0], [1.0]]))
+    distribution = RegressorDistribution(LinearRegressor(dataset))
+    distribution.learn()
+    return distribution
+
+
+def test_quantile_copula(two_input_distribution):
+    """Check that a BaseQuantile criterion keeps the copulas of the inputs."""
+    uncertain_space = RandomSpace()
+    for name in ["x2", "a", "x1"]:
+        uncertain_space.add_variable(name, OTNormalDistribution_Settings())
+
+    uncertain_space.add_copula(["x2", "x1"], _create_normal_copula(0.9))
+    criterion = EF(two_input_distribution, 0.8, uncertain_space, n_samples=10_000)
+    input_data = criterion._BaseQuantile__input_data
+    assert input_data.shape == (10_000, 2)
+    assert corrcoef(input_data.T)[0, 1] > 0.85
+
+
+def test_quantile_copula_error(two_input_distribution, snapshot):
+    """Check that a copula linking an input with a non-input raises an error."""
+    uncertain_space = RandomSpace()
+    for name in ["x1", "x2", "a"]:
+        uncertain_space.add_variable(name, OTNormalDistribution_Settings())
+
+    uncertain_space.add_copula(["x1", "a"], _create_normal_copula(0.9))
+    with assert_exception(ValueError, snapshot):
+        EF(two_input_distribution, 0.8, uncertain_space)
